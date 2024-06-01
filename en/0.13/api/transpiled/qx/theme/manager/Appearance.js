@@ -45,8 +45,8 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_298_0 = {};
-      this.__P_298_1 = {};
+      this.__P_455_0 = {};
+      this.__P_455_1 = {};
     },
     /*
     *****************************************************************************
@@ -73,14 +73,14 @@
       /**
        * @lint ignoreReferenceField(__defaultStates)
        */
-      __P_298_2: {},
-      __P_298_0: null,
-      __P_298_1: null,
+      __P_455_2: {},
+      __P_455_0: null,
+      __P_455_1: null,
       // property apply
       _applyTheme: function _applyTheme() {
         // empty the caches
-        this.__P_298_1 = {};
-        this.__P_298_0 = {};
+        this.__P_455_1 = {};
+        this.__P_455_0 = {};
       },
       /*
       ---------------------------------------------------------------------------
@@ -97,7 +97,7 @@
        * @param chain {Array} The appearance id chain.
        * @return {String} Resolved ID
        */
-      __P_298_3: function __P_298_3(id, theme, defaultId, chain) {
+      __P_455_3: function __P_455_3(id, theme, defaultId, chain) {
         var db = theme.appearances;
         var entry = db[id];
         if (!entry) {
@@ -114,7 +114,7 @@
               alias = entry.alias || entry;
               if (typeof alias === "string") {
                 var mapped = alias + divider + end.join(divider);
-                return this.__P_298_3(mapped, theme, defaultId, chainCopy);
+                return this.__P_455_3(mapped, theme, defaultId, chainCopy);
               }
             }
           }
@@ -125,7 +125,7 @@
             end.shift();
             // build a new subid without the former first id
             var subId = end.join(divider);
-            var resolved = this.__P_298_3(subId, theme, null, chainCopy);
+            var resolved = this.__P_455_3(subId, theme, null, chainCopy);
             if (resolved) {
               return resolved;
             }
@@ -133,7 +133,7 @@
 
           // check for the fallback
           if (defaultId != null) {
-            return this.__P_298_3(defaultId, theme, null, chainCopy);
+            return this.__P_455_3(defaultId, theme, null, chainCopy);
           }
 
           // it's safe to output this message here since we can be sure that the return
@@ -141,9 +141,9 @@
 
           return null;
         } else if (typeof entry === "string") {
-          return this.__P_298_3(entry, theme, defaultId, chainCopy);
+          return this.__P_455_3(entry, theme, defaultId, chainCopy);
         } else if (entry.include && !entry.style) {
-          return this.__P_298_3(entry.include, theme, defaultId, chainCopy);
+          return this.__P_455_3(entry.include, theme, defaultId, chainCopy);
         }
         return id;
       },
@@ -162,13 +162,13 @@
         }
 
         // Resolve ID
-        var aliasMap = this.__P_298_1;
+        var aliasMap = this.__P_455_1;
         if (!aliasMap[theme.name]) {
           aliasMap[theme.name] = {};
         }
         var resolved = aliasMap[theme.name][id];
         if (!resolved) {
-          resolved = aliasMap[theme.name][id] = this.__P_298_3(id, theme, defaultId);
+          resolved = aliasMap[theme.name][id] = this.__P_455_3(id, theme, defaultId);
         }
 
         // Query theme for ID
@@ -214,14 +214,14 @@
         }
 
         // Using cache if available
-        var cache = this.__P_298_0;
+        var cache = this.__P_455_0;
         if (cache[theme.name] && cache[theme.name][unique] !== undefined) {
           return cache[theme.name][unique];
         }
 
         // Fallback to default (empty) states map
         if (!states) {
-          states = this.__P_298_2;
+          states = this.__P_455_2;
         }
 
         // Compile the appearance
@@ -291,4 +291,4 @@
   qx.theme.manager.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1709410156491
+//# sourceMappingURL=Appearance.js.map?dt=1717235397944

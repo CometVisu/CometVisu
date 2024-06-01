@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "testclasses",
+    "RootClass",
+    "include",
+    "MMixinOne",
+    "MMixinTwo",
+    "construct",
+    "constructor",
+    "call",
+    "state",
+    "push",
+    "BaseClassIncluded"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/testclasses/BaseClassIncluded.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qx.test.testclasses.BaseClassIncluded\", {\n  extend: qx.test.testclasses.RootClass,\n  include: [qx.test.testclasses.MMixinOne, qx.test.testclasses.MMixinTwo],\n\n  construct() {\n    super();\n    this.state.push(\"base\");\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,uCAAuC,EAAE;IACvDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,SAAS;IACrCC,OAAO,EAAE,CAACV,EAAE,CAACO,IAAI,CAACC,WAAW,CAACG,SAAS,EAAEX,EAAE,CAACO,IAAI,CAACC,WAAW,CAACI,SAAS,CAAC;IAEvEC,SAAS,WAAAA,UAAA,EAAG;MACVb,EAAA,CAAAO,IAAA,CAAAC,WAAA,CAAAC,SAAA,CAAAK,WAAA,CAAAC,IAAA;MACA,IAAI,CAACC,KAAK,CAACC,IAAI,CAAC,MAAM,CAAC;IACzB;EACF,CAAC,CAAC;EARFjB,EAAE,CAACO,IAAI,CAACC,WAAW,CAACU,iBAAiB,CAACf,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

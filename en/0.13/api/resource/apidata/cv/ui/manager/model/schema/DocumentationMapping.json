@@ -1,39 +1,41 @@
 {
-  "className": "cv.ui.manager.model.schema.DocumentationMapping",
-  "packageName": "cv.ui.manager.model.schema",
-  "name": "DocumentationMapping",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 838
-      },
-      "end": {
-        "line": 177,
-        "column": 3,
-        "index": 14077
-      }
+  "version": 0.3,
+  "lastModified": 1717235105610,
+  "lastModifiedIso": "2024-06-01T09:45:05.610Z",
+  "classFilename": "../../source/class/cv/ui/manager/model/schema/DocumentationMapping.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 838
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 173,
+      "column": 3,
+      "index": 8665
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.ui.manager.model.schema.DocumentationMapping",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "MAP": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 32,
@@ -41,14 +43,14 @@
           "index": 1065
         },
         "end": {
-          "line": 175,
+          "line": 171,
           "column": 5,
-          "index": 14069
+          "index": 8657
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

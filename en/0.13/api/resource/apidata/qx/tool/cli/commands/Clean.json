@@ -1,0 +1,115 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169638,
+  "lastModifiedIso": "2024-06-01T09:46:09.638Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Clean.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 696
+    },
+    "end": {
+      "line": 83,
+      "column": 3,
+      "index": 2185
+    }
+  },
+  "className": "qx.tool.cli.commands.Clean",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Cleans generated and cache files",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Cleans generated and cache files</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Command",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 801
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1058
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deletes all generated and cache files",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes all generated and cache files</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1143
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1730
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "__removePath": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1737
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2177
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "pathToRemove"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

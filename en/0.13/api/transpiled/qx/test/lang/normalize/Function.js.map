@@ -1,0 +1,45 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "testBind",
+    "context",
+    "result",
+    "add",
+    "a",
+    "b",
+    "assertEquals",
+    "window",
+    "boundAdd",
+    "bind",
+    "addOne",
+    "testBindWithUndefinedArguments",
+    "undef",
+    "callback",
+    "arg",
+    "assertTrue",
+    "bound",
+    "test",
+    "lang",
+    "normalize",
+    "Function"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/lang/normalize/Function.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * @require(qx.lang.normalize.Function)\n */\nqx.Class.define(\"qx.test.lang.normalize.Function\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    testBind() {\n      var context = null;\n      var result = 0;\n\n      var add = function (a, b) {\n        context = this;\n        return a + b;\n      };\n\n      context = null;\n      result = add(1, 2);\n\n      this.assertEquals(context, window);\n      this.assertEquals(3, result);\n\n      context = null;\n      var boundAdd = add.bind(this);\n      result = boundAdd(1, 3);\n      this.assertEquals(context, this);\n      this.assertEquals(4, result);\n\n      context = null;\n      var addOne = add.bind(this, 1);\n      result = addOne(4);\n      this.assertEquals(context, this);\n      this.assertEquals(5, result);\n    },\n\n    testBindWithUndefinedArguments() {\n      var undef;\n      var callback = function (undef, arg) {\n        this.assertTrue(arg);\n      };\n      var bound = callback.bind(this, undef, true);\n      bound();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,iCAAiC,EAAE;IACjDC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE;MACPC,QAAQ,WAAAA,SAAA,EAAG;QACT,IAAIC,OAAO,GAAG,IAAI;QAClB,IAAIC,MAAM,GAAG,CAAC;QAEd,IAAIC,GAAG,GAAG,SAANA,GAAGA,CAAaC,CAAC,EAAEC,CAAC,EAAE;UACxBJ,OAAO,GAAG,IAAI;UACd,OAAOG,CAAC,GAAGC,CAAC;QACd,CAAC;QAEDJ,OAAO,GAAG,IAAI;QACdC,MAAM,GAAGC,GAAG,CAAC,CAAC,EAAE,CAAC,CAAC;QAElB,IAAI,CAACG,YAAY,CAACL,OAAO,EAAEM,MAAM,CAAC;QAClC,IAAI,CAACD,YAAY,CAAC,CAAC,EAAEJ,MAAM,CAAC;QAE5BD,OAAO,GAAG,IAAI;QACd,IAAIO,QAAQ,GAAGL,GAAG,CAACM,IAAI,CAAC,IAAI,CAAC;QAC7BP,MAAM,GAAGM,QAAQ,CAAC,CAAC,EAAE,CAAC,CAAC;QACvB,IAAI,CAACF,YAAY,CAACL,OAAO,EAAE,IAAI,CAAC;QAChC,IAAI,CAACK,YAAY,CAAC,CAAC,EAAEJ,MAAM,CAAC;QAE5BD,OAAO,GAAG,IAAI;QACd,IAAIS,MAAM,GAAGP,GAAG,CAACM,IAAI,CAAC,IAAI,EAAE,CAAC,CAAC;QAC9BP,MAAM,GAAGQ,MAAM,CAAC,CAAC,CAAC;QAClB,IAAI,CAACJ,YAAY,CAACL,OAAO,EAAE,IAAI,CAAC;QAChC,IAAI,CAACK,YAAY,CAAC,CAAC,EAAEJ,MAAM,CAAC;MAC9B,CAAC;MAEDS,8BAA8B,WAAAA,+BAAA,EAAG;QAC/B,IAAIC,KAAK;QACT,IAAIC,QAAQ,GAAG,SAAXA,QAAQA,CAAaD,KAAK,EAAEE,GAAG,EAAE;UACnC,IAAI,CAACC,UAAU,CAACD,GAAG,CAAC;QACtB,CAAC;QACD,IAAIE,KAAK,GAAGH,QAAQ,CAACJ,IAAI,CAAC,IAAI,EAAEG,KAAK,EAAE,IAAI,CAAC;QAC5CI,KAAK,CAAC,CAAC;MACT;IACF;EACF,CAAC,CAAC;EA9DF3B,EAAE,CAAC4B,IAAI,CAACC,IAAI,CAACC,SAAS,CAACC,QAAQ,CAAC5B,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

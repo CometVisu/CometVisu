@@ -1,0 +1,57 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235168846,
+  "lastModifiedIso": "2024-06-01T09:46:08.846Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Add.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 21,
+      "column": 0,
+      "index": 532
+    },
+    "end": {
+      "line": 46,
+      "column": 3,
+      "index": 1137
+    }
+  },
+  "className": "qx.tool.cli.commands.Add",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Adds scripts, classes, etc. to the projects",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Adds scripts, classes, etc. to the projects</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Command",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4,
+          "index": 636
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1077
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

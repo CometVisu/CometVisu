@@ -1,47 +1,54 @@
 {
-  "className": "qx.core.Wrapper",
-  "packageName": "qx.core",
-  "name": "Wrapper",
-  "superClass": "Array",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 19,
-        "column": 0,
-        "index": 589
-      },
-      "end": {
-        "line": 67,
-        "column": 3,
-        "index": 1974
-      }
+  "version": 0.3,
+  "lastModified": 1717235172898,
+  "lastModifiedIso": "2024-06-01T09:46:12.898Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/Wrapper.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 19,
+      "column": 0,
+      "index": 571
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Generic wrapper instance which wrapps a set of objects and forwards the API of\n the first object to all objects in the array.</p>"
-        }
-      ]
+    "end": {
+      "line": 67,
+      "column": 3,
+      "index": 1908
     }
   },
-  "type": "class",
+  "className": "qx.core.Wrapper",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Generic wrapper instance which wrapps a set of objects and forwards the API of",
+      " * the first object to all objects in the array.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Generic wrapper instance which wrapps a set of objects and forwards the API of\n the first object to all objects in the array.</p>"
+      }
+    ]
+  },
+  "superClass": "Array",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 21,
         "column": 2,
-        "index": 651
+        "index": 631
       },
       "end": {
         "line": 66,
         "column": 3,
-        "index": 1969
+        "index": 1904
       }
     }
   },
-  "descendants": []
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

@@ -1,39 +1,41 @@
 {
-  "className": "cv.theme.dark.Images",
-  "packageName": "cv.theme.dark",
-  "name": "Images",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 847
-      },
-      "end": {
-        "line": 91,
-        "column": 3,
-        "index": 3448
-      }
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/theme/dark/Images.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 847
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Some icon definitions.</p>"
-        }
-      ]
+    "end": {
+      "line": 91,
+      "column": 3,
+      "index": 3448
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.theme.dark.Images",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Some icon definitions.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Some icon definitions.</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "ICONS": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 32,
@@ -46,10 +48,11 @@
           "index": 3249
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "getIcon": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 85,
@@ -63,8 +66,17 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "size"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

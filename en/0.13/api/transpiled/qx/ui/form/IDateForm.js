@@ -61,6 +61,7 @@
        * Sets the element's value.
        *
        * @param value {Date|null} The new value of the element.
+       * @return {Date|null}
        */
       setValue: function setValue(value) {
         return arguments.length == 1;
@@ -80,4 +81,4 @@
   qx.ui.form.IDateForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IDateForm.js.map?dt=1709410160053
+//# sourceMappingURL=IDateForm.js.map?dt=1717235410741

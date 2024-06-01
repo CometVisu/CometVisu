@@ -1,65 +1,62 @@
 {
-  "className": "qx.core.BaseInit",
-  "packageName": "qx.core",
-  "name": "BaseInit",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 628
-      },
-      "end": {
-        "line": 126,
-        "column": 3,
-        "index": 3500
-      }
+  "version": 0.3,
+  "lastModified": 1717235169286,
+  "lastModifiedIso": "2024-06-01T09:46:09.286Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/BaseInit.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 605
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This is the base class for non-browser qooxdoo applications.</p>"
-        }
-      ]
+    "end": {
+      "line": 126,
+      "column": 3,
+      "index": 3375
     }
   },
-  "type": "class",
+  "className": "qx.core.BaseInit",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is the base class for non-browser qooxdoo applications.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is the base class for non-browser qooxdoo applications.</p>"
+      }
+    ]
+  },
   "statics": {
     "__application": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 32,
           "column": 4,
-          "index": 875
+          "index": 844
         },
         "end": {
           "line": 32,
           "column": 23,
-          "index": 894
+          "index": 863
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getApplication": {
-      "location": {
-        "start": {
-          "line": 39,
-          "column": 4,
-          "index": 1042
-        },
-        "end": {
-          "line": 41,
-          "column": 5,
-          "index": 1109
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the instantiated qooxdoo application.",
+          "     *",
+          "     * @return {qx.core.Object} The application instance.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -71,27 +68,39 @@
             "name": "@return",
             "body": "{qx.core.Object} The application instance.",
             "type": "qx.core.Object",
-            "description": " The application instance."
+            "description": "The application instance."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "ready": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 48,
+          "line": 39,
           "column": 4,
-          "index": 1296
+          "index": 1004
         },
         "end": {
-          "line": 98,
+          "line": 41,
           "column": 5,
-          "index": 2872
+          "index": 1069
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.core.Object"
+      },
+      "appearsIn": []
+    },
+    "ready": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Runs when the application is loaded. Automatically creates an instance",
+          "     * of the class defined by the setting <code>qx.application</code>.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -99,23 +108,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__close": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 106,
+          "line": 48,
           "column": 4,
-          "index": 3117
+          "index": 1249
         },
         "end": {
-          "line": 111,
+          "line": 98,
           "column": 5,
-          "index": 3222
+          "index": 2775
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__close": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Runs before the document is unloaded. Calls the application's close",
+          "     * method to check if the unload process should be stopped.",
+          "     *",
+          "     * @param e {qx.event.type.Native} Incoming beforeunload event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -132,23 +151,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__shutdown": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 118,
+          "line": 106,
           "column": 4,
-          "index": 3377
+          "index": 3012
         },
         "end": {
-          "line": 124,
+          "line": 111,
           "column": 5,
-          "index": 3490
+          "index": 3112
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Native"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__shutdown": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Runs when the document is unloaded. Automatically terminates a previously",
+          "     * created application instance.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -156,9 +189,24 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3260
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 3367
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

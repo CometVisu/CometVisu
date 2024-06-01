@@ -1,0 +1,77 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171562,
+  "lastModifiedIso": "2024-06-01T09:46:11.562Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/LibraryApplication.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 652
+    },
+    "end": {
+      "line": 33,
+      "column": 3,
+      "index": 798
+    }
+  },
+  "className": "qx.tool.cli.LibraryApplication",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is the main application class of the compiler; it does nothing",
+      " * during startup so that it can be used as a library",
+      " *",
+      " * @asset(qx/tool/*)",
+      " * @use qx.tool.cli.Cli",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is the main application class of the compiler; it does nothing\n during startup so that it can be used as a library</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/tool/*"
+      }
+    ],
+    "@use": [
+      {
+        "name": "@use",
+        "body": "qx.tool.cli.Cli"
+      }
+    ]
+  },
+  "superClass": "qx.application.Basic",
+  "members": {
+    "main": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 753
+        },
+        "end": {
+          "line": 31,
+          "column": 5,
+          "index": 790
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.application.Basic",
+      "appearsIn": [
+        "qx.application.Basic",
+        "qx.application.IApplication"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

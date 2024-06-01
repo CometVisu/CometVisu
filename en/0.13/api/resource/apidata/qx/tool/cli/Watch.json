@@ -1,0 +1,634 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172770,
+  "lastModifiedIso": "2024-06-01T09:46:12.770Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/Watch.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 660
+    },
+    "end": {
+      "line": 560,
+      "column": 3,
+      "index": 16868
+    }
+  },
+  "className": "qx.tool.cli.Watch",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @ignore(setImmediate)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "setImmediate"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "maker"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 2,
+        "index": 728
+      },
+      "end": {
+        "line": 42,
+        "column": 3,
+        "index": 1022
+      }
+    }
+  },
+  "properties": {
+    "debug": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1045
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1101
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "making": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1124
+        },
+        "end": {
+          "line": 52,
+          "column": 33,
+          "index": 1153
+        }
+      }
+    },
+    "remaking": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1159
+        },
+        "end": {
+          "line": 53,
+          "column": 35,
+          "index": 1190
+        }
+      }
+    },
+    "made": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1196
+        },
+        "end": {
+          "line": 54,
+          "column": 31,
+          "index": 1223
+        }
+      }
+    },
+    "configChanged": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1229
+        },
+        "end": {
+          "line": 55,
+          "column": 40,
+          "index": 1265
+        }
+      }
+    },
+    "fileChanged": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @typedef {Object} FileChangedEvent",
+          "     * @property {qx.tool.compiler.app.Library} library the library that contains the file",
+          "     * @property {String} filename the filename relative to the library root",
+          "     * @property {String} fileType either \"source\", \"resource\" or \"theme\"",
+          "     *",
+          "     * This event is fired when a file is changed, the data is {FileChangedEvent}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@typedef": [
+          {
+            "name": "@typedef",
+            "body": "{Object} FileChangedEvent"
+          }
+        ],
+        "@property": [
+          {
+            "name": "@property",
+            "body": "{qx.tool.compiler.app.Library} library the library that contains the file"
+          },
+          {
+            "name": "@property",
+            "body": "{String} filename the filename relative to the library root"
+          },
+          {
+            "name": "@property",
+            "body": "{String} fileType either \"source\", \"resource\" or \"theme\"\n This event is fired when a file is changed, the data is {FileChangedEvent}"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1661
+        },
+        "end": {
+          "line": 65,
+          "column": 37,
+          "index": 1694
+        }
+      }
+    }
+  },
+  "members": {
+    "__runningPromise": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1718
+        },
+        "end": {
+          "line": 69,
+          "column": 26,
+          "index": 1740
+        }
+      },
+      "appearsIn": []
+    },
+    "__applications": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1746
+        },
+        "end": {
+          "line": 70,
+          "column": 24,
+          "index": 1766
+        }
+      },
+      "appearsIn": []
+    },
+    "__watcherReady": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1772
+        },
+        "end": {
+          "line": 71,
+          "column": 25,
+          "index": 1793
+        }
+      },
+      "appearsIn": []
+    },
+    "__maker": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1799
+        },
+        "end": {
+          "line": 72,
+          "column": 17,
+          "index": 1812
+        }
+      },
+      "appearsIn": []
+    },
+    "__stats": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1818
+        },
+        "end": {
+          "line": 73,
+          "column": 17,
+          "index": 1831
+        }
+      },
+      "appearsIn": []
+    },
+    "__making": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1837
+        },
+        "end": {
+          "line": 74,
+          "column": 18,
+          "index": 1851
+        }
+      },
+      "appearsIn": []
+    },
+    "__stopping": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1857
+        },
+        "end": {
+          "line": 75,
+          "column": 21,
+          "index": 1874
+        }
+      },
+      "appearsIn": []
+    },
+    "__outOfDate": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1880
+        },
+        "end": {
+          "line": 76,
+          "column": 21,
+          "index": 1897
+        }
+      },
+      "appearsIn": []
+    },
+    "__makeTimerId": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1903
+        },
+        "end": {
+          "line": 77,
+          "column": 23,
+          "index": 1922
+        }
+      },
+      "appearsIn": []
+    },
+    "__debounceChanges": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1928
+        },
+        "end": {
+          "line": 78,
+          "column": 27,
+          "index": 1951
+        }
+      },
+      "appearsIn": []
+    },
+    "__configFilenames": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 1957
+        },
+        "end": {
+          "line": 79,
+          "column": 27,
+          "index": 1980
+        }
+      },
+      "appearsIn": []
+    },
+    "__madeApplications": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 1986
+        },
+        "end": {
+          "line": 80,
+          "column": 28,
+          "index": 2010
+        }
+      },
+      "appearsIn": []
+    },
+    "__runWhenWatching": {
+      "jsdoc": {
+        "raw": [
+          "* @type{Map<String,Object>} list of runWhenWatching configurations, indexed by app name "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map<String,Object>} list of runWhenWatching configurations, indexed by app name"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2114
+        },
+        "end": {
+          "line": 83,
+          "column": 27,
+          "index": 2137
+        }
+      },
+      "appearsIn": []
+    },
+    "setConfigFilenames": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2144
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2337
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "arr"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setRunWhenWatching": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2344
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2560
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "appName"
+        },
+        {
+          "name": "config"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onWrittenApplication": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2567
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 3862
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt"
+        }
+      ],
+      "appearsIn": []
+    },
+    "start": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3869
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 7945
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "stop": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 266,
+          "column": 4,
+          "index": 7952
+        },
+        "end": {
+          "line": 272,
+          "column": 5,
+          "index": 8095
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__make": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 274,
+          "column": 4,
+          "index": 8102
+        },
+        "end": {
+          "line": 369,
+          "column": 5,
+          "index": 11267
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__scheduleMake": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 371,
+          "column": 4,
+          "index": 11274
+        },
+        "end": {
+          "line": 382,
+          "column": 5,
+          "index": 11565
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__onFileChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 384,
+          "column": 4,
+          "index": 11572
+        },
+        "end": {
+          "line": 531,
+          "column": 5,
+          "index": 15938
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "filename"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onStop": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 533,
+          "column": 4,
+          "index": 15945
+        },
+        "end": {
+          "line": 535,
+          "column": 5,
+          "index": 16002
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

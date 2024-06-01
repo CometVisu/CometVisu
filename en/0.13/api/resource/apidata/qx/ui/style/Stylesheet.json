@@ -1,98 +1,98 @@
 {
-  "className": "qx.ui.style.Stylesheet",
-  "packageName": "qx.ui.style",
-  "name": "Stylesheet",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 614
-      },
-      "end": {
-        "line": 67,
-        "column": 3,
-        "index": 1823
-      }
+  "version": 0.3,
+  "lastModified": 1717235172442,
+  "lastModifiedIso": "2024-06-01T09:46:12.442Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/style/Stylesheet.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 593
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Global class which handles the single stylesheet used for qx.desktop.</p>"
-        }
-      ]
+    "end": {
+      "line": 67,
+      "column": 3,
+      "index": 1757
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": false,
+  "className": "qx.ui.style.Stylesheet",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Global class which handles the single stylesheet used for qx.desktop.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Global class which handles the single stylesheet used for qx.desktop.</p>"
+      }
+    ]
+  },
   "isSingleton": true,
+  "abstract": false,
+  "superClass": "qx.core.Object",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 26,
         "column": 2,
-        "index": 712
+        "index": 687
       },
       "end": {
         "line": 30,
         "column": 3,
-        "index": 823
+        "index": 794
       }
     }
   },
   "members": {
     "__rules": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 33,
           "column": 4,
-          "index": 846
+          "index": 814
         },
         "end": {
           "line": 33,
           "column": 17,
-          "index": 859
+          "index": 827
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__sheet": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 34,
           "column": 4,
-          "index": 866
+          "index": 833
         },
         "end": {
           "line": 34,
           "column": 17,
-          "index": 879
+          "index": 846
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "addRule": {
-      "location": {
-        "start": {
-          "line": 41,
-          "column": 4,
-          "index": 1071
-        },
-        "end": {
-          "line": 47,
-          "column": 5,
-          "index": 1264
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a rule to the global stylesheet.",
+          "     * @param selector {String} The CSS selector to add the rule for.",
+          "     * @param css {String} The rule's content.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -105,34 +105,52 @@
             "body": "selector {String} The CSS selector to add the rule for.",
             "paramName": "selector",
             "description": " The CSS selector to add the rule for.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "css {String} The rule's content.",
             "paramName": "css",
             "description": " The rule's content.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasRule": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 54,
+          "line": 41,
           "column": 4,
-          "index": 1442
+          "index": 1031
         },
         "end": {
-          "line": 56,
+          "line": 47,
           "column": 5,
-          "index": 1520
+          "index": 1218
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "selector",
+          "type": "string"
+        },
+        {
+          "name": "css",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasRule": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if a rule exists.",
+          "     * @param selector {String} The selector to check.",
+          "     * @return {Boolean} <code>true</code> if the rule exists",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -145,35 +163,51 @@
             "body": "selector {String} The selector to check.",
             "paramName": "selector",
             "description": " The selector to check.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the rule exists",
-            "type": "Boolean",
-            "description": " <code>true</code> if the rule exists"
+            "type": "boolean",
+            "description": "<code>true</code> if the rule exists"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeRule": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 54,
           "column": 4,
-          "index": 1663
+          "index": 1389
         },
         "end": {
-          "line": 65,
+          "line": 56,
           "column": 5,
-          "index": 1813
+          "index": 1465
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "selector",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeRule": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the rule for the given selector.",
+          "     * @param selector {String} The selector to identify the rule.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -186,151 +220,33 @@
             "body": "selector {String} The selector to identify the rule.",
             "paramName": "selector",
             "description": " The selector to identify the rule.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1602
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1749
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "selector",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

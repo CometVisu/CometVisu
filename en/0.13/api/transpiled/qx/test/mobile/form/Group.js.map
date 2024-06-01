@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "mobile",
+    "MobileTestCase",
+    "members",
+    "testGroup",
+    "button",
+    "ui",
+    "form",
+    "Button",
+    "group",
+    "Group",
+    "add",
+    "getRoot",
+    "destroy"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/mobile/form/Group.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christopher Zuendorf (czuendorf)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.mobile.form.Group\", {\n  extend: qx.test.mobile.MobileTestCase,\n\n  members: {\n    testGroup() {\n      var button = new qx.ui.mobile.form.Button(\"affe\");\n      var group = new qx.ui.mobile.form.Group();\n      group.add(button);\n      this.getRoot().add(button);\n\n      group.destroy();\n      button.destroy();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,2BAA2B,EAAE;IAC3CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM,CAACC,cAAc;IAErCC,OAAO,EAAE;MACPC,SAAS,WAAAA,UAAA,EAAG;QACV,IAAIC,MAAM,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACC,MAAM,CAAC,MAAM,CAAC;QACjD,IAAIC,KAAK,GAAG,IAAIhB,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACG,KAAK,CAAC,CAAC;QACzCD,KAAK,CAACE,GAAG,CAACN,MAAM,CAAC;QACjB,IAAI,CAACO,OAAO,CAAC,CAAC,CAACD,GAAG,CAACN,MAAM,CAAC;QAE1BI,KAAK,CAACI,OAAO,CAAC,CAAC;QACfR,MAAM,CAACQ,OAAO,CAAC,CAAC;MAClB;IACF;EACF,CAAC,CAAC;EAhCFpB,EAAE,CAACO,IAAI,CAACC,MAAM,CAACM,IAAI,CAACG,KAAK,CAACd,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

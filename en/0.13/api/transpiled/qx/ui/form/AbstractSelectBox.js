@@ -124,6 +124,15 @@
           return this._defaultFormat(item);
         },
         nullable: true
+      },
+      /**
+       * Whether the field is read only
+       */
+      readOnly: {
+        check: "Boolean",
+        event: "changeReadOnly",
+        apply: "_applyReadOnly",
+        init: false
       }
     },
     /*
@@ -148,6 +157,7 @@
                 selectionMode: "one",
                 quickSelection: true
               });
+              this.bind("readOnly", control, "readOnly");
               var listId = "list-" + control.toHashCode();
               var childrenContainerEl = control.getChildrenContainer().getContentElement();
               childrenContainerEl.setAttribute("id", listId);
@@ -155,7 +165,7 @@
               this.getContentElement().setAttribute("aria-owns", listId);
               control.addListener("addItem", this._onListAddItem, this);
               control.addListener("changeSelection", this._onListChangeSelection, this);
-              control.addListener("pointerdown", this._onListPointerDown, this);
+              control.addListener("pointerdown", this.__P_569_0, this);
               control.getChildControl("pane").addListener("tap", this.close, this);
               break;
             }
@@ -178,21 +188,24 @@
       _applyMaxListHeight: function _applyMaxListHeight(value, old) {
         this.getChildControl("list").setMaxHeight(value);
       },
+      _applyReadOnly: function _applyReadOnly() {
+        // no-op
+      },
       /*
       ---------------------------------------------------------------------------
-        PUBLIC METHODS
+      PUBLIC METHODS
       ---------------------------------------------------------------------------
       */
       /**
-       * Returns the list widget.
-       * @return {qx.ui.form.List} the list
-       */
+      * Returns the list widget.
+      * @return {qx.ui.form.List} the list
+      */
       getChildrenContainer: function getChildrenContainer() {
         return this.getChildControl("list");
       },
       /*
       ---------------------------------------------------------------------------
-        LIST STUFF
+      LIST STUFF
       ---------------------------------------------------------------------------
       */
       /**
@@ -316,6 +329,12 @@
       _onListChangeSelection: function _onListChangeSelection(e) {
         throw new Error("Abstract method: _onListChangeSelection()");
       },
+      __P_569_0: function __P_569_0(e) {
+        if (this.getReadOnly()) {
+          return;
+        }
+        this._onListPointerDown(e);
+      },
       /**
        * Redirects pointerdown event from the list to this widget.
        *
@@ -341,4 +360,4 @@
   qx.ui.form.AbstractSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractSelectBox.js.map?dt=1709410159740
+//# sourceMappingURL=AbstractSelectBox.js.map?dt=1717235410387

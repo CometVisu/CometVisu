@@ -48,7 +48,7 @@
       qx.core.Object.constructor.call(this);
 
       // Create data structure
-      this.__P_316_0 = {};
+      this.__P_534_0 = {};
     },
     /*
     ***********************************************
@@ -71,10 +71,10 @@
     */
 
     members: {
-      __P_316_0: null,
-      __P_316_1: null,
-      __P_316_2: null,
-      __P_316_3: null,
+      __P_534_0: null,
+      __P_534_1: null,
+      __P_534_2: null,
+      __P_534_3: null,
       /**
        * Connects to a top-level root element (which initially receives
        * all events of the root). This are normally all page and application
@@ -85,7 +85,7 @@
        */
       connectTo: function connectTo(root) {
         // this.debug("Connect to: " + root);
-        root.addListener("keypress", this.__P_316_4, this);
+        root.addListener("keypress", this.__P_534_4, this);
         root.addListener("focusin", this._onFocusIn, this, true);
         root.addListener("focusout", this._onFocusOut, this, true);
         root.addListener("activate", this._onActivate, this, true);
@@ -99,7 +99,7 @@
        */
       addRoot: function addRoot(widget) {
         // this.debug("Add focusRoot: " + widget);
-        this.__P_316_0[widget.toHashCode()] = widget;
+        this.__P_534_0[widget.toHashCode()] = widget;
       },
       /**
        * Deregisters a previous added widget.
@@ -108,7 +108,7 @@
        */
       removeRoot: function removeRoot(widget) {
         // this.debug("Remove focusRoot: " + widget);
-        delete this.__P_316_0[widget.toHashCode()];
+        delete this.__P_534_0[widget.toHashCode()];
       },
       /**
        * Get the active widget
@@ -117,7 +117,7 @@
        *    if no widget is active
        */
       getActiveWidget: function getActiveWidget() {
-        return this.__P_316_1;
+        return this.__P_534_1;
       },
       /**
        * Whether the given widget is the active one
@@ -126,7 +126,7 @@
        * @return {Boolean} <code>true</code> if the given widget is active
        */
       isActive: function isActive(widget) {
-        return this.__P_316_1 == widget;
+        return this.__P_534_1 == widget;
       },
       /**
        * Get the focused widget
@@ -135,7 +135,7 @@
        *    if no widget has the focus
        */
       getFocusedWidget: function getFocusedWidget() {
-        return this.__P_316_2;
+        return this.__P_534_2;
       },
       /**
        * Whether the given widget is the focused one.
@@ -144,7 +144,7 @@
        * @return {Boolean} <code>true</code> if the given widget is focused
        */
       isFocused: function isFocused(widget) {
-        return this.__P_316_2 == widget;
+        return this.__P_534_2 == widget;
       },
       /**
        * Whether the given widgets acts as a focus root.
@@ -153,7 +153,7 @@
        * @return {Boolean} <code>true</code> if the given widget is a focus root
        */
       isFocusRoot: function isFocusRoot(widget) {
-        return !!this.__P_316_0[widget.toHashCode()];
+        return !!this.__P_534_0[widget.toHashCode()];
       },
       /*
       ---------------------------------------------------------------------------
@@ -167,12 +167,12 @@
        */
       _onActivate: function _onActivate(e) {
         var target = e.getTarget();
-        this.__P_316_1 = target;
+        this.__P_534_1 = target;
         //this.debug("active: " + target);
 
-        var root = this.__P_316_5(target);
-        if (root != this.__P_316_3) {
-          this.__P_316_3 = root;
+        var root = this.__P_534_5(target);
+        if (root != this.__P_534_3) {
+          this.__P_534_3 = root;
         }
       },
       /**
@@ -182,8 +182,8 @@
        */
       _onDeactivate: function _onDeactivate(e) {
         var target = e.getTarget();
-        if (this.__P_316_1 == target) {
-          this.__P_316_1 = null;
+        if (this.__P_534_1 == target) {
+          this.__P_534_1 = null;
         }
       },
       /**
@@ -193,8 +193,8 @@
        */
       _onFocusIn: function _onFocusIn(e) {
         var target = e.getTarget();
-        if (target != this.__P_316_2) {
-          this.__P_316_2 = target;
+        if (target != this.__P_534_2) {
+          this.__P_534_2 = target;
           target.visualizeFocus();
         }
       },
@@ -205,8 +205,8 @@
        */
       _onFocusOut: function _onFocusOut(e) {
         var target = e.getTarget();
-        if (target == this.__P_316_2) {
-          this.__P_316_2 = null;
+        if (target == this.__P_534_2) {
+          this.__P_534_2 = null;
           target.visualizeBlur();
         }
       },
@@ -215,11 +215,11 @@
        *
        * @param e {qx.event.type.KeySequence} Key event
        */
-      __P_316_4: function __P_316_4(e) {
+      __P_534_4: function __P_534_4(e) {
         if (e.getKeyIdentifier() != "Tab" || !this.isUseTabNavigation()) {
           return;
         }
-        if (!this.__P_316_3) {
+        if (!this.__P_534_3) {
           return;
         }
 
@@ -228,11 +228,11 @@
         e.preventDefault();
 
         // Support shift key to reverse widget detection order
-        var current = this.__P_316_2;
+        var current = this.__P_534_2;
         if (!e.isShiftPressed()) {
-          var next = current ? this.__P_316_6(current) : this.__P_316_7();
+          var next = current ? this.__P_534_6(current) : this.__P_534_7();
         } else {
-          var next = current ? this.__P_316_8(current) : this.__P_316_9();
+          var next = current ? this.__P_534_8(current) : this.__P_534_9();
         }
 
         // If there was a widget found, focus it
@@ -252,8 +252,8 @@
        * @return {qx.ui.core.Widget|null} The focus root for the given widget or
        * <code>true</code> if no focus root could be found
        */
-      __P_316_5: function __P_316_5(widget) {
-        var roots = this.__P_316_0;
+      __P_534_5: function __P_534_5(widget) {
+        var roots = this.__P_534_0;
         while (widget) {
           if (roots[widget.toHashCode()]) {
             return widget;
@@ -275,7 +275,7 @@
        * @return {Integer} A sort() compatible integer with values
        *   small than 0, exactly 0 or bigger than 0.
        */
-      __P_316_10: function __P_316_10(widget1, widget2) {
+      __P_534_10: function __P_534_10(widget1, widget2) {
         if (widget1 === widget2) {
           return 0;
         }
@@ -318,8 +318,8 @@
        * @return {qx.ui.core.Widget} Returns the first (positioned) widget from
        *    the current root.
        */
-      __P_316_7: function __P_316_7() {
-        return this.__P_316_11(this.__P_316_3, null);
+      __P_534_7: function __P_534_7() {
+        return this.__P_534_11(this.__P_534_3, null);
       },
       /**
        * Returns the last widget.
@@ -327,8 +327,8 @@
        * @return {qx.ui.core.Widget} Returns the last (positioned) widget from
        *    the current root.
        */
-      __P_316_9: function __P_316_9() {
-        return this.__P_316_12(this.__P_316_3, null);
+      __P_534_9: function __P_534_9() {
+        return this.__P_534_12(this.__P_534_3, null);
       },
       /**
        * Returns the widget after the given one.
@@ -336,10 +336,10 @@
        * @param widget {qx.ui.core.Widget} Widget to start with
        * @return {qx.ui.core.Widget} The found widget.
        */
-      __P_316_6: function __P_316_6(widget) {
-        var root = this.__P_316_3;
+      __P_534_6: function __P_534_6(widget) {
+        var root = this.__P_534_3;
         if (root == widget) {
-          return this.__P_316_7();
+          return this.__P_534_7();
         }
         while (widget && widget.getAnonymous()) {
           widget = widget.getLayoutParent();
@@ -348,10 +348,10 @@
           return [];
         }
         var result = [];
-        this.__P_316_13(root, widget, result);
-        result.sort(this.__P_316_10);
+        this.__P_534_13(root, widget, result);
+        result.sort(this.__P_534_10);
         var len = result.length;
-        return len > 0 ? result[0] : this.__P_316_7();
+        return len > 0 ? result[0] : this.__P_534_7();
       },
       /**
        * Returns the widget before the given one.
@@ -359,10 +359,10 @@
        * @param widget {qx.ui.core.Widget} Widget to start with
        * @return {qx.ui.core.Widget} The found widget.
        */
-      __P_316_8: function __P_316_8(widget) {
-        var root = this.__P_316_3;
+      __P_534_8: function __P_534_8(widget) {
+        var root = this.__P_534_3;
         if (root == widget) {
-          return this.__P_316_9();
+          return this.__P_534_9();
         }
         while (widget && widget.getAnonymous()) {
           widget = widget.getLayoutParent();
@@ -371,10 +371,10 @@
           return [];
         }
         var result = [];
-        this.__P_316_14(root, widget, result);
-        result.sort(this.__P_316_10);
+        this.__P_534_14(root, widget, result);
+        result.sort(this.__P_534_10);
         var len = result.length;
-        return len > 0 ? result[len - 1] : this.__P_316_9();
+        return len > 0 ? result[len - 1] : this.__P_534_9();
       },
       /*
       ---------------------------------------------------------------------------
@@ -390,7 +390,7 @@
        * @param widget {qx.ui.core.Widget} Child widget to start with
        * @param result {Array} Result list
        */
-      __P_316_13: function __P_316_13(parent, widget, result) {
+      __P_534_13: function __P_534_13(parent, widget, result) {
         var children = parent.getLayoutChildren();
         var child;
         for (var i = 0, l = children.length; i < l; i++) {
@@ -401,10 +401,10 @@
             continue;
           }
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
-            if (child.isTabable() && this.__P_316_10(widget, child) < 0) {
+            if (child.isTabable() && this.__P_534_10(widget, child) < 0) {
               result.push(child);
             }
-            this.__P_316_13(child, widget, result);
+            this.__P_534_13(child, widget, result);
           }
         }
       },
@@ -417,7 +417,7 @@
        * @param widget {qx.ui.core.Widget} Child widget to start with
        * @param result {Array} Result list
        */
-      __P_316_14: function __P_316_14(parent, widget, result) {
+      __P_534_14: function __P_534_14(parent, widget, result) {
         var children = parent.getLayoutChildren();
         var child;
         for (var i = 0, l = children.length; i < l; i++) {
@@ -428,10 +428,10 @@
             continue;
           }
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
-            if (child.isTabable() && this.__P_316_10(widget, child) > 0) {
+            if (child.isTabable() && this.__P_534_10(widget, child) > 0) {
               result.push(child);
             }
-            this.__P_316_14(child, widget, result);
+            this.__P_534_14(child, widget, result);
           }
         }
       },
@@ -442,7 +442,7 @@
        * @param firstWidget {qx.ui.core.Widget?null} Current first widget
        * @return {qx.ui.core.Widget} The first (positioned) widget
        */
-      __P_316_11: function __P_316_11(parent, firstWidget) {
+      __P_534_11: function __P_534_11(parent, firstWidget) {
         var children = parent.getLayoutChildren();
         var child;
         for (var i = 0, l = children.length; i < l; i++) {
@@ -456,13 +456,13 @@
           // Ignore focus roots completely
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
             if (child.isTabable()) {
-              if (firstWidget == null || this.__P_316_10(child, firstWidget) < 0) {
+              if (firstWidget == null || this.__P_534_10(child, firstWidget) < 0) {
                 firstWidget = child;
               }
             }
 
             // Deep iteration into children hierarchy
-            firstWidget = this.__P_316_11(child, firstWidget);
+            firstWidget = this.__P_534_11(child, firstWidget);
           }
         }
         return firstWidget;
@@ -474,7 +474,7 @@
        * @param lastWidget {qx.ui.core.Widget?null} Current last widget
        * @return {qx.ui.core.Widget} The last (positioned) widget
        */
-      __P_316_12: function __P_316_12(parent, lastWidget) {
+      __P_534_12: function __P_534_12(parent, lastWidget) {
         var children = parent.getLayoutChildren();
         var child;
         for (var i = 0, l = children.length; i < l; i++) {
@@ -488,13 +488,13 @@
           // Ignore focus roots completely
           if (!this.isFocusRoot(child) && child.isEnabled() && child.isVisible()) {
             if (child.isTabable()) {
-              if (lastWidget == null || this.__P_316_10(child, lastWidget) > 0) {
+              if (lastWidget == null || this.__P_534_10(child, lastWidget) > 0) {
                 lastWidget = child;
               }
             }
 
             // Deep iteration into children hierarchy
-            lastWidget = this.__P_316_12(child, lastWidget);
+            lastWidget = this.__P_534_12(child, lastWidget);
           }
         }
         return lastWidget;
@@ -506,11 +506,11 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this._disposeMap("__P_316_0");
-      this.__P_316_2 = this.__P_316_1 = this.__P_316_3 = null;
+      this._disposeMap("__P_534_0");
+      this.__P_534_2 = this.__P_534_1 = this.__P_534_3 = null;
     }
   });
   qx.ui.core.FocusHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FocusHandler.js.map?dt=1709410158013
+//# sourceMappingURL=FocusHandler.js.map?dt=1717235408530

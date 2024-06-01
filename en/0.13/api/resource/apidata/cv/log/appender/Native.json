@@ -1,59 +1,59 @@
 {
-  "className": "cv.log.appender.Native",
-  "packageName": "cv.log.appender",
-  "name": "Native",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 45,
-        "column": 0,
-        "index": 1489
-      },
-      "end": {
-        "line": 82,
-        "column": 3,
-        "index": 2564
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/log/appender/Native.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 45,
+      "column": 0,
+      "index": 1489
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Processes the incoming log entry and displays it by means of the native\n logging capabilities of the client. Can be disable during runtime</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.log.appender.Util"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.client.Html"
-        }
-      ]
+    "end": {
+      "line": 82,
+      "column": 3,
+      "index": 2564
     }
   },
-  "type": "class",
+  "className": "cv.log.appender.Native",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Processes the incoming log entry and displays it by means of the native",
+      " * logging capabilities of the client. Can be disable during runtime",
+      " *",
+      " * @require(qx.log.appender.Util)",
+      " * @require(qx.bom.client.Html)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Processes the incoming log entry and displays it by means of the native\n logging capabilities of the client. Can be disable during runtime</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.log.appender.Util"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.client.Html"
+      }
+    ]
+  },
   "statics": {
     "process": {
-      "location": {
-        "start": {
-          "line": 58,
-          "column": 4,
-          "index": 1845
-        },
-        "end": {
-          "line": 70,
-          "column": 5,
-          "index": 2311
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Processes a single log entry",
+          "     *",
+          "     * @param entry {Map} The entry to process",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,28 +66,33 @@
             "body": "entry {Map} The entry to process",
             "paramName": "entry",
             "description": " The entry to process",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1845
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 2311
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "entry",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 79,
-        "column": 2,
-        "index": 2503
-      },
-      "end": {
-        "line": 81,
-        "column": 3,
-        "index": 2560
-      }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

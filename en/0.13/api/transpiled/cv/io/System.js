@@ -77,30 +77,10 @@
     construct: function construct() {
       cv.io.AbstractClient.constructor.call(this);
       this.addresses = [];
-      this.__P_570_0 = {
+      this.__P_790_0 = {
         theme: '_applyTheme'
       };
       qx.event.message.Bus.subscribe('cv.ui.structure.tile.currentPage', this._onPageChange, this);
-    },
-    /*
-    ***********************************************
-     PROPERTIES
-    ***********************************************
-    */
-    properties: {
-      connected: {
-        check: 'Boolean',
-        init: true,
-        event: 'changeConnected'
-      },
-      /**
-       * The server the client is currently speaking to
-       */
-      server: {
-        check: 'String',
-        nullable: true,
-        event: 'changedServer'
-      }
     },
     /*
     ***********************************************
@@ -111,7 +91,7 @@
       backendName: 'system',
       addresses: null,
       implementedAddresses: null,
-      __P_570_0: null,
+      __P_790_0: null,
       _onPageChange: function _onPageChange(ev) {
         var page = ev.getData();
         var data = {};
@@ -126,15 +106,16 @@
         if (callback) {
           callback.call(context);
         }
+        this.setConnected(true);
       },
       subscribe: function subscribe(addresses, filters) {
         this.addresses = addresses ? addresses : [];
         if (qx.core.Environment.get('html.storage.local')) {
           var value;
-          for (var name in this.__P_570_0) {
+          for (var name in this.__P_790_0) {
             value = localStorage.getItem('system:' + name);
             if (value) {
-              var func = this[this.__P_570_0[name]];
+              var func = this[this.__P_790_0[name]];
               if (typeof func === 'function') {
                 func(value);
               } else {
@@ -201,7 +182,7 @@
             // just write the value to the states to update Listeners
             cv.data.Model.getInstance().onUpdate(address, value, 'system');
           }
-          if (qx.core.Environment.get('html.storage.local') && target in this.__P_570_0) {
+          if (qx.core.Environment.get('html.storage.local') && target in this.__P_790_0) {
             localStorage.setItem('system:' + target, value);
           }
         }
@@ -274,4 +255,4 @@
   cv.io.System.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=System.js.map?dt=1709410173057
+//# sourceMappingURL=System.js.map?dt=1717235424669

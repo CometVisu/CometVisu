@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "type",
+    "members",
+    "parseCommand",
+    "pdoc",
+    "typeResolver",
+    "Error",
+    "classname",
+    "tool",
+    "compiler",
+    "jsdoc",
+    "CommandParser"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/jsdoc/CommandParser.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n *\n *    qooxdoo-compiler - node.js based replacement for the Qooxdoo python\n *    toolchain\n *\n *    https://github.com/qooxdoo/qooxdoo\n *\n *    Copyright:\n *      2011-2017 Zenesis Limited, http://www.zenesis.com\n *\n *    License:\n *      MIT: https://opensource.org/licenses/MIT\n *\n *      This software is provided under the same licensing terms as Qooxdoo,\n *      please see the LICENSE file in the Qooxdoo project's top-level directory\n *      for details.\n *\n *    Authors:\n *      * John Spackman (john.spackman@zenesis.com, @johnspackman)\n *\n * *********************************************************************** */\n\n/**\n * Abstract base class for JSDoc command parsers\n */\nqx.Class.define(\"qx.tool.compiler.jsdoc.CommandParser\", {\n  extend: qx.core.Object,\n  type: \"abstract\",\n\n  members: {\n    /**\n     * Parses the JSDoc command\n     *\n     * @param {*} jsdoc\n     * @param {qx.tool.compiler.jsdoc.ITypeResolver} typeResolver\n     */\n    parseCommand(pdoc, typeResolver) {\n      throw new Error(\n        \"No implementation for \" + this.classname + \".parseCommand\"\n      );\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,sCAAsC,EAAE;IACtDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IACtBC,IAAI,EAAE,UAAU;IAEhBC,OAAO,EAAE;MACP;AACJ;AACA;AACA;AACA;AACA;MACIC,YAAY,WAAAA,aAACC,IAAI,EAAEC,YAAY,EAAE;QAC/B,MAAM,IAAIC,KAAK,CACb,wBAAwB,GAAG,IAAI,CAACC,SAAS,GAAG,eAC9C,CAAC;MACH;IACF;EACF,CAAC,CAAC;EA1CFf,EAAE,CAACgB,IAAI,CAACC,QAAQ,CAACC,KAAK,CAACC,aAAa,CAAChB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

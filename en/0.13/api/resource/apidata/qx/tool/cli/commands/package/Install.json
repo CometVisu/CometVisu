@@ -1,0 +1,1249 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171430,
+  "lastModifiedIso": "2024-06-01T09:46:11.430Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/package/Install.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 726
+    },
+    "end": {
+      "line": 795,
+      "column": 3,
+      "index": 26661
+    }
+  },
+  "className": "qx.tool.cli.commands.package.Install",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Installs a package",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Installs a package</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Package",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Yarg commands data",
+          "     * @return {{}}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Yarg commands data</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{}}",
+            "type": "{}",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 904
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2533
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "{}"
+      },
+      "appearsIn": [
+        "qx.tool.cli.commands.Package"
+      ]
+    }
+  },
+  "members": {
+    "__cacheUpdated": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @var {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{Boolean}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2595
+        },
+        "end": {
+          "line": 96,
+          "column": 25,
+          "index": 2616
+        }
+      },
+      "appearsIn": []
+    },
+    "install": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * API method to install a library via its URI and version tag",
+          "     * @param {String} library_uri",
+          "     * @param {String} release_tag",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>API method to install a library via its URI and version tag</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} library_uri",
+            "paramName": "library_uri",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} release_tag",
+            "paramName": "release_tag",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2807
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 3140
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "library_uri",
+          "type": "string"
+        },
+        {
+          "name": "release_tag",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "installFromLocaPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * API method to install a library from a local path",
+          "     * @param {String} local_path",
+          "     * @param {String} library_uri Optional library URI.",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>API method to install a library from a local path</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} local_path",
+            "paramName": "local_path",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} library_uri Optional library URI.",
+            "paramName": "library_uri",
+            "description": "Optional library URI.",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3342
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3811
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "local_path",
+          "type": "string"
+        },
+        {
+          "name": "library_uri",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "isInstalled": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * API method to check if a library has been installed",
+          "     * @param {String} library_uri",
+          "     * @param {String} release_tag",
+          "     * @return {Promise<Boolean>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>API method to check if a library has been installed</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} library_uri",
+            "paramName": "library_uri",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} release_tag",
+            "paramName": "release_tag",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<Boolean>}",
+            "type": "Promise<Boolean>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3997
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 4278
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "library_uri",
+          "type": "string"
+        },
+        {
+          "name": "release_tag",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<Boolean>"
+      },
+      "appearsIn": []
+    },
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Installs a package",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Installs a package</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 4327
+        },
+        "end": {
+          "line": 214,
+          "column": 5,
+          "index": 6360
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "__updateCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update repo cache",
+          "     * @return {Promise<void>}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Update repo cache</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 6455
+        },
+        "end": {
+          "line": 234,
+          "column": 5,
+          "index": 6924
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "__getUriInfo": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns information on the given URI",
+          "     * @param {String} uri",
+          "     * @return {{package_path: string | string, repo_name: string}}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns information on the given URI</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} uri",
+            "paramName": "uri",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{package_path: string | string, repo_name: string}}",
+            "type": "{package_path: string | string, repo_name: string}",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4,
+          "index": 7102
+        },
+        "end": {
+          "line": 261,
+          "column": 5,
+          "index": 7737
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "uri",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "{package_path: string | string, repo_name: string}"
+      },
+      "appearsIn": []
+    },
+    "__installFromRelease": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Installs libraries in a repository from a given release tag name",
+          "     * @param {String} uri The name of the repository (e.g. qooxdoo/qxl.apiviewer),",
+          "     *  or of a library within a repository (such as ergobyte/qookery/qookeryace)",
+          "     * @param {String} tag_name The tag name of the release, such as \"v1.1.0\"",
+          "     * @param {Boolean} writeToManifest Whether the library should be written to",
+          "     * Manifest.json as a dependency",
+          "     * @return {Promise<void>}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Installs libraries in a repository from a given release tag name</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} uri The name of the repository (e.g. qooxdoo/qxl.apiviewer),\n  or of a library within a repository (such as ergobyte/qookery/qookeryace)",
+            "paramName": "uri",
+            "description": "The name of the repository (e.g. qooxdoo/qxl.apiviewer),\n  or of a library within a repository (such as ergobyte/qookery/qookeryace)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} tag_name The tag name of the release, such as \"v1.1.0\"",
+            "paramName": "tag_name",
+            "description": "The tag name of the release, such as \"v1.1.0\"",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{Boolean} writeToManifest Whether the library should be written to\n Manifest.json as a dependency",
+            "paramName": "writeToManifest",
+            "description": "Whether the library should be written to\n Manifest.json as a dependency",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4,
+          "index": 8241
+        },
+        "end": {
+          "line": 338,
+          "column": 5,
+          "index": 10923
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "uri",
+          "type": "string"
+        },
+        {
+          "name": "tag_name",
+          "type": "string"
+        },
+        {
+          "name": "writeToManifest",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "__installFromTree": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Installs libraries in a given repository from the given hash of a code tree",
+          "     * independent from the library cache. This ignores dependency constraints.",
+          "     * The given uri must point to a folder containing Manifest.json",
+          "     * @param {String} uri",
+          "     *  The path to a library in a a repository",
+          "     *  (e.g. qooxdoo/qxl.apiviewer or ergobyte/qookery/qookeryace)",
+          "     * @param {String} hash",
+          "     *  A path into the code tree on GitHub such as \"tree/892f44d1d1ae5d65c7dd99b18da6876de2f2a920\"",
+          "     * @param {Boolean} writeToManifest Whether the library should be written to",
+          "     * Manifest.json as a dependency",
+          "     * @return {Promise<void>}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Installs libraries in a given repository from the given hash of a code tree\n independent from the library cache. This ignores dependency constraints.\n The given uri must point to a folder containing Manifest.json</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e.g. qooxdoo/qxl.apiviewer or ergobyte/qookery/qookeryace"
+          },
+          {
+            "name": "@param",
+            "body": "{String} hash\n  A path into the code tree on GitHub such as \"tree/892f44d1d1ae5d65c7dd99b18da6876de2f2a920\"",
+            "paramName": "hash",
+            "description": "A path into the code tree on GitHub such as \"tree/892f44d1d1ae5d65c7dd99b18da6876de2f2a920\"",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{Boolean} writeToManifest Whether the library should be written to\n Manifest.json as a dependency",
+            "paramName": "writeToManifest",
+            "description": "Whether the library should be written to\n Manifest.json as a dependency",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 354,
+          "column": 4,
+          "index": 11614
+        },
+        "end": {
+          "line": 369,
+          "column": 5,
+          "index": 12158
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "uri"
+        },
+        {
+          "name": "hash",
+          "type": "string"
+        },
+        {
+          "name": "writeToManifest",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "__installFromPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Installs libraries from a local path",
+          "     * @param {String} uri",
+          "     *  The URI identifying a library (e.g. qooxdoo/qxl.apiviewer or",
+          "     *  ergobyte/qookery/qookeryace)",
+          "     * @param {String} dir",
+          "     *  The path to a local directory",
+          "     * @param {Boolean} writeToManifest",
+          "     *  Whether the library should be written to Manifest.json as a dependency",
+          "     * @return {Promise<void>}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Installs libraries from a local path</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} uri\n  The URI identifying a library (e.g. qooxdoo/qxl.apiviewer or\n  ergobyte/qookery/qookeryace)",
+            "paramName": "uri",
+            "description": "The URI identifying a library (e.g. qooxdoo/qxl.apiviewer or\n  ergobyte/qookery/qookeryace)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} dir\n  The path to a local directory",
+            "paramName": "dir",
+            "description": "The path to a local directory",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{Boolean} writeToManifest\n  Whether the library should be written to Manifest.json as a dependency",
+            "paramName": "writeToManifest",
+            "description": "Whether the library should be written to Manifest.json as a dependency",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 383,
+          "column": 4,
+          "index": 12589
+        },
+        "end": {
+          "line": 396,
+          "column": 5,
+          "index": 13004
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "uri",
+          "type": "string"
+        },
+        {
+          "name": "dir",
+          "type": "string"
+        },
+        {
+          "name": "writeToManifest",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "__updateInstalledLibraryData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the data in the lockfile and (optionally) in the manifest",
+          "     * @param {String} uri The path to a library in a a repository",
+          "     * (e.g. qooxdoo/qxl.apiviewer or ergobyte/qookery/qookeryace)",
+          "     * @param {String} id",
+          "     *  The tag name of a release such as \"v1.1.0\" or a tree hash such as",
+          "     *  tree/892f44d1d1ae5d65c7dd99b18da6876de2f2a920",
+          "     * @param {String} download_path The path to the downloaded repository",
+          "     * @param {Boolean} writeToManifest",
+          "     *  Whether the library should be written to Manifest.json as a dependency",
+          "     * @return {Promise<void>}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the data in the lockfile and (optionally) in the manifest</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e.g. qooxdoo/qxl.apiviewer or ergobyte/qookery/qookeryace"
+          },
+          {
+            "name": "@param",
+            "body": "{String} id\n  The tag name of a release such as \"v1.1.0\" or a tree hash such as\n  tree/892f44d1d1ae5d65c7dd99b18da6876de2f2a920",
+            "paramName": "id",
+            "description": "The tag name of a release such as \"v1.1.0\" or a tree hash such as\n  tree/892f44d1d1ae5d65c7dd99b18da6876de2f2a920",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} download_path The path to the downloaded repository",
+            "paramName": "download_path",
+            "description": "The path to the downloaded repository",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{Boolean} writeToManifest\n  Whether the library should be written to Manifest.json as a dependency",
+            "paramName": "writeToManifest",
+            "description": "Whether the library should be written to Manifest.json as a dependency",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 411,
+          "column": 4,
+          "index": 13629
+        },
+        "end": {
+          "line": 505,
+          "column": 5,
+          "index": 16542
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "uri"
+        },
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "download_path",
+          "type": "string"
+        },
+        {
+          "name": "writeToManifest",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "__installDependenciesFromPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given a download path of a library, install its dependencies",
+          "     * @param {String} downloadPath",
+          "     * @return {Promise<Boolean>} Wether any libraries were installed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given a download path of a library, install its dependencies</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} downloadPath",
+            "paramName": "downloadPath",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<Boolean>} Wether any libraries were installed",
+            "type": "Promise<Boolean>",
+            "description": "Wether any libraries were installed"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 512,
+          "column": 4,
+          "index": 16739
+        },
+        "end": {
+          "line": 533,
+          "column": 5,
+          "index": 17434
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "downloadPath",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<Boolean>"
+      },
+      "appearsIn": []
+    },
+    "__installDependenciesFromManifest": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given a library's manifest data, install its dependencies",
+          "     * @param {Object} manifest",
+          "     * @return {Promise<Boolean>} Wether any libraries were installed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given a library's manifest data, install its dependencies</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Object} manifest",
+            "paramName": "manifest",
+            "description": "",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<Boolean>} Wether any libraries were installed",
+            "type": "Promise<Boolean>",
+            "description": "Wether any libraries were installed"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 540,
+          "column": 4,
+          "index": 17624
+        },
+        "end": {
+          "line": 608,
+          "column": 5,
+          "index": 20040
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "manifest",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<Boolean>"
+      },
+      "appearsIn": []
+    },
+    "__getHighestCompatibleVersion": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given the URI of a library repo and a semver range, returns the highest",
+          "     * version compatible with the semver range and the release tag containing",
+          "     * this version.",
+          "     * @param {String} lib_uri The URI of the library",
+          "     * @param {String} lib_range The semver range",
+          "     * @return {Object} Returns an object with the keys \"tag\" and \"version\"",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given the URI of a library repo and a semver range, returns the highest\n version compatible with the semver range and the release tag containing\n this version.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} lib_uri The URI of the library",
+            "paramName": "lib_uri",
+            "description": "The URI of the library",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} lib_range The semver range",
+            "paramName": "lib_range",
+            "description": "The semver range",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Returns an object with the keys \"tag\" and \"version\"",
+            "type": "Record<any, any>",
+            "description": "Returns an object with the keys \"tag\" and \"version\""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 619,
+          "column": 4,
+          "index": 20438
+        },
+        "end": {
+          "line": 656,
+          "column": 5,
+          "index": 21727
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "lib_uri",
+          "type": "string"
+        },
+        {
+          "name": "lib_range",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__installApplication": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given the download path of a library, install its applications",
+          "     * todo use config API, use compile.js where it exists",
+          "     * @param {String} downloadPath",
+          "     * @return {Promise<Boolean>} Returns true if applications were installed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given the download path of a library, install its applications\n todo use config API, use compile.js where it exists</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} downloadPath",
+            "paramName": "downloadPath",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<Boolean>} Returns true if applications were installed",
+            "type": "Promise<Boolean>",
+            "description": "Returns true if applications were installed"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 664,
+          "column": 4,
+          "index": 21993
+        },
+        "end": {
+          "line": 709,
+          "column": 5,
+          "index": 23637
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "downloadPath",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<Boolean>"
+      },
+      "appearsIn": []
+    },
+    "__downloadLibrariesInLockfile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Download repos listed in the lockfile",
+          "     * @return {Promise<void>}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Download repos listed in the lockfile</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 716,
+          "column": 4,
+          "index": 23752
+        },
+        "end": {
+          "line": 728,
+          "column": 5,
+          "index": 24224
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "__download": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Downloads a release",
+          "     * @return {Object} A map containing {release_data, download_path}",
+          "     * @param {String} repo_name The name of the repository",
+          "     * @param {String} treeish",
+          "     *  If prefixed by \"v\", the name of a release tag. Otherwise, arbitrary",
+          "     *  tree-ish expression (see https://help.github.com/en/articles/getting-permanent-links-to-files)",
+          "     * @param {Boolean} force Overwrite existing downloads",
+          "     * @return {{download_path:String}}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Downloads a release</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} A map containing {release_data, download_path}",
+            "type": "Record<any, any>",
+            "description": "A map containing {release_data, download_path}"
+          },
+          {
+            "name": "@return",
+            "body": "{{download_path:String}}",
+            "type": "{download_path:String}",
+            "description": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} repo_name The name of the repository",
+            "paramName": "repo_name",
+            "description": "The name of the repository",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} treeish\n  If prefixed by \"v\", the name of a release tag. Otherwise, arbitrary\n  tree-ish expression (see https://help.github.com/en/articles/getting-permanent-links-to-files)",
+            "paramName": "treeish",
+            "description": "If prefixed by \"v\", the name of a release tag. Otherwise, arbitrary\n  tree-ish expression (see https://help.github.com/en/articles/getting-permanent-links-to-files)",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{Boolean} force Overwrite existing downloads",
+            "paramName": "force",
+            "description": "Overwrite existing downloads",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 740,
+          "column": 4,
+          "index": 24714
+        },
+        "end": {
+          "line": 793,
+          "column": 5,
+          "index": 26653
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "repo_name",
+          "type": "string"
+        },
+        {
+          "name": "treeish",
+          "type": "string"
+        },
+        {
+          "name": "force",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

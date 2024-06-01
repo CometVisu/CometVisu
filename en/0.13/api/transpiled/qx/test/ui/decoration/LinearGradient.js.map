@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "ui",
+    "LayoutTestCase",
+    "members",
+    "setUp",
+    "__w",
+    "core",
+    "Widget",
+    "setHeight",
+    "__dec",
+    "decoration",
+    "Decorator",
+    "set",
+    "startColor",
+    "endColor",
+    "getRoot",
+    "add",
+    "tearDown",
+    "destroy",
+    "dispose",
+    "testDefault",
+    "startColorPosition",
+    "endColorPosition",
+    "setDecorator",
+    "flush",
+    "testDefaultPx",
+    "colorPositionUnit",
+    "testNegativeStart",
+    "testBigEnd",
+    "testBigEndPx",
+    "testNegativeStartPx",
+    "LinearGradient"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/decoration/LinearGradient.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.ui.decoration.LinearGradient\", {\n  extend: qx.test.ui.LayoutTestCase,\n\n  members: {\n    setUp() {\n      this.__w = new qx.ui.core.Widget();\n      this.__w.setHeight(100);\n      this.__dec = new qx.ui.decoration.Decorator();\n      this.__dec.set({\n        startColor: \"red\",\n        endColor: \"black\"\n      });\n\n      this.getRoot().add(this.__w);\n    },\n\n    tearDown() {\n      this.__w.destroy();\n      this.__dec.dispose();\n    },\n\n    testDefault() {\n      this.__dec.set({\n        startColorPosition: 0,\n        endColorPosition: 100\n      });\n\n      this.__w.setDecorator(this.__dec);\n      this.flush();\n    },\n\n    testDefaultPx() {\n      this.__dec.set({\n        startColorPosition: 0,\n        endColorPosition: 200,\n        colorPositionUnit: \"px\"\n      });\n\n      this.__w.setDecorator(this.__dec);\n      this.flush();\n    },\n\n    testNegativeStart() {\n      this.__dec.set({\n        startColorPosition: -100,\n        endColorPosition: 100\n      });\n\n      this.__w.setDecorator(this.__dec);\n      this.flush();\n    },\n\n    testBigEnd() {\n      this.__dec.set({\n        startColorPosition: 0,\n        endColorPosition: 200\n      });\n\n      this.__w.setDecorator(this.__dec);\n      this.flush();\n    },\n\n    testBigEndPx() {\n      this.__dec.set({\n        startColorPosition: 0,\n        endColorPosition: 200,\n        colorPositionUnit: \"px\"\n      });\n\n      this.__w.setDecorator(this.__dec);\n      this.flush();\n    },\n\n    testNegativeStartPx() {\n      this.__dec.set({\n        startColorPosition: 0,\n        endColorPosition: 200,\n        colorPositionUnit: \"px\"\n      });\n\n      this.__w.setDecorator(this.__dec);\n      this.flush();\n    }\n  }\n});\n"
+  ],
+  "mappings": "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",
+  "ignoreList": []
+}

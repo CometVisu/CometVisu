@@ -1,137 +1,107 @@
 {
-  "className": "qx.module.Animation",
-  "packageName": "qx.module",
-  "name": "Animation",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 781
-      },
-      "end": {
-        "line": 314,
-        "column": 3,
-        "index": 9356
-      }
+  "version": 0.3,
+  "lastModified": 1717235168858,
+  "lastModifiedIso": "2024-06-01T09:46:08.858Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Animation.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 754
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Cross browser animation layer. It uses feature detection to check if CSS\n animations are available and ready to use. If not, a JavaScript-based\n fallback will be used.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Css"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Environment"
-        }
-      ]
+    "end": {
+      "line": 314,
+      "column": 3,
+      "index": 9043
     }
   },
-  "type": "class",
+  "className": "qx.module.Animation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Cross browser animation layer. It uses feature detection to check if CSS",
+      " * animations are available and ready to use. If not, a JavaScript-based",
+      " * fallback will be used.",
+      " *",
+      " * @require(qx.module.Css)",
+      " * @require(qx.module.Event)",
+      " * @require(qx.module.Environment)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Cross browser animation layer. It uses feature detection to check if CSS\n animations are available and ready to use. If not, a JavaScript-based\n fallback will be used.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Css"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.Environment"
+      }
+    ]
+  },
   "events": {
     "animationStart": {
-      "location": {
-        "start": {
-          "line": 31,
-          "column": 4,
-          "index": 888
-        },
-        "end": {
-          "line": 31,
-          "column": 29,
-          "index": 913
-        }
-      },
+      "type": null,
       "jsdoc": {
+        "raw": [
+          "* Fired when an animation starts. "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired when an animation starts.</p>"
           }
         ]
-      },
-      "name": "animationStart",
-      "type": "undefined"
+      }
     },
     "animationIteration": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 983
-        },
-        "end": {
-          "line": 34,
-          "column": 33,
-          "index": 1012
-        }
-      },
+      "type": null,
       "jsdoc": {
+        "raw": [
+          "* Fired when an animation has ended one iteration. "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired when an animation has ended one iteration.</p>"
           }
         ]
-      },
-      "name": "animationIteration",
-      "type": "undefined"
+      }
     },
     "animationEnd": {
-      "location": {
-        "start": {
-          "line": 37,
-          "column": 4,
-          "index": 1068
-        },
-        "end": {
-          "line": 37,
-          "column": 27,
-          "index": 1091
-        }
-      },
+      "type": null,
       "jsdoc": {
+        "raw": [
+          "* Fired when an animation has ended. "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired when an animation has ended.</p>"
           }
         ]
-      },
-      "name": "animationEnd",
-      "type": "undefined"
+      }
     }
   },
   "statics": {
     "_fadeOut": {
-      "location": {
-        "start": {
-          "line": 44,
-          "column": 4,
-          "index": 1193
-        },
-        "end": {
-          "line": 52,
-          "column": 5,
-          "index": 1381
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Animation description used in {@link #fadeOut}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -139,23 +109,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_fadeIn": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 57,
+          "line": 44,
           "column": 4,
-          "index": 1463
+          "index": 1150
         },
         "end": {
-          "line": 65,
+          "line": 52,
           "column": 5,
-          "index": 1632
+          "index": 1330
         }
       },
+      "appearsIn": []
+    },
+    "_fadeIn": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Animation description used in {@link #fadeIn}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -163,23 +138,32 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_animate": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 74,
+          "line": 57,
           "column": 4,
-          "index": 2016
+          "index": 1407
         },
         "end": {
-          "line": 121,
+          "line": 65,
           "column": 5,
-          "index": 3210
+          "index": 1568
         }
       },
+      "appearsIn": []
+    },
+    "_animate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Animation execute either regular or reversed direction.",
+          "     * @param desc {Map} The animation\"s description.",
+          "     * @param duration {Number?} The duration in milliseconds of the animation,",
+          "     *   which will override the duration given in the description.",
+          "     * @param reverse {Boolean} <code>true</code>, if the animation should be reversed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -192,7 +176,7 @@
             "body": "desc {Map} The animation\"s description.",
             "paramName": "desc",
             "description": " The animation\"s description.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -207,29 +191,54 @@
             "body": "reverse {Boolean} <code>true</code>, if the animation should be reversed",
             "paramName": "reverse",
             "description": " <code>true</code>, if the animation should be reversed",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1943
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3090
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "desc",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "duration",
+          "type": "Number",
+          "optional": true
+        },
+        {
+          "name": "reverse",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "members": {
     "getAnimationHandles": {
-      "location": {
-        "start": {
-          "line": 132,
-          "column": 4,
-          "index": 3453
-        },
-        "end": {
-          "line": 138,
-          "column": 5,
-          "index": 3657
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the stored animation handles. The handles are only",
+          "     * available while an animation is running.",
+          "     *",
+          "     * @internal",
+          "     * @return {Array} An array of animation handles.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -246,28 +255,69 @@
           {
             "name": "@return",
             "body": "{Array} An array of animation handles.",
-            "type": "Array",
-            "description": " An array of animation handles."
+            "type": "Array<any>",
+            "description": "An array of animation handles."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "animate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 174,
+          "line": 132,
           "column": 4,
-          "index": 5329
+          "index": 3322
         },
         "end": {
-          "line": 177,
+          "line": 138,
           "column": 5,
-          "index": 5452
+          "index": 3520
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "animate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Starts the animation with the given description.",
+          "     *",
+          "     * *duration* is the time in milliseconds one animation cycle should take.",
+          "     *",
+          "     * *keep* is the key frame to apply at the end of the animation. (optional)",
+          "     *",
+          "     * *keyFrames* is a map of separate frames. Each frame is defined by a",
+          "     *   number which is the percentage value of time in the animation. The value",
+          "     *   is a map itself which holds css properties or transforms",
+          "     *   (Transforms only for CSS Animations).",
+          "     *",
+          "     * *origin* maps to the <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin\">transform origin</a>",
+          "     * (Only for CSS animations).",
+          "     *",
+          "     * *repeat* is the amount of time the animation should be run in",
+          "     *   sequence. You can also use \"infinite\".",
+          "     *",
+          "     * *timing* takes one of these predefined values:",
+          "     *   <code>ease</code> | <code>linear</code> | <code>ease-in</code>",
+          "     *   | <code>ease-out</code> | <code>ease-in-out</code> |",
+          "     *   <code>cubic-bezier(&lt;number&gt;, &lt;number&gt;, &lt;number&gt;, &lt;number&gt;)</code>",
+          "     *   (cubic-bezier only available for CSS animations)",
+          "     *",
+          "     * *alternate* defines if every other animation should be run in reverse order.",
+          "     *",
+          "     * *delay* is the time in milliseconds the animation should wait before start.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param desc {Map} The animation\"s description.",
+          "     * @param duration {Number?} The duration in milliseconds of the animation,",
+          "     *   which will override the duration given in the description.",
+          "     * @return {qxWeb} The collection for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -286,7 +336,7 @@
             "body": "desc {Map} The animation\"s description.",
             "paramName": "desc",
             "description": " The animation\"s description.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -302,27 +352,53 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining.",
             "type": "qxWeb",
-            "description": " The collection for chaining."
+            "description": "The collection for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "animateReverse": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 188,
+          "line": 174,
           "column": 4,
-          "index": 5881
+          "index": 5156
         },
         "end": {
-          "line": 191,
+          "line": 177,
           "column": 5,
-          "index": 6010
+          "index": 5276
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "desc",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "duration",
+          "type": "Number",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "animateReverse": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Starts an animation in reversed order. For further details, take a look at",
+          "     * the {@link #animate} method.",
+          "     * @attach {qxWeb}",
+          "     * @param desc {Map} The animation\"s description.",
+          "     * @param duration {Number?} The duration in milliseconds of the animation,",
+          "     *   which will override the duration given in the description.",
+          "     * @return {qxWeb} The collection for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -341,7 +417,7 @@
             "body": "desc {Map} The animation\"s description.",
             "paramName": "desc",
             "description": " The animation\"s description.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -357,27 +433,50 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining.",
             "type": "qxWeb",
-            "description": " The collection for chaining."
+            "description": "The collection for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "play": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 199,
+          "line": 188,
           "column": 4,
-          "index": 6230
+          "index": 5694
         },
         "end": {
-          "line": 207,
+          "line": 191,
           "column": 5,
-          "index": 6424
+          "index": 5820
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "desc",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "duration",
+          "type": "Number",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "play": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the play state of the animation.",
+          "     * This can be used to continue an animation when paused.",
+          "     * @attach {qxWeb}",
+          "     * @return {qxWeb} The collection for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -395,27 +494,40 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining.",
             "type": "qxWeb",
-            "description": " The collection for chaining."
+            "description": "The collection for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "pause": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 215,
+          "line": 199,
           "column": 4,
-          "index": 6642
+          "index": 6032
         },
         "end": {
-          "line": 224,
+          "line": 207,
           "column": 5,
-          "index": 6840
+          "index": 6218
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "pause": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the play state of the animation.",
+          "     * This can be used to pause an animation when running.",
+          "     * @attach {qxWeb}",
+          "     * @return {qxWeb} The collection for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -433,27 +545,39 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining.",
             "type": "qxWeb",
-            "description": " The collection for chaining."
+            "description": "The collection for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "stop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 231,
+          "line": 215,
           "column": 4,
-          "index": 6979
+          "index": 6428
         },
         "end": {
-          "line": 240,
+          "line": 224,
           "column": 5,
-          "index": 7175
+          "index": 6617
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "stop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stops a running animation.",
+          "     * @attach {qxWeb}",
+          "     * @return {qxWeb} The collection for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -471,27 +595,39 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining.",
             "type": "qxWeb",
-            "description": " The collection for chaining."
+            "description": "The collection for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isPlaying": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 247,
+          "line": 231,
           "column": 4,
-          "index": 7355
+          "index": 6749
         },
         "end": {
-          "line": 256,
+          "line": 240,
           "column": 5,
-          "index": 7577
+          "index": 6936
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "isPlaying": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether an animation is running or not.",
+          "     * @attach {qxWeb}",
+          "     * @return {Boolean} <code>true</code>, if an animation is running.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -508,28 +644,40 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if an animation is running.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if an animation is running."
+            "type": "boolean",
+            "description": "<code>true</code>, if an animation is running."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isEnded": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 263,
+          "line": 247,
           "column": 4,
-          "index": 7755
+          "index": 7109
         },
         "end": {
-          "line": 272,
+          "line": 256,
           "column": 5,
-          "index": 7974
+          "index": 7322
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isEnded": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether an animation has ended or not.",
+          "     * @attach {qxWeb}",
+          "     * @return {Boolean} <code>true</code>, if an animation has ended.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -546,28 +694,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if an animation has ended.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if an animation has ended."
+            "type": "boolean",
+            "description": "<code>true</code>, if an animation has ended."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fadeIn": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 280,
+          "line": 263,
           "column": 4,
-          "index": 8191
+          "index": 7493
         },
         "end": {
-          "line": 284,
+          "line": 272,
           "column": 5,
-          "index": 8359
+          "index": 7703
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "fadeIn": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fades in all elements in the collection.",
+          "     * @attach {qxWeb}",
+          "     * @param duration {Number?} The duration in milliseconds.",
+          "     * @return {qxWeb} The collection for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -595,27 +756,46 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining.",
             "type": "qxWeb",
-            "description": " The collection for chaining."
+            "description": "The collection for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fadeOut": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 292,
+          "line": 280,
           "column": 4,
-          "index": 8577
+          "index": 7912
         },
         "end": {
-          "line": 294,
+          "line": 284,
           "column": 5,
-          "index": 8671
+          "index": 8076
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "duration",
+          "type": "Number",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "fadeOut": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fades out all elements in the collection.",
+          "     * @attach {qxWeb}",
+          "     * @param duration {Number?} The duration in milliseconds.",
+          "     * @return {qxWeb} The collection for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -643,27 +823,36 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining.",
             "type": "qxWeb",
-            "description": " The collection for chaining."
+            "description": "The collection for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 297,
-        "column": 2,
-        "index": 8683
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4,
+          "index": 8286
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 8378
+        }
       },
-      "end": {
-        "line": 313,
-        "column": 3,
-        "index": 9351
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "duration",
+          "type": "Number",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

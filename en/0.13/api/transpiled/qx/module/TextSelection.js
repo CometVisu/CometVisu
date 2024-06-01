@@ -43,7 +43,7 @@
        *
        * @attach {qxWeb}
        */
-      __P_293_0: function __P_293_0(el) {
+      __P_294_0: function __P_294_0(el) {
         var tag = el.tagName ? el.tagName.toLowerCase() : null;
         return tag === "input" || tag === "textarea";
       },
@@ -55,7 +55,7 @@
        *
        * @attach {qxWeb}
        */
-      __P_293_1: function __P_293_1(el) {
+      __P_294_1: function __P_294_1(el) {
         for (var i = 0, l = el.childNodes.length; i < l; i++) {
           if (el.childNodes[i].nodeType === 3) {
             return el.childNodes[i];
@@ -73,8 +73,8 @@
       getTextSelection: function getTextSelection() {
         var el = this[0];
         if (el) {
-          if (!qx.module.TextSelection.__P_293_0(el)) {
-            el = qx.module.TextSelection.__P_293_1(el);
+          if (!qx.module.TextSelection.__P_294_0(el)) {
+            el = qx.module.TextSelection.__P_294_1(el);
           }
           return el ? qx.bom.Selection.get(el) : null;
         }
@@ -91,8 +91,8 @@
       getTextSelectionLength: function getTextSelectionLength() {
         var el = this[0];
         if (el) {
-          if (!qx.module.TextSelection.__P_293_0(el)) {
-            el = qx.module.TextSelection.__P_293_1(el);
+          if (!qx.module.TextSelection.__P_294_0(el)) {
+            el = qx.module.TextSelection.__P_294_1(el);
           }
           return el ? qx.bom.Selection.getLength(el) : null;
         }
@@ -108,8 +108,8 @@
       getTextSelectionStart: function getTextSelectionStart() {
         var el = this[0];
         if (el) {
-          if (!qx.module.TextSelection.__P_293_0(el)) {
-            el = qx.module.TextSelection.__P_293_1(el);
+          if (!qx.module.TextSelection.__P_294_0(el)) {
+            el = qx.module.TextSelection.__P_294_1(el);
           }
           return el ? qx.bom.Selection.getStart(el) : null;
         }
@@ -125,8 +125,8 @@
       getTextSelectionEnd: function getTextSelectionEnd() {
         var el = this[0];
         if (el) {
-          if (!qx.module.TextSelection.__P_293_0(el)) {
-            el = qx.module.TextSelection.__P_293_1(el);
+          if (!qx.module.TextSelection.__P_294_0(el)) {
+            el = qx.module.TextSelection.__P_294_1(el);
           }
           return el ? qx.bom.Selection.getEnd(el) : null;
         }
@@ -146,8 +146,8 @@
       setTextSelection: function setTextSelection(start, end) {
         var el = this[0];
         if (el) {
-          if (!qx.module.TextSelection.__P_293_0(el)) {
-            el = qx.module.TextSelection.__P_293_1(el);
+          if (!qx.module.TextSelection.__P_294_0(el)) {
+            el = qx.module.TextSelection.__P_294_1(el);
           }
           if (el) {
             qx.bom.Selection.set(el, start, end);
@@ -164,8 +164,8 @@
        */
       clearTextSelection: function clearTextSelection() {
         this._forEachElement(function (el) {
-          if (!qx.module.TextSelection.__P_293_0(el)) {
-            el = qx.module.TextSelection.__P_293_1(el);
+          if (!qx.module.TextSelection.__P_294_0(el)) {
+            el = qx.module.TextSelection.__P_294_1(el);
           }
           if (el) {
             qx.bom.Selection.clear(el);
@@ -181,4 +181,4 @@
   qx.module.TextSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextSelection.js.map?dt=1709410155636
+//# sourceMappingURL=TextSelection.js.map?dt=1717235384800

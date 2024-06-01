@@ -1,0 +1,206 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169150,
+  "lastModifiedIso": "2024-06-01T09:46:09.150Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/makers/AppMaker.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 864
+    },
+    "end": {
+      "line": 282,
+      "column": 3,
+      "index": 8751
+    }
+  },
+  "className": "qx.tool.compiler.makers.AppMaker",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Application maker; supports multiple applications to compile against a single",
+      " * target",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Application maker; supports multiple applications to compile against a single\n target</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.makers.AbstractAppMaker",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "className"
+      },
+      {
+        "name": "theme"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 1114
+      },
+      "end": {
+        "line": 46,
+        "column": 3,
+        "index": 1370
+      }
+    }
+  },
+  "members": {
+    "__applications": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1390
+        },
+        "end": {
+          "line": 49,
+          "column": 24,
+          "index": 1410
+        }
+      },
+      "appearsIn": []
+    },
+    "addApplication": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an Application to be made",
+          "     * @param app",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an Application to be made</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "app",
+            "paramName": "app",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1489
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1553
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "app"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getApplications": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the array of applications",
+          "     * @returns {qx.tool.compiler.app.Application[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the array of applications</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.compiler.app.Application[]}",
+            "type": "qx.tool.compiler.app.Application[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1670
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1729
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.compiler.app.Application[]"
+      },
+      "appearsIn": []
+    },
+    "make": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1768
+        },
+        "end": {
+          "line": 280,
+          "column": 5,
+          "index": 8743
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.makers.Maker",
+      "appearsIn": [
+        "qx.tool.compiler.makers.Maker"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

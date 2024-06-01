@@ -48,7 +48,7 @@
       /**
        * Returns an array of the selected models.
        *
-       * @return {Array} An array containing the models of the currently selected
+       * @return {qx.data.Array} An array containing the models of the currently selected
        *   items.
        */
       getModelSelection: function getModelSelection() {}
@@ -57,4 +57,4 @@
   qx.ui.form.IModelSelection.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IModelSelection.js.map?dt=1709410160142
+//# sourceMappingURL=IModelSelection.js.map?dt=1717235410835

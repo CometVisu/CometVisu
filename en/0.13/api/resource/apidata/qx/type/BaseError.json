@@ -1,137 +1,121 @@
 {
-  "className": "qx.type.BaseError",
-  "packageName": "qx.type",
-  "name": "BaseError",
-  "superClass": "Error",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 20,
-        "column": 0,
-        "index": 749
-      },
-      "end": {
-        "line": 88,
-        "column": 3,
-        "index": 2627
-      }
+  "version": 0.3,
+  "lastModified": 1717235169286,
+  "lastModifiedIso": "2024-06-01T09:46:09.286Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/type/BaseError.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 730
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is the common super class for all error classes in qooxdoo.\n It has a comment and a fail message as members. The toString method returns\n the comment and the fail message separated by a colon.</p>"
-        }
-      ]
+    "end": {
+      "line": 88,
+      "column": 3,
+      "index": 2540
     }
   },
-  "type": "class",
+  "className": "qx.type.BaseError",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is the common super class for all error classes in qooxdoo.",
+      " *",
+      " * It has a comment and a fail message as members. The toString method returns",
+      " * the comment and the fail message separated by a colon.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is the common super class for all error classes in qooxdoo.\n It has a comment and a fail message as members. The toString method returns\n the comment and the fail message separated by a colon.</p>"
+      }
+    ]
+  },
+  "superClass": "Error",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "comment"
+      },
+      {
+        "name": "failMessage"
+      }
+    ],
     "location": {
       "start": {
         "line": 33,
         "column": 2,
-        "index": 1163
+        "index": 1131
       },
       "end": {
         "line": 46,
         "column": 3,
-        "index": 1643
+        "index": 1598
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "comment {String} Comment passed to the assertion call",
-          "paramName": "comment",
-          "description": " Comment passed to the assertion call",
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "failMessage {String} Fail message provided by the assertion",
-          "paramName": "failMessage",
-          "description": " Fail message provided by the assertion",
-          "type": "String"
-        }
-      ]
     }
   },
   "statics": {
     "DEFAULTMESSAGE": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 54,
           "column": 4,
-          "index": 1854
+          "index": 1801
         },
         "end": {
           "line": 54,
           "column": 27,
-          "index": 1877
+          "index": 1824
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
   "members": {
     "__sTrace": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 64,
           "column": 4,
-          "index": 2095
+          "index": 2032
         },
         "end": {
           "line": 64,
           "column": 18,
-          "index": 2109
+          "index": 2046
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__comment": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 65,
           "column": 4,
-          "index": 2116
+          "index": 2052
         },
         "end": {
           "line": 65,
           "column": 19,
-          "index": 2131
+          "index": 2067
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "message": {
-      "location": {
-        "start": {
-          "line": 68,
-          "column": 4,
-          "index": 2206
-        },
-        "end": {
-          "line": 68,
-          "column": 17,
-          "index": 2219
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {String} Fail message provided by the assertion "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -145,23 +129,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "getComment": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 68,
           "column": 4,
-          "index": 2365
+          "index": 2139
         },
         "end": {
-          "line": 77,
-          "column": 5,
-          "index": 2416
+          "line": 68,
+          "column": 17,
+          "index": 2152
         }
       },
+      "appearsIn": []
+    },
+    "getComment": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Comment passed to the assertion call",
+          "     *",
+          "     * @return {String} The comment passed to the assertion call",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -172,18 +163,75 @@
           {
             "name": "@return",
             "body": "{String} The comment passed to the assertion call",
-            "type": "String",
-            "description": " The comment passed to the assertion call"
+            "type": "string",
+            "description": "The comment passed to the assertion call"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2291
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2340
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the error message",
+          "     *",
+          "     * @return {String} The error message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the error message</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The error message",
+            "type": "string",
+            "description": "The error message"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2441
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2532
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": [
-    "qx.core.AssertionError",
-    "qx.core.ValidationError",
-    "qx.io.exception.Exception"
-  ]
+  "properties": {}
 }

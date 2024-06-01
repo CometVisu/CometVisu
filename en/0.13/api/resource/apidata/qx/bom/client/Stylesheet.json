@@ -1,55 +1,57 @@
 {
-  "className": "qx.bom.client.Stylesheet",
-  "packageName": "qx.bom.client",
-  "name": "Stylesheet",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 768
-      },
-      "end": {
-        "line": 132,
-        "column": 3,
-        "index": 3803
-      }
+  "version": 0.3,
+  "lastModified": 1717235172438,
+  "lastModifiedIso": "2024-06-01T09:46:12.438Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Stylesheet.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 742
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Internal class which contains the checks used by {@link qx.core.Environment}.\n All checks in here are marked as internal which means you should never use\n them directly.\n This class contains checks related to Stylesheet objects.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 132,
+      "column": 3,
+      "index": 3672
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.Stylesheet",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Internal class which contains the checks used by {@link qx.core.Environment}.",
+      " * All checks in here are marked as internal which means you should never use",
+      " * them directly.",
+      " *",
+      " * This class contains checks related to Stylesheet objects.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Internal class which contains the checks used by {@link qx.core.Environment}.\n All checks in here are marked as internal which means you should never use\n them directly.\n This class contains checks related to Stylesheet objects.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "statics": {
     "__getStylesheet": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 970
-        },
-        "end": {
-          "line": 40,
-          "column": 5,
-          "index": 1206
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a stylesheet to be used for feature checks",
+          "     *",
+          "     * @return {StyleSheet} Stylesheet element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -61,27 +63,44 @@
             "name": "@return",
             "body": "{StyleSheet} Stylesheet element",
             "type": "StyleSheet",
-            "description": " Stylesheet element"
+            "description": "Stylesheet element"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "getCreateStyleSheet": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 52,
+          "line": 34,
           "column": 4,
-          "index": 1646
+          "index": 937
         },
         "end": {
-          "line": 54,
+          "line": 40,
           "column": 5,
-          "index": 1737
+          "index": 1167
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "StyleSheet"
+      },
+      "appearsIn": []
+    },
+    "getCreateStyleSheet": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for IE's non-standard document.createStyleSheet function.",
+          "     * In IE9 (standards mode), the typeof check returns \"function\" so false is",
+          "     * returned. This is intended since IE9 supports the DOM-standard",
+          "     * createElement(\"style\") which should be used instead.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if the browser supports",
+          "     * document.createStyleSheet",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -98,28 +117,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the browser supports\n document.createStyleSheet",
-            "type": "Boolean",
-            "description": " <code>true</code> if the browser supports\n document.createStyleSheet"
+            "type": "boolean",
+            "description": "<code>true</code> if the browser supports\n document.createStyleSheet"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getInsertRule": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 52,
           "column": 4,
-          "index": 1934
+          "index": 1595
         },
         "end": {
-          "line": 67,
+          "line": 54,
           "column": 5,
-          "index": 2078
+          "index": 1684
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getInsertRule": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for stylesheet.insertRule. Legacy IEs do not support this.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if insertRule is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -136,28 +168,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if insertRule is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if insertRule is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if insertRule is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDeleteRule": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 62,
           "column": 4,
-          "index": 2275
+          "index": 1873
         },
         "end": {
-          "line": 80,
+          "line": 67,
           "column": 5,
-          "index": 2419
+          "index": 2012
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getDeleteRule": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for stylesheet.deleteRule. Legacy IEs do not support this.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if deleteRule is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -174,28 +219,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if deleteRule is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if deleteRule is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if deleteRule is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAddImport": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 89,
+          "line": 75,
           "column": 4,
-          "index": 2691
+          "index": 2201
         },
         "end": {
-          "line": 93,
+          "line": 80,
           "column": 5,
-          "index": 2822
+          "index": 2340
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getAddImport": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Decides whether to use the legacy IE-only stylesheet.addImport or the",
+          "     * DOM-standard stylesheet.insertRule('@import [...]')",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if stylesheet.addImport is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -212,28 +271,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if stylesheet.addImport is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if stylesheet.addImport is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if stylesheet.addImport is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRemoveImport": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 102,
+          "line": 89,
           "column": 4,
-          "index": 3100
+          "index": 2603
         },
         "end": {
-          "line": 107,
+          "line": 93,
           "column": 5,
-          "index": 3246
+          "index": 2730
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getRemoveImport": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Decides whether to use the legacy IE-only stylesheet.removeImport or the",
+          "     * DOM-standard stylesheet.deleteRule('@import [...]')",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if stylesheet.removeImport is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -250,28 +323,32 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if stylesheet.removeImport is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if stylesheet.removeImport is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if stylesheet.removeImport is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 110,
-        "column": 2,
-        "index": 3258
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2999
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3140
+        }
       },
-      "end": {
-        "line": 131,
-        "column": 3,
-        "index": 3798
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

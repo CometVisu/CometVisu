@@ -1,0 +1,79 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/formElement/DateField.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 597
+    },
+    "end": {
+      "line": 51,
+      "column": 3,
+      "index": 1396
+    }
+  },
+  "className": "qxl.dialog.formElement.DateField",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @asset(qx/icon/*)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/icon/*"
+      }
+    ]
+  },
+  "statics": {
+    "register": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4,
+          "index": 668
+        },
+        "end": {
+          "line": 30,
+          "column": 5,
+          "index": 796
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_registration": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 803
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1386
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

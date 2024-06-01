@@ -1,0 +1,49 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172478,
+  "lastModifiedIso": "2024-06-01T09:46:12.478Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/TargetError.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 654
+    },
+    "end": {
+      "line": 26,
+      "column": 3,
+      "index": 756
+    }
+  },
+  "className": "qx.tool.compiler.TargetError",
+  "jsdoc": {
+    "raw": [
+      " ************************************************************************",
+      " *",
+      " *    qooxdoo-compiler - node.js based replacement for the Qooxdoo python",
+      " *    toolchain",
+      " *",
+      " *    https://github.com/qooxdoo/qooxdoo-compiler",
+      " *",
+      " *    Copyright:",
+      " *      3033 Derrell Lipman",
+      " *",
+      " *    License:",
+      " *      MIT: https://opensource.org/licenses/MIT",
+      " *",
+      " *      This software is provided under the same licensing terms as Qooxdoo,",
+      " *      please see the LICENSE file in the Qooxdoo project's top-level directory",
+      " *      for details.",
+      " *",
+      " *    Authors:",
+      " *      * Derrell Lipman (@derrell)",
+      " *",
+      " * ***********************************************************************"
+    ]
+  },
+  "superClass": "Error",
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

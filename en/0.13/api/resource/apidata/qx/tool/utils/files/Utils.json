@@ -1,0 +1,567 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172678,
+  "lastModifiedIso": "2024-06-01T09:46:12.678Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/files/Utils.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 982
+    },
+    "end": {
+      "line": 348,
+      "column": 3,
+      "index": 9562
+    }
+  },
+  "className": "qx.tool.utils.files.Utils",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "statics": {
+    "findAllFiles": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1073
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1658
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "dir"
+        },
+        {
+          "name": "fnEach"
+        }
+      ],
+      "appearsIn": []
+    },
+    "sync": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Synchronises two files or folders; files are copied from/to but only if their",
+          "     * modification time or size has changed.",
+          "     * @param from {String} path to copy from",
+          "     * @param to {String} path to copy to",
+          "     * @param filter {Function?} optional filter method to validate filenames before sync",
+          "     * @async",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Synchronises two files or folders; files are copied from/to but only if their\n modification time or size has changed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "from {String} path to copy from",
+            "paramName": "from",
+            "description": " path to copy from",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "to {String} path to copy to",
+            "paramName": "to",
+            "description": " path to copy to",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "filter {Function?} optional filter method to validate filenames before sync",
+            "paramName": "filter",
+            "description": " optional filter method to validate filenames before sync",
+            "optional": true,
+            "type": "Function"
+          }
+        ],
+        "@async": [
+          {
+            "name": "@async",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2004
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3706
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "from",
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "type": "string"
+        },
+        {
+          "name": "filter",
+          "type": "Function",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "copyFile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Copies a file",
+          "     * @param from {String} path to copy from",
+          "     * @param to {String} path to copy to",
+          "     * @async",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Copies a file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "from {String} path to copy from",
+            "paramName": "from",
+            "description": " path to copy from",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "to {String} path to copy to",
+            "paramName": "to",
+            "description": " path to copy to",
+            "type": "string"
+          }
+        ],
+        "@async": [
+          {
+            "name": "@async",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3852
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4378
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "from",
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "safeStat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the stats for a file, or null if the file does not exist",
+          "     *",
+          "     * @param filename",
+          "     * @returns {import(\"node:fs\").Stats}",
+          "     * @async",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the stats for a file, or null if the file does not exist</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename",
+            "paramName": "filename",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{import(\"node:fs\").Stats}",
+            "type": "import(\"node:fs\").Stats",
+            "description": ""
+          }
+        ],
+        "@async": [
+          {
+            "name": "@async",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 4559
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4847
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        }
+      ],
+      "returnType": {
+        "type": "import(\"node:fs\").Stats"
+      },
+      "appearsIn": []
+    },
+    "safeUnlink": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deletes a file, does nothing if the file does not exist",
+          "     *",
+          "     * @param filename {String} file to delete",
+          "     * @async",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes a file, does nothing if the file does not exist</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} file to delete",
+            "paramName": "filename",
+            "description": " file to delete",
+            "type": "string"
+          }
+        ],
+        "@async": [
+          {
+            "name": "@async",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 5001
+        },
+        "end": {
+          "line": 188,
+          "column": 5,
+          "index": 5268
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "safeRename": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Renames a file, does nothing if the file does not exist",
+          "     *",
+          "     * @param from {String} file to rename",
+          "     * @param to {String} new filename",
+          "     * @async",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Renames a file, does nothing if the file does not exist</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "from {String} file to rename",
+            "paramName": "from",
+            "description": " file to rename",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "to {String} new filename",
+            "paramName": "to",
+            "description": " new filename",
+            "type": "string"
+          }
+        ],
+        "@async": [
+          {
+            "name": "@async",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 5457
+        },
+        "end": {
+          "line": 207,
+          "column": 5,
+          "index": 5724
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "from",
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "rotateUnique": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Rotates files so that this file does not exist, by renaming the existing file to have a \".1\"",
+          "     * appended, and the \".1\" to be renamed to \".2\" etc, up to `length` versions",
+          "     *",
+          "     * @param filename {String} filename to rotate",
+          "     * @param length {Integer} maximum number of files",
+          "     * @async",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Rotates files so that this file does not exist, by renaming the existing file to have a \".1\"\n appended, and the \".1\" to be renamed to \".2\" etc, up to <code>length</code> versions</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} filename to rotate",
+            "paramName": "filename",
+            "description": " filename to rotate",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "length {Integer} maximum number of files",
+            "paramName": "length",
+            "description": " maximum number of files",
+            "type": "Integer"
+          }
+        ],
+        "@async": [
+          {
+            "name": "@async",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 6055
+        },
+        "end": {
+          "line": 231,
+          "column": 5,
+          "index": 6527
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        },
+        {
+          "name": "length",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "deleteRecursive": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deletes a file or directory; directories are recursively removed",
+          "     * @param name {String} file or dir to delete",
+          "     * @async",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes a file or directory; directories are recursively removed</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} file or dir to delete",
+            "paramName": "name",
+            "description": " file or dir to delete",
+            "type": "string"
+          }
+        ],
+        "@async": [
+          {
+            "name": "@async",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 6686
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 6915
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "correctCase": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Normalises the path and corrects the case of the path to match what is actually on the filing system",
+          "     *",
+          "     * @param dir {String} the filename to normalise",
+          "     * @returns {String} the new path",
+          "     * @async",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Normalises the path and corrects the case of the path to match what is actually on the filing system</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "dir {String} the filename to normalise",
+            "paramName": "dir",
+            "description": " the filename to normalise",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the new path",
+            "type": "string",
+            "description": "the new path"
+          }
+        ],
+        "@async": [
+          {
+            "name": "@async",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4,
+          "index": 7158
+        },
+        "end": {
+          "line": 346,
+          "column": 5,
+          "index": 9554
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "dir",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

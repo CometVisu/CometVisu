@@ -1,55 +1,53 @@
 {
-  "className": "qx.ui.core.ISingleSelectionProvider",
-  "packageName": "qx.ui.core",
-  "name": "ISingleSelectionProvider",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 592
-      },
-      "end": {
-        "line": 46,
-        "column": 3,
-        "index": 1282
-      }
+  "version": 0.3,
+  "lastModified": 1717235171454,
+  "lastModifiedIso": "2024-06-01T09:46:11.454Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/ISingleSelectionProvider.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 570
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Defines the callback for the single selection manager.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 46,
+      "column": 3,
+      "index": 1237
     }
   },
-  "type": "interface",
+  "className": "qx.ui.core.ISingleSelectionProvider",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Defines the callback for the single selection manager.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Defines the callback for the single selection manager.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "members": {
     "getItems": {
-      "location": {
-        "start": {
-          "line": 36,
-          "column": 4,
-          "index": 1019
-        },
-        "end": {
-          "line": 36,
-          "column": 17,
-          "index": 1032
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the elements which are part of the selection.",
+          "     *",
+          "     * @return {qx.ui.core.Widget[]} The widgets for the selection.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -61,27 +59,40 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget[]} The widgets for the selection.",
             "type": "qx.ui.core.Widget[]",
-            "description": " The widgets for the selection."
+            "description": "The widgets for the selection."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isItemSelectable": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 44,
+          "line": 36,
           "column": 4,
-          "index": 1247
+          "index": 984
         },
         "end": {
-          "line": 44,
-          "column": 29,
-          "index": 1272
+          "line": 36,
+          "column": 17,
+          "index": 997
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": []
+    },
+    "isItemSelectable": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the given item is selectable.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The item to be checked",
+          "     * @return {Boolean} Whether the given item is selectable",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -101,14 +112,37 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the given item is selectable",
-            "type": "Boolean",
-            "description": " Whether the given item is selectable"
+            "type": "boolean",
+            "description": "Whether the given item is selectable"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1204
+        },
+        "end": {
+          "line": 44,
+          "column": 29,
+          "index": 1229
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -1,54 +1,36 @@
 {
-  "className": "qx.theme.Indigo",
-  "packageName": "qx.theme",
-  "name": "Indigo",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 561
-      },
-      "end": {
-        "line": 32,
-        "column": 3,
-        "index": 829
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Simple Theme</p>"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235171414,
+  "lastModifiedIso": "2024-06-01T09:46:11.414Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/Indigo.js",
   "type": "theme",
-  "themeMeta": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 2,
-        "index": 623
-      },
-      "end": {
-        "line": 31,
-        "column": 3,
-        "index": 824
-      }
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 540
     },
-    "themeMetaMap": {
-      "color": "qx.theme.indigo.Color",
-      "decoration": "qx.theme.indigo.Decoration",
-      "font": "qx.theme.indigo.Font",
-      "appearance": "qx.theme.indigo.Appearance",
-      "icon": "qx.theme.icon.Tango"
+    "end": {
+      "line": 32,
+      "column": 3,
+      "index": 798
     }
   },
-  "descendants": []
+  "className": "qx.theme.Indigo",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Simple Theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Simple Theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

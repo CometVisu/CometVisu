@@ -1,71 +1,71 @@
 {
-  "className": "qx.dev.Debug",
-  "packageName": "qx.dev",
-  "name": "Debug",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 29,
-        "column": 0,
-        "index": 776
-      },
-      "end": {
-        "line": 465,
-        "column": 3,
-        "index": 15651
-      }
+  "version": 0.3,
+  "lastModified": 1717235169898,
+  "lastModifiedIso": "2024-06-01T09:46:09.898Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/Debug.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 748
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Useful debug capabilities</p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.ui.decoration.IDecorator"
-        },
-        {
-          "name": "@ignore",
-          "body": "qx.theme.manager.Decoration"
-        },
-        {
-          "name": "@ignore",
-          "body": "qx.ui.core.queue.Dispose"
-        },
-        {
-          "name": "@ignore",
-          "body": "qx.bom.Font"
-        },
-        {
-          "name": "@ignore",
-          "body": "qx.theme.manager.Font"
-        }
-      ]
+    "end": {
+      "line": 465,
+      "column": 3,
+      "index": 15187
     }
   },
-  "type": "class",
+  "className": "qx.dev.Debug",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Useful debug capabilities",
+      " * @ignore(qx.ui.decoration.IDecorator)",
+      " * @ignore(qx.theme.manager.Decoration)",
+      " * @ignore(qx.ui.core.queue.Dispose)",
+      " * @ignore(qx.bom.Font)",
+      " * @ignore(qx.theme.manager.Font)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Useful debug capabilities</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.ui.decoration.IDecorator"
+      },
+      {
+        "name": "@ignore",
+        "body": "qx.theme.manager.Decoration"
+      },
+      {
+        "name": "@ignore",
+        "body": "qx.ui.core.queue.Dispose"
+      },
+      {
+        "name": "@ignore",
+        "body": "qx.bom.Font"
+      },
+      {
+        "name": "@ignore",
+        "body": "qx.theme.manager.Font"
+      }
+    ]
+  },
   "statics": {
     "disposeProfilingActive": {
-      "location": {
-        "start": {
-          "line": 35,
-          "column": 4,
-          "index": 935
-        },
-        "end": {
-          "line": 35,
-          "column": 33,
-          "index": 964
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag that shows whether dispose profiling is currently active",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -79,23 +79,40 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "debugObject": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 35,
           "column": 4,
-          "index": 1399
+          "index": 901
         },
         "end": {
-          "line": 58,
-          "column": 5,
-          "index": 1660
+          "line": 35,
+          "column": 33,
+          "index": 930
         }
       },
+      "appearsIn": []
+    },
+    "debugObject": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Recursively display an object (as a debug message)",
+          "     *",
+          "     *",
+          "     * @param obj {Object}",
+          "     *   The object to be recursively displayed",
+          "     *",
+          "     * @param initialMessage {String|null}",
+          "     *   The initial message to be displayed.",
+          "     *",
+          "     * @param maxLevel {Integer ? 10}",
+          "     *   The maximum level of recursion.  Objects beyond this level will not",
+          "     *   be displayed.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -108,7 +125,7 @@
             "body": "obj {Object}\n   The object to be recursively displayed",
             "paramName": "obj",
             "description": "\n   The object to be recursively displayed",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -131,23 +148,68 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "debugObjectToString": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 83,
+          "line": 52,
           "column": 4,
-          "index": 2403
+          "index": 1348
         },
         "end": {
-          "line": 192,
+          "line": 58,
           "column": 5,
-          "index": 6167
+          "index": 1603
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "initialMessage",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "maxLevel",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "10"
+        }
+      ],
+      "appearsIn": []
+    },
+    "debugObjectToString": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Recursively display an object (into a string)",
+          "     *",
+          "     *",
+          "     * @param obj {Object}",
+          "     *   The object to be recursively displayed",
+          "     *",
+          "     * @param initialMessage {String|null}",
+          "     *   The initial message to be displayed.",
+          "     *",
+          "     * @param maxLevel {Integer ? 10}",
+          "     *   The maximum level of recursion.  Objects beyond this level will not",
+          "     *   be displayed.",
+          "     *",
+          "     * @param bHtml {Boolean ? false}",
+          "     *   If true, then render the debug message in HTML;",
+          "     *   Otherwise, use spaces for indentation and \"\\n\" for end of line.",
+          "     *",
+          "     * @return {String}",
+          "     *   The string containing the recursive display of the object",
+          "     *",
+          "     * @lint ignoreUnused(prop)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -160,7 +222,7 @@
             "body": "obj {Object}\n   The object to be recursively displayed",
             "paramName": "obj",
             "description": "\n   The object to be recursively displayed",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -195,8 +257,8 @@
           {
             "name": "@return",
             "body": "{String}\n   The string containing the recursive display of the object",
-            "type": "String",
-            "description": "\n   The string containing the recursive display of the object"
+            "type": "string",
+            "description": "   The string containing the recursive display of the object"
           }
         ],
         "@lint": [
@@ -206,23 +268,65 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getFunctionName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 205,
+          "line": 83,
           "column": 4,
-          "index": 6769
+          "index": 2321
         },
         "end": {
-          "line": 238,
+          "line": 192,
           "column": 5,
-          "index": 7604
+          "index": 5976
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "initialMessage",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "maxLevel",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "10"
+        },
+        {
+          "name": "bHtml",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getFunctionName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the name of a member/static function or constructor defined using the new style class definition.",
+          "     * If the function could not be found <code>null</code> is returned.",
+          "     *",
+          "     * This function uses a linear search, so don't use it in performance critical",
+          "     * code.",
+          "     *",
+          "     * @param func {Function} member function to get the name of.",
+          "     * @param functionType {String?\"all\"} Where to look for the function. Possible values are \"members\", \"statics\", \"constructor\", \"all\"",
+          "     * @return {String|null} Name of the function (null if not found).",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -235,7 +339,7 @@
             "body": "func {Function} member function to get the name of.",
             "paramName": "func",
             "description": " member function to get the name of.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -252,27 +356,58 @@
             "name": "@return",
             "body": "{String|null} Name of the function (null if not found).",
             "type": "String|null",
-            "description": " Name of the function (null if not found)."
+            "description": "Name of the function (null if not found)."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "debugProperties": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 253,
+          "line": 205,
           "column": 4,
-          "index": 8181
+          "index": 6565
         },
         "end": {
-          "line": 319,
+          "line": 238,
           "column": 5,
-          "index": 10065
+          "index": 7367
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "func",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "functionType",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "\"all\""
+        }
+      ],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "debugProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a string representing the given model. The string will include",
+          "     * all model objects to a given recursive depth.",
+          "     *",
+          "     * @param model {qx.core.Object} The model object.",
+          "     * @param maxLevel {Number ? 10} The amount of max recursive depth.",
+          "     * @param html {Boolean ? false} If the returned string should have \\n\\r as",
+          "     *   newline of <br>.",
+          "     * @param indent {Number ? 1} The indentation level.",
+          "     *   (Needed for the recursion)",
+          "     *",
+          "     * @return {String} A string representation of the given model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -314,28 +449,63 @@
           {
             "name": "@return",
             "body": "{String} A string representation of the given model.",
-            "type": "String",
-            "description": " A string representation of the given model."
+            "type": "string",
+            "description": "A string representation of the given model."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "startDisposeProfiling": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 329,
+          "line": 253,
           "column": 4,
-          "index": 10395
+          "index": 7929
         },
         "end": {
-          "line": 337,
-          "column": 6,
-          "index": 10675
+          "line": 319,
+          "column": 5,
+          "index": 9747
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "model",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "maxLevel",
+          "type": "Number",
+          "optional": true,
+          "defaultValue": "10"
+        },
+        {
+          "name": "html",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        },
+        {
+          "name": "indent"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "startDisposeProfiling": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Starts a dispose profiling session. Use {@link #stopDisposeProfiling} to",
+          "     * get the results",
+          "     *",
+          "     * @return {Number|undefined}",
+          "     *   Returns a handle which may be passed to {@link #stopDisposeProfiling}",
+          "     *   indicating the start point for searching for undisposed objects.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -347,27 +517,47 @@
             "name": "@return",
             "body": "{Number|undefined}\n   Returns a handle which may be passed to {@link #stopDisposeProfiling}\n   indicating the start point for searching for undisposed objects.",
             "type": "Number|undefined",
-            "description": "\n   Returns a handle which may be passed to {@link #stopDisposeProfiling}\n   indicating the start point for searching for undisposed objects."
+            "description": "   Returns a handle which may be passed to {@link #stopDisposeProfiling}\n   indicating the start point for searching for undisposed objects."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "stopDisposeProfiling": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 354,
+          "line": 329,
           "column": 4,
-          "index": 11538
+          "index": 10067
         },
         "end": {
-          "line": 377,
+          "line": 337,
           "column": 6,
-          "index": 12210
+          "index": 10339
         }
       },
+      "returnType": {
+        "type": "Number|undefined"
+      },
+      "appearsIn": []
+    },
+    "stopDisposeProfiling": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of any (qx) objects that were created but not disposed",
+          "     * since {@link #startDisposeProfiling} was called. Also returns a stack",
+          "     * trace recorded at the time the object was created. The starting point",
+          "     * of dispose tracking is reset, so to do further dispose profiling, a new",
+          "     * call to {@link #startDisposeProfile} must be issued.",
+          "     *",
+          "     * @signature function(checkFunction)",
+          "     * @param checkFunction {Function} Custom check function. It is called once",
+          "     * for each object that was created after dispose profiling was started,",
+          "     * with the object as the only parameter. If it returns false, the object",
+          "     * will not be included in the returned list",
+          "     * @return {Map[]} List of maps. Each map contains two keys:",
+          "     * <code>object</code> and <code>stackTrace</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -386,7 +576,7 @@
             "body": "checkFunction {Function} Custom check function. It is called once\n for each object that was created after dispose profiling was started,\n with the object as the only parameter. If it returns false, the object\n will not be included in the returned list",
             "paramName": "checkFunction",
             "description": " Custom check function. It is called once\n for each object that was created after dispose profiling was started,\n with the object as the only parameter. If it returns false, the object\n will not be included in the returned list",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ],
         "@return": [
@@ -394,27 +584,48 @@
             "name": "@return",
             "body": "{Map[]} List of maps. Each map contains two keys:\n <code>object</code> and <code>stackTrace</code>",
             "type": "Map[]",
-            "description": " List of maps. Each map contains two keys:\n <code>object</code> and <code>stackTrace</code>"
+            "description": "List of maps. Each map contains two keys:\n <code>object</code> and <code>stackTrace</code>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "showDisposeProfiling": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 395,
+          "line": 354,
           "column": 4,
-          "index": 13099
+          "index": 11185
         },
         "end": {
-          "line": 463,
+          "line": 377,
           "column": 6,
-          "index": 15641
+          "index": 11834
         }
       },
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "showDisposeProfiling": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of any (qx) objects that were created but not disposed",
+          "     * since {@link #startDisposeProfiling} was called. Also returns a stack",
+          "     * trace recorded at the time the object was created. Does not restart the",
+          "     * tracking point, so subsequent calls to this method will continue to",
+          "     * show undisposed objects since {@link #startDisposeProfiling} was",
+          "     * called.",
+          "     *",
+          "     * @signature function(checkFunction)",
+          "     * @param checkFunction {Function} Custom check function. It is called once",
+          "     * for each object that was created after dispose profiling was started,",
+          "     * with the object as the only parameter. If it returns false, the object",
+          "     * will not be included in the returned list",
+          "     * @return {Map[]} List of maps. Each map contains two keys:",
+          "     * <code>object</code> and <code>stackTrace</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -433,7 +644,7 @@
             "body": "checkFunction {Function} Custom check function. It is called once\n for each object that was created after dispose profiling was started,\n with the object as the only parameter. If it returns false, the object\n will not be included in the returned list",
             "paramName": "checkFunction",
             "description": " Custom check function. It is called once\n for each object that was created after dispose profiling was started,\n with the object as the only parameter. If it returns false, the object\n will not be included in the returned list",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ],
         "@return": [
@@ -441,13 +652,29 @@
             "name": "@return",
             "body": "{Map[]} List of maps. Each map contains two keys:\n <code>object</code> and <code>stackTrace</code>",
             "type": "Map[]",
-            "description": " List of maps. Each map contains two keys:\n <code>object</code> and <code>stackTrace</code>"
+            "description": "List of maps. Each map contains two keys:\n <code>object</code> and <code>stackTrace</code>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 395,
+          "column": 4,
+          "index": 12705
+        },
+        "end": {
+          "line": 463,
+          "column": 6,
+          "index": 15179
+        }
+      },
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

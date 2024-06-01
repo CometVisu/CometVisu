@@ -1,49 +1,65 @@
 {
-  "className": "qx.ui.core.MContentPadding",
-  "packageName": "qx.ui.core",
-  "name": "MContentPadding",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 875
-      },
-      "end": {
-        "line": 152,
-        "column": 3,
-        "index": 4744
-      }
+  "version": 0.3,
+  "lastModified": 1717235171710,
+  "lastModifiedIso": "2024-06-01T09:46:11.710Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/MContentPadding.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 848
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin defines the <code>contentPadding</code> property, which is used\n by widgets like the window or group box, which must have a property, which\n defines the padding of an inner pane.\n The including class must implement the method\n <code>_getContentPaddingTarget</code>, which must return the widget on which\n the padding should be applied.</p>"
-        }
-      ]
+    "end": {
+      "line": 152,
+      "column": 3,
+      "index": 4593
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.core.MContentPadding",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin defines the <code>contentPadding</code> property, which is used",
+      " * by widgets like the window or group box, which must have a property, which",
+      " * defines the padding of an inner pane.",
+      " *",
+      " * The including class must implement the method",
+      " * <code>_getContentPaddingTarget</code>, which must return the widget on which",
+      " * the padding should be applied.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin defines the <code>contentPadding</code> property, which is used\n by widgets like the window or group box, which must have a property, which\n defines the padding of an inner pane.\n The including class must implement the method\n <code>_getContentPaddingTarget</code>, which must return the widget on which\n the padding should be applied.</p>"
+      }
+    ]
+  },
   "properties": {
     "contentPaddingTop": {
       "location": {
         "start": {
           "line": 37,
           "column": 4,
-          "index": 1182
+          "index": 1146
         },
         "end": {
           "line": 42,
           "column": 5,
-          "index": 1311
+          "index": 1270
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Top padding of the content pane "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,28 +67,31 @@
           }
         ]
       },
-      "name": "contentPaddingTop",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyContentPadding",
-      "init": 0,
-      "check": "Integer",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "contentPaddingRight": {
       "location": {
         "start": {
           "line": 45,
           "column": 4,
-          "index": 1366
+          "index": 1322
         },
         "end": {
           "line": 50,
           "column": 5,
-          "index": 1497
+          "index": 1448
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Right padding of the content pane "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -80,28 +99,31 @@
           }
         ]
       },
-      "name": "contentPaddingRight",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyContentPadding",
-      "init": 0,
-      "check": "Integer",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "contentPaddingBottom": {
       "location": {
         "start": {
           "line": 53,
           "column": 4,
-          "index": 1553
+          "index": 1501
         },
         "end": {
           "line": 58,
           "column": 5,
-          "index": 1685
+          "index": 1628
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Bottom padding of the content pane "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -109,28 +131,31 @@
           }
         ]
       },
-      "name": "contentPaddingBottom",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyContentPadding",
-      "init": 0,
-      "check": "Integer",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "contentPaddingLeft": {
       "location": {
         "start": {
           "line": 61,
           "column": 4,
-          "index": 1739
+          "index": 1679
         },
         "end": {
           "line": 66,
           "column": 5,
-          "index": 1869
+          "index": 1804
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyContentPadding",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Left padding of the content pane "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -138,28 +163,43 @@
           }
         ]
       },
-      "name": "contentPaddingLeft",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyContentPadding",
-      "init": 0,
-      "check": "Integer",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "contentPadding": {
       "location": {
         "start": {
           "line": 77,
           "column": 4,
-          "index": 2346
+          "index": 2270
         },
         "end": {
           "line": 87,
           "column": 5,
-          "index": 2572
+          "index": 2486
         }
       },
+      "json": {
+        "group": [
+          "contentPaddingTop",
+          "contentPaddingRight",
+          "contentPaddingBottom",
+          "contentPaddingLeft"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The 'contentPadding' property is a shorthand property for setting 'contentPaddingTop',",
+          "     * 'contentPaddingRight', 'contentPaddingBottom' and 'contentPaddingLeft'",
+          "     * at the same time.",
+          "     *",
+          "     * If four values are specified they apply to top, right, bottom and left respectively.",
+          "     * If there is only one value, it applies to all sides, if there are two or three,",
+          "     * the missing values are taken from the opposite side.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -167,32 +207,19 @@
           }
         ]
       },
-      "name": "contentPadding",
-      "propertyType": "new",
-      "themeable": true,
-      "group": [
-        "contentPaddingTop",
-        "contentPaddingRight",
-        "contentPaddingBottom",
-        "contentPaddingLeft"
-      ]
+      "appearsIn": []
     }
   },
   "members": {
     "__contentPaddingSetter": {
-      "location": {
-        "start": {
-          "line": 102,
-          "column": 4,
-          "index": 3016
-        },
-        "end": {
-          "line": 107,
-          "column": 5,
-          "index": 3231
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the setter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingSetter)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -212,23 +239,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__contentPaddingThemedSetter": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 114,
+          "line": 102,
           "column": 4,
-          "index": 3426
+          "index": 2915
         },
         "end": {
-          "line": 119,
+          "line": 107,
           "column": 5,
-          "index": 3671
+          "index": 3125
         }
       },
+      "appearsIn": []
+    },
+    "__contentPaddingThemedSetter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the themed setter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingThemedSetter)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -248,23 +282,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__contentPaddingResetter": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 126,
+          "line": 114,
           "column": 4,
-          "index": 3857
+          "index": 3313
         },
         "end": {
-          "line": 131,
+          "line": 119,
           "column": 5,
-          "index": 4082
+          "index": 3553
         }
       },
+      "appearsIn": []
+    },
+    "__contentPaddingResetter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Maps property names of content padding to the resetter of the padding",
+          "     *",
+          "     * @lint ignoreReferenceField(__contentPaddingResetter)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -284,338 +325,57 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3732
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3952
+        }
+      },
+      "appearsIn": []
     },
     "_applyContentPadding": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 134,
           "column": 4,
-          "index": 4114
+          "index": 3981
         },
         "end": {
           "line": 150,
           "column": 5,
-          "index": 4734
+          "index": 4585
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "contentPaddingTop",
-        "contentPaddingRight",
-        "contentPaddingBottom",
-        "contentPaddingLeft"
-      ]
-    },
-    "getContentPaddingTop": {
-      "type": "function",
-      "name": "getContentPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>contentPaddingTop</code>.\n\nFor further details take a look at the property definition: {@link #contentPaddingTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for contentPaddingTop"
-          }
-        ]
-      }
-    },
-    "setContentPaddingTop": {
-      "type": "function",
-      "name": "setContentPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>contentPaddingTop</code>.\n\nFor further details take a look at the property definition: {@link #contentPaddingTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for contentPaddingTop"
-          }
-        ]
-      }
-    },
-    "resetContentPaddingTop": {
-      "type": "function",
-      "name": "resetContentPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>contentPaddingTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contentPaddingTop}."
-          }
-        ]
-      }
-    },
-    "getContentPaddingRight": {
-      "type": "function",
-      "name": "getContentPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>contentPaddingRight</code>.\n\nFor further details take a look at the property definition: {@link #contentPaddingRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for contentPaddingRight"
-          }
-        ]
-      }
-    },
-    "setContentPaddingRight": {
-      "type": "function",
-      "name": "setContentPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>contentPaddingRight</code>.\n\nFor further details take a look at the property definition: {@link #contentPaddingRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for contentPaddingRight"
-          }
-        ]
-      }
-    },
-    "resetContentPaddingRight": {
-      "type": "function",
-      "name": "resetContentPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>contentPaddingRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contentPaddingRight}."
-          }
-        ]
-      }
-    },
-    "getContentPaddingBottom": {
-      "type": "function",
-      "name": "getContentPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>contentPaddingBottom</code>.\n\nFor further details take a look at the property definition: {@link #contentPaddingBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for contentPaddingBottom"
-          }
-        ]
-      }
-    },
-    "setContentPaddingBottom": {
-      "type": "function",
-      "name": "setContentPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>contentPaddingBottom</code>.\n\nFor further details take a look at the property definition: {@link #contentPaddingBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for contentPaddingBottom"
-          }
-        ]
-      }
-    },
-    "resetContentPaddingBottom": {
-      "type": "function",
-      "name": "resetContentPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>contentPaddingBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contentPaddingBottom}."
-          }
-        ]
-      }
-    },
-    "getContentPaddingLeft": {
-      "type": "function",
-      "name": "getContentPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>contentPaddingLeft</code>.\n\nFor further details take a look at the property definition: {@link #contentPaddingLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for contentPaddingLeft"
-          }
-        ]
-      }
-    },
-    "setContentPaddingLeft": {
-      "type": "function",
-      "name": "setContentPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>contentPaddingLeft</code>.\n\nFor further details take a look at the property definition: {@link #contentPaddingLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for contentPaddingLeft"
-          }
-        ]
-      }
-    },
-    "resetContentPaddingLeft": {
-      "type": "function",
-      "name": "resetContentPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>contentPaddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contentPaddingLeft}."
-          }
-        ]
-      }
-    },
-    "setContentPadding": {
-      "type": "function",
-      "name": "setContentPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>contentPadding</code>.\n\nFor further details take a look at the property definition: {@link #contentPadding}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for contentPadding"
-          }
-        ]
-      }
-    },
-    "resetContentPadding": {
-      "type": "function",
-      "name": "resetContentPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>contentPadding</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contentPadding}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        },
+        {
+          "name": "variant"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

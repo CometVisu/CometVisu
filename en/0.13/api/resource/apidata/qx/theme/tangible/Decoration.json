@@ -1,52 +1,36 @@
 {
-  "className": "qx.theme.tangible.Decoration",
-  "packageName": "qx.theme.tangible",
-  "name": "Decoration",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 561
-      },
-      "end": {
-        "line": 1143,
-        "column": 3,
-        "index": 27163
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The simple qooxdoo decoration theme.</p>"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235169930,
+  "lastModifiedIso": "2024-06-01T09:46:09.930Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/tangible/Decoration.js",
   "type": "theme",
-  "aliases": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 2,
-        "index": 614
-      },
-      "end": {
-        "line": 23,
-        "column": 49,
-        "index": 661
-      }
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 540
     },
-    "aliasMap": {
-      "decoration": "qx/decoration/Simple"
+    "end": {
+      "line": 1143,
+      "column": 3,
+      "index": 26021
     }
   },
-  "descendants": [
-    "cv.theme.dark.Decoration"
-  ]
+  "className": "qx.theme.tangible.Decoration",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The simple qooxdoo decoration theme.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The simple qooxdoo decoration theme.</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

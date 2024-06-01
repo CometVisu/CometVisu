@@ -8,6 +8,7 @@
       "qx.core.Object": {
         "require": true
       },
+      "qx.core.MObjectId": {},
       "qx.core.Init": {}
     }
   };
@@ -51,6 +52,13 @@
        * @Override
        */
       _createQxObjectImpl: function _createQxObjectImpl(id) {
+        {
+          var _qx$core$MObjectId;
+          var object = (_qx$core$MObjectId = qx.core.MObjectId).handleObjects.apply(_qx$core$MObjectId, [qx.core.Id, this].concat(Array.prototype.slice.call(arguments)));
+          if (object !== undefined) {
+            return object;
+          }
+        }
         if (this.__P_169_0) {
           var obj = this.__P_169_0[id];
           if (obj !== undefined) {
@@ -204,4 +212,4 @@
   qx.core.Id.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Id.js.map?dt=1709410146715
+//# sourceMappingURL=Id.js.map?dt=1717235374997

@@ -1,63 +1,73 @@
 {
-  "className": "qx.ui.treevirtual.SimpleTreeDataCellRenderer",
-  "packageName": "qx.ui.treevirtual",
-  "name": "SimpleTreeDataCellRenderer",
-  "superClass": "qx.ui.table.cellrenderer.Abstract",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 38,
-        "column": 0,
-        "index": 1406
-      },
-      "end": {
-        "line": 718,
-        "column": 3,
-        "index": 23463
-      }
+  "version": 0.3,
+  "lastModified": 1717235172278,
+  "lastModifiedIso": "2024-06-01T09:46:12.278Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/treevirtual/SimpleTreeDataCellRenderer.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 38,
+      "column": 0,
+      "index": 1369
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A data cell renderer for the tree column of a simple tree\n This cell renderer has provisions for subclasses to easily extend the\n appearance of the tree. If the tree should contain images, labels,\n etc. before the indentation, the subclass should override the method\n _addExtraContentBeforeIndentation(). Similarly, content can be added before\n the icon by overriding _addExtraContentBeforeIcon(), and before the label\n by overriding _addExtraContentBeforeLabel().\n Each of these overridden methods that calls _addImage() can provide, as\n part of the map passed to _addImage(), a member called \"tooltip\" which\n contains the tool tip to present when the mouse is hovered over the image.\n If this class is subclassed to form a new cell renderer, an instance of it\n must be provided, via the 'custom' parameter, to the TreeVirtual\n constructor.</p>"
-        }
-      ]
+    "end": {
+      "line": 718,
+      "column": 3,
+      "index": 22770
     }
   },
-  "type": "class",
+  "className": "qx.ui.treevirtual.SimpleTreeDataCellRenderer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A data cell renderer for the tree column of a simple tree",
+      " *",
+      " * This cell renderer has provisions for subclasses to easily extend the",
+      " * appearance of the tree. If the tree should contain images, labels,",
+      " * etc. before the indentation, the subclass should override the method",
+      " * _addExtraContentBeforeIndentation(). Similarly, content can be added before",
+      " * the icon by overriding _addExtraContentBeforeIcon(), and before the label",
+      " * by overriding _addExtraContentBeforeLabel().",
+      " *",
+      " * Each of these overridden methods that calls _addImage() can provide, as",
+      " * part of the map passed to _addImage(), a member called \"tooltip\" which",
+      " * contains the tool tip to present when the mouse is hovered over the image.",
+      " *",
+      " * If this class is subclassed to form a new cell renderer, an instance of it",
+      " * must be provided, via the 'custom' parameter, to the TreeVirtual",
+      " * constructor.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A data cell renderer for the tree column of a simple tree\n This cell renderer has provisions for subclasses to easily extend the\n appearance of the tree. If the tree should contain images, labels,\n etc. before the indentation, the subclass should override the method\n _addExtraContentBeforeIndentation(). Similarly, content can be added before\n the icon by overriding _addExtraContentBeforeIcon(), and before the label\n by overriding _addExtraContentBeforeLabel().\n Each of these overridden methods that calls _addImage() can provide, as\n part of the map passed to _addImage(), a member called \"tooltip\" which\n contains the tool tip to present when the mouse is hovered over the image.\n If this class is subclassed to form a new cell renderer, an instance of it\n must be provided, via the 'custom' parameter, to the TreeVirtual\n constructor.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.table.cellrenderer.Abstract",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 41,
         "column": 2,
-        "index": 1523
+        "index": 1483
       },
       "end": {
         "line": 58,
         "column": 3,
-        "index": 2077
+        "index": 2020
       }
     }
   },
   "statics": {
     "__icon": {
-      "location": {
-        "start": {
-          "line": 62,
-          "column": 4,
-          "index": 2149
-        },
-        "end": {
-          "line": 62,
-          "column": 14,
-          "index": 2159
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* File names of each of the tree icons "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -65,23 +75,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__bVirgin": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 65,
+          "line": 62,
           "column": 4,
-          "index": 2236
+          "index": 2088
         },
         "end": {
-          "line": 65,
-          "column": 19,
-          "index": 2251
+          "line": 62,
+          "column": 14,
+          "index": 2098
         }
       },
+      "appearsIn": []
+    },
+    "__bVirgin": {
       "jsdoc": {
+        "raw": [
+          "* Whether we have not yet requested pre-loading of images "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -89,23 +102,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__preloadImages": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 70,
+          "line": 65,
           "column": 4,
-          "index": 2357
+          "index": 2172
         },
         "end": {
-          "line": 121,
-          "column": 5,
-          "index": 4329
+          "line": 65,
+          "column": 19,
+          "index": 2187
         }
       },
+      "appearsIn": []
+    },
+    "__preloadImages": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Request preloading of images so they appear immediately upon rendering",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -113,8 +131,22 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2288
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 4209
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     }
   },
   "properties": {
@@ -123,15 +155,25 @@
         "start": {
           "line": 129,
           "column": 4,
-          "index": 4495
+          "index": 4367
         },
         "end": {
           "line": 132,
           "column": 5,
-          "index": 4560
+          "index": 4429
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set whether lines linking tree children shall be drawn on the tree",
+          "     * if the theme supports tree lines.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -139,26 +181,32 @@
           }
         ]
       },
-      "name": "useTreeLines",
-      "propertyType": "new",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     },
     "excludeFirstLevelTreeLines": {
       "location": {
         "start": {
           "line": 138,
           "column": 4,
-          "index": 4709
+          "index": 4572
         },
         "end": {
           "line": 141,
           "column": 5,
-          "index": 4789
+          "index": 4649
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * When true, exclude only the first-level tree lines, creating,",
+          "     * effectively, multiple unrelated root nodes.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -166,26 +214,32 @@
           }
         ]
       },
-      "name": "excludeFirstLevelTreeLines",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     },
     "alwaysShowOpenCloseSymbol": {
       "location": {
         "start": {
           "line": 147,
           "column": 4,
-          "index": 4935
+          "index": 4789
         },
         "end": {
           "line": 150,
           "column": 5,
-          "index": 5014
+          "index": 4865
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set whether the open/close button should be displayed on a branch, even",
+          "     * if the branch has no children.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -193,135 +247,176 @@
           }
         ]
       },
-      "name": "alwaysShowOpenCloseSymbol",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     }
   },
   "members": {
     "__am": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 160,
           "column": 4,
-          "index": 5232
+          "index": 5073
         },
         "end": {
           "line": 160,
           "column": 14,
-          "index": 5242
+          "index": 5083
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__tm": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 161,
           "column": 4,
-          "index": 5249
+          "index": 5089
         },
         "end": {
           "line": 161,
           "column": 14,
-          "index": 5259
+          "index": 5099
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__rm": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 162,
           "column": 4,
-          "index": 5266
+          "index": 5105
         },
         "end": {
           "line": 162,
           "column": 14,
-          "index": 5276
+          "index": 5115
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_onChangeTheme": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 165,
           "column": 4,
-          "index": 5304
+          "index": 5140
         },
         "end": {
           "line": 168,
           "column": 5,
-          "index": 5431
+          "index": 5264
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
+      "appearsIn": [
+        "qx.ui.table.cellrenderer.Abstract"
+      ]
     },
     "_getCellStyle": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 171,
           "column": 4,
-          "index": 5459
+          "index": 5289
         },
         "end": {
           "line": 180,
           "column": 5,
-          "index": 5789
+          "index": 5610
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
       "appearsIn": [
         "qx.ui.table.cellrenderer.Abstract"
       ]
     },
     "_getContentHtml": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 183,
           "column": 4,
-          "index": 5817
+          "index": 5635
         },
         "end": {
           "line": 220,
           "column": 5,
-          "index": 6998
+          "index": 6779
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
       "appearsIn": [
         "qx.ui.table.cellrenderer.Abstract"
       ]
     },
     "_addImage": {
-      "location": {
-        "start": {
-          "line": 247,
-          "column": 4,
-          "index": 7919
-        },
-        "end": {
-          "line": 326,
-          "column": 5,
-          "index": 10206
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an image to the tree.  This might be a visible icon or it may be",
+          "     * part of the indentation.",
+          "     *",
+          "     * @param imageInfo {Map}",
+          "     *   How to display the image.  It optionally includes any of the",
+          "     *   following:",
+          "     *   <dl>",
+          "     *     <dt>position {Map}</dt>",
+          "     *     <dd>",
+          "     *       If provided, a div is created to hold the image.  The div's top,",
+          "     *       right, bottom, left, width, and/or height may be specified with",
+          "     *       members of this map.  Each is expected to be an integer value.",
+          "     *     </dd>",
+          "     *     <dt>imageWidth, imageHeight</dt>",
+          "     *     <dd>",
+          "     *       The image's width and height.  These are used only if both are",
+          "     *       specified.",
+          "     *     </dd>",
+          "     *   </dl>",
+          "     *",
+          "     * @return {String}",
+          "     *   The html for this image, possibly with a surrounding div (see",
+          "     *   'position', above).",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -334,35 +429,67 @@
             "body": "imageInfo {Map}\n   How to display the image.  It optionally includes any of the\n   following:\n   <dl>\n     <dt>position {Map}</dt>\n     <dd>\n       If provided, a div is created to hold the image.  The div's top,\n       right, bottom, left, width, and/or height may be specified with\n       members of this map.  Each is expected to be an integer value.\n     </dd>\n     <dt>imageWidth, imageHeight</dt>\n     <dd>\n       The image's width and height.  These are used only if both are\n       specified.\n     </dd>\n   </dl>",
             "paramName": "imageInfo",
             "description": "\n   How to display the image.  It optionally includes any of the\n   following:\n   <dl>\n     <dt>position {Map}</dt>\n     <dd>\n       If provided, a div is created to hold the image.  The div's top,\n       right, bottom, left, width, and/or height may be specified with\n       members of this map.  Each is expected to be an integer value.\n     </dd>\n     <dt>imageWidth, imageHeight</dt>\n     <dd>\n       The image's width and height.  These are used only if both are\n       specified.\n     </dd>\n   </dl>",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String}\n   The html for this image, possibly with a surrounding div (see\n   'position', above).",
-            "type": "String",
-            "description": "\n   The html for this image, possibly with a surrounding div (see\n   'position', above)."
+            "type": "string",
+            "description": "   The html for this image, possibly with a surrounding div (see\n   'position', above)."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_addIndentation": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 348,
+          "line": 247,
           "column": 4,
-          "index": 11086
+          "index": 7673
         },
         "end": {
-          "line": 390,
+          "line": 326,
           "column": 5,
-          "index": 12303
+          "index": 9881
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "imageInfo",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_addIndentation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add the indentation for this node of the tree.",
+          "     *",
+          "     * The indentation optionally includes tree lines.  Whether tree lines are",
+          "     * used depends on (a) the properties 'useTreeLines' and",
+          "     * 'excludeFirstLevelTreelines' within this class; and (b) the widget",
+          "     * theme in use (some themes don't support tree lines).",
+          "     *",
+          "     * @param cellInfo {Map} The information about the cell.",
+          "     *   See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+          "     *",
+          "     * @param pos {Integer}",
+          "     *   The position from the left edge of the column at which to render this",
+          "     *   item.",
+          "     *",
+          "     * @return {Map}",
+          "     *   The returned map contains an 'html' member which contains the html for",
+          "     *   the indentation, and a 'pos' member which is the starting position",
+          "     *   plus the width of the indentation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -375,7 +502,7 @@
             "body": "cellInfo {Map} The information about the cell.\n   See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
             "paramName": "cellInfo",
             "description": " The information about the cell.\n   See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -389,28 +516,59 @@
           {
             "name": "@return",
             "body": "{Map}\n   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation.",
-            "type": "Map",
-            "description": "\n   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation."
+            "type": "Map<any, any>",
+            "description": "   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_addIcon": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 407,
+          "line": 348,
           "column": 4,
-          "index": 12876
+          "index": 10739
         },
         "end": {
-          "line": 444,
+          "line": 390,
           "column": 5,
-          "index": 13838
+          "index": 11914
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "pos",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_addIcon": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add the icon for this node of the tree.",
+          "     *",
+          "     * @param cellInfo {Map} The information about the cell.",
+          "     *   See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+          "     *",
+          "     * @param pos {Integer}",
+          "     *   The position from the left edge of the column at which to render this",
+          "     *   item.",
+          "     *",
+          "     * @return {Map}",
+          "     *   The returned map contains an 'html' member which contains the html for",
+          "     *   the icon, and a 'pos' member which is the starting position plus the",
+          "     *   width of the icon.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -423,7 +581,7 @@
             "body": "cellInfo {Map} The information about the cell.\n   See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
             "paramName": "cellInfo",
             "description": " The information about the cell.\n   See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -437,28 +595,60 @@
           {
             "name": "@return",
             "body": "{Map}\n   The returned map contains an 'html' member which contains the html for\n   the icon, and a 'pos' member which is the starting position plus the\n   width of the icon.",
-            "type": "Map",
-            "description": "\n   The returned map contains an 'html' member which contains the html for\n   the icon, and a 'pos' member which is the starting position plus the\n   width of the icon."
+            "type": "Map<any, any>",
+            "description": "   The returned map contains an 'html' member which contains the html for\n   the icon, and a 'pos' member which is the starting position plus the\n   width of the icon."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_addLabel": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 462,
+          "line": 407,
           "column": 4,
-          "index": 14479
+          "index": 12470
         },
         "end": {
-          "line": 494,
+          "line": 444,
           "column": 5,
-          "index": 15457
+          "index": 13395
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "pos",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_addLabel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add the label for this node of the tree.",
+          "     *",
+          "     * @param cellInfo {Map} The information about the cell.",
+          "     *   See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+          "     *   Additionally, if defined, the labelSpanStyle member is used to apply",
+          "     *   style to the span containing the label.  (This member is for use by",
+          "     *   subclasses; it's not otherwise used by this class.)",
+          "     *",
+          "     * @param pos {Integer}",
+          "     *   The position from the left edge of the column at which to render this",
+          "     *   item.",
+          "     *",
+          "     * @return {String}",
+          "     *   The html for the label.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -471,7 +661,7 @@
             "body": "cellInfo {Map} The information about the cell.\n   See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.\n   Additionally, if defined, the labelSpanStyle member is used to apply\n   style to the span containing the label.  (This member is for use by\n   subclasses; it's not otherwise used by this class.)",
             "paramName": "cellInfo",
             "description": " The information about the cell.\n   See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.\n   Additionally, if defined, the labelSpanStyle member is used to apply\n   style to the span containing the label.  (This member is for use by\n   subclasses; it's not otherwise used by this class.)",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -485,28 +675,59 @@
           {
             "name": "@return",
             "body": "{String}\n   The html for the label.",
-            "type": "String",
-            "description": "\n   The html for the label."
+            "type": "string",
+            "description": "   The html for the label."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_addExtraContentBeforeIndentation": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 511,
+          "line": 462,
           "column": 4,
-          "index": 16055
+          "index": 14018
         },
         "end": {
-          "line": 513,
+          "line": 494,
           "column": 5,
-          "index": 16150
+          "index": 14964
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "pos",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_addExtraContentBeforeIndentation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds extra content just before the indentation.",
+          "     *",
+          "     * @param cellInfo {Map} The information about the cell.",
+          "     *      See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+          "     *",
+          "     * @param pos {Integer}",
+          "     *   The position from the left edge of the column at which to render this",
+          "     *   item.",
+          "     *",
+          "     * @return {Map}",
+          "     *   The returned map contains an 'html' member which contains the html for",
+          "     *   the indentation, and a 'pos' member which is the starting position",
+          "     *   plus the width of the indentation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -519,7 +740,7 @@
             "body": "cellInfo {Map} The information about the cell.\n      See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
             "paramName": "cellInfo",
             "description": " The information about the cell.\n      See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -533,28 +754,59 @@
           {
             "name": "@return",
             "body": "{Map}\n   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation.",
-            "type": "Map",
-            "description": "\n   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation."
+            "type": "Map<any, any>",
+            "description": "   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_addExtraContentBeforeIcon": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 530,
+          "line": 511,
           "column": 4,
-          "index": 16741
+          "index": 15545
         },
         "end": {
-          "line": 532,
+          "line": 513,
           "column": 5,
-          "index": 16829
+          "index": 15638
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "pos",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_addExtraContentBeforeIcon": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds extra content just before the icon.",
+          "     *",
+          "     * @param cellInfo {Map} The information about the cell.",
+          "     *      See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+          "     *",
+          "     * @param pos {Integer}",
+          "     *   The position from the left edge of the column at which to render this",
+          "     *   item.",
+          "     *",
+          "     * @return {Map}",
+          "     *   The returned map contains an 'html' member which contains the html for",
+          "     *   the indentation, and a 'pos' member which is the starting position",
+          "     *   plus the width of the indentation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -567,7 +819,7 @@
             "body": "cellInfo {Map} The information about the cell.\n      See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
             "paramName": "cellInfo",
             "description": " The information about the cell.\n      See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -581,28 +833,59 @@
           {
             "name": "@return",
             "body": "{Map}\n   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation.",
-            "type": "Map",
-            "description": "\n   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation."
+            "type": "Map<any, any>",
+            "description": "   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_addExtraContentBeforeLabel": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 549,
+          "line": 530,
           "column": 4,
-          "index": 17421
+          "index": 16212
         },
         "end": {
-          "line": 551,
+          "line": 532,
           "column": 5,
-          "index": 17510
+          "index": 16298
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "pos",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_addExtraContentBeforeLabel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds extra content just before the label.",
+          "     *",
+          "     * @param cellInfo {Map} The information about the cell.",
+          "     *      See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+          "     *",
+          "     * @param pos {Integer}",
+          "     *   The position from the left edge of the column at which to render this",
+          "     *   item.",
+          "     *",
+          "     * @return {Map}",
+          "     *   The returned map contains an 'html' member which contains the html for",
+          "     *   the indentation, and a 'pos' member which is the starting position",
+          "     *   plus the width of the indentation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -615,7 +898,7 @@
             "body": "cellInfo {Map} The information about the cell.\n      See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
             "paramName": "cellInfo",
             "description": " The information about the cell.\n      See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -629,28 +912,74 @@
           {
             "name": "@return",
             "body": "{Map}\n   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation.",
-            "type": "Map",
-            "description": "\n   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation."
+            "type": "Map<any, any>",
+            "description": "   The returned map contains an 'html' member which contains the html for\n   the indentation, and a 'pos' member which is the starting position\n   plus the width of the indentation."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getIndentSymbol": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 583,
+          "line": 549,
           "column": 4,
-          "index": 18858
+          "index": 16873
         },
         "end": {
-          "line": 689,
+          "line": 551,
           "column": 5,
-          "index": 22657
+          "index": 16960
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "pos",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_getIndentSymbol": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine the symbol to use for indentation of a tree row, at a",
+          "     * particular column.  The indentation to use may be just white space or",
+          "     * may be a tree line.  Tree lines come in numerous varieties, so the",
+          "     * appropriate one is selected.",
+          "     *",
+          "     * @param column {Integer}",
+          "     *   The column of indentation being requested, zero-relative",
+          "     *",
+          "     * @param node {Node}",
+          "     *   The node being displayed in the row.  The properties of a node are",
+          "     *   described in {@link qx.ui.treevirtual.SimpleTreeDataModel}",
+          "     *",
+          "     * @param bUseTreeLines {Boolean}",
+          "     *   Whether to find an appropriate tree line icon, or simply provide",
+          "     *   white space.",
+          "     *",
+          "     * @param bAlwaysShowOpenCloseSymbol {Boolean}",
+          "     *   Whether to display the open/close icon for a node even if it has no",
+          "     *   children.",
+          "     *",
+          "     * @param bExcludeFirstLevelTreeLines {Boolean}",
+          "     *   If bUseTreeLines is enabled, then further filtering of the left-most",
+          "     *   tree line may be specified here.  If <i>true</i> then the left-most",
+          "     *   tree line, between top-level siblings, will not be displayed.",
+          "     *   If <i>false</i>, then the left-most tree line will be displayed",
+          "     *   just like all of the other tree lines.",
+          "     *",
+          "     * @return {Map} map of image properties.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -677,49 +1006,89 @@
             "body": "bUseTreeLines {Boolean}\n   Whether to find an appropriate tree line icon, or simply provide\n   white space.",
             "paramName": "bUseTreeLines",
             "description": "\n   Whether to find an appropriate tree line icon, or simply provide\n   white space.",
-            "type": "Boolean"
+            "type": "boolean"
           },
           {
             "name": "@param",
             "body": "bAlwaysShowOpenCloseSymbol {Boolean}\n   Whether to display the open/close icon for a node even if it has no\n   children.",
             "paramName": "bAlwaysShowOpenCloseSymbol",
             "description": "\n   Whether to display the open/close icon for a node even if it has no\n   children.",
-            "type": "Boolean"
+            "type": "boolean"
           },
           {
             "name": "@param",
             "body": "bExcludeFirstLevelTreeLines {Boolean}\n   If bUseTreeLines is enabled, then further filtering of the left-most\n   tree line may be specified here.  If <i>true</i> then the left-most\n   tree line, between top-level siblings, will not be displayed.\n   If <i>false</i>, then the left-most tree line will be displayed\n   just like all of the other tree lines.",
             "paramName": "bExcludeFirstLevelTreeLines",
             "description": "\n   If bUseTreeLines is enabled, then further filtering of the left-most\n   tree line may be specified here.  If <i>true</i> then the left-most\n   tree line, between top-level siblings, will not be displayed.\n   If <i>false</i>, then the left-most tree line will be displayed\n   just like all of the other tree lines.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Map} map of image properties.",
-            "type": "Map",
-            "description": " map of image properties."
+            "type": "Map<any, any>",
+            "description": "map of image properties."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "getOpenCloseButtonPosition": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 703,
+          "line": 583,
           "column": 4,
-          "index": 23110
+          "index": 18276
         },
         "end": {
-          "line": 712,
+          "line": 689,
           "column": 5,
-          "index": 23382
+          "index": 21969
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        },
+        {
+          "name": "node",
+          "type": "Node"
+        },
+        {
+          "name": "bUseTreeLines",
+          "type": "boolean"
+        },
+        {
+          "name": "bAlwaysShowOpenCloseSymbol",
+          "type": "boolean"
+        },
+        {
+          "name": "bExcludeFirstLevelTreeLines",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getOpenCloseButtonPosition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine the position in the cell of the open/close button image",
+          "     *",
+          "     * @param table {qx.ui.treevirtual.TreeVirtual}",
+          "     *   The column of indentation being requested, zero-relative",
+          "     *",
+          "     * @param node {Node}",
+          "     *   The node being displayed in the row.  The properties of a node are",
+          "     *   described in {@link qx.ui.treevirtual.SimpleTreeDataModel}",
+          "     *",
+          "     * @return {Object} Position of the Open/Close Button",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -729,10 +1098,10 @@
         "@param": [
           {
             "name": "@param",
-            "body": "table {Table}\n   The column of indentation being requested, zero-relative",
+            "body": "table {qx.ui.treevirtual.TreeVirtual}\n   The column of indentation being requested, zero-relative",
             "paramName": "table",
             "description": "\n   The column of indentation being requested, zero-relative",
-            "type": "Table"
+            "type": "qx.ui.treevirtual.TreeVirtual"
           },
           {
             "name": "@param",
@@ -746,505 +1115,55 @@
           {
             "name": "@return",
             "body": "{Object} Position of the Open/Close Button",
-            "type": "Object",
-            "description": " Position of the Open/Close Button"
+            "type": "Record<any, any>",
+            "description": "Position of the Open/Close Button"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 703,
+          "column": 4,
+          "index": 22432
+        },
+        "end": {
+          "line": 712,
+          "column": 5,
+          "index": 22695
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getDefaultCellStyle": {
-      "type": "function",
-      "name": "getDefaultCellStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>defaultCellStyle</code>.\n\nFor further details take a look at the property definition: {@link #defaultCellStyle}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for defaultCellStyle"
-          }
-        ]
-      }
-    },
-    "setDefaultCellStyle": {
-      "type": "function",
-      "name": "setDefaultCellStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>defaultCellStyle</code>.\n\nFor further details take a look at the property definition: {@link #defaultCellStyle}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for defaultCellStyle"
-          }
-        ]
-      }
-    },
-    "resetDefaultCellStyle": {
-      "type": "function",
-      "name": "resetDefaultCellStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>defaultCellStyle</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCellStyle}."
-          }
-        ]
-      }
-    },
-    "getUseTreeLines": {
-      "type": "function",
-      "name": "getUseTreeLines",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>useTreeLines</code>.\n\nFor further details take a look at the property definition: {@link #useTreeLines}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for useTreeLines"
-          }
-        ]
-      }
-    },
-    "isUseTreeLines": {
-      "type": "function",
-      "name": "isUseTreeLines",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>useTreeLines</code>.\n\nFor further details take a look at the property definition: {@link #useTreeLines}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for useTreeLines"
-          }
-        ]
-      }
-    },
-    "setUseTreeLines": {
-      "type": "function",
-      "name": "setUseTreeLines",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>useTreeLines</code>.\n\nFor further details take a look at the property definition: {@link #useTreeLines}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for useTreeLines"
-          }
-        ]
-      }
-    },
-    "resetUseTreeLines": {
-      "type": "function",
-      "name": "resetUseTreeLines",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>useTreeLines</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #useTreeLines}."
-          }
-        ]
-      }
-    },
-    "getExcludeFirstLevelTreeLines": {
-      "type": "function",
-      "name": "getExcludeFirstLevelTreeLines",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>excludeFirstLevelTreeLines</code>.\n\nFor further details take a look at the property definition: {@link #excludeFirstLevelTreeLines}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for excludeFirstLevelTreeLines"
-          }
-        ]
-      }
-    },
-    "isExcludeFirstLevelTreeLines": {
-      "type": "function",
-      "name": "isExcludeFirstLevelTreeLines",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>excludeFirstLevelTreeLines</code>.\n\nFor further details take a look at the property definition: {@link #excludeFirstLevelTreeLines}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for excludeFirstLevelTreeLines"
-          }
-        ]
-      }
-    },
-    "setExcludeFirstLevelTreeLines": {
-      "type": "function",
-      "name": "setExcludeFirstLevelTreeLines",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>excludeFirstLevelTreeLines</code>.\n\nFor further details take a look at the property definition: {@link #excludeFirstLevelTreeLines}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for excludeFirstLevelTreeLines"
-          }
-        ]
-      }
-    },
-    "resetExcludeFirstLevelTreeLines": {
-      "type": "function",
-      "name": "resetExcludeFirstLevelTreeLines",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>excludeFirstLevelTreeLines</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #excludeFirstLevelTreeLines}."
-          }
-        ]
-      }
-    },
-    "getAlwaysShowOpenCloseSymbol": {
-      "type": "function",
-      "name": "getAlwaysShowOpenCloseSymbol",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alwaysShowOpenCloseSymbol</code>.\n\nFor further details take a look at the property definition: {@link #alwaysShowOpenCloseSymbol}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for alwaysShowOpenCloseSymbol"
-          }
-        ]
-      }
-    },
-    "isAlwaysShowOpenCloseSymbol": {
-      "type": "function",
-      "name": "isAlwaysShowOpenCloseSymbol",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alwaysShowOpenCloseSymbol</code>.\n\nFor further details take a look at the property definition: {@link #alwaysShowOpenCloseSymbol}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for alwaysShowOpenCloseSymbol"
-          }
-        ]
-      }
-    },
-    "setAlwaysShowOpenCloseSymbol": {
-      "type": "function",
-      "name": "setAlwaysShowOpenCloseSymbol",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>alwaysShowOpenCloseSymbol</code>.\n\nFor further details take a look at the property definition: {@link #alwaysShowOpenCloseSymbol}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for alwaysShowOpenCloseSymbol"
-          }
-        ]
-      }
-    },
-    "resetAlwaysShowOpenCloseSymbol": {
-      "type": "function",
-      "name": "resetAlwaysShowOpenCloseSymbol",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>alwaysShowOpenCloseSymbol</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alwaysShowOpenCloseSymbol}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "table",
+          "type": "qx.ui.treevirtual.TreeVirtual"
+        },
+        {
+          "name": "node",
+          "type": "Node"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 715,
         "column": 2,
-        "index": 23394
+        "index": 22704
       },
       "end": {
         "line": 717,
         "column": 3,
-        "index": 23458
+        "index": 22766
       }
     }
-  },
-  "descendants": []
+  }
 }

@@ -1,0 +1,455 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172386,
+  "lastModifiedIso": "2024-06-01T09:46:12.386Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/SourceCodeCopier.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 35,
+      "column": 0,
+      "index": 1064
+    },
+    "end": {
+      "line": 195,
+      "column": 3,
+      "index": 5367
+    }
+  },
+  "className": "qx.tool.compiler.targets.SourceCodeCopier",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Copies multiple javascript source files into a single destination, preserving (merging)",
+      " * source maps as it goes.",
+      " *",
+      " * This will not rewrite the output files if the file content will not change.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Copies multiple javascript source files into a single destination, preserving (merging)\n source maps as it goes.\n This will not rewrite the output files if the file content will not change.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "outputFilename"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 42,
+        "column": 2,
+        "index": 1262
+      },
+      "end": {
+        "line": 61,
+        "column": 3,
+        "index": 1816
+      }
+    }
+  },
+  "members": {
+    "__outputFilename": {
+      "jsdoc": {
+        "raw": [
+          "* {String} Output filename for combined javascript "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} Output filename for combined javascript</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1896
+        },
+        "end": {
+          "line": 65,
+          "column": 26,
+          "index": 1918
+        }
+      },
+      "appearsIn": []
+    },
+    "__tmpFilename": {
+      "jsdoc": {
+        "raw": [
+          "* {String} output filename for temporary code "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} output filename for temporary code</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1980
+        },
+        "end": {
+          "line": 68,
+          "column": 23,
+          "index": 1999
+        }
+      },
+      "appearsIn": []
+    },
+    "__mapFilename": {
+      "jsdoc": {
+        "raw": [
+          "* {String} output filename for the combined sourcemap "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} output filename for the combined sourcemap</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2069
+        },
+        "end": {
+          "line": 71,
+          "column": 23,
+          "index": 2088
+        }
+      },
+      "appearsIn": []
+    },
+    "__ws": {
+      "jsdoc": {
+        "raw": [
+          "* {String} write stream for javascript "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} write stream for javascript</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2143
+        },
+        "end": {
+          "line": 74,
+          "column": 14,
+          "index": 2153
+        }
+      },
+      "appearsIn": []
+    },
+    "__hash": {
+      "jsdoc": {
+        "raw": [
+          "* {crypto.createHash} hash accumulator for combined javascript "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{crypto.createHash} hash accumulator for combined javascript</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2232
+        },
+        "end": {
+          "line": 77,
+          "column": 16,
+          "index": 2244
+        }
+      },
+      "appearsIn": []
+    },
+    "__existingHashValue": {
+      "jsdoc": {
+        "raw": [
+          "* {String} hash value for existing combined javascript "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} hash value for existing combined javascript</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2315
+        },
+        "end": {
+          "line": 80,
+          "column": 29,
+          "index": 2340
+        }
+      },
+      "appearsIn": []
+    },
+    "__generator": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2347
+        },
+        "end": {
+          "line": 82,
+          "column": 21,
+          "index": 2364
+        }
+      },
+      "appearsIn": []
+    },
+    "__lineOffset": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2370
+        },
+        "end": {
+          "line": 83,
+          "column": 22,
+          "index": 2388
+        }
+      },
+      "appearsIn": []
+    },
+    "getOutputFilename": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the file the code is copied to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the file the code is copied to</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2457
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2520
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "open": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opens the output",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opens the output</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2567
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 2948
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__write": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to write output",
+          "     * @param str {String} data to write",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method to write output</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} data to write",
+            "paramName": "str",
+            "description": " data to write",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 3049
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 3127
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addSourceFile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a source file to the output",
+          "     *",
+          "     * @param jsFilename {String} filename to add",
+          "     * @param jsUri {String} uri of the file being added, relative to the output directory",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a source file to the output</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "jsFilename {String} filename to add",
+            "paramName": "jsFilename",
+            "description": " filename to add",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "jsUri {String} uri of the file being added, relative to the output directory",
+            "paramName": "jsUri",
+            "description": " uri of the file being added, relative to the output directory",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3338
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 4674
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "jsFilename",
+          "type": "string"
+        },
+        {
+          "name": "jsUri",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "close": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Closes the output",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Closes the output</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 4722
+        },
+        "end": {
+          "line": 193,
+          "column": 5,
+          "index": 5359
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

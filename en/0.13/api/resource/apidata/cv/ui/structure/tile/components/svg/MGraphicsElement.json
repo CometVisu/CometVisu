@@ -1,38 +1,57 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/svg/MGraphicsElement.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 798
+    },
+    "end": {
+      "line": 172,
+      "column": 3,
+      "index": 4466
+    }
+  },
   "className": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-  "packageName": "cv.ui.structure.tile.components.svg",
-  "name": "MGraphicsElement",
-  "superClass": null,
-  "interfaces": [],
+  "jsdoc": {
+    "raw": [
+      "",
+      " * Copyright (c) 2023, Christian Mayer and the CometVisu contributors.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Copyright (c) 2023, Christian Mayer and the CometVisu contributors.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
+      }
+    ]
+  },
   "mixins": [
     "cv.ui.structure.tile.MStringTransforms"
   ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 20,
-        "column": 0,
-        "index": 798
-      },
-      "end": {
-        "line": 172,
-        "column": 3,
-        "index": 4466
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Copyright (c) 2023, Christian Mayer and the CometVisu contributors.\n This program is free software; you can redistribute it and/or modify it\n under the terms of the GNU General Public License as published by the Free\n Software Foundation; either version 3 of the License, or (at your option)\n any later version.\n This program is distributed in the hope that it will be useful, but WITHOUT\n ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n more details.\n You should have received a copy of the GNU General Public License along\n with this program; if not, write to the Free Software Foundation, Inc.,\n 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</p>"
-        }
-      ]
-    }
-  },
-  "type": "mixin",
   "statics": {
     "DefaultSize": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 29,
@@ -45,8 +64,7 @@
           "index": 1078
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
   "properties": {
@@ -63,13 +81,14 @@
           "index": 1342
         }
       },
-      "name": "row",
-      "propertyType": "new",
-      "apply": "_applyPosition",
-      "init": 0,
-      "transform": "_parseFloat",
-      "check": "Number",
-      "defaultValue": 0
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyPosition",
+        "transform": "_parseFloat"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "column": {
       "location": {
@@ -84,13 +103,14 @@
           "index": 1464
         }
       },
-      "name": "column",
-      "propertyType": "new",
-      "apply": "_applyPosition",
-      "init": 0,
-      "transform": "_parseFloat",
-      "check": "Number",
-      "defaultValue": 0
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyPosition",
+        "transform": "_parseFloat"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "x": {
       "location": {
@@ -105,12 +125,13 @@
           "index": 1553
         }
       },
-      "name": "x",
-      "propertyType": "new",
-      "apply": "_applyToSvg",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyToSvg"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "y": {
       "location": {
@@ -125,12 +146,13 @@
           "index": 1642
         }
       },
-      "name": "y",
-      "propertyType": "new",
-      "apply": "_applyToSvg",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyToSvg"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "rowspan": {
       "location": {
@@ -145,13 +167,14 @@
           "index": 1764
         }
       },
-      "name": "rowspan",
-      "propertyType": "new",
-      "apply": "_updateHeight",
-      "init": 1,
-      "transform": "_parseFloat",
-      "check": "Number",
-      "defaultValue": 1
+      "json": {
+        "check": "Number",
+        "init": 1,
+        "apply": "_updateHeight",
+        "transform": "_parseFloat"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "colspan": {
       "location": {
@@ -166,13 +189,14 @@
           "index": 1885
         }
       },
-      "name": "colspan",
-      "propertyType": "new",
-      "apply": "_updateWidth",
-      "init": 1,
-      "transform": "_parseFloat",
-      "check": "Number",
-      "defaultValue": 1
+      "json": {
+        "check": "Number",
+        "init": 1,
+        "apply": "_updateWidth",
+        "transform": "_parseFloat"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "height": {
       "location": {
@@ -187,13 +211,14 @@
           "index": 2001
         }
       },
-      "name": "height",
-      "propertyType": "new",
-      "event": "heightChanged",
-      "apply": "_applySize",
-      "init": 0,
-      "check": "Number",
-      "defaultValue": 0
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applySize",
+        "event": "heightChanged"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "width": {
       "location": {
@@ -208,13 +233,14 @@
           "index": 2115
         }
       },
-      "name": "width",
-      "propertyType": "new",
-      "event": "widthChanged",
-      "apply": "_applySize",
-      "init": 0,
-      "check": "Number",
-      "defaultValue": 0
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applySize",
+        "event": "widthChanged"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "title": {
       "location": {
@@ -229,16 +255,19 @@
           "index": 2202
         }
       },
-      "name": "title",
-      "propertyType": "new",
-      "apply": "_applyTitle",
-      "init": "",
-      "check": "String",
-      "defaultValue": ""
+      "json": {
+        "check": "String",
+        "init": "",
+        "apply": "_applyTitle"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     }
   },
   "members": {
     "_parentGridLayout": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 105,
@@ -251,10 +280,11 @@
           "index": 2371
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_findParentGridLayout": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 107,
@@ -268,9 +298,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_applyToSvg": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 123,
@@ -284,13 +317,22 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "x",
-        "y"
-      ]
+      "params": [
+        {
+          "name": "val"
+        },
+        {
+          "name": "oldVal"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
     },
     "_updateWidth": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 129,
@@ -304,12 +346,12 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "colspan"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "_updateHeight": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 136,
@@ -323,12 +365,12 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "rowspan"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "_applyPosition": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 143,
@@ -342,13 +384,12 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "row",
-        "column"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "_applySize": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 149,
@@ -362,13 +403,22 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "height",
-        "width"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyTitle": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 155,
@@ -382,632 +432,93 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "title"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
     },
     "_parseInt": {
-      "type": "function",
-      "name": "_parseInt",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.MStringTransforms"
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1161
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1280
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MStringTransforms"
+      ],
+      "mixin": "cv.ui.structure.tile.MStringTransforms"
     },
     "_parseFloat": {
-      "type": "function",
-      "name": "_parseFloat",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.MStringTransforms"
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1287
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1406
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MStringTransforms"
+      ],
+      "mixin": "cv.ui.structure.tile.MStringTransforms"
     },
     "_parseBoolean": {
-      "type": "function",
-      "name": "_parseBoolean",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.MStringTransforms"
-    },
-    "getRow": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1413
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1533
+        }
+      },
       "type": "function",
-      "name": "getRow",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>row</code>.\n\nFor further details take a look at the property definition: {@link #row}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for row"
-          }
-        ]
-      }
-    },
-    "setRow": {
-      "type": "function",
-      "name": "setRow",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>row</code>.\n\nFor further details take a look at the property definition: {@link #row}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for row"
-          }
-        ]
-      }
-    },
-    "resetRow": {
-      "type": "function",
-      "name": "resetRow",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>row</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #row}."
-          }
-        ]
-      }
-    },
-    "getColumn": {
-      "type": "function",
-      "name": "getColumn",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>column</code>.\n\nFor further details take a look at the property definition: {@link #column}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for column"
-          }
-        ]
-      }
-    },
-    "setColumn": {
-      "type": "function",
-      "name": "setColumn",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>column</code>.\n\nFor further details take a look at the property definition: {@link #column}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for column"
-          }
-        ]
-      }
-    },
-    "resetColumn": {
-      "type": "function",
-      "name": "resetColumn",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>column</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #column}."
-          }
-        ]
-      }
-    },
-    "getX": {
-      "type": "function",
-      "name": "getX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>x</code>.\n\nFor further details take a look at the property definition: {@link #x}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for x"
-          }
-        ]
-      }
-    },
-    "setX": {
-      "type": "function",
-      "name": "setX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>x</code>.\n\nFor further details take a look at the property definition: {@link #x}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for x"
-          }
-        ]
-      }
-    },
-    "resetX": {
-      "type": "function",
-      "name": "resetX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>x</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #x}."
-          }
-        ]
-      }
-    },
-    "getY": {
-      "type": "function",
-      "name": "getY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>y</code>.\n\nFor further details take a look at the property definition: {@link #y}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for y"
-          }
-        ]
-      }
-    },
-    "setY": {
-      "type": "function",
-      "name": "setY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>y</code>.\n\nFor further details take a look at the property definition: {@link #y}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for y"
-          }
-        ]
-      }
-    },
-    "resetY": {
-      "type": "function",
-      "name": "resetY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>y</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #y}."
-          }
-        ]
-      }
-    },
-    "getRowspan": {
-      "type": "function",
-      "name": "getRowspan",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>rowspan</code>.\n\nFor further details take a look at the property definition: {@link #rowspan}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for rowspan"
-          }
-        ]
-      }
-    },
-    "setRowspan": {
-      "type": "function",
-      "name": "setRowspan",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>rowspan</code>.\n\nFor further details take a look at the property definition: {@link #rowspan}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for rowspan"
-          }
-        ]
-      }
-    },
-    "resetRowspan": {
-      "type": "function",
-      "name": "resetRowspan",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>rowspan</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rowspan}."
-          }
-        ]
-      }
-    },
-    "getColspan": {
-      "type": "function",
-      "name": "getColspan",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>colspan</code>.\n\nFor further details take a look at the property definition: {@link #colspan}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for colspan"
-          }
-        ]
-      }
-    },
-    "setColspan": {
-      "type": "function",
-      "name": "setColspan",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>colspan</code>.\n\nFor further details take a look at the property definition: {@link #colspan}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for colspan"
-          }
-        ]
-      }
-    },
-    "resetColspan": {
-      "type": "function",
-      "name": "resetColspan",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>colspan</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colspan}."
-          }
-        ]
-      }
-    },
-    "getHeight": {
-      "type": "function",
-      "name": "getHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for height"
-          }
-        ]
-      }
-    },
-    "setHeight": {
-      "type": "function",
-      "name": "setHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for height"
-          }
-        ]
-      }
-    },
-    "resetHeight": {
-      "type": "function",
-      "name": "resetHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>height</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ]
-      }
-    },
-    "getWidth": {
-      "type": "function",
-      "name": "getWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for width"
-          }
-        ]
-      }
-    },
-    "setWidth": {
-      "type": "function",
-      "name": "setWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for width"
-          }
-        ]
-      }
-    },
-    "resetWidth": {
-      "type": "function",
-      "name": "resetWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ]
-      }
-    },
-    "getTitle": {
-      "type": "function",
-      "name": "getTitle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>title</code>.\n\nFor further details take a look at the property definition: {@link #title}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for title"
-          }
-        ]
-      }
-    },
-    "setTitle": {
-      "type": "function",
-      "name": "setTitle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>title</code>.\n\nFor further details take a look at the property definition: {@link #title}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for title"
-          }
-        ]
-      }
-    },
-    "resetTitle": {
-      "type": "function",
-      "name": "resetTitle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>title</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #title}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MStringTransforms"
+      ],
+      "mixin": "cv.ui.structure.tile.MStringTransforms"
     }
-  },
-  "descendants": []
+  }
 }

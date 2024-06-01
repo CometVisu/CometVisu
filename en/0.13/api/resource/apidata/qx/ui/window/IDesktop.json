@@ -1,49 +1,45 @@
 {
-  "className": "qx.ui.window.IDesktop",
-  "packageName": "qx.ui.window",
-  "name": "IDesktop",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 570
-      },
-      "end": {
-        "line": 70,
-        "column": 3,
-        "index": 1808
-      }
+  "version": 0.3,
+  "lastModified": 1717235171206,
+  "lastModifiedIso": "2024-06-01T09:46:11.206Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/window/IDesktop.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 549
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>All parent widgets of windows must implement this interface.</p>"
-        }
-      ]
+    "end": {
+      "line": 70,
+      "column": 3,
+      "index": 1739
     }
   },
-  "type": "interface",
+  "className": "qx.ui.window.IDesktop",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * All parent widgets of windows must implement this interface.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>All parent widgets of windows must implement this interface.</p>"
+      }
+    ]
+  },
   "members": {
     "setWindowManager": {
-      "location": {
-        "start": {
-          "line": 29,
-          "column": 4,
-          "index": 776
-        },
-        "end": {
-          "line": 31,
-          "column": 5,
-          "index": 877
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the desktop's window manager",
+          "     *",
+          "     * @param manager {qx.ui.window.IWindowManager} The window manager",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,23 +56,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getWindows": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 38,
+          "line": 29,
           "column": 4,
-          "index": 1059
+          "index": 748
         },
         "end": {
-          "line": 38,
-          "column": 19,
-          "index": 1074
+          "line": 31,
+          "column": 5,
+          "index": 847
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "manager",
+          "type": "qx.ui.window.IWindowManager"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getWindows": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a list of all windows added to the desktop (including hidden windows)",
+          "     *",
+          "     * @return {qx.ui.window.Window[]} Array of managed windows",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -88,27 +98,40 @@
             "name": "@return",
             "body": "{qx.ui.window.Window[]} Array of managed windows",
             "type": "qx.ui.window.Window[]",
-            "description": " Array of managed windows"
+            "description": "Array of managed windows"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "supportsMaximize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 46,
+          "line": 38,
           "column": 4,
-          "index": 1273
+          "index": 1022
         },
         "end": {
-          "line": 46,
-          "column": 25,
-          "index": 1294
+          "line": 38,
+          "column": 19,
+          "index": 1037
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.window.Window[]"
+      },
+      "appearsIn": []
+    },
+    "supportsMaximize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the configured layout supports a maximized window",
+          "     * e.g. is a Canvas.",
+          "     *",
+          "     * @return {Boolean} Whether the layout supports maximized windows",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -119,28 +142,41 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the layout supports maximized windows",
-            "type": "Boolean",
-            "description": " Whether the layout supports maximized windows"
+            "type": "boolean",
+            "description": "Whether the layout supports maximized windows"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "blockContent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 54,
+          "line": 46,
           "column": 4,
-          "index": 1513
+          "index": 1228
         },
         "end": {
-          "line": 56,
-          "column": 5,
-          "index": 1577
+          "line": 46,
+          "column": 25,
+          "index": 1249
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "blockContent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Block direct child widgets with a zIndex below <code>zIndex</code>",
+          "     *",
+          "     * @param zIndex {Integer} All child widgets with a zIndex below this value",
+          "     *     will be blocked",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -157,23 +193,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "unblock": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 61,
+          "line": 54,
           "column": 4,
-          "index": 1632
+          "index": 1460
         },
         "end": {
-          "line": 61,
-          "column": 16,
-          "index": 1644
+          "line": 56,
+          "column": 5,
+          "index": 1522
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "zIndex",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unblock": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the blocker.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -181,23 +229,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isBlocked": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 68,
+          "line": 61,
           "column": 4,
-          "index": 1784
+          "index": 1572
         },
         "end": {
-          "line": 68,
-          "column": 18,
-          "index": 1798
+          "line": 61,
+          "column": 16,
+          "index": 1584
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isBlocked": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the widget is currently blocked",
+          "     *",
+          "     * @return {Boolean} whether the widget is blocked.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -208,14 +265,32 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the widget is blocked.",
-            "type": "Boolean",
-            "description": " whether the widget is blocked."
+            "type": "boolean",
+            "description": "whether the widget is blocked."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1717
+        },
+        "end": {
+          "line": 68,
+          "column": 18,
+          "index": 1731
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

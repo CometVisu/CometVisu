@@ -1,49 +1,48 @@
 {
-  "className": "qx.util.format.IFormat",
-  "packageName": "qx.util.format",
-  "name": "IFormat",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 536
-      },
-      "end": {
-        "line": 44,
-        "column": 3,
-        "index": 1084
-      }
+  "version": 0.3,
+  "lastModified": 1717235171230,
+  "lastModifiedIso": "2024-06-01T09:46:11.230Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/format/IFormat.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 515
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Superclass for formatters and parsers.</p>"
-        }
-      ]
+    "end": {
+      "line": 44,
+      "column": 3,
+      "index": 1041
     }
   },
-  "type": "interface",
+  "className": "qx.util.format.IFormat",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Superclass for formatters and parsers.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Superclass for formatters and parsers.</p>"
+      }
+    ]
+  },
   "members": {
     "format": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 823
-        },
-        "end": {
-          "line": 32,
-          "column": 18,
-          "index": 837
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Formats an object.",
+          "     *",
+          "     * @abstract",
+          "     * @param obj {var} The object to format.",
+          "     * @return {String} the formatted object.",
+          "     * @throws {Error} the abstract function warning.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -69,8 +68,8 @@
           {
             "name": "@return",
             "body": "{String} the formatted object.",
-            "type": "String",
-            "description": " the formatted object."
+            "type": "string",
+            "description": "the formatted object."
           }
         ],
         "@throws": [
@@ -82,23 +81,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "parse": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 42,
+          "line": 32,
           "column": 4,
-          "index": 1061
+          "index": 792
         },
         "end": {
-          "line": 42,
-          "column": 17,
-          "index": 1074
+          "line": 32,
+          "column": 18,
+          "index": 806
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "parse": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses an object.",
+          "     *",
+          "     * @abstract",
+          "     * @param str {String} the string to parse.",
+          "     * @return {var} the parsed object.",
+          "     * @throws {Error} the abstract function warning.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,7 +136,7 @@
             "body": "str {String} the string to parse.",
             "paramName": "str",
             "description": " the string to parse.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -125,7 +144,7 @@
             "name": "@return",
             "body": "{var} the parsed object.",
             "type": "var",
-            "description": " the parsed object."
+            "description": "the parsed object."
           }
         ],
         "@throws": [
@@ -137,9 +156,32 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1020
+        },
+        "end": {
+          "line": 42,
+          "column": 17,
+          "index": 1033
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

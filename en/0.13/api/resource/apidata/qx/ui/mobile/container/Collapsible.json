@@ -1,64 +1,73 @@
 {
-  "className": "qx.ui.mobile.container.Collapsible",
-  "packageName": "qx.ui.mobile.container",
-  "name": "Collapsible",
-  "superClass": "qx.ui.mobile.core.Widget",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 41,
-        "column": 0,
-        "index": 1186
-      },
-      "end": {
-        "line": 193,
-        "column": 3,
-        "index": 5339
-      }
+  "version": 0.3,
+  "lastModified": 1717235169678,
+  "lastModifiedIso": "2024-06-01T09:46:09.678Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/container/Collapsible.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 41,
+      "column": 0,
+      "index": 1146
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Creates a Collapsible widget.\n It contains a {@link qx.ui.mobile.basic.Label Label} for the header and a {@link qx.ui.mobile.container.Composite Composite}\n for the content.\n The visibility of the content composite toggles when user taps on header.\n<em>Example</em>\n Here is an example of how to use the widget.\n </p>\n<pre class='javascript'>\n  var collapsible = new qx.ui.mobile.container.Collapsible(\"Collapsible Header\");\n  collapsible.setCombined(false);\n  collapsible.setCollapsed(false);\n  var label = new qx.ui.mobile.basic.Label(\"This is the content of the Collapsible.\");\n  collapsible.add(label);\n </pre>"
-        }
-      ]
+    "end": {
+      "line": 193,
+      "column": 3,
+      "index": 5147
     }
   },
-  "type": "class",
+  "className": "qx.ui.mobile.container.Collapsible",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Creates a Collapsible widget.",
+      " * It contains a {@link qx.ui.mobile.basic.Label Label} for the header and a {@link qx.ui.mobile.container.Composite Composite}",
+      " * for the content.",
+      " *",
+      " * The visibility of the content composite toggles when user taps on header.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is an example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *  var collapsible = new qx.ui.mobile.container.Collapsible(\"Collapsible Header\");",
+      " *  collapsible.setCombined(false);",
+      " *  collapsible.setCollapsed(false);",
+      " *",
+      " *  var label = new qx.ui.mobile.basic.Label(\"This is the content of the Collapsible.\");",
+      " *  collapsible.add(label);",
+      " *",
+      " * </pre>",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Creates a Collapsible widget.\n It contains a {@link qx.ui.mobile.basic.Label Label} for the header and a {@link qx.ui.mobile.container.Composite Composite}\n for the content.\n The visibility of the content composite toggles when user taps on header.\n<em>Example</em>\n Here is an example of how to use the widget.\n </p>\n<pre class='javascript'>\n  var collapsible = new qx.ui.mobile.container.Collapsible(\"Collapsible Header\");\n  collapsible.setCombined(false);\n  collapsible.setCollapsed(false);\n  var label = new qx.ui.mobile.basic.Label(\"This is the content of the Collapsible.\");\n  collapsible.add(label);\n </pre>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.core.Widget",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "title"
+      }
+    ],
     "location": {
       "start": {
         "line": 53,
         "column": 2,
-        "index": 1591
+        "index": 1539
       },
       "end": {
         "line": 71,
         "column": 3,
-        "index": 2069
+        "index": 1999
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "title {String?} the text which should be displayed in the Collapsible's header label.",
-          "paramName": "title",
-          "description": " the text which should be displayed in the Collapsible's header label.",
-          "optional": true,
-          "type": "String"
-        }
-      ]
     }
   },
   "properties": {
@@ -67,39 +76,51 @@
         "start": {
           "line": 80,
           "column": 4,
-          "index": 2305
+          "index": 2226
         },
         "end": {
           "line": 83,
           "column": 5,
-          "index": 2378
+          "index": 2296
         }
       },
-      "jsdoc": {},
-      "name": "defaultCssClass",
-      "propertyType": "new",
-      "refine": true,
-      "init": "collapsible",
-      "defaultValue": "collapsible",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "appearsIn": {
-        "qx.ui.mobile.core.Widget": "class"
-      }
+      "json": {
+        "refine": true,
+        "init": "collapsible"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
     },
     "collapsed": {
       "location": {
         "start": {
           "line": 86,
           "column": 4,
-          "index": 2435
+          "index": 2350
         },
         "end": {
           "line": 92,
           "column": 5,
-          "index": 2587
+          "index": 2496
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "nullable": false,
+        "apply": "_applyCollapsed",
+        "event": "changeCollapsed"
+      },
       "jsdoc": {
+        "raw": [
+          "* The collapsed state of this widget. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -107,30 +128,31 @@
           }
         ]
       },
-      "name": "collapsed",
-      "propertyType": "new",
-      "event": "changeCollapsed",
-      "apply": "_applyCollapsed",
-      "nullable": false,
-      "init": true,
-      "allowNull": false,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     },
     "combined": {
       "location": {
         "start": {
           "line": 96,
           "column": 4,
-          "index": 2708
+          "index": 2613
         },
         "end": {
           "line": 100,
           "column": 5,
-          "index": 2801
+          "index": 2702
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyCombined"
+      },
       "jsdoc": {
+        "raw": [
+          "* Controls whether the Collapsible's content",
+          "        should be visually associated with its headers. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -138,93 +160,53 @@
           }
         ]
       },
-      "name": "combined",
-      "propertyType": "new",
-      "apply": "_applyCombined",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "_header": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 109,
           "column": 4,
-          "index": 3017
+          "index": 2909
         },
         "end": {
           "line": 109,
           "column": 17,
-          "index": 3030
+          "index": 2922
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_content": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 110,
           "column": 4,
-          "index": 3037
+          "index": 2928
         },
         "end": {
           "line": 110,
           "column": 18,
-          "index": 3051
+          "index": 2942
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "add": {
-      "location": {
-        "start": {
-          "line": 117,
-          "column": 4,
-          "index": 3304
-        },
-        "end": {
-          "line": 121,
-          "column": 5,
-          "index": 3484
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a new child widget to the Collapsible's content composite.",
+          "     * @param child {qx.ui.mobile.core.Widget} the widget to add.",
+          "     * @param layoutProperties {Map?} (default:null) Optional layout data for widget.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -249,23 +231,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setTitle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 127,
+          "line": 117,
           "column": 4,
-          "index": 3617
+          "index": 3188
         },
         "end": {
-          "line": 131,
+          "line": 121,
           "column": 5,
-          "index": 3761
+          "index": 3364
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qx.ui.mobile.core.Widget"
+        },
+        {
+          "name": "layoutProperties",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "setTitle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for the Collapsible's header title.",
+          "     * @param title {String} the Collapsible's title.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -278,27 +278,40 @@
             "body": "title {String} the Collapsible's title.",
             "paramName": "title",
             "description": " the Collapsible's title.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getHeader": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 137,
+          "line": 127,
           "column": 4,
-          "index": 3894
+          "index": 3491
         },
         "end": {
-          "line": 139,
+          "line": 131,
           "column": 5,
-          "index": 3942
+          "index": 3631
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "title",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getHeader": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for the Collapsible's header label.",
+          "     * @return {qx.ui.mobile.basic.Label} the header.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -310,27 +323,38 @@
             "name": "@return",
             "body": "{qx.ui.mobile.basic.Label} the header.",
             "type": "qx.ui.mobile.basic.Label",
-            "description": " the header."
+            "description": "the header."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getContent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 145,
+          "line": 137,
           "column": 4,
-          "index": 4099
+          "index": 3758
         },
         "end": {
-          "line": 147,
+          "line": 139,
           "column": 5,
-          "index": 4149
+          "index": 3804
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.basic.Label"
+      },
+      "appearsIn": []
+    },
+    "getContent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for the Collapsible's content composite.",
+          "     * @return {qx.ui.mobile.container.Composite} the content composite.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -342,27 +366,38 @@
             "name": "@return",
             "body": "{qx.ui.mobile.container.Composite} the content composite.",
             "type": "qx.ui.mobile.container.Composite",
-            "description": " the content composite."
+            "description": "the content composite."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_createHeader": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 153,
+          "line": 145,
           "column": 4,
-          "index": 4311
+          "index": 3955
         },
         "end": {
-          "line": 158,
+          "line": 147,
           "column": 5,
-          "index": 4480
+          "index": 4003
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Composite"
+      },
+      "appearsIn": []
+    },
+    "_createHeader": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method for the Collapsible's header.",
+          "     * @return {qx.ui.mobile.basic.Label} the label which represents the header.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -374,27 +409,38 @@
             "name": "@return",
             "body": "{qx.ui.mobile.basic.Label} the label which represents the header.",
             "type": "qx.ui.mobile.basic.Label",
-            "description": " the label which represents the header."
+            "description": "the label which represents the header."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_createContent": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 164,
+          "line": 153,
           "column": 4,
-          "index": 4635
+          "index": 4159
         },
         "end": {
-          "line": 166,
+          "line": 158,
           "column": 5,
-          "index": 4714
+          "index": 4323
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.basic.Label"
+      },
+      "appearsIn": []
+    },
+    "_createContent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method for the Collapsible's content.",
+          "     * @return {qx.ui.mobile.container.Composite} the content composite.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -406,1626 +452,106 @@
             "name": "@return",
             "body": "{qx.ui.mobile.container.Composite} the content composite.",
             "type": "qx.ui.mobile.container.Composite",
-            "description": " the content composite."
+            "description": "the content composite."
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 4472
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4549
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Composite"
+      },
+      "appearsIn": []
     },
     "_applyCollapsed": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 169,
           "column": 4,
-          "index": 4746
+          "index": 4578
         },
         "end": {
           "line": 177,
           "column": 5,
-          "index": 4984
+          "index": 4808
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "collapsed"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyCombined": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 180,
           "column": 4,
-          "index": 5016
+          "index": 4837
         },
         "end": {
           "line": 186,
           "column": 5,
-          "index": 5186
+          "index": 5001
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "combined"
-      ]
-    },
-    "tr": {
-      "type": "function",
-      "name": "tr",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.locale.MTranslation",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Translate a message\n Mark the message for translation.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "messageId {String} message id (may contain format strings)",
-            "paramName": "messageId",
-            "description": " message id (may contain format strings)",
-            "type": "qx.locale.String"
-          },
-          {
-            "name": "@param",
-            "body": "varargs {Object?} variable number of arguments applied to the format string",
-            "paramName": "varargs",
-            "description": " variable number of arguments applied to the format string",
-            "optional": true,
-            "type": "Object"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String|LocalizedString} The translated message or localized string",
-            "type": "String|LocalizedString",
-            "description": " The translated message or localized string"
-          }
-        ]
-      }
-    },
-    "trn": {
-      "type": "function",
-      "name": "trn",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.locale.MTranslation",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Translate a plural message\n Mark the messages for translation.\n Depending on the third argument the plural or the singular form is chosen.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
-            "paramName": "singularMessageId",
-            "description": " message id of the singular form (may contain format strings)",
-            "type": "qx.locale.String"
-          },
-          {
-            "name": "@param",
-            "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
-            "paramName": "pluralMessageId",
-            "description": " message id of the plural form (may contain format strings)",
-            "type": "qx.locale.String"
-          },
-          {
-            "name": "@param",
-            "body": "count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
-            "paramName": "count",
-            "description": " if greater than 1 the plural form otherwise the singular form is returned.",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "varargs {Object?} variable number of arguments applied to the format string",
-            "paramName": "varargs",
-            "description": " variable number of arguments applied to the format string",
-            "optional": true,
-            "type": "Object"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String|LocalizedString} The translated message or localized string",
-            "type": "String|LocalizedString",
-            "description": " The translated message or localized string"
-          }
-        ]
-      }
-    },
-    "trc": {
-      "type": "function",
-      "name": "trc",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.locale.MTranslation",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Translate a message with translation hint\n Mark the messages for translation.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
-            "paramName": "hint",
-            "description": " hint for the translator of the message. Will be included in the .po file.",
-            "type": "qx.locale.String"
-          },
-          {
-            "name": "@param",
-            "body": "messageId {String} message id (may contain format strings)",
-            "paramName": "messageId",
-            "description": " message id (may contain format strings)",
-            "type": "qx.locale.String"
-          },
-          {
-            "name": "@param",
-            "body": "varargs {Object?} variable number of arguments applied to the format string",
-            "paramName": "varargs",
-            "description": " variable number of arguments applied to the format string",
-            "optional": true,
-            "type": "Object"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String|LocalizedString} The translated message or localized string",
-            "type": "String|LocalizedString",
-            "description": " The translated message or localized string"
-          }
-        ]
-      }
-    },
-    "trnc": {
-      "type": "function",
-      "name": "trnc",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.locale.MTranslation",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Translate a plural message with translation hint\n Mark the messages for translation.\n Depending on the third argument the plural or the singular form is chosen.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
-            "paramName": "hint",
-            "description": " hint for the translator of the message. Will be included in the .po file.",
-            "type": "qx.locale.String"
-          },
-          {
-            "name": "@param",
-            "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
-            "paramName": "singularMessageId",
-            "description": " message id of the singular form (may contain format strings)",
-            "type": "qx.locale.String"
-          },
-          {
-            "name": "@param",
-            "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
-            "paramName": "pluralMessageId",
-            "description": " message id of the plural form (may contain format strings)",
-            "type": "qx.locale.String"
-          },
-          {
-            "name": "@param",
-            "body": "count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
-            "paramName": "count",
-            "description": " if greater than 1 the plural form otherwise the singular form is returned.",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "varargs {Object?} variable number of arguments applied to the format string",
-            "paramName": "varargs",
-            "description": " variable number of arguments applied to the format string",
-            "optional": true,
-            "type": "Object"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String|LocalizedString} The translated message or localized string",
-            "type": "String|LocalizedString",
-            "description": " The translated message or localized string"
-          }
-        ]
-      }
-    },
-    "marktr": {
-      "type": "function",
-      "name": "marktr",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.locale.MTranslation",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Mark the message for translation but return the original message.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "messageId {String} the message ID",
-            "paramName": "messageId",
-            "description": " the message ID",
-            "type": "qx.locale.String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} messageId",
-            "type": "qx.locale.String",
-            "description": " messageId"
-          }
-        ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getDefaultCssClass": {
-      "type": "function",
-      "name": "getDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for defaultCssClass"
-          }
-        ]
-      }
-    },
-    "setDefaultCssClass": {
-      "type": "function",
-      "name": "setDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for defaultCssClass"
-          }
-        ]
-      }
-    },
-    "resetDefaultCssClass": {
-      "type": "function",
-      "name": "resetDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>defaultCssClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ]
-      }
-    },
-    "getEnabled": {
-      "type": "function",
-      "name": "getEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "isEnabled": {
-      "type": "function",
-      "name": "isEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "setEnabled": {
-      "type": "function",
-      "name": "setEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for enabled"
-          }
-        ]
-      }
-    },
-    "resetEnabled": {
-      "type": "function",
-      "name": "resetEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ]
-      }
-    },
-    "getName": {
-      "type": "function",
-      "name": "getName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for name"
-          }
-        ]
-      }
-    },
-    "setName": {
-      "type": "function",
-      "name": "setName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for name"
-          }
-        ]
-      }
-    },
-    "resetName": {
-      "type": "function",
-      "name": "resetName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ]
-      }
-    },
-    "getAnonymous": {
-      "type": "function",
-      "name": "getAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "isAnonymous": {
-      "type": "function",
-      "name": "isAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "setAnonymous": {
-      "type": "function",
-      "name": "setAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for anonymous"
-          }
-        ]
-      }
-    },
-    "resetAnonymous": {
-      "type": "function",
-      "name": "resetAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ]
-      }
-    },
-    "getId": {
-      "type": "function",
-      "name": "getId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for id"
-          }
-        ]
-      }
-    },
-    "setId": {
-      "type": "function",
-      "name": "setId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for id"
-          }
-        ]
-      }
-    },
-    "resetId": {
-      "type": "function",
-      "name": "resetId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>id</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ]
-      }
-    },
-    "getVisibility": {
-      "type": "function",
-      "name": "getVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for visibility"
-          }
-        ]
-      }
-    },
-    "setVisibility": {
-      "type": "function",
-      "name": "setVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for visibility"
-          }
-        ]
-      }
-    },
-    "resetVisibility": {
-      "type": "function",
-      "name": "resetVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ]
-      }
-    },
-    "getActivatable": {
-      "type": "function",
-      "name": "getActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for activatable"
-          }
-        ]
-      }
-    },
-    "isActivatable": {
-      "type": "function",
-      "name": "isActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for activatable"
-          }
-        ]
-      }
-    },
-    "setActivatable": {
-      "type": "function",
-      "name": "setActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for activatable"
-          }
-        ]
-      }
-    },
-    "resetActivatable": {
-      "type": "function",
-      "name": "resetActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>activatable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ]
-      }
-    },
-    "getRotation": {
-      "type": "function",
-      "name": "getRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for rotation"
-          }
-        ]
-      }
-    },
-    "setRotation": {
-      "type": "function",
-      "name": "setRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for rotation"
-          }
-        ]
-      }
-    },
-    "resetRotation": {
-      "type": "function",
-      "name": "resetRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>rotation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ]
-      }
-    },
-    "getTransformUnit": {
-      "type": "function",
-      "name": "getTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for transformUnit"
-          }
-        ]
-      }
-    },
-    "setTransformUnit": {
-      "type": "function",
-      "name": "setTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for transformUnit"
-          }
-        ]
-      }
-    },
-    "resetTransformUnit": {
-      "type": "function",
-      "name": "resetTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>transformUnit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ]
-      }
-    },
-    "getScaleX": {
-      "type": "function",
-      "name": "getScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for scaleX"
-          }
-        ]
-      }
-    },
-    "setScaleX": {
-      "type": "function",
-      "name": "setScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for scaleX"
-          }
-        ]
-      }
-    },
-    "resetScaleX": {
-      "type": "function",
-      "name": "resetScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>scaleX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ]
-      }
-    },
-    "getScaleY": {
-      "type": "function",
-      "name": "getScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for scaleY"
-          }
-        ]
-      }
-    },
-    "setScaleY": {
-      "type": "function",
-      "name": "setScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for scaleY"
-          }
-        ]
-      }
-    },
-    "resetScaleY": {
-      "type": "function",
-      "name": "resetScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>scaleY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ]
-      }
-    },
-    "getTranslateX": {
-      "type": "function",
-      "name": "getTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateX"
-          }
-        ]
-      }
-    },
-    "setTranslateX": {
-      "type": "function",
-      "name": "setTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateX"
-          }
-        ]
-      }
-    },
-    "resetTranslateX": {
-      "type": "function",
-      "name": "resetTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ]
-      }
-    },
-    "getTranslateY": {
-      "type": "function",
-      "name": "getTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateY"
-          }
-        ]
-      }
-    },
-    "setTranslateY": {
-      "type": "function",
-      "name": "setTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateY"
-          }
-        ]
-      }
-    },
-    "resetTranslateY": {
-      "type": "function",
-      "name": "resetTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ]
-      }
-    },
-    "getTranslateZ": {
-      "type": "function",
-      "name": "getTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateZ"
-          }
-        ]
-      }
-    },
-    "setTranslateZ": {
-      "type": "function",
-      "name": "setTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateZ"
-          }
-        ]
-      }
-    },
-    "resetTranslateZ": {
-      "type": "function",
-      "name": "resetTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateZ</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ]
-      }
-    },
-    "getCollapsed": {
-      "type": "function",
-      "name": "getCollapsed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>collapsed</code>.\n\nFor further details take a look at the property definition: {@link #collapsed}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for collapsed"
-          }
-        ]
-      }
-    },
-    "isCollapsed": {
-      "type": "function",
-      "name": "isCollapsed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>collapsed</code>.\n\nFor further details take a look at the property definition: {@link #collapsed}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for collapsed"
-          }
-        ]
-      }
-    },
-    "setCollapsed": {
-      "type": "function",
-      "name": "setCollapsed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>collapsed</code>.\n\nFor further details take a look at the property definition: {@link #collapsed}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for collapsed"
-          }
-        ]
-      }
-    },
-    "resetCollapsed": {
-      "type": "function",
-      "name": "resetCollapsed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>collapsed</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #collapsed}."
-          }
-        ]
-      }
-    },
-    "getCombined": {
-      "type": "function",
-      "name": "getCombined",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>combined</code>.\n\nFor further details take a look at the property definition: {@link #combined}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for combined"
-          }
-        ]
-      }
-    },
-    "isCombined": {
-      "type": "function",
-      "name": "isCombined",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>combined</code>.\n\nFor further details take a look at the property definition: {@link #combined}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for combined"
-          }
-        ]
-      }
-    },
-    "setCombined": {
-      "type": "function",
-      "name": "setCombined",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>combined</code>.\n\nFor further details take a look at the property definition: {@link #combined}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for combined"
-          }
-        ]
-      }
-    },
-    "resetCombined": {
-      "type": "function",
-      "name": "resetCombined",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>combined</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #combined}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 189,
         "column": 2,
-        "index": 5198
+        "index": 5010
       },
       "end": {
         "line": 192,
         "column": 3,
-        "index": 5334
+        "index": 5143
       }
     }
   },
-  "events": {},
-  "descendants": []
+  "statics": {}
 }

@@ -1,49 +1,79 @@
 {
-  "className": "qx.Theme",
-  "packageName": "qx",
-  "name": "Theme",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 32,
-        "column": 0,
-        "index": 988
-      },
-      "end": {
-        "line": 603,
-        "column": 3,
-        "index": 16904
-      }
+  "version": 0.3,
+  "lastModified": 1717235172538,
+  "lastModifiedIso": "2024-06-01T09:46:12.538Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/Theme.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 32,
+      "column": 0,
+      "index": 957
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Theme classes contain styling information for certain aspects of the\n graphical user interface.\n Supported themes are: colors, decorations, fonts, icons, appearances.\n The additional meta theme allows for grouping of the individual\n themes.\n For more details, take a look at the\n <a href='http://qooxdoo.org/docs/#desktop/gui/theming.md' target='_blank'>\n documentation of the theme system in the qooxdoo manual.</a></p>"
-        }
-      ]
+    "end": {
+      "line": 603,
+      "column": 3,
+      "index": 16302
     }
   },
-  "type": "class",
+  "className": "qx.Theme",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Theme classes contain styling information for certain aspects of the",
+      " * graphical user interface.",
+      " *",
+      " * Supported themes are: colors, decorations, fonts, icons, appearances.",
+      " * The additional meta theme allows for grouping of the individual",
+      " * themes.",
+      " *",
+      " * For more details, take a look at the",
+      " * <a href='http://qooxdoo.org/docs/#desktop/gui/theming.md' target='_blank'>",
+      " * documentation of the theme system in the qooxdoo manual.</a>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Theme classes contain styling information for certain aspects of the\n graphical user interface.\n Supported themes are: colors, decorations, fonts, icons, appearances.\n The additional meta theme allows for grouping of the individual\n themes.\n For more details, take a look at the\n <a href='http://qooxdoo.org/docs/#desktop/gui/theming.md' target='_blank'>\n documentation of the theme system in the qooxdoo manual.</a></p>"
+      }
+    ]
+  },
   "statics": {
     "define": {
-      "location": {
-        "start": {
-          "line": 70,
-          "column": 4,
-          "index": 2068
-        },
-        "end": {
-          "line": 122,
-          "column": 5,
-          "index": 3445
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Theme config",
+          "     *",
+          "     * Example:",
+          "     * <pre class='javascript'>",
+          "     * qx.Theme.define(\"name\",",
+          "     * {",
+          "     *   aliases : {",
+          "     *     \"aliasKey\" : \"resourceFolderOrUri\"",
+          "     *   },",
+          "     *   extend : otherTheme,",
+          "     *   include : [MMixinTheme],",
+          "     *   patch : [MMixinTheme],",
+          "     *   colors : {},",
+          "     *   decorations : {},",
+          "     *   fonts : {},",
+          "     *   widgets : {},",
+          "     *   appearances : {},",
+          "     *   meta : {},",
+          "     *   boot : function(){}",
+          "     * });",
+          "     * </pre>",
+          "     *",
+          "     * For more details, take a look at the",
+          "     * <a href='http://qooxdoo.org/docs/#desktop/gui/theming.md' target='_blank'>",
+          "     * documentation of the theme system in the qooxdoo manual.</a>",
+          "     *",
+          "     * @param name {String} name of the mixin",
+          "     * @param config {Map} config structure",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,34 +86,56 @@
             "body": "name {String} name of the mixin",
             "paramName": "name",
             "description": " name of the mixin",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "config {Map} config structure",
             "paramName": "config",
             "description": " config structure",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__normalizeArray": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 133,
+          "line": 70,
           "column": 4,
-          "index": 3807
+          "index": 1999
         },
         "end": {
-          "line": 143,
+          "line": 122,
           "column": 5,
-          "index": 4046
+          "index": 3324
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "config",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__normalizeArray": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Normalize an object to an array",
+          "     *",
+          "     * @param objectOrArray {Object|Array} Either an object that is to be",
+          "     *   normalized to an array, or an array, which is just passed through",
+          "     *",
+          "     * @return {Array} Either an array that has the original object as its",
+          "     *   single item, or the original array itself",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -106,28 +158,49 @@
           {
             "name": "@return",
             "body": "{Array} Either an array that has the original object as its\n   single item, or the original array itself",
-            "type": "Array",
-            "description": " Either an array that has the original object as its\n   single item, or the original array itself"
+            "type": "Array<any>",
+            "description": "Either an array that has the original object as its\n   single item, or the original array itself"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__initializeAliases": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 151,
+          "line": 133,
           "column": 4,
-          "index": 4200
+          "index": 3675
         },
         "end": {
-          "line": 158,
+          "line": 143,
           "column": 5,
-          "index": 4460
+          "index": 3904
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "objectOrArray",
+          "type": [
+            "Object",
+            "Array"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "__initializeAliases": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize alias inheritance",
+          "     *",
+          "     * @param theme {Map} The theme",
+          "     * @param config {Map} config structure",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -140,34 +213,52 @@
             "body": "theme {Map} The theme",
             "paramName": "theme",
             "description": " The theme",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "config {Map} config structure",
             "paramName": "config",
             "description": " config structure",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "getAll": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 165,
+          "line": 151,
           "column": 4,
-          "index": 4571
+          "index": 4050
         },
         "end": {
-          "line": 167,
+          "line": 158,
           "column": 5,
-          "index": 4619
+          "index": 4303
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "theme",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "config",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAll": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return a map of all known themes",
+          "     *",
+          "     * @return {Map} known themes",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -178,28 +269,41 @@
           {
             "name": "@return",
             "body": "{Map} known themes",
-            "type": "Map",
-            "description": " known themes"
+            "type": "Map<any, any>",
+            "description": "known themes"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getByName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 175,
+          "line": 165,
           "column": 4,
-          "index": 4780
+          "index": 4407
         },
         "end": {
-          "line": 177,
+          "line": 167,
           "column": 5,
-          "index": 4841
+          "index": 4453
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getByName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a theme by name",
+          "     *",
+          "     * @param name {String} theme name to check",
+          "     * @return {Object ? void} theme object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -212,7 +316,7 @@
             "body": "name {String} theme name to check",
             "paramName": "name",
             "description": " theme name to check",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -220,27 +324,45 @@
             "name": "@return",
             "body": "{Object ? void} theme object",
             "type": "Object ? void",
-            "description": " theme object"
+            "description": "theme object"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isDefined": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 185,
+          "line": 175,
           "column": 4,
-          "index": 5006
+          "index": 4606
         },
         "end": {
-          "line": 187,
+          "line": 177,
           "column": 5,
-          "index": 5080
+          "index": 4665
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Object ? void"
+      },
+      "appearsIn": []
+    },
+    "isDefined": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine if theme exists",
+          "     *",
+          "     * @param name {String} theme name to check",
+          "     * @return {Boolean} true if theme exists",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -253,35 +375,52 @@
             "body": "name {String} theme name to check",
             "paramName": "name",
             "description": " theme name to check",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} true if theme exists",
-            "type": "Boolean",
-            "description": " true if theme exists"
+            "type": "boolean",
+            "description": "true if theme exists"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTotalNumber": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 194,
+          "line": 185,
           "column": 4,
-          "index": 5219
+          "index": 4822
         },
         "end": {
-          "line": 196,
+          "line": 187,
           "column": 5,
-          "index": 5305
+          "index": 4894
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getTotalNumber": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine the number of themes which are defined",
+          "     *",
+          "     * @return {Number} the number of classes",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -292,28 +431,42 @@
           {
             "name": "@return",
             "body": "{Number} the number of classes",
-            "type": "Number",
-            "description": " the number of classes"
+            "type": "number",
+            "description": "the number of classes"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "genericToString": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 211,
+          "line": 194,
           "column": 4,
-          "index": 5714
+          "index": 5026
         },
         "end": {
-          "line": 213,
+          "line": 196,
           "column": 5,
-          "index": 5783
+          "index": 5110
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "genericToString": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method will be attached to all themes to return",
+          "     * a nice identifier for them.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} The interface identifier",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -330,28 +483,41 @@
           {
             "name": "@return",
             "body": "{String} The interface identifier",
-            "type": "String",
-            "description": " The interface identifier"
+            "type": "string",
+            "description": "The interface identifier"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__extractType": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 221,
+          "line": 211,
           "column": 4,
-          "index": 5989
+          "index": 5504
         },
         "end": {
-          "line": 231,
+          "line": 213,
           "column": 5,
-          "index": 6219
+          "index": 5571
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__extractType": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Extract the inheritable key (could be only one)",
+          "     *",
+          "     * @param config {Map} The map from where to extract the key",
+          "     * @return {String} the key which was found",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -364,35 +530,53 @@
             "body": "config {Map} The map from where to extract the key",
             "paramName": "config",
             "description": " The map from where to extract the key",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the key which was found",
-            "type": "String",
-            "description": " the key which was found"
+            "type": "string",
+            "description": "the key which was found"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__convert": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 239,
+          "line": 221,
           "column": 4,
-          "index": 6440
+          "index": 5769
         },
         "end": {
-          "line": 289,
+          "line": 231,
           "column": 5,
-          "index": 7867
+          "index": 5989
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "config",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__convert": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convert existing entry to a prototype based inheritance function",
+          "     *",
+          "     * @param theme {Theme} newly created theme object",
+          "     * @param config {Map} incoming theme configuration",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -412,27 +596,41 @@
             "body": "config {Map} incoming theme configuration",
             "paramName": "config",
             "description": " incoming theme configuration",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "$$registry": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 292,
+          "line": 239,
           "column": 4,
-          "index": 7924
+          "index": 6202
         },
         "end": {
-          "line": 292,
-          "column": 18,
-          "index": 7938
+          "line": 289,
+          "column": 5,
+          "index": 7579
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "theme",
+          "type": "qx.Theme"
+        },
+        {
+          "name": "config",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "$$registry": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Internal theme registry "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -446,23 +644,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "__inheritableKeys": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 295,
+          "line": 292,
           "column": 4,
-          "index": 8004
+          "index": 7633
         },
         "end": {
-          "line": 304,
-          "column": 5,
-          "index": 8174
+          "line": 292,
+          "column": 18,
+          "index": 7647
         }
       },
+      "appearsIn": []
+    },
+    "__inheritableKeys": {
       "jsdoc": {
+        "raw": [
+          "* @type {Array} Keys which support inheritance "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -476,23 +677,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__allowedKeys": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 307,
+          "line": 295,
           "column": 4,
-          "index": 8240
+          "index": 7710
         },
         "end": {
-          "line": 327,
-          "column": 6,
-          "index": 8883
+          "line": 304,
+          "column": 5,
+          "index": 7871
         }
       },
+      "appearsIn": []
+    },
+    "__allowedKeys": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} allowed keys in theme definition "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -506,23 +710,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__metaKeys": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 330,
+          "line": 307,
           "column": 4,
-          "index": 8955
+          "index": 7934
         },
         "end": {
-          "line": 342,
+          "line": 327,
           "column": 6,
-          "index": 9254
+          "index": 8557
         }
       },
+      "appearsIn": []
+    },
+    "__metaKeys": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} allowed keys inside a meta theme block "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -536,23 +743,33 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__validateConfig": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 352,
+          "line": 330,
           "column": 4,
-          "index": 9589
+          "index": 8626
         },
         "end": {
-          "line": 516,
+          "line": 342,
           "column": 6,
-          "index": 14248
+          "index": 8913
         }
       },
+      "appearsIn": []
+    },
+    "__validateConfig": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validates incoming configuration and checks keys and values",
+          "     *",
+          "     * @signature function(name, config)",
+          "     * @param name {String} The name of the class",
+          "     * @param config {Map} Configuration map",
+          "     * @throws {Error} if the given config is not valid (e.g. wrong key or wrong key value)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -571,14 +788,14 @@
             "body": "name {String} The name of the class",
             "paramName": "name",
             "description": " The name of the class",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "config {Map} Configuration map",
             "paramName": "config",
             "description": " Configuration map",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@throws": [
@@ -590,23 +807,33 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "patch": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 526,
+          "line": 352,
           "column": 4,
-          "index": 14654
+          "index": 9238
         },
         "end": {
-          "line": 546,
-          "column": 5,
-          "index": 15191
+          "line": 516,
+          "column": 6,
+          "index": 13733
         }
       },
+      "appearsIn": []
+    },
+    "patch": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Include all keys of the given mixin theme into the theme. The mixin may",
+          "     * include keys which are already defined in the target theme. Existing",
+          "     * features of equal name will be overwritten.",
+          "     *",
+          "     * @param theme {Theme} An existing theme which should be modified by including the mixin theme.",
+          "     * @param mixinTheme {Theme} The theme to be included.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -630,23 +857,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "include": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 557,
+          "line": 526,
           "column": 4,
-          "index": 15663
+          "index": 14129
         },
         "end": {
-          "line": 582,
+          "line": 546,
           "column": 5,
-          "index": 16285
+          "index": 14646
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "theme",
+          "type": "qx.Theme"
+        },
+        {
+          "name": "mixinTheme",
+          "type": "qx.Theme"
+        }
+      ],
+      "appearsIn": []
+    },
+    "include": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Include all keys of the given mixin theme into the theme. If the",
+          "     * mixin includes any keys that are already available in the",
+          "     * class, they will be silently ignored. Use the {@link #patch} method",
+          "     * if you need to overwrite keys in the current class.",
+          "     *",
+          "     * @param theme {Theme} An existing theme which should be modified by including the mixin theme.",
+          "     * @param mixinTheme {Theme} The theme to be included.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -670,23 +919,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__checkForInvalidTheme": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 590,
+          "line": 557,
           "column": 4,
-          "index": 16479
+          "index": 15107
         },
         "end": {
-          "line": 601,
+          "line": 582,
           "column": 5,
-          "index": 16894
+          "index": 15704
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "theme",
+          "type": "qx.Theme"
+        },
+        {
+          "name": "mixinTheme",
+          "type": "qx.Theme"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__checkForInvalidTheme": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to check for an invalid theme",
+          "     *",
+          "     * @param mixinTheme {qx.Theme?null} theme to check",
+          "     * @throws {Error} if the theme is not valid",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -713,9 +981,31 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 590,
+          "column": 4,
+          "index": 15890
+        },
+        "end": {
+          "line": 601,
+          "column": 5,
+          "index": 16294
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "mixinTheme",
+          "type": "qx.Theme",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

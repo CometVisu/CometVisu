@@ -1,49 +1,54 @@
 {
-  "className": "qx.ui.virtual.core.ILayer",
-  "packageName": "qx.ui.virtual.core",
-  "name": "ILayer",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 658
-      },
-      "end": {
-        "line": 74,
-        "column": 3,
-        "index": 2954
-      }
+  "version": 0.3,
+  "lastModified": 1717235171250,
+  "lastModifiedIso": "2024-06-01T09:46:11.250Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/core/ILayer.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 636
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A layer is responsible to render one aspect of a virtual pane. The pane tells\n each layer to render/update a specific window of the virtual grid.</p>"
-        }
-      ]
+    "end": {
+      "line": 74,
+      "column": 3,
+      "index": 2881
     }
   },
-  "type": "interface",
+  "className": "qx.ui.virtual.core.ILayer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A layer is responsible to render one aspect of a virtual pane. The pane tells",
+      " * each layer to render/update a specific window of the virtual grid.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A layer is responsible to render one aspect of a virtual pane. The pane tells\n each layer to render/update a specific window of the virtual grid.</p>"
+      }
+    ]
+  },
   "members": {
     "fullUpdate": {
-      "location": {
-        "start": {
-          "line": 38,
-          "column": 4,
-          "index": 1427
-        },
-        "end": {
-          "line": 44,
-          "column": 5,
-          "index": 1709
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Do a complete update of the layer. All cached data should be discarded.",
+          "     * This method is called e.g. after changes to the grid geometry",
+          "     * (row/column sizes, row/column count, ...).",
+          "     *",
+          "     * Note: This method can only be called after the widgets initial appear",
+          "     * event has been fired because it may work with the widget's DOM elements.",
+          "     *",
+          "     * @param firstRow {Integer} Index of the first row to display.",
+          "     * @param firstColumn {Integer} Index of the first column to display.",
+          "     * @param rowSizes {Integer[]} Array of heights for each row to display.",
+          "     * @param columnSizes {Integer[]} Array of widths for each column to display.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -81,23 +86,59 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "updateLayerWindow": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 61,
+          "line": 38,
           "column": 4,
-          "index": 2532
+          "index": 1390
         },
         "end": {
-          "line": 67,
+          "line": 44,
           "column": 5,
-          "index": 2821
+          "index": 1666
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "firstRow",
+          "type": "Integer"
+        },
+        {
+          "name": "firstColumn",
+          "type": "Integer"
+        },
+        {
+          "name": "rowSizes",
+          "type": "Integer[]"
+        },
+        {
+          "name": "columnSizes",
+          "type": "Integer[]"
+        }
+      ],
+      "appearsIn": []
+    },
+    "updateLayerWindow": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update the layer to display a different window of the virtual grid.",
+          "     * This method is called if the pane is scrolled, resized or cells",
+          "     * are prefetched. The implementation can assume that no other grid",
+          "     * data has been changed since the last \"fullUpdate\" of \"updateLayerWindow\"",
+          "     * call.",
+          "     *",
+          "     * Note: This method can only be called after the widgets initial appear",
+          "     * event has been fired because it may work with the widget's DOM elements.",
+          "     *",
+          "     * @param firstRow {Integer} Index of the first row to display.",
+          "     * @param firstColumn {Integer} Index of the first column to display.",
+          "     * @param rowSizes {Integer[]} Array of heights for each row to display.",
+          "     * @param columnSizes {Integer[]} Array of widths for each column to display.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -135,23 +176,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "updateLayerData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 61,
           "column": 4,
-          "index": 2924
+          "index": 2472
         },
         "end": {
-          "line": 72,
-          "column": 24,
-          "index": 2944
+          "line": 67,
+          "column": 5,
+          "index": 2755
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "firstRow",
+          "type": "Integer"
+        },
+        {
+          "name": "firstColumn",
+          "type": "Integer"
+        },
+        {
+          "name": "rowSizes",
+          "type": "Integer[]"
+        },
+        {
+          "name": "columnSizes",
+          "type": "Integer[]"
+        }
+      ],
+      "appearsIn": []
+    },
+    "updateLayerData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update the layer to reflect changes in the data the layer displays.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -159,9 +224,24 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2853
+        },
+        "end": {
+          "line": 72,
+          "column": 24,
+          "index": 2873
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -33,7 +33,7 @@
   qx.Class.define("qx.util.Base64", {
     statics: {
       /** Characters allowed in a Base 64 encoded string */
-      __P_507_0: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "/"],
+      __P_726_0: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "/"],
       /**
        * Encode a string using base64 encoding (http://en.wikipedia.org/wiki/Base64).
        *
@@ -57,12 +57,12 @@
           isMultiByte = !is8bit;
         }
         var padding = "=";
-        var base64Chars = this.__P_507_0;
+        var base64Chars = this.__P_726_0;
         var length = input.length;
         var output = [];
         var result = [];
         var i = 0;
-        var translateUTF8 = this.__P_507_1;
+        var translateUTF8 = this.__P_726_1;
         while (i < length) {
           translateUTF8(input.charCodeAt(i++), output, !isMultiByte);
         }
@@ -94,7 +94,7 @@
        * @param output {Array} the array of bytes to be filled
        * @param is8bit {Boolean} specifies whether we should not treat the array as a multi byte string
        */
-      __P_507_1: function __P_507_1(characterCode, output, is8bit) {
+      __P_726_1: function __P_726_1(characterCode, output, is8bit) {
         if (characterCode < 128) {
           output.push(characterCode);
           return;
@@ -129,7 +129,7 @@
        * @param is8bit {Boolean} specifies whether we should not treat the array as a multi byte string
        * @return {String} the string backed by the byte array
        */
-      __P_507_2: function __P_507_2(bytes, is8bit) {
+      __P_726_2: function __P_726_2(bytes, is8bit) {
         var charString = "";
         var result = [];
         if (is8bit) {
@@ -171,7 +171,7 @@
        * @return {String} The decoded input string.
        */
       decode: function decode(input, is8bit) {
-        var base64Chars = this.__P_507_0;
+        var base64Chars = this.__P_726_0;
         var isMultiByte;
         if (typeof is8bit == "undefined") {
           var charSet = document.characterSet || document.charset;
@@ -203,11 +203,11 @@
             stringBytes.push(c3);
           }
         }
-        return this.__P_507_2(stringBytes, !isMultiByte);
+        return this.__P_726_2(stringBytes, !isMultiByte);
       }
     }
   });
   qx.util.Base64.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Base64.js.map?dt=1709410168814
+//# sourceMappingURL=Base64.js.map?dt=1717235420041

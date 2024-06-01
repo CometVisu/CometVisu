@@ -1,0 +1,48 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "html",
+    "Element",
+    "construct",
+    "constructor",
+    "call",
+    "add",
+    "getQxObject",
+    "members",
+    "_createQxObjectImpl",
+    "id",
+    "_qx$core$MObjectId",
+    "object",
+    "core",
+    "MObjectId",
+    "handleObjects",
+    "apply",
+    "test",
+    "jsx",
+    "TestWidget",
+    "concat",
+    "Array",
+    "prototype",
+    "slice",
+    "arguments",
+    "undefined",
+    "Jsx",
+    "createElement",
+    "class"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/html/jsx/TestWidget.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2019-2021 Zenesis Ltd, https://zenesis.com\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * John Spackman (johnspackman)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.html.jsx.TestWidget\", {\n  extend: qx.html.Element,\n\n  construct() {\n    super();\n    this.add(this.getQxObject(\"header\"));\n    this.add(this.getQxObject(\"body\"));\n  },\n\n  members: {\n    _createQxObjectImpl(id) {\n      switch (id) {\n        case \"header\":\n          return <div class=\"header-class\"></div>;\n\n        case \"body\":\n          return (\n            <div class=\"body-class\">\n              {this.getQxObject(\"labelOne\")}\n              {this.getQxObject(\"labelTwo\")}\n            </div>\n          );\n\n        case \"labelOne\":\n          return <p>Label One</p>;\n\n        case \"labelTwo\":\n          return <p>Label Two</p>;\n      }\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,6BAA6B,EAAE;IAC7CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,OAAO;IAEvBC,SAAS,WAAAA,UAAA,EAAG;MACVT,EAAA,CAAAO,IAAA,CAAAC,OAAA,CAAAE,WAAA,CAAAC,IAAA;MACA,IAAI,CAACC,GAAG,CAAC,IAAI,CAACC,WAAW,CAAC,QAAQ,CAAC,CAAC;MACpC,IAAI,CAACD,GAAG,CAAC,IAAI,CAACC,WAAW,CAAC,MAAM,CAAC,CAAC;IACpC,CAAC;IAEDC,OAAO,EAAE;MACPC,mBAAmB,WAAAA,oBAACC,EAAE,EAAE;QA5B5B;UAAA,IAAAC,kBAAA;UACY,IAAIC,MAAM,GAAG,CAAAD,kBAAA,GAAAjB,EAAE,CAACmB,IAAI,CAACC,SAAS,EAACC,aAAa,CAAAC,KAAA,CAAAL,kBAAA,GAACjB,EAAE,CAACuB,IAAI,CAAChB,IAAI,CAACiB,GAAG,CAACC,UAAU,EAAE,IAAI,EAAAC,MAAA,CAAAC,KAAA,CAAAC,SAAA,CAAAC,KAAA,CAAAlB,IAAA,CAAKmB,SAAS,GAAC;UAC7F,IAAIZ,MAAM,KAAKa,SAAS,EAAE;YACxB,OAAOb,MAAM;UACf;QACF;QAwBJ,QAAQF,EAAE;UACR,KAAK,QAAQ;YACX,OAAOhB,EAAA,CAAAO,IAAA,CAAAyB,GAAA,CAAAC,aAAA;cAAKC,KAAK,EAAC;YAAc,CAAM,CAAC;UAEzC,KAAK,MAAM;YACT,OACElC,EAAA,CAAAO,IAAA,CAAAyB,GAAA,CAAAC,aAAA;cAAKC,KAAK,EAAC;YAAY,GACpB,IAAI,CAACrB,WAAW,CAAC,UAAU,CAAC,EAC5B,IAAI,CAACA,WAAW,CAAC,UAAU,CACzB,CAAC;UAGV,KAAK,UAAU;YACb,OAAOb,EAAA,CAAAO,IAAA,CAAAyB,GAAA,CAAAC,aAAA,YAAG,WAAY,CAAC;UAEzB,KAAK,UAAU;YACb,OAAOjC,EAAA,CAAAO,IAAA,CAAAyB,GAAA,CAAAC,aAAA,YAAG,WAAY,CAAC;QAC3B;MACF;IACF;EACF,CAAC,CAAC;EAjDFjC,EAAE,CAACuB,IAAI,CAAChB,IAAI,CAACiB,GAAG,CAACC,UAAU,CAACtB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

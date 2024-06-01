@@ -1,49 +1,41 @@
 {
-  "className": "qx.xml.String",
-  "packageName": "qx.xml",
-  "name": "String",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 549
-      },
-      "end": {
-        "line": 74,
-        "column": 3,
-        "index": 2258
-      }
+  "version": 0.3,
+  "lastModified": 1717235172422,
+  "lastModifiedIso": "2024-06-01T09:46:12.422Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/xml/String.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 528
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Escaping and unescaping of XML strings.</p>"
-        }
-      ]
+    "end": {
+      "line": 74,
+      "column": 3,
+      "index": 2185
     }
   },
-  "type": "class",
+  "className": "qx.xml.String",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Escaping and unescaping of XML strings.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Escaping and unescaping of XML strings.</p>"
+      }
+    ]
+  },
   "statics": {
     "TO_CHARCODE": {
-      "location": {
-        "start": {
-          "line": 25,
-          "column": 4,
-          "index": 674
-        },
-        "end": {
-          "line": 31,
-          "column": 5,
-          "index": 827
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* Mapping of XML entity names to the corresponding char code "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +43,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "FROM_CHARCODE": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 34,
+          "line": 25,
           "column": 4,
-          "index": 890
+          "index": 650
         },
         "end": {
-          "line": 40,
+          "line": 31,
           "column": 5,
-          "index": 1055
+          "index": 797
         }
       },
+      "appearsIn": []
+    },
+    "FROM_CHARCODE": {
       "jsdoc": {
+        "raw": [
+          "* Mapping of char codes to XML entity names "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -75,23 +70,38 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "escape": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 55,
+          "line": 34,
           "column": 4,
-          "index": 1647
+          "index": 857
         },
         "end": {
-          "line": 57,
+          "line": 40,
           "column": 5,
-          "index": 1735
+          "index": 1016
         }
       },
+      "appearsIn": []
+    },
+    "escape": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Escapes the characters in a <code>String</code> using XML entities.",
+          "     *",
+          "     * For example: <tt>\"bread\" & \"butter\"</tt> =>",
+          "     * <tt>&amp;quot;bread&amp;quot; &amp;amp; &amp;quot;butter&amp;quot;</tt>.",
+          "     *",
+          "     * Supports only the four basic XML entities (gt, lt, quot, amp).",
+          "     * Does not support DTDs or external entities.",
+          "     * Note that unicode characters greater than 0x7f are currently escaped to their numerical \\\\u equivalent.",
+          "     *",
+          "     * @param str {String} the string to be escaped",
+          "     * @return {String} the escaped string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,35 +114,58 @@
             "body": "str {String} the string to be escaped",
             "paramName": "str",
             "description": " the string to be escaped",
-            "type": "qx.xml.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the escaped string",
-            "type": "qx.xml.String",
-            "description": " the escaped string"
+            "type": "string",
+            "description": "the escaped string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "unescape": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 70,
+          "line": 55,
           "column": 4,
-          "index": 2158
+          "index": 1593
         },
         "end": {
-          "line": 72,
+          "line": 57,
           "column": 5,
-          "index": 2248
+          "index": 1679
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "unescape": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Unescapes a string containing XML entity escapes to a string",
+          "     * containing the actual Unicode characters corresponding to the",
+          "     * escapes.",
+          "     *",
+          "     * Supports only the four basic XML entities (gt, lt, quot, amp).",
+          "     * Does not support DTDs or external entities.",
+          "     *",
+          "     * @param str {String} the string to be unescaped",
+          "     * @return {String} the unescaped string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -145,21 +178,44 @@
             "body": "str {String} the string to be unescaped",
             "paramName": "str",
             "description": " the string to be unescaped",
-            "type": "qx.xml.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the unescaped string",
-            "type": "qx.xml.String",
-            "description": " the unescaped string"
+            "type": "string",
+            "description": "the unescaped string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2089
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 2177
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

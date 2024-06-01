@@ -1,0 +1,77 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171458,
+  "lastModifiedIso": "2024-06-01T09:46:11.458Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/jsdoc/ITypeResolver.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 1,
+      "column": 0,
+      "index": 0
+    },
+    "end": {
+      "line": 15,
+      "column": 3,
+      "index": 613
+    }
+  },
+  "className": "qx.tool.compiler.jsdoc.ITypeResolver",
+  "jsdoc": null,
+  "members": {
+    "resolveType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given a possible typename, this converts it into a fully qualified classname if possible;",
+          "     * because of historical documentation, the typename may be just a classname without",
+          "     * the package.  This method will attempt to resolve the type to a fully qualified classname, and",
+          "     * only returns the fully qualified name if it actually exists.",
+          "     *",
+          "     * Otherwise, it returns what it is given as `typename`",
+          "     *",
+          "     * @param typename {String} the typename to resolve",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given a possible typename, this converts it into a fully qualified classname if possible;\n because of historical documentation, the typename may be just a classname without\n the package.  This method will attempt to resolve the type to a fully qualified classname, and\n only returns the fully qualified name if it actually exists.\n Otherwise, it returns what it is given as <code>typename</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "typename {String} the typename to resolve",
+            "paramName": "typename",
+            "description": " the typename to resolve",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 13,
+          "column": 4,
+          "index": 581
+        },
+        "end": {
+          "line": 13,
+          "column": 28,
+          "index": 605
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "typename",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

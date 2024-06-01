@@ -1,0 +1,185 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171466,
+  "lastModifiedIso": "2024-06-01T09:46:11.466Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/Javascript.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 834
+    },
+    "end": {
+      "line": 72,
+      "column": 3,
+      "index": 1911
+    }
+  },
+  "className": "qx.tool.compiler.targets.meta.Javascript",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * An implementation of IJavascriptMeta for plain old javascript files",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>An implementation of IJavascriptMeta for plain old javascript files</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "appMeta"
+      },
+      {
+        "name": "filename"
+      },
+      {
+        "name": "originalSourceFile"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 38,
+        "column": 2,
+        "index": 1185
+      },
+      "end": {
+        "line": 40,
+        "column": 3,
+        "index": 1289
+      }
+    }
+  },
+  "members": {
+    "compile": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1341
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1375
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "writeSourceCodeToStream": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1414
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1676
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ws"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    },
+    "getSourceMap": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1715
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1903
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

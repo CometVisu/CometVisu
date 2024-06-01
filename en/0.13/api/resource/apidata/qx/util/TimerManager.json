@@ -1,52 +1,95 @@
 {
-  "className": "qx.util.TimerManager",
-  "packageName": "qx.util",
-  "name": "TimerManager",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 73,
-        "column": 0,
-        "index": 2225
-      },
-      "end": {
-        "line": 296,
-        "column": 3,
-        "index": 9976
-      }
+  "version": 0.3,
+  "lastModified": 1717235172550,
+  "lastModifiedIso": "2024-06-01T09:46:12.550Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/TimerManager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 73,
+      "column": 0,
+      "index": 2153
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Timer manipulation for handling multiple timed callbacks with the use of\n only a single native timer object.\n Use of these timers is via the methods start() and stop().  Examples:\n </p>\n<pre class='javascript'>\n var timer = qx.util.TimerManager.getInstance();\n\n\n\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"Recurrent 5-second timer: \" + timerId);\n             },\n             5000,\n             this,\n             null,\n             3000);\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"One-shot 1-second timer: \" + timerId);\n             },\n             0,\n             this,\n             null,\n             1000);\n\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"Recurrent 2-second timer with limit 3:\" +\n                          timerId);\n               if (++userData.count == 3)\n               {\n                 this.debug(\"Stopping recurrent 2-second timer\");\n                 timer.stop(timerId);\n               }\n             },\n             2000,\n             this,\n             { count : 0 });\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"Immediate one-shot timer: \" + timerId);\n             });\n </pre>"
-        }
-      ]
+    "end": {
+      "line": 296,
+      "column": 3,
+      "index": 9681
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": false,
+  "className": "qx.util.TimerManager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Timer manipulation for handling multiple timed callbacks with the use of",
+      " * only a single native timer object.",
+      " *",
+      " * Use of these timers is via the methods start() and stop().  Examples:",
+      " * <pre class='javascript'>",
+      " * var timer = qx.util.TimerManager.getInstance();",
+      " *",
+      " * // Start a 5-second recurrent timer.",
+      " * // Note that the first expiration is after 3 seconds",
+      " * // (last parameter is 3000) but each subsequent expiration is",
+      " * // at 5 second intervals.",
+      " * timer.start(function(userData, timerId)",
+      " *             {",
+      " *               this.debug(\"Recurrent 5-second timer: \" + timerId);",
+      " *             },",
+      " *             5000,",
+      " *             this,",
+      " *             null,",
+      " *             3000);",
+      " *",
+      " * // Start a 1-second one-shot timer",
+      " * timer.start(function(userData, timerId)",
+      " *             {",
+      " *               this.debug(\"One-shot 1-second timer: \" + timerId);",
+      " *             },",
+      " *             0,",
+      " *             this,",
+      " *             null,",
+      " *             1000);",
+      " *",
+      " * // Start a 2-second recurrent timer that stops itself after",
+      " * // three iterations",
+      " * timer.start(function(userData, timerId)",
+      " *             {",
+      " *               this.debug(\"Recurrent 2-second timer with limit 3:\" +",
+      " *                          timerId);",
+      " *               if (++userData.count == 3)",
+      " *               {",
+      " *                 this.debug(\"Stopping recurrent 2-second timer\");",
+      " *                 timer.stop(timerId);",
+      " *               }",
+      " *             },",
+      " *             2000,",
+      " *             this,",
+      " *             { count : 0 });",
+      " *",
+      " * // Start an immediate one-shot timer",
+      " * timer.start(function(userData, timerId)",
+      " *             {",
+      " *               this.debug(\"Immediate one-shot timer: \" + timerId);",
+      " *             });",
+      " * </pre>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Timer manipulation for handling multiple timed callbacks with the use of\n only a single native timer object.\n Use of these timers is via the methods start() and stop().  Examples:\n </p>\n<pre class='javascript'>\n var timer = qx.util.TimerManager.getInstance();\n\n\n\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"Recurrent 5-second timer: \" + timerId);\n             },\n             5000,\n             this,\n             null,\n             3000);\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"One-shot 1-second timer: \" + timerId);\n             },\n             0,\n             this,\n             null,\n             1000);\n\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"Recurrent 2-second timer with limit 3:\" +\n                          timerId);\n               if (++userData.count == 3)\n               {\n                 this.debug(\"Stopping recurrent 2-second timer\");\n                 timer.stop(timerId);\n               }\n             },\n             2000,\n             this,\n             { count : 0 });\n\n timer.start(function(userData, timerId)\n             {\n               this.debug(\"Immediate one-shot timer: \" + timerId);\n             });\n </pre>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "isSingleton": true,
+  "abstract": false,
   "statics": {
     "__timerQueue": {
-      "location": {
-        "start": {
-          "line": 79,
-          "column": 4,
-          "index": 2378
-        },
-        "end": {
-          "line": 79,
-          "column": 20,
-          "index": 2394
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* Time-ordered queue of timers "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -54,23 +97,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__timerData": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 82,
+          "line": 79,
           "column": 4,
-          "index": 2441
+          "index": 2300
         },
         "end": {
-          "line": 82,
-          "column": 19,
-          "index": 2456
+          "line": 79,
+          "column": 20,
+          "index": 2316
         }
       },
+      "appearsIn": []
+    },
+    "__timerData": {
       "jsdoc": {
+        "raw": [
+          "* Saved data for each timer "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -78,23 +124,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__timerId": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 85,
+          "line": 82,
           "column": 4,
-          "index": 2532
+          "index": 2360
         },
         "end": {
-          "line": 85,
-          "column": 16,
-          "index": 2544
+          "line": 82,
+          "column": 19,
+          "index": 2375
         }
       },
+      "appearsIn": []
+    },
+    "__timerId": {
       "jsdoc": {
+        "raw": [
+          "* Next timer id value is determined by incrementing this "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -102,25 +151,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2448
+        },
+        "end": {
+          "line": 85,
+          "column": 16,
+          "index": 2460
+        }
+      },
+      "appearsIn": []
     }
   },
   "members": {
     "__timerListenerActive": {
-      "location": {
-        "start": {
-          "line": 90,
-          "column": 4,
-          "index": 2646
-        },
-        "end": {
-          "line": 90,
-          "column": 32,
-          "index": 2674
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* Whether we're currently listening on the interval timer event "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -128,23 +180,61 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "start": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 128,
+          "line": 90,
           "column": 4,
-          "index": 4207
+          "index": 2557
         },
         "end": {
-          "line": 151,
-          "column": 5,
-          "index": 5059
+          "line": 90,
+          "column": 32,
+          "index": 2585
         }
       },
+      "appearsIn": []
+    },
+    "start": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start a new timer",
+          "     *",
+          "     * @param callback {Function}",
+          "     *   Function to be called upon expiration of the timer.  The function is",
+          "     *   passed these parameters:",
+          "     *   <dl>",
+          "     *     <dt>userData</dt>",
+          "     *       <dd>The user data provided to the start() method</dd>",
+          "     *     <dt>timerId</dt>",
+          "     *       <dd>The timer id, as was returned by the start() method</dd>",
+          "     *   </dl>",
+          "     *",
+          "     * @param recurTime {Integer|null}",
+          "     *   If null, the timer will not recur.  Once the callback function",
+          "     *   returns the first time, the timer will be removed from the timer",
+          "     *   queue.  If non-null, upon return from the callback function, the",
+          "     *   timer will be reset to this number of milliseconds.",
+          "     *",
+          "     * @param context {qx.core.Object|null}",
+          "     *   Context (this) the callback function is called with.  If not",
+          "     *   provided, this Timer singleton object is used.",
+          "     *",
+          "     * @param userData {var}",
+          "     *   Data which is passed to the callback function upon timer expiry",
+          "     *",
+          "     * @param initialTime {Integer|null}",
+          "     *   Milliseconds before the callback function is called the very first",
+          "     *   time.  If not specified and recurTime is specified, then recurTime",
+          "     *   will be used as initialTime; otherwise initialTime will default",
+          "     *   to zero.",
+          "     *",
+          "     * @return {Integer}",
+          "     *   The timer id of this unique timer.  It may be provided to the stop()",
+          "     *   method to cancel a timer before expiration.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -157,7 +247,7 @@
             "body": "callback {Function}\n   Function to be called upon expiration of the timer.  The function is\n   passed these parameters:\n   <dl>\n     <dt>userData</dt>\n       <dd>The user data provided to the start() method</dd>\n     <dt>timerId</dt>\n       <dd>The timer id, as was returned by the start() method</dd>\n   </dl>",
             "paramName": "callback",
             "description": "\n   Function to be called upon expiration of the timer.  The function is\n   passed these parameters:\n   <dl>\n     <dt>userData</dt>\n       <dd>The user data provided to the start() method</dd>\n     <dt>timerId</dt>\n       <dd>The timer id, as was returned by the start() method</dd>\n   </dl>",
-            "type": "qx.util.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -202,27 +292,70 @@
             "name": "@return",
             "body": "{Integer}\n   The timer id of this unique timer.  It may be provided to the stop()\n   method to cancel a timer before expiration.",
             "type": "Integer",
-            "description": "\n   The timer id of this unique timer.  It may be provided to the stop()\n   method to cancel a timer before expiration."
+            "description": "   The timer id of this unique timer.  It may be provided to the stop()\n   method to cancel a timer before expiration."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "stop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 159,
+          "line": 128,
           "column": 4,
-          "index": 5208
+          "index": 4080
         },
         "end": {
-          "line": 188,
+          "line": 151,
           "column": 5,
-          "index": 6181
+          "index": 4909
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "recurTime",
+          "type": [
+            "Integer",
+            "null"
+          ]
+        },
+        {
+          "name": "context",
+          "type": [
+            "qx.core.Object",
+            "null"
+          ]
+        },
+        {
+          "name": "userData",
+          "type": "var"
+        },
+        {
+          "name": "initialTime",
+          "type": [
+            "Integer",
+            "null"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "stop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop a running timer",
+          "     *",
+          "     * @param timerId {Integer}",
+          "     *   A timer id previously returned by start()",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -239,23 +372,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__insertNewTimer": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 200,
+          "line": 159,
           "column": 4,
-          "index": 6472
+          "index": 5050
         },
         "end": {
-          "line": 236,
+          "line": 188,
           "column": 5,
-          "index": 7844
+          "index": 5994
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "timerId",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__insertNewTimer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Insert a timer on the time-ordered list of active timers.",
+          "     *",
+          "     * @param expireAt {Integer}",
+          "     *   Milliseconds from now when this timer should expire",
+          "     *",
+          "     * @param timerId {Integer}",
+          "     *   Id of the timer to be time-ordered",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -279,23 +431,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__processQueue": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 245,
+          "line": 200,
           "column": 4,
-          "index": 8147
+          "index": 6273
         },
         "end": {
-          "line": 294,
+          "line": 236,
           "column": 5,
-          "index": 9966
+          "index": 7609
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "expireAt",
+          "type": "Integer"
+        },
+        {
+          "name": "timerId",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__processQueue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process the queue of timers.  Call the registered callback function for",
+          "     * any timer which has expired.  If the timer is marked as recurrent, the",
+          "     * timer is restarted with the recurrent timeout following completion of",
+          "     * the callback function.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -303,147 +475,23 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4,
+          "index": 7903
+        },
+        "end": {
+          "line": 294,
+          "column": 5,
+          "index": 9673
+        }
+      },
       "type": "function",
-      "access": "private"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

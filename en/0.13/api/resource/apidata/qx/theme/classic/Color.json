@@ -1,33 +1,36 @@
 {
-  "className": "qx.theme.classic.Color",
-  "packageName": "qx.theme.classic",
-  "name": "Color",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 613
-      },
-      "end": {
-        "line": 114,
-        "column": 3,
-        "index": 3548
-      }
+  "version": 0.3,
+  "lastModified": 1717235169690,
+  "lastModifiedIso": "2024-06-01T09:46:09.690Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/classic/Color.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 590
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Windows classic color theme</p>"
-        }
-      ]
+    "end": {
+      "line": 114,
+      "column": 3,
+      "index": 3435
     }
   },
-  "type": "theme",
-  "descendants": []
+  "className": "qx.theme.classic.Color",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Windows classic color theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Windows classic color theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

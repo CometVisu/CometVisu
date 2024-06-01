@@ -1,6 +1,6 @@
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -52,26 +52,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ***********************************************
     */
     statics: {
-      __P_541_0: {},
-      __P_541_1: null,
-      __P_541_2: null,
-      __P_541_3: false,
-      __P_541_4: null,
-      __P_541_5: {},
-      __P_541_6: {},
+      __P_760_0: {},
+      __P_760_1: null,
+      __P_760_2: null,
+      __P_760_3: false,
+      __P_760_4: null,
+      __P_760_5: {},
+      __P_760_6: {},
       addClassLoadedListener: function addClassLoadedListener(className, callback) {
-        if (!this.__P_541_5[className]) {
-          this.__P_541_5[className] = [];
+        if (!this.__P_760_5[className]) {
+          this.__P_760_5[className] = [];
         }
-        if (!this.__P_541_5[className].includes(callback)) {
-          this.__P_541_5[className].push(callback);
+        if (!this.__P_760_5[className].includes(callback)) {
+          this.__P_760_5[className].push(callback);
         }
       },
       registerClientClass: function registerClientClass(name, Clazz) {
-        if (!this.__P_541_6[name]) {
-          this.__P_541_6[name] = Clazz;
-          if (this.__P_541_5[name]) {
-            var _iterator = _createForOfIteratorHelper(this.__P_541_5[name]),
+        if (!this.__P_760_6[name]) {
+          this.__P_760_6[name] = Clazz;
+          if (this.__P_760_5[name]) {
+            var _iterator = _createForOfIteratorHelper(this.__P_760_5[name]),
               _step;
             try {
               for (_iterator.s(); !(_step = _iterator.n()).done;) {
@@ -87,7 +87,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
       },
       isRegistered: function isRegistered(name) {
-        return !!this.__P_541_6[name];
+        return !!this.__P_760_6[name];
       },
       /**
        * Initialize all {@link cv.io.IClient} clients for backend communication,
@@ -155,16 +155,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         if (name === 'system') {
           throw Error('"system" is not allowed as a backend name');
         }
-        if (this.__P_541_0[name]) {
-          this.__P_541_0[name].dispose();
-          delete this.__P_541_0[name];
+        if (this.__P_760_0[name]) {
+          this.__P_760_0[name].dispose();
+          delete this.__P_760_0[name];
         }
-        var Clazz = this.__P_541_6[type];
+        var Clazz = this.__P_760_6[type];
         var client = Clazz ? new Clazz(type, backendUrl) : cv.Application.createClient(type, backendUrl);
         if (source) {
           client.configuredIn = source;
         }
-        this.__P_541_0[name] = client;
+        this.__P_760_0[name] = client;
         client.setName(name);
         var model = cv.data.Model.getInstance();
         client.addListener('changeConnected', function (ev) {
@@ -202,10 +202,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             return _this._updateClientScope(name);
           });
         }
-        if (!this.__P_541_4) {
+        if (!this.__P_760_4) {
           var app = qx.core.Init.getApplication();
           if (app) {
-            this.__P_541_4 = app.addListener('changeActive', this._onActiveChanged, this);
+            this.__P_760_4 = app.addListener('changeActive', this._onActiveChanged, this);
           }
         }
 
@@ -216,9 +216,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return client;
       },
       removeClient: function removeClient(client) {
-        for (var name in this.__P_541_0) {
-          if (this.__P_541_0[name] === client) {
-            delete this.__P_541_0[name];
+        for (var name in this.__P_760_0) {
+          if (this.__P_760_0[name] === client) {
+            delete this.__P_760_0[name];
             break;
           }
         }
@@ -229,7 +229,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @return {boolean}
        */
       hasClient: function hasClient(name) {
-        return Object.prototype.hasOwnProperty.call(this.__P_541_0, name);
+        return Object.prototype.hasOwnProperty.call(this.__P_760_0, name);
       },
       /**
        * Get the backend client by name, if the name is not set the default backend is used.
@@ -239,14 +239,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       getClient: function getClient(backendName) {
         if (backendName === 'system') {
           if (!this.hasClient('system')) {
-            this.__P_541_0.system = new cv.io.System();
+            this.__P_760_0.system = new cv.io.System();
           }
-          return this.__P_541_0.system;
+          return this.__P_760_0.system;
         }
         if (!backendName) {
           backendName = cv.data.Model.getInstance().getDefaultBackendName();
         }
-        if (!this.__P_541_0[backendName]) {
+        if (!this.__P_760_0[backendName]) {
           if (cv.Config.testMode) {
             // in testMode the client might not have been initialized yet
             return this.addBackendClient('simulated', 'simulated');
@@ -254,18 +254,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           // backendName might be a type
           return this.getClientByType(backendName);
         }
-        return this.__P_541_0[backendName];
+        return this.__P_760_0[backendName];
       },
       getClientByType: function getClientByType(type) {
         if (type === 'system') {
           if (!this.hasClient('system')) {
-            this.__P_541_0.system = new cv.io.System();
+            this.__P_760_0.system = new cv.io.System();
           }
-          return this.__P_541_0.system;
+          return this.__P_760_0.system;
         }
         var client;
-        for (var name in this.__P_541_0) {
-          client = this.__P_541_0[name];
+        for (var name in this.__P_760_0) {
+          client = this.__P_760_0[name];
           if (client.getType() === type) {
             return client;
           }
@@ -273,14 +273,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return null;
       },
       getClients: function getClients() {
-        return this.__P_541_0;
+        return this.__P_760_0;
       },
       initSystemBackend: function initSystemBackend() {
         // make sure that we have a "system" backend
         if (!this.hasClient('system')) {
-          this.__P_541_0.system = new cv.io.System();
+          this.__P_760_0.system = new cv.io.System();
         }
-        var client = this.__P_541_0.system;
+        var client = this.__P_760_0.system;
         var addressesToSubscribe = cv.data.Model.getInstance().getAddresses('system');
         if (addressesToSubscribe.length !== 0) {
           client.subscribe(addressesToSubscribe);
@@ -291,7 +291,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        */
       startInitialRequests: function startInitialRequests() {
         var _this2 = this;
-        Object.getOwnPropertyNames(this.__P_541_0).forEach(function (name) {
+        Object.getOwnPropertyNames(this.__P_760_0).forEach(function (name) {
           _this2.startInitialRequest(name);
         });
       },
@@ -310,13 +310,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var _this3 = this;
         var app = qx.core.Init.getApplication();
         if (app.isActive()) {
-          if (this.__P_541_2) {
-            this.__P_541_2.dispose();
-            this.__P_541_2 = null;
+          if (this.__P_760_2) {
+            this.__P_760_2.dispose();
+            this.__P_760_2 = null;
           }
-          Object.getOwnPropertyNames(this.__P_541_0).forEach(function (backendName) {
-            var client = _this3.__P_541_0[backendName];
-            if (!client.isConnected() && _this3.__P_541_3) {
+          Object.getOwnPropertyNames(this.__P_760_0).forEach(function (backendName) {
+            var client = _this3.__P_760_0[backendName];
+            if (!client.isConnected() && _this3.__P_760_3) {
               // reconnect
               qx.log.Logger.debug(_this3, "restarting ".concat(backendName, " backend connection"));
               client.restart(true);
@@ -324,37 +324,37 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           });
 
           // wait for 3 seconds before checking the backend connection
-          if (!this.__P_541_1) {
-            this.__P_541_1 = new qx.event.Timer(3000);
-            this.__P_541_1.addListener('interval', function () {
+          if (!this.__P_760_1) {
+            this.__P_760_1 = new qx.event.Timer(3000);
+            this.__P_760_1.addListener('interval', function () {
               if (app.isActive()) {
-                Object.getOwnPropertyNames(_this3.__P_541_0).forEach(_this3._checkBackendConnection, _this3);
+                Object.getOwnPropertyNames(_this3.__P_760_0).forEach(_this3._checkBackendConnection, _this3);
               }
-              _this3.__P_541_1.dispose();
-              _this3.__P_541_1 = null;
+              _this3.__P_760_1.dispose();
+              _this3.__P_760_1 = null;
             });
           }
-          this.__P_541_1.restart();
+          this.__P_760_1.restart();
         } else {
-          if (this.__P_541_1) {
-            this.__P_541_1.dispose();
-            this.__P_541_1 = null;
+          if (this.__P_760_1) {
+            this.__P_760_1.dispose();
+            this.__P_760_1 = null;
           }
-          if (!this.__P_541_2) {
+          if (!this.__P_760_2) {
             // disconnect after 60 secs
-            this.__P_541_2 = new qx.event.Timer(60000);
-            this.__P_541_2.addListener('interval', function () {
-              Object.getOwnPropertyNames(_this3.__P_541_0).forEach(function (name) {
+            this.__P_760_2 = new qx.event.Timer(60000);
+            this.__P_760_2.addListener('interval', function () {
+              Object.getOwnPropertyNames(_this3.__P_760_0).forEach(function (name) {
                 var client = _this3.getClient(name);
                 if (client.isConnected()) {
                   client.terminate();
                 }
               });
-              _this3.__P_541_2.dispose();
-              _this3.__P_541_2 = null;
+              _this3.__P_760_2.dispose();
+              _this3.__P_760_2 = null;
             });
           }
-          this.__P_541_2.restart();
+          this.__P_760_2.restart();
         }
       },
       _checkBackendConnection: function _checkBackendConnection(name) {
@@ -366,7 +366,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           severity: 'urgent',
           unique: true,
           deletable: false,
-          condition: !connected && this.__P_541_3 && qx.core.Init.getApplication().isActive()
+          condition: !connected && this.__P_760_3 && qx.core.Init.getApplication().isActive()
         };
         var lastError = client.getLastError();
         if (!connected) {
@@ -384,7 +384,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }]
           };
         } else {
-          this.__P_541_3 = true;
+          this.__P_760_3 = true;
         }
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
       },
@@ -436,4 +436,4 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   cv.io.BackendConnections.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BackendConnections.js.map?dt=1709410170698
+//# sourceMappingURL=BackendConnections.js.map?dt=1717235422134

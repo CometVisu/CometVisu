@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "bom",
+    "storage",
+    "WebStorageTestCase",
+    "include",
+    "dev",
+    "unit",
+    "MRequirements",
+    "members",
+    "_getStorage",
+    "Storage",
+    "getLocal",
+    "Local"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/bom/storage/Local.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Adrian Olaru (adrianolaru)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.bom.storage.Local\", {\n  extend: qx.test.bom.storage.WebStorageTestCase,\n  include: [qx.dev.unit.MRequirements],\n\n  members: {\n    _getStorage() {\n      return qx.bom.Storage.getLocal();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,2BAA2B,EAAE;IAC3CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,GAAG,CAACC,OAAO,CAACC,kBAAkB;IAC9CC,OAAO,EAAE,CAACX,EAAE,CAACY,GAAG,CAACC,IAAI,CAACC,aAAa,CAAC;IAEpCC,OAAO,EAAE;MACPC,WAAW,WAAAA,YAAA,EAAG;QACZ,OAAOhB,EAAE,CAACQ,GAAG,CAACS,OAAO,CAACC,QAAQ,CAAC,CAAC;MAClC;IACF;EACF,CAAC,CAAC;EA3BFlB,EAAE,CAACO,IAAI,CAACC,GAAG,CAACC,OAAO,CAACU,KAAK,CAAChB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "mobile",
+    "MobileTestCase",
+    "members",
+    "testLabelForTarget",
+    "label",
+    "ui",
+    "form",
+    "Label",
+    "target",
+    "TextField",
+    "setLabelFor",
+    "getId",
+    "foundValue",
+    "getContentElement",
+    "getAttribute",
+    "assertEquals",
+    "destroy",
+    "testDisableTarget",
+    "setEnabled",
+    "assertFalse",
+    "isEnabled",
+    "assertTrue"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/mobile/form/Label.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011-2013 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christopher Zuendorf (czuendorf)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.mobile.form.Label\", {\n  extend: qx.test.mobile.MobileTestCase,\n\n  members: {\n    testLabelForTarget() {\n      var label = new qx.ui.mobile.form.Label(\"foo-label\");\n      var target = new qx.ui.mobile.form.TextField(\"foo\");\n      label.setLabelFor(target.getId());\n\n      var foundValue = label.getContentElement().getAttribute(\"for\");\n\n      this.assertEquals(\n        target.getId(),\n        foundValue,\n        \"'For' attribute has an unexpected value.\"\n      );\n\n      label.destroy();\n      target.destroy();\n    },\n\n    testDisableTarget() {\n      var label = new qx.ui.mobile.form.Label(\"foo-label\");\n      var target = new qx.ui.mobile.form.TextField(\"foo\");\n\n      target.setEnabled(false);\n\n      label.setLabelFor(target.getId());\n\n      // check if state is considered before label.for is set.\n      this.assertFalse(label.isEnabled());\n\n      target.setEnabled(true);\n\n      this.assertTrue(label.isEnabled());\n\n      target.setEnabled(false);\n\n      this.assertFalse(label.isEnabled());\n\n      label.destroy();\n      target.destroy();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,2BAA2B,EAAE;IAC3CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM,CAACC,cAAc;IAErCC,OAAO,EAAE;MACPC,kBAAkB,WAAAA,mBAAA,EAAG;QACnB,IAAIC,KAAK,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACC,KAAK,CAAC,WAAW,CAAC;QACpD,IAAIC,MAAM,GAAG,IAAIhB,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACG,SAAS,CAAC,KAAK,CAAC;QACnDL,KAAK,CAACM,WAAW,CAACF,MAAM,CAACG,KAAK,CAAC,CAAC,CAAC;QAEjC,IAAIC,UAAU,GAAGR,KAAK,CAACS,iBAAiB,CAAC,CAAC,CAACC,YAAY,CAAC,KAAK,CAAC;QAE9D,IAAI,CAACC,YAAY,CACfP,MAAM,CAACG,KAAK,CAAC,CAAC,EACdC,UAAU,EACV,0CACF,CAAC;QAEDR,KAAK,CAACY,OAAO,CAAC,CAAC;QACfR,MAAM,CAACQ,OAAO,CAAC,CAAC;MAClB,CAAC;MAEDC,iBAAiB,WAAAA,kBAAA,EAAG;QAClB,IAAIb,KAAK,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACC,KAAK,CAAC,WAAW,CAAC;QACpD,IAAIC,MAAM,GAAG,IAAIhB,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACG,SAAS,CAAC,KAAK,CAAC;QAEnDD,MAAM,CAACU,UAAU,CAAC,KAAK,CAAC;QAExBd,KAAK,CAACM,WAAW,CAACF,MAAM,CAACG,KAAK,CAAC,CAAC,CAAC;;QAEjC;QACA,IAAI,CAACQ,WAAW,CAACf,KAAK,CAACgB,SAAS,CAAC,CAAC,CAAC;QAEnCZ,MAAM,CAACU,UAAU,CAAC,IAAI,CAAC;QAEvB,IAAI,CAACG,UAAU,CAACjB,KAAK,CAACgB,SAAS,CAAC,CAAC,CAAC;QAElCZ,MAAM,CAACU,UAAU,CAAC,KAAK,CAAC;QAExB,IAAI,CAACC,WAAW,CAACf,KAAK,CAACgB,SAAS,CAAC,CAAC,CAAC;QAEnChB,KAAK,CAACY,OAAO,CAAC,CAAC;QACfR,MAAM,CAACQ,OAAO,CAAC,CAAC;MAClB;IACF;EACF,CAAC,CAAC;EA9DFxB,EAAE,CAACO,IAAI,CAACC,MAAM,CAACM,IAAI,CAACC,KAAK,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

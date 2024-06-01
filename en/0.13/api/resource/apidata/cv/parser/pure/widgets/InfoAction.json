@@ -1,52 +1,51 @@
 {
-  "className": "cv.parser.pure.widgets.InfoAction",
-  "packageName": "cv.parser.pure.widgets",
-  "name": "InfoAction",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 828
-      },
-      "end": {
-        "line": 53,
-        "column": 3,
-        "index": 1762
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/parser/pure/widgets/InfoAction.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 828
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 53,
+      "column": 3,
+      "index": 1762
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.parser.pure.widgets.InfoAction",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "parse": {
-      "location": {
-        "start": {
-          "line": 41,
-          "column": 4,
-          "index": 1396
-        },
-        "end": {
-          "line": 46,
-          "column": 5,
-          "index": 1635
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,41 +65,59 @@
             "body": "path {String} internal path of the widget",
             "paramName": "path",
             "description": " internal path of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "flavour {String} Flavour of the widget",
             "paramName": "flavour",
             "description": " Flavour of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "pageType {String} Page type (2d, 3d, ...)",
             "paramName": "pageType",
             "description": " Page type (2d, 3d, ...)",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 49,
-        "column": 2,
-        "index": 1644
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1396
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1635
+        }
       },
-      "end": {
-        "line": 52,
-        "column": 3,
-        "index": 1758
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

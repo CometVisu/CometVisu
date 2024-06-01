@@ -326,6 +326,7 @@
     members: {
       __P_65_1: undefined,
       __P_65_0: null,
+      __P_65_2: undefined,
       // overridden
       _getInnerDomString: function _getInnerDomString() {
         /**
@@ -545,7 +546,7 @@
         });
         this.__P_65_1 = [];
         this.getIndicators().forEach(function (indicator, number) {
-          self.__P_65_1.push(new cv.util.LimitedRateUpdateAnimator(self.__P_65_2, self, number));
+          self.__P_65_1.push(new cv.util.LimitedRateUpdateAnimator(self.__P_65_3, self, number));
           svgIndicators += '<path class="indicator" style="' + indicator.style + '" />';
           if (indicator.showValue) {
             cntValues++;
@@ -578,20 +579,46 @@
         html += '</svg></div>';
         return html;
       },
+      // overridden
+      _onDomReady: function _onDomReady() {
+        var _this = this;
+        cv.ui.structure.pure.Roundbar.superclass.prototype._onDomReady.call(this);
+        if (this.__P_65_2 !== undefined) {
+          this.__P_65_2.forEach(function (_ref) {
+            var address = _ref.address,
+              data = _ref.data;
+            _this._update(address, data);
+          });
+          this.__P_65_2 = undefined;
+        }
+      },
       /**
        * Updates the roundbar widget
        *
        * @param address {String} KNX-GA or openHAB item name
-       * @param data {var} incoming data
+       * @param data {*} incoming data
        */
       _update: function _update(address, data) {
         if (data === undefined || address === undefined) {
           return;
         }
         var self = this;
+        var domElement = this.getDomElement();
+        // only continue when the animators are already available, i.e. the
+        // DOM is set up - otherwise just store it for later
+        if (this.__P_65_1 === undefined || !domElement) {
+          if (this.__P_65_2 === undefined) {
+            this.__P_65_2 = [];
+          }
+          this.__P_65_2.push({
+            address: address,
+            data: data
+          });
+          return;
+        }
         var value = cv.Transform.decode(this.getAddress()[address], data);
         var target = this.getTargetRatioValue();
-        var tspan = Array.from(this.getDomElement().getElementsByTagName('tspan'));
+        var tspan = Array.from(domElement.getElementsByTagName('tspan'));
         var valueFormat = this.applyFormat(address, value);
         this.getIndicators().forEach(function (indicator, i) {
           if (address === indicator.address) {
@@ -614,7 +641,7 @@
        * @param ratio
        * @param indicatorNumber
        */
-      __P_65_2: function __P_65_2(ratio, indicatorNumber) {
+      __P_65_3: function __P_65_3(ratio, indicatorNumber) {
         if (this.__P_65_0.length === 0) {
           // cache
           this.__P_65_0 = Array.from(this.getDomElement().getElementsByClassName('indicator'));
@@ -639,4 +666,4 @@
   cv.ui.structure.pure.Roundbar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Roundbar.js.map?dt=1709410139093
+//# sourceMappingURL=Roundbar.js.map?dt=1717235367280

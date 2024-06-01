@@ -1,0 +1,419 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169894,
+  "lastModifiedIso": "2024-06-01T09:46:09.894Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/Debounce.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 4,
+      "column": 0,
+      "index": 61
+    },
+    "end": {
+      "line": 145,
+      "column": 3,
+      "index": 3551
+    }
+  },
+  "className": "qx.tool.utils.Debounce",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Class for debouncing a call, with promise support",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Class for debouncing a call, with promise support</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "fn"
+      },
+      {
+        "name": "timeout"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 13,
+        "column": 2,
+        "index": 295
+      },
+      "end": {
+        "line": 19,
+        "column": 3,
+        "index": 413
+      }
+    }
+  },
+  "properties": {
+    "timeout": {
+      "location": {
+        "start": {
+          "line": 23,
+          "column": 4,
+          "index": 484
+        },
+        "end": {
+          "line": 28,
+          "column": 5,
+          "index": 593
+        }
+      },
+      "json": {
+        "init": 250,
+        "nullable": false,
+        "check": "Integer",
+        "event": "changeTimeout"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The timeout before firing the method "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The timeout before firing the method</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "repeatedTrigger": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 931
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1130
+        }
+      },
+      "json": {
+        "init": "ignored",
+        "nullable": false,
+        "check": [
+          "ignore",
+          "restart",
+          "repeat",
+          "queue"
+        ],
+        "apply": "_applyRepeatedTrigger",
+        "event": "changeRepeatedTrgger"
+      },
+      "jsdoc": {
+        "raw": [
+          "* What to do if triggered while the function is still executing:",
+          "     *  \"ignore\" means do nothing, allow the method to fire",
+          "     *  \"restart\" means to restart the timer",
+          "     *  \"immediate\" mean to allow the function to run again immediately after it stops",
+          "     *  \"queue\" means to schedule the function to run again",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>What to do if triggered while the function is still executing:\n  \"ignore\" means do nothing, allow the method to fire\n  \"restart\" means to restart the timer\n  \"immediate\" mean to allow the function to run again immediately after it stops\n  \"queue\" means to schedule the function to run again</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__fn": {
+      "jsdoc": {
+        "raw": [
+          "* @type{Function} the function to call "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Function} the function to call"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1202
+        },
+        "end": {
+          "line": 47,
+          "column": 14,
+          "index": 1212
+        }
+      },
+      "appearsIn": []
+    },
+    "__queuedRepeat": {
+      "jsdoc": {
+        "raw": [
+          "* @type{Boolean} that there is a repeated invocation queued "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} that there is a repeated invocation queued"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1288
+        },
+        "end": {
+          "line": 50,
+          "column": 25,
+          "index": 1309
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyQueueRepeats": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply for `repeatedTrigger`",
+          "     *",
+          "     * @param {Boolean} value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply for <code>repeatedTrigger</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Boolean} value",
+            "paramName": "value",
+            "description": "",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1404
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1525
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "run": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Runs the function, completes when the function completes.  The function returns",
+          "     * whatever the callback function returned",
+          "     *",
+          "     * @return {var?}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Runs the function, completes when the function completes.  The function returns\n whatever the callback function returned</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var?}",
+            "type": "var?",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1711
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2501
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var?"
+      },
+      "appearsIn": []
+    },
+    "_startTimer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Starts the timer",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Starts the timer</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2548
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2648
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_cancelTimer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Cancels the timer",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Cancels the timer</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2696
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 2823
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onTimeout": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when the timeout has elapsed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when the timeout has elapsed</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 2889
+        },
+        "end": {
+          "line": 136,
+          "column": 5,
+          "index": 3434
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_runImpl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called to run the actual code",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called to run the actual code</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 3494
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 3543
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

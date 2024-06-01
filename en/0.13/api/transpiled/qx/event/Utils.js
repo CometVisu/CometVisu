@@ -279,7 +279,7 @@
        * @param listener {Function} the event handler
        * @param context {Object?} the `this` for the event handler
        * @param event {Event} the event being fired
-       * @returns {qx.Promise|?} the result of the handler
+       * @returns {qx.Promise?} the result of the handler
        */
       callListener: function callListener(tracker, listener, context, event) {
         if (tracker.rejected) {
@@ -340,4 +340,4 @@
   qx.event.Utils.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Utils.js.map?dt=1709410151076
+//# sourceMappingURL=Utils.js.map?dt=1717235379800

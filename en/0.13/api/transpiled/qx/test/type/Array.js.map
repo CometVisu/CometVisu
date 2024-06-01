@@ -1,0 +1,38 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "__arr",
+    "setUp",
+    "type",
+    "Array",
+    "testConstruct",
+    "assertEquals",
+    "testAppend",
+    "append",
+    "a",
+    "b",
+    "BaseArray",
+    "testPrepend",
+    "prepend",
+    "test"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/type/Array.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\nqx.Class.define(\"qx.test.type.Array\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    __arr: null,\n\n    setUp() {\n      this.__arr = new qx.type.Array(\"x\");\n    },\n\n    testConstruct() {\n      this.assertEquals(this.__arr[0], \"x\");\n    },\n\n    testAppend() {\n      // native array\n      this.__arr.append([1, 2]);\n      this.assertEquals(this.__arr[1], 1);\n      this.assertEquals(this.__arr[2], 2);\n\n      // type array\n      var a = new qx.type.Array(3, 4);\n      this.__arr.append(a);\n      this.assertEquals(this.__arr[3], 3);\n      this.assertEquals(this.__arr[4], 4);\n\n      // type base array\n      var b = new qx.type.BaseArray(5, 6);\n      this.__arr.append(b);\n      this.assertEquals(this.__arr[5], 5);\n      this.assertEquals(this.__arr[6], 6);\n    },\n\n    testPrepend() {\n      // native array\n      this.__arr.prepend([1, 2]);\n      this.assertEquals(this.__arr[0], 1);\n      this.assertEquals(this.__arr[1], 2);\n\n      // type array\n      var a = new qx.type.Array(3, 4);\n      this.__arr.prepend(a);\n      this.assertEquals(this.__arr[0], 3);\n      this.assertEquals(this.__arr[1], 4);\n\n      // type base array\n      var b = new qx.type.BaseArray(5, 6);\n      this.__arr.prepend(b);\n      this.assertEquals(this.__arr[0], 5);\n      this.assertEquals(this.__arr[1], 6);\n    }\n  }\n});\n"
+  ],
+  "mappings": "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",
+  "ignoreList": []
+}

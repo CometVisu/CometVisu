@@ -292,10 +292,10 @@
         var bindData = itemModel.getUserData(this.classname + ".bindData");
         if (bindData) {
           if (bindData.checkedLabelId) {
-            itemModel.removeListenerById(bindData.checkedLabelId);
+            itemModel.removeBinding(bindData.checkedLabelId);
           }
           if (bindData.checkedIconId) {
-            itemModel.removeListenerById(bindData.checkedIconId);
+            itemModel.removeBinding(bindData.checkedIconId);
           }
           itemModel.setUserData(this.classname + ".bindData", null);
         }
@@ -356,4 +356,4 @@
   qx.data.controller.CheckedList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckedList.js.map?dt=1709410147457
+//# sourceMappingURL=CheckedList.js.map?dt=1717235375790

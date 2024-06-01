@@ -1,59 +1,81 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235105366,
+  "lastModifiedIso": "2024-06-01T09:45:05.366Z",
+  "classFilename": "../../client/source/class/cv/io/Client.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 1227
+    },
+    "end": {
+      "line": 743,
+      "column": 3,
+      "index": 20991
+    }
+  },
   "className": "cv.io.Client",
-  "packageName": "cv.io",
-  "name": "Client",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The JavaScript library that implements the CometVisu protocol.",
+      " * The Client handles all communication issues to supply the user",
+      " * of this object with reliable realtime data.",
+      " * It can be seen as the session layer (layer 5) according to the OSI",
+      " * model.",
+      " *",
+      " * @author Christan Mayer",
+      " * @author Tobias Bräutigam",
+      " * @since 0.5.3 (initial contribution) 0.10.0+0.11.0 (major refactoring)",
+      " *",
+      " * @ignore($)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The JavaScript library that implements the CometVisu protocol.\n The Client handles all communication issues to supply the user\n of this object with reliable realtime data.\n It can be seen as the session layer (layer 5) according to the OSI\n model.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Christan Mayer"
+      },
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.5.3 (initial contribution) 0.10.0+0.11.0 (major refactoring)"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "$"
+      }
+    ]
+  },
   "superClass": "qx.core.Object",
   "interfaces": [
     "cv.io.IClient"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 33,
-        "column": 0,
-        "index": 1227
-      },
-      "end": {
-        "line": 742,
-        "column": 3,
-        "index": 20952
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The JavaScript library that implements the CometVisu protocol.\n The Client handles all communication issues to supply the user\n of this object with reliable realtime data.\n It can be seen as the session layer (layer 5) according to the OSI\n model.</p><div class=\"authors\"><label>Authors:</label> Christan Mayer; Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 0.5.3 (initial contribution) 0.10.0+0.11.0 (major refactoring)</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Christan Mayer"
-        },
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "0.5.3 (initial contribution) 0.10.0+0.11.0 (major refactoring)"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "$"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "backendName"
+      },
+      {
+        "name": "backendLoginUrl"
+      }
+    ],
     "location": {
       "start": {
         "line": 46,
@@ -65,34 +87,12 @@
         "column": 3,
         "index": 3007
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "backendName {String} name of the backend",
-          "paramName": "backendName",
-          "description": " name of the backend",
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "backendLoginUrl {String} URL of the login resource",
-          "paramName": "backendLoginUrl",
-          "description": " URL of the login resource",
-          "type": "String"
-        }
-      ]
     }
   },
   "statics": {
     "CLIENTS": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 103,
@@ -105,10 +105,11 @@
           "index": 3176
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "TEST_MODE": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 104,
@@ -121,10 +122,11 @@
           "index": 3198
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "ERROR_CODES": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 105,
@@ -137,10 +139,23 @@
           "index": 3374
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "stopAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop all running clients",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stop all running clients</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 115,
@@ -153,18 +168,17 @@
           "index": 3526
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Stop all running clients</p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "backendNameAliases": {
+      "jsdoc": {
+        "raw": [
+          " used for backwards compability"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 122,
@@ -177,11 +191,15 @@
           "index": 3691
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "backends": {
+      "jsdoc": {
+        "raw": [
+          " with the login response so no defaults are defined here"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 131,
@@ -194,9 +212,7 @@
           "index": 4628
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
   "properties": {
@@ -213,7 +229,17 @@
           "index": 4951
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRunning"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Is the communication running at the moment?",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -221,12 +247,7 @@
           }
         ]
       },
-      "name": "running",
-      "propertyType": "new",
-      "event": "changeRunning",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     },
     "connected": {
       "location": {
@@ -241,7 +262,18 @@
           "index": 5157
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeConnected",
+        "apply": "_applyConnected"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Is the client connected to a backend at the moment?",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -249,13 +281,9 @@
           }
         ]
       },
-      "name": "connected",
-      "propertyType": "new",
-      "event": "changeConnected",
-      "apply": "_applyConnected",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
     },
     "dataReceived": {
       "location": {
@@ -270,7 +298,16 @@
           "index": 5345
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * needed to be able to check if the incoming update is the initial answer or a successing update",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -278,11 +315,9 @@
           }
         ]
       },
-      "name": "dataReceived",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
     },
     "currentTransport": {
       "location": {
@@ -297,7 +332,13 @@
           "index": 5452
         }
       },
+      "json": {},
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * the currently used transport layer",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -305,8 +346,7 @@
           }
         ]
       },
-      "name": "currentTransport",
-      "propertyType": "new"
+      "appearsIn": []
     },
     "server": {
       "location": {
@@ -321,7 +361,17 @@
           "index": 5642
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changedServer"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The server we are currently speaking to (read from the login response)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -329,12 +379,9 @@
           }
         ]
       },
-      "name": "server",
-      "propertyType": "new",
-      "event": "changedServer",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
     },
     "name": {
       "location": {
@@ -349,47 +396,20 @@
           "index": 5706
         }
       },
-      "name": "name",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
     }
   },
   "members": {
     "backend": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 220,
@@ -402,10 +422,11 @@
           "index": 5881
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "backendName": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 221,
@@ -418,10 +439,11 @@
           "index": 5904
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "_type": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 222,
@@ -434,10 +456,11 @@
           "index": 5921
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "backendLoginUrl": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 223,
@@ -450,10 +473,11 @@
           "index": 5948
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "addresses": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 224,
@@ -466,10 +490,15 @@
           "index": 5969
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "initialAddresses": {
+      "jsdoc": {
+        "raw": [
+          " the subscribed addresses"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 225,
@@ -482,11 +511,15 @@
           "index": 6025
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "filters": {
+      "jsdoc": {
+        "raw": [
+          " the addresses which should be loaded before the subscribed addresses"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 226,
@@ -499,11 +532,15 @@
           "index": 6116
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "user": {
+      "jsdoc": {
+        "raw": [
+          " the subscribed filters"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 227,
@@ -516,11 +553,15 @@
           "index": 6158
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "pass": {
+      "jsdoc": {
+        "raw": [
+          " the current user"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 228,
@@ -533,11 +574,15 @@
           "index": 6194
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "device": {
+      "jsdoc": {
+        "raw": [
+          " the current password"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 229,
@@ -550,11 +595,15 @@
           "index": 6236
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "session": {
+      "jsdoc": {
+        "raw": [
+          " the current device ID"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 230,
@@ -567,11 +616,15 @@
           "index": 6280
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "loginSettings": {
+      "jsdoc": {
+        "raw": [
+          " current session ID"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 232,
@@ -584,11 +637,11 @@
           "index": 6328
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "headers": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 233,
@@ -601,10 +654,11 @@
           "index": 6347
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "__lastError": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 234,
@@ -617,10 +671,11 @@
           "index": 6370
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getType": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 236,
@@ -634,23 +689,18 @@
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{string} e.g. openhab, mqtt or knxd",
-            "type": "string",
-            "description": " e.g. openhab, mqtt or knxd"
-          }
-        ]
-      }
+      ]
     },
     "_applyConnected": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 241,
@@ -658,106 +708,96 @@
           "index": 6448
         },
         "end": {
-          "line": 245,
+          "line": 246,
           "column": 5,
-          "index": 6547
+          "index": 6586
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "connected"
-      ]
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "setInitialAddresses": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 247,
+          "line": 248,
           "column": 4,
-          "index": 6554
+          "index": 6593
         },
         "end": {
-          "line": 249,
+          "line": 250,
           "column": 5,
-          "index": 6633
+          "index": 6672
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [
+        {
+          "name": "addresses"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "addresses {Array}"
-          }
-        ]
-      }
+      ]
     },
     "setBackend": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 251,
+          "line": 252,
           "column": 4,
-          "index": 6640
+          "index": 6679
         },
         "end": {
-          "line": 293,
+          "line": 294,
           "column": 5,
-          "index": 8196
+          "index": 8235
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "newBackend"
+        }
+      ],
+      "appearsIn": []
     },
     "getBackend": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 295,
+          "line": 296,
           "column": 4,
-          "index": 8203
+          "index": 8242
         },
         "end": {
-          "line": 297,
+          "line": 298,
           "column": 5,
-          "index": 8250
+          "index": 8289
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map}",
-            "type": "Map",
-            "description": ""
-          }
-        ]
-      }
+      ]
     },
     "beforeSend": {
-      "location": {
-        "start": {
-          "line": 303,
-          "column": 4,
-          "index": 8384
-        },
-        "end": {
-          "line": 314,
-          "column": 5,
-          "index": 8795
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * manipulates the header of the current ajax query before it is been send to the server",
+          "     * @param xhr",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -773,173 +813,141 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 4,
+          "index": 8423
+        },
+        "end": {
+          "line": 315,
+          "column": 5,
+          "index": 8834
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "xhr"
+        }
+      ],
+      "appearsIn": []
     },
     "getResourcePath": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 316,
+          "line": 317,
           "column": 4,
-          "index": 8802
+          "index": 8841
         },
         "end": {
-          "line": 320,
+          "line": 321,
           "column": 5,
-          "index": 8994
+          "index": 9033
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "map"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "name {String} Name of the resource (e.g. login, read, write, chart)",
-            "paramName": "name",
-            "description": " Name of the resource (e.g. login, read, write, chart)",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "params {Map?} optional data needed to generate the resource path",
-            "paramName": "params",
-            "description": " optional data needed to generate the resource path",
-            "optional": true,
-            "type": "Map"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String|null} relative path to the resource, returns <code>null</code> when the backend does not provide that resource",
-            "type": "String|null",
-            "description": " relative path to the resource, returns <code>null</code> when the backend does not provide that resource"
-          }
-        ]
-      }
+      ]
     },
     "setResourcePath": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 322,
+          "line": 323,
           "column": 4,
-          "index": 9001
+          "index": 9040
         },
         "end": {
-          "line": 324,
+          "line": 325,
           "column": 5,
-          "index": 9079
+          "index": 9118
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "path"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "name {String} Name of the resource (e.g. login, read, write, chart)",
-            "paramName": "name",
-            "description": " Name of the resource (e.g. login, read, write, chart)",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "path {String} relative path to the resource",
-            "paramName": "path",
-            "description": " relative path to the resource",
-            "type": "String"
-          }
-        ]
-      }
+      ]
     },
     "hasCustomChartsDataProcessor": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 326,
+          "line": 327,
           "column": 4,
-          "index": 9086
+          "index": 9125
         },
         "end": {
-          "line": 328,
+          "line": 329,
           "column": 5,
-          "index": 9144
+          "index": 9183
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean}",
-            "type": "Boolean",
-            "description": ""
-          }
-        ]
-      }
+      ]
     },
     "processChartsData": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 329,
+          "line": 330,
           "column": 4,
-          "index": 9150
+          "index": 9189
         },
         "end": {
-          "line": 331,
+          "line": 332,
           "column": 5,
-          "index": 9200
+          "index": 9239
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "data {var}"
-          },
-          {
-            "name": "@param",
-            "body": "config {{scaling: number, offset: number}}",
-            "paramName": "config",
-            "description": "}",
-            "type": "{scaling: number, offset: number"
-          }
-        ]
-      }
+      ]
     },
     "subscribe": {
-      "location": {
-        "start": {
-          "line": 341,
-          "column": 4,
-          "index": 9436
-        },
-        "end": {
-          "line": 359,
-          "column": 5,
-          "index": 10055
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Subscribe to the addresses in the parameter. The second parameter",
+          "     * (filter) is optional",
+          "     *",
+          "     * @param addresses {Array?} addresses to subscribe to",
+          "     * @param filters {Array?} Filters",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -965,55 +973,76 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "location": {
+        "start": {
+          "line": 342,
+          "column": 4,
+          "index": 9475
+        },
+        "end": {
+          "line": 360,
+          "column": 5,
+          "index": 10094
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "addresses",
+          "type": "Array",
+          "optional": true
+        },
+        {
+          "name": "filters",
+          "type": "Array",
+          "optional": true
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
       ]
     },
     "addSubscription": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 361,
+          "line": 362,
           "column": 4,
-          "index": 10062
+          "index": 10101
         },
         "end": {
-          "line": 368,
+          "line": 369,
           "column": 5,
-          "index": 10257
+          "index": 10296
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [
+        {
+          "name": "address"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "address {String}"
-          }
-        ]
-      }
+      ]
     },
     "login": {
-      "location": {
-        "start": {
-          "line": 381,
-          "column": 4,
-          "index": 10755
-        },
-        "end": {
-          "line": 409,
-          "column": 5,
-          "index": 11763
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function starts the communication by a login and then runs the",
+          "     * ongoing communication task",
+          "     *",
+          "     * @param loginOnly {Boolean} if true only login and backend configuration, no subscription",
+          "     *                            to addresses (default: false)",
+          "     * @param credentials {Map?} not used in this client",
+          "     * @param callback {Function} call this function when login is done",
+          "     * @param context {Object} context for the callback (this)",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1026,7 +1055,7 @@
             "body": "loginOnly {Boolean} if true only login and backend configuration, no subscription\n                            to addresses (default: false)",
             "paramName": "loginOnly",
             "description": " if true only login and backend configuration, no subscription\n                            to addresses (default: false)",
-            "type": "Boolean"
+            "type": "boolean"
           },
           {
             "name": "@param",
@@ -1041,38 +1070,61 @@
             "body": "callback {Function} call this function when login is done",
             "paramName": "callback",
             "description": " call this function when login is done",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "context {Object} context for the callback (this)",
             "paramName": "context",
             "description": " context for the callback (this)",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "location": {
+        "start": {
+          "line": 382,
+          "column": 4,
+          "index": 10794
+        },
+        "end": {
+          "line": 410,
+          "column": 5,
+          "index": 11802
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "loginOnly",
+          "type": "boolean"
+        },
+        {
+          "name": "credentials",
+          "type": "Map",
+          "optional": true
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
       ]
     },
     "getResponse": {
-      "location": {
-        "start": {
-          "line": 414,
-          "column": 4,
-          "index": 11871
-        },
-        "end": {
-          "line": 437,
-          "column": 6,
-          "index": 12441
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the json response from the parameter received from the used XHR transport",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1080,55 +1132,74 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "getResponseHeader": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 439,
+          "line": 415,
           "column": 4,
-          "index": 12448
+          "index": 11910
         },
         "end": {
-          "line": 449,
+          "line": 438,
           "column": 6,
-          "index": 12744
+          "index": 12480
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
-    "getQueryString": {
+    "getResponseHeader": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 451,
+          "line": 440,
           "column": 4,
-          "index": 12751
+          "index": 12487
         },
         "end": {
-          "line": 471,
+          "line": 450,
+          "column": 6,
+          "index": 12783
+        }
+      },
+      "appearsIn": []
+    },
+    "getQueryString": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 452,
+          "column": 4,
+          "index": 12790
+        },
+        "end": {
+          "line": 472,
           "column": 5,
-          "index": 13451
+          "index": 13490
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
     },
     "doRequest": {
-      "location": {
-        "start": {
-          "line": 482,
-          "column": 4,
-          "index": 13836
-        },
-        "end": {
-          "line": 545,
-          "column": 6,
-          "index": 15785
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an XHR request. The request type depends von the \"cv.xhr\" environment setting",
+          "     * (currently \"qx\" and \"jquery\" are supported)",
+          "     * @param url {String} URI",
+          "     * @param data {Map} request data",
+          "     * @param callback {Function} success callback",
+          "     * @param context {Object} context fot the callback",
+          "     * @return {qx.io.request.Xhr|jQuery}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1141,28 +1212,28 @@
             "body": "url {String} URI",
             "paramName": "url",
             "description": " URI",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "data {Map} request data",
             "paramName": "data",
             "description": " request data",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "callback {Function} success callback",
             "paramName": "callback",
             "description": " success callback",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "context {Object} context fot the callback",
             "paramName": "context",
             "description": " context fot the callback",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
@@ -1174,23 +1245,32 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "_onError": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 551,
+          "line": 483,
           "column": 4,
-          "index": 15880
+          "index": 13875
         },
         "end": {
-          "line": 566,
-          "column": 5,
-          "index": 16305
+          "line": 546,
+          "column": 6,
+          "index": 15824
         }
       },
+      "returnType": {
+        "type": "qx.io.request.Xhr|jQuery"
+      },
+      "appearsIn": []
+    },
+    "_onError": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle errors from qooxdoos XHR request",
+          "     * @param ev {Event}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1200,27 +1280,43 @@
         "@param": [
           {
             "name": "@param",
-            "body": "ev {Event}"
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "getLastError": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 573,
+          "line": 552,
           "column": 4,
-          "index": 16485
+          "index": 15919
         },
         "end": {
-          "line": 575,
+          "line": 567,
           "column": 5,
-          "index": 16538
+          "index": 16344
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLastError": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the last recorded error",
+          "     *",
+          "     * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1231,32 +1327,51 @@
           {
             "name": "@return",
             "body": "{{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}",
-            "type": "{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number",
-            "description": "|*}"
+            "type": "{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*",
+            "description": ""
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "location": {
+        "start": {
+          "line": 574,
+          "column": 4,
+          "index": 16524
+        },
+        "end": {
+          "line": 576,
+          "column": 5,
+          "index": 16577
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*"
+      },
       "appearsIn": [
         "cv.io.IClient"
       ]
     },
     "handleLogin": {
-      "location": {
-        "start": {
-          "line": 591,
-          "column": 4,
-          "index": 17052
-        },
-        "end": {
-          "line": 614,
-          "column": 5,
-          "index": 17963
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles login response, applies backend configuration if send by",
+          "     * backend and forwards to the configurated transport handleSession",
+          "     * function",
+          "     *",
+          "     * Parameter vary dependent from the XHR type used",
+          "     * qx (Qooxdoo):",
+          "     *   ev {Event} the 'success' event from the XHR request",
+          "     *",
+          "     * jQuery:",
+          "     *   data {Object} The JSON data returned from the server",
+          "     *   textStatus {String} a string describing the status",
+          "     *   request {Object} the jqXHR object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1264,23 +1379,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "stop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 620,
+          "line": 592,
           "column": 4,
-          "index": 18042
+          "index": 17091
         },
         "end": {
-          "line": 626,
+          "line": 615,
           "column": 5,
-          "index": 18227
+          "index": 18002
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "stop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function stops an ongoing connection",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1288,23 +1411,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "buildRequest": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 634,
+          "line": 621,
           "column": 4,
-          "index": 18392
+          "index": 18081
         },
         "end": {
-          "line": 657,
+          "line": 627,
           "column": 5,
-          "index": 19033
+          "index": 18266
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "buildRequest": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Build the URL part that contains the addresses and filters",
+          "     * @param addresses {Array}",
+          "     * @param asString",
+          "     * @return {Map}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1314,7 +1447,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "addresses {Array}"
+            "body": "addresses {Array}",
+            "paramName": "addresses",
+            "type": "Array<any>"
           },
           {
             "name": "@param",
@@ -1327,28 +1462,49 @@
           {
             "name": "@return",
             "body": "{Map}",
-            "type": "Map",
+            "type": "Map<any, any>",
             "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "write": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 665,
+          "line": 635,
           "column": 4,
-          "index": 19201
+          "index": 18431
         },
         "end": {
-          "line": 686,
+          "line": 658,
           "column": 5,
-          "index": 19738
+          "index": 19072
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "addresses",
+          "type": "Array<any>"
+        },
+        {
+          "name": "asString"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "write": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function sends a value",
+          "     * @param address {String} address to send the value to",
+          "     * @param value {String} value to send",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1361,59 +1517,82 @@
             "body": "address {String} address to send the value to",
             "paramName": "address",
             "description": " address to send the value to",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "value {String} value to send",
             "paramName": "value",
             "description": " value to send",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "location": {
+        "start": {
+          "line": 666,
+          "column": 4,
+          "index": 19240
+        },
+        "end": {
+          "line": 687,
+          "column": 5,
+          "index": 19777
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
       ]
     },
     "authorize": {
+      "jsdoc": {
+        "raw": [
+          " this client does not implement an authorization"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
-          "line": 689,
+          "line": 690,
           "column": 4,
-          "index": 19800
+          "index": 19839
         },
         "end": {
-          "line": 689,
+          "line": 690,
           "column": 21,
-          "index": 19817
+          "index": 19856
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [
+        {
+          "name": "req"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
       ]
     },
     "restart": {
-      "location": {
-        "start": {
-          "line": 695,
-          "column": 4,
-          "index": 19889
-        },
-        "end": {
-          "line": 697,
-          "column": 5,
-          "index": 19958
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Restart the connection",
+          "     * @param full",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1429,77 +1608,84 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "location": {
+        "start": {
+          "line": 696,
+          "column": 4,
+          "index": 19928
+        },
+        "end": {
+          "line": 698,
+          "column": 5,
+          "index": 19997
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "full"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
       ]
     },
     "terminate": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 699,
+          "line": 700,
           "column": 4,
-          "index": 19965
+          "index": 20004
         },
         "end": {
-          "line": 701,
+          "line": 702,
           "column": 5,
-          "index": 20026
+          "index": 20065
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [],
       "appearsIn": [
         "cv.io.IClient"
       ]
     },
     "update": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 703,
+          "line": 704,
           "column": 4,
-          "index": 20033
+          "index": 20072
         },
         "end": {
-          "line": 703,
+          "line": 704,
           "column": 19,
-          "index": 20048
+          "index": 20087
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [
+        {
+          "name": "json"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "json",
-            "paramName": "json",
-            "type": ""
-          }
-        ]
-      }
+      ]
     },
     "record": {
-      "location": {
-        "start": {
-          "line": 710,
-          "column": 4,
-          "index": 20235
-        },
-        "end": {
-          "line": 710,
-          "column": 25,
-          "index": 20256
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Can be overridden to record client communication with backend",
+          "     * @param type {String} type of event to record",
+          "     * @param data {Object} data to record",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1512,38 +1698,55 @@
             "body": "type {String} type of event to record",
             "paramName": "type",
             "description": " type of event to record",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "data {Object} data to record",
             "paramName": "data",
             "description": " data to record",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "location": {
+        "start": {
+          "line": 711,
+          "column": 4,
+          "index": 20274
+        },
+        "end": {
+          "line": 711,
+          "column": 25,
+          "index": 20295
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "Record<any, any>"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
       ]
     },
     "showError": {
-      "location": {
-        "start": {
-          "line": 718,
-          "column": 4,
-          "index": 20483
-        },
-        "end": {
-          "line": 718,
-          "column": 37,
-          "index": 20516
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Can be overridden to provide an error handler for client errors",
+          "     * @param type {Number} one of cv.io.Client.ERROR_CODES",
+          "     * @param message {String} detailed error message",
+          "     * @param args",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1556,14 +1759,14 @@
             "body": "type {Number} one of cv.io.Client.ERROR_CODES",
             "paramName": "type",
             "description": " one of cv.io.Client.ERROR_CODES",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
             "body": "message {String} detailed error message",
             "paramName": "message",
             "description": " detailed error message",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -1573,786 +1776,158 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "location": {
+        "start": {
+          "line": 719,
+          "column": 4,
+          "index": 20522
+        },
+        "end": {
+          "line": 719,
+          "column": 37,
+          "index": 20555
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "number"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "args"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
       ]
     },
     "hasProvider": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 720,
+          "line": 721,
           "column": 4,
-          "index": 20523
+          "index": 20562
         },
         "end": {
-          "line": 722,
+          "line": 723,
           "column": 5,
-          "index": 20568
+          "index": 20607
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "name {String}"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean}",
-            "type": "Boolean",
-            "description": ""
-          }
-        ]
-      }
+      ]
     },
     "getProviderUrl": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 723,
+          "line": 724,
           "column": 4,
-          "index": 20574
+          "index": 20613
         },
         "end": {
-          "line": 725,
+          "line": 726,
           "column": 5,
-          "index": 20621
+          "index": 20660
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "name",
-            "paramName": "name",
-            "type": ""
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String}",
-            "type": "String",
-            "description": ""
-          }
-        ]
-      }
+      ]
     },
     "getProviderConvertFunction": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 726,
+          "line": 727,
           "column": 4,
-          "index": 20627
+          "index": 20666
         },
         "end": {
-          "line": 728,
+          "line": 729,
           "column": 5,
-          "index": 20694
+          "index": 20733
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "format"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "name {String}"
-          },
-          {
-            "name": "@param",
-            "body": "format {String} 'monaco' for texteditor and 'dp' for Tree editor",
-            "paramName": "format",
-            "description": " 'monaco' for texteditor and 'dp' for Tree editor",
-            "type": "String"
-          }
-        ]
-      }
+      ]
     },
     "getProviderData": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
-          "line": 729,
+          "line": 730,
           "column": 4,
-          "index": 20700
+          "index": 20739
         },
         "end": {
-          "line": 731,
+          "line": 732,
           "column": 5,
-          "index": 20767
+          "index": 20806
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.io.IClient",
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "format"
+        }
+      ],
       "appearsIn": [
         "cv.io.IClient"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "name {String}"
-          },
-          {
-            "name": "@param",
-            "body": "format {String} 'monaco' for texteditor and 'dp' for Tree editor",
-            "paramName": "format",
-            "description": " 'monaco' for texteditor and 'dp' for Tree editor",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Promise<variant>|null}",
-            "type": "Promise<variant>|null",
-            "description": ""
-          }
-        ]
-      }
-    },
-    "getConnected": {
-      "type": "function",
-      "name": "getConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>connected</code>.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for connected"
-          }
-        ]
-      }
-    },
-    "isConnected": {
-      "type": "function",
-      "name": "isConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>connected</code>.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for connected"
-          }
-        ]
-      }
-    },
-    "setConnected": {
-      "type": "function",
-      "name": "setConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>connected</code>.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for connected"
-          }
-        ]
-      }
-    },
-    "resetConnected": {
-      "type": "function",
-      "name": "resetConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>connected</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ]
-      }
-    },
-    "getServer": {
-      "type": "function",
-      "name": "getServer",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>server</code>.\n\nFor further details take a look at the property definition: {@link #server}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for server"
-          }
-        ]
-      }
-    },
-    "setServer": {
-      "type": "function",
-      "name": "setServer",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>server</code>.\n\nFor further details take a look at the property definition: {@link #server}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for server"
-          }
-        ]
-      }
-    },
-    "resetServer": {
-      "type": "function",
-      "name": "resetServer",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>server</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #server}."
-          }
-        ]
-      }
-    },
-    "getDataReceived": {
-      "type": "function",
-      "name": "getDataReceived",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>dataReceived</code>.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for dataReceived"
-          }
-        ]
-      }
-    },
-    "isDataReceived": {
-      "type": "function",
-      "name": "isDataReceived",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>dataReceived</code>.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for dataReceived"
-          }
-        ]
-      }
-    },
-    "setDataReceived": {
-      "type": "function",
-      "name": "setDataReceived",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>dataReceived</code>.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for dataReceived"
-          }
-        ]
-      }
-    },
-    "resetDataReceived": {
-      "type": "function",
-      "name": "resetDataReceived",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>dataReceived</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #dataReceived}."
-          }
-        ]
-      }
-    },
-    "getName": {
-      "type": "function",
-      "name": "getName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for name"
-          }
-        ]
-      }
-    },
-    "setName": {
-      "type": "function",
-      "name": "setName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for name"
-          }
-        ]
-      }
-    },
-    "resetName": {
-      "type": "function",
-      "name": "resetName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getRunning": {
-      "type": "function",
-      "name": "getRunning",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>running</code>.\n\nFor further details take a look at the property definition: {@link #running}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for running"
-          }
-        ]
-      }
-    },
-    "isRunning": {
-      "type": "function",
-      "name": "isRunning",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>running</code>.\n\nFor further details take a look at the property definition: {@link #running}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for running"
-          }
-        ]
-      }
-    },
-    "setRunning": {
-      "type": "function",
-      "name": "setRunning",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>running</code>.\n\nFor further details take a look at the property definition: {@link #running}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for running"
-          }
-        ]
-      }
-    },
-    "resetRunning": {
-      "type": "function",
-      "name": "resetRunning",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>running</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #running}."
-          }
-        ]
-      }
-    },
-    "getCurrentTransport": {
-      "type": "function",
-      "name": "getCurrentTransport",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>currentTransport</code>.\n\nFor further details take a look at the property definition: {@link #currentTransport}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for currentTransport"
-          }
-        ]
-      }
-    },
-    "setCurrentTransport": {
-      "type": "function",
-      "name": "setCurrentTransport",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>currentTransport</code>.\n\nFor further details take a look at the property definition: {@link #currentTransport}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for currentTransport"
-          }
-        ]
-      }
-    },
-    "resetCurrentTransport": {
-      "type": "function",
-      "name": "resetCurrentTransport",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>currentTransport</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #currentTransport}."
-          }
-        ]
-      }
+      ]
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
-        "line": 739,
+        "line": 740,
         "column": 2,
-        "index": 20915
+        "index": 20954
       },
       "end": {
-        "line": 741,
+        "line": 742,
         "column": 3,
-        "index": 20948
+        "index": 20987
       }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+    }
+  }
 }

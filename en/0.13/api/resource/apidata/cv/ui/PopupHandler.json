@@ -1,39 +1,41 @@
 {
-  "className": "cv.ui.PopupHandler",
-  "packageName": "cv.ui",
-  "name": "PopupHandler",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 849
-      },
-      "end": {
-        "line": 275,
-        "column": 3,
-        "index": 7573
-      }
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/ui/PopupHandler.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 849
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Handles all popups</p>"
-        }
-      ]
+    "end": {
+      "line": 275,
+      "column": 3,
+      "index": 7573
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.ui.PopupHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Handles all popups",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Handles all popups</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "popups": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 32,
@@ -46,10 +48,11 @@
           "index": 1071
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "configs": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 33,
@@ -62,10 +65,11 @@
           "index": 1088
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "init": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 35,
@@ -79,9 +83,33 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "_onPageChanged": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * close all popups (except errors) for the page that has been left just now.",
+          "     * @param ev {Event}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>close all popups (except errors) for the page that has been left just now.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 68,
@@ -94,24 +122,18 @@
           "index": 2368
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>close all popups (except errors) for the page that has been left just now.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "ev {Event}"
-          }
-        ]
-      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
     },
     "handleMessage": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 80,
@@ -125,9 +147,55 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "message"
+        },
+        {
+          "name": "config"
+        }
+      ],
+      "appearsIn": []
     },
     "confirm": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Show a confirm message the call the callback with the information if",
+          "     * this message has been confirmed or not,",
+          "     * @param title {string}",
+          "     * @param message {string}",
+          "     * @param callback {confirmationCallback}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Show a confirm message the call the callback with the information if\n this message has been confirmed or not,</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "title {string}",
+            "paramName": "title",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "message {string}",
+            "paramName": "message",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "callback {confirmationCallback}",
+            "paramName": "callback",
+            "type": "confirmationCallback"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 115,
@@ -140,59 +208,34 @@
           "index": 3916
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          },
-          {
-            "name": "@description",
-            "body": "<p>Show a confirm message the call the callback with the information if\n this message has been confirmed or not,</p>"
-          }
-        ],
-        "@callback": [
-          {
-            "name": "@callback",
-            "body": "confirmationCallback"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "confirmed {boolean}"
-          },
-          {
-            "name": "@param",
-            "body": "title {string}"
-          },
-          {
-            "name": "@param",
-            "body": "message {string}"
-          },
-          {
-            "name": "@param",
-            "body": "callback {confirmationCallback}"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "callback",
+          "type": "confirmationCallback"
+        }
+      ],
+      "appearsIn": []
     },
     "showPopup": {
-      "location": {
-        "start": {
-          "line": 148,
-          "column": 4,
-          "index": 4185
-        },
-        "end": {
-          "line": 155,
-          "column": 5,
-          "index": 4384
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Show a popup of type \"type\". The attributes is an type dependent object",
+          "     *",
+          "     * @param type {String} popup type",
+          "     * @param attributes {Map} popup configuration (content, title, stylings etc)",
+          "     * @return {cv.ui.Popup} The popup",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -205,14 +248,14 @@
             "body": "type {String} popup type",
             "paramName": "type",
             "description": " popup type",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "attributes {Map} popup configuration (content, title, stylings etc)",
             "paramName": "attributes",
             "description": " popup configuration (content, title, stylings etc)",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
@@ -220,27 +263,47 @@
             "name": "@return",
             "body": "{cv.ui.Popup} The popup",
             "type": "cv.ui.Popup",
-            "description": " The popup"
+            "description": "The popup"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removePopup": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 161,
+          "line": 148,
           "column": 4,
-          "index": 4496
+          "index": 4185
         },
         "end": {
-          "line": 167,
+          "line": 155,
           "column": 5,
-          "index": 4655
+          "index": 4384
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "attributes",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "cv.ui.Popup"
+      },
+      "appearsIn": []
+    },
+    "removePopup": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the popup.",
+          "     * @param popup {cv.ui.Popup} popup returned by showPopup()",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -257,23 +320,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addPopup": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 173,
+          "line": 161,
           "column": 4,
-          "index": 4763
+          "index": 4496
         },
         "end": {
-          "line": 176,
+          "line": 167,
           "column": 5,
-          "index": 4891
+          "index": 4655
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "popup",
+          "type": "cv.ui.Popup"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addPopup": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a popup to the internal list",
+          "     * @param object {cv.ui.Popup} the popup",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -290,23 +366,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPopup": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 183,
+          "line": 173,
           "column": 4,
-          "index": 5016
+          "index": 4763
         },
         "end": {
-          "line": 189,
+          "line": 176,
           "column": 5,
-          "index": 5178
+          "index": 4891
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "cv.ui.Popup"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPopup": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Retrieve a popup by name",
+          "     * @param name {String} name of the popup",
+          "     * @return {Object}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -319,22 +409,101 @@
             "body": "name {String} name of the popup",
             "paramName": "name",
             "description": " name of the popup",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object}",
-            "type": "Object",
+            "type": "Record<any, any>",
             "description": ""
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 5016
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 5178
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
     },
     "placementStrategy": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Figure out best placement of popup.",
+          "     * A preference can optionally be passed. The position is that of the numbers",
+          "     * on the numeric keypad. I.e. a value of \"6\" means centered above the anchor.",
+          "     * A value of \"0\" means centered to the page",
+          "     *",
+          "     * @param anchor {Map}",
+          "     * @param popup {Map}",
+          "     * @param page {Map}",
+          "     * @param preference {Number}",
+          "     * @return {Map}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Figure out best placement of popup.\n A preference can optionally be passed. The position is that of the numbers\n on the numeric keypad. I.e. a value of \"6\" means centered above the anchor.\n A value of \"0\" means centered to the page</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "anchor {Map}",
+            "paramName": "anchor",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "popup {Map}",
+            "paramName": "popup",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "page {Map}",
+            "paramName": "page",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "preference {Number}",
+            "paramName": "preference",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}",
+            "type": "Map<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 203,
@@ -347,57 +516,31 @@
           "index": 7436
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Figure out best placement of popup.\n A preference can optionally be passed. The position is that of the numbers\n on the numeric keypad. I.e. a value of \"6\" means centered above the anchor.\n A value of \"0\" means centered to the page</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "anchor {Map}"
-          },
-          {
-            "name": "@param",
-            "body": "popup {Map}"
-          },
-          {
-            "name": "@param",
-            "body": "page {Map}"
-          },
-          {
-            "name": "@param",
-            "body": "preference {Number}"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map}",
-            "type": "Map",
-            "description": ""
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 271,
-        "column": 2,
-        "index": 7445
+      "params": [
+        {
+          "name": "anchor",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "popup",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "page",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "preference",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
       },
-      "end": {
-        "line": 274,
-        "column": 3,
-        "index": 7569
-      }
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

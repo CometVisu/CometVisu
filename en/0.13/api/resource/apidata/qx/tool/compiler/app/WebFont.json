@@ -1,0 +1,684 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172778,
+  "lastModifiedIso": "2024-06-01T09:46:12.778Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/app/WebFont.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 947
+    },
+    "end": {
+      "line": 351,
+      "column": 3,
+      "index": 10597
+    }
+  },
+  "className": "qx.tool.compiler.app.WebFont",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Represents a WebFont provided by a Library",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Represents a WebFont provided by a Library</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "library"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 1026
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 1093
+      }
+    }
+  },
+  "properties": {
+    "name": {
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1151
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1186
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The name of the webfont "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of the webfont</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "defaultSize": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1221
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1280
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "init": 40
+      },
+      "jsdoc": {
+        "raw": [
+          "* The default size "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The default size</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "mapping": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1567
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1645
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Optional mapping filename. The path is relative to the location of the",
+          "     * `Manifest.json` file. The mapping file is in json format and should contain",
+          "     * a map of icon name to code point in hex:",
+          "     * `{ \"my_icon\": \"ef99\", \"my_other_icon\": \"483c\"}`",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Optional mapping filename. The path is relative to the location of the\n <code>Manifest.json</code> file. The mapping file is in json format and should contain\n a map of icon name to code point in hex:\n <code>{ \"my_icon\": \"ef99\", \"my_other_icon\": \"483c\"}</code></p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "comparisonString": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1919
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2006
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Characters that are used to test if the font has loaded properly. These",
+          "     * default to \"WEei\" in `qx.bom.webfont.Validator` and can be overridden",
+          "     * for certain cases like icon fonts that do not provide the predefined",
+          "     * characters.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Characters that are used to test if the font has loaded properly. These\n default to \"WEei\" in <code>qx.bom.webfont.Validator</code> and can be overridden\n for certain cases like icon fonts that do not provide the predefined\n characters.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "resources": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2132
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2171
+        }
+      },
+      "json": {
+        "check": "Array"
+      },
+      "jsdoc": {
+        "raw": [
+          "* {String[]} Resources that make up the font; an array of Strings, each of which can be a URL or a local file "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String[]} Resources that make up the font; an array of Strings, each of which can be a URL or a local file</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__library": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2195
+        },
+        "end": {
+          "line": 84,
+          "column": 19,
+          "index": 2210
+        }
+      },
+      "appearsIn": []
+    },
+    "__fontData": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2216
+        },
+        "end": {
+          "line": 85,
+          "column": 20,
+          "index": 2232
+        }
+      },
+      "appearsIn": []
+    },
+    "_loadLocalFont": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper which triggers a local font analyze run.",
+          "     *",
+          "     * @param filename {String} Filename for the local font",
+          "     * @return {Map<String,String>} mapping of glyphs to codepoints",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper which triggers a local font analyze run.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} Filename for the local font",
+            "paramName": "filename",
+            "description": " Filename for the local font",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map<String,String>} mapping of glyphs to codepoints",
+            "type": "Map<String,String>",
+            "description": "mapping of glyphs to codepoints"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2445
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2677
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<String,String>"
+      },
+      "appearsIn": []
+    },
+    "_loadRemoteFont": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper which loads a remote font to analyze the result.",
+          "     *",
+          "     * @param url {String} URL for the font download",
+          "     * @return {Map<String,String>} mapping of glyphs to codepoints",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper which loads a remote font to analyze the result.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "url {String} URL for the font download",
+            "paramName": "url",
+            "description": " URL for the font download",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map<String,String>} mapping of glyphs to codepoints",
+            "type": "Map<String,String>",
+            "description": "mapping of glyphs to codepoints"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 2891
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3173
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<String,String>"
+      },
+      "appearsIn": []
+    },
+    "__processFontFile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Common code to extract the desired font information from a font file",
+          "     * on disk.",
+          "     *",
+          "     * @param filename {String} Path to font file",
+          "     * @return {Map<String,String>} mapping of glyphs to codepoints",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Common code to extract the desired font information from a font file\n on disk.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} Path to font file",
+            "paramName": "filename",
+            "description": " Path to font file",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map<String,String>} mapping of glyphs to codepoints",
+            "type": "Map<String,String>",
+            "description": "mapping of glyphs to codepoints"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3413
+        },
+        "end": {
+          "line": 254,
+          "column": 5,
+          "index": 7795
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<String,String>"
+      },
+      "appearsIn": []
+    },
+    "getBootstrapCode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return bootstrap code that is executed before the Application starts.",
+          "     *",
+          "     * @param target  {qx.tool.compiler.targets.Target} the target",
+          "     * @param application  {qx.tool.compiler.app.Application} the application being built",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return bootstrap code that is executed before the Application starts.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target  {qx.tool.compiler.targets.Target} the target",
+            "paramName": "target",
+            "description": " the target",
+            "type": "qx.tool.compiler.targets.Target"
+          },
+          {
+            "name": "@param",
+            "body": "application  {qx.tool.compiler.app.Application} the application being built",
+            "paramName": "application",
+            "description": " the application being built",
+            "type": "qx.tool.compiler.app.Application"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 4,
+          "index": 8083
+        },
+        "end": {
+          "line": 286,
+          "column": 5,
+          "index": 8630
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.tool.compiler.targets.Target"
+        },
+        {
+          "name": "application",
+          "type": "qx.tool.compiler.app.Application"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "generateForTarget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called by {Target} to compile the fonts, called once per application build",
+          "     * (NOTE:: right now, this is called for each application - that is soon to be fixed)",
+          "     *",
+          "     * @param target  {qx.tool.compiler.targets.Target} the target",
+          "     * @return {Promise}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called by {Target} to compile the fonts, called once per application build\n (NOTE:: right now, this is called for each application - that is soon to be fixed)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target  {qx.tool.compiler.targets.Target} the target",
+            "paramName": "target",
+            "description": " the target",
+            "type": "qx.tool.compiler.targets.Target"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise}",
+            "type": "Promise<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 4,
+          "index": 8924
+        },
+        "end": {
+          "line": 325,
+          "column": 5,
+          "index": 9933
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.tool.compiler.targets.Target"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "generateForApplication": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called by Target to add fonts to an application",
+          "     *",
+          "     * @param target  {qx.tool.compiler.targets.Target} the target",
+          "     * @param application  {qx.tool.compiler.app.Application} the application being built",
+          "     * @return {Promise}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called by Target to add fonts to an application</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target  {qx.tool.compiler.targets.Target} the target",
+            "paramName": "target",
+            "description": " the target",
+            "type": "qx.tool.compiler.targets.Target"
+          },
+          {
+            "name": "@param",
+            "body": "application  {qx.tool.compiler.app.Application} the application being built",
+            "paramName": "application",
+            "description": " the application being built",
+            "type": "qx.tool.compiler.app.Application"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise}",
+            "type": "Promise<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 334,
+          "column": 4,
+          "index": 10200
+        },
+        "end": {
+          "line": 336,
+          "column": 5,
+          "index": 10295
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.tool.compiler.targets.Target"
+        },
+        {
+          "name": "application",
+          "type": "qx.tool.compiler.app.Application"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a string representation of this for debugging",
+          "     *",
+          "     * @return {String} the name or resource of this font",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a string representation of this for debugging</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the name or resource of this font",
+            "type": "string",
+            "description": "the name or resource of this font"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 343,
+          "column": 4,
+          "index": 10444
+        },
+        "end": {
+          "line": 349,
+          "column": 5,
+          "index": 10589
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.data.MBinding",
+        "qx.core.MLogging",
+        "qx.core.MEvent",
+        "qx.core.MProperty",
+        "qx.core.MObjectId",
+        "qx.core.MAssert"
+      ]
+    }
+  },
+  "statics": {}
+}

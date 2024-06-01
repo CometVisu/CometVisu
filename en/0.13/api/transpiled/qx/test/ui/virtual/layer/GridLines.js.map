@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "ui",
+    "LayoutTestCase",
+    "members",
+    "_assertGridLines",
+    "linesLayer",
+    "isHorizontal",
+    "color",
+    "lineSize",
+    "msg",
+    "assertEquals",
+    "getDefaultLineColor",
+    "getDefaultLineSize",
+    "testCreate",
+    "lines",
+    "virtual",
+    "layer",
+    "GridLines",
+    "destroy"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/virtual/layer/GridLines.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n   * Jonathan Weiß (jonathan_rass)\n   * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.ui.virtual.layer.GridLines\", {\n  extend: qx.test.ui.LayoutTestCase,\n\n  members: {\n    _assertGridLines(linesLayer, isHorizontal, color, lineSize, msg) {\n      this.assertEquals(isHorizontal, linesLayer.isHorizontal(), msg);\n      this.assertEquals(color, linesLayer.getDefaultLineColor(), msg);\n      this.assertEquals(lineSize, linesLayer.getDefaultLineSize(), msg);\n    },\n\n    testCreate() {\n      var lines = new qx.ui.virtual.layer.GridLines();\n      this._assertGridLines(lines, true, \"gray\", 1);\n      lines.destroy();\n\n      var lines = new qx.ui.virtual.layer.GridLines(\"horizontal\");\n      this._assertGridLines(lines, true, \"gray\", 1);\n      lines.destroy();\n\n      var lines = new qx.ui.virtual.layer.GridLines(\"vertical\", \"red\");\n      this._assertGridLines(lines, false, \"red\", 1);\n      lines.destroy();\n\n      var lines = new qx.ui.virtual.layer.GridLines(\"vertical\", \"red\", 5);\n      this._assertGridLines(lines, false, \"red\", 5);\n      lines.destroy();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,oCAAoC,EAAE;IACpDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,EAAE,CAACC,cAAc;IAEjCC,OAAO,EAAE;MACPC,gBAAgB,WAAAA,iBAACC,UAAU,EAAEC,YAAY,EAAEC,KAAK,EAAEC,QAAQ,EAAEC,GAAG,EAAE;QAC/D,IAAI,CAACC,YAAY,CAACJ,YAAY,EAAED,UAAU,CAACC,YAAY,CAAC,CAAC,EAAEG,GAAG,CAAC;QAC/D,IAAI,CAACC,YAAY,CAACH,KAAK,EAAEF,UAAU,CAACM,mBAAmB,CAAC,CAAC,EAAEF,GAAG,CAAC;QAC/D,IAAI,CAACC,YAAY,CAACF,QAAQ,EAAEH,UAAU,CAACO,kBAAkB,CAAC,CAAC,EAAEH,GAAG,CAAC;MACnE,CAAC;MAEDI,UAAU,WAAAA,WAAA,EAAG;QACX,IAAIC,KAAK,GAAG,IAAIrB,EAAE,CAACQ,EAAE,CAACc,OAAO,CAACC,KAAK,CAACC,SAAS,CAAC,CAAC;QAC/C,IAAI,CAACb,gBAAgB,CAACU,KAAK,EAAE,IAAI,EAAE,MAAM,EAAE,CAAC,CAAC;QAC7CA,KAAK,CAACI,OAAO,CAAC,CAAC;QAEf,IAAIJ,KAAK,GAAG,IAAIrB,EAAE,CAACQ,EAAE,CAACc,OAAO,CAACC,KAAK,CAACC,SAAS,CAAC,YAAY,CAAC;QAC3D,IAAI,CAACb,gBAAgB,CAACU,KAAK,EAAE,IAAI,EAAE,MAAM,EAAE,CAAC,CAAC;QAC7CA,KAAK,CAACI,OAAO,CAAC,CAAC;QAEf,IAAIJ,KAAK,GAAG,IAAIrB,EAAE,CAACQ,EAAE,CAACc,OAAO,CAACC,KAAK,CAACC,SAAS,CAAC,UAAU,EAAE,KAAK,CAAC;QAChE,IAAI,CAACb,gBAAgB,CAACU,KAAK,EAAE,KAAK,EAAE,KAAK,EAAE,CAAC,CAAC;QAC7CA,KAAK,CAACI,OAAO,CAAC,CAAC;QAEf,IAAIJ,KAAK,GAAG,IAAIrB,EAAE,CAACQ,EAAE,CAACc,OAAO,CAACC,KAAK,CAACC,SAAS,CAAC,UAAU,EAAE,KAAK,EAAE,CAAC,CAAC;QACnE,IAAI,CAACb,gBAAgB,CAACU,KAAK,EAAE,KAAK,EAAE,KAAK,EAAE,CAAC,CAAC;QAC7CA,KAAK,CAACI,OAAO,CAAC,CAAC;MACjB;IACF;EACF,CAAC,CAAC;EA/CFzB,EAAE,CAACO,IAAI,CAACC,EAAE,CAACc,OAAO,CAACC,KAAK,CAACC,SAAS,CAACrB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

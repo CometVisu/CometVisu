@@ -1,0 +1,115 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235170030,
+  "lastModifiedIso": "2024-06-01T09:46:10.030Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/config/Delete.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 19,
+      "column": 0,
+      "index": 527
+    },
+    "end": {
+      "line": 47,
+      "column": 3,
+      "index": 1214
+    }
+  },
+  "className": "qx.tool.cli.commands.config.Delete",
+  "jsdoc": {
+    "raw": [
+      " ************************************************************************",
+      "",
+      "   qooxdoo - the new era of web development",
+      "",
+      "   http://qooxdoo.org",
+      "",
+      "   Copyright:",
+      "   2017 Christian Boulanger",
+      "",
+      "   License:",
+      "   MIT: https://opensource.org/licenses/MIT",
+      "   See the LICENSE file in the project's top-level directory for details.",
+      "",
+      "   Authors:",
+      "   * Christian Boulanger (info@bibliograph.org, @cboulanger)",
+      "   * Henner Kollmann (Henner.Kollmann@gmx.de, @hkollmann)",
+      "",
+      "************************************************************************ "
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Config",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the yargs command data",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the yargs command data</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4,
+          "index": 717
+        },
+        "end": {
+          "line": 31,
+          "column": 5,
+          "index": 849
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": [
+        "qx.tool.cli.commands.Config"
+      ]
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 873
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1206
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    }
+  },
+  "properties": {}
+}

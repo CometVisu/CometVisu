@@ -1,28 +1,47 @@
 {
-  "className": "cv.ui.common.HasAnimatedButton",
-  "packageName": "cv.ui.common",
-  "name": "HasAnimatedButton",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 20,
-        "column": 0,
-        "index": 824
-      },
-      "end": {
-        "line": 146,
-        "column": 3,
-        "index": 4478
-      }
-    },
-    "jsdoc": {}
-  },
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/ui/common/HasAnimatedButton.js",
   "type": "mixin",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 824
+    },
+    "end": {
+      "line": 146,
+      "column": 3,
+      "index": 4478
+    }
+  },
+  "className": "cv.ui.common.HasAnimatedButton",
+  "jsdoc": {
+    "raw": [
+      " HasAnimatedButton.js",
+      " *",
+      " * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " "
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 26,
@@ -34,11 +53,12 @@
         "column": 3,
         "index": 1103
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "__olid": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 36,
@@ -51,10 +71,11 @@
           "index": 1271
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__ilid": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 37,
@@ -67,10 +88,11 @@
           "index": 1289
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__downTarget": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 38,
@@ -83,10 +105,11 @@
           "index": 1313
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__initListeners": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 40,
@@ -100,9 +123,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "__getActors": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 50,
@@ -116,22 +142,20 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "buttonPressed": {
-      "location": {
-        "start": {
-          "line": 69,
-          "column": 4,
-          "index": 2167
-        },
-        "end": {
-          "line": 93,
-          "column": 5,
-          "index": 2881
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an action handling that shows a button press animation.",
+          "     * When the action is not set, it will be searched for - so that widgets",
+          "     * with bind_click_to_widget will also work.",
+          "     *",
+          "     * @param event {Event} pointerdown event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -148,10 +172,31 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 2167
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2881
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
     },
     "__updateButtons": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 95,
@@ -165,22 +210,27 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "buttons"
+        },
+        {
+          "name": "pressed"
+        }
+      ],
+      "appearsIn": []
     },
     "buttonReleased": {
-      "location": {
-        "start": {
-          "line": 120,
-          "column": 4,
-          "index": 3643
-        },
-        "end": {
-          "line": 135,
-          "column": 5,
-          "index": 4221
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an action handling that shows a button unpress animation.",
+          "     * When the action is not set, it will be searched for - so that widgets",
+          "     * with bind_click_to_widget will also work.",
+          "     *",
+          "     * @param event {Event} pointerup event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -197,11 +247,32 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3643
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 4221
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 143,
@@ -213,8 +284,8 @@
         "column": 3,
         "index": 4474
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -1,52 +1,64 @@
 {
+  "version": 0.3,
+  "lastModified": 1645577566000,
+  "lastModifiedIso": "2022-02-23T00:52:46.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_deprecated_qx_io_remote_v1_0_2/source/class/qx/io/remote/RequestQueue.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 880
+    },
+    "end": {
+      "line": 462,
+      "column": 3,
+      "index": 12267
+    }
+  },
   "className": "qx.io.remote.RequestQueue",
-  "packageName": "qx.io.remote",
-  "name": "RequestQueue",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Handles scheduling of requests to be sent to a server.",
+      " *",
+      " * This class is a singleton and is used by qx.io.remote.Request to schedule its",
+      " * requests. It should not be used directly.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " * @internal",
+      " * @require(qx.bom.client.Transport)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Handles scheduling of requests to be sent to a server.\n This class is a singleton and is used by qx.io.remote.Request to schedule its\n requests. It should not be used directly.\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.bom.client.Transport"
+      }
+    ]
+  },
+  "isSingleton": true,
+  "abstract": false,
   "superClass": "qx.core.Object",
   "interfaces": [
     "qx.core.IDisposable"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 33,
-        "column": 0,
-        "index": 880
-      },
-      "end": {
-        "line": 462,
-        "column": 3,
-        "index": 12267
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Handles scheduling of requests to be sent to a server.\n This class is a singleton and is used by qx.io.remote.Request to schedule its\n requests. It should not be used directly.\n NOTE: Instances of this class must be disposed of after use</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.bom.client.Transport"
-        }
-      ]
-    }
-  },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": false,
-  "isSingleton": true,
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 44,
@@ -58,8 +70,7 @@
         "column": 3,
         "index": 1445
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "enabled": {
@@ -75,7 +86,17 @@
           "index": 1809
         }
       },
+      "json": {
+        "init": true,
+        "check": "Boolean",
+        "apply": "_applyEnabled"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Indicates whether queue is enabled or not.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -83,12 +104,7 @@
           }
         ]
       },
-      "name": "enabled",
-      "propertyType": "new",
-      "apply": "_applyEnabled",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     },
     "maxTotalRequests": {
       "location": {
@@ -103,7 +119,16 @@
           "index": 1948
         }
       },
+      "json": {
+        "check": "Integer",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximum number of total requests.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -111,11 +136,7 @@
           }
         ]
       },
-      "name": "maxTotalRequests",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Integer"
+      "appearsIn": []
     },
     "maxConcurrentRequests": {
       "location": {
@@ -130,7 +151,15 @@
           "index": 2124
         }
       },
+      "json": {
+        "check": "Integer"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Maximum number of parallel requests.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -138,9 +167,7 @@
           }
         ]
       },
-      "name": "maxConcurrentRequests",
-      "propertyType": "new",
-      "check": "Integer"
+      "appearsIn": []
     },
     "defaultTimeout": {
       "location": {
@@ -155,7 +182,16 @@
           "index": 2272
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 5000
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Default timeout for remote requests in milliseconds.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -163,47 +199,13 @@
           }
         ]
       },
-      "name": "defaultTimeout",
-      "propertyType": "new",
-      "init": 5000,
-      "check": "Integer",
-      "defaultValue": 5000
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "__queue": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 105,
@@ -216,10 +218,11 @@
           "index": 2494
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__active": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 106,
@@ -232,10 +235,11 @@
           "index": 2514
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__totalRequests": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 107,
@@ -248,10 +252,11 @@
           "index": 2541
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__timer": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 108,
@@ -264,10 +269,33 @@
           "index": 2560
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getRequestQueue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a list of queued requests",
+          "     *",
+          "     * @return {qx.io.remote.Request[]} The list of queued requests",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get a list of queued requests</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.io.remote.Request[]} The list of queued requests",
+            "type": "qx.io.remote.Request[]",
+            "description": "The list of queued requests"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 121,
@@ -280,26 +308,40 @@
           "index": 2943
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.io.remote.Request[]"
+      },
+      "appearsIn": []
+    },
+    "getActiveQueue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a list of active queued requests, each one wrapped in an instance of",
+          "     * {@link qx.io.remote.Exchange}",
+          "     *",
+          "     * @return {qx.io.remote.Exchange[]} The list of active queued requests, each one",
+          "     *   wrapped in an instance of {@link qx.io.remote.Exchange}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Get a list of queued requests</p>"
+            "body": "<p>Get a list of active queued requests, each one wrapped in an instance of\n {@link qx.io.remote.Exchange}</p>"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.io.remote.Request[]} The list of queued requests",
-            "type": "qx.io.remote.Request[]",
-            "description": " The list of queued requests"
+            "body": "{qx.io.remote.Exchange[]} The list of active queued requests, each one\n   wrapped in an instance of {@link qx.io.remote.Exchange}",
+            "type": "qx.io.remote.Exchange[]",
+            "description": "The list of active queued requests, each one\n   wrapped in an instance of {@link qx.io.remote.Exchange}"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getActiveQueue": {
+      "access": "public",
       "location": {
         "start": {
           "line": 132,
@@ -312,26 +354,28 @@
           "index": 3293
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.io.remote.Exchange[]"
+      },
+      "appearsIn": []
+    },
+    "_debug": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates debug output",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Get a list of active queued requests, each one wrapped in an instance of\n {@link qx.io.remote.Exchange}</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.io.remote.Exchange[]} The list of active queued requests, each one\n   wrapped in an instance of {@link qx.io.remote.Exchange}",
-            "type": "qx.io.remote.Exchange[]",
-            "description": " The list of active queued requests, each one\n   wrapped in an instance of {@link qx.io.remote.Exchange}"
+            "body": "<p>Generates debug output</p>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_debug": {
+      "access": "protected",
       "location": {
         "start": {
           "line": 139,
@@ -344,18 +388,28 @@
           "index": 3756
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_check": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks the queue if any request is left to send and uses the transport",
+          "     * layer to send the open requests.",
+          "     * This method calls itself until every request in the queue is send.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Generates debug output</p>"
+            "body": "<p>Checks the queue if any request is left to send and uses the transport\n layer to send the open requests.\n This method calls itself until every request in the queue is send.</p>"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_check": {
+      "access": "protected",
       "location": {
         "start": {
           "line": 160,
@@ -368,31 +422,20 @@
           "index": 5660
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Checks the queue if any request is left to send and uses the transport\n layer to send the open requests.\n This method calls itself until every request in the queue is send.</p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_remove": {
-      "location": {
-        "start": {
-          "line": 229,
-          "column": 4,
-          "index": 5880
-        },
-        "end": {
-          "line": 238,
-          "column": 5,
-          "index": 6107
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a transport object from the active queue and disposes the",
+          "     * transport object in order stop the request.",
+          "     *",
+          "     * @param vTransport {qx.io.remote.Exchange} Transport object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -409,10 +452,39 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4,
+          "index": 5880
+        },
+        "end": {
+          "line": 238,
+          "column": 5,
+          "index": 6107
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "vTransport",
+          "type": "qx.io.remote.Exchange"
+        }
+      ],
+      "appearsIn": []
     },
     "__activeCount": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "    ---------------------------------------------------------------------------",
+          "      EVENT HANDLING",
+          "    ---------------------------------------------------------------------------",
+          "    "
+        ]
+      },
+      "access": "private",
       "location": {
         "start": {
           "line": 246,
@@ -425,24 +497,18 @@
           "index": 6326
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_onsending": {
-      "location": {
-        "start": {
-          "line": 254,
-          "column": 4,
-          "index": 6524
-        },
-        "end": {
-          "line": 265,
-          "column": 5,
-          "index": 6856
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listens for the \"sending\" event of the transport object and increases",
+          "     * the counter for active requests.",
+          "     *",
+          "     * @param e {qx.event.type.Event} event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -459,23 +525,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onreceiving": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 273,
+          "line": 254,
           "column": 4,
-          "index": 7063
+          "index": 6524
         },
         "end": {
-          "line": 275,
+          "line": 265,
           "column": 5,
-          "index": 7136
+          "index": 6856
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onreceiving": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listens for the \"receiving\" event of the transport object and delegate",
+          "     * the event to the current request object.",
+          "     *",
+          "     * @param e {qx.event.type.Event} event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -492,23 +573,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_oncompleted": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 283,
+          "line": 273,
           "column": 4,
-          "index": 7336
+          "index": 7063
         },
         "end": {
-          "line": 331,
+          "line": 275,
           "column": 5,
-          "index": 8930
+          "index": 7136
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_oncompleted": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listens for the \"completed\" event of the transport object and decreases",
+          "     * the counter for active requests.",
+          "     *",
+          "     * @param e {qx.event.type.Event} event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -525,23 +621,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_oninterval": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 345,
+          "line": 283,
           "column": 4,
-          "index": 9329
+          "index": 7336
         },
         "end": {
-          "line": 386,
+          "line": 331,
           "column": 5,
-          "index": 10367
+          "index": 8930
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_oninterval": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listens for the \"interval\" event of the transport object and checks",
+          "     * if the active requests are timed out.",
+          "     *",
+          "     * @param e {qx.event.type.Event} event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -558,10 +669,35 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 345,
+          "column": 4,
+          "index": 9329
+        },
+        "end": {
+          "line": 386,
+          "column": 5,
+          "index": 10367
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyEnabled": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 395,
@@ -574,27 +710,26 @@
           "index": 10709
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "enabled"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "add": {
-      "location": {
-        "start": {
-          "line": 414,
-          "column": 4,
-          "index": 11028
-        },
-        "end": {
-          "line": 428,
-          "column": 5,
-          "index": 11316
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add the request to the pending requests queue.",
+          "     *",
+          "     * @param vRequest {var} The request",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -611,23 +746,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "abort": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 440,
+          "line": 414,
           "column": 4,
-          "index": 11713
+          "index": 11028
         },
         "end": {
-          "line": 448,
+          "line": 428,
           "column": 5,
-          "index": 11951
+          "index": 11316
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "vRequest",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "abort": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the request from the pending requests queue.",
+          "     *",
+          "     *  The underlying transport of the request is forced into the aborted",
+          "     *  state (\"aborted\") and listeners of the \"aborted\"",
+          "     *  signal are notified about the event. If the request isn't in the",
+          "     *  pending requests queue, this method is a noop.",
+          "     *",
+          "     * @param vRequest {var} The request",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -644,437 +798,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 440,
+          "column": 4,
+          "index": 11713
+        },
+        "end": {
+          "line": 448,
+          "column": 5,
+          "index": 11951
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getEnabled": {
-      "type": "function",
-      "name": "getEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "isEnabled": {
-      "type": "function",
-      "name": "isEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "setEnabled": {
-      "type": "function",
-      "name": "setEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for enabled"
-          }
-        ]
-      }
-    },
-    "resetEnabled": {
-      "type": "function",
-      "name": "resetEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ]
-      }
-    },
-    "getMaxTotalRequests": {
-      "type": "function",
-      "name": "getMaxTotalRequests",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxTotalRequests</code>.\n\nFor further details take a look at the property definition: {@link #maxTotalRequests}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for maxTotalRequests"
-          }
-        ]
-      }
-    },
-    "setMaxTotalRequests": {
-      "type": "function",
-      "name": "setMaxTotalRequests",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxTotalRequests</code>.\n\nFor further details take a look at the property definition: {@link #maxTotalRequests}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for maxTotalRequests"
-          }
-        ]
-      }
-    },
-    "resetMaxTotalRequests": {
-      "type": "function",
-      "name": "resetMaxTotalRequests",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxTotalRequests</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxTotalRequests}."
-          }
-        ]
-      }
-    },
-    "getMaxConcurrentRequests": {
-      "type": "function",
-      "name": "getMaxConcurrentRequests",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxConcurrentRequests</code>.\n\nFor further details take a look at the property definition: {@link #maxConcurrentRequests}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for maxConcurrentRequests"
-          }
-        ]
-      }
-    },
-    "setMaxConcurrentRequests": {
-      "type": "function",
-      "name": "setMaxConcurrentRequests",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxConcurrentRequests</code>.\n\nFor further details take a look at the property definition: {@link #maxConcurrentRequests}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for maxConcurrentRequests"
-          }
-        ]
-      }
-    },
-    "resetMaxConcurrentRequests": {
-      "type": "function",
-      "name": "resetMaxConcurrentRequests",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxConcurrentRequests</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxConcurrentRequests}."
-          }
-        ]
-      }
-    },
-    "getDefaultTimeout": {
-      "type": "function",
-      "name": "getDefaultTimeout",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>defaultTimeout</code>.\n\nFor further details take a look at the property definition: {@link #defaultTimeout}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for defaultTimeout"
-          }
-        ]
-      }
-    },
-    "setDefaultTimeout": {
-      "type": "function",
-      "name": "setDefaultTimeout",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>defaultTimeout</code>.\n\nFor further details take a look at the property definition: {@link #defaultTimeout}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for defaultTimeout"
-          }
-        ]
-      }
-    },
-    "resetDefaultTimeout": {
-      "type": "function",
-      "name": "resetDefaultTimeout",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>defaultTimeout</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultTimeout}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "vRequest",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 457,
@@ -1086,8 +835,7 @@
         "column": 3,
         "index": 12262
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {}
 }

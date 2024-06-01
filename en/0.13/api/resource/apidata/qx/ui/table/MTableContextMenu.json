@@ -1,95 +1,133 @@
 {
-  "className": "qx.ui.table.MTableContextMenu",
-  "packageName": "qx.ui.table",
-  "name": "MTableContextMenu",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 556
-      },
-      "end": {
-        "line": 175,
-        "column": 3,
-        "index": 5836
-      }
+  "version": 0.3,
+  "lastModified": 1717235171838,
+  "lastModifiedIso": "2024-06-01T09:46:11.838Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/MTableContextMenu.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 535
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin allows easily adding handlers for context menus on table columns.</p>"
-        }
-      ]
+    "end": {
+      "line": 175,
+      "column": 3,
+      "index": 5662
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.table.MTableContextMenu",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin allows easily adding handlers for context menus on table columns.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin allows easily adding handlers for context menus on table columns.</p>"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 23,
         "column": 2,
-        "index": 610
+        "index": 588
       },
       "end": {
         "line": 95,
         "column": 3,
-        "index": 2999
+        "index": 2905
       }
     }
   },
   "members": {
     "__contextMenuHandler": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 98,
           "column": 4,
-          "index": 3022
+          "index": 2925
         },
         "end": {
           "line": 98,
           "column": 30,
-          "index": 3048
+          "index": 2951
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__contextMenuHandlerContext": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 99,
           "column": 4,
-          "index": 3055
+          "index": 2957
         },
         "end": {
           "line": 99,
           "column": 37,
-          "index": 3088
+          "index": 2990
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "setContextMenuHandler": {
-      "location": {
-        "start": {
-          "line": 144,
-          "column": 4,
-          "index": 4856
-        },
-        "end": {
-          "line": 147,
-          "column": 5,
-          "index": 5022
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a handler for a context menu which is initiated in a specific",
+          "     * column.",
+          "     *",
+          "     * @param col {Integer}",
+          "     *   The column number in which the context menu request originated",
+          "     *",
+          "     * @param handler {Function}",
+          "     *   The function to call when a context menu request originates in the",
+          "     *   specified column. The handler is called with the following arguments:",
+          "     *   <ul>",
+          "     *     <li>",
+          "     *       <b>column</b>: (Integer)",
+          "     *       The number of the column in which the right click was issued",
+          "     *     </li>",
+          "     *     <li>",
+          "     *       <b>row</b>: (Integer)",
+          "     *       The number of the row in which the right click was issued",
+          "     *     </li>",
+          "     *     <li>",
+          "     *       <b>table</b>: {@link qx.ui.table.Table}",
+          "     *       The table in which the right click was issued",
+          "     *     </li>",
+          "     *     <li>",
+          "     *       <b>dataModel</b>: {@link qx.ui.table.model.Abstract}",
+          "     *       Complete data model of the table",
+          "     *     </li>",
+          "     *     <li>",
+          "     *       <b>contextMenu</b>: {@link qx.ui.menu.Menu}",
+          "     *       Menu in which buttons can be added to implement this context menu",
+          "     *     </li>",
+          "     *   </ul>",
+          "     *   The function must return a (Boolean), indicating whether the context",
+          "     *   menu should be shown or not. The context menu will be shown when the",
+          "     *   handler function returns <code>true</code>. When the handler function",
+          "     *   returns <code>false</code> the context menu will <b>not</b> be shown.",
+          "     *",
+          "     * @param context {Object?this}",
+          "     *   Optional execution context for the callback (i.e. \"this\").",
+          "     *   If not provided, the {@link qx.ui.table.Table} object this mixin is",
+          "     *   applied to is used.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -109,7 +147,7 @@
             "body": "handler {Function}\n   The function to call when a context menu request originates in the\n   specified column. The handler is called with the following arguments:\n   <ul>\n     <li>\n       <b>column</b>: (Integer)\n       The number of the column in which the right click was issued\n     </li>\n     <li>\n       <b>row</b>: (Integer)\n       The number of the row in which the right click was issued\n     </li>\n     <li>\n       <b>table</b>: {@link qx.ui.table.Table}\n       The table in which the right click was issued\n     </li>\n     <li>\n       <b>dataModel</b>: {@link qx.ui.table.model.Abstract}\n       Complete data model of the table\n     </li>\n     <li>\n       <b>contextMenu</b>: {@link qx.ui.menu.Menu}\n       Menu in which buttons can be added to implement this context menu\n     </li>\n   </ul>\n   The function must return a (Boolean), indicating whether the context\n   menu should be shown or not. The context menu will be shown when the\n   handler function returns <code>true</code>. When the handler function\n   returns <code>false</code> the context menu will <b>not</b> be shown.",
             "paramName": "handler",
             "description": "\n   The function to call when a context menu request originates in the\n   specified column. The handler is called with the following arguments:\n   <ul>\n     <li>\n       <b>column</b>: (Integer)\n       The number of the column in which the right click was issued\n     </li>\n     <li>\n       <b>row</b>: (Integer)\n       The number of the row in which the right click was issued\n     </li>\n     <li>\n       <b>table</b>: {@link qx.ui.table.Table}\n       The table in which the right click was issued\n     </li>\n     <li>\n       <b>dataModel</b>: {@link qx.ui.table.model.Abstract}\n       Complete data model of the table\n     </li>\n     <li>\n       <b>contextMenu</b>: {@link qx.ui.menu.Menu}\n       Menu in which buttons can be added to implement this context menu\n     </li>\n   </ul>\n   The function must return a (Boolean), indicating whether the context\n   menu should be shown or not. The context menu will be shown when the\n   handler function returns <code>true</code>. When the handler function\n   returns <code>false</code> the context menu will <b>not</b> be shown.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -122,23 +160,53 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getContextMenuHandler": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 160,
+          "line": 144,
           "column": 4,
-          "index": 5443
+          "index": 4713
         },
         "end": {
-          "line": 162,
+          "line": 147,
           "column": 5,
-          "index": 5524
+          "index": 4876
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer"
+        },
+        {
+          "name": "handler",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "this"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getContextMenuHandler": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the registered context menu handler for a column.",
+          "     *",
+          "     * @param col {Integer}",
+          "     *   The column number for which the context menu handler is requested",
+          "     *",
+          "     * @return {Function}",
+          "     *   The handler function which has been registered for the specified",
+          "     *   column. The arguments of the handler is documented in",
+          "     *   {@link #setContextMenuHandler}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -158,29 +226,53 @@
           {
             "name": "@return",
             "body": "{Function}\n   The handler function which has been registered for the specified\n   column. The arguments of the handler is documented in\n   {@link #setContextMenuHandler}.",
-            "type": "Function",
-            "description": "\n   The handler function which has been registered for the specified\n   column. The arguments of the handler is documented in\n   {@link #setContextMenuHandler}."
+            "type": "((...args: any[]) => any)",
+            "description": "   The handler function which has been registered for the specified\n   column. The arguments of the handler is documented in\n   {@link #setContextMenuHandler}."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 5284
+        },
+        "end": {
+          "line": 162,
+          "column": 5,
+          "index": 5363
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 171,
         "column": 2,
-        "index": 5729
+        "index": 5559
       },
       "end": {
         "line": 174,
         "column": 3,
-        "index": 5831
+        "index": 5658
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

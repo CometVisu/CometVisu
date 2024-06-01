@@ -1,49 +1,41 @@
 {
-  "className": "qx.bom.element.Scroll",
-  "packageName": "qx.bom.element",
-  "name": "Scroll",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 582
-      },
-      "end": {
-        "line": 382,
-        "column": 3,
-        "index": 13892
-      }
+  "version": 0.3,
+  "lastModified": 1717235172190,
+  "lastModifiedIso": "2024-06-01T09:46:12.190Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/Scroll.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 561
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Contains methods to control and query the element's scroll properties</p>"
-        }
-      ]
+    "end": {
+      "line": 382,
+      "column": 3,
+      "index": 13511
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.Scroll",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Contains methods to control and query the element's scroll properties",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Contains methods to control and query the element's scroll properties</p>"
+      }
+    ]
+  },
   "statics": {
     "__scrollbarSize": {
-      "location": {
-        "start": {
-          "line": 31,
-          "column": 4,
-          "index": 915
-        },
-        "end": {
-          "line": 31,
-          "column": 25,
-          "index": 936
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} The typical native scrollbar size in the environment "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +49,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "getScrollbarWidth": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 38,
+          "line": 31,
           "column": 4,
-          "index": 1087
+          "index": 885
         },
         "end": {
-          "line": 104,
-          "column": 5,
-          "index": 3079
+          "line": 31,
+          "column": 25,
+          "index": 906
         }
       },
+      "appearsIn": []
+    },
+    "getScrollbarWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the typical native scrollbar size in the environment",
+          "     *",
+          "     * @return {Number} The native scrollbar size",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -84,28 +83,46 @@
           {
             "name": "@return",
             "body": "{Number} The native scrollbar size",
-            "type": "Number",
-            "description": " The native scrollbar size"
+            "type": "number",
+            "description": "The native scrollbar size"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "intoViewX": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 123,
+          "line": 38,
           "column": 4,
-          "index": 3853
+          "index": 1050
         },
         "end": {
-          "line": 232,
+          "line": 104,
           "column": 5,
-          "index": 7914
+          "index": 2976
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "intoViewX": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The method scrolls the element into view (x-axis only).",
+          "     *",
+          "     * @param element {Element} DOM element to scroll into view",
+          "     * @param stop {Element?null} Any parent element which functions as",
+          "     *   outermost element to scroll. Default is the HTML document.",
+          "     * @param align {String?null} Alignment of the element. Allowed values:",
+          "     *   <code>left</code> or <code>right</code>. Could also be null.",
+          "     *   Without a given alignment the method tries to scroll the widget",
+          "     *   with the minimum effort needed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -140,23 +157,55 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "intoViewY": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 245,
+          "line": 123,
           "column": 4,
-          "index": 8484
+          "index": 3731
         },
         "end": {
-          "line": 360,
+          "line": 232,
           "column": 5,
-          "index": 12920
+          "index": 7683
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "stop",
+          "type": "Element",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "align",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "intoViewY": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The method scrolls the element into view (y-axis only).",
+          "     *",
+          "     * @param element {Element} DOM element to scroll into view",
+          "     * @param stop {Element?null} Any parent element which functions as",
+          "     *   outermost element to scroll. Default is the HTML document.",
+          "     * @param align {String?null} Alignment of the element. Allowed values:",
+          "     *   <code>top</code> or <code>bottom</code>. Could also be null.",
+          "     *   Without a given alignment the method tries to scroll the widget",
+          "     *   with the minimum effort needed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -191,23 +240,59 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "intoView": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 377,
+          "line": 245,
           "column": 4,
-          "index": 13742
+          "index": 8240
         },
         "end": {
-          "line": 380,
+          "line": 360,
           "column": 5,
-          "index": 13882
+          "index": 12561
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "stop",
+          "type": "Element",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "align",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "intoView": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The method scrolls the element into view.",
+          "     *",
+          "     * @param element {Element} DOM element to scroll into view",
+          "     * @param stop {Element?null} Any parent element which functions as",
+          "     *   outermost element to scroll. Default is the HTML document.",
+          "     * @param alignX {String} Alignment of the element. Allowed values:",
+          "     *   <code>left</code> or <code>right</code>. Could also be undefined.",
+          "     *   Without a given alignment the method tries to scroll the widget",
+          "     *   with the minimum effort needed.",
+          "     * @param alignY {String} Alignment of the element. Allowed values:",
+          "     *   <code>top</code> or <code>bottom</code>. Could also be undefined.",
+          "     *   Without a given alignment the method tries to scroll the widget",
+          "     *   with the minimum effort needed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -236,20 +321,54 @@
             "body": "alignX {String} Alignment of the element. Allowed values:\n   <code>left</code> or <code>right</code>. Could also be undefined.\n   Without a given alignment the method tries to scroll the widget\n   with the minimum effort needed.",
             "paramName": "alignX",
             "description": " Alignment of the element. Allowed values:\n   <code>left</code> or <code>right</code>. Could also be undefined.\n   Without a given alignment the method tries to scroll the widget\n   with the minimum effort needed.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "alignY {String} Alignment of the element. Allowed values:\n   <code>top</code> or <code>bottom</code>. Could also be undefined.\n   Without a given alignment the method tries to scroll the widget\n   with the minimum effort needed.",
             "paramName": "alignY",
             "description": " Alignment of the element. Allowed values:\n   <code>top</code> or <code>bottom</code>. Could also be undefined.\n   Without a given alignment the method tries to scroll the widget\n   with the minimum effort needed.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 377,
+          "column": 4,
+          "index": 13366
+        },
+        "end": {
+          "line": 380,
+          "column": 5,
+          "index": 13503
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "stop",
+          "type": "Element",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "alignX",
+          "type": "string"
+        },
+        {
+          "name": "alignY",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

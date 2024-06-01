@@ -1,61 +1,60 @@
 {
-  "className": "qx.module.event.TouchHandler",
-  "packageName": "qx.module.event",
-  "name": "TouchHandler",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 715
-      },
-      "end": {
-        "line": 84,
-        "column": 3,
-        "index": 2338
-      }
+  "version": 0.3,
+  "lastModified": 1717235172578,
+  "lastModifiedIso": "2024-06-01T09:46:12.578Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/TouchHandler.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 689
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Creates a touch event handler that fires high-level events such as \"swipe\"\n based on low-level event sequences on the given element</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Event_Normalization"
-        }
-      ]
+    "end": {
+      "line": 84,
+      "column": 3,
+      "index": 2255
     }
   },
-  "type": "class",
+  "className": "qx.module.event.TouchHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Creates a touch event handler that fires high-level events such as \"swipe\"",
+      " * based on low-level event sequences on the given element",
+      " *",
+      " * @require(qx.module.Event)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Creates a touch event handler that fires high-level events such as \"swipe\"\n based on low-level event sequences on the given element</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
   "statics": {
     "TYPES": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 858
-        },
-        "end": {
-          "line": 32,
-          "column": 65,
-          "index": 919
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of events that require a touch handler",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,23 +62,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "register": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 40,
+          "line": 32,
           "column": 4,
-          "index": 1107
+          "index": 827
         },
         "end": {
-          "line": 50,
-          "column": 5,
-          "index": 1408
+          "line": 32,
+          "column": 65,
+          "index": 888
         }
       },
+      "appearsIn": []
+    },
+    "register": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a touch handler for the given element when a touch event listener",
+          "     * is attached to it",
+          "     *",
+          "     * @param element {Element} DOM element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -96,23 +103,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "unregister": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 57,
+          "line": 40,
           "column": 4,
-          "index": 1603
+          "index": 1068
         },
         "end": {
-          "line": 74,
+          "line": 50,
           "column": 5,
-          "index": 2188
+          "index": 1359
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unregister": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the touch event handler from the element if there are no more",
+          "     * touch event listeners attached to it",
+          "     * @param element {Element} DOM element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -129,23 +150,29 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 77,
-        "column": 2,
-        "index": 2200
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1547
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 2115
+        }
       },
-      "end": {
-        "line": 83,
-        "column": 3,
-        "index": 2333
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

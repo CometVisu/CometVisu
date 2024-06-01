@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "performance",
+    "widget",
+    "AbstractWidget",
+    "members",
+    "CREATE_ITERATIONS",
+    "RESIZE_ITERATIONS",
+    "DISPOSE_ITERATIONS",
+    "_createWidget",
+    "ui",
+    "core",
+    "Widget",
+    "set",
+    "decorator",
+    "WidgetWithSingle"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/performance/widget/WidgetWithSingle.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qx.test.performance.widget.WidgetWithSingle\", {\n  extend: qx.test.performance.widget.AbstractWidget,\n\n  members: {\n    CREATE_ITERATIONS: 100,\n    RESIZE_ITERATIONS: 50,\n    DISPOSE_ITERATIONS: 100,\n\n    _createWidget() {\n      return new qx.ui.core.Widget().set({ decorator: \"window\" });\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,6CAA6C,EAAE;IAC7DC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,MAAM,CAACC,cAAc;IAEjDC,OAAO,EAAE;MACPC,iBAAiB,EAAE,GAAG;MACtBC,iBAAiB,EAAE,EAAE;MACrBC,kBAAkB,EAAE,GAAG;MAEvBC,aAAa,WAAAA,cAAA,EAAG;QACd,OAAO,IAAIf,EAAE,CAACgB,EAAE,CAACC,IAAI,CAACC,MAAM,CAAC,CAAC,CAACC,GAAG,CAAC;UAAEC,SAAS,EAAE;QAAS,CAAC,CAAC;MAC7D;IACF;EACF,CAAC,CAAC;EAZFpB,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,MAAM,CAACY,gBAAgB,CAAClB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

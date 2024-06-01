@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "ui",
+    "LayoutTestCase",
+    "members",
+    "setUp",
+    "_split",
+    "form",
+    "SplitButton",
+    "getRoot",
+    "add",
+    "tearDown",
+    "destroy",
+    "flush",
+    "testArrowAvailable",
+    "setIcon",
+    "arrow",
+    "getChildControl",
+    "icon",
+    "assertTrue",
+    "isVisible",
+    "setShow",
+    "assertFalse"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/form/SplitButton.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2013 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\nqx.Class.define(\"qx.test.ui.form.SplitButton\", {\n  extend: qx.test.ui.LayoutTestCase,\n\n  members: {\n    setUp() {\n      this._split = new qx.ui.form.SplitButton();\n      this.getRoot().add(this._split);\n    },\n\n    tearDown() {\n      this._split.destroy();\n      this.flush();\n    },\n\n    testArrowAvailable() {\n      this._split.setIcon(\"qx/icon/Oxygen/22/emotes/face-smile.png\");\n\n      var arrow = this._split.getChildControl(\"arrow\").getChildControl(\"icon\");\n      var icon = this._split.getChildControl(\"button\").getChildControl(\"icon\");\n\n      this.flush();\n\n      // check initial values\n      this.assertTrue(arrow.isVisible(), \"init arrow\");\n      this.assertTrue(icon.isVisible(), \"init icon\");\n\n      this._split.setShow(\"label\");\n      this.flush();\n\n      // check changed values\n      this.assertTrue(arrow.isVisible(), \"changed arrow\");\n      this.assertFalse(icon.isVisible(), \"changed icon\");\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,6BAA6B,EAAE;IAC7CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,EAAE,CAACC,cAAc;IAEjCC,OAAO,EAAE;MACPC,KAAK,WAAAA,MAAA,EAAG;QACN,IAAI,CAACC,MAAM,GAAG,IAAIZ,EAAE,CAACQ,EAAE,CAACK,IAAI,CAACC,WAAW,CAAC,CAAC;QAC1C,IAAI,CAACC,OAAO,CAAC,CAAC,CAACC,GAAG,CAAC,IAAI,CAACJ,MAAM,CAAC;MACjC,CAAC;MAEDK,QAAQ,WAAAA,SAAA,EAAG;QACT,IAAI,CAACL,MAAM,CAACM,OAAO,CAAC,CAAC;QACrB,IAAI,CAACC,KAAK,CAAC,CAAC;MACd,CAAC;MAEDC,kBAAkB,WAAAA,mBAAA,EAAG;QACnB,IAAI,CAACR,MAAM,CAACS,OAAO,CAAC,yCAAyC,CAAC;QAE9D,IAAIC,KAAK,GAAG,IAAI,CAACV,MAAM,CAACW,eAAe,CAAC,OAAO,CAAC,CAACA,eAAe,CAAC,MAAM,CAAC;QACxE,IAAIC,IAAI,GAAG,IAAI,CAACZ,MAAM,CAACW,eAAe,CAAC,QAAQ,CAAC,CAACA,eAAe,CAAC,MAAM,CAAC;QAExE,IAAI,CAACJ,KAAK,CAAC,CAAC;;QAEZ;QACA,IAAI,CAACM,UAAU,CAACH,KAAK,CAACI,SAAS,CAAC,CAAC,EAAE,YAAY,CAAC;QAChD,IAAI,CAACD,UAAU,CAACD,IAAI,CAACE,SAAS,CAAC,CAAC,EAAE,WAAW,CAAC;QAE9C,IAAI,CAACd,MAAM,CAACe,OAAO,CAAC,OAAO,CAAC;QAC5B,IAAI,CAACR,KAAK,CAAC,CAAC;;QAEZ;QACA,IAAI,CAACM,UAAU,CAACH,KAAK,CAACI,SAAS,CAAC,CAAC,EAAE,eAAe,CAAC;QACnD,IAAI,CAACE,WAAW,CAACJ,IAAI,CAACE,SAAS,CAAC,CAAC,EAAE,cAAc,CAAC;MACpD;IACF;EACF,CAAC,CAAC;EAnDF1B,EAAE,CAACO,IAAI,CAACC,EAAE,CAACK,IAAI,CAACC,WAAW,CAACX,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

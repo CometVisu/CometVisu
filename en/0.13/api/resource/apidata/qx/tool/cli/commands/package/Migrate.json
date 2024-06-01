@@ -1,0 +1,88 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171762,
+  "lastModifiedIso": "2024-06-01T09:46:11.762Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/package/Migrate.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 514
+    },
+    "end": {
+      "line": 37,
+      "column": 3,
+      "index": 892
+    }
+  },
+  "className": "qx.tool.cli.commands.package.Migrate",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @deprecated {7.0.0}",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@deprecated": [
+      {
+        "name": "@deprecated",
+        "body": "{7.0.0}"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Migrate",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4,
+          "index": 629
+        },
+        "end": {
+          "line": 25,
+          "column": 65,
+          "index": 690
+        }
+      },
+      "appearsIn": [
+        "qx.tool.cli.commands.Migrate",
+        "qx.tool.cli.commands.Package"
+      ]
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 714
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 884
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Migrate",
+      "appearsIn": [
+        "qx.tool.cli.commands.Migrate",
+        "qx.tool.cli.commands.Command"
+      ]
+    }
+  },
+  "properties": {}
+}

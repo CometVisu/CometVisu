@@ -1,0 +1,731 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172590,
+  "lastModifiedIso": "2024-06-01T09:46:12.590Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/app/Translation.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 929
+    },
+    "end": {
+      "line": 472,
+      "column": 3,
+      "index": 13180
+    }
+  },
+  "className": "qx.tool.compiler.app.Translation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Reads and writes .po files for translation",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Reads and writes .po files for translation</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "library"
+      },
+      {
+        "name": "locale"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 41,
+        "column": 2,
+        "index": 1099
+      },
+      "end": {
+        "line": 49,
+        "column": 3,
+        "index": 1283
+      }
+    }
+  },
+  "properties": {
+    "library": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1358
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1441
+        }
+      },
+      "json": {
+        "nullable": false,
+        "check": "qx.tool.compiler.app.Library"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The library that this translation is for "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The library that this translation is for</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "locale": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1470
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1548
+        }
+      },
+      "json": {
+        "init": "en",
+        "nullable": false,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The locale "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The locale</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "writeLineNumbers": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1609
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1676
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to write line numbers to .po files "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to write line numbers to .po files</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__translations": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1700
+        },
+        "end": {
+          "line": 73,
+          "column": 24,
+          "index": 1720
+        }
+      },
+      "appearsIn": []
+    },
+    "__headers": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1726
+        },
+        "end": {
+          "line": 74,
+          "column": 19,
+          "index": 1741
+        }
+      },
+      "appearsIn": []
+    },
+    "__mtime": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1747
+        },
+        "end": {
+          "line": 75,
+          "column": 14,
+          "index": 1757
+        }
+      },
+      "appearsIn": []
+    },
+    "__onRead": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1763
+        },
+        "end": {
+          "line": 76,
+          "column": 18,
+          "index": 1777
+        }
+      },
+      "appearsIn": []
+    },
+    "getPoFilename": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Filename for the .po file",
+          "     * @returns {string}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Filename for the .po file</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 1858
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2083
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "checkRead": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reads the .po file, but only if it has not been loaded or has changed",
+          "     *",
+          "     * @returns {Promise}|",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reads the .po file, but only if it has not been loaded or has changed</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise}|",
+            "type": "Promise<any>",
+            "description": "|"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2217
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2521
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "read": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reads the .po file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reads the .po file</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 2570
+        },
+        "end": {
+          "line": 301,
+          "column": 5,
+          "index": 8476
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "write": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the .po file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the .po file</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 306,
+          "column": 4,
+          "index": 8526
+        },
+        "end": {
+          "line": 308,
+          "column": 5,
+          "index": 8589
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "writeTo": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the .po file to a specific filename",
+          "     * @param filename {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the .po file to a specific filename</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String}",
+            "paramName": "filename",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 314,
+          "column": 4,
+          "index": 8694
+        },
+        "end": {
+          "line": 401,
+          "column": 5,
+          "index": 11640
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        },
+        {
+          "name": "cb"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasEntryValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tests whether an entry exists and has translation values",
+          "     *",
+          "     * @param id {String} msgid",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tests whether an entry exists and has translation values</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id {String} msgid",
+            "paramName": "id",
+            "description": " msgid",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 409,
+          "column": 4,
+          "index": 11791
+        },
+        "end": {
+          "line": 418,
+          "column": 5,
+          "index": 12055
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getEntry": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the entry with the given msgid, null if it does not exist",
+          "     * @param id",
+          "     * @returns {*|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the entry with the given msgid, null if it does not exist</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id",
+            "paramName": "id",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*|null}",
+            "type": "*|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 425,
+          "column": 4,
+          "index": 12193
+        },
+        "end": {
+          "line": 427,
+          "column": 5,
+          "index": 12259
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "returnType": {
+        "type": "*|null"
+      },
+      "appearsIn": []
+    },
+    "deleteEntry": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deletes the entry with the given msgid; return the deleted value, or null if it does not exist",
+          "     * @param id",
+          "     * @returns {*|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes the entry with the given msgid; return the deleted value, or null if it does not exist</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id",
+            "paramName": "id",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*|null}",
+            "type": "*|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 434,
+          "column": 4,
+          "index": 12426
+        },
+        "end": {
+          "line": 438,
+          "column": 5,
+          "index": 12558
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "returnType": {
+        "type": "*|null"
+      },
+      "appearsIn": []
+    },
+    "getOrCreateEntry": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the entry with the given msgid, creating it if it does not exist",
+          "     * @param id",
+          "     * @returns {*|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the entry with the given msgid, creating it if it does not exist</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "id",
+            "paramName": "id",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*|null}",
+            "type": "*|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 445,
+          "column": 4,
+          "index": 12703
+        },
+        "end": {
+          "line": 454,
+          "column": 5,
+          "index": 12911
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "returnType": {
+        "type": "*|null"
+      },
+      "appearsIn": []
+    },
+    "getEntries": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all entries",
+          "     * @returns {null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns all entries</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null}",
+            "type": "null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 460,
+          "column": 4,
+          "index": 12984
+        },
+        "end": {
+          "line": 462,
+          "column": 5,
+          "index": 13038
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "null"
+      },
+      "appearsIn": []
+    },
+    "getHeaders": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the translation headers",
+          "     * @returns {null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the translation headers</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null}",
+            "type": "null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 468,
+          "column": 4,
+          "index": 13123
+        },
+        "end": {
+          "line": 470,
+          "column": 5,
+          "index": 13172
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "null"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

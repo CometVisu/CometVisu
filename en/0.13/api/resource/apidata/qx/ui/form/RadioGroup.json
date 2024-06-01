@@ -1,7 +1,44 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235172090,
+  "lastModifiedIso": "2024-06-01T09:46:12.090Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/RadioGroup.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 1131
+    },
+    "end": {
+      "line": 524,
+      "column": 3,
+      "index": 13626
+    }
+  },
   "className": "qx.ui.form.RadioGroup",
-  "packageName": "qx.ui.form",
-  "name": "RadioGroup",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The radio group handles a collection of items from which only one item",
+      " * can be selected. Selection another item will deselect the previously selected",
+      " * item.",
+      " *",
+      " * This class is e.g. used to create radio groups or {@link qx.ui.form.RadioButton}",
+      " * or {@link qx.ui.toolbar.RadioButton} instances.",
+      " *",
+      " * We also offer a widget for the same purpose which uses this class. So if",
+      " * you like to act with a widget instead of a pure logic coupling of the",
+      " * widgets, take a look at the {@link qx.ui.form.RadioButtonGroup} widget.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The radio group handles a collection of items from which only one item\n can be selected. Selection another item will deselect the previously selected\n item.\n This class is e.g. used to create radio groups or {@link qx.ui.form.RadioButton}\n or {@link qx.ui.toolbar.RadioButton} instances.\n We also offer a widget for the same purpose which uses this class. So if\n you like to act with a widget instead of a pure logic coupling of the\n widgets, take a look at the {@link qx.ui.form.RadioButtonGroup} widget.</p>"
+      }
+    ]
+  },
   "superClass": "qx.core.Object",
   "interfaces": [
     "qx.ui.core.ISingleSelection",
@@ -13,59 +50,24 @@
     "qx.ui.core.MSingleSelectionHandling",
     "qx.ui.form.MModelSelection"
   ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 34,
-        "column": 0,
-        "index": 1164
-      },
-      "end": {
-        "line": 524,
-        "column": 3,
-        "index": 14149
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The radio group handles a collection of items from which only one item\n can be selected. Selection another item will deselect the previously selected\n item.\n This class is e.g. used to create radio groups or {@link qx.ui.form.RadioButton}\n or {@link qx.ui.toolbar.RadioButton} instances.\n We also offer a widget for the same purpose which uses this class. So if\n you like to act with a widget instead of a pure logic coupling of the\n widgets, take a look at the {@link qx.ui.form.RadioButtonGroup} widget.</p>"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "varargs"
+      }
+    ],
     "location": {
       "start": {
         "line": 55,
         "column": 2,
-        "index": 1818
+        "index": 1764
       },
       "end": {
         "line": 67,
         "column": 3,
-        "index": 2102
+        "index": 2036
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "varargs {qx.core.Object} A variable number of items, which are\n     initially added to the radio group, the first item will be selected.",
-          "paramName": "varargs",
-          "description": " A variable number of items, which are\n     initially added to the radio group, the first item will be selected.",
-          "type": "qx.core.Object"
-        }
-      ]
     }
   },
   "properties": {
@@ -74,15 +76,26 @@
         "start": {
           "line": 79,
           "column": 4,
-          "index": 2410
+          "index": 2332
         },
         "end": {
           "line": 84,
           "column": 5,
-          "index": 2558
+          "index": 2475
         }
       },
+      "json": {
+        "check": "String",
+        "apply": "_applyGroupedProperty",
+        "event": "changeGroupedProperty",
+        "init": "value"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The property name in each of the added widgets that is grouped",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -90,28 +103,33 @@
           }
         ]
       },
-      "name": "groupedProperty",
-      "propertyType": "new",
-      "event": "changeGroupedProperty",
-      "apply": "_applyGroupedProperty",
-      "init": "value",
-      "check": "String",
-      "defaultValue": "value"
+      "appearsIn": []
     },
     "groupProperty": {
       "location": {
         "start": {
           "line": 90,
           "column": 4,
-          "index": 2708
+          "index": 2619
         },
         "end": {
           "line": 94,
           "column": 5,
-          "index": 2813
+          "index": 2720
         }
       },
+      "json": {
+        "check": "String",
+        "event": "changeGroupProperty",
+        "init": "group"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The property name in each of the added widgets that is informed of the",
+          "     * RadioGroup object it is a member of",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -119,27 +137,33 @@
           }
         ]
       },
-      "name": "groupProperty",
-      "propertyType": "new",
-      "event": "changeGroupProperty",
-      "init": "group",
-      "check": "String",
-      "defaultValue": "group"
+      "appearsIn": []
     },
     "enabled": {
       "location": {
         "start": {
           "line": 99,
           "column": 4,
-          "index": 2883
+          "index": 2785
         },
         "end": {
           "line": 104,
           "column": 5,
-          "index": 3005
+          "index": 2902
         }
       },
+      "json": {
+        "check": "Boolean",
+        "apply": "_applyEnabled",
+        "event": "changeEnabled",
+        "init": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the radio group is enabled",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -147,28 +171,32 @@
           }
         ]
       },
-      "name": "enabled",
-      "propertyType": "new",
-      "event": "changeEnabled",
-      "apply": "_applyEnabled",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     },
     "wrap": {
       "location": {
         "start": {
           "line": 110,
           "column": 4,
-          "index": 3156
+          "index": 3047
         },
         "end": {
           "line": 113,
           "column": 5,
-          "index": 3213
+          "index": 3101
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the selection should wrap around. This means that the successor of",
+          "     * the last item is the first item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -176,26 +204,33 @@
           }
         ]
       },
-      "name": "wrap",
-      "propertyType": "new",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     },
     "allowEmptySelection": {
       "location": {
         "start": {
           "line": 119,
           "column": 4,
-          "index": 3376
+          "index": 3258
         },
         "end": {
           "line": 123,
           "column": 5,
-          "index": 3492
+          "index": 3370
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyAllowEmptySelection"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * If is set to <code>true</code> the selection could be empty,",
+          "     * otherwise is always one <code>RadioButton</code> selected.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -203,27 +238,34 @@
           }
         ]
       },
-      "name": "allowEmptySelection",
-      "propertyType": "new",
-      "apply": "_applyAllowEmptySelection",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     },
     "valid": {
       "location": {
         "start": {
           "line": 129,
           "column": 4,
-          "index": 3619
+          "index": 3491
         },
         "end": {
           "line": 134,
           "column": 5,
-          "index": 3735
+          "index": 3602
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyValid",
+        "event": "changeValid"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if the group at all is valid. All children will have the",
+          "     * same state.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -231,28 +273,32 @@
           }
         ]
       },
-      "name": "valid",
-      "propertyType": "new",
-      "event": "changeValid",
-      "apply": "_applyValid",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     },
     "required": {
       "location": {
         "start": {
           "line": 139,
           "column": 4,
-          "index": 3811
+          "index": 3673
         },
         "end": {
           "line": 143,
           "column": 5,
-          "index": 3905
+          "index": 3763
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRequired"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if the group is required.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -260,27 +306,33 @@
           }
         ]
       },
-      "name": "required",
-      "propertyType": "new",
-      "event": "changeRequired",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     },
     "invalidMessage": {
       "location": {
         "start": {
           "line": 148,
           "column": 4,
-          "index": 3986
+          "index": 3839
         },
         "end": {
           "line": 153,
           "column": 5,
-          "index": 4126
+          "index": 3974
         }
       },
+      "json": {
+        "check": "String",
+        "init": "",
+        "event": "changeInvalidMessage",
+        "apply": "_applyInvalidMessage"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which is shown in an invalid tooltip.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -288,28 +340,33 @@
           }
         ]
       },
-      "name": "invalidMessage",
-      "propertyType": "new",
-      "event": "changeInvalidMessage",
-      "apply": "_applyInvalidMessage",
-      "init": "",
-      "check": "String",
-      "defaultValue": ""
+      "appearsIn": []
     },
     "requiredInvalidMessage": {
       "location": {
         "start": {
           "line": 159,
           "column": 4,
-          "index": 4255
+          "index": 4097
         },
         "end": {
           "line": 163,
           "column": 5,
-          "index": 4371
+          "index": 4209
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeInvalidMessage"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which is shown in an invalid tooltip if the {@link #required} is",
+          "     * set to true.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -317,61 +374,15 @@
           }
         ]
       },
-      "name": "requiredInvalidMessage",
-      "propertyType": "new",
-      "event": "changeInvalidMessage",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "__items": {
-      "location": {
-        "start": {
-          "line": 174,
-          "column": 4,
-          "index": 4662
-        },
-        "end": {
-          "line": 174,
-          "column": 17,
-          "index": 4675
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.form.IRadioItem[]} The items of the radio group "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -385,23 +396,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "getItems": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 187,
+          "line": 174,
           "column": 4,
-          "index": 4998
+          "index": 4489
         },
         "end": {
-          "line": 189,
-          "column": 5,
-          "index": 5045
+          "line": 174,
+          "column": 17,
+          "index": 4502
         }
       },
+      "appearsIn": []
+    },
+    "getItems": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get all managed items",
+          "     *",
+          "     * @return {qx.ui.form.IRadioItem[]} All managed items.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -413,27 +431,39 @@
             "name": "@return",
             "body": "{qx.ui.form.IRadioItem[]} All managed items.",
             "type": "qx.ui.form.IRadioItem[]",
-            "description": " All managed items."
+            "description": "All managed items."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "add": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 202,
+          "line": 187,
           "column": 4,
-          "index": 5407
+          "index": 4812
         },
         "end": {
-          "line": 242,
+          "line": 189,
           "column": 5,
-          "index": 6481
+          "index": 4857
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.IRadioItem[]"
+      },
+      "appearsIn": []
+    },
+    "add": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add the passed items to the radio group.",
+          "     *",
+          "     * @param varargs {qx.ui.form.IRadioItem} A variable number of items to add.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -450,23 +480,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "remove": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 249,
+          "line": 202,
           "column": 4,
-          "index": 6625
+          "index": 5206
         },
         "end": {
-          "line": 275,
+          "line": 242,
           "column": 5,
-          "index": 7437
+          "index": 6240
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "varargs",
+          "type": "qx.ui.form.IRadioItem"
+        }
+      ],
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an item from the radio group.",
+          "     *",
+          "     * @param item {qx.ui.form.IRadioItem} The item to remove.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -483,23 +527,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getChildren": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 282,
+          "line": 249,
           "column": 4,
-          "index": 7584
+          "index": 6377
         },
         "end": {
-          "line": 284,
+          "line": 275,
           "column": 5,
-          "index": 7634
+          "index": 7163
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.form.IRadioItem"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getChildren": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array containing the group's items.",
+          "     *",
+          "     * @return {qx.ui.form.IRadioItem[]} The item array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -511,27 +569,39 @@
             "name": "@return",
             "body": "{qx.ui.form.IRadioItem[]} The item array",
             "type": "qx.ui.form.IRadioItem[]",
-            "description": " The item array"
+            "description": "The item array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_onItemChangeChecked": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 297,
+          "line": 282,
           "column": 4,
-          "index": 8012
+          "index": 7303
         },
         "end": {
-          "line": 306,
+          "line": 284,
           "column": 5,
-          "index": 8304
+          "index": 7351
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.IRadioItem[]"
+      },
+      "appearsIn": []
+    },
+    "_onItemChangeChecked": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for <code>changeValue</code> event of every managed item.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Data event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -548,123 +618,185 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 297,
+          "column": 4,
+          "index": 7716
+        },
+        "end": {
+          "line": 306,
+          "column": 5,
+          "index": 7999
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyGroupedProperty": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 315,
           "column": 4,
-          "index": 8538
+          "index": 8224
         },
         "end": {
           "line": 337,
           "column": 5,
-          "index": 9179
+          "index": 8843
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "groupedProperty"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyInvalidMessage": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 340,
           "column": 4,
-          "index": 9211
+          "index": 8872
         },
         "end": {
           "line": 344,
           "column": 5,
-          "index": 9367
+          "index": 9024
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "invalidMessage"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyValid": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 347,
           "column": 4,
-          "index": 9399
+          "index": 9053
         },
         "end": {
           "line": 351,
           "column": 5,
-          "index": 9537
+          "index": 9187
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "valid"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyEnabled": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 354,
           "column": 4,
-          "index": 9569
+          "index": 9216
         },
         "end": {
           "line": 365,
           "column": 5,
-          "index": 9900
+          "index": 9536
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "enabled"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyAllowEmptySelection": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 368,
           "column": 4,
-          "index": 9932
+          "index": 9565
         },
         "end": {
           "line": 372,
           "column": 5,
-          "index": 10067
+          "index": 9696
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "allowEmptySelection"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "selectNext": {
-      "location": {
-        "start": {
-          "line": 383,
-          "column": 4,
-          "index": 10341
-        },
-        "end": {
-          "line": 407,
-          "column": 5,
-          "index": 10927
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Select the item following the given item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -672,23 +804,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "selectPrevious": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 412,
+          "line": 383,
           "column": 4,
-          "index": 11003
+          "index": 9959
         },
         "end": {
-          "line": 436,
+          "line": 407,
           "column": 5,
-          "index": 11606
+          "index": 10521
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "selectPrevious": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Select the item previous the given item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -696,23 +835,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_getItems": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 449,
+          "line": 412,
           "column": 4,
-          "index": 11965
+          "index": 10592
         },
         "end": {
-          "line": 451,
+          "line": 436,
           "column": 5,
-          "index": 12016
+          "index": 11171
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getItems": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the items for the selection.",
+          "     *",
+          "     * @return {qx.ui.form.IRadioItem[]} Items to select.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -724,27 +872,40 @@
             "name": "@return",
             "body": "{qx.ui.form.IRadioItem[]} Items to select.",
             "type": "qx.ui.form.IRadioItem[]",
-            "description": " Items to select."
+            "description": "Items to select."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_isAllowEmptySelection": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 459,
+          "line": 449,
           "column": 4,
-          "index": 12221
+          "index": 11517
         },
         "end": {
-          "line": 461,
+          "line": 451,
           "column": 5,
-          "index": 12298
+          "index": 11566
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.IRadioItem[]"
+      },
+      "appearsIn": []
+    },
+    "_isAllowEmptySelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns if the selection could be empty or not.",
+          "     *",
+          "     * @return {Boolean} <code>true</code> If selection could be empty,",
+          "     *    <code>false</code> otherwise.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -755,28 +916,44 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> If selection could be empty,\n    <code>false</code> otherwise.",
-            "type": "Boolean",
-            "description": " <code>true</code> If selection could be empty,\n    <code>false</code> otherwise."
+            "type": "boolean",
+            "description": "<code>true</code> If selection could be empty,\n    <code>false</code> otherwise."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_isItemSelectable": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 472,
+          "line": 459,
           "column": 4,
-          "index": 12772
+          "index": 11763
         },
         "end": {
-          "line": 474,
+          "line": 461,
           "column": 5,
-          "index": 12852
+          "index": 11838
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_isItemSelectable": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the item is selectable. In opposite to the default",
+          "     * implementation (which checks for visible items) every radio button",
+          "     * which is part of the group is selected even if it is currently not visible.",
+          "     *",
+          "     * @param item {qx.ui.form.IRadioItem} The item to check if its selectable.",
+          "     * @return {Boolean} <code>true</code> if the item is part of the radio group",
+          "     *    <code>false</code> otherwise.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -796,28 +973,45 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the item is part of the radio group\n    <code>false</code> otherwise.",
-            "type": "Boolean",
-            "description": " <code>true</code> if the item is part of the radio group\n    <code>false</code> otherwise."
+            "type": "boolean",
+            "description": "<code>true</code> if the item is part of the radio group\n    <code>false</code> otherwise."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__onChangeSelection": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 481,
+          "line": 472,
           "column": 4,
-          "index": 12993
+          "index": 12301
         },
         "end": {
-          "line": 498,
+          "line": 474,
           "column": 5,
-          "index": 13496
+          "index": 12379
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.form.IRadioItem"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__onChangeSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for <code>changeSelection</code>.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Data event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -834,23 +1028,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__isGroupFocused": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 504,
+          "line": 481,
           "column": 4,
-          "index": 13636
+          "index": 12513
         },
         "end": {
-          "line": 512,
+          "line": 498,
           "column": 5,
-          "index": 13886
+          "index": 12999
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__isGroupFocused": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if this group is focused by checking focused state of each item",
+          "     * @returns {Boolean} result",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -861,23 +1068,231 @@
           {
             "name": "@return",
             "body": "{Boolean} result",
-            "type": "Boolean",
-            "description": " result"
+            "type": "boolean",
+            "description": "result"
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 504,
+          "column": 4,
+          "index": 13133
+        },
+        "end": {
+          "line": 512,
+          "column": 5,
+          "index": 13375
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__manager": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.core.SingleSelectionManager} the single selection manager "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.ui.core.SingleSelectionManager} the single selection manager"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1691
+        },
+        "end": {
+          "line": 56,
+          "column": 19,
+          "index": 1706
+        }
+      },
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * setValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @param item {null|qx.ui.core.Widget} Item to set as selected value.",
+          "     * @returns {null|TypeError} The status of this operation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>setValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "item {null|qx.ui.core.Widget} Item to set as selected value.",
+            "paramName": "item",
+            "description": " Item to set as selected value.",
+            "type": [
+              "null",
+              "qx.ui.core.Widget"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|TypeError} The status of this operation.",
+            "type": "null|TypeError",
+            "description": "The status of this operation."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2142
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2496
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": [
+            "null",
+            "qx.ui.core.Widget"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "null|TypeError"
+      },
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * getValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @returns {null|qx.ui.core.Widget} The currently selected widget or null if there is none.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>getValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null|qx.ui.core.Widget} The currently selected widget or null if there is none.",
+            "type": "null|qx.ui.core.Widget",
+            "description": "The currently selected widget or null if there is none."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2699
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2773
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "null|qx.ui.core.Widget"
+      },
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
+    },
+    "resetValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * resetValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>resetValue implements part of the {@link qx.ui.form.IField} interface.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2874
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2937
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.form.IField"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
     },
     "getSelection": {
-      "type": "function",
-      "name": "getSelection",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.ISingleSelection",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of currently selected items.",
+          "     *",
+          "     * Note: The result is only a set of selected items, so the order can",
+          "     * differ from the sequence in which the items were added.",
+          "     *",
+          "     * @return {qx.ui.core.Widget[]} List of items.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -889,20 +1304,45 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget[]} List of items.",
             "type": "qx.ui.core.Widget[]",
-            "description": " List of items."
+            "description": "List of items."
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3216
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 3386
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
     },
     "setSelection": {
-      "type": "function",
-      "name": "setSelection",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.ISingleSelection",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces current selection with the given items.",
+          "     *",
+          "     * @param items {qx.ui.core.Widget[]} Items to select.",
+          "     * @throws {Error} if one of the items is not a child element and if",
+          "     *    items contains more than one elements.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -921,39 +1361,84 @@
         "@throws": [
           {
             "name": "@throws",
-            "body": "{Error} if the item is not a child element.",
+            "body": "{Error} if one of the items is not a child element and if\n    items contains more than one elements.",
             "type": "Error",
-            "description": " if the item is not a child element."
+            "description": " if one of the items is not a child element and if\n    items contains more than one elements."
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3653
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 4077
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "items",
+          "type": "qx.ui.core.Widget[]"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
     },
     "resetSelection": {
-      "type": "function",
-      "name": "resetSelection",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.ISingleSelection",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the whole selection at once.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Clears the whole selection at once.</p>"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 4143
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 4210
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
     },
     "isSelected": {
-      "type": "function",
-      "name": "isSelected",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.ISingleSelection",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the given item is currently selected.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Any valid selectable item.",
+          "     * @return {Boolean} Whether the item is selected.",
+          "     * @throws {Error} if one of the items is not a child element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -963,9 +1448,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "item {qx.ui.core.Widget} Any valid selectable item",
+            "body": "item {qx.ui.core.Widget} Any valid selectable item.",
             "paramName": "item",
-            "description": " Any valid selectable item",
+            "description": " Any valid selectable item.",
             "type": "qx.ui.core.Widget"
           }
         ],
@@ -973,29 +1458,57 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the item is selected.",
-            "type": "Boolean",
-            "description": " Whether the item is selected."
+            "type": "boolean",
+            "description": "Whether the item is selected."
           }
         ],
         "@throws": [
           {
             "name": "@throws",
-            "body": "{Error} if the item is not a child element.",
+            "body": "{Error} if one of the items is not a child element.",
             "type": "Error",
-            "description": " if the item is not a child element."
+            "description": " if one of the items is not a child element."
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 4489
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 4564
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
     },
     "isSelectionEmpty": {
-      "type": "function",
-      "name": "isSelectionEmpty",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.ISingleSelection",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the selection is empty.",
+          "     *",
+          "     * @return {Boolean} Whether the selection is empty.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1006,21 +1519,46 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the selection is empty.",
-            "type": "Boolean",
-            "description": " Whether the selection is empty."
+            "type": "boolean",
+            "description": "Whether the selection is empty."
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4690
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4769
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
     },
     "getSelectables": {
-      "type": "function",
-      "name": "getSelectables",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.ISingleSelection",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all elements which are selectable.",
+          "     *",
+          "     * @param all {Boolean} true for all selectables, false for the",
+          "     *   selectables the user can interactively select",
+          "     * @return {qx.ui.core.Widget[]} The contained items.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1033,7 +1571,7 @@
             "body": "all {Boolean} true for all selectables, false for the\n   selectables the user can interactively select",
             "paramName": "all",
             "description": " true for all selectables, false for the\n   selectables the user can interactively select",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
@@ -1041,395 +1579,49 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget[]} The contained items.",
             "type": "qx.ui.core.Widget[]",
-            "description": " The contained items."
+            "description": "The contained items."
           }
         ]
-      }
-    },
-    "setValue": {
-      "type": "function",
-      "name": "setValue",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      },
       "access": "public",
-      "overriddenFrom": "qx.ui.form.IField",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Sets the field model value. Should also update the UI.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var|null} Updates the field with the new model value.",
-            "paramName": "value",
-            "description": " Updates the field with the new model value.",
-            "type": [
-              "var",
-              "null"
-            ]
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{null|Error} Should return an error when the type of\n  model value is not compatible with the implementing class (the concrete field).",
-            "type": "null|Error",
-            "description": " Should return an error when the type of\n  model value is not compatible with the implementing class (the concrete field)."
-          }
-        ]
-      }
-    },
-    "resetValue": {
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4,
+          "index": 5030
+        },
+        "end": {
+          "line": 181,
+          "column": 5,
+          "index": 5111
+        }
+      },
       "type": "function",
-      "name": "resetValue",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IField",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Resets the model value to its initial value. Should also update the UI.</p>"
-          }
-        ]
-      }
-    },
-    "getValue": {
-      "type": "function",
-      "name": "getValue",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IField",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns a consistent and up-to-date model value.\n Note: returned value can also be a promise of type <code>Promise&amp;lt;*|null&amp;gt;</code>.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var|null} The model value plain or as promise.",
-            "type": "var|null",
-            "description": " The model value plain or as promise."
-          }
-        ]
-      }
-    },
-    "setEnabled": {
-      "type": "function",
-      "name": "setEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for enabled"
-          }
-        ]
-      }
-    },
-    "getEnabled": {
-      "type": "function",
-      "name": "getEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "setRequired": {
-      "type": "function",
-      "name": "setRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for required"
-          }
-        ]
-      }
-    },
-    "getRequired": {
-      "type": "function",
-      "name": "getRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for required"
-          }
-        ]
-      }
-    },
-    "setValid": {
-      "type": "function",
-      "name": "setValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for valid"
-          }
-        ]
-      }
-    },
-    "getValid": {
-      "type": "function",
-      "name": "getValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for valid"
-          }
-        ]
-      }
-    },
-    "setInvalidMessage": {
-      "type": "function",
-      "name": "setInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>invalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for invalidMessage"
-          }
-        ]
-      }
-    },
-    "getInvalidMessage": {
-      "type": "function",
-      "name": "getInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>invalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for invalidMessage"
-          }
-        ]
-      }
-    },
-    "setRequiredInvalidMessage": {
-      "type": "function",
-      "name": "setRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>requiredInvalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for requiredInvalidMessage"
-          }
-        ]
-      }
-    },
-    "getRequiredInvalidMessage": {
-      "type": "function",
-      "name": "getRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>requiredInvalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for requiredInvalidMessage"
-          }
-        ]
-      }
-    },
-    "setModelSelection": {
-      "type": "function",
-      "name": "setModelSelection",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IModelSelection",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Tries to set the selection using the given array containing the\n representative models for the selectables.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {Array} An array of models.",
-            "paramName": "value",
-            "description": " An array of models.",
-            "type": "Array"
-          }
-        ]
-      }
-    },
-    "getModelSelection": {
-      "type": "function",
-      "name": "getModelSelection",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IModelSelection",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns an array of the selected models.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Array} An array containing the models of the currently selected\n   items.",
-            "type": "Array",
-            "description": " An array containing the models of the currently selected\n   items."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "all",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling",
+        "qx.ui.core.ISingleSelection"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
     },
     "_onChangeSelected": {
-      "type": "function",
-      "name": "_onChangeSelected",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.ui.core.MSingleSelectionHandling",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for <code>changeSelected</code> event on single",
+          "     * selection manager.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Data event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1445,17 +1637,42 @@
             "type": "qx.event.type.Data"
           }
         ]
-      }
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 5481
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 5843
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
     },
     "__getManager": {
-      "type": "function",
-      "name": "__getManager",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.core.MSingleSelectionHandling",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the selection manager if it is already exists, otherwise creates",
+          "     * the manager.",
+          "     *",
+          "     * @return {qx.ui.core.SingleSelectionManager} Single selection manager.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1467,783 +1684,270 @@
             "name": "@return",
             "body": "{qx.ui.core.SingleSelectionManager} Single selection manager.",
             "type": "qx.ui.core.SingleSelectionManager",
-            "description": " Single selection manager."
+            "description": "Single selection manager."
           }
         ]
-      }
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 6049
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 6736
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.SingleSelectionManager"
+      },
+      "appearsIn": [
+        "qx.ui.core.MSingleSelectionHandling"
+      ],
+      "mixin": "qx.ui.core.MSingleSelectionHandling"
+    },
+    "__modelSelection": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1376
+        },
+        "end": {
+          "line": 48,
+          "column": 26,
+          "index": 1398
+        }
+      },
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ],
+      "mixin": "qx.ui.form.MModelSelection"
+    },
+    "__inSelectionChange": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1404
+        },
+        "end": {
+          "line": 49,
+          "column": 30,
+          "index": 1430
+        }
+      },
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ],
+      "mixin": "qx.ui.form.MModelSelection"
     },
     "__onModelSelectionChange": {
-      "type": "function",
-      "name": "__onModelSelectionChange",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.form.MModelSelection",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the selection change of the including class e.g. SelectBox,",
+          "     * List, ...",
+          "     * It sets the new modelSelection via {@link #setModelSelection}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Handler for the selection change of the including class e.g. SelectBox,\n List, …\n It sets the new modelSelection via {@link #setModelSelection}.</p>"
           }
         ]
-      }
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1619
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2327
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ],
+      "mixin": "qx.ui.form.MModelSelection"
     },
     "__onModelSelectionArrayChange": {
-      "type": "function",
-      "name": "__onModelSelectionArrayChange",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.form.MModelSelection",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener for the change of the internal model selection data array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Listener for the change of the internal model selection data array.</p>"
           }
         ]
-      }
-    },
-    "getQxOwner": {
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2425
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 3468
+        }
+      },
       "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.form.MModelSelection"
+      ],
+      "mixin": "qx.ui.form.MModelSelection"
+    },
+    "getModelSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns always an array of the models of the selected items. If no",
+          "     * item is selected or no model is given, the array will be empty.",
+          "     *",
+          "     * *CAREFUL!* The model selection can only work if every item item in the",
+          "     * selection providing widget has a model property!",
+          "     *",
+          "     * @return {qx.data.Array} An array of the models of the selected items.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+            "body": "<p>Returns always an array of the models of the selected items. If no\n item is selected or no model is given, the array will be empty.\n<em>CAREFUL!</em> The model selection can only work if every item item in the\n selection providing widget has a model property!</p>"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
+            "body": "{qx.data.Array} An array of the models of the selected items.",
+            "type": "qx.data.Array",
+            "description": "An array of the models of the selected items."
           }
         ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
+      },
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3861
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3924
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
+      "appearsIn": [
+        "qx.ui.form.MModelSelection",
+        "qx.ui.form.IModelSelection"
+      ],
+      "mixin": "qx.ui.form.MModelSelection"
+    },
+    "setModelSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the given models in the array and searches for the corresponding",
+          "     * selectables. If an selectable does have that model attached, it will be",
+          "     * selected.",
+          "     *",
+          "     * *Attention:* This method can have a time complexity of O(n^2)!",
+          "     *",
+          "     * *CAREFUL!* The model selection can only work if every item item in the",
+          "     * selection providing widget has a model property!",
+          "     *",
+          "     * @param modelSelection {Array} An array of models, which should be",
+          "     *   selected.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
+            "body": "<p>Takes the given models in the array and searches for the corresponding\n selectables. If an selectable does have that model attached, it will be\n selected.\n<em>Attention:</em> This method can have a time complexity of O(n^2)!\n<em>CAREFUL!</em> The model selection can only work if every item item in the\n selection providing widget has a model property!</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
+            "body": "modelSelection {Array} An array of models, which should be\n   selected.",
+            "paramName": "modelSelection",
+            "description": " An array of models, which should be\n   selected.",
+            "type": "Array<any>"
           }
         ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
+      },
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 4438
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 5064
+        }
+      },
       "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getGroupedProperty": {
-      "type": "function",
-      "name": "getGroupedProperty",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>groupedProperty</code>.\n\nFor further details take a look at the property definition: {@link #groupedProperty}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for groupedProperty"
-          }
-        ]
-      }
-    },
-    "setGroupedProperty": {
-      "type": "function",
-      "name": "setGroupedProperty",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>groupedProperty</code>.\n\nFor further details take a look at the property definition: {@link #groupedProperty}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for groupedProperty"
-          }
-        ]
-      }
-    },
-    "resetGroupedProperty": {
-      "type": "function",
-      "name": "resetGroupedProperty",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>groupedProperty</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #groupedProperty}."
-          }
-        ]
-      }
-    },
-    "getGroupProperty": {
-      "type": "function",
-      "name": "getGroupProperty",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>groupProperty</code>.\n\nFor further details take a look at the property definition: {@link #groupProperty}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for groupProperty"
-          }
-        ]
-      }
-    },
-    "setGroupProperty": {
-      "type": "function",
-      "name": "setGroupProperty",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>groupProperty</code>.\n\nFor further details take a look at the property definition: {@link #groupProperty}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for groupProperty"
-          }
-        ]
-      }
-    },
-    "resetGroupProperty": {
-      "type": "function",
-      "name": "resetGroupProperty",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>groupProperty</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #groupProperty}."
-          }
-        ]
-      }
-    },
-    "isEnabled": {
-      "type": "function",
-      "name": "isEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "resetEnabled": {
-      "type": "function",
-      "name": "resetEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ]
-      }
-    },
-    "getWrap": {
-      "type": "function",
-      "name": "getWrap",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>wrap</code>.\n\nFor further details take a look at the property definition: {@link #wrap}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for wrap"
-          }
-        ]
-      }
-    },
-    "isWrap": {
-      "type": "function",
-      "name": "isWrap",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>wrap</code>.\n\nFor further details take a look at the property definition: {@link #wrap}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for wrap"
-          }
-        ]
-      }
-    },
-    "setWrap": {
-      "type": "function",
-      "name": "setWrap",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>wrap</code>.\n\nFor further details take a look at the property definition: {@link #wrap}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for wrap"
-          }
-        ]
-      }
-    },
-    "resetWrap": {
-      "type": "function",
-      "name": "resetWrap",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>wrap</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #wrap}."
-          }
-        ]
-      }
-    },
-    "getAllowEmptySelection": {
-      "type": "function",
-      "name": "getAllowEmptySelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowEmptySelection</code>.\n\nFor further details take a look at the property definition: {@link #allowEmptySelection}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowEmptySelection"
-          }
-        ]
-      }
-    },
-    "isAllowEmptySelection": {
-      "type": "function",
-      "name": "isAllowEmptySelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowEmptySelection</code>.\n\nFor further details take a look at the property definition: {@link #allowEmptySelection}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowEmptySelection"
-          }
-        ]
-      }
-    },
-    "setAllowEmptySelection": {
-      "type": "function",
-      "name": "setAllowEmptySelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowEmptySelection</code>.\n\nFor further details take a look at the property definition: {@link #allowEmptySelection}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowEmptySelection"
-          }
-        ]
-      }
-    },
-    "resetAllowEmptySelection": {
-      "type": "function",
-      "name": "resetAllowEmptySelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowEmptySelection</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowEmptySelection}."
-          }
-        ]
-      }
-    },
-    "isValid": {
-      "type": "function",
-      "name": "isValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for valid"
-          }
-        ]
-      }
-    },
-    "resetValid": {
-      "type": "function",
-      "name": "resetValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>valid</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ]
-      }
-    },
-    "isRequired": {
-      "type": "function",
-      "name": "isRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for required"
-          }
-        ]
-      }
-    },
-    "resetRequired": {
-      "type": "function",
-      "name": "resetRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>required</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ]
-      }
-    },
-    "resetInvalidMessage": {
-      "type": "function",
-      "name": "resetInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>invalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
-          }
-        ]
-      }
-    },
-    "resetRequiredInvalidMessage": {
-      "type": "function",
-      "name": "resetRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>requiredInvalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "modelSelection",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.MModelSelection",
+        "qx.ui.form.IModelSelection"
+      ],
+      "mixin": "qx.ui.form.MModelSelection"
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 521,
         "column": 2,
-        "index": 14091
+        "index": 13571
       },
       "end": {
         "line": 523,
         "column": 3,
-        "index": 14144
-      }
-    },
-    "jsdoc": {}
-  },
-  "events": {
-    "changeSelection": {
-      "type": "event",
-      "name": "changeSelection",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.ISingleSelection",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Fires after the selection was modified</p>"
-          }
-        ]
-      }
-    },
-    "changeValue": {
-      "type": "event",
-      "name": "changeValue",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IField",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Fired when the model value was modified</p>"
-          }
-        ]
-      }
-    },
-    "changeEnabled": {
-      "type": "event",
-      "name": "changeEnabled",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Fired when the enabled state was modified</p>"
-          }
-        ]
-      }
-    },
-    "changeValid": {
-      "type": "event",
-      "name": "changeValid",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Fired when the valid state was modified</p>"
-          }
-        ]
-      }
-    },
-    "changeInvalidMessage": {
-      "type": "event",
-      "name": "changeInvalidMessage",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Fired when the invalidMessage was modified</p>"
-          }
-        ]
-      }
-    },
-    "changeRequired": {
-      "type": "event",
-      "name": "changeRequired",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Fired when the required was modified</p>"
-          }
-        ]
-      }
-    },
-    "changeModelSelection": {
-      "type": "event",
-      "name": "changeModelSelection",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.MModelSelection",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Pseudo event. It will never be fired because the array itself can not\n be changed. But the event description is needed for the data binding.</p>"
-          }
-        ]
+        "index": 13622
       }
     }
   },
-  "descendants": [
-    "qx.ui.mobile.form.RadioGroup"
-  ]
+  "statics": {}
 }

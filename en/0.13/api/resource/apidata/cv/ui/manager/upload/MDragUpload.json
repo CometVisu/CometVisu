@@ -1,35 +1,45 @@
 {
-  "className": "cv.ui.manager.upload.MDragUpload",
-  "packageName": "cv.ui.manager.upload",
-  "name": "MDragUpload",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 30,
-        "column": 0,
-        "index": 1133
-      },
-      "end": {
-        "line": 343,
-        "column": 3,
-        "index": 10692
-      }
+  "version": 0.3,
+  "lastModified": 1717235105610,
+  "lastModifiedIso": "2024-06-01T09:45:05.610Z",
+  "classFilename": "../../source/class/cv/ui/manager/upload/MDragUpload.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 1133
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Add upload via drag&amp;drop feature to this widget. The including widget must have a\n \"upload-dropbox\" childcontrol or add\n  </p>\n<pre class=\"javascript\">\n   if (!control) {\n        control = this._createMDragUploadChildControlImpl(id);\n      }\n   </pre>\n<p>to their own _createChildControlImpl method</p>"
-        }
-      ]
+    "end": {
+      "line": 343,
+      "column": 3,
+      "index": 10692
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.manager.upload.MDragUpload",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Add upload via drag&drop feature to this widget. The including widget must have a",
+      " * \"upload-dropbox\" childcontrol or add",
+      " *  <pre class=\"javascript\">",
+      " *   if (!control) {",
+      "        control = this._createMDragUploadChildControlImpl(id);",
+      "      }",
+      " *   </pre>",
+      " *   to their own _createChildControlImpl method",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Add upload via drag&amp;drop feature to this widget. The including widget must have a\n \"upload-dropbox\" childcontrol or add\n  </p>\n<pre class=\"javascript\">\n   if (!control) {\n        control = this._createMDragUploadChildControlImpl(id);\n      }\n   </pre>\n<p>to their own _createChildControlImpl method</p>"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 36,
@@ -41,8 +51,7 @@
         "column": 3,
         "index": 1801
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "uploadMode": {
@@ -58,12 +67,13 @@
           "index": 2105
         }
       },
-      "name": "uploadMode",
-      "propertyType": "new",
-      "apply": "__P_54_1",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "__applyUploadMode"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "uploadHint": {
       "location": {
@@ -78,15 +88,39 @@
           "index": 2169
         }
       },
-      "name": "uploadHint",
-      "propertyType": "new",
-      "init": "",
-      "check": "String",
-      "defaultValue": ""
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
     }
   },
   "statics": {
     "onHtml5Drop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles HTML5 drop events (dropping external files on dom element)",
+          "     * @param ev {Event}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles HTML5 drop events (dropping external files on dom element)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 79,
@@ -99,24 +133,50 @@
           "index": 2536
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "uploadFile": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Uploads the dropped file to the correct folder:",
+          "     * - config files to the resources/config folder",
+          "     * - accepted media files to the resources/config/media folder",
+          "     * @param file {File}",
+          "     * @param replaceFile {cv.ui.manager.model.FileItem?} optional, if set this files content gets replaced with the uploaded ones",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Handles HTML5 drop events (dropping external files on dom element)</p>"
+            "body": "<p>Uploads the dropped file to the correct folder:</p>\n<ul>\n<li>config files to the resources/config folder</li>\n<li>accepted media files to the resources/config/media folder</li>\n</ul>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "ev {Event}"
+            "body": "file {File}",
+            "paramName": "file",
+            "type": "File"
+          },
+          {
+            "name": "@param",
+            "body": "replaceFile {cv.ui.manager.model.FileItem?} optional, if set this files content gets replaced with the uploaded ones",
+            "paramName": "replaceFile",
+            "description": " optional, if set this files content gets replaced with the uploaded ones",
+            "optional": true,
+            "type": "cv.ui.manager.model.FileItem"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "uploadFile": {
+      "access": "public",
       "location": {
         "start": {
           "line": 91,
@@ -129,32 +189,23 @@
           "index": 3632
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Uploads the dropped file to the correct folder:</p>\n<ul>\n<li>config files to the resources/config folder</li>\n<li>accepted media files to the resources/config/media folder</li>\n</ul>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "file {File}"
-          },
-          {
-            "name": "@param",
-            "body": "replaceFile {cv.ui.manager.model.FileItem?} optional, if set this files content gets replaced with the uploaded ones",
-            "paramName": "replaceFile",
-            "description": " optional, if set this files content gets replaced with the uploaded ones",
-            "optional": true,
-            "type": "cv.ui.manager.model.FileItem"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "file",
+          "type": "File"
+        },
+        {
+          "name": "replaceFile",
+          "type": "cv.ui.manager.model.FileItem",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
     },
     "hasDroppableFile": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 117,
@@ -168,9 +219,44 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "getFiles": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Extracts acceptable files from event",
+          "     * @param ev {Event}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Extracts acceptable files from event</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 126,
@@ -183,32 +269,20 @@
           "index": 4638
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Extracts acceptable files from event</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "ev {Event}"
-          }
-        ],
-        "@private": [
-          {
-            "name": "@private",
-            "body": ""
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "members": {
     "__hasEmptyInfo": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 160,
@@ -221,10 +295,11 @@
           "index": 4865
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_boundOnStop": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 161,
@@ -237,10 +312,11 @@
           "index": 4889
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "__syncBounds": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 163,
@@ -254,9 +330,16 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "_createMDragUploadChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 171,
@@ -269,11 +352,17 @@
           "index": 6983
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "appearsIn": []
     },
     "_onStopDragging": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 221,
@@ -287,9 +376,28 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyStartDragListeners": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&Drop",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&amp;Drop</p>"
+          }
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 230,
@@ -302,7 +410,17 @@
           "index": 8203
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyDragListeners": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&Drop",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -310,10 +428,7 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_applyDragListeners": {
+      "access": "protected",
       "location": {
         "start": {
           "line": 263,
@@ -326,18 +441,17 @@
           "index": 10092
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Apply dragover/-leave listeners to the dashboard to recognize File uploads via Drag&amp;Drop</p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "__applyUploadMode": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "private",
       "location": {
         "start": {
           "line": 326,
@@ -350,166 +464,13 @@
           "index": 10684
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "private"
-    },
-    "getUploadMode": {
-      "type": "function",
-      "name": "getUploadMode",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>uploadMode</code>.\n\nFor further details take a look at the property definition: {@link #uploadMode}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for uploadMode"
-          }
-        ]
-      }
-    },
-    "isUploadMode": {
-      "type": "function",
-      "name": "isUploadMode",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>uploadMode</code>.\n\nFor further details take a look at the property definition: {@link #uploadMode}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for uploadMode"
-          }
-        ]
-      }
-    },
-    "setUploadMode": {
-      "type": "function",
-      "name": "setUploadMode",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>uploadMode</code>.\n\nFor further details take a look at the property definition: {@link #uploadMode}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for uploadMode"
-          }
-        ]
-      }
-    },
-    "resetUploadMode": {
-      "type": "function",
-      "name": "resetUploadMode",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>uploadMode</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #uploadMode}."
-          }
-        ]
-      }
-    },
-    "getUploadHint": {
-      "type": "function",
-      "name": "getUploadHint",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>uploadHint</code>.\n\nFor further details take a look at the property definition: {@link #uploadHint}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for uploadHint"
-          }
-        ]
-      }
-    },
-    "setUploadHint": {
-      "type": "function",
-      "name": "setUploadHint",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>uploadHint</code>.\n\nFor further details take a look at the property definition: {@link #uploadHint}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for uploadHint"
-          }
-        ]
-      }
-    },
-    "resetUploadHint": {
-      "type": "function",
-      "name": "resetUploadHint",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>uploadHint</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #uploadHint}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     }
-  },
-  "descendants": []
+  }
 }

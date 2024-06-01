@@ -1,49 +1,42 @@
 {
-  "className": "qx.bom.element.Class",
-  "packageName": "qx.bom.element",
-  "name": "Class",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 40,
-        "column": 0,
-        "index": 1039
-      },
-      "end": {
-        "line": 271,
-        "column": 3,
-        "index": 8293
-      }
+  "version": 0.3,
+  "lastModified": 1717235169582,
+  "lastModifiedIso": "2024-06-01T09:46:09.582Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/Class.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 40,
+      "column": 0,
+      "index": 1000
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>CSS class name support for HTML elements. Supports multiple class names\n for each element. Can query and apply class names to HTML elements.</p>"
-        }
-      ]
+    "end": {
+      "line": 271,
+      "column": 3,
+      "index": 8023
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.Class",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * CSS class name support for HTML elements. Supports multiple class names",
+      " * for each element. Can query and apply class names to HTML elements.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>CSS class name support for HTML elements. Supports multiple class names\n for each element. Can query and apply class names to HTML elements.</p>"
+      }
+    ]
+  },
   "statics": {
     "__splitter": {
-      "location": {
-        "start": {
-          "line": 49,
-          "column": 4,
-          "index": 1362
-        },
-        "end": {
-          "line": 49,
-          "column": 22,
-          "index": 1380
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {RegExp} Regular expressions to split class names "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +50,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__trim": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 52,
+          "line": 49,
           "column": 4,
-          "index": 1448
+          "index": 1314
         },
         "end": {
-          "line": 52,
-          "column": 24,
-          "index": 1468
+          "line": 49,
+          "column": 22,
+          "index": 1332
         }
       },
+      "appearsIn": []
+    },
+    "__trim": {
       "jsdoc": {
+        "raw": [
+          "* @type {RegExp} String trim regular expression. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,23 +83,34 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "add": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 63,
+          "line": 52,
           "column": 4,
-          "index": 1818
+          "index": 1397
         },
         "end": {
-          "line": 79,
-          "column": 71,
-          "index": 2235
+          "line": 52,
+          "column": 24,
+          "index": 1417
         }
       },
+      "appearsIn": []
+    },
+    "add": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a className to the given element",
+          "     * If successfully added the given className will be returned",
+          "     *",
+          "     * @signature function(element, name)",
+          "     * @param element {Element} The element to modify",
+          "     * @param name {String} The class name to add",
+          "     * @return {String} The added classname (if so)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -129,35 +136,48 @@
             "body": "name {String} The class name to add",
             "paramName": "name",
             "description": " The class name to add",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The added classname (if so)",
-            "type": "String",
-            "description": " The added classname (if so)"
+            "type": "string",
+            "description": "The added classname (if so)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addClasses": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 89,
+          "line": 63,
           "column": 4,
-          "index": 2548
+          "index": 1756
         },
         "end": {
-          "line": 121,
+          "line": 79,
           "column": 71,
-          "index": 3471
+          "index": 2157
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "addClasses": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds multiple classes to the given element",
+          "     *",
+          "     * @signature function(element, classes)",
+          "     * @param element {Element} DOM element to modify",
+          "     * @param classes {String[]} List of classes to add.",
+          "     * @return {String} The resulting class name which was applied",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -190,28 +210,39 @@
           {
             "name": "@return",
             "body": "{String} The resulting class name which was applied",
-            "type": "String",
-            "description": " The resulting class name which was applied"
+            "type": "string",
+            "description": "The resulting class name which was applied"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "get": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 129,
+          "line": 89,
           "column": 4,
-          "index": 3657
+          "index": 2460
         },
         "end": {
-          "line": 156,
-          "column": 5,
-          "index": 4560
+          "line": 121,
+          "column": 71,
+          "index": 3351
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "get": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the classname of the given element",
+          "     *",
+          "     * @param element {Element} The element to query",
+          "     * @return {String} The retrieved classname",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -231,28 +262,48 @@
           {
             "name": "@return",
             "body": "{String} The retrieved classname",
-            "type": "String",
-            "description": " The retrieved classname"
+            "type": "string",
+            "description": "The retrieved classname"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "has": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 166,
+          "line": 129,
           "column": 4,
-          "index": 4884
+          "index": 3529
         },
         "end": {
-          "line": 175,
-          "column": 71,
-          "index": 5209
+          "line": 156,
+          "column": 5,
+          "index": 4405
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "has": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given element has the given className.",
+          "     *",
+          "     * @signature function(element, name)",
+          "     * @param element {Element} The DOM element to check",
+          "     * @param name {String} The class name to check for",
+          "     * @return {Boolean} true when the element has the given classname",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -278,35 +329,48 @@
             "body": "name {String} The class name to check for",
             "paramName": "name",
             "description": " The class name to check for",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} true when the element has the given classname",
-            "type": "Boolean",
-            "description": " true when the element has the given classname"
+            "type": "boolean",
+            "description": "true when the element has the given classname"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "remove": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 185,
+          "line": 166,
           "column": 4,
-          "index": 5499
+          "index": 4719
         },
         "end": {
-          "line": 197,
+          "line": 175,
           "column": 71,
-          "index": 5886
+          "index": 5035
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a className from the given element",
+          "     *",
+          "     * @signature function(element, name)",
+          "     * @param element {Element} The DOM element to modify",
+          "     * @param name {String} The class name to remove",
+          "     * @return {String} The removed class name",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -332,35 +396,48 @@
             "body": "name {String} The class name to remove",
             "paramName": "name",
             "description": " The class name to remove",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The removed class name",
-            "type": "String",
-            "description": " The removed class name"
+            "type": "string",
+            "description": "The removed class name"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeClasses": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 207,
+          "line": 185,
           "column": 4,
-          "index": 6207
+          "index": 5315
         },
         "end": {
-          "line": 222,
+          "line": 197,
           "column": 71,
-          "index": 6775
+          "index": 5690
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "removeClasses": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes multiple classes from the given element",
+          "     *",
+          "     * @signature function(element, classes)",
+          "     * @param element {Element} DOM element to modify",
+          "     * @param classes {String[]} List of classes to remove.",
+          "     * @return {String} The resulting class name which was applied",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -393,28 +470,41 @@
           {
             "name": "@return",
             "body": "{String} The resulting class name which was applied",
-            "type": "String",
-            "description": " The resulting class name which was applied"
+            "type": "string",
+            "description": "The resulting class name which was applied"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "replace": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 232,
+          "line": 207,
           "column": 4,
-          "index": 7090
+          "index": 6001
         },
         "end": {
-          "line": 239,
-          "column": 5,
-          "index": 7286
+          "line": 222,
+          "column": 71,
+          "index": 6554
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "replace": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces the first given class name with the second one",
+          "     *",
+          "     * @param element {Element} The DOM element to modify",
+          "     * @param oldName {String} The class name to remove",
+          "     * @param newName {String} The class name to add",
+          "     * @return {String} The added class name",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -434,42 +524,72 @@
             "body": "oldName {String} The class name to remove",
             "paramName": "oldName",
             "description": " The class name to remove",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "newName {String} The class name to add",
             "paramName": "newName",
             "description": " The class name to add",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The added class name",
-            "type": "String",
-            "description": " The added class name"
+            "type": "string",
+            "description": "The added class name"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toggle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 251,
+          "line": 232,
           "column": 4,
-          "index": 7712
+          "index": 6859
         },
         "end": {
-          "line": 269,
-          "column": 71,
-          "index": 8283
+          "line": 239,
+          "column": 5,
+          "index": 7048
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "oldName",
+          "type": "string"
+        },
+        {
+          "name": "newName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toggle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggles a className of the given element",
+          "     *",
+          "     * @signature function(element, name, toggle)",
+          "     * @param element {Element} The DOM element to modify",
+          "     * @param name {String} The class name to toggle",
+          "     * @param toggle {Boolean?null} Whether to switch class on/off. Without",
+          "     *    the parameter an automatic toggling would happen.",
+          "     * @return {String} The class name",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -495,7 +615,7 @@
             "body": "name {String} The class name to toggle",
             "paramName": "name",
             "description": " The class name to toggle",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -511,14 +631,30 @@
           {
             "name": "@return",
             "body": "{String} The class name",
-            "type": "String",
-            "description": " The class name"
+            "type": "string",
+            "description": "The class name"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4,
+          "index": 7462
+        },
+        "end": {
+          "line": 269,
+          "column": 71,
+          "index": 8015
+        }
+      },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

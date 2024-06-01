@@ -1,48 +1,54 @@
 {
-  "className": "cv.transforms.OpenHab",
-  "packageName": "cv.transforms",
-  "name": "OpenHab",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 911
-      },
-      "end": {
-        "line": 260,
-        "column": 3,
-        "index": 7185
-      }
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/transforms/OpenHab.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 911
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Transformations for the openHAB backend</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 2012</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2012"
-        }
-      ]
+    "end": {
+      "line": 260,
+      "column": 3,
+      "index": 7185
     }
   },
-  "type": "class",
+  "className": "cv.transforms.OpenHab",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Transformations for the openHAB backend",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 2012",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Transformations for the openHAB backend</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2012"
+      }
+    ]
+  },
   "statics": {
     "isUndefined": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 33,
@@ -56,30 +62,14 @@
         }
       },
       "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 42,
-        "column": 2,
-        "index": 1384
-      },
-      "end": {
-        "line": 259,
-        "column": 3,
-        "index": 7181
-      }
-    },
-    "jsdoc": {
-      "@description": [
+      "params": [
         {
-          "name": "@description",
-          "body": "<p>This class defines the default transforms: encode: transform JavaScript to\n bus value decode: transform bus to JavaScript value</p>"
+          "name": "value"
         }
-      ]
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

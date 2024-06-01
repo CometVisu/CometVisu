@@ -1,49 +1,59 @@
 {
-  "className": "qx.dev.unit.MTestLoader",
-  "packageName": "qx.dev.unit",
-  "name": "MTestLoader",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 768
-      },
-      "end": {
-        "line": 192,
-        "column": 3,
-        "index": 5406
-      }
+  "version": 0.3,
+  "lastModified": 1717235171838,
+  "lastModifiedIso": "2024-06-01T09:46:11.838Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/unit/MTestLoader.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 744
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin contains the methods needed to implement a loader that will\n create a suite of unit tests from a given namespace and run it directly or\n provide the necessary information to a more advanced runner application</p>"
-        }
-      ]
+    "end": {
+      "line": 192,
+      "column": 3,
+      "index": 5215
     }
   },
-  "type": "mixin",
+  "className": "qx.dev.unit.MTestLoader",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin contains the methods needed to implement a loader that will",
+      " * create a suite of unit tests from a given namespace and run it directly or",
+      " * provide the necessary information to a more advanced runner application",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin contains the methods needed to implement a loader that will\n create a suite of unit tests from a given namespace and run it directly or\n provide the necessary information to a more advanced runner application</p>"
+      }
+    ]
+  },
   "properties": {
     "suite": {
       "location": {
         "start": {
           "line": 34,
           "column": 4,
-          "index": 1055
+          "index": 1022
         },
         "end": {
           "line": 38,
           "column": 5,
-          "index": 1150
+          "index": 1113
         }
       },
+      "json": {
+        "check": "qx.dev.unit.TestSuite",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* The test suite "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,28 +61,20 @@
           }
         ]
       },
-      "name": "suite",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "qx.dev.unit.TestSuite"
+      "appearsIn": []
     }
   },
   "members": {
     "_getClassNameFromUrl": {
-      "location": {
-        "start": {
-          "line": 54,
-          "column": 4,
-          "index": 1593
-        },
-        "end": {
-          "line": 65,
-          "column": 5,
-          "index": 1896
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the url parameters and tries to find the classes to test.",
+          "     * The pattern is like <code>index.html?testclass=qx.test</code>",
+          "     *",
+          "     * @return {String} the class/namespace to test",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -83,28 +85,41 @@
           {
             "name": "@return",
             "body": "{String} the class/namespace to test",
-            "type": "String",
-            "description": " the class/namespace to test"
+            "type": "string",
+            "description": "the class/namespace to test"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "setTestNamespace": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 73,
+          "line": 54,
           "column": 4,
-          "index": 2130
+          "index": 1540
         },
         "end": {
-          "line": 77,
+          "line": 65,
           "column": 5,
-          "index": 2272
+          "index": 1832
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setTestNamespace": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the top level namespace of the test cases to test. All classes",
+          "     * below this namespace extending {@link TestCase} will be tested.",
+          "     *",
+          "     * @param namespace {Object} Namespace to add",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,27 +132,39 @@
             "body": "namespace {Object} Namespace to add",
             "paramName": "namespace",
             "description": " Namespace to add",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "runJsUnit": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 73,
           "column": 4,
-          "index": 2354
+          "index": 2058
         },
         "end": {
-          "line": 86,
+          "line": 77,
           "column": 5,
-          "index": 2510
+          "index": 2196
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "namespace",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "runJsUnit": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Run all tests and export the results to JSUnit",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -145,23 +172,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "runStandAlone": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 91,
+          "line": 82,
           "column": 4,
-          "index": 2581
+          "index": 2273
         },
         "end": {
-          "line": 121,
+          "line": 86,
           "column": 5,
-          "index": 3421
+          "index": 2425
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "runStandAlone": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Run tests as standalone application",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -169,23 +203,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTestDescriptions": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 128,
+          "line": 91,
           "column": 4,
-          "index": 3549
+          "index": 2491
         },
         "end": {
-          "line": 147,
+          "line": 121,
           "column": 5,
-          "index": 4088
+          "index": 3301
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getTestDescriptions": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a list of test descriptions",
+          "     *",
+          "     * @return {String} A description of all tests.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -196,28 +239,42 @@
           {
             "name": "@return",
             "body": "{String} A description of all tests.",
-            "type": "String",
-            "description": " A description of all tests."
+            "type": "string",
+            "description": "A description of all tests."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "runTests": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 156,
+          "line": 128,
           "column": 4,
-          "index": 4358
+          "index": 3422
         },
         "end": {
-          "line": 174,
+          "line": 147,
           "column": 5,
-          "index": 4883
+          "index": 3942
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "runTests": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Runs exactly one test from the test suite",
+          "     *",
+          "     * @param testResult {qx.dev.unit.TestResult} the result logger",
+          "     * @param className {String} Name of the test class",
+          "     * @param methodName {String} Name of the test method",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -237,34 +294,57 @@
             "body": "className {String} Name of the test class",
             "paramName": "className",
             "description": " Name of the test class",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "methodName {String} Name of the test method",
             "paramName": "methodName",
             "description": " Name of the test method",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "runTestsFromNamespace": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 182,
+          "line": 156,
           "column": 4,
-          "index": 5108
+          "index": 4203
         },
         "end": {
-          "line": 190,
+          "line": 174,
           "column": 5,
-          "index": 5396
+          "index": 4710
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "testResult",
+          "type": "qx.dev.unit.TestResult"
+        },
+        {
+          "name": "className",
+          "type": "string"
+        },
+        {
+          "name": "methodName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "runTestsFromNamespace": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Runs all tests inside of the given namespace",
+          "     *",
+          "     * @param testResult {qx.dev.unit.TestResult} the result logger",
+          "     * @param namespaceName {String} Namespace of the tests to run",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -284,79 +364,36 @@
             "body": "namespaceName {String} Namespace of the tests to run",
             "paramName": "namespaceName",
             "description": " Namespace of the tests to run",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSuite": {
-      "type": "function",
-      "name": "getSuite",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
       "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>suite</code>.\n\nFor further details take a look at the property definition: {@link #suite}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.dev.unit.TestSuite",
-            "desc": "Returns the value for suite"
-          }
-        ]
-      }
-    },
-    "setSuite": {
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 4927
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 5207
+        }
+      },
       "type": "function",
-      "name": "setSuite",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>suite</code>.\n\nFor further details take a look at the property definition: {@link #suite}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.dev.unit.TestSuite",
-            "paramName": "value",
-            "desc": "Value for suite"
-          }
-        ]
-      }
-    },
-    "resetSuite": {
-      "type": "function",
-      "name": "resetSuite",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>suite</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #suite}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "testResult",
+          "type": "qx.dev.unit.TestResult"
+        },
+        {
+          "name": "namespaceName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

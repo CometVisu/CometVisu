@@ -1,55 +1,57 @@
 {
-  "className": "qx.bom.client.Idle",
-  "packageName": "qx.bom.client",
-  "name": "Idle",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 660
-      },
-      "end": {
-        "line": 43,
-        "column": 3,
-        "index": 1091
-      }
+  "version": 0.3,
+  "lastModified": 1717235171210,
+  "lastModifiedIso": "2024-06-01T09:46:11.210Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Idle.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 634
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Responsible for checking whether the browser supports cooperative\n scheduling.\n Spec: https://www.w3.org/TR/requestidlecallback/</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 43,
+      "column": 3,
+      "index": 1049
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.Idle",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Responsible for checking whether the browser supports cooperative",
+      " * scheduling.",
+      " *",
+      " * Spec: https://www.w3.org/TR/requestidlecallback/",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Responsible for checking whether the browser supports cooperative\n scheduling.\n Spec: https://www.w3.org/TR/requestidlecallback/</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "statics": {
     "getSupport": {
-      "location": {
-        "start": {
-          "line": 35,
-          "column": 4,
-          "index": 911
-        },
-        "end": {
-          "line": 37,
-          "column": 5,
-          "index": 988
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports cooperative scheduling of background tasks.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if API is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,28 +68,32 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if API is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if API is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if API is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 40,
-        "column": 2,
-        "index": 1000
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 877
+        },
+        "end": {
+          "line": 37,
+          "column": 5,
+          "index": 952
+        }
       },
-      "end": {
-        "line": 42,
-        "column": 3,
-        "index": 1086
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -1,0 +1,145 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171658,
+  "lastModifiedIso": "2024-06-01T09:46:11.658Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/migration/M6_0_0.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 661
+    },
+    "end": {
+      "line": 266,
+      "column": 3,
+      "index": 8418
+    }
+  },
+  "className": "qx.tool.migration.M6_0_0",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Migration class for updating from v5 to v6",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Migration class for updating from v5 to v6</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.migration.BaseMigration",
+  "members": {
+    "migrateCompileJs": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for legacy compile.js - needs manual intervention",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check for legacy compile.js - needs manual intervention</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 846
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1369
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "migrateQooxdooJs": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1376
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 2046
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "migrateConfigFiles": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2053
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 3428
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "migrateManifest": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 3435
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 7346
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "migrateCompileJson": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4,
+          "index": 7353
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 8410
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

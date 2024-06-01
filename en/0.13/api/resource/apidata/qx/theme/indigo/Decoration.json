@@ -1,52 +1,37 @@
 {
-  "className": "qx.theme.indigo.Decoration",
-  "packageName": "qx.theme.indigo",
-  "name": "Decoration",
-  "superClass": "qx.theme.simple.Decoration",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 556
-      },
-      "end": {
-        "line": 88,
-        "column": 3,
-        "index": 1871
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The indigo qooxdoo decoration theme.</p>"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235169914,
+  "lastModifiedIso": "2024-06-01T09:46:09.914Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/Decoration.js",
   "type": "theme",
-  "aliases": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 2,
-        "index": 648
-      },
-      "end": {
-        "line": 27,
-        "column": 3,
-        "index": 703
-      }
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 535
     },
-    "aliasMap": {
-      "decoration": "qx/decoration/Simple"
+    "end": {
+      "line": 88,
+      "column": 3,
+      "index": 1784
     }
   },
-  "descendants": [
-    "qx.theme.indigo.DecorationDark"
-  ]
+  "className": "qx.theme.indigo.Decoration",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The indigo qooxdoo decoration theme.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The indigo qooxdoo decoration theme.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.theme.simple.Decoration",
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

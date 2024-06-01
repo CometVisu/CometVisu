@@ -1,0 +1,106 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171578,
+  "lastModifiedIso": "2024-06-01T09:46:11.578Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/config/List.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 605
+    },
+    "end": {
+      "line": 81,
+      "column": 3,
+      "index": 2079
+    }
+  },
+  "className": "qx.tool.cli.commands.config.List",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Lists compatible packages",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Lists compatible packages</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Config",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the yargs command data",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the yargs command data</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 793
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1068
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": [
+        "qx.tool.cli.commands.Config"
+      ]
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1092
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2071
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    }
+  },
+  "properties": {}
+}

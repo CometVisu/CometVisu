@@ -1,0 +1,180 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171570,
+  "lastModifiedIso": "2024-06-01T09:46:11.570Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Lint.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 619
+    },
+    "end": {
+      "line": 255,
+      "column": 3,
+      "index": 7794
+    }
+  },
+  "className": "qx.tool.cli.commands.Lint",
+  "jsdoc": null,
+  "superClass": "qx.tool.cli.commands.Command",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 724
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2482
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2506
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 6658
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "__addGlobals": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scan all libraries and add the namespace to globals",
+          "     * @param {Object} data",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scan all libraries and add the namespace to globals</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Object} data",
+            "paramName": "data",
+            "description": "",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 6799
+        },
+        "end": {
+          "line": 231,
+          "column": 5,
+          "index": 7200
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "__applyFixes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply fixes before linting code",
+          "     * @return {Promise<void>}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply fixes before linting code</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 7309
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 7786
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "files"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

@@ -1,48 +1,55 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/svg/TextValue.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 8,
+      "column": 0,
+      "index": 148
+    },
+    "end": {
+      "line": 291,
+      "column": 3,
+      "index": 8189
+    }
+  },
   "className": "cv.ui.structure.tile.components.svg.TextValue",
-  "packageName": "cv.ui.structure.tile.components.svg",
-  "name": "TextValue",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * TextValue shows an element that contains of an icon, an optional tile",
+      " * and a value-text.",
+      " *",
+      " * @since 2023",
+      " * @author Tobias Bräutigam",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>TextValue shows an element that contains of an icon, an optional tile\n and a value-text.</p>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2023"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ]
+  },
   "superClass": "cv.ui.structure.tile.components.Value",
-  "interfaces": [],
   "mixins": [
     "cv.ui.structure.tile.components.svg.MGraphicsElement"
   ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 8,
-        "column": 0,
-        "index": 148
-      },
-      "end": {
-        "line": 291,
-        "column": 3,
-        "index": 8189
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>TextValue shows an element that contains of an icon, an optional tile\n and a value-text.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 2023</div>"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2023"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "properties": {
     "icon": {
       "location": {
@@ -57,12 +64,13 @@
           "index": 559
         }
       },
-      "name": "icon",
-      "propertyType": "new",
-      "apply": "_applyIcon",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyIcon"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "color": {
       "location": {
@@ -77,12 +85,13 @@
           "index": 664
         }
       },
-      "name": "color",
-      "propertyType": "new",
-      "apply": "_applyColor",
-      "init": "var(--primaryText)",
-      "check": "String",
-      "defaultValue": "var(--primaryText)"
+      "json": {
+        "check": "String",
+        "init": "var(--primaryText)",
+        "apply": "_applyColor"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "iconColor": {
       "location": {
@@ -97,12 +106,13 @@
           "index": 777
         }
       },
-      "name": "iconColor",
-      "propertyType": "new",
-      "apply": "_applyIconColor",
-      "init": "var(--primaryText)",
-      "check": "String",
-      "defaultValue": "var(--primaryText)"
+      "json": {
+        "check": "String",
+        "init": "var(--primaryText)",
+        "apply": "_applyIconColor"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "scale": {
       "location": {
@@ -117,12 +127,13 @@
           "index": 863
         }
       },
-      "name": "scale",
-      "propertyType": "new",
-      "apply": "_applyScale",
-      "init": 1,
-      "check": "Number",
-      "defaultValue": 1
+      "json": {
+        "check": "Number",
+        "init": 1,
+        "apply": "_applyScale"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "offsetY": {
       "location": {
@@ -137,12 +148,13 @@
           "index": 953
         }
       },
-      "name": "offsetY",
-      "propertyType": "new",
-      "apply": "_applyOffsetY",
-      "init": 0,
-      "check": "Number",
-      "defaultValue": 0
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyOffsetY"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "offsetX": {
       "location": {
@@ -157,107 +169,241 @@
           "index": 1043
         }
       },
-      "name": "offsetX",
-      "propertyType": "new",
-      "apply": "_applyOffsetX",
-      "init": 0,
-      "check": "Number",
-      "defaultValue": 0
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyOffsetX"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "row": {
-      "type": "property",
-      "name": "row",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1230
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1342
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyPosition",
+        "transform": "_parseFloat"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "column": {
-      "type": "property",
-      "name": "column",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1349
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1464
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyPosition",
+        "transform": "_parseFloat"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "x": {
-      "type": "property",
-      "name": "x",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1471
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1553
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyToSvg"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "y": {
-      "type": "property",
-      "name": "y",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1560
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1642
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyToSvg"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "rowspan": {
-      "type": "property",
-      "name": "rowspan",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1649
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1764
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1,
+        "apply": "_updateHeight",
+        "transform": "_parseFloat"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "colspan": {
-      "type": "property",
-      "name": "colspan",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1771
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 1885
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 1,
+        "apply": "_updateWidth",
+        "transform": "_parseFloat"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "height": {
-      "type": "property",
-      "name": "height",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "event": "heightChanged"
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1892
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2001
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applySize",
+        "event": "heightChanged"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "width": {
-      "type": "property",
-      "name": "width",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "event": "widthChanged"
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2008
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2115
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applySize",
+        "event": "widthChanged"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "title": {
-      "type": "property",
-      "name": "title",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
-    },
-    "visible": {
-      "type": "property",
-      "name": "visible",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.MVisibility",
-      "event": "changeVisible"
-    },
-    "resizeTarget": {
-      "type": "property",
-      "name": "resizeTarget",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.MResize"
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2122
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2202
+        }
+      },
+      "json": {
+        "check": "String",
+        "init": "",
+        "apply": "_applyTitle"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     }
   },
   "members": {
     "_target": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 61,
@@ -270,10 +416,11 @@
           "index": 1202
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_svg": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 62,
@@ -286,10 +433,11 @@
           "index": 1218
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_iconSize": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 63,
@@ -302,10 +450,11 @@
           "index": 1239
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_iconPosition": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 64,
@@ -318,10 +467,11 @@
           "index": 1264
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_debouncedUpdateRSize": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 65,
@@ -334,10 +484,11 @@
           "index": 1297
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "getSvg": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 67,
@@ -351,9 +502,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "getParentSvg": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 71,
@@ -367,9 +521,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "_init": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 75,
@@ -383,7 +540,7 @@
         }
       },
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "cv.ui.structure.tile.components.Value",
       "appearsIn": [
         "cv.ui.structure.tile.components.Value",
@@ -392,6 +549,8 @@
       ]
     },
     "_updateSize": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 122,
@@ -405,9 +564,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_applyScale": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 131,
@@ -421,12 +583,16 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "scale"
-      ]
+      "params": [
+        {
+          "name": "scale"
+        }
+      ],
+      "appearsIn": []
     },
     "_updateValue": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 141,
@@ -440,7 +606,14 @@
         }
       },
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "mappedValue"
+        },
+        {
+          "name": "value"
+        }
+      ],
       "overriddenFrom": "cv.ui.structure.tile.components.Value",
       "appearsIn": [
         "cv.ui.structure.tile.components.Value",
@@ -448,6 +621,8 @@
       ]
     },
     "_centerY": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 149,
@@ -461,9 +636,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_centerX": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 153,
@@ -477,9 +655,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_applyOffsetY": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 157,
@@ -493,12 +674,16 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "offsetY"
-      ]
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyOffsetX": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 172,
@@ -512,12 +697,12 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "offsetX"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "_applyTitleOverride": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 175,
@@ -531,9 +716,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "title"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyColor": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 197,
@@ -547,12 +739,16 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "color"
-      ]
+      "params": [
+        {
+          "name": "color"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyIconColor": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 208,
@@ -566,12 +762,16 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "iconColor"
-      ]
+      "params": [
+        {
+          "name": "color"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyIcon": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 215,
@@ -585,12 +785,16 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "icon"
-      ]
+      "params": [
+        {
+          "name": "iconName"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyStyleClass": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 247,
@@ -604,13 +808,22 @@
         }
       },
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
       "overriddenFrom": "cv.ui.structure.tile.components.AbstractComponent",
       "appearsIn": [
         "cv.ui.structure.tile.components.AbstractComponent"
       ]
     },
     "_detectOverflow": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 257,
@@ -624,2020 +837,315 @@
         }
       },
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "cv.ui.structure.tile.components.Value",
       "appearsIn": [
         "cv.ui.structure.tile.components.Value"
       ]
     },
-    "_findParentGridLayout": {
-      "type": "function",
-      "name": "_findParentGridLayout",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+    "_parentGridLayout": {
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2348
+        },
+        "end": {
+          "line": 105,
+          "column": 27,
+          "index": 2371
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+    },
+    "_findParentGridLayout": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2378
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 2963
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "_applyToSvg": {
-      "type": "function",
-      "name": "_applyToSvg",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 2970
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 3082
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        },
+        {
+          "name": "oldVal"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "_updateWidth": {
-      "type": "function",
-      "name": "_updateWidth",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3089
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3343
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "_updateHeight": {
-      "type": "function",
-      "name": "_updateHeight",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3350
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 3609
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "_applyPosition": {
-      "type": "function",
-      "name": "_applyPosition",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 3616
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 3780
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "_applySize": {
-      "type": "function",
-      "name": "_applySize",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 3787
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 3909
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "_applyTitle": {
-      "type": "function",
-      "name": "_applyTitle",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 3916
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4458
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "_parseInt": {
-      "type": "function",
-      "name": "_parseInt",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1161
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1280
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement",
+        "cv.ui.structure.tile.MStringTransforms"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "_parseFloat": {
-      "type": "function",
-      "name": "_parseFloat",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1287
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1406
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement",
+        "cv.ui.structure.tile.MStringTransforms"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     },
     "_parseBoolean": {
-      "type": "function",
-      "name": "_parseBoolean",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement"
-    },
-    "getRow": {
-      "type": "function",
-      "name": "getRow",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>row</code>.\n\nFor further details take a look at the property definition: {@link #row}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for row"
-          }
-        ]
-      }
-    },
-    "setRow": {
-      "type": "function",
-      "name": "setRow",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>row</code>.\n\nFor further details take a look at the property definition: {@link #row}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for row"
-          }
-        ]
-      }
-    },
-    "resetRow": {
-      "type": "function",
-      "name": "resetRow",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>row</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #row}."
-          }
-        ]
-      }
-    },
-    "getColumn": {
-      "type": "function",
-      "name": "getColumn",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>column</code>.\n\nFor further details take a look at the property definition: {@link #column}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for column"
-          }
-        ]
-      }
-    },
-    "setColumn": {
-      "type": "function",
-      "name": "setColumn",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>column</code>.\n\nFor further details take a look at the property definition: {@link #column}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for column"
-          }
-        ]
-      }
-    },
-    "resetColumn": {
-      "type": "function",
-      "name": "resetColumn",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>column</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #column}."
-          }
-        ]
-      }
-    },
-    "getX": {
-      "type": "function",
-      "name": "getX",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>x</code>.\n\nFor further details take a look at the property definition: {@link #x}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for x"
-          }
-        ]
-      }
-    },
-    "setX": {
-      "type": "function",
-      "name": "setX",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>x</code>.\n\nFor further details take a look at the property definition: {@link #x}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for x"
-          }
-        ]
-      }
-    },
-    "resetX": {
-      "type": "function",
-      "name": "resetX",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>x</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #x}."
-          }
-        ]
-      }
-    },
-    "getY": {
-      "type": "function",
-      "name": "getY",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>y</code>.\n\nFor further details take a look at the property definition: {@link #y}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for y"
-          }
-        ]
-      }
-    },
-    "setY": {
-      "type": "function",
-      "name": "setY",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>y</code>.\n\nFor further details take a look at the property definition: {@link #y}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for y"
-          }
-        ]
-      }
-    },
-    "resetY": {
-      "type": "function",
-      "name": "resetY",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>y</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #y}."
-          }
-        ]
-      }
-    },
-    "getRowspan": {
-      "type": "function",
-      "name": "getRowspan",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>rowspan</code>.\n\nFor further details take a look at the property definition: {@link #rowspan}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for rowspan"
-          }
-        ]
-      }
-    },
-    "setRowspan": {
-      "type": "function",
-      "name": "setRowspan",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>rowspan</code>.\n\nFor further details take a look at the property definition: {@link #rowspan}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for rowspan"
-          }
-        ]
-      }
-    },
-    "resetRowspan": {
-      "type": "function",
-      "name": "resetRowspan",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>rowspan</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rowspan}."
-          }
-        ]
-      }
-    },
-    "getColspan": {
-      "type": "function",
-      "name": "getColspan",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>colspan</code>.\n\nFor further details take a look at the property definition: {@link #colspan}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for colspan"
-          }
-        ]
-      }
-    },
-    "setColspan": {
-      "type": "function",
-      "name": "setColspan",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>colspan</code>.\n\nFor further details take a look at the property definition: {@link #colspan}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for colspan"
-          }
-        ]
-      }
-    },
-    "resetColspan": {
-      "type": "function",
-      "name": "resetColspan",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>colspan</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colspan}."
-          }
-        ]
-      }
-    },
-    "getHeight": {
-      "type": "function",
-      "name": "getHeight",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for height"
-          }
-        ]
-      }
-    },
-    "setHeight": {
-      "type": "function",
-      "name": "setHeight",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for height"
-          }
-        ]
-      }
-    },
-    "resetHeight": {
-      "type": "function",
-      "name": "resetHeight",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>height</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ]
-      }
-    },
-    "getWidth": {
-      "type": "function",
-      "name": "getWidth",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for width"
-          }
-        ]
-      }
-    },
-    "setWidth": {
-      "type": "function",
-      "name": "setWidth",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for width"
-          }
-        ]
-      }
-    },
-    "resetWidth": {
-      "type": "function",
-      "name": "resetWidth",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ]
-      }
-    },
-    "getTitle": {
-      "type": "function",
-      "name": "getTitle",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>title</code>.\n\nFor further details take a look at the property definition: {@link #title}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for title"
-          }
-        ]
-      }
-    },
-    "setTitle": {
-      "type": "function",
-      "name": "setTitle",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>title</code>.\n\nFor further details take a look at the property definition: {@link #title}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for title"
-          }
-        ]
-      }
-    },
-    "resetTitle": {
-      "type": "function",
-      "name": "resetTitle",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.svg.MGraphicsElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>title</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #title}."
-          }
-        ]
-      }
-    },
-    "getVisible": {
-      "type": "function",
-      "name": "getVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for visible"
-          }
-        ]
-      }
-    },
-    "isVisible": {
-      "type": "function",
-      "name": "isVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for visible"
-          }
-        ]
-      }
-    },
-    "setVisible": {
-      "type": "function",
-      "name": "setVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for visible"
-          }
-        ]
-      }
-    },
-    "resetVisible": {
-      "type": "function",
-      "name": "resetVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ]
-      }
-    },
-    "getResizeTarget": {
-      "type": "function",
-      "name": "getResizeTarget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>resizeTarget</code>.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Element",
-            "desc": "Returns the value for resizeTarget"
-          }
-        ]
-      }
-    },
-    "setResizeTarget": {
-      "type": "function",
-      "name": "setResizeTarget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>resizeTarget</code>.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Element",
-            "paramName": "value",
-            "desc": "Value for resizeTarget"
-          }
-        ]
-      }
-    },
-    "resetResizeTarget": {
-      "type": "function",
-      "name": "resetResizeTarget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>resizeTarget</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
-          }
-        ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getConnected": {
-      "type": "function",
-      "name": "getConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>connected</code>.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for connected"
-          }
-        ]
-      }
-    },
-    "isConnected": {
-      "type": "function",
-      "name": "isConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>connected</code>.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for connected"
-          }
-        ]
-      }
-    },
-    "setConnected": {
-      "type": "function",
-      "name": "setConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>connected</code>.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for connected"
-          }
-        ]
-      }
-    },
-    "resetConnected": {
-      "type": "function",
-      "name": "resetConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>connected</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ]
-      }
-    },
-    "getValue": {
-      "type": "function",
-      "name": "getValue",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>value</code>.\n\nFor further details take a look at the property definition: {@link #value}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for value"
-          }
-        ]
-      }
-    },
-    "setValue": {
-      "type": "function",
-      "name": "setValue",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>value</code>.\n\nFor further details take a look at the property definition: {@link #value}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for value"
-          }
-        ]
-      }
-    },
-    "resetValue": {
-      "type": "function",
-      "name": "resetValue",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>value</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #value}."
-          }
-        ]
-      }
-    },
-    "getStyleClass": {
-      "type": "function",
-      "name": "getStyleClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>styleClass</code>.\n\nFor further details take a look at the property definition: {@link #styleClass}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for styleClass"
-          }
-        ]
-      }
-    },
-    "setStyleClass": {
-      "type": "function",
-      "name": "setStyleClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>styleClass</code>.\n\nFor further details take a look at the property definition: {@link #styleClass}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for styleClass"
-          }
-        ]
-      }
-    },
-    "resetStyleClass": {
-      "type": "function",
-      "name": "resetStyleClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>styleClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styleClass}."
-          }
-        ]
-      }
-    },
-    "getEnabled": {
-      "type": "function",
-      "name": "getEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "isEnabled": {
-      "type": "function",
-      "name": "isEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "setEnabled": {
-      "type": "function",
-      "name": "setEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for enabled"
-          }
-        ]
-      }
-    },
-    "resetEnabled": {
-      "type": "function",
-      "name": "resetEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ]
-      }
-    },
-    "getVisibility": {
-      "type": "function",
-      "name": "getVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for visibility"
-          }
-        ]
-      }
-    },
-    "setVisibility": {
-      "type": "function",
-      "name": "setVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for visibility"
-          }
-        ]
-      }
-    },
-    "resetVisibility": {
-      "type": "function",
-      "name": "resetVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ]
-      }
-    },
-    "getWidget": {
-      "type": "function",
-      "name": "getWidget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for widget"
-          }
-        ]
-      }
-    },
-    "isWidget": {
-      "type": "function",
-      "name": "isWidget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for widget"
-          }
-        ]
-      }
-    },
-    "setWidget": {
-      "type": "function",
-      "name": "setWidget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>widget</code>.\n\nFor further details take a look at the property definition: {@link #widget}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for widget"
-          }
-        ]
-      }
-    },
-    "resetWidget": {
-      "type": "function",
-      "name": "resetWidget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>widget</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widget}."
-          }
-        ]
-      }
-    },
-    "getInPopup": {
-      "type": "function",
-      "name": "getInPopup",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for inPopup"
-          }
-        ]
-      }
-    },
-    "isInPopup": {
-      "type": "function",
-      "name": "isInPopup",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for inPopup"
-          }
-        ]
-      }
-    },
-    "setInPopup": {
-      "type": "function",
-      "name": "setInPopup",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>inPopup</code>.\n\nFor further details take a look at the property definition: {@link #inPopup}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for inPopup"
-          }
-        ]
-      }
-    },
-    "resetInPopup": {
-      "type": "function",
-      "name": "resetInPopup",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.components.Value",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>inPopup</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #inPopup}."
-          }
-        ]
-      }
-    },
-    "getIcon": {
-      "type": "function",
-      "name": "getIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>icon</code>.\n\nFor further details take a look at the property definition: {@link #icon}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for icon"
-          }
-        ]
-      }
-    },
-    "setIcon": {
-      "type": "function",
-      "name": "setIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>icon</code>.\n\nFor further details take a look at the property definition: {@link #icon}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for icon"
-          }
-        ]
-      }
-    },
-    "resetIcon": {
-      "type": "function",
-      "name": "resetIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>icon</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #icon}."
-          }
-        ]
-      }
-    },
-    "getColor": {
-      "type": "function",
-      "name": "getColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>color</code>.\n\nFor further details take a look at the property definition: {@link #color}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for color"
-          }
-        ]
-      }
-    },
-    "setColor": {
-      "type": "function",
-      "name": "setColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>color</code>.\n\nFor further details take a look at the property definition: {@link #color}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for color"
-          }
-        ]
-      }
-    },
-    "resetColor": {
-      "type": "function",
-      "name": "resetColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>color</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #color}."
-          }
-        ]
-      }
-    },
-    "getIconColor": {
-      "type": "function",
-      "name": "getIconColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>iconColor</code>.\n\nFor further details take a look at the property definition: {@link #iconColor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for iconColor"
-          }
-        ]
-      }
-    },
-    "setIconColor": {
-      "type": "function",
-      "name": "setIconColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>iconColor</code>.\n\nFor further details take a look at the property definition: {@link #iconColor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for iconColor"
-          }
-        ]
-      }
-    },
-    "resetIconColor": {
-      "type": "function",
-      "name": "resetIconColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>iconColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #iconColor}."
-          }
-        ]
-      }
-    },
-    "getScale": {
-      "type": "function",
-      "name": "getScale",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scale</code>.\n\nFor further details take a look at the property definition: {@link #scale}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for scale"
-          }
-        ]
-      }
-    },
-    "setScale": {
-      "type": "function",
-      "name": "setScale",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>scale</code>.\n\nFor further details take a look at the property definition: {@link #scale}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for scale"
-          }
-        ]
-      }
-    },
-    "resetScale": {
-      "type": "function",
-      "name": "resetScale",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>scale</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scale}."
-          }
-        ]
-      }
-    },
-    "getOffsetY": {
-      "type": "function",
-      "name": "getOffsetY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>offsetY</code>.\n\nFor further details take a look at the property definition: {@link #offsetY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for offsetY"
-          }
-        ]
-      }
-    },
-    "setOffsetY": {
-      "type": "function",
-      "name": "setOffsetY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>offsetY</code>.\n\nFor further details take a look at the property definition: {@link #offsetY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for offsetY"
-          }
-        ]
-      }
-    },
-    "resetOffsetY": {
-      "type": "function",
-      "name": "resetOffsetY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>offsetY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #offsetY}."
-          }
-        ]
-      }
-    },
-    "getOffsetX": {
-      "type": "function",
-      "name": "getOffsetX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>offsetX</code>.\n\nFor further details take a look at the property definition: {@link #offsetX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for offsetX"
-          }
-        ]
-      }
-    },
-    "setOffsetX": {
-      "type": "function",
-      "name": "setOffsetX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>offsetX</code>.\n\nFor further details take a look at the property definition: {@link #offsetX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for offsetX"
-          }
-        ]
-      }
-    },
-    "resetOffsetX": {
-      "type": "function",
-      "name": "resetOffsetX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>offsetX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #offsetX}."
-          }
-        ]
-      }
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 280,
-        "column": 2,
-        "index": 7840
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1413
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1533
+        }
       },
-      "end": {
-        "line": 290,
-        "column": 3,
-        "index": 8185
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement",
+        "cv.ui.structure.tile.MStringTransforms"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
     }
   },
-  "events": {},
-  "descendants": [
-    "cv.ui.structure.tile.components.energy.EnergyEntity"
-  ]
+  "statics": {
+    "DefaultSize": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 1063
+        },
+        "end": {
+          "line": 29,
+          "column": 19,
+          "index": 1078
+        }
+      },
+      "appearsIn": [
+        "cv.ui.structure.tile.components.svg.MGraphicsElement"
+      ],
+      "mixin": "cv.ui.structure.tile.components.svg.MGraphicsElement"
+    }
+  }
 }

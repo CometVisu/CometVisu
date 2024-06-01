@@ -1,183 +1,152 @@
 {
-  "className": "qx.ui.table.cellrenderer.Conditional",
-  "packageName": "qx.ui.table.cellrenderer",
-  "name": "Conditional",
-  "superClass": "qx.ui.table.cellrenderer.Default",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 581
-      },
-      "end": {
-        "line": 373,
-        "column": 3,
-        "index": 12232
-      }
+  "version": 0.3,
+  "lastModified": 1717235169782,
+  "lastModifiedIso": "2024-06-01T09:46:09.782Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/cellrenderer/Conditional.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 558
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The conditional cell renderer allows special per cell formatting based on\n conditions on the cell's value.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.util.format.NumberFormat"
-        }
-      ]
+    "end": {
+      "line": 373,
+      "column": 3,
+      "index": 11860
     }
   },
-  "type": "class",
+  "className": "qx.ui.table.cellrenderer.Conditional",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The conditional cell renderer allows special per cell formatting based on",
+      " * conditions on the cell's value.",
+      " *",
+      " * @require(qx.util.format.NumberFormat)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The conditional cell renderer allows special per cell formatting based on\n conditions on the cell's value.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.util.format.NumberFormat"
+      }
+    ]
+  },
+  "superClass": "qx.ui.table.cellrenderer.Default",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "align"
+      },
+      {
+        "name": "color"
+      },
+      {
+        "name": "style"
+      },
+      {
+        "name": "weight"
+      }
+    ],
     "location": {
       "start": {
         "line": 46,
         "column": 2,
-        "index": 1321
+        "index": 1276
       },
       "end": {
         "line": 57,
         "column": 3,
-        "index": 1700
+        "index": 1644
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "align {String|null}\n   The default text alignment to format the cell with by default.",
-          "paramName": "align",
-          "description": "\n   The default text alignment to format the cell with by default.",
-          "type": [
-            "String",
-            "null"
-          ]
-        },
-        {
-          "name": "@param",
-          "body": "color {String|null}\n   The default font color to format the cell with by default.",
-          "paramName": "color",
-          "description": "\n   The default font color to format the cell with by default.",
-          "type": [
-            "String",
-            "null"
-          ]
-        },
-        {
-          "name": "@param",
-          "body": "style {String|null}\n   The default font style to format the cell with by default.",
-          "paramName": "style",
-          "description": "\n   The default font style to format the cell with by default.",
-          "type": [
-            "String",
-            "null"
-          ]
-        },
-        {
-          "name": "@param",
-          "body": "weight {String|null}\n   The default font weight to format the cell with by default.",
-          "paramName": "weight",
-          "description": "\n   The default font weight to format the cell with by default.",
-          "type": [
-            "String",
-            "null"
-          ]
-        }
-      ]
     }
   },
   "members": {
     "__defaultTextAlign": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 66,
           "column": 4,
-          "index": 1913
+          "index": 1848
         },
         "end": {
           "line": 66,
           "column": 28,
-          "index": 1937
+          "index": 1872
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__defaultColor": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 67,
           "column": 4,
-          "index": 1944
+          "index": 1878
         },
         "end": {
           "line": 67,
           "column": 24,
-          "index": 1964
+          "index": 1898
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__defaultFontStyle": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 68,
           "column": 4,
-          "index": 1971
+          "index": 1904
         },
         "end": {
           "line": 68,
           "column": 28,
-          "index": 1995
+          "index": 1928
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__defaultFontWeight": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 69,
           "column": 4,
-          "index": 2002
+          "index": 1934
         },
         "end": {
           "line": 69,
           "column": 29,
-          "index": 2027
+          "index": 1959
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__applyFormatting": {
-      "location": {
-        "start": {
-          "line": 76,
-          "column": 4,
-          "index": 2217
-        },
-        "end": {
-          "line": 92,
-          "column": 5,
-          "index": 2619
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the cell styles to the style map.",
+          "     * @param condition {Array} The matched condition",
+          "     * @param style {Map} map of already applied styles.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -190,34 +159,68 @@
             "body": "condition {Array} The matched condition",
             "paramName": "condition",
             "description": " The matched condition",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
             "body": "style {Map} map of already applied styles.",
             "paramName": "style",
             "description": " map of already applied styles.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "addNumericCondition": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 115,
+          "line": 76,
           "column": 4,
-          "index": 3916
+          "index": 2142
         },
         "end": {
-          "line": 137,
+          "line": 92,
           "column": 5,
-          "index": 4426
+          "index": 2528
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "condition",
+          "type": "Array<any>"
+        },
+        {
+          "name": "style",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addNumericCondition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The addNumericCondition method is used to add a basic numeric condition to",
+          "     * the cell renderer.",
+          "     *",
+          "     * Note: Passing null is different from passing an empty string in the align,",
+          "     * color, style and weight arguments. Null will allow pre-existing formatting",
+          "     * to pass through, where an empty string will clear it back to the default",
+          "     * formatting set in the constructor.",
+          "     *",
+          "     *",
+          "     * @param condition {String} The type of condition. Accepted strings are \"==\", \"!=\", \">\", \"<\", \">=\",",
+          "     *     and \"<=\".",
+          "     * @param value1 {Integer} The value to compare against.",
+          "     * @param align {String|null} The text alignment to format the cell with if the condition matches.",
+          "     * @param color {String|null} The font color to format the cell with if the condition matches.",
+          "     * @param style {String|null} The font style to format the cell with if the condition matches.",
+          "     * @param weight {String|null} The font weight to format the cell with if the condition matches.",
+          "     * @param target {String|null} The text value of the column to compare against. If this is null,",
+          "     *     comparisons will be against the contents of this cell.",
+          "     * @throws {Error} If the condition can not be recognized or value is null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -230,7 +233,7 @@
             "body": "condition {String} The type of condition. Accepted strings are \"==\", \"!=\", \">\", \"<\", \">=\",\n     and \"<=\".",
             "paramName": "condition",
             "description": " The type of condition. Accepted strings are \"==\", \"!=\", \">\", \"<\", \">=\",\n     and \"<=\".",
-            "type": "qx.ui.table.cellrenderer.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -299,23 +302,92 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addBetweenCondition": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 160,
+          "line": 115,
           "column": 4,
-          "index": 5768
+          "index": 3802
         },
         "end": {
-          "line": 190,
+          "line": 137,
           "column": 5,
-          "index": 6422
+          "index": 4290
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "condition",
+          "type": "string"
+        },
+        {
+          "name": "value1",
+          "type": "Integer"
+        },
+        {
+          "name": "align",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "color",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "style",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "weight",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "target",
+          "type": [
+            "String",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "addBetweenCondition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The addBetweenCondition method is used to add a between condition to the",
+          "     * cell renderer.",
+          "     *",
+          "     * Note: Passing null is different from passing an empty string in the align,",
+          "     * color, style and weight arguments. Null will allow pre-existing formatting",
+          "     * to pass through, where an empty string will clear it back to the default",
+          "     * formatting set in the constructor.",
+          "     *",
+          "     *",
+          "     * @param condition {String} The type of condition. Accepted strings are \"between\" and \"!between\".",
+          "     * @param value1 {Integer} The first value to compare against.",
+          "     * @param value2 {Integer} The second value to compare against.",
+          "     * @param align {String|null} The text alignment to format the cell with if the condition matches.",
+          "     * @param color {String|null} The font color to format the cell with if the condition matches.",
+          "     * @param style {String|null} The font style to format the cell with if the condition matches.",
+          "     * @param weight {String|null} The font weight to format the cell with if the condition matches.",
+          "     * @param target {String|null} The text value of the column to compare against. If this is null,",
+          "     *     comparisons will be against the contents of this cell.",
+          "     * @throws {Error} If the condition can not be recognized or value is null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -328,7 +400,7 @@
             "body": "condition {String} The type of condition. Accepted strings are \"between\" and \"!between\".",
             "paramName": "condition",
             "description": " The type of condition. Accepted strings are \"between\" and \"!between\".",
-            "type": "qx.ui.table.cellrenderer.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -404,23 +476,94 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addRegex": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 211,
+          "line": 160,
           "column": 4,
-          "index": 7559
+          "index": 5609
         },
         "end": {
-          "line": 221,
+          "line": 190,
           "column": 5,
-          "index": 7874
+          "index": 6233
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "condition",
+          "type": "string"
+        },
+        {
+          "name": "value1",
+          "type": "Integer"
+        },
+        {
+          "name": "value2",
+          "type": "Integer"
+        },
+        {
+          "name": "align",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "color",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "style",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "weight",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "target",
+          "type": [
+            "String",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "addRegex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The addRegex method is used to add a regular expression condition to the",
+          "     * cell renderer.",
+          "     *",
+          "     * Note: Passing null is different from passing an empty string in the align,",
+          "     * color, style and weight arguments. Null will allow pre-existing formatting",
+          "     * to pass through, where an empty string will clear it back to the default",
+          "     * formatting set in the constructor.",
+          "     *",
+          "     *",
+          "     * @param regex {String} The regular expression to match against.",
+          "     * @param align {String|null} The text alignment to format the cell with if the condition matches.",
+          "     * @param color {String|null} The font color to format the cell with if the condition matches.",
+          "     * @param style {String|null} The font style to format the cell with if the condition matches.",
+          "     * @param weight {String|null} The font weight to format the cell with if the condition matches.",
+          "     * @param target {String|null} The text value of the column to compare against. If this is null,",
+          "     *     comparisons will be against the contents of this cell.",
+          "     * @throws {Error} If the regex is null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -433,7 +576,7 @@
             "body": "regex {String} The regular expression to match against.",
             "paramName": "regex",
             "description": " The regular expression to match against.",
-            "type": "qx.ui.table.cellrenderer.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -495,23 +638,78 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_getCellStyle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 234,
+          "line": 211,
           "column": 4,
-          "index": 8427
+          "index": 7349
         },
         "end": {
-          "line": 361,
+          "line": 221,
           "column": 5,
-          "index": 11932
+          "index": 7654
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "regex",
+          "type": "string"
+        },
+        {
+          "name": "align",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "color",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "style",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "weight",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "target",
+          "type": [
+            "String",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getCellStyle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Overridden; called whenever the cell updates. The cell will iterate through",
+          "     * each available condition and apply formatting for those that",
+          "     * match. Multiple conditions can match, but later conditions will override",
+          "     * earlier ones. Conditions with null values will stack with other conditions",
+          "     * that apply to that value.",
+          "     *",
+          "     * @param cellInfo {Map} The information about the cell.",
+          "     *          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+          "     * @return {Map}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -524,342 +722,63 @@
             "body": "cellInfo {Map} The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
             "paramName": "cellInfo",
             "description": " The information about the cell.\n          See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Map}",
-            "type": "Map",
+            "type": "Map<any, any>",
             "description": ""
           }
         ]
       },
-      "type": "function",
       "access": "protected",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 8194
+        },
+        "end": {
+          "line": 361,
+          "column": 5,
+          "index": 11572
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
       "appearsIn": [
         "qx.ui.table.cellrenderer.Abstract"
       ]
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getDefaultCellStyle": {
-      "type": "function",
-      "name": "getDefaultCellStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>defaultCellStyle</code>.\n\nFor further details take a look at the property definition: {@link #defaultCellStyle}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for defaultCellStyle"
-          }
-        ]
-      }
-    },
-    "setDefaultCellStyle": {
-      "type": "function",
-      "name": "setDefaultCellStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>defaultCellStyle</code>.\n\nFor further details take a look at the property definition: {@link #defaultCellStyle}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for defaultCellStyle"
-          }
-        ]
-      }
-    },
-    "resetDefaultCellStyle": {
-      "type": "function",
-      "name": "resetDefaultCellStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>defaultCellStyle</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCellStyle}."
-          }
-        ]
-      }
-    },
-    "getUseAutoAlign": {
-      "type": "function",
-      "name": "getUseAutoAlign",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>useAutoAlign</code>.\n\nFor further details take a look at the property definition: {@link #useAutoAlign}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for useAutoAlign"
-          }
-        ]
-      }
-    },
-    "isUseAutoAlign": {
-      "type": "function",
-      "name": "isUseAutoAlign",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>useAutoAlign</code>.\n\nFor further details take a look at the property definition: {@link #useAutoAlign}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for useAutoAlign"
-          }
-        ]
-      }
-    },
-    "setUseAutoAlign": {
-      "type": "function",
-      "name": "setUseAutoAlign",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>useAutoAlign</code>.\n\nFor further details take a look at the property definition: {@link #useAutoAlign}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for useAutoAlign"
-          }
-        ]
-      }
-    },
-    "resetUseAutoAlign": {
-      "type": "function",
-      "name": "resetUseAutoAlign",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>useAutoAlign</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #useAutoAlign}."
-          }
-        ]
-      }
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 370,
         "column": 2,
-        "index": 12137
+        "index": 11768
       },
       "end": {
         "line": 372,
         "column": 3,
-        "index": 12227
+        "index": 11856
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": [
-    "qx.ui.table.cellrenderer.Date",
-    "qx.ui.table.cellrenderer.Html",
-    "qx.ui.table.cellrenderer.Number",
-    "qx.ui.table.cellrenderer.String"
-  ]
+  "statics": {},
+  "properties": {}
 }

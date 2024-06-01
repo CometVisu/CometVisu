@@ -1,48 +1,55 @@
 {
-  "className": "qx.data.controller.MSelection",
-  "packageName": "qx.data.controller",
-  "name": "MSelection",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 899
-      },
-      "end": {
-        "line": 429,
-        "column": 3,
-        "index": 14489
-      }
+  "version": 0.3,
+  "lastModified": 1717235171834,
+  "lastModifiedIso": "2024-06-01T09:46:11.834Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/controller/MSelection.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 873
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Mixin for the selection in the data binding controller.\n It contains an selection property which can be manipulated.\n Remember to call the method {@link #_addChangeTargetListener} on every\n change of the target.\n It is also important that the elements stored in the target e.g. ListItems\n do have the corresponding model stored as user data under the \"model\" key.</p>"
-        }
-      ]
+    "end": {
+      "line": 429,
+      "column": 3,
+      "index": 14061
     }
   },
-  "type": "mixin",
+  "className": "qx.data.controller.MSelection",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin for the selection in the data binding controller.",
+      " * It contains an selection property which can be manipulated.",
+      " * Remember to call the method {@link #_addChangeTargetListener} on every",
+      " * change of the target.",
+      " * It is also important that the elements stored in the target e.g. ListItems",
+      " * do have the corresponding model stored as user data under the \"model\" key.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin for the selection in the data binding controller.\n It contains an selection property which can be manipulated.\n Remember to call the method {@link #_addChangeTargetListener} on every\n change of the target.\n It is also important that the elements stored in the target e.g. ListItems\n do have the corresponding model stored as user data under the \"model\" key.</p>"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 34,
         "column": 2,
-        "index": 1147
+        "index": 1114
       },
       "end": {
         "line": 45,
         "column": 3,
-        "index": 1511
+        "index": 1467
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "selection": {
@@ -50,15 +57,27 @@
         "start": {
           "line": 59,
           "column": 4,
-          "index": 1963
+          "index": 1905
         },
         "end": {
           "line": 64,
           "column": 5,
-          "index": 2097
+          "index": 2034
         }
       },
+      "json": {
+        "check": "qx.data.Array",
+        "event": "changeSelection",
+        "apply": "_applySelection"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Data array containing the selected model objects. This property can be",
+          "     * manipulated directly which means that a push to the selection will also",
+          "     * select the corresponding element in the target.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,28 +85,23 @@
           }
         ]
       },
-      "name": "selection",
-      "propertyType": "new",
-      "event": "changeSelection",
-      "apply": "_applySelection",
-      "check": "qx.data.Array"
+      "appearsIn": []
     }
   },
   "events": {
     "changeSelection": {
-      "location": {
-        "start": {
-          "line": 76,
-          "column": 4,
-          "index": 2667
-        },
-        "end": {
-          "line": 76,
-          "column": 41,
-          "index": 2704
-        }
-      },
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This event is fired as soon as the content of the selection property changes, but",
+          "     * this is not equal to the change of the selection of the widget. If the selection",
+          "     * of the widget changes, the content of the array stored in the selection property",
+          "     * changes. This means you have to listen to the change event of the selection array",
+          "     * to get an event as soon as the user changes the selected item.",
+          "     * <pre class=\"javascript\">obj.getSelection().addListener(\"change\", listener, this);</pre>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -95,23 +109,25 @@
           }
         ]
       },
-      "name": "changeSelection",
-      "type": "qx.event.type.Data"
-    },
-    "changeValue": {
       "location": {
         "start": {
-          "line": 79,
+          "line": 76,
           "column": 4,
-          "index": 2760
+          "index": 2592
         },
         "end": {
-          "line": 79,
-          "column": 37,
-          "index": 2793
+          "line": 76,
+          "column": 41,
+          "index": 2629
         }
-      },
+      }
+    },
+    "changeValue": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fires after the value was modified "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -119,90 +135,103 @@
           }
         ]
       },
-      "name": "changeValue",
-      "type": "qx.event.type.Data"
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2682
+        },
+        "end": {
+          "line": 79,
+          "column": 37,
+          "index": 2715
+        }
+      }
     }
   },
   "members": {
     "_modifingSelection": {
+      "jsdoc": {
+        "raw": [
+          " set the semaphore-like variable for the selection change"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 91,
           "column": 4,
-          "index": 3103
+          "index": 3013
         },
         "end": {
           "line": 91,
           "column": 25,
-          "index": 3124
+          "index": 3034
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "__selectionListenerId": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 92,
           "column": 4,
-          "index": 3131
+          "index": 3040
         },
         "end": {
           "line": 92,
           "column": 31,
-          "index": 3158
+          "index": 3067
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__selectionArrayListenerId": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 93,
           "column": 4,
-          "index": 3165
+          "index": 3073
         },
         "end": {
           "line": 93,
           "column": 36,
-          "index": 3197
+          "index": 3105
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__ownSelection": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 94,
           "column": 4,
-          "index": 3204
+          "index": 3111
         },
         "end": {
           "line": 94,
           "column": 24,
-          "index": 3224
+          "index": 3131
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "setValue": {
-      "location": {
-        "start": {
-          "line": 102,
-          "column": 4,
-          "index": 3469
-        },
-        "end": {
-          "line": 110,
-          "column": 5,
-          "index": 3648
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * setValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @param selection {qx.data.IListData|null} List data to select as value.",
+          "     * @return {null} The status of this operation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -226,27 +255,47 @@
             "name": "@return",
             "body": "{null} The status of this operation.",
             "type": "null",
-            "description": " The status of this operation."
+            "description": "The status of this operation."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 117,
+          "line": 102,
           "column": 4,
-          "index": 3819
+          "index": 3368
         },
         "end": {
-          "line": 119,
+          "line": 110,
           "column": 5,
-          "index": 3873
+          "index": 3539
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "selection",
+          "type": [
+            "qx.data.IListData",
+            "null"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "null"
+      },
+      "appearsIn": []
+    },
+    "getValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * getValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @return {qx.data.IListData} The current selection.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -258,27 +307,37 @@
             "name": "@return",
             "body": "{qx.data.IListData} The current selection.",
             "type": "qx.data.IListData",
-            "description": " The current selection."
+            "description": "The current selection."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 124,
+          "line": 117,
           "column": 4,
-          "index": 3979
+          "index": 3703
         },
         "end": {
-          "line": 126,
+          "line": 119,
           "column": 5,
-          "index": 4030
+          "index": 3755
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.data.IListData"
+      },
+      "appearsIn": []
+    },
+    "resetValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * resetValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -286,23 +345,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_applySelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 140,
+          "line": 124,
           "column": 4,
-          "index": 4564
+          "index": 3856
         },
         "end": {
-          "line": 157,
+          "line": 126,
           "column": 5,
-          "index": 5153
+          "index": 3905
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applySelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply-method for setting a new selection array. Only the change listener",
+          "     * will be removed from the old array and added to the new.",
+          "     *",
+          "     * @param value {qx.data.Array} The new data array for the selection.",
+          "     * @param old {qx.data.Array|null} The old data array for the selection.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -329,26 +399,44 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
-      "applyFor": [
-        "selection"
-      ]
-    },
-    "__changeSelectionArray": {
       "location": {
         "start": {
-          "line": 169,
+          "line": 140,
           "column": 4,
-          "index": 5551
+          "index": 4425
         },
         "end": {
-          "line": 171,
+          "line": 157,
           "column": 5,
-          "index": 5616
+          "index": 4997
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "qx.data.Array"
+        },
+        {
+          "name": "old",
+          "type": [
+            "qx.data.Array",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "__changeSelectionArray": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the change of the data array holding the selection.",
+          "     * If a change is in the selection array, the selection update will be",
+          "     * invoked.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -356,23 +444,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "_changeTargetSelection": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 178,
+          "line": 169,
           "column": 4,
-          "index": 5838
+          "index": 5383
         },
         "end": {
-          "line": 219,
+          "line": 171,
           "column": 5,
-          "index": 7150
+          "index": 5446
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_changeTargetSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for a change in the target selection.",
+          "     * If the selection in the target has changed, the selected model objects",
+          "     * will be found and added to the selection array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -380,23 +477,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_addChangeTargetListener": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 233,
+          "line": 178,
           "column": 4,
-          "index": 7617
+          "index": 5661
         },
         "end": {
-          "line": 253,
+          "line": 219,
           "column": 5,
-          "index": 8281
+          "index": 6932
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_addChangeTargetListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method which should be called by the classes including this",
+          "     * Mixin when the target changes.",
+          "     *",
+          "     * @param value {qx.ui.core.Widget|null} The new target.",
+          "     * @param old {qx.ui.core.Widget|null} The old target.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -426,23 +534,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_updateSelection": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 260,
+          "line": 233,
           "column": 4,
-          "index": 8518
+          "index": 7385
         },
         "end": {
-          "line": 321,
+          "line": 253,
           "column": 5,
-          "index": 11042
+          "index": 8029
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "qx.ui.core.Widget",
+            "null"
+          ]
+        },
+        {
+          "name": "old",
+          "type": [
+            "qx.ui.core.Widget",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_updateSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method for updating the selection. It checks for the case of single or",
+          "     * multi selection and after that checks if the selection in the selection",
+          "     * array is the same as in the target widget.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -450,23 +582,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__targetSupportsMultiSelection": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 327,
+          "line": 260,
           "column": 4,
-          "index": 11219
+          "index": 8259
         },
         "end": {
-          "line": 333,
+          "line": 321,
           "column": 5,
-          "index": 11427
+          "index": 10722
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__targetSupportsMultiSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-method returning true, if the target supports multi selection.",
+          "     * @return {Boolean} true, if the target supports multi selection.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -477,28 +617,39 @@
           {
             "name": "@return",
             "body": "{Boolean} true, if the target supports multi selection.",
-            "type": "Boolean",
-            "description": " true, if the target supports multi selection."
+            "type": "boolean",
+            "description": "true, if the target supports multi selection."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__targetSupportsSingleSelection": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 339,
+          "line": 327,
           "column": 4,
-          "index": 11606
+          "index": 10893
         },
         "end": {
-          "line": 345,
+          "line": 333,
           "column": 5,
-          "index": 11816
+          "index": 11095
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__targetSupportsSingleSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-method returning true, if the target supports single selection.",
+          "     * @return {Boolean} true, if the target supports single selection.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -509,28 +660,41 @@
           {
             "name": "@return",
             "body": "{Boolean} true, if the target supports single selection.",
-            "type": "Boolean",
-            "description": " true, if the target supports single selection."
+            "type": "boolean",
+            "description": "true, if the target supports single selection."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__selectItem": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 353,
+          "line": 339,
           "column": 4,
-          "index": 12027
+          "index": 11268
         },
         "end": {
-          "line": 367,
+          "line": 345,
           "column": 5,
-          "index": 12598
+          "index": 11472
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__selectItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for selecting an item in the target. The item to select",
+          "     * is defined by a given model item.",
+          "     *",
+          "     * @param item {qx.core.Object} A model element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -547,23 +711,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getSelectableForModel": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 375,
+          "line": 353,
           "column": 4,
-          "index": 12856
+          "index": 11675
         },
         "end": {
-          "line": 387,
+          "line": 367,
           "column": 5,
-          "index": 13263
+          "index": 12232
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.core.Object"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getSelectableForModel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the list item storing the given model in its model property.",
+          "     *",
+          "     * @param model {var} The representing model of a selectable.",
+          "     * @return {Object|null} List item or <code>null</code> if none was found",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -584,27 +763,44 @@
             "name": "@return",
             "body": "{Object|null} List item or <code>null</code> if none was found",
             "type": "Object|null",
-            "description": " List item or <code>null</code> if none was found"
+            "description": "List item or <code>null</code> if none was found"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "_startSelectionModification": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 394,
+          "line": 375,
           "column": 4,
-          "index": 13484
+          "index": 12482
         },
         "end": {
-          "line": 396,
+          "line": 387,
           "column": 5,
-          "index": 13556
+          "index": 12877
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "model",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "Object|null"
+      },
+      "appearsIn": []
+    },
+    "_startSelectionModification": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method signaling that currently the selection of the target is",
+          "     * in change. That will block the change of the internal selection.",
+          "     * {@link #_endSelectionModification}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -612,23 +808,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_endSelectionModification": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 403,
+          "line": 394,
           "column": 4,
-          "index": 13729
+          "index": 13091
         },
         "end": {
-          "line": 405,
+          "line": 396,
           "column": 5,
-          "index": 13836
+          "index": 13161
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_endSelectionModification": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method signaling that the internal changing of the targets",
+          "     * selection is over.",
+          "     * {@link #_startSelectionModification}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -636,23 +841,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_inSelectionModification": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 413,
+          "line": 403,
           "column": 4,
-          "index": 14107
+          "index": 13327
         },
         "end": {
-          "line": 415,
+          "line": 405,
           "column": 5,
-          "index": 14185
+          "index": 13432
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_inSelectionModification": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for checking the state of the selection modification.",
+          "     * {@link #_startSelectionModification}",
+          "     * {@link #_endSelectionModification}",
+          "     * @return {Boolean} <code>true</code> if selection modification is active",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -663,95 +878,47 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if selection modification is active",
-            "type": "Boolean",
-            "description": " <code>true</code> if selection modification is active"
+            "type": "boolean",
+            "description": "<code>true</code> if selection modification is active"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 413,
+          "column": 4,
+          "index": 13695
+        },
+        "end": {
+          "line": 415,
+          "column": 5,
+          "index": 13771
+        }
+      },
       "type": "function",
-      "access": "protected"
-    },
-    "getSelection": {
-      "type": "function",
-      "name": "getSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>selection</code>.\n\nFor further details take a look at the property definition: {@link #selection}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.data.Array",
-            "desc": "Returns the value for selection"
-          }
-        ]
-      }
-    },
-    "setSelection": {
-      "type": "function",
-      "name": "setSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>selection</code>.\n\nFor further details take a look at the property definition: {@link #selection}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.data.Array",
-            "paramName": "value",
-            "desc": "Value for selection"
-          }
-        ]
-      }
-    },
-    "resetSelection": {
-      "type": "function",
-      "name": "resetSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>selection</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selection}."
-          }
-        ]
-      }
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 424,
         "column": 2,
-        "index": 14390
+        "index": 13967
       },
       "end": {
         "line": 428,
         "column": 3,
-        "index": 14484
+        "index": 14057
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {}
 }

@@ -1,80 +1,83 @@
 {
-  "className": "qx.ui.mobile.container.Scroll",
-  "packageName": "qx.ui.mobile.container",
-  "name": "Scroll",
-  "superClass": "qx.ui.mobile.container.Composite",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 42,
-        "column": 0,
-        "index": 1209
-      },
-      "end": {
-        "line": 537,
-        "column": 3,
-        "index": 15523
-      }
+  "version": 0.3,
+  "lastModified": 1717235172194,
+  "lastModifiedIso": "2024-06-01T09:46:12.194Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/container/Scroll.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 42,
+      "column": 0,
+      "index": 1168
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Container, which allows, depending on the set variant <code>qx.mobile.nativescroll</code>,\n vertical and horizontal scrolling if the contents is larger than the container.\n Note that this class can only have one child widget. This container has a\n fixed layout, which cannot be changed.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n\n   var scroll = new qx.ui.mobile.container.Scroll();\n\n   scroll.add(new qx.ui.mobile.basic.Label(\"Name: \"));\n   this.getRoot().add(scroll);\n </pre>\n<p>This example creates a scroll container and adds a label to it.</p>"
-        }
-      ]
+    "end": {
+      "line": 537,
+      "column": 3,
+      "index": 14987
     }
   },
-  "type": "class",
+  "className": "qx.ui.mobile.container.Scroll",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Container, which allows, depending on the set variant <code>qx.mobile.nativescroll</code>,",
+      " * vertical and horizontal scrolling if the contents is larger than the container.",
+      " *",
+      " * Note that this class can only have one child widget. This container has a",
+      " * fixed layout, which cannot be changed.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   // create the scroll widget",
+      " *   var scroll = new qx.ui.mobile.container.Scroll();",
+      " *",
+      " *   // add a children",
+      " *   scroll.add(new qx.ui.mobile.basic.Label(\"Name: \"));",
+      " *",
+      " *   this.getRoot().add(scroll);",
+      " * </pre>",
+      " *",
+      " * This example creates a scroll container and adds a label to it.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Container, which allows, depending on the set variant <code>qx.mobile.nativescroll</code>,\n vertical and horizontal scrolling if the contents is larger than the container.\n Note that this class can only have one child widget. This container has a\n fixed layout, which cannot be changed.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n\n   var scroll = new qx.ui.mobile.container.Scroll();\n\n   scroll.add(new qx.ui.mobile.basic.Label(\"Name: \"));\n   this.getRoot().add(scroll);\n </pre>\n<p>This example creates a scroll container and adds a label to it.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.container.Composite",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "scrollProperties"
+      }
+    ],
     "location": {
       "start": {
         "line": 48,
         "column": 2,
-        "index": 1470
+        "index": 1423
       },
       "end": {
         "line": 62,
         "column": 3,
-        "index": 1780
+        "index": 1719
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "scrollProperties {Object} A map with scroll properties which are passed to the scrolling container (may contain iScroll properties).",
-          "paramName": "scrollProperties",
-          "description": " A map with scroll properties which are passed to the scrolling container (may contain iScroll properties).",
-          "type": "Object"
-        }
-      ]
     }
   },
   "events": {
     "scrollEnd": {
-      "location": {
-        "start": {
-          "line": 66,
-          "column": 4,
-          "index": 1901
-        },
-        "end": {
-          "line": 66,
-          "column": 36,
-          "index": 1933
-        }
-      },
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "* Fired when the scroll container reaches its end position (including momentum/inertia). "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -82,23 +85,25 @@
           }
         ]
       },
-      "name": "scrollEnd",
-      "type": "qx.event.type.Event"
-    },
-    "pageEnd": {
       "location": {
         "start": {
-          "line": 69,
+          "line": 66,
           "column": 4,
-          "index": 2009
+          "index": 1836
         },
         "end": {
-          "line": 69,
-          "column": 34,
-          "index": 2039
+          "line": 66,
+          "column": 36,
+          "index": 1868
         }
-      },
+      }
+    },
+    "pageEnd": {
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "* Fired when the user scrolls to the end of scroll area. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -106,23 +111,30 @@
           }
         ]
       },
-      "name": "pageEnd",
-      "type": "qx.event.type.Event"
-    },
-    "waypoint": {
       "location": {
         "start": {
-          "line": 77,
+          "line": 69,
           "column": 4,
-          "index": 2255
+          "index": 1941
         },
         "end": {
-          "line": 77,
+          "line": 69,
           "column": 34,
-          "index": 2285
+          "index": 1971
         }
-      },
+      }
+    },
+    "waypoint": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fired when a vertical or horizontal waypoint is triggered. Data:",
+          "     * <code> {\"offset\": 0,",
+          "     *        \"input\": \"10%\",",
+          "     *        \"index\": 0,",
+          "     *        \"element\" : 0}</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -130,23 +142,27 @@
           }
         ]
       },
-      "name": "waypoint",
-      "type": "qx.event.type.Data"
-    },
-    "momentumStart": {
       "location": {
         "start": {
-          "line": 82,
+          "line": 77,
           "column": 4,
-          "index": 2367
+          "index": 2179
         },
         "end": {
-          "line": 82,
-          "column": 40,
-          "index": 2403
+          "line": 77,
+          "column": 34,
+          "index": 2209
         }
-      },
+      }
+    },
+    "momentumStart": {
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when a momentum starts on an iOS device.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -154,23 +170,27 @@
           }
         ]
       },
-      "name": "momentumStart",
-      "type": "qx.event.type.Event"
-    },
-    "momentumEnd": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 82,
           "column": 4,
-          "index": 2483
+          "index": 2286
         },
         "end": {
-          "line": 87,
-          "column": 37,
-          "index": 2516
+          "line": 82,
+          "column": 40,
+          "index": 2322
         }
-      },
+      }
+    },
+    "momentumEnd": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when a momentum ends on an iOS device.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -178,8 +198,18 @@
           }
         ]
       },
-      "name": "momentumEnd",
-      "type": "qx.event.type.Data"
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2397
+        },
+        "end": {
+          "line": 87,
+          "column": 37,
+          "index": 2430
+        }
+      }
     }
   },
   "properties": {
@@ -188,39 +218,52 @@
         "start": {
           "line": 97,
           "column": 4,
-          "index": 2757
+          "index": 2661
         },
         "end": {
           "line": 100,
           "column": 5,
-          "index": 2825
+          "index": 2726
         }
       },
-      "jsdoc": {},
-      "name": "defaultCssClass",
-      "propertyType": "new",
-      "refine": true,
-      "init": "scroll",
-      "defaultValue": "scroll",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "appearsIn": {
-        "qx.ui.mobile.core.Widget": "class"
-      }
+      "json": {
+        "refine": true,
+        "init": "scroll"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
     },
     "delegate": {
       "location": {
         "start": {
           "line": 108,
           "column": 4,
-          "index": 3022
+          "index": 2915
         },
         "end": {
           "line": 111,
           "column": 5,
-          "index": 3081
+          "index": 2971
         }
       },
+      "json": {
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delegation object which can have one or more functions defined by the",
+          "     * {@link qx.ui.mobile.container.IScrollDelegate} interface.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -234,203 +277,171 @@
           }
         ]
       },
-      "name": "delegate",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "_scrollProperties": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 121,
           "column": 4,
-          "index": 3299
+          "index": 3179
         },
         "end": {
           "line": 121,
           "column": 27,
-          "index": 3322
+          "index": 3202
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_activeWaypointX": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 122,
           "column": 4,
-          "index": 3329
+          "index": 3208
         },
         "end": {
           "line": 122,
           "column": 26,
-          "index": 3351
+          "index": 3230
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_activeWaypointY": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 123,
           "column": 4,
-          "index": 3358
+          "index": 3236
         },
         "end": {
           "line": 123,
           "column": 26,
-          "index": 3380
+          "index": 3258
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_waypointsX": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 124,
           "column": 4,
-          "index": 3387
+          "index": 3264
         },
         "end": {
           "line": 124,
           "column": 21,
-          "index": 3404
+          "index": 3281
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_waypointsY": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 125,
           "column": 4,
-          "index": 3411
+          "index": 3287
         },
         "end": {
           "line": 125,
           "column": 21,
-          "index": 3428
+          "index": 3304
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_calculatedWaypointsX": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 126,
           "column": 4,
-          "index": 3435
+          "index": 3310
         },
         "end": {
           "line": 126,
           "column": 31,
-          "index": 3462
+          "index": 3337
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_calculatedWaypointsY": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 127,
           "column": 4,
-          "index": 3469
+          "index": 3343
         },
         "end": {
           "line": 127,
           "column": 31,
-          "index": 3496
+          "index": 3370
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_currentX": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 128,
           "column": 4,
-          "index": 3503
+          "index": 3376
         },
         "end": {
           "line": 128,
           "column": 19,
-          "index": 3518
+          "index": 3391
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_currentY": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 129,
           "column": 4,
-          "index": 3525
+          "index": 3397
         },
         "end": {
           "line": 129,
           "column": 19,
-          "index": 3540
+          "index": 3412
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_setCurrentX": {
-      "location": {
-        "start": {
-          "line": 135,
-          "column": 4,
-          "index": 3667
-        },
-        "end": {
-          "line": 139,
-          "column": 5,
-          "index": 3803
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the current x position.",
+          "     * @param value {Number} the current horizontal position.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -443,27 +454,40 @@
             "body": "value {Number} the current horizontal position.",
             "paramName": "value",
             "description": " the current horizontal position.",
-            "type": "Number"
+            "type": "number"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_setCurrentY": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 145,
+          "line": 135,
           "column": 4,
-          "index": 3928
+          "index": 3533
         },
         "end": {
-          "line": 149,
+          "line": 139,
           "column": 5,
-          "index": 4064
+          "index": 3665
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setCurrentY": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the current y position.",
+          "     * @param value {Number} the current vertical position.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -476,27 +500,40 @@
             "body": "value {Number} the current vertical position.",
             "paramName": "value",
             "description": " the current vertical position.",
-            "type": "Number"
+            "type": "number"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "setWaypointsX": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 155,
+          "line": 145,
           "column": 4,
-          "index": 4231
+          "index": 3784
         },
         "end": {
-          "line": 157,
+          "line": 149,
           "column": 5,
-          "index": 4301
+          "index": 3916
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setWaypointsX": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the horizontal trigger points, where a <code>waypoint</code> event will be fired.",
+          "     * @param waypoints {Array} description",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -509,27 +546,40 @@
             "body": "waypoints {Array} description",
             "paramName": "waypoints",
             "description": " description",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setWaypointsY": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 163,
+          "line": 155,
           "column": 4,
-          "index": 4606
+          "index": 4077
         },
         "end": {
-          "line": 165,
+          "line": 157,
           "column": 5,
-          "index": 4676
+          "index": 4145
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "waypoints",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setWaypointsY": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the vertical trigger points, where a <code>waypoint</code> event will be fired.",
+          "     * @param waypoints {Array} an array with waypoint descriptions. Allowed are percentage description as string, or pixel trigger points defined as numbers. <code>[\"20%\",200]</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -542,27 +592,40 @@
             "body": "waypoints {Array} an array with waypoint descriptions. Allowed are percentage description as string, or pixel trigger points defined as numbers. <code>[\"20%\",200]</code>",
             "paramName": "waypoints",
             "description": " an array with waypoint descriptions. Allowed are percentage description as string, or pixel trigger points defined as numbers. <code>[\"20%\",200]</code>",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getScrollHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 171,
+          "line": 163,
           "column": 4,
-          "index": 4782
+          "index": 4444
         },
         "end": {
-          "line": 173,
+          "line": 165,
           "column": 5,
-          "index": 4847
+          "index": 4512
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "waypoints",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getScrollHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the scroll height.",
+          "     * @return {Number} the scroll height.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -573,28 +636,39 @@
           {
             "name": "@return",
             "body": "{Number} the scroll height.",
-            "type": "Number",
-            "description": " the scroll height."
+            "type": "number",
+            "description": "the scroll height."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getScrollWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 179,
+          "line": 171,
           "column": 4,
-          "index": 4951
+          "index": 4612
         },
         "end": {
-          "line": 181,
+          "line": 173,
           "column": 5,
-          "index": 5014
+          "index": 4675
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getScrollWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the scroll width.",
+          "     * @return {Number} the scroll width.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -605,28 +679,38 @@
           {
             "name": "@return",
             "body": "{Number} the scroll width.",
-            "type": "Number",
-            "description": " the scroll width."
+            "type": "number",
+            "description": "the scroll width."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_updateWaypoints": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 186,
+          "line": 179,
           "column": 4,
-          "index": 5094
+          "index": 4773
         },
         "end": {
-          "line": 201,
+          "line": 181,
           "column": 5,
-          "index": 5484
+          "index": 4834
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "_updateWaypoints": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Re-calculates the internal waypoint offsets.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -634,23 +718,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_calcWaypoints": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 210,
+          "line": 186,
           "column": 4,
-          "index": 5832
+          "index": 4909
         },
         "end": {
-          "line": 264,
+          "line": 201,
           "column": 5,
-          "index": 7657
+          "index": 5284
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_calcWaypoints": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validates and checks the waypoint offsets.",
+          "     * @param waypoints {Array} an array with waypoint descriptions.",
+          "     * @param results {Array} the array where calculated waypoints will be added.",
+          "     * @param scrollSize {Number} the vertical or horizontal scroll size.",
+          "     * @param axis {String?} \"x\" or \"y\".",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -663,21 +758,21 @@
             "body": "waypoints {Array} an array with waypoint descriptions.",
             "paramName": "waypoints",
             "description": " an array with waypoint descriptions.",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
             "body": "results {Array} the array where calculated waypoints will be added.",
             "paramName": "results",
             "description": " the array where calculated waypoints will be added.",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
             "body": "scrollSize {Number} the vertical or horizontal scroll size.",
             "paramName": "scrollSize",
             "description": " the vertical or horizontal scroll size.",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
@@ -689,23 +784,51 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_fireWaypoint": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 272,
+          "line": 210,
           "column": 4,
-          "index": 7887
+          "index": 5623
         },
         "end": {
-          "line": 341,
+          "line": 264,
           "column": 5,
-          "index": 9739
+          "index": 7394
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "waypoints",
+          "type": "Array<any>"
+        },
+        {
+          "name": "results",
+          "type": "Array<any>"
+        },
+        {
+          "name": "scrollSize",
+          "type": "number"
+        },
+        {
+          "name": "axis",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "_fireWaypoint": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fires a waypoints event when scroll position changes.",
+          "     * @param value {Number} old scroll position.",
+          "     * @param old {Number} old scroll position.",
+          "     * @param axis {String} \"x\" or \"y\".",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -718,83 +841,114 @@
             "body": "value {Number} old scroll position.",
             "paramName": "value",
             "description": " old scroll position.",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
             "body": "old {Number} old scroll position.",
             "paramName": "old",
             "description": " old scroll position.",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
             "body": "axis {String} \"x\" or \"y\".",
             "paramName": "axis",
             "description": " \"x\" or \"y\".",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 272,
+          "column": 4,
+          "index": 7616
+        },
+        "end": {
+          "line": 341,
+          "column": 5,
+          "index": 9399
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "value",
+          "type": "number"
+        },
+        {
+          "name": "old",
+          "type": "number"
+        },
+        {
+          "name": "axis",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     },
     "_createContainerElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 344,
           "column": 4,
-          "index": 9767
+          "index": 9424
         },
         "end": {
           "line": 352,
           "column": 5,
-          "index": 10004
+          "index": 9653
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.ui.mobile.core.Widget",
       "appearsIn": [
         "qx.ui.mobile.core.Widget"
       ]
     },
     "_getContentElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 355,
           "column": 4,
-          "index": 10032
+          "index": 9678
         },
         "end": {
           "line": 361,
           "column": 5,
-          "index": 10242
+          "index": 9882
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.ui.mobile.core.Widget",
       "appearsIn": [
         "qx.ui.mobile.core.Widget"
       ]
     },
     "refresh": {
-      "location": {
-        "start": {
-          "line": 367,
-          "column": 4,
-          "index": 10386
-        },
-        "end": {
-          "line": 370,
-          "column": 5,
-          "index": 10460
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calls the refresh function the used scrolling method. Needed to recalculate the",
+          "     * scrolling container.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -802,23 +956,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "scrollTo": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 380,
+          "line": 367,
           "column": 4,
-          "index": 10777
+          "index": 10020
         },
         "end": {
-          "line": 382,
+          "line": 370,
           "column": 5,
-          "index": 10841
+          "index": 10091
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "scrollTo": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the wrapper contents to the x/y coordinates in a given time.",
+          "     *",
+          "     * @param x {Integer} X coordinate to scroll to.",
+          "     * @param y {Integer} Y coordinate to scroll to.",
+          "     * @param time {Integer} Time slice in which scrolling should",
+          "     *              be done.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -849,23 +1015,44 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPosition": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 388,
+          "line": 380,
           "column": 4,
-          "index": 10987
+          "index": 10398
         },
         "end": {
-          "line": 390,
+          "line": 382,
           "column": 5,
-          "index": 11044
+          "index": 10460
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "x",
+          "type": "Integer"
+        },
+        {
+          "name": "y",
+          "type": "Integer"
+        },
+        {
+          "name": "time",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPosition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current scroll position",
+          "     * @return {Array} an array with <code>[scrollLeft,scrollTop]</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -876,28 +1063,82 @@
           {
             "name": "@return",
             "body": "{Array} an array with <code>[scrollLeft,scrollTop]</code>.",
-            "type": "Array",
-            "description": " an array with <code>[scrollLeft,scrollTop]</code>."
+            "type": "Array<any>",
+            "description": "an array with <code>[scrollLeft,scrollTop]</code>."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 388,
+          "column": 4,
+          "index": 10600
+        },
+        "end": {
+          "line": 390,
+          "column": 5,
+          "index": 10655
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
     },
     "isScrollable": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether this scroll container is scrollable or not.",
+          "     * @return {Boolean} <code>true</code> or <code>false</code>",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether this scroll container is scrollable or not.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>true</code> or <code>false</code>",
+            "type": "boolean",
+            "description": "<code>true</code> or <code>false</code>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 396,
           "column": 4,
-          "index": 11205
+          "index": 10810
         },
         "end": {
           "line": 398,
           "column": 5,
-          "index": 11264
+          "index": 10867
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_isScrollable": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether this scroll container is scrollable or not.",
+          "     * @return {Boolean} <code>true</code> or <code>false</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -908,60 +1149,39 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> or <code>false</code>",
-            "type": "Boolean",
-            "description": " <code>true</code> or <code>false</code>"
+            "type": "boolean",
+            "description": "<code>true</code> or <code>false</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_isScrollable": {
+      "access": "protected",
       "location": {
         "start": {
           "line": 404,
           "column": 4,
-          "index": 11425
+          "index": 11022
         },
         "end": {
           "line": 406,
           "column": 5,
-          "index": 11511
+          "index": 11106
         }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Detects whether this scroll container is scrollable or not.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} <code>true</code> or <code>false</code>",
-            "type": "Boolean",
-            "description": " <code>true</code> or <code>false</code>"
-          }
-        ]
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     },
     "_isScrollableX": {
-      "location": {
-        "start": {
-          "line": 412,
-          "column": 4,
-          "index": 11682
-        },
-        "end": {
-          "line": 426,
-          "column": 5,
-          "index": 12154
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether this scroll container is scrollable on x axis or not.",
+          "     * @return {Boolean} <code>true</code> or <code>false</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -972,28 +1192,39 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> or <code>false</code>",
-            "type": "Boolean",
-            "description": " <code>true</code> or <code>false</code>"
+            "type": "boolean",
+            "description": "<code>true</code> or <code>false</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_isScrollableY": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 432,
+          "line": 412,
           "column": 4,
-          "index": 12325
+          "index": 11271
         },
         "end": {
-          "line": 447,
+          "line": 426,
           "column": 5,
-          "index": 12816
+          "index": 11729
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_isScrollableY": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether this scroll container is scrollable on y axis or not.",
+          "     * @return {Boolean} <code>true</code> or <code>false</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1004,28 +1235,44 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> or <code>false</code>",
-            "type": "Boolean",
-            "description": " <code>true</code> or <code>false</code>"
+            "type": "boolean",
+            "description": "<code>true</code> or <code>false</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "scrollToElement": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 458,
+          "line": 432,
           "column": 4,
-          "index": 13154
+          "index": 11894
         },
         "end": {
-          "line": 460,
+          "line": 447,
           "column": 5,
-          "index": 13236
+          "index": 12370
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "scrollToElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the wrapper contents to the widgets coordinates in a given",
+          "     * period.",
+          "     *",
+          "     * @param target {Element} the element to which the scroll container should scroll to.",
+          "     * @param time {Integer?0} Time slice in which scrolling should",
+          "     *              be done (in seconds).",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1051,23 +1298,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_scrollToElement": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 470,
+          "line": 458,
           "column": 4,
-          "index": 13553
+          "index": 12697
         },
         "end": {
-          "line": 491,
+          "line": 460,
           "column": 5,
-          "index": 14097
+          "index": 12777
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Element"
+        },
+        {
+          "name": "time",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_scrollToElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the wrapper contents to the widgets coordinates in a given",
+          "     * period.",
+          "     *",
+          "     * @param element {String} the element to which the scroll container should scroll to.",
+          "     * @param time {Integer?0} Time slice in which scrolling should be done (in seconds).",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1080,7 +1350,7 @@
             "body": "element {String} the element to which the scroll container should scroll to.",
             "paramName": "element",
             "description": " the element to which the scroll container should scroll to.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -1093,23 +1363,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getScrollOffset": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 501,
+          "line": 470,
           "column": 4,
-          "index": 14428
+          "index": 13084
         },
         "end": {
-          "line": 508,
+          "line": 491,
           "column": 5,
-          "index": 14660
+          "index": 13607
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "string"
+        },
+        {
+          "name": "time",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getScrollOffset": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * Determines the scroll offset for the <code>_scrollToElement</code> method.",
+          "     * If a delegate is available, the method calls",
+          "     * <code>qx.ui.mobile.container.IScrollDelegate.getScrollOffset()</code> for offset calculation.",
+          "     *",
+          "     * @return {Array} an array with x,y offset.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1120,28 +1413,43 @@
           {
             "name": "@return",
             "body": "{Array} an array with x,y offset.",
-            "type": "Array",
-            "description": " an array with x,y offset."
+            "type": "Array<any>",
+            "description": "an array with x,y offset."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "scrollToWidget": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 518,
+          "line": 501,
           "column": 4,
-          "index": 14983
+          "index": 13928
         },
         "end": {
-          "line": 522,
+          "line": 508,
           "column": 5,
-          "index": 15116
+          "index": 14153
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "scrollToWidget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the wrapper contents to the widgets coordinates in a given",
+          "     * period.",
+          "     *",
+          "     * @param widget {qx.ui.mobile.core.Widget} the widget, the scroll container should scroll to.",
+          "     * @param time {Integer} Time slice in which scrolling should",
+          "     *              be done.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1165,1282 +1473,48 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getDefaultCssClass": {
-      "type": "function",
-      "name": "getDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for defaultCssClass"
-          }
-        ]
-      }
-    },
-    "setDefaultCssClass": {
-      "type": "function",
-      "name": "setDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for defaultCssClass"
-          }
-        ]
-      }
-    },
-    "resetDefaultCssClass": {
-      "type": "function",
-      "name": "resetDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>defaultCssClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ]
-      }
-    },
-    "getEnabled": {
-      "type": "function",
-      "name": "getEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "isEnabled": {
-      "type": "function",
-      "name": "isEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "setEnabled": {
-      "type": "function",
-      "name": "setEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for enabled"
-          }
-        ]
-      }
-    },
-    "resetEnabled": {
-      "type": "function",
-      "name": "resetEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ]
-      }
-    },
-    "getName": {
-      "type": "function",
-      "name": "getName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for name"
-          }
-        ]
-      }
-    },
-    "setName": {
-      "type": "function",
-      "name": "setName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for name"
-          }
-        ]
-      }
-    },
-    "resetName": {
-      "type": "function",
-      "name": "resetName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ]
-      }
-    },
-    "getAnonymous": {
-      "type": "function",
-      "name": "getAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "isAnonymous": {
-      "type": "function",
-      "name": "isAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "setAnonymous": {
-      "type": "function",
-      "name": "setAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for anonymous"
-          }
-        ]
-      }
-    },
-    "resetAnonymous": {
-      "type": "function",
-      "name": "resetAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ]
-      }
-    },
-    "getId": {
-      "type": "function",
-      "name": "getId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for id"
-          }
-        ]
-      }
-    },
-    "setId": {
-      "type": "function",
-      "name": "setId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for id"
-          }
-        ]
-      }
-    },
-    "resetId": {
-      "type": "function",
-      "name": "resetId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>id</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ]
-      }
-    },
-    "getVisibility": {
-      "type": "function",
-      "name": "getVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for visibility"
-          }
-        ]
-      }
-    },
-    "setVisibility": {
-      "type": "function",
-      "name": "setVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for visibility"
-          }
-        ]
-      }
-    },
-    "resetVisibility": {
-      "type": "function",
-      "name": "resetVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ]
-      }
-    },
-    "getActivatable": {
-      "type": "function",
-      "name": "getActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for activatable"
-          }
-        ]
-      }
-    },
-    "isActivatable": {
-      "type": "function",
-      "name": "isActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for activatable"
-          }
-        ]
-      }
-    },
-    "setActivatable": {
-      "type": "function",
-      "name": "setActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for activatable"
-          }
-        ]
-      }
-    },
-    "resetActivatable": {
-      "type": "function",
-      "name": "resetActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>activatable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ]
-      }
-    },
-    "getRotation": {
-      "type": "function",
-      "name": "getRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for rotation"
-          }
-        ]
-      }
-    },
-    "setRotation": {
-      "type": "function",
-      "name": "setRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for rotation"
-          }
-        ]
-      }
-    },
-    "resetRotation": {
-      "type": "function",
-      "name": "resetRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>rotation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ]
-      }
-    },
-    "getTransformUnit": {
-      "type": "function",
-      "name": "getTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for transformUnit"
-          }
-        ]
-      }
-    },
-    "setTransformUnit": {
-      "type": "function",
-      "name": "setTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for transformUnit"
-          }
-        ]
-      }
-    },
-    "resetTransformUnit": {
-      "type": "function",
-      "name": "resetTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>transformUnit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ]
-      }
-    },
-    "getScaleX": {
-      "type": "function",
-      "name": "getScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for scaleX"
-          }
-        ]
-      }
-    },
-    "setScaleX": {
-      "type": "function",
-      "name": "setScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for scaleX"
-          }
-        ]
-      }
-    },
-    "resetScaleX": {
-      "type": "function",
-      "name": "resetScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>scaleX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ]
-      }
-    },
-    "getScaleY": {
-      "type": "function",
-      "name": "getScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for scaleY"
-          }
-        ]
-      }
-    },
-    "setScaleY": {
-      "type": "function",
-      "name": "setScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for scaleY"
-          }
-        ]
-      }
-    },
-    "resetScaleY": {
-      "type": "function",
-      "name": "resetScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>scaleY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ]
-      }
-    },
-    "getTranslateX": {
-      "type": "function",
-      "name": "getTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateX"
-          }
-        ]
-      }
-    },
-    "setTranslateX": {
-      "type": "function",
-      "name": "setTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateX"
-          }
-        ]
-      }
-    },
-    "resetTranslateX": {
-      "type": "function",
-      "name": "resetTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ]
-      }
-    },
-    "getTranslateY": {
-      "type": "function",
-      "name": "getTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateY"
-          }
-        ]
-      }
-    },
-    "setTranslateY": {
-      "type": "function",
-      "name": "setTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateY"
-          }
-        ]
-      }
-    },
-    "resetTranslateY": {
-      "type": "function",
-      "name": "resetTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ]
-      }
-    },
-    "getTranslateZ": {
-      "type": "function",
-      "name": "getTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateZ"
-          }
-        ]
-      }
-    },
-    "setTranslateZ": {
-      "type": "function",
-      "name": "setTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateZ"
-          }
-        ]
-      }
-    },
-    "resetTranslateZ": {
-      "type": "function",
-      "name": "resetTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateZ</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ]
-      }
-    },
-    "getDelegate": {
-      "type": "function",
-      "name": "getDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for delegate"
-          }
-        ]
-      }
-    },
-    "setDelegate": {
-      "type": "function",
-      "name": "setDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for delegate"
-          }
-        ]
-      }
-    },
-    "resetDelegate": {
-      "type": "function",
-      "name": "resetDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>delegate</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ]
-      }
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 525,
-        "column": 2,
-        "index": 15128
+      "location": {
+        "start": {
+          "line": 518,
+          "column": 4,
+          "index": 14466
+        },
+        "end": {
+          "line": 522,
+          "column": 5,
+          "index": 14595
+        }
       },
-      "end": {
-        "line": 531,
-        "column": 3,
-        "index": 15380
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.mobile.core.Widget"
+        },
+        {
+          "name": "time",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 533,
         "column": 2,
-        "index": 15387
+        "index": 14855
       },
       "end": {
         "line": 536,
         "column": 3,
-        "index": 15518
+        "index": 14983
       }
     }
   },
-  "descendants": []
+  "statics": {}
 }

@@ -1,55 +1,58 @@
 {
-  "className": "qx.bom.client.Xml",
-  "packageName": "qx.bom.client",
-  "name": "Xml",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 759
-      },
-      "end": {
-        "line": 170,
-        "column": 3,
-        "index": 5218
-      }
+  "version": 0.3,
+  "lastModified": 1717235172930,
+  "lastModifiedIso": "2024-06-01T09:46:12.930Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Xml.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 733
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Internal class which contains the checks used by {@link qx.core.Environment}.\n All checks in here are marked as internal which means you should never use\n them directly.\n This class should contain all XML-related checks</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 170,
+      "column": 3,
+      "index": 5049
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.Xml",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Internal class which contains the checks used by {@link qx.core.Environment}.",
+      " * All checks in here are marked as internal which means you should never use",
+      " * them directly.",
+      " *",
+      " * This class should contain all XML-related checks",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Internal class which contains the checks used by {@link qx.core.Environment}.\n All checks in here are marked as internal which means you should never use\n them directly.\n This class should contain all XML-related checks</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "statics": {
     "getImplementation": {
-      "location": {
-        "start": {
-          "line": 35,
-          "column": 4,
-          "index": 964
-        },
-        "end": {
-          "line": 41,
-          "column": 5,
-          "index": 1159
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if XML is supported",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if XML is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,28 +69,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if XML is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if XML is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if XML is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDomParser": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 35,
           "column": 4,
-          "index": 1330
+          "index": 930
         },
         "end": {
-          "line": 51,
+          "line": 41,
           "column": 5,
-          "index": 1408
+          "index": 1119
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getDomParser": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if an XML DOMParser is available",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if DOMParser is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,28 +120,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if DOMParser is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if DOMParser is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if DOMParser is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSelectSingleNode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 60,
+          "line": 49,
           "column": 4,
-          "index": 1635
+          "index": 1282
         },
         "end": {
-          "line": 62,
+          "line": 51,
           "column": 5,
-          "index": 1745
+          "index": 1358
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSelectSingleNode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the proprietary selectSingleNode method is available on XML DOM",
+          "     * nodes.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if selectSingleNode is available",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -142,28 +172,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if selectSingleNode is available",
-            "type": "Boolean",
-            "description": " <code>true</code> if selectSingleNode is available"
+            "type": "boolean",
+            "description": "<code>true</code> if selectSingleNode is available"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSelectNodes": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 71,
+          "line": 60,
           "column": 4,
-          "index": 1967
+          "index": 1576
         },
         "end": {
-          "line": 73,
+          "line": 62,
           "column": 5,
-          "index": 2067
+          "index": 1684
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSelectNodes": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the proprietary selectNodes method is available on XML DOM",
+          "     * nodes.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if selectSingleNode is available",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -180,28 +224,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if selectSingleNode is available",
-            "type": "Boolean",
-            "description": " <code>true</code> if selectSingleNode is available"
+            "type": "boolean",
+            "description": "<code>true</code> if selectSingleNode is available"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getElementsByTagNameNS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 81,
+          "line": 71,
           "column": 4,
-          "index": 2277
+          "index": 1897
         },
         "end": {
-          "line": 85,
+          "line": 73,
           "column": 5,
-          "index": 2416
+          "index": 1995
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getElementsByTagNameNS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks availability of the getElementsByTagNameNS XML DOM method.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if getElementsByTagNameNS is available",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -218,28 +275,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if getElementsByTagNameNS is available",
-            "type": "Boolean",
-            "description": " <code>true</code> if getElementsByTagNameNS is available"
+            "type": "boolean",
+            "description": "<code>true</code> if getElementsByTagNameNS is available"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDomProperties": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 93,
+          "line": 81,
           "column": 4,
-          "index": 2621
+          "index": 2197
         },
         "end": {
-          "line": 99,
+          "line": 85,
           "column": 5,
-          "index": 2816
+          "index": 2332
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getDomProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if MSXML-style DOM Level 2 properties are supported.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if DOM Level 2 properties are supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -256,28 +326,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if DOM Level 2 properties are supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if DOM Level 2 properties are supported"
+            "type": "boolean",
+            "description": "<code>true</code> if DOM Level 2 properties are supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAttributeNS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 108,
+          "line": 93,
           "column": 4,
-          "index": 3054
+          "index": 2529
         },
         "end": {
-          "line": 114,
+          "line": 99,
           "column": 5,
-          "index": 3292
+          "index": 2718
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getAttributeNS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the getAttributeNS and setAttributeNS methods are supported on",
+          "     * XML DOM elements",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if get/setAttributeNS is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -294,28 +378,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if get/setAttributeNS is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if get/setAttributeNS is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if get/setAttributeNS is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCreateElementNS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 122,
+          "line": 108,
           "column": 4,
-          "index": 3500
+          "index": 2947
         },
         "end": {
-          "line": 124,
+          "line": 114,
           "column": 5,
-          "index": 3607
+          "index": 3179
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getCreateElementNS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the createElementNS method is supported on XML DOM documents",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if createElementNS is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -332,28 +429,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if createElementNS is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if createElementNS is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if createElementNS is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCreateNode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 133,
+          "line": 122,
           "column": 4,
-          "index": 3838
+          "index": 3379
         },
         "end": {
-          "line": 135,
+          "line": 124,
           "column": 5,
-          "index": 3936
+          "index": 3484
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getCreateNode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the proprietary createNode method is supported on XML DOM",
+          "     * documents",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if DOM Level 2 properties are supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -370,28 +481,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if DOM Level 2 properties are supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if DOM Level 2 properties are supported"
+            "type": "boolean",
+            "description": "<code>true</code> if DOM Level 2 properties are supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQualifiedItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 144,
+          "line": 133,
           "column": 4,
-          "index": 4179
+          "index": 3706
         },
         "end": {
-          "line": 147,
+          "line": 135,
           "column": 5,
-          "index": 4356
+          "index": 3802
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getQualifiedItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the proprietary getQualifiedItem method is supported for XML",
+          "     * element attributes",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if DOM Level 2 properties are supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -408,28 +533,32 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if DOM Level 2 properties are supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if DOM Level 2 properties are supported"
+            "type": "boolean",
+            "description": "<code>true</code> if DOM Level 2 properties are supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 150,
-        "column": 2,
-        "index": 4368
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 4036
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4210
+        }
       },
-      "end": {
-        "line": 169,
-        "column": 3,
-        "index": 5213
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

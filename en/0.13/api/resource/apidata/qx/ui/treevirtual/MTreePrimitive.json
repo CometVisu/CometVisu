@@ -1,49 +1,45 @@
 {
-  "className": "qx.ui.treevirtual.MTreePrimitive",
-  "packageName": "qx.ui.treevirtual",
-  "name": "MTreePrimitive",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 716
-      },
-      "end": {
-        "line": 190,
-        "column": 3,
-        "index": 6442
-      }
+  "version": 0.3,
+  "lastModified": 1717235171842,
+  "lastModifiedIso": "2024-06-01T09:46:11.842Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/treevirtual/MTreePrimitive.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 691
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Primitives for building trees and tree nodes.\n The methods in this mixin are included directly in the SimpleTreeDataModel\n but are also useful for other types of trees (not TreeVirtual) that need\n similar tree and node creation.</p>"
-        }
-      ]
+    "end": {
+      "line": 190,
+      "column": 3,
+      "index": 6253
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.treevirtual.MTreePrimitive",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Primitives for building trees and tree nodes.",
+      " *",
+      " * The methods in this mixin are included directly in the SimpleTreeDataModel",
+      " * but are also useful for other types of trees (not TreeVirtual) that need",
+      " * similar tree and node creation.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Primitives for building trees and tree nodes.\n The methods in this mixin are included directly in the SimpleTreeDataModel\n but are also useful for other types of trees (not TreeVirtual) that need\n similar tree and node creation.</p>"
+      }
+    ]
+  },
   "statics": {
     "Type": {
-      "location": {
-        "start": {
-          "line": 29,
-          "column": 4,
-          "index": 831
-        },
-        "end": {
-          "line": 32,
-          "column": 5,
-          "index": 878
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* Primitive types of tree nodes "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +47,97 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "_addNode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 106,
+          "line": 29,
           "column": 4,
-          "index": 4282
+          "index": 803
         },
         "end": {
-          "line": 173,
+          "line": 32,
           "column": 5,
-          "index": 6112
+          "index": 847
         }
       },
+      "appearsIn": []
+    },
+    "_addNode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a node to the tree.",
+          "     *",
+          "     * NOTE: This method is for <b>internal use</b> and should not be called by",
+          "     *       users of this class. There is no guarantee that the interface to this",
+          "     *       method will remain unchanged over time.",
+          "     *",
+          "     * @param nodeArr {Array|Map}",
+          "     *   The array to which new nodes are to be added. See, however, the",
+          "     *   nodeId parameter. If nodeId values will be provided, then nodeArr can",
+          "     *   be a map. The traditional TreeVirtual does not provide node ids, and",
+          "     *   passes an array for this parameter.",
+          "     *",
+          "     * @param parentNodeId {Integer}",
+          "     *   The node id of the parent of the node being added",
+          "     *",
+          "     * @param label {String}",
+          "     *   The string to display as the label for this node",
+          "     *",
+          "     * @param bOpened {Boolean}",
+          "     *   <i>true</i> if the tree should be rendered in its opened state;",
+          "     *   <i>false</i> otherwise.",
+          "     *",
+          "     * @param bHideOpenCloseButton {Boolean}",
+          "     *   <i>true</i> if the open/close button should be hidden (not displayed);",
+          "     *   </i>false</i> to display the open/close button for this node.",
+          "     *",
+          "     * @param type {Integer}",
+          "     *   The type of node being added.  The type determines whether children",
+          "     *   may be added, and determines the default icons to use.  This",
+          "     *   parameter must be one of the following values:",
+          "     *   <dl>",
+          "     *     <dt>qx.ui.treevirtual.MTreePrimitive.Type.BRANCH</dt>",
+          "     *     <dd>",
+          "     *       This node is a branch.  A branch node may have children.",
+          "     *     </dd>",
+          "     *     <dt>qx.ui.treevirtual.MTreePrimitive.Type.LEAF</dt>",
+          "     *     <dd>",
+          "     *       This node is a leaf, and may not have children",
+          "     *     </dd>",
+          "     *   </dl>",
+          "     *",
+          "     * @param icon {String}",
+          "     *   The relative (subject to alias expansion) or full path of the icon to",
+          "     *   display for this node when it is not a selected node.",
+          "     *",
+          "     * @param iconSelected {String}",
+          "     *   The relative (subject to alias expansion) or full path of the icon to",
+          "     *   display for this node when it is a selected node.",
+          "     *   <p>",
+          "     *   NOTE: As of 13 Mar 2009, this feature is disabled by default, by",
+          "     *         virtue of the fact that the tree's \"alwaysUpdateCells\" property",
+          "     *         has a setting of 'false' now instead of 'true'. Setting this",
+          "     *         property to true allows the icon to change upon selection, but",
+          "     *         causes problems such as single clicks not always selecting a",
+          "     *         row, and, in IE, double click operations failing",
+          "     *         completely. (For more information, see bugs 605 and 2021.) To",
+          "     *         re-enable the option to have an unique icon that is displayed",
+          "     *         when the node is selected, issue",
+          "     *         <code>tree.setAlwaysUpdateCells(true);</code>",
+          "     *",
+          "     * @param nodeId {Integer?}",
+          "     *   The requested node id for this new node. If not provided, nodeArr",
+          "     *   will be assumed to be an array, not a map, and the next available",
+          "     *   index of the array will be used. If it is provided, then nodeArr may",
+          "     *   be either an array or a map.",
+          "     *",
+          "     * @return {Integer} The node id of the newly-added node.",
+          "     *",
+          "     * @throws {Error} If one tries to add a child to a non-existent parent.",
+          "     * @throws {Error} If one tries to add a node to a leaf.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -97,21 +167,21 @@
             "body": "label {String}\n   The string to display as the label for this node",
             "paramName": "label",
             "description": "\n   The string to display as the label for this node",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "bOpened {Boolean}\n   <i>true</i> if the tree should be rendered in its opened state;\n   <i>false</i> otherwise.",
             "paramName": "bOpened",
             "description": "\n   <i>true</i> if the tree should be rendered in its opened state;\n   <i>false</i> otherwise.",
-            "type": "Boolean"
+            "type": "boolean"
           },
           {
             "name": "@param",
             "body": "bHideOpenCloseButton {Boolean}\n   <i>true</i> if the open/close button should be hidden (not displayed);\n   </i>false</i> to display the open/close button for this node.",
             "paramName": "bHideOpenCloseButton",
             "description": "\n   <i>true</i> if the open/close button should be hidden (not displayed);\n   </i>false</i> to display the open/close button for this node.",
-            "type": "Boolean"
+            "type": "boolean"
           },
           {
             "name": "@param",
@@ -125,14 +195,14 @@
             "body": "icon {String}\n   The relative (subject to alias expansion) or full path of the icon to\n   display for this node when it is not a selected node.",
             "paramName": "icon",
             "description": "\n   The relative (subject to alias expansion) or full path of the icon to\n   display for this node when it is not a selected node.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "iconSelected {String}\n   The relative (subject to alias expansion) or full path of the icon to\n   display for this node when it is a selected node.\n   <p>\n   NOTE: As of 13 Mar 2009, this feature is disabled by default, by\n         virtue of the fact that the tree's \"alwaysUpdateCells\" property\n         has a setting of 'false' now instead of 'true'. Setting this\n         property to true allows the icon to change upon selection, but\n         causes problems such as single clicks not always selecting a\n         row, and, in IE, double click operations failing\n         completely. (For more information, see bugs 605 and 2021.) To\n         re-enable the option to have an unique icon that is displayed\n         when the node is selected, issue\n         <code>tree.setAlwaysUpdateCells(true);</code>",
             "paramName": "iconSelected",
             "description": "\n   The relative (subject to alias expansion) or full path of the icon to\n   display for this node when it is a selected node.\n   <p>\n   NOTE: As of 13 Mar 2009, this feature is disabled by default, by\n         virtue of the fact that the tree's \"alwaysUpdateCells\" property\n         has a setting of 'false' now instead of 'true'. Setting this\n         property to true allows the icon to change upon selection, but\n         causes problems such as single clicks not always selecting a\n         row, and, in IE, double click operations failing\n         completely. (For more information, see bugs 605 and 2021.) To\n         re-enable the option to have an unique icon that is displayed\n         when the node is selected, issue\n         <code>tree.setAlwaysUpdateCells(true);</code>",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -148,7 +218,7 @@
             "name": "@return",
             "body": "{Integer} The node id of the newly-added node.",
             "type": "Integer",
-            "description": " The node id of the newly-added node."
+            "description": "The node id of the newly-added node."
           }
         ],
         "@throws": [
@@ -166,23 +236,77 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getEmptyTree": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 181,
+          "line": 106,
           "column": 4,
-          "index": 6282
+          "index": 4177
         },
         "end": {
-          "line": 188,
+          "line": 173,
           "column": 5,
-          "index": 6432
+          "index": 5940
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "nodeArr",
+          "type": [
+            "Array",
+            "Map"
+          ]
+        },
+        {
+          "name": "parentNodeId",
+          "type": "Integer"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "bOpened",
+          "type": "boolean"
+        },
+        {
+          "name": "bHideOpenCloseButton",
+          "type": "boolean"
+        },
+        {
+          "name": "type",
+          "type": "Integer"
+        },
+        {
+          "name": "icon",
+          "type": "string"
+        },
+        {
+          "name": "iconSelected",
+          "type": "string"
+        },
+        {
+          "name": "nodeId",
+          "type": "Integer",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getEmptyTree": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * An empty tree contains only this one node",
+          "     *",
+          "     * @return {Map}",
+          "     *   Returns a root node with all relevant fields filled.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -193,14 +317,32 @@
           {
             "name": "@return",
             "body": "{Map}\n   Returns a root node with all relevant fields filled.",
-            "type": "Map",
-            "description": "\n   Returns a root node with all relevant fields filled."
+            "type": "Map<any, any>",
+            "description": "   Returns a root node with all relevant fields filled."
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 6102
+        },
+        "end": {
+          "line": 188,
+          "column": 5,
+          "index": 6245
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

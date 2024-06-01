@@ -1,84 +1,91 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235171862,
+  "lastModifiedIso": "2024-06-01T09:46:11.862Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/scroll/NativeScrollBar.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 45,
+      "column": 0,
+      "index": 1275
+    },
+    "end": {
+      "line": 384,
+      "column": 3,
+      "index": 10141
+    }
+  },
   "className": "qx.ui.core.scroll.NativeScrollBar",
-  "packageName": "qx.ui.core.scroll",
-  "name": "NativeScrollBar",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The scroll bar widget wraps the native browser scroll bars as a qooxdoo widget.",
+      " * It can be uses instead of the styled qooxdoo scroll bars.",
+      " *",
+      " * Scroll bars are used by the {@link qx.ui.container.Scroll} container. Usually",
+      " * a scroll bar is not used directly.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the widget.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   var scrollBar = new qx.ui.core.scroll.NativeScrollBar(\"horizontal\");",
+      " *   scrollBar.set({",
+      " *     maximum: 500",
+      " *   })",
+      " *   this.getRoot().add(scrollBar);",
+      " * </pre>",
+      " *",
+      " * This example creates a horizontal scroll bar with a maximum value of 500.",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='http://qooxdoo.org/docs/#desktop/widget/scrollbar.md' target='_blank'>",
+      " * Documentation of this widget in the qooxdoo manual.</a>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The scroll bar widget wraps the native browser scroll bars as a qooxdoo widget.\n It can be uses instead of the styled qooxdoo scroll bars.\n Scroll bars are used by the {@link qx.ui.container.Scroll} container. Usually\n a scroll bar is not used directly.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var scrollBar = new qx.ui.core.scroll.NativeScrollBar(\"horizontal\");\n   scrollBar.set({\n     maximum: 500\n   })\n   this.getRoot().add(scrollBar);\n </pre>\n<p>This example creates a horizontal scroll bar with a maximum value of 500.\n<em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/scrollbar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
+      }
+    ]
+  },
   "superClass": "qx.ui.core.Widget",
   "interfaces": [
     "qx.ui.core.scroll.IScrollBar"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 45,
-        "column": 0,
-        "index": 1319
-      },
-      "end": {
-        "line": 384,
-        "column": 3,
-        "index": 10524
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The scroll bar widget wraps the native browser scroll bars as a qooxdoo widget.\n It can be uses instead of the styled qooxdoo scroll bars.\n Scroll bars are used by the {@link qx.ui.container.Scroll} container. Usually\n a scroll bar is not used directly.\n<em>Example</em>\n Here is a little example of how to use the widget.\n </p>\n<pre class='javascript'>\n   var scrollBar = new qx.ui.core.scroll.NativeScrollBar(\"horizontal\");\n   scrollBar.set({\n     maximum: 500\n   })\n   this.getRoot().add(scrollBar);\n </pre>\n<p>This example creates a horizontal scroll bar with a maximum value of 500.\n<em>External Documentation</em>\n <a href='http://qooxdoo.org/docs/#desktop/widget/scrollbar.md' target='_blank'>\n Documentation of this widget in the qooxdoo manual.</a></p>"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "orientation"
+      }
+    ],
     "location": {
       "start": {
         "line": 52,
         "column": 2,
-        "index": 1549
+        "index": 1498
       },
       "end": {
         "line": 77,
         "column": 3,
-        "index": 2366
+        "index": 2290
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "orientation {String?\"horizontal\"} The initial scroll bar orientation",
-          "paramName": "orientation",
-          "description": " The initial scroll bar orientation",
-          "optional": true,
-          "defaultValue": "\"horizontal\"",
-          "type": "String"
-        }
-      ]
     }
   },
   "events": {
     "scrollAnimationEnd": {
-      "location": {
-        "start": {
-          "line": 83,
-          "column": 4,
-          "index": 2459
-        },
-        "end": {
-          "line": 83,
-          "column": 45,
-          "index": 2500
-        }
-      },
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired as soon as the scroll animation ended.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -86,23 +93,17 @@
           }
         ]
       },
-      "name": "scrollAnimationEnd",
-      "type": "qx.event.type.Event"
-    },
-    "scroll": {
-      "type": "event",
-      "name": "scroll",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.scroll.IScrollBar",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Fired if the user scroll</p>"
-          }
-        ]
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2377
+        },
+        "end": {
+          "line": 83,
+          "column": 45,
+          "index": 2418
+        }
       }
     }
   },
@@ -112,106 +113,135 @@
         "start": {
           "line": 88,
           "column": 4,
-          "index": 2550
+          "index": 2463
         },
         "end": {
           "line": 91,
           "column": 5,
-          "index": 2616
+          "index": 2526
         }
       },
-      "jsdoc": {},
-      "name": "appearance",
-      "propertyType": "new",
-      "refine": true,
-      "init": "scrollbar",
-      "defaultValue": "scrollbar",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "appearsIn": {
-        "qx.ui.core.Widget": "class"
-      }
+      "json": {
+        "refine": true,
+        "init": "scrollbar"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
     },
     "orientation": {
       "location": {
         "start": {
           "line": 94,
           "column": 4,
-          "index": 2658
+          "index": 2565
         },
         "end": {
           "line": 98,
           "column": 5,
-          "index": 2782
+          "index": 2685
         }
       },
-      "jsdoc": {},
-      "name": "orientation",
-      "propertyType": "new",
-      "apply": "_applyOrientation",
-      "init": "horizontal",
-      "possibleValues": [
-        "horizontal",
-        "vertical"
-      ],
-      "defaultValue": "horizontal"
+      "json": {
+        "check": [
+          "horizontal",
+          "vertical"
+        ],
+        "init": "horizontal",
+        "apply": "_applyOrientation"
+      },
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.IScrollBar"
+      ]
     },
     "maximum": {
       "location": {
         "start": {
           "line": 101,
           "column": 4,
-          "index": 2824
+          "index": 2724
         },
         "end": {
           "line": 105,
           "column": 5,
-          "index": 2922
+          "index": 2818
         }
       },
-      "jsdoc": {},
-      "name": "maximum",
-      "propertyType": "new",
-      "apply": "_applyMaximum",
-      "init": 100,
-      "check": "PositiveInteger",
-      "defaultValue": 100
+      "json": {
+        "check": "PositiveInteger",
+        "apply": "_applyMaximum",
+        "init": 100
+      },
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.IScrollBar"
+      ]
     },
     "position": {
       "location": {
         "start": {
           "line": 108,
           "column": 4,
-          "index": 2964
+          "index": 2857
         },
         "end": {
           "line": 113,
           "column": 5,
-          "index": 3077
+          "index": 2965
         }
       },
-      "jsdoc": {},
-      "name": "position",
-      "propertyType": "new",
-      "event": "scroll",
-      "apply": "_applyPosition",
-      "init": 0,
-      "check": "Number",
-      "defaultValue": 0
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyPosition",
+        "event": "scroll"
+      },
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.IScrollBar"
+      ]
     },
     "singleStep": {
       "location": {
         "start": {
           "line": 118,
           "column": 4,
-          "index": 3173
+          "index": 3056
         },
         "end": {
           "line": 121,
           "column": 5,
-          "index": 3234
+          "index": 3114
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 20
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Step size for each tap on the up/down or left/right buttons.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -219,112 +249,113 @@
           }
         ]
       },
-      "name": "singleStep",
-      "propertyType": "new",
-      "init": 20,
-      "check": "Integer",
-      "defaultValue": 20
+      "appearsIn": []
     },
     "knobFactor": {
       "location": {
         "start": {
           "line": 124,
           "column": 4,
-          "index": 3276
+          "index": 3153
         },
         "end": {
           "line": 127,
           "column": 5,
-          "index": 3350
+          "index": 3224
         }
       },
-      "jsdoc": {},
-      "name": "knobFactor",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "PositiveNumber"
+      "json": {
+        "check": "PositiveNumber",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.core.scroll.IScrollBar"
+      ]
     }
   },
   "members": {
     "__isHorizontal": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 131,
           "column": 4,
-          "index": 3378
+          "index": 3248
         },
         "end": {
           "line": 131,
           "column": 24,
-          "index": 3398
+          "index": 3268
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__scrollPaneElement": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 132,
           "column": 4,
-          "index": 3405
+          "index": 3274
         },
         "end": {
           "line": 132,
           "column": 29,
-          "index": 3430
+          "index": 3299
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__requestId": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 133,
           "column": 4,
-          "index": 3437
+          "index": 3305
         },
         "end": {
           "line": 133,
           "column": 21,
-          "index": 3454
+          "index": 3322
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__scrollAnimationframe": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 135,
           "column": 4,
-          "index": 3463
+          "index": 3329
         },
         "end": {
           "line": 135,
           "column": 32,
-          "index": 3491
+          "index": 3357
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_getScrollPaneElement": {
-      "location": {
-        "start": {
-          "line": 142,
-          "column": 4,
-          "index": 3614
-        },
-        "end": {
-          "line": 147,
-          "column": 5,
-          "index": 3794
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the scroll pane html element.",
+          "     *",
+          "     * @return {qx.html.Element} The element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -336,29 +367,64 @@
             "name": "@return",
             "body": "{qx.html.Element} The element",
             "type": "qx.html.Element",
-            "description": " The element"
+            "description": "The element"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3473
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 3648
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
     },
     "renderLayout": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 156,
           "column": 4,
-          "index": 4020
+          "index": 3865
         },
         "end": {
           "line": 161,
           "column": 5,
-          "index": 4191
+          "index": 4031
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "left"
+        },
+        {
+          "name": "top"
+        },
+        {
+          "name": "width"
+        },
+        {
+          "name": "height"
+        }
+      ],
       "overriddenFrom": "qx.ui.core.Widget",
       "appearsIn": [
         "qx.ui.core.Widget",
@@ -366,121 +432,156 @@
       ]
     },
     "_getContentHint": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 164,
           "column": 4,
-          "index": 4219
+          "index": 4056
         },
         "end": {
           "line": 174,
           "column": 5,
-          "index": 4720
+          "index": 4547
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.ui.core.Widget",
       "appearsIn": [
         "qx.ui.core.Widget"
       ]
     },
     "_applyEnabled": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 177,
           "column": 4,
-          "index": 4748
+          "index": 4572
         },
         "end": {
           "line": 180,
           "column": 5,
-          "index": 4854
+          "index": 4675
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
       "overriddenFrom": "qx.ui.core.Widget",
       "appearsIn": [
         "qx.ui.core.Widget"
       ]
     },
     "_applyMaximum": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 189,
           "column": 4,
-          "index": 5097
+          "index": 4909
         },
         "end": {
           "line": 191,
           "column": 5,
-          "index": 5158
+          "index": 4968
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "maximum"
-      ]
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyPosition": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 194,
           "column": 4,
-          "index": 5190
+          "index": 4997
         },
         "end": {
           "line": 202,
           "column": 5,
-          "index": 5398
+          "index": 5197
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "position"
-      ]
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyOrientation": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 205,
           "column": 4,
-          "index": 5430
+          "index": 5226
         },
         "end": {
           "line": 231,
           "column": 5,
-          "index": 6212
+          "index": 5982
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "orientation"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_updateScrollBar": {
-      "location": {
-        "start": {
-          "line": 237,
-          "column": 4,
-          "index": 6337
-        },
-        "end": {
-          "line": 276,
-          "column": 5,
-          "index": 7740
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update the scroll bar according to its current size, max value and",
+          "     * enabled state.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -488,44 +589,63 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4,
+          "index": 6101
+        },
+        "end": {
+          "line": 276,
+          "column": 5,
+          "index": 7465
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "scrollTo": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 279,
           "column": 4,
-          "index": 7782
+          "index": 7504
         },
         "end": {
           "line": 317,
           "column": 5,
-          "index": 8823
+          "index": 8507
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.scroll.IScrollBar",
+      "params": [
+        {
+          "name": "position"
+        },
+        {
+          "name": "duration"
+        }
+      ],
       "appearsIn": [
         "qx.ui.core.scroll.IScrollBar"
       ]
     },
     "updatePosition": {
-      "location": {
-        "start": {
-          "line": 323,
-          "column": 4,
-          "index": 8975
-        },
-        "end": {
-          "line": 325,
-          "column": 5,
-          "index": 9085
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper to set the new position taking care of min and max values.",
+          "     * @param position {Number} The new position.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -538,69 +658,103 @@
             "body": "position {Number} The new position.",
             "paramName": "position",
             "description": " The new position.",
-            "type": "Number"
+            "type": "number"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 323,
+          "column": 4,
+          "index": 8653
+        },
+        "end": {
+          "line": 325,
+          "column": 5,
+          "index": 8761
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "position",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
     },
     "scrollBy": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 328,
           "column": 4,
-          "index": 9127
+          "index": 8800
         },
         "end": {
           "line": 330,
           "column": 5,
-          "index": 9223
+          "index": 8894
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.scroll.IScrollBar",
+      "params": [
+        {
+          "name": "offset"
+        },
+        {
+          "name": "duration"
+        }
+      ],
       "appearsIn": [
         "qx.ui.core.scroll.IScrollBar"
       ]
     },
     "scrollBySteps": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 333,
           "column": 4,
-          "index": 9265
+          "index": 8933
         },
         "end": {
           "line": 336,
           "column": 5,
-          "index": 9390
+          "index": 9055
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.scroll.IScrollBar",
+      "params": [
+        {
+          "name": "steps"
+        },
+        {
+          "name": "duration"
+        }
+      ],
       "appearsIn": [
         "qx.ui.core.scroll.IScrollBar"
       ]
     },
     "stopScrollAnimation": {
-      "location": {
-        "start": {
-          "line": 341,
-          "column": 4,
-          "index": 9479
-        },
-        "end": {
-          "line": 346,
-          "column": 5,
-          "index": 9660
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * If a scroll animation is running, it will be stopped.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -608,23 +762,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_onScroll": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 353,
+          "line": 341,
           "column": 4,
-          "index": 9780
+          "index": 9139
         },
         "end": {
-          "line": 359,
+          "line": 346,
           "column": 5,
-          "index": 9996
+          "index": 9315
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onScroll": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scroll event handler",
+          "     *",
+          "     * @param e {qx.event.type.Event} the scroll event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -641,23 +804,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onAppear": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 367,
+          "line": 353,
           "column": 4,
-          "index": 10187
+          "index": 9428
         },
         "end": {
-          "line": 369,
+          "line": 359,
           "column": 5,
-          "index": 10256
+          "index": 9638
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onAppear": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener for appear which ensured the scroll bar is positioned right",
+          "     * on appear.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Incoming event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -674,23 +852,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_stopPropagation": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 376,
+          "line": 367,
           "column": 4,
-          "index": 10384
+          "index": 9821
         },
         "end": {
-          "line": 378,
+          "line": 369,
           "column": 5,
-          "index": 10440
+          "index": 9888
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_stopPropagation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stops propagation on the given even",
+          "     *",
+          "     * @param e {qx.event.type.Event} the event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -707,4147 +899,44 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "getOrientation": {
-      "type": "function",
-      "name": "getOrientation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>orientation</code>.\n\nFor further details take a look at the property definition: {@link #orientation}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for orientation"
-          }
-        ]
-      }
-    },
-    "setOrientation": {
-      "type": "function",
-      "name": "setOrientation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>orientation</code>.\n\nFor further details take a look at the property definition: {@link #orientation}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for orientation"
-          }
-        ]
-      }
-    },
-    "resetOrientation": {
-      "type": "function",
-      "name": "resetOrientation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>orientation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #orientation}."
-          }
-        ]
-      }
-    },
-    "getMaximum": {
-      "type": "function",
-      "name": "getMaximum",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maximum</code>.\n\nFor further details take a look at the property definition: {@link #maximum}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for maximum"
-          }
-        ]
-      }
-    },
-    "setMaximum": {
-      "type": "function",
-      "name": "setMaximum",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maximum</code>.\n\nFor further details take a look at the property definition: {@link #maximum}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for maximum"
-          }
-        ]
-      }
-    },
-    "resetMaximum": {
-      "type": "function",
-      "name": "resetMaximum",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maximum</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maximum}."
-          }
-        ]
-      }
-    },
-    "getPosition": {
-      "type": "function",
-      "name": "getPosition",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>position</code>.\n\nFor further details take a look at the property definition: {@link #position}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for position"
-          }
-        ]
-      }
-    },
-    "setPosition": {
-      "type": "function",
-      "name": "setPosition",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>position</code>.\n\nFor further details take a look at the property definition: {@link #position}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for position"
-          }
-        ]
-      }
-    },
-    "resetPosition": {
-      "type": "function",
-      "name": "resetPosition",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>position</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #position}."
-          }
-        ]
-      }
-    },
-    "getKnobFactor": {
-      "type": "function",
-      "name": "getKnobFactor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>knobFactor</code>.\n\nFor further details take a look at the property definition: {@link #knobFactor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for knobFactor"
-          }
-        ]
-      }
-    },
-    "setKnobFactor": {
-      "type": "function",
-      "name": "setKnobFactor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>knobFactor</code>.\n\nFor further details take a look at the property definition: {@link #knobFactor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for knobFactor"
-          }
-        ]
-      }
-    },
-    "resetKnobFactor": {
-      "type": "function",
-      "name": "resetKnobFactor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>knobFactor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #knobFactor}."
-          }
-        ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getMinWidth": {
-      "type": "function",
-      "name": "getMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>minWidth</code>.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for minWidth"
-          }
-        ]
-      }
-    },
-    "setMinWidth": {
-      "type": "function",
-      "name": "setMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>minWidth</code>.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for minWidth"
-          }
-        ]
-      }
-    },
-    "resetMinWidth": {
-      "type": "function",
-      "name": "resetMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>minWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ]
-      }
-    },
-    "getWidth": {
-      "type": "function",
-      "name": "getWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for width"
-          }
-        ]
-      }
-    },
-    "setWidth": {
-      "type": "function",
-      "name": "setWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for width"
-          }
-        ]
-      }
-    },
-    "resetWidth": {
-      "type": "function",
-      "name": "resetWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ]
-      }
-    },
-    "getMaxWidth": {
-      "type": "function",
-      "name": "getMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxWidth</code>.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for maxWidth"
-          }
-        ]
-      }
-    },
-    "setMaxWidth": {
-      "type": "function",
-      "name": "setMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxWidth</code>.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for maxWidth"
-          }
-        ]
-      }
-    },
-    "resetMaxWidth": {
-      "type": "function",
-      "name": "resetMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ]
-      }
-    },
-    "getMinHeight": {
-      "type": "function",
-      "name": "getMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>minHeight</code>.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for minHeight"
-          }
-        ]
-      }
-    },
-    "setMinHeight": {
-      "type": "function",
-      "name": "setMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>minHeight</code>.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for minHeight"
-          }
-        ]
-      }
-    },
-    "resetMinHeight": {
-      "type": "function",
-      "name": "resetMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>minHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ]
-      }
-    },
-    "getHeight": {
-      "type": "function",
-      "name": "getHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for height"
-          }
-        ]
-      }
-    },
-    "setHeight": {
-      "type": "function",
-      "name": "setHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for height"
-          }
-        ]
-      }
-    },
-    "resetHeight": {
-      "type": "function",
-      "name": "resetHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>height</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ]
-      }
-    },
-    "getMaxHeight": {
-      "type": "function",
-      "name": "getMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for maxHeight"
-          }
-        ]
-      }
-    },
-    "setMaxHeight": {
-      "type": "function",
-      "name": "setMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for maxHeight"
-          }
-        ]
-      }
-    },
-    "resetMaxHeight": {
-      "type": "function",
-      "name": "resetMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ]
-      }
-    },
-    "getAllowGrowX": {
-      "type": "function",
-      "name": "getAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "isAllowGrowX": {
-      "type": "function",
-      "name": "isAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "setAllowGrowX": {
-      "type": "function",
-      "name": "setAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "resetAllowGrowX": {
-      "type": "function",
-      "name": "resetAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowGrowX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ]
-      }
-    },
-    "getAllowShrinkX": {
-      "type": "function",
-      "name": "getAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "isAllowShrinkX": {
-      "type": "function",
-      "name": "isAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "setAllowShrinkX": {
-      "type": "function",
-      "name": "setAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "resetAllowShrinkX": {
-      "type": "function",
-      "name": "resetAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowShrinkX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ]
-      }
-    },
-    "getAllowGrowY": {
-      "type": "function",
-      "name": "getAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "isAllowGrowY": {
-      "type": "function",
-      "name": "isAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "setAllowGrowY": {
-      "type": "function",
-      "name": "setAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "resetAllowGrowY": {
-      "type": "function",
-      "name": "resetAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowGrowY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ]
-      }
-    },
-    "getAllowShrinkY": {
-      "type": "function",
-      "name": "getAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "isAllowShrinkY": {
-      "type": "function",
-      "name": "isAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "setAllowShrinkY": {
-      "type": "function",
-      "name": "setAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "resetAllowShrinkY": {
-      "type": "function",
-      "name": "resetAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowShrinkY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ]
-      }
-    },
-    "setAllowStretchX": {
-      "type": "function",
-      "name": "setAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowStretchX</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for allowStretchX"
-          }
-        ]
-      }
-    },
-    "resetAllowStretchX": {
-      "type": "function",
-      "name": "resetAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ]
-      }
-    },
-    "setAllowStretchY": {
-      "type": "function",
-      "name": "setAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowStretchY</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for allowStretchY"
-          }
-        ]
-      }
-    },
-    "resetAllowStretchY": {
-      "type": "function",
-      "name": "resetAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowStretchY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ]
-      }
-    },
-    "getMarginTop": {
-      "type": "function",
-      "name": "getMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginTop</code>.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginTop"
-          }
-        ]
-      }
-    },
-    "setMarginTop": {
-      "type": "function",
-      "name": "setMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginTop</code>.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginTop"
-          }
-        ]
-      }
-    },
-    "resetMarginTop": {
-      "type": "function",
-      "name": "resetMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ]
-      }
-    },
-    "getMarginRight": {
-      "type": "function",
-      "name": "getMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginRight</code>.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginRight"
-          }
-        ]
-      }
-    },
-    "setMarginRight": {
-      "type": "function",
-      "name": "setMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginRight</code>.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginRight"
-          }
-        ]
-      }
-    },
-    "resetMarginRight": {
-      "type": "function",
-      "name": "resetMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ]
-      }
-    },
-    "getMarginBottom": {
-      "type": "function",
-      "name": "getMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginBottom</code>.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginBottom"
-          }
-        ]
-      }
-    },
-    "setMarginBottom": {
-      "type": "function",
-      "name": "setMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginBottom</code>.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginBottom"
-          }
-        ]
-      }
-    },
-    "resetMarginBottom": {
-      "type": "function",
-      "name": "resetMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ]
-      }
-    },
-    "getMarginLeft": {
-      "type": "function",
-      "name": "getMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginLeft</code>.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginLeft"
-          }
-        ]
-      }
-    },
-    "setMarginLeft": {
-      "type": "function",
-      "name": "setMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginLeft</code>.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginLeft"
-          }
-        ]
-      }
-    },
-    "resetMarginLeft": {
-      "type": "function",
-      "name": "resetMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ]
-      }
-    },
-    "setMargin": {
-      "type": "function",
-      "name": "setMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>margin</code>.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for margin"
-          }
-        ]
-      }
-    },
-    "resetMargin": {
-      "type": "function",
-      "name": "resetMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>margin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ]
-      }
-    },
-    "getAlignX": {
-      "type": "function",
-      "name": "getAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for alignX"
-          }
-        ]
-      }
-    },
-    "setAlignX": {
-      "type": "function",
-      "name": "setAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for alignX"
-          }
-        ]
-      }
-    },
-    "resetAlignX": {
-      "type": "function",
-      "name": "resetAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ]
-      }
-    },
-    "getAlignY": {
-      "type": "function",
-      "name": "getAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for alignY"
-          }
-        ]
-      }
-    },
-    "setAlignY": {
-      "type": "function",
-      "name": "setAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for alignY"
-          }
-        ]
-      }
-    },
-    "resetAlignY": {
-      "type": "function",
-      "name": "resetAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ]
-      }
-    },
-    "getPaddingTop": {
-      "type": "function",
-      "name": "getPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingTop</code>.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingTop"
-          }
-        ]
-      }
-    },
-    "setPaddingTop": {
-      "type": "function",
-      "name": "setPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingTop</code>.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingTop"
-          }
-        ]
-      }
-    },
-    "resetPaddingTop": {
-      "type": "function",
-      "name": "resetPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
-          }
-        ]
-      }
-    },
-    "getPaddingRight": {
-      "type": "function",
-      "name": "getPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingRight</code>.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingRight"
-          }
-        ]
-      }
-    },
-    "setPaddingRight": {
-      "type": "function",
-      "name": "setPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingRight</code>.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingRight"
-          }
-        ]
-      }
-    },
-    "resetPaddingRight": {
-      "type": "function",
-      "name": "resetPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
-          }
-        ]
-      }
-    },
-    "getPaddingBottom": {
-      "type": "function",
-      "name": "getPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingBottom</code>.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingBottom"
-          }
-        ]
-      }
-    },
-    "setPaddingBottom": {
-      "type": "function",
-      "name": "setPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingBottom</code>.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingBottom"
-          }
-        ]
-      }
-    },
-    "resetPaddingBottom": {
-      "type": "function",
-      "name": "resetPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
-          }
-        ]
-      }
-    },
-    "getPaddingLeft": {
-      "type": "function",
-      "name": "getPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingLeft</code>.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingLeft"
-          }
-        ]
-      }
-    },
-    "setPaddingLeft": {
-      "type": "function",
-      "name": "setPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingLeft</code>.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingLeft"
-          }
-        ]
-      }
-    },
-    "resetPaddingLeft": {
-      "type": "function",
-      "name": "resetPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ]
-      }
-    },
-    "setPadding": {
-      "type": "function",
-      "name": "setPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>padding</code>.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for padding"
-          }
-        ]
-      }
-    },
-    "resetPadding": {
-      "type": "function",
-      "name": "resetPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>padding</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ]
-      }
-    },
-    "getZIndex": {
-      "type": "function",
-      "name": "getZIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>zIndex</code>.\n\nFor further details take a look at the property definition: {@link #zIndex}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for zIndex"
-          }
-        ]
-      }
-    },
-    "setZIndex": {
-      "type": "function",
-      "name": "setZIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>zIndex</code>.\n\nFor further details take a look at the property definition: {@link #zIndex}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for zIndex"
-          }
-        ]
-      }
-    },
-    "resetZIndex": {
-      "type": "function",
-      "name": "resetZIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>zIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #zIndex}."
-          }
-        ]
-      }
-    },
-    "getDecorator": {
-      "type": "function",
-      "name": "getDecorator",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>decorator</code>.\n\nFor further details take a look at the property definition: {@link #decorator}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Decorator",
-            "desc": "Returns the value for decorator"
-          }
-        ]
-      }
-    },
-    "setDecorator": {
-      "type": "function",
-      "name": "setDecorator",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>decorator</code>.\n\nFor further details take a look at the property definition: {@link #decorator}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Decorator",
-            "paramName": "value",
-            "desc": "Value for decorator"
-          }
-        ]
-      }
-    },
-    "resetDecorator": {
-      "type": "function",
-      "name": "resetDecorator",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>decorator</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #decorator}."
-          }
-        ]
-      }
-    },
-    "getBackgroundColor": {
-      "type": "function",
-      "name": "getBackgroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for backgroundColor"
-          }
-        ]
-      }
-    },
-    "setBackgroundColor": {
-      "type": "function",
-      "name": "setBackgroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for backgroundColor"
-          }
-        ]
-      }
-    },
-    "resetBackgroundColor": {
-      "type": "function",
-      "name": "resetBackgroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
-          }
-        ]
-      }
-    },
-    "getTextColor": {
-      "type": "function",
-      "name": "getTextColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>textColor</code>.\n\nFor further details take a look at the property definition: {@link #textColor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for textColor"
-          }
-        ]
-      }
-    },
-    "setTextColor": {
-      "type": "function",
-      "name": "setTextColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>textColor</code>.\n\nFor further details take a look at the property definition: {@link #textColor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for textColor"
-          }
-        ]
-      }
-    },
-    "resetTextColor": {
-      "type": "function",
-      "name": "resetTextColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>textColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #textColor}."
-          }
-        ]
-      }
-    },
-    "getFont": {
-      "type": "function",
-      "name": "getFont",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>font</code>.\n\nFor further details take a look at the property definition: {@link #font}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Font",
-            "desc": "Returns the value for font"
-          }
-        ]
-      }
-    },
-    "setFont": {
-      "type": "function",
-      "name": "setFont",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>font</code>.\n\nFor further details take a look at the property definition: {@link #font}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Font",
-            "paramName": "value",
-            "desc": "Value for font"
-          }
-        ]
-      }
-    },
-    "resetFont": {
-      "type": "function",
-      "name": "resetFont",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>font</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #font}."
-          }
-        ]
-      }
-    },
-    "getOpacity": {
-      "type": "function",
-      "name": "getOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>opacity</code>.\n\nFor further details take a look at the property definition: {@link #opacity}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for opacity"
-          }
-        ]
-      }
-    },
-    "setOpacity": {
-      "type": "function",
-      "name": "setOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>opacity</code>.\n\nFor further details take a look at the property definition: {@link #opacity}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for opacity"
-          }
-        ]
-      }
-    },
-    "resetOpacity": {
-      "type": "function",
-      "name": "resetOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>opacity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #opacity}."
-          }
-        ]
-      }
-    },
-    "getCursor": {
-      "type": "function",
-      "name": "getCursor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>cursor</code>.\n\nFor further details take a look at the property definition: {@link #cursor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for cursor"
-          }
-        ]
-      }
-    },
-    "setCursor": {
-      "type": "function",
-      "name": "setCursor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>cursor</code>.\n\nFor further details take a look at the property definition: {@link #cursor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for cursor"
-          }
-        ]
-      }
-    },
-    "resetCursor": {
-      "type": "function",
-      "name": "resetCursor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>cursor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cursor}."
-          }
-        ]
-      }
-    },
-    "getToolTip": {
-      "type": "function",
-      "name": "getToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>toolTip</code>.\n\nFor further details take a look at the property definition: {@link #toolTip}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.ui.tooltip.ToolTip",
-            "desc": "Returns the value for toolTip"
-          }
-        ]
-      }
-    },
-    "setToolTip": {
-      "type": "function",
-      "name": "setToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>toolTip</code>.\n\nFor further details take a look at the property definition: {@link #toolTip}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.ui.tooltip.ToolTip",
-            "paramName": "value",
-            "desc": "Value for toolTip"
-          }
-        ]
-      }
-    },
-    "resetToolTip": {
-      "type": "function",
-      "name": "resetToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>toolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTip}."
-          }
-        ]
-      }
-    },
-    "getToolTipText": {
-      "type": "function",
-      "name": "getToolTipText",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>toolTipText</code>.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for toolTipText"
-          }
-        ]
-      }
-    },
-    "setToolTipText": {
-      "type": "function",
-      "name": "setToolTipText",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>toolTipText</code>.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for toolTipText"
-          }
-        ]
-      }
-    },
-    "resetToolTipText": {
-      "type": "function",
-      "name": "resetToolTipText",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>toolTipText</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
-          }
-        ]
-      }
-    },
-    "getToolTipIcon": {
-      "type": "function",
-      "name": "getToolTipIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>toolTipIcon</code>.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for toolTipIcon"
-          }
-        ]
-      }
-    },
-    "setToolTipIcon": {
-      "type": "function",
-      "name": "setToolTipIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>toolTipIcon</code>.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for toolTipIcon"
-          }
-        ]
-      }
-    },
-    "resetToolTipIcon": {
-      "type": "function",
-      "name": "resetToolTipIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>toolTipIcon</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
-          }
-        ]
-      }
-    },
-    "getBlockToolTip": {
-      "type": "function",
-      "name": "getBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for blockToolTip"
-          }
-        ]
-      }
-    },
-    "isBlockToolTip": {
-      "type": "function",
-      "name": "isBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for blockToolTip"
-          }
-        ]
-      }
-    },
-    "setBlockToolTip": {
-      "type": "function",
-      "name": "setBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for blockToolTip"
-          }
-        ]
-      }
-    },
-    "resetBlockToolTip": {
-      "type": "function",
-      "name": "resetBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>blockToolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ]
-      }
-    },
-    "getShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "getShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for showToolTipWhenDisabled"
-          }
-        ]
-      }
-    },
-    "isShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "isShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for showToolTipWhenDisabled"
-          }
-        ]
-      }
-    },
-    "setShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "setShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for showToolTipWhenDisabled"
-          }
-        ]
-      }
-    },
-    "resetShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "resetShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>showToolTipWhenDisabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ]
-      }
-    },
-    "getVisibility": {
-      "type": "function",
-      "name": "getVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for visibility"
-          }
-        ]
-      }
-    },
-    "setVisibility": {
-      "type": "function",
-      "name": "setVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for visibility"
-          }
-        ]
-      }
-    },
-    "resetVisibility": {
-      "type": "function",
-      "name": "resetVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ]
-      }
-    },
-    "getEnabled": {
-      "type": "function",
-      "name": "getEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "isEnabled": {
-      "type": "function",
-      "name": "isEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "setEnabled": {
-      "type": "function",
-      "name": "setEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for enabled"
-          }
-        ]
-      }
-    },
-    "resetEnabled": {
-      "type": "function",
-      "name": "resetEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ]
-      }
-    },
-    "getAnonymous": {
-      "type": "function",
-      "name": "getAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "isAnonymous": {
-      "type": "function",
-      "name": "isAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "setAnonymous": {
-      "type": "function",
-      "name": "setAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for anonymous"
-          }
-        ]
-      }
-    },
-    "resetAnonymous": {
-      "type": "function",
-      "name": "resetAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ]
-      }
-    },
-    "getTabIndex": {
-      "type": "function",
-      "name": "getTabIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>tabIndex</code>.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for tabIndex"
-          }
-        ]
-      }
-    },
-    "setTabIndex": {
-      "type": "function",
-      "name": "setTabIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>tabIndex</code>.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for tabIndex"
-          }
-        ]
-      }
-    },
-    "resetTabIndex": {
-      "type": "function",
-      "name": "resetTabIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>tabIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
-          }
-        ]
-      }
-    },
-    "getFocusable": {
-      "type": "function",
-      "name": "getFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for focusable"
-          }
-        ]
-      }
-    },
-    "isFocusable": {
-      "type": "function",
-      "name": "isFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for focusable"
-          }
-        ]
-      }
-    },
-    "setFocusable": {
-      "type": "function",
-      "name": "setFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for focusable"
-          }
-        ]
-      }
-    },
-    "resetFocusable": {
-      "type": "function",
-      "name": "resetFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>focusable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ]
-      }
-    },
-    "getKeepFocus": {
-      "type": "function",
-      "name": "getKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepFocus"
-          }
-        ]
-      }
-    },
-    "isKeepFocus": {
-      "type": "function",
-      "name": "isKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepFocus"
-          }
-        ]
-      }
-    },
-    "setKeepFocus": {
-      "type": "function",
-      "name": "setKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for keepFocus"
-          }
-        ]
-      }
-    },
-    "resetKeepFocus": {
-      "type": "function",
-      "name": "resetKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>keepFocus</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ]
-      }
-    },
-    "getKeepActive": {
-      "type": "function",
-      "name": "getKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepActive"
-          }
-        ]
-      }
-    },
-    "isKeepActive": {
-      "type": "function",
-      "name": "isKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepActive"
-          }
-        ]
-      }
-    },
-    "setKeepActive": {
-      "type": "function",
-      "name": "setKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for keepActive"
-          }
-        ]
-      }
-    },
-    "resetKeepActive": {
-      "type": "function",
-      "name": "resetKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>keepActive</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ]
-      }
-    },
-    "getDraggable": {
-      "type": "function",
-      "name": "getDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for draggable"
-          }
-        ]
-      }
-    },
-    "isDraggable": {
-      "type": "function",
-      "name": "isDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for draggable"
-          }
-        ]
-      }
-    },
-    "setDraggable": {
-      "type": "function",
-      "name": "setDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for draggable"
-          }
-        ]
-      }
-    },
-    "resetDraggable": {
-      "type": "function",
-      "name": "resetDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>draggable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ]
-      }
-    },
-    "getDroppable": {
-      "type": "function",
-      "name": "getDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for droppable"
-          }
-        ]
-      }
-    },
-    "isDroppable": {
-      "type": "function",
-      "name": "isDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for droppable"
-          }
-        ]
-      }
-    },
-    "setDroppable": {
-      "type": "function",
-      "name": "setDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for droppable"
-          }
-        ]
-      }
-    },
-    "resetDroppable": {
-      "type": "function",
-      "name": "resetDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>droppable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ]
-      }
-    },
-    "getSelectable": {
-      "type": "function",
-      "name": "getSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for selectable"
-          }
-        ]
-      }
-    },
-    "isSelectable": {
-      "type": "function",
-      "name": "isSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for selectable"
-          }
-        ]
-      }
-    },
-    "setSelectable": {
-      "type": "function",
-      "name": "setSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for selectable"
-          }
-        ]
-      }
-    },
-    "resetSelectable": {
-      "type": "function",
-      "name": "resetSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>selectable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ]
-      }
-    },
-    "getContextMenu": {
-      "type": "function",
-      "name": "getContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>contextMenu</code>.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.ui.menu.Menu",
-            "desc": "Returns the value for contextMenu"
-          }
-        ]
-      }
-    },
-    "setContextMenu": {
-      "type": "function",
-      "name": "setContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>contextMenu</code>.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.ui.menu.Menu",
-            "paramName": "value",
-            "desc": "Value for contextMenu"
-          }
-        ]
-      }
-    },
-    "resetContextMenu": {
-      "type": "function",
-      "name": "resetContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>contextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
-          }
-        ]
-      }
-    },
-    "getNativeContextMenu": {
-      "type": "function",
-      "name": "getNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for nativeContextMenu"
-          }
-        ]
-      }
-    },
-    "isNativeContextMenu": {
-      "type": "function",
-      "name": "isNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for nativeContextMenu"
-          }
-        ]
-      }
-    },
-    "setNativeContextMenu": {
-      "type": "function",
-      "name": "setNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for nativeContextMenu"
-          }
-        ]
-      }
-    },
-    "resetNativeContextMenu": {
-      "type": "function",
-      "name": "resetNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>nativeContextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ]
-      }
-    },
-    "getAppearance": {
-      "type": "function",
-      "name": "getAppearance",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>appearance</code>.\n\nFor further details take a look at the property definition: {@link #appearance}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for appearance"
-          }
-        ]
-      }
-    },
-    "setAppearance": {
-      "type": "function",
-      "name": "setAppearance",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>appearance</code>.\n\nFor further details take a look at the property definition: {@link #appearance}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for appearance"
-          }
-        ]
-      }
-    },
-    "resetAppearance": {
-      "type": "function",
-      "name": "resetAppearance",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>appearance</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #appearance}."
-          }
-        ]
-      }
-    },
-    "getSingleStep": {
-      "type": "function",
-      "name": "getSingleStep",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>singleStep</code>.\n\nFor further details take a look at the property definition: {@link #singleStep}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for singleStep"
-          }
-        ]
-      }
-    },
-    "setSingleStep": {
-      "type": "function",
-      "name": "setSingleStep",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>singleStep</code>.\n\nFor further details take a look at the property definition: {@link #singleStep}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for singleStep"
-          }
-        ]
-      }
-    },
-    "resetSingleStep": {
-      "type": "function",
-      "name": "resetSingleStep",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>singleStep</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #singleStep}."
-          }
-        ]
-      }
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 376,
+          "column": 4,
+          "index": 10009
+        },
+        "end": {
+          "line": 378,
+          "column": 5,
+          "index": 10063
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 381,
         "column": 2,
-        "index": 10452
+        "index": 10072
       },
       "end": {
         "line": 383,
         "column": 3,
-        "index": 10519
+        "index": 10137
       }
     }
   },
-  "descendants": []
+  "statics": {}
 }

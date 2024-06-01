@@ -1,67 +1,83 @@
 {
-  "className": "qx.bom.client.Pdfjs",
-  "packageName": "qx.bom.client",
-  "name": "Pdfjs",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 56,
-        "column": 0,
-        "index": 1698
-      },
-      "end": {
-        "line": 100,
-        "column": 3,
-        "index": 3190
-      }
+  "version": 0.3,
+  "lastModified": 1717235171986,
+  "lastModifiedIso": "2024-06-01T09:46:11.986Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Pdfjs.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 56,
+      "column": 0,
+      "index": 1643
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Exposes PluginDetect<em>PDFjs to qooxdoo.\n Contains detection for PDF.js which is a Portable Document Format (PDF)\n viewer that is built with HTML5. PDF.js is built into Firefox 19+ and\n used as default viewer there. You can enable/disable it via \"about:config\"\n and \"pdfjs.disabled\" (true/false).\n As soon as there is an official way to detect this, which seems to be\n worked on [1][2], we should switch.\n [1] https://bugzilla.mozilla.org/show</em>bug.cgi?id=840439\n [2] https://bugzilla.mozilla.org/show_bug.cgi?id=558184\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ],
-      "@asset": [
-        {
-          "name": "@asset",
-          "body": "qx/static/empty.pdf"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "$.browser"
-        }
-      ]
+    "end": {
+      "line": 100,
+      "column": 3,
+      "index": 3091
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.Pdfjs",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Exposes PluginDetect_PDFjs to qooxdoo.",
+      " *",
+      " * Contains detection for PDF.js which is a Portable Document Format (PDF)",
+      " * viewer that is built with HTML5. PDF.js is built into Firefox 19+ and",
+      " * used as default viewer there. You can enable/disable it via \"about:config\"",
+      " * and \"pdfjs.disabled\" (true/false).",
+      " *",
+      " * As soon as there is an official way to detect this, which seems to be",
+      " * worked on [1][2], we should switch.",
+      " *",
+      " * [1] https://bugzilla.mozilla.org/show_bug.cgi?id=840439",
+      " * [2] https://bugzilla.mozilla.org/show_bug.cgi?id=558184",
+      " *",
+      " * This class is used by {@link qx.core.Environment} and should not be used",
+      " * directly. Please check its class comment for details how to use it.",
+      " *",
+      " * @internal",
+      " * @asset(qx/static/empty.pdf)",
+      " * @ignore($.browser)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Exposes PluginDetect<em>PDFjs to qooxdoo.\n Contains detection for PDF.js which is a Portable Document Format (PDF)\n viewer that is built with HTML5. PDF.js is built into Firefox 19+ and\n used as default viewer there. You can enable/disable it via \"about:config\"\n and \"pdfjs.disabled\" (true/false).\n As soon as there is an official way to detect this, which seems to be\n worked on [1][2], we should switch.\n [1] https://bugzilla.mozilla.org/show</em>bug.cgi?id=840439\n [2] https://bugzilla.mozilla.org/show_bug.cgi?id=558184\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/static/empty.pdf"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "$.browser"
+      }
+    ]
+  },
   "statics": {
     "getPdfjs": {
-      "location": {
-        "start": {
-          "line": 65,
-          "column": 4,
-          "index": 2004
-        },
-        "end": {
-          "line": 67,
-          "column": 5,
-          "index": 2101
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if PDF.js is available.",
+          "     *",
+          "     * @param callback {Function} The callback function which should be called.",
+          "     * @param context {Object} The context object for the callback function.",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -74,14 +90,14 @@
             "body": "callback {Function} The callback function which should be called.",
             "paramName": "callback",
             "description": " The callback function which should be called.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "context {Object} The context object for the callback function.",
             "paramName": "context",
             "description": " The context object for the callback function.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@internal": [
@@ -91,23 +107,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__isAvailable": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 65,
           "column": 4,
-          "index": 2360
+          "index": 1940
         },
         "end": {
-          "line": 84,
+          "line": 67,
           "column": 5,
-          "index": 2850
+          "index": 2035
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__isAvailable": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for checking the availability of PDF.js.",
+          "     *",
+          "     * @param callback {Function} The callback function which should be called.",
+          "     * @param context {Object} The context object for the callback function.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -120,34 +155,52 @@
             "body": "callback {Function} The callback function which should be called.",
             "paramName": "callback",
             "description": " The callback function which should be called.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "context {Object} The context object for the callback function.",
             "paramName": "context",
             "description": " The context object for the callback function.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getPluginDetect": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 91,
+          "line": 75,
           "column": 4,
-          "index": 2998
+          "index": 2286
         },
         "end": {
-          "line": 91,
-          "column": 27,
-          "index": 3021
+          "line": 84,
+          "column": 5,
+          "index": 2767
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getPluginDetect": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the original (third-party) PluginDetect object.",
+          "     *",
+          "     * @return {Object} The PluginDetect object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -158,36 +211,30 @@
           {
             "name": "@return",
             "body": "{Object} The PluginDetect object",
-            "type": "Object",
-            "description": " The PluginDetect object"
+            "type": "Record<any, any>",
+            "description": "The PluginDetect object"
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 97,
-        "column": 2,
-        "index": 3095
-      },
-      "end": {
-        "line": 99,
-        "column": 3,
-        "index": 3185
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Register PDF.js detection asynchronously.</p>"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2908
+        },
+        "end": {
+          "line": 91,
+          "column": 27,
+          "index": 2931
         }
-      ]
+      },
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

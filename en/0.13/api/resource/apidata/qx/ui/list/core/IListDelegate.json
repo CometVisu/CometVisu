@@ -1,49 +1,54 @@
 {
-  "className": "qx.ui.list.core.IListDelegate",
-  "packageName": "qx.ui.list.core",
-  "name": "IListDelegate",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 32,
-        "column": 0,
-        "index": 1107
-      },
-      "end": {
-        "line": 144,
-        "column": 3,
-        "index": 5215
-      }
+  "version": 0.3,
+  "lastModified": 1717235171254,
+  "lastModifiedIso": "2024-06-01T09:46:11.254Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/list/core/IListDelegate.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 32,
+      "column": 0,
+      "index": 1076
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Objects which are used as delegates for the <code>qx.ui.list.List</code> may\n implement any of the methods described in this interface. The delegate does\n not need to implement all the methods of this interface. If a method is not\n implemented the <code>qx.ui.list.List</code> provides a default\n implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n actually implemented.</p>"
-        }
-      ]
+    "end": {
+      "line": 144,
+      "column": 3,
+      "index": 5072
     }
   },
-  "type": "interface",
+  "className": "qx.ui.list.core.IListDelegate",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Objects which are used as delegates for the <code>qx.ui.list.List</code> may",
+      " * implement any of the methods described in this interface. The delegate does",
+      " * not need to implement all the methods of this interface. If a method is not",
+      " * implemented the <code>qx.ui.list.List</code> provides a default",
+      " * implementation.",
+      " *",
+      " * Note: This interface is meant to document the delegate but should not be",
+      " * listed in the <code>implement</code> key of a class unless all methods are",
+      " * actually implemented.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Objects which are used as delegates for the <code>qx.ui.list.List</code> may\n implement any of the methods described in this interface. The delegate does\n not need to implement all the methods of this interface. If a method is not\n implemented the <code>qx.ui.list.List</code> provides a default\n implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n actually implemented.</p>"
+      }
+    ]
+  },
   "members": {
     "configureItem": {
-      "location": {
-        "start": {
-          "line": 40,
-          "column": 4,
-          "index": 1402
-        },
-        "end": {
-          "line": 40,
-          "column": 26,
-          "index": 1424
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gives the user the opportunity to set individual styles and properties",
+          "     * on the item widget cells created by the controller.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Item to modify.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,23 +65,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "configureGroupItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 48,
+          "line": 40,
           "column": 4,
-          "index": 1656
+          "index": 1363
         },
         "end": {
-          "line": 48,
-          "column": 31,
-          "index": 1683
+          "line": 40,
+          "column": 26,
+          "index": 1385
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "configureGroupItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gives the user the opportunity to set individual styles and properties",
+          "     * on the group widget cells created by the controller.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Group to modify.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -93,23 +113,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 57,
+          "line": 48,
           "column": 4,
-          "index": 1954
+          "index": 1609
         },
         "end": {
-          "line": 57,
-          "column": 19,
-          "index": 1969
+          "line": 48,
+          "column": 31,
+          "index": 1636
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an item cell which will be used for rendering. Be sure to",
+          "     * implement the {@link #bindItem} function as well to get the needed",
+          "     * properties bound.",
+          "     *",
+          "     * @return {qx.ui.core.Widget} A new created item cell.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -121,27 +157,41 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget} A new created item cell.",
             "type": "qx.ui.core.Widget",
-            "description": " A new created item cell."
+            "description": "A new created item cell."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createGroupItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 66,
+          "line": 57,
           "column": 4,
-          "index": 2245
+          "index": 1898
         },
         "end": {
-          "line": 66,
-          "column": 24,
-          "index": 2265
+          "line": 57,
+          "column": 19,
+          "index": 1913
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "createGroupItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a group cell which will be used for rendering. Be sure to",
+          "     * implement the {@link #bindGroupItem} function as well to get the needed",
+          "     * properties bound.",
+          "     *",
+          "     * @return {qx.ui.core.Widget} A new created item cell.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -153,27 +203,47 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget} A new created item cell.",
             "type": "qx.ui.core.Widget",
-            "description": " A new created item cell."
+            "description": "A new created item cell."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "bindItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 81,
+          "line": 66,
           "column": 4,
-          "index": 2798
+          "index": 2180
         },
         "end": {
-          "line": 81,
-          "column": 37,
-          "index": 2831
+          "line": 66,
+          "column": 24,
+          "index": 2200
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "bindItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets up the binding for the given item and index.",
+          "     *",
+          "     * For every property you want to bind, use",
+          "     * {@link MWidgetController#bindProperty} like this:",
+          "     * <code>",
+          "     * controller.bindProperty(\"path.in.the.model\", \"label\", options, item, id);",
+          "     * </code>",
+          "     *",
+          "     * @param controller {qx.ui.list.core.MWidgetController} The currently used controller.",
+          "     * @param item {qx.ui.core.Widget} The created and used item.",
+          "     * @param id {Integer} The id for the binding.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -204,23 +274,53 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "bindGroupItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 96,
+          "line": 81,
           "column": 4,
-          "index": 3361
+          "index": 2718
         },
         "end": {
-          "line": 96,
-          "column": 42,
-          "index": 3399
+          "line": 81,
+          "column": 37,
+          "index": 2751
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "controller",
+          "type": "qx.ui.list.core.MWidgetController"
+        },
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "id",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "bindGroupItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets up the binding for the given group item and index.",
+          "     *",
+          "     * For every property you want to bind, use",
+          "     * {@link MWidgetController#bindProperty} like this:",
+          "     * <code>",
+          "     * controller.bindProperty(null, \"value\", options, item, id);",
+          "     * </code>",
+          "     *",
+          "     * @param controller {qx.ui.list.core.MWidgetController} The currently used controller.",
+          "     * @param item {qx.ui.core.Widget} The created and used group item.",
+          "     * @param id {Integer} The id for the binding.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -251,23 +351,49 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "filter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 107,
+          "line": 96,
           "column": 4,
-          "index": 3819
+          "index": 3266
         },
         "end": {
-          "line": 107,
-          "column": 19,
-          "index": 3834
+          "line": 96,
+          "column": 42,
+          "index": 3304
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "controller",
+          "type": "qx.ui.list.core.MWidgetController"
+        },
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "id",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "filter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gives the user the opportunity to filter the model. The filter",
+          "     * method has to return <code>true</code> if the given data should be",
+          "     * shown and <code>false</code> if the given data should be ignored.",
+          "     *",
+          "     * @param data {var} The data to be checked.",
+          "     * @return {Boolean} <code>true</code> if the data passes the filter,",
+          "     *   <code>false</code> otherwise.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -287,28 +413,50 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the data passes the filter,\n   <code>false</code> otherwise.",
-            "type": "Boolean",
-            "description": " <code>true</code> if the data passes the filter,\n   <code>false</code> otherwise."
+            "type": "boolean",
+            "description": "<code>true</code> if the data passes the filter,\n   <code>false</code> otherwise."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "sorter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 119,
+          "line": 107,
           "column": 4,
-          "index": 4252
+          "index": 3713
         },
         "end": {
-          "line": 119,
+          "line": 107,
           "column": 19,
-          "index": 4267
+          "index": 3728
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "sorter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gives the user the opportunity to sort the model. The sorting method",
+          "     * should return a negative value if a < b, zero if a = b, or a positive",
+          "     * value if a > b.",
+          "     *",
+          "     * @param a {var} value to compare.",
+          "     * @param b {var} value to compare.",
+          "     * @return {Integer} should return a negative value if a < b, zero",
+          "     *   if a = b, or a positive value if a > b.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -336,27 +484,57 @@
             "name": "@return",
             "body": "{Integer} should return a negative value if a < b, zero\n   if a = b, or a positive value if a > b.",
             "type": "Integer",
-            "description": " should return a negative value if a < b, zero\n   if a = b, or a positive value if a > b."
+            "description": "should return a negative value if a < b, zero\n   if a = b, or a positive value if a > b."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "group": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 135,
+          "line": 119,
           "column": 4,
-          "index": 5015
+          "index": 4134
         },
         "end": {
-          "line": 135,
-          "column": 18,
-          "index": 5029
+          "line": 119,
+          "column": 19,
+          "index": 4149
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "a",
+          "type": "var"
+        },
+        {
+          "name": "b",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "group": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gives the user the opportunity to group the model. The group method",
+          "     * should return unique identifier for the passed data.",
+          "     *",
+          "     * Note: When you returning <code>null</code> the passed data will added",
+          "     * to the default group, which is <code>???</code> from the type",
+          "     * <code>String</code>. But keep in mind that you can only use the default",
+          "     * group feature when each other group identifier is also a <code>String</code>.",
+          "     * Otherwise an exception occurs, because you can't mix <code>Object</code>",
+          "     * and <code>String</code> group identifiers.",
+          "     *",
+          "     * @param data {var} The data to be checked.",
+          "     * @return {String|Object|null} The group identifier for the data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -377,27 +555,44 @@
             "name": "@return",
             "body": "{String|Object|null} The group identifier for the data.",
             "type": "String|Object|null",
-            "description": " The group identifier for the data."
+            "description": "The group identifier for the data."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "onPool": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 142,
+          "line": 135,
           "column": 4,
-          "index": 5190
+          "index": 4881
         },
         "end": {
-          "line": 142,
-          "column": 19,
-          "index": 5205
+          "line": 135,
+          "column": 18,
+          "index": 4895
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "String|Object|null"
+      },
+      "appearsIn": []
+    },
+    "onPool": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gives the user the opportunity to reset properties or states.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Item to modify.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -414,9 +609,29 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 5049
+        },
+        "end": {
+          "line": 142,
+          "column": 19,
+          "index": 5064
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

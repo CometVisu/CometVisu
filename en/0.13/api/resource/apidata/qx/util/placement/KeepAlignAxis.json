@@ -1,49 +1,55 @@
 {
-  "className": "qx.util.placement.KeepAlignAxis",
-  "packageName": "qx.util.placement",
-  "name": "KeepAlignAxis",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 769
-      },
-      "end": {
-        "line": 97,
-        "column": 3,
-        "index": 4001
-      }
+  "version": 0.3,
+  "lastModified": 1717235171522,
+  "lastModifiedIso": "2024-06-01T09:46:11.522Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/placement/KeepAlignAxis.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 745
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Places the object to the target. If parts of the object are outside of the\n range this class places the object at the best \"edge\", \"alignment\"\n combination so that the overlap between object and range is maximized.</p>"
-        }
-      ]
+    "end": {
+      "line": 97,
+      "column": 3,
+      "index": 3905
     }
   },
-  "type": "class",
+  "className": "qx.util.placement.KeepAlignAxis",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Places the object to the target. If parts of the object are outside of the",
+      " * range this class places the object at the best \"edge\", \"alignment\"",
+      " * combination so that the overlap between object and range is maximized.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Places the object to the target. If parts of the object are outside of the\n range this class places the object at the best \"edge\", \"alignment\"\n combination so that the overlap between object and range is maximized.</p>"
+      }
+    ]
+  },
   "statics": {
     "_moveToEdgeAndAlign": {
-      "location": {
-        "start": {
-          "line": 40,
-          "column": 4,
-          "index": 1564
-        },
-        "end": {
-          "line": 40,
-          "column": 75,
-          "index": 1635
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the start of the object by taking only the attachment and",
+          "     * alignment into account. The object by be not fully visible.",
+          "     *",
+          "     * @param size {Integer} Size of the object to align",
+          "     * @param target {Map} Location of the object to align the object to. This map",
+          "     *   should have the keys <code>start</code> and <code>end</code>.",
+          "     * @param offsets {Map} Map with all offsets on each side.",
+          "     *   Comes with the keys <code>start</code> and <code>end</code>.",
+          "     * @param position {String} Accepts the same values as the <code> position</code>",
+          "     *   argument of {@link #computeStart}.",
+          "     * @return {Integer} The computed start position of the object.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,21 +69,21 @@
             "body": "target {Map} Location of the object to align the object to. This map\n   should have the keys <code>start</code> and <code>end</code>.",
             "paramName": "target",
             "description": " Location of the object to align the object to. This map\n   should have the keys <code>start</code> and <code>end</code>.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "offsets {Map} Map with all offsets on each side.\n   Comes with the keys <code>start</code> and <code>end</code>.",
             "paramName": "offsets",
             "description": " Map with all offsets on each side.\n   Comes with the keys <code>start</code> and <code>end</code>.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "position {String} Accepts the same values as the <code> position</code>\n   argument of {@link #computeStart}.",
             "paramName": "position",
             "description": " Accepts the same values as the <code> position</code>\n   argument of {@link #computeStart}.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -85,27 +91,41 @@
             "name": "@return",
             "body": "{Integer} The computed start position of the object.",
             "type": "Integer",
-            "description": " The computed start position of the object."
+            "description": "The computed start position of the object."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_isInRange": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 51,
+          "line": 40,
           "column": 4,
-          "index": 2048
+          "index": 1525
         },
         "end": {
-          "line": 51,
-          "column": 57,
-          "index": 2101
+          "line": 40,
+          "column": 75,
+          "index": 1596
         }
       },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_isInRange": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the object specified by <code>start</code> and <code>size</code>",
+          "     * is completely inside of the axis' range..",
+          "     *",
+          "     * @param start {Integer} Computed start position of the object",
+          "     * @param size {Integer} Size of the object",
+          "     * @param areaSize {Integer} The size of the axis",
+          "     * @return {Boolean} Whether the object is inside of the axis' range",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -139,28 +159,52 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the object is inside of the axis' range",
-            "type": "Boolean",
-            "description": " Whether the object is inside of the axis' range"
+            "type": "boolean",
+            "description": "Whether the object is inside of the axis' range"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "computeStart": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 72,
+          "line": 51,
           "column": 4,
-          "index": 3258
+          "index": 1998
         },
         "end": {
-          "line": 95,
-          "column": 5,
-          "index": 3991
+          "line": 51,
+          "column": 57,
+          "index": 2051
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "computeStart": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the start of the object on the axis",
+          "     *",
+          "     * @param size {Integer} Size of the object to align",
+          "     * @param target {Map} Location of the object to align the object to. This map",
+          "     *   should have the keys <code>start</code> and <code>end</code>.",
+          "     * @param offsets {Map} Map with all offsets on each side.",
+          "     *   Comes with the keys <code>start</code> and <code>end</code>.",
+          "     * @param areaSize {Integer} Size of the axis.",
+          "     * @param position {String} Alignment of the object on the target. Valid values are",
+          "     *   <ul>",
+          "     *   <li><code>edge-start</code> The object is placed before the target</li>",
+          "     *   <li><code>edge-end</code> The object is placed after the target</li>",
+          "     *   <li><code>align-start</code>The start of the object is aligned with the start of the target</li>",
+          "     *   <li><code>align-center</code>The center of the object is aligned with the center of the target</li>",
+          "     *   <li><code>align-end</code>The end of the object is aligned with the end of the object</li>",
+          "     *   </ul>",
+          "     * @return {Integer} The computed start position of the object.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -180,14 +224,14 @@
             "body": "target {Map} Location of the object to align the object to. This map\n   should have the keys <code>start</code> and <code>end</code>.",
             "paramName": "target",
             "description": " Location of the object to align the object to. This map\n   should have the keys <code>start</code> and <code>end</code>.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "offsets {Map} Map with all offsets on each side.\n   Comes with the keys <code>start</code> and <code>end</code>.",
             "paramName": "offsets",
             "description": " Map with all offsets on each side.\n   Comes with the keys <code>start</code> and <code>end</code>.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -201,7 +245,7 @@
             "body": "position {String} Alignment of the object on the target. Valid values are\n   <ul>\n   <li><code>edge-start</code> The object is placed before the target</li>\n   <li><code>edge-end</code> The object is placed after the target</li>\n   <li><code>align-start</code>The start of the object is aligned with the start of the target</li>\n   <li><code>align-center</code>The center of the object is aligned with the center of the target</li>\n   <li><code>align-end</code>The end of the object is aligned with the end of the object</li>\n   </ul>",
             "paramName": "position",
             "description": " Alignment of the object on the target. Valid values are\n   <ul>\n   <li><code>edge-start</code> The object is placed before the target</li>\n   <li><code>edge-end</code> The object is placed after the target</li>\n   <li><code>align-start</code>The start of the object is aligned with the start of the target</li>\n   <li><code>align-center</code>The center of the object is aligned with the center of the target</li>\n   <li><code>align-end</code>The end of the object is aligned with the end of the object</li>\n   </ul>",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -209,13 +253,52 @@
             "name": "@return",
             "body": "{Integer} The computed start position of the object.",
             "type": "Integer",
-            "description": " The computed start position of the object."
+            "description": "The computed start position of the object."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 3187
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 3897
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "size",
+          "type": "Integer"
+        },
+        {
+          "name": "target",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "offsets",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "areaSize",
+          "type": "Integer"
+        },
+        {
+          "name": "position",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

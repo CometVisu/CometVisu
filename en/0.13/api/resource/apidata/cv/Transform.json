@@ -1,51 +1,74 @@
 {
-  "className": "cv.Transform",
-  "packageName": "cv",
-  "name": "Transform",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 44,
-        "column": 0,
-        "index": 1559
-      },
-      "end": {
-        "line": 272,
-        "column": 3,
-        "index": 9571
-      }
+  "version": 0.3,
+  "lastModified": 1717235105594,
+  "lastModifiedIso": "2024-06-01T09:45:05.594Z",
+  "classFilename": "../../source/class/cv/Transform.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 44,
+      "column": 0,
+      "index": 1559
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class defines some default transformations like <code>raw</code>, <code>int</code> and <code>float</code>.\n New transformation can be added and used. For example an openHAB transformation for a switch item is added by\n {@link cv.transforms.OpenHab} like this:\n </p>\n<pre class=\"javascript\">\n   cv.Transform.addTransform('OH', {\n    'switch': {\n      name: 'OH_Switch',\n       encode: function (phy) {\n         return phy == 1 ? 'ON' : 'OFF';\n      },\n       decode: function (string) {\n         if (cv.transforms.OpenHab.isUndefined(string)) return 0;\n         return (string == \"ON\" || parseInt(string) > 0) ? 1 : 0;\n       }\n     }\n   });\n </pre><div class=\"authors\"><label>Author:</label> Christian Mayer</div><div class=\"since\"><label>Since:</label> 2010</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Christian Mayer"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2010"
-        }
-      ]
+    "end": {
+      "line": 272,
+      "column": 3,
+      "index": 9571
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.Transform",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class defines some default transformations like <code>raw</code>, <code>int</code> and <code>float</code>.",
+      " * New transformation can be added and used. For example an openHAB transformation for a switch item is added by",
+      " * {@link cv.transforms.OpenHab} like this:",
+      " *",
+      " * <pre class=\"javascript\">",
+      " *   cv.Transform.addTransform('OH', {",
+      " *    'switch': {",
+      " *      name: 'OH_Switch',",
+      " *       encode: function (phy) {",
+      " *         return phy == 1 ? 'ON' : 'OFF';",
+      " *      },",
+      " *",
+      " *       decode: function (string) {",
+      " *         if (cv.transforms.OpenHab.isUndefined(string)) return 0;",
+      " *         return (string == \"ON\" || parseInt(string) > 0) ? 1 : 0;",
+      " *       }",
+      " *     }",
+      " *   });",
+      " * </pre>",
+      " *",
+      " * @author Christian Mayer",
+      " * @since 2010",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class defines some default transformations like <code>raw</code>, <code>int</code> and <code>float</code>.\n New transformation can be added and used. For example an openHAB transformation for a switch item is added by\n {@link cv.transforms.OpenHab} like this:\n </p>\n<pre class=\"javascript\">\n   cv.Transform.addTransform('OH', {\n    'switch': {\n      name: 'OH_Switch',\n       encode: function (phy) {\n         return phy == 1 ? 'ON' : 'OFF';\n      },\n       decode: function (string) {\n         if (cv.transforms.OpenHab.isUndefined(string)) return 0;\n         return (string == \"ON\" || parseInt(string) > 0) ? 1 : 0;\n       }\n     }\n   });\n </pre>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Christian Mayer"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2010"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "registry": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 53,
@@ -58,23 +81,17 @@
           "index": 2296
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "addTransform": {
-      "location": {
-        "start": {
-          "line": 95,
-          "column": 4,
-          "index": 2852
-        },
-        "end": {
-          "line": 103,
-          "column": 5,
-          "index": 3201
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add transformation rules to the registry",
+          "     * @param prefix {String} Transformation prefix (e.g. DPT for KNX transformations or OH for openHAB transformations)",
+          "     * @param transforms {Object} map of transformations",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,34 +104,56 @@
             "body": "prefix {String} Transformation prefix (e.g. DPT for KNX transformations or OH for openHAB transformations)",
             "paramName": "prefix",
             "description": " Transformation prefix (e.g. DPT for KNX transformations or OH for openHAB transformations)",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "transforms {Object} map of transformations",
             "paramName": "transforms",
             "description": " map of transformations",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clip": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 114,
+          "line": 95,
           "column": 4,
-          "index": 3578
+          "index": 2852
         },
         "end": {
-          "line": 117,
+          "line": 103,
           "column": 5,
-          "index": 3744
+          "index": 3201
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "prefix",
+          "type": "string"
+        },
+        {
+          "name": "transforms",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clip": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Enforce that value stays within range",
+          "     * When value is not a valid number, the min value is returned",
+          "     * @param {number} min lower threshold",
+          "     * @param {any} value value to clip",
+          "     * @param {number} max upper threshold",
+          "     * @param [scaling] {Number} scale the clipping result by that amount",
+          "     * @return {number} the clipped value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -148,7 +187,7 @@
             "body": "[scaling] {Number} scale the clipping result by that amount",
             "paramName": "[scaling]",
             "description": " scale the clipping result by that amount",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
@@ -156,27 +195,59 @@
             "name": "@return",
             "body": "{number} the clipped value",
             "type": "number",
-            "description": " the clipped value"
+            "description": "the clipped value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clipInt": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 128,
+          "line": 114,
           "column": 4,
-          "index": 4139
+          "index": 3578
         },
         "end": {
-          "line": 131,
+          "line": 117,
           "column": 5,
-          "index": 4320
+          "index": 3744
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "min",
+          "type": "number"
+        },
+        {
+          "name": "value",
+          "type": "any"
+        },
+        {
+          "name": "max",
+          "type": "number"
+        },
+        {
+          "name": "scaling"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "clipInt": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Enforce that value stays within range and is an integer",
+          "     * When value is not a valid number, the min value is returned",
+          "     * @param {number} min lower threshold",
+          "     * @param {any} value value to clip",
+          "     * @param {number} max upper threshold",
+          "     * @param [scaling] {Number} scale the clipping result by that amount",
+          "     * @return {number} the clipped value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -210,7 +281,7 @@
             "body": "[scaling] {Number} scale the clipping result by that amount",
             "paramName": "[scaling]",
             "description": " scale the clipping result by that amount",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
@@ -218,27 +289,57 @@
             "name": "@return",
             "body": "{number} the clipped value",
             "type": "number",
-            "description": " the clipped value"
+            "description": "the clipped value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "encodeBusAndRaw": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 140,
+          "line": 128,
           "column": 4,
-          "index": 4656
+          "index": 4139
         },
         "end": {
-          "line": 173,
+          "line": 131,
           "column": 5,
-          "index": 5921
+          "index": 4320
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "min",
+          "type": "number"
+        },
+        {
+          "name": "value",
+          "type": "any"
+        },
+        {
+          "name": "max",
+          "type": "number"
+        },
+        {
+          "name": "scaling"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "encodeBusAndRaw": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * transform JavaScript to bus value and raw value",
+          "     *",
+          "     * @param {{transform: string, selector?: string, ignoreError?: string, variantInfo?: string}} address - type of the transformation, as address object",
+          "     * @param {*} value - value to transform",
+          "     * @return {*} object with both encoded values",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -263,27 +364,49 @@
             "name": "@return",
             "body": "{*} object with both encoded values",
             "type": "*",
-            "description": " object with both encoded values"
+            "description": "object with both encoded values"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "encode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 182,
+          "line": 140,
           "column": 4,
-          "index": 6207
+          "index": 4656
         },
         "end": {
-          "line": 184,
+          "line": 173,
           "column": 5,
-          "index": 6292
+          "index": 5921
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "value",
+          "type": "*"
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": []
+    },
+    "encode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * transform JavaScript to bus value",
+          "     *",
+          "     * @param {{transform: string, selector?: string, ignoreError?: string}} address - type of the transformation, as address object",
+          "     * @param {*} value - value to transform",
+          "     * @return {*} the encoded value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -308,27 +431,48 @@
             "name": "@return",
             "body": "{*} the encoded value",
             "type": "*",
-            "description": " the encoded value"
+            "description": "the encoded value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "decode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 192,
+          "line": 182,
           "column": 4,
-          "index": 6593
+          "index": 6207
         },
         "end": {
-          "line": 244,
+          "line": 184,
           "column": 5,
-          "index": 8517
+          "index": 6292
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "value",
+          "type": "*"
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": []
+    },
+    "decode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * transform bus to JavaScript value",
+          "     * @param {{transform: string, selector?: string, ignoreError?: string, variantInfo?: string}} address - type of the transformation, as address object",
+          "     * @param {*} value - value to transform",
+          "     * @return {*} the decoded value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -353,27 +497,47 @@
             "name": "@return",
             "body": "{*} the decoded value",
             "type": "*",
-            "description": " the decoded value"
+            "description": "the decoded value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__getFirstElement": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 251,
+          "line": 192,
           "column": 4,
-          "index": 8711
+          "index": 6593
         },
         "end": {
-          "line": 270,
+          "line": 244,
           "column": 5,
-          "index": 9563
+          "index": 8517
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "address"
+        },
+        {
+          "name": "value",
+          "type": "*"
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": []
+    },
+    "__getFirstElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the first element of the (JSON) selector",
+          "     * @param {string} selector - the JSON (sub-)selector",
+          "     * @returns {{firstPart: string, remainingPart: string}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -393,14 +557,37 @@
           {
             "name": "@return",
             "body": "{{firstPart: string, remainingPart: string}}",
-            "type": "{firstPart: string, remainingPart: string",
-            "description": "}"
+            "type": "{firstPart: string, remainingPart: string}",
+            "description": ""
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4,
+          "index": 8711
+        },
+        "end": {
+          "line": 270,
+          "column": 5,
+          "index": 9563
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "selector",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "{firstPart: string, remainingPart: string}"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

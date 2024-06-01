@@ -1,55 +1,56 @@
 {
-  "className": "qx.bom.client.CssTransition",
-  "packageName": "qx.bom.client",
-  "name": "CssTransition",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 611
-      },
-      "end": {
-        "line": 76,
-        "column": 3,
-        "index": 2202
-      }
+  "version": 0.3,
+  "lastModified": 1717235169822,
+  "lastModifiedIso": "2024-06-01T09:46:09.822Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/CssTransition.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 586
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>CSS Transition support checks.\n Spec: http://www.w3.org/TR/css3-transitions/</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 76,
+      "column": 3,
+      "index": 2127
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.CssTransition",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * CSS Transition support checks.",
+      " *",
+      " * Spec: http://www.w3.org/TR/css3-transitions/",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>CSS Transition support checks.\n Spec: http://www.w3.org/TR/css3-transitions/</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "statics": {
     "getTransitionName": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 903
-        },
-        "end": {
-          "line": 36,
-          "column": 5,
-          "index": 989
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the (possibly vendor-prefixed) name of the CSS transition property",
+          "     * @return {String|null} transition property name or <code>null</code> if",
+          "     * not supported",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -61,7 +62,7 @@
             "name": "@return",
             "body": "{String|null} transition property name or <code>null</code> if\n not supported",
             "type": "String|null",
-            "description": " transition property name or <code>null</code> if\n not supported"
+            "description": "transition property name or <code>null</code> if\n not supported"
           }
         ],
         "@internal": [
@@ -71,23 +72,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSupport": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 50,
+          "line": 34,
           "column": 4,
-          "index": 1458
+          "index": 870
         },
         "end": {
-          "line": 70,
+          "line": 36,
           "column": 5,
-          "index": 2096
+          "index": 954
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getSupport": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Main check method which returns an object if CSS transitions are",
+          "     * supported. The object contains the following keys:",
+          "     * <ul>",
+          "     *  <li><code>name</code> The name of the CSS transition property</li>",
+          "     *  <li><code>end-event</code> The name of the end event</li>",
+          "     * </ul>",
+          "     *",
+          "     * @internal",
+          "     * @return {Object|null} The described object or <code>null</code> if",
+          "     * transitions are not supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -105,27 +125,31 @@
             "name": "@return",
             "body": "{Object|null} The described object or <code>null</code> if\n transitions are not supported.",
             "type": "Object|null",
-            "description": " The described object or <code>null</code> if\n transitions are not supported."
+            "description": "The described object or <code>null</code> if\n transitions are not supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 73,
-        "column": 2,
-        "index": 2108
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1409
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 2027
+        }
       },
-      "end": {
-        "line": 75,
-        "column": 3,
-        "index": 2197
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Object|null"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

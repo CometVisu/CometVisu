@@ -326,19 +326,18 @@
        * Serializes an HTML attribute into a writer; the `writer` function accepts
        *  an varargs, which can be joined with an empty string or streamed.
        *
-       * @param writer {Function} The writer to serialize to
        * @param name {String} Name of the attribute
        * @param value {var} New value of the attribute
        */
-      serialize: function serialize(writer, name, value) {
+      serialize: function serialize(name, value) {
         if (typeof value === "undefined") {
-          return;
+          return null;
         }
         var hints = this.__P_141_0;
 
         // Skip serialization of hidden Qooxdoo state properties
         if (hints.qxProperties[name]) {
-          return;
+          return null;
         }
 
         // respect booleans
@@ -349,11 +348,16 @@
         // apply attribute
         if ((hints.bools[name] || value === null) && name.indexOf("data-") !== 0) {
           if (value === true) {
-            writer(name, "=", name);
+            var result = {};
+            result[name] = "\"".concat(name, "\"");
+            return result;
           }
         } else if (value !== null) {
-          writer(name, '="', value, '"');
+          var _result = {};
+          _result[name] = '"' + value + '"';
+          return _result;
         }
+        return null;
       },
       /**
        * Resets an HTML attribute on the given DOM element
@@ -373,4 +377,4 @@
   qx.bom.element.Attribute.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Attribute.js.map?dt=1709410145433
+//# sourceMappingURL=Attribute.js.map?dt=1717235373655

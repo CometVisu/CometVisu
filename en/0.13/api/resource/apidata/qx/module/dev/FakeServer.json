@@ -1,55 +1,79 @@
 {
-  "className": "qx.module.dev.FakeServer",
-  "packageName": "qx.module.dev",
-  "name": "FakeServer",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 883
-      },
-      "end": {
-        "line": 145,
-        "column": 3,
-        "index": 5476
-      }
+  "version": 0.3,
+  "lastModified": 1717235170462,
+  "lastModifiedIso": "2024-06-01T09:46:10.462Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/dev/FakeServer.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 856
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A wrapper around Sinon.JS's FakeXMLHttpRequest and FakeServer features that\n allows quick and simple configuration of mock HTTP backends for testing and\n development.\n Automatically creates URL filtering rules to ensure that only configured\n requests are faked while others will be processed normally by the browser's\n XHR implementation.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "IO"
-        }
-      ]
+    "end": {
+      "line": 145,
+      "column": 3,
+      "index": 5332
     }
   },
-  "type": "class",
+  "className": "qx.module.dev.FakeServer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A wrapper around Sinon.JS's FakeXMLHttpRequest and FakeServer features that",
+      " * allows quick and simple configuration of mock HTTP backends for testing and",
+      " * development.",
+      " * Automatically creates URL filtering rules to ensure that only configured",
+      " * requests are faked while others will be processed normally by the browser's",
+      " * XHR implementation.",
+      " *",
+      " * @group (IO)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A wrapper around Sinon.JS's FakeXMLHttpRequest and FakeServer features that\n allows quick and simple configuration of mock HTTP backends for testing and\n development.\n Automatically creates URL filtering rules to ensure that only configured\n requests are faked while others will be processed normally by the browser's\n XHR implementation.</p>"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "IO"
+      }
+    ]
+  },
   "statics": {
     "configure": {
-      "location": {
-        "start": {
-          "line": 56,
-          "column": 4,
-          "index": 2378
-        },
-        "end": {
-          "line": 58,
-          "column": 5,
-          "index": 2474
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Configures a set of fake HTTP responses. Each response is defined as a map",
+          "     * that must provide the following keys:",
+          "     * <ul>",
+          "     *   <li><code>method</code> HTTP method to respond to, e.g. <code>PUT</code></li>",
+          "     *   <li><code>url</code> URL used to match requests to fake responses. Can be",
+          "     *   a RegExp or a String. REST-style parameter placeholders in curly braces",
+          "     *   will be replaced with wildcards, e.g. the string \"/resource/{resourceId}\"",
+          "     *   is interpreted as the RegExp <code>/\\/resource\\/\\{.*?\\}/</code>",
+          "     *   <li><code>response</code> This can be either:",
+          "     *     <ul>",
+          "     *       <li>a string: This will be the response body, status code will be 200</li>",
+          "     *       <li>an array containing the status code, a map of response headers and",
+          "     *         the response text, e.g. <code>[200, { \"Content-Type\": \"text/html\" }, \"OK\"]</code>",
+          "     *       </li>",
+          "     *       <li>a function: This will be called with a FakeXMLHttpRequest object as",
+          "     *       the only argument. Its <code>respond</code> method must be called to send a response.",
+          "     *       See <a href=\"http://sinonjs.org/docs/#respond\">Sinon.JS: Respond</a> for details.",
+          "     *       </li>",
+          "     *     </ul>",
+          "     *   </li>",
+          "     * </ul>",
+          "     *",
+          "     * @attachStatic {qxWeb, dev.fakeServer.configure}",
+          "     * @param responseData {Map[]} An array of response description maps.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -72,23 +96,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeResponse": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 67,
+          "line": 56,
           "column": 4,
-          "index": 2755
+          "index": 2323
         },
         "end": {
-          "line": 69,
+          "line": 58,
           "column": 5,
-          "index": 2859
+          "index": 2417
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "responseData",
+          "type": "Map[]"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeResponse": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a response that was configured with {@link #configure}",
+          "     * @param method {String} HTTP method of the response",
+          "     * @param url {String|RegExp} URL of the response",
+          "     *",
+          "     * @attachStatic {qxWeb, dev.fakeServer.removeResponse}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -101,7 +141,7 @@
             "body": "method {String} HTTP method of the response",
             "paramName": "method",
             "description": " HTTP method of the response",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -121,23 +161,51 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addFilter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 83,
+          "line": 67,
           "column": 4,
-          "index": 3521
+          "index": 2689
         },
         "end": {
-          "line": 85,
+          "line": 69,
           "column": 5,
-          "index": 3605
+          "index": 2791
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "method",
+          "type": "string"
+        },
+        {
+          "name": "url",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "addFilter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a URL filtering function to decide whether a request should be handled",
+          "     * by the FakeServer or passed to the regular XMLHttp implementation.",
+          "     * See <a href=\"http://sinonjs.org/docs/#filtered-requests\">Sinon.JS: Filtered Requests</a>",
+          "     * for details.",
+          "     *",
+          "     * @attachStatic {qxWeb, dev.fakeServer.addFilter}",
+          "     * @param filter {Function} URL filter function. Will be called with the",
+          "     * following arguments: <code>method</code>, <code>url</code>, <code>async</code>,",
+          "     * <code>username</code>, <code>password</code>. Must return <code>true</code>",
+          "     * if the request should not be faked.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -156,27 +224,42 @@
             "body": "filter {Function} URL filter function. Will be called with the\n following arguments: <code>method</code>, <code>url</code>, <code>async</code>,\n <code>username</code>, <code>password</code>. Must return <code>true</code>\n if the request should not be faked.",
             "paramName": "filter",
             "description": " URL filter function. Will be called with the\n following arguments: <code>method</code>, <code>url</code>, <code>async</code>,\n <code>username</code>, <code>password</code>. Must return <code>true</code>\n if the request should not be faked.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeFilter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 93,
+          "line": 83,
           "column": 4,
-          "index": 3821
+          "index": 3439
         },
         "end": {
-          "line": 95,
+          "line": 85,
           "column": 5,
-          "index": 3911
+          "index": 3521
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "filter",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeFilter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove a filter that was added with {@link #addFilter}",
+          "     * @param filter {Function} filter function to remove",
+          "     *",
+          "     * @attachStatic {qxWeb, dev.fakeServer.removeFilter}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -189,7 +272,7 @@
             "body": "filter {Function} filter function to remove",
             "paramName": "filter",
             "description": " filter function to remove",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ],
         "@attachStatic": [
@@ -199,23 +282,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "respondWith": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 106,
+          "line": 93,
           "column": 4,
-          "index": 4374
+          "index": 3729
         },
         "end": {
-          "line": 108,
+          "line": 95,
           "column": 5,
-          "index": 4504
+          "index": 3817
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "filter",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": []
+    },
+    "respondWith": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Defines a fake XHR response to a matching request.",
+          "     *",
+          "     * @attachStatic {qxWeb, dev.fakeServer.respondWith}",
+          "     * @param method {String} HTTP method to respond to, e.g. \"GET\"",
+          "     * @param urlRegExp {RegExp} Request URL must match match this expression",
+          "     * @param response {Function|Array|String} Response to send. See",
+          "     * <a href=\"http://sinonjs.org/docs/#fakeServer\">Sinon.JS: Fake Server</a> for details.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -234,7 +335,7 @@
             "body": "method {String} HTTP method to respond to, e.g. \"GET\"",
             "paramName": "method",
             "description": " HTTP method to respond to, e.g. \"GET\"",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -256,23 +357,50 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getFakeServer": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 116,
+          "line": 106,
           "column": 4,
-          "index": 4715
+          "index": 4269
         },
         "end": {
-          "line": 118,
+          "line": 108,
           "column": 5,
-          "index": 4802
+          "index": 4397
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "method",
+          "type": "string"
+        },
+        {
+          "name": "urlRegExp",
+          "type": "RegExp"
+        },
+        {
+          "name": "response",
+          "type": [
+            "Function",
+            "Array",
+            "String"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "getFakeServer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and configures a FakeServer if necessary and returns it.",
+          "     *",
+          "     * @attachStatic {qxWeb, dev.fakeServer.getFakeServer}",
+          "     * @return {Object} FakeServer object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -289,28 +417,39 @@
           {
             "name": "@return",
             "body": "{Object} FakeServer object",
-            "type": "Object",
-            "description": " FakeServer object"
+            "type": "Record<any, any>",
+            "description": "FakeServer object"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "restore": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 125,
+          "line": 116,
           "column": 4,
-          "index": 4967
+          "index": 4600
         },
         "end": {
-          "line": 127,
+          "line": 118,
           "column": 5,
-          "index": 5035
+          "index": 4685
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "restore": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stops the FakeServer and removes all configured responses and/or filters.",
+          "     * @attachStatic {qxWeb, dev.fakeServer.restore}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -324,23 +463,24 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 130,
-        "column": 2,
-        "index": 5047
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 4843
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 4909
+        }
       },
-      "end": {
-        "line": 144,
-        "column": 3,
-        "index": 5471
-      }
+      "type": "function",
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

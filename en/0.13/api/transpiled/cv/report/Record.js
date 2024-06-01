@@ -58,15 +58,15 @@
     ******************************************************
     */
     construct: function construct() {
-      this.__P_534_0 = [];
-      this.__P_534_1 = {};
-      this.__P_534_2 = Date.now();
-      this.__P_534_3 = {
+      this.__P_753_0 = [];
+      this.__P_753_1 = {};
+      this.__P_753_2 = Date.now();
+      this.__P_753_3 = {
         response: [],
         request: []
       };
-      this.__P_534_4 = {};
-      this.__P_534_5 = {};
+      this.__P_753_4 = {};
+      this.__P_753_5 = {};
     },
     /*
     ******************************************************
@@ -218,46 +218,46 @@
     ******************************************************
     */
     members: {
-      __P_534_2: null,
-      __P_534_0: null,
-      __P_534_3: null,
-      __P_534_1: null,
-      __P_534_4: null,
-      __P_534_6: 50,
-      __P_534_7: 1,
-      __P_534_8: 50,
-      __P_534_5: null,
-      __P_534_9: 0,
+      __P_753_2: null,
+      __P_753_0: null,
+      __P_753_3: null,
+      __P_753_1: null,
+      __P_753_4: null,
+      __P_753_6: 50,
+      __P_753_7: 1,
+      __P_753_8: 50,
+      __P_753_5: null,
+      __P_753_9: 0,
       record: function record(category, path, data, options) {
         switch (category) {
           case cv.report.Record.XHR:
             if (path === 'response') {
-              this.__P_534_10(category, data);
+              this.__P_753_10(category, data);
             }
             data.t = Date.now();
-            this.__P_534_3[path].push(data);
+            this.__P_753_3[path].push(data);
             break;
           case cv.report.Record.CACHE:
           case cv.report.Record.RUNTIME:
-            this.__P_534_4[category] = data;
+            this.__P_753_4[category] = data;
             break;
           case cv.report.Record.STORAGE:
-            if (!Object.prototype.hasOwnProperty.call(this.__P_534_4, category)) {
-              this.__P_534_4[category] = {};
+            if (!Object.prototype.hasOwnProperty.call(this.__P_753_4, category)) {
+              this.__P_753_4[category] = {};
             }
-            this.__P_534_4[category][path] = data;
+            this.__P_753_4[category][path] = data;
             break;
           default:
-            this.__P_534_0.push({
+            this.__P_753_0.push({
               c: category,
               t: Date.now(),
               i: path,
               d: data,
               o: options,
-              ID: this.__P_534_9
+              ID: this.__P_753_9
             });
         }
-        this.__P_534_9++;
+        this.__P_753_9++;
       },
       /**
        * Prevent sensitive data like passwords from being recorded (e.g. content of the hidden config
@@ -265,7 +265,7 @@
        * @param data {Object} recorded content
        * @private
        */
-      __P_534_10: function __P_534_10(category, data) {
+      __P_753_10: function __P_753_10(category, data) {
         if (category === cv.report.Record.XHR) {
           if (data.url.includes(cv.io.rest.Client.BASE_URL + '/config/hidden') && data.body) {
             try {
@@ -304,7 +304,8 @@
        * Extract useful data we need from every event
        * @param nativeEvent {Event}
        */
-      __P_534_11: function __P_534_11(nativeEvent) {
+      __P_753_11: function __P_753_11(nativeEvent) {
+        var _this$__P_753_, _this$__P_753_2;
         var data = {
           eventClass: nativeEvent.constructor.name,
           "native": {
@@ -312,8 +313,8 @@
             button: nativeEvent.button,
             clientX: Math.round(nativeEvent.clientX),
             clientY: Math.round(nativeEvent.clientY),
-            currentTarget: nativeEvent.currentTarget ? this.__P_534_12(nativeEvent.currentTarget) : undefined,
-            relatedTarget: nativeEvent.relatedTarget ? this.__P_534_12(nativeEvent.relatedTarget) : undefined,
+            currentTarget: (_this$__P_753_ = this.__P_753_12(nativeEvent.currentTarget)) !== null && _this$__P_753_ !== void 0 ? _this$__P_753_ : undefined,
+            relatedTarget: (_this$__P_753_2 = this.__P_753_12(nativeEvent.relatedTarget)) !== null && _this$__P_753_2 !== void 0 ? _this$__P_753_2 : undefined,
             pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
             pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
             returnValue: nativeEvent.returnValue,
@@ -379,37 +380,38 @@
         if (!cv.report.Record.USER_EVENTS.test(ev.type) || ev.$$RID || ev.constructor.name === 'CustomEvent') {
           return;
         }
-        ev.$$RID = this.__P_534_9;
+        ev.$$RID = this.__P_753_9;
         if (ev.type.endsWith('down') || ev.type.endsWith('start')) {
-          this.__P_534_6 = this.__P_534_7;
+          this.__P_753_6 = this.__P_753_7;
         } else if (ev.type.endsWith('up') || ev.type.endsWith('end')) {
-          this.__P_534_6 = this.__P_534_8;
+          this.__P_753_6 = this.__P_753_8;
         }
         if (/.+(move|over|out)/.test(ev.type)) {
-          if (!this.__P_534_5[ev.type]) {
-            this.__P_534_5[ev.type] = {
+          if (!this.__P_753_5[ev.type]) {
+            this.__P_753_5[ev.type] = {
               x: ev.clientX,
               y: ev.clientY
             };
           } else {
-            var lastDelta = this.__P_534_5[ev.type];
-            if (Math.abs(lastDelta.x - ev.clientX) <= this.__P_534_6 || Math.abs(lastDelta.y - ev.clientY) <= this.__P_534_6) {
+            var lastDelta = this.__P_753_5[ev.type];
+            if (Math.abs(lastDelta.x - ev.clientX) <= this.__P_753_6 || Math.abs(lastDelta.y - ev.clientY) <= this.__P_753_6) {
               // below delta -> skip this event
               return;
             }
-            this.__P_534_5[ev.type] = {
+            this.__P_753_5[ev.type] = {
               x: ev.clientX,
               y: ev.clientY
             };
           }
         }
         // get path
-        var path = this.__P_534_12(ev.target);
+        var path = this.__P_753_12(ev.target);
         if (!path) {
+          this.debug('path to event target not found, skip recording ' + ev.type + ' event');
           return;
         }
         this.debug('recording ' + ev.type + ' on ' + path);
-        var data = this.__P_534_11(ev);
+        var data = this.__P_753_11(ev);
         this.record(cv.report.Record.USER, path, data);
       },
       recordScroll: function recordScroll(ev) {
@@ -423,46 +425,58 @@
         };
         this.record(cv.report.Record.USER, 'scroll', data);
       },
-      __P_534_12: function __P_534_12(el) {
+      /**
+       * @param el {Element|Node|Window|undefined}
+       * @return {string} CSS selector to element
+       */
+      __P_753_12: function __P_753_12(el) {
+        if (!el) {
+          return '';
+        }
         if (el === window) {
           return 'Window';
         } else if (el === document) {
           return 'document';
         }
         var stack = [];
-        while (el.parentNode !== null) {
-          var sibCount = 0;
+        var origEl = el;
+        while (el.parentElement !== null) {
           var sibIndex = 0;
-          for (var i = 0; i < el.parentNode.childNodes.length; i++) {
-            var sib = el.parentNode.childNodes[i];
-            if (sib.nodeName === el.nodeName) {
-              if (sib === el) {
-                sibIndex = sibCount;
-              }
-              sibCount++;
+          for (var i = 0; i < el.parentElement.children.length; i++) {
+            var sib = el.parentElement.children[i];
+            if (sib === el) {
+              sibIndex = i + 1;
+              break;
             }
           }
           if (el.hasAttribute('id') && el.id !== '') {
             stack.unshift(el.nodeName.toLowerCase() + '#' + el.id);
-            return stack.join('>');
-          } else if (sibCount > 1) {
-            stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + (sibIndex + 1) + ')');
-          } else {
-            stack.unshift(el.nodeName.toLowerCase());
+            var _sel = stack.join('>');
+            if (document.querySelector(_sel) !== origEl) {
+              this.debug('wrong selector: ' + _sel + ', looking for', origEl, 'found', document.querySelector(_sel));
+              return '';
+            }
+            return _sel;
           }
-          el = el.parentNode;
+          stack.unshift(el.nodeName.toLowerCase() + ':nth-child(' + sibIndex + ')');
+          el = el.parentElement;
         }
-        return stack.slice(1).join('>'); // removes the html element
+        var sel = stack.slice(1).join('>'); // removes the html element
+        if (document.querySelector(sel) !== origEl) {
+          this.debug('wrong selector: ' + sel + ', looking for', origEl, 'found', document.querySelector(sel));
+          return '';
+        }
+        return sel;
       },
       getData: function getData(dontStop) {
         if (!dontStop) {
           cv.Config.reporting = false;
         }
         return {
-          data: this.__P_534_4,
-          start: this.__P_534_2,
-          xhr: this.__P_534_3,
-          log: this.__P_534_0,
+          data: this.__P_753_4,
+          start: this.__P_753_2,
+          xhr: this.__P_753_3,
+          log: this.__P_753_0,
           configSuffix: cv.Config.configSuffix,
           end: Date.now()
         };
@@ -499,4 +513,4 @@
   cv.report.Record.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Record.js.map?dt=1709410170282
+//# sourceMappingURL=Record.js.map?dt=1717235421693

@@ -904,4 +904,4 @@
   cv.plugins.diagram.AbstractDiagram.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractDiagram.js.map?dt=1709410134837
+//# sourceMappingURL=AbstractDiagram.js.map?dt=1717235362719

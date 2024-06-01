@@ -1,121 +1,105 @@
 {
-  "className": "qx.dev.unit.RequirementError",
-  "packageName": "qx.dev.unit",
-  "name": "RequirementError",
-  "superClass": "Error",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 711
-      },
-      "end": {
-        "line": 82,
-        "column": 3,
-        "index": 2268
-      }
+  "version": 0.3,
+  "lastModified": 1717235172118,
+  "lastModifiedIso": "2024-06-01T09:46:12.118Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/unit/RequirementError.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 688
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This error is thrown by the unit test class if an infrastructure requirement\n is not met. The unit testing framework should skip the test and visually mark\n the test as not having been executed.</p>"
-        }
-      ]
+    "end": {
+      "line": 82,
+      "column": 3,
+      "index": 2187
     }
   },
-  "type": "class",
+  "className": "qx.dev.unit.RequirementError",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This error is thrown by the unit test class if an infrastructure requirement",
+      " * is not met. The unit testing framework should skip the test and visually mark",
+      " * the test as not having been executed.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This error is thrown by the unit test class if an infrastructure requirement\n is not met. The unit testing framework should skip the test and visually mark\n the test as not having been executed.</p>"
+      }
+    ]
+  },
+  "superClass": "Error",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "requirement"
+      },
+      {
+        "name": "message"
+      }
+    ],
     "location": {
       "start": {
         "line": 37,
         "column": 2,
-        "index": 1112
+        "index": 1076
       },
       "end": {
         "line": 49,
         "column": 3,
-        "index": 1518
+        "index": 1470
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "requirement {String?} The requirement ID, e.g. \"SSL\"",
-          "paramName": "requirement",
-          "description": " The requirement ID, e.g. \"SSL\"",
-          "optional": true,
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "message {String?} Optional error message",
-          "paramName": "message",
-          "description": " Optional error message",
-          "optional": true,
-          "type": "String"
-        }
-      ]
     }
   },
   "members": {
     "__message": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 57,
           "column": 4,
-          "index": 1729
+          "index": 1673
         },
         "end": {
           "line": 57,
           "column": 19,
-          "index": 1744
+          "index": 1688
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__requirement": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 58,
           "column": 4,
-          "index": 1751
+          "index": 1694
         },
         "end": {
           "line": 58,
           "column": 23,
-          "index": 1770
+          "index": 1713
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getRequirement": {
-      "location": {
-        "start": {
-          "line": 65,
-          "column": 4,
-          "index": 1915
-        },
-        "end": {
-          "line": 67,
-          "column": 5,
-          "index": 1974
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the ID of the requirement that was not satisfied.",
+          "     *",
+          "     * @return {String} The requirement ID",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -126,14 +110,76 @@
           {
             "name": "@return",
             "body": "{String} The requirement ID",
-            "type": "String",
-            "description": " The requirement ID"
+            "type": "string",
+            "description": "The requirement ID"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1851
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1908
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a string representation of the error.",
+          "     *",
+          "     * @return {String} Error message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a string representation of the error.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Error message",
+            "type": "string",
+            "description": "Error message"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2029
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2179
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

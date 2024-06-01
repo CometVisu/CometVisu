@@ -1,62 +1,51 @@
 {
-  "className": "cv.transforms.Knx",
-  "packageName": "cv.transforms",
-  "name": "Knx",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 860
-      },
-      "end": {
-        "line": 1210,
-        "column": 3,
-        "index": 29571
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<div class=\"authors\"><label>Author:</label> Christian Mayer</div><div class=\"since\"><label>Since:</label> 2010</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Christian Mayer"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2010"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/transforms/Knx.js",
   "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
-  "isSingleton": false,
-  "defer": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 2,
-        "index": 920
-      },
-      "end": {
-        "line": 1209,
-        "column": 3,
-        "index": 29567
-      }
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 860
+    },
+    "end": {
+      "line": 1210,
+      "column": 3,
+      "index": 29571
     }
   },
-  "descendants": []
+  "className": "cv.transforms.Knx",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @author Christian Mayer",
+      " * @since 2010",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Christian Mayer"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2010"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

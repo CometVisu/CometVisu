@@ -1,67 +1,76 @@
 {
-  "className": "qx.ui.form.IBooleanForm",
-  "packageName": "qx.ui.form",
-  "name": "IBooleanForm",
-  "superClass": "qx.ui.form.IField",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 623
-      },
-      "end": {
-        "line": 71,
-        "column": 3,
-        "index": 1834
-      }
+  "version": 0.3,
+  "lastModified": 1717235171178,
+  "lastModifiedIso": "2024-06-01T09:46:11.178Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/IBooleanForm.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 601
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Form interface for all form widgets which have boolean as their primary\n data type like a checkbox.</p>"
-        }
-      ]
+    "end": {
+      "line": 72,
+      "column": 3,
+      "index": 1794
     }
   },
-  "type": "interface",
+  "className": "qx.ui.form.IBooleanForm",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Form interface for all form widgets which have boolean as their primary",
+      " * data type like a checkbox.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Form interface for all form widgets which have boolean as their primary\n data type like a checkbox.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.IField",
   "events": {
     "changeValue": {
-      "type": "event",
-      "name": "changeValue",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IField",
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fired when the value was modified "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired when the value was modified</p>"
           }
         ]
+      },
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 924
+        },
+        "end": {
+          "line": 34,
+          "column": 37,
+          "index": 957
+        }
       }
     }
   },
   "members": {
     "setValue": {
-      "location": {
-        "start": {
-          "line": 55,
-          "column": 4,
-          "index": 1536
-        },
-        "end": {
-          "line": 57,
-          "column": 5,
-          "index": 1597
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the element's value.",
+          "     *",
+          "     * @param value {Boolean|null} The new value of the element.",
+          "     * @return {Boolean|null}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -79,29 +88,54 @@
               "null"
             ]
           }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|null}",
+            "type": "Boolean|null",
+            "description": ""
+          }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1512
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1571
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "Boolean",
+            "null"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "Boolean|null"
+      },
       "overriddenFrom": "qx.ui.form.IField",
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     },
     "resetValue": {
-      "location": {
-        "start": {
-          "line": 62,
-          "column": 4,
-          "index": 1681
-        },
-        "end": {
-          "line": 62,
-          "column": 19,
-          "index": 1696
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the element's value to its initial value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -109,27 +143,35 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1650
+        },
+        "end": {
+          "line": 63,
+          "column": 19,
+          "index": 1665
+        }
+      },
+      "type": "function",
+      "params": [],
       "overriddenFrom": "qx.ui.form.IField",
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     },
     "getValue": {
-      "location": {
-        "start": {
-          "line": 69,
-          "column": 4,
-          "index": 1811
-        },
-        "end": {
-          "line": 69,
-          "column": 17,
-          "index": 1824
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The element's user set value.",
+          "     *",
+          "     * @return {Boolean|null} The value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -141,17 +183,34 @@
             "name": "@return",
             "body": "{Boolean|null} The value.",
             "type": "Boolean|null",
-            "description": " The value."
+            "description": "The value."
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1773
+        },
+        "end": {
+          "line": 70,
+          "column": 17,
+          "index": 1786
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Boolean|null"
+      },
       "overriddenFrom": "qx.ui.form.IField",
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

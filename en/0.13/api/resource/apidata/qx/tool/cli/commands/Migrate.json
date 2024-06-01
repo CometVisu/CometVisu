@@ -1,0 +1,188 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171758,
+  "lastModifiedIso": "2024-06-01T09:46:11.758Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Migrate.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 609
+    },
+    "end": {
+      "line": 80,
+      "column": 3,
+      "index": 2027
+    }
+  },
+  "className": "qx.tool.cli.commands.Migrate",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Migrates an application to a higher version",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Migrates an application to a higher version</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Package",
+  "statics": {
+    "migrationInProcess": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag to prevent recursive call to process()",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag to prevent recursive call to process()</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 784
+        },
+        "end": {
+          "line": 32,
+          "column": 29,
+          "index": 809
+        }
+      },
+      "appearsIn": []
+    },
+    "getYargsCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the Yargs configuration object",
+          "     * @return {{}}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return the Yargs configuration object</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{}}",
+            "type": "{}",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 896
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1381
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "{}"
+      },
+      "appearsIn": [
+        "qx.tool.cli.commands.Package"
+      ]
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Announces or applies a migration",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Announces or applies a migration</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1461
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1953
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "checkMigrations": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@override": [
+          {
+            "name": "@override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1993
+        },
+        "end": {
+          "line": 78,
+          "column": 30,
+          "index": 2019
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Package",
+      "appearsIn": [
+        "qx.tool.cli.commands.Package",
+        "qx.tool.cli.commands.Command"
+      ]
+    }
+  },
+  "properties": {}
+}

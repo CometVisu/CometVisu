@@ -1,73 +1,39 @@
 {
-  "className": "qx.bom.client.Runtime",
-  "packageName": "qx.bom.client",
-  "name": "Runtime",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 33,
-        "column": 0,
-        "index": 878
-      },
-      "end": {
-        "line": 71,
-        "column": 3,
-        "index": 2039
-      }
+  "version": 0.3,
+  "lastModified": 1717235172178,
+  "lastModifiedIso": "2024-06-01T09:46:12.178Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Runtime.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 846
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Basic runtime detection for qooxdoo.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "environment"
-        },
-        {
-          "name": "@ignore",
-          "body": "process"
-        },
-        {
-          "name": "@ignore",
-          "body": "Titanium.*"
-        },
-        {
-          "name": "@ignore",
-          "body": "Packages"
-        }
-      ]
+    "end": {
+      "line": 71,
+      "column": 3,
+      "index": 1969
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.Runtime",
+  "jsdoc": {
+    "raw": [
+      " global Packages, enviroment, process, Titanium "
+    ]
+  },
   "statics": {
     "getName": {
-      "location": {
-        "start": {
-          "line": 42,
-          "column": 4,
-          "index": 1276
-        },
-        "end": {
-          "line": 65,
-          "column": 5,
-          "index": 1938
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for the name of the runtime and returns it. In general, it checks",
+          "     * for rhino and node.js and if that could not be detected, it falls back",
+          "     * to the browser name defined by {@link qx.bom.client.Browser#getName}.",
+          "     * @return {String} The name of the current runtime.",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -78,8 +44,8 @@
           {
             "name": "@return",
             "body": "{String} The name of the current runtime.",
-            "type": "String",
-            "description": " The name of the current runtime."
+            "type": "string",
+            "description": "The name of the current runtime."
           }
         ],
         "@internal": [
@@ -89,23 +55,27 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 68,
-        "column": 2,
-        "index": 1950
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1235
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1874
+        }
       },
-      "end": {
-        "line": 70,
-        "column": 3,
-        "index": 2034
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

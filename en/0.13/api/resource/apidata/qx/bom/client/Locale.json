@@ -1,61 +1,64 @@
 {
-  "className": "qx.bom.client.Locale",
-  "packageName": "qx.bom.client",
-  "name": "Locale",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 30,
-        "column": 0,
-        "index": 861
-      },
-      "end": {
-        "line": 113,
-        "column": 3,
-        "index": 3317
-      }
+  "version": 0.3,
+  "lastModified": 1717235171642,
+  "lastModifiedIso": "2024-06-01T09:46:11.642Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Locale.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 832
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class comes with all relevant information regarding\n the client's selected locale.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.bom.client.OperatingSystem"
-        }
-      ]
+    "end": {
+      "line": 113,
+      "column": 3,
+      "index": 3205
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.Locale",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class comes with all relevant information regarding",
+      " * the client's selected locale.",
+      " *",
+      " * This class is used by {@link qx.core.Environment} and should not be used",
+      " * directly. Please check its class comment for details how to use it.",
+      " *",
+      " * @internal",
+      " * @require(qx.bom.client.OperatingSystem)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class comes with all relevant information regarding\n the client's selected locale.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.bom.client.OperatingSystem"
+      }
+    ]
+  },
   "statics": {
     "getLocale": {
-      "location": {
-        "start": {
-          "line": 43,
-          "column": 4,
-          "index": 1276
-        },
-        "end": {
-          "line": 52,
-          "column": 5,
-          "index": 1505
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the system locale e.g. \"de\" when the full locale is \"de_AT\"",
+          "     * @return {String} The current locale",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,8 +69,8 @@
           {
             "name": "@return",
             "body": "{String} The current locale",
-            "type": "String",
-            "description": " The current locale"
+            "type": "string",
+            "description": "The current locale"
           }
         ],
         "@internal": [
@@ -77,23 +80,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getVariant": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 61,
+          "line": 43,
           "column": 4,
-          "index": 1708
+          "index": 1234
         },
         "end": {
-          "line": 72,
+          "line": 52,
           "column": 5,
-          "index": 1968
+          "index": 1454
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getVariant": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the variant for the system locale e.g. \"at\" when the",
+          "     * full locale is \"de_AT\"",
+          "     *",
+          "     * @return {String} The locales variant.",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,8 +121,8 @@
           {
             "name": "@return",
             "body": "{String} The locales variant.",
-            "type": "String",
-            "description": " The locales variant."
+            "type": "string",
+            "description": "The locales variant."
           }
         ],
         "@internal": [
@@ -115,23 +132,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__getNavigatorLocale": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 79,
+          "line": 61,
           "column": 4,
-          "index": 2126
+          "index": 1648
         },
         "end": {
-          "line": 105,
+          "line": 72,
           "column": 5,
-          "index": 3099
+          "index": 1897
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__getNavigatorLocale": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for accessing the navigators language.",
+          "     *",
+          "     * @return {String} The language set by the navigator.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -142,28 +171,32 @@
           {
             "name": "@return",
             "body": "{String} The language set by the navigator.",
-            "type": "String",
-            "description": " The language set by the navigator."
+            "type": "string",
+            "description": "The language set by the navigator."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 108,
-        "column": 2,
-        "index": 3111
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2048
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 2995
+        }
       },
-      "end": {
-        "line": 112,
-        "column": 3,
-        "index": 3312
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

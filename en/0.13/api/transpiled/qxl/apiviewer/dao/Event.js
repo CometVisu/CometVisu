@@ -35,8 +35,8 @@
 
   qx.Class.define("qxl.apiviewer.dao.Event", {
     extend: qxl.apiviewer.dao.ClassItem,
-    construct: function construct(meta, clazz) {
-      qxl.apiviewer.dao.ClassItem.constructor.call(this, meta, clazz, meta.name);
+    construct: function construct(meta, clazz, name) {
+      qxl.apiviewer.dao.ClassItem.constructor.call(this, meta, clazz, name);
       this._type = meta.type;
     },
     members: {
@@ -65,4 +65,4 @@
   qxl.apiviewer.dao.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1709410173952
+//# sourceMappingURL=Event.js.map?dt=1717235425685

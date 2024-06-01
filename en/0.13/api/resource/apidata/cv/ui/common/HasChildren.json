@@ -1,35 +1,43 @@
 {
-  "className": "cv.ui.common.HasChildren",
-  "packageName": "cv.ui.common",
-  "name": "HasChildren",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 980
-      },
-      "end": {
-        "line": 129,
-        "column": 3,
-        "index": 4113
-      }
+  "version": 0.3,
+  "lastModified": 1717235105606,
+  "lastModifiedIso": "2024-06-01T09:45:05.606Z",
+  "classFilename": "../../source/class/cv/ui/common/HasChildren.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 980
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Mixin for all widgets that can have other widgets as children, this mixin includes the static parsing part\n and the methods for the widget instance.</p>"
-        }
-      ]
+    "end": {
+      "line": 129,
+      "column": 3,
+      "index": 4113
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.common.HasChildren",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin for all widgets that can have other widgets as children, this mixin includes the static parsing part",
+      " * and the methods for the widget instance.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin for all widgets that can have other widgets as children, this mixin includes the static parsing part\n and the methods for the widget instance.</p>"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "props"
+      }
+    ],
     "location": {
       "start": {
         "line": 30,
@@ -41,8 +49,7 @@
         "column": 3,
         "index": 1824
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "children": {
@@ -58,7 +65,16 @@
           "index": 2086
         }
       },
+      "json": {
+        "check": "Array",
+        "init": []
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Array with child paths",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,11 +82,7 @@
           }
         ]
       },
-      "name": "children",
-      "propertyType": "new",
-      "init": [],
-      "check": "Array",
-      "defaultValue": []
+      "appearsIn": []
     },
     "childWidgets": {
       "location": {
@@ -85,7 +97,16 @@
           "index": 2206
         }
       },
+      "json": {
+        "check": "Array",
+        "init": []
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Array with child widget objects",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -93,28 +114,20 @@
           }
         ]
       },
-      "name": "childWidgets",
-      "propertyType": "new",
-      "init": [],
-      "check": "Array",
-      "defaultValue": []
+      "appearsIn": []
     }
   },
   "members": {
     "getChildrenDomString": {
-      "location": {
-        "start": {
-          "line": 84,
-          "column": 4,
-          "index": 2616
-        },
-        "end": {
-          "line": 110,
-          "column": 5,
-          "index": 3562
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the HTML code for the children if this widget",
+          "     *",
+          "     * @param {boolean=} noWidgetContainer if false: do not surround the childrens with a div-element with class 'widget_container'",
+          "     * @return {string} HTML code",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -135,27 +148,43 @@
             "name": "@return",
             "body": "{string} HTML code",
             "type": "string",
-            "description": " HTML code"
+            "description": "HTML code"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getChildrenDom": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 116,
+          "line": 84,
           "column": 4,
-          "index": 3680
+          "index": 2616
         },
         "end": {
-          "line": 127,
+          "line": 110,
           "column": 5,
-          "index": 4105
+          "index": 3562
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "noWidgetContainer",
+          "type": "boolean="
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getChildrenDom": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create a collection of html elements of the children",
+          "     * @returns {DocumentFragment}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -171,141 +200,26 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getChildren": {
-      "type": "function",
-      "name": "getChildren",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
       "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>children</code>.\n\nFor further details take a look at the property definition: {@link #children}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Array",
-            "desc": "Returns the value for children"
-          }
-        ]
-      }
-    },
-    "setChildren": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3680
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 4105
+        }
+      },
       "type": "function",
-      "name": "setChildren",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>children</code>.\n\nFor further details take a look at the property definition: {@link #children}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Array",
-            "paramName": "value",
-            "desc": "Value for children"
-          }
-        ]
-      }
-    },
-    "resetChildren": {
-      "type": "function",
-      "name": "resetChildren",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>children</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #children}."
-          }
-        ]
-      }
-    },
-    "getChildWidgets": {
-      "type": "function",
-      "name": "getChildWidgets",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>childWidgets</code>.\n\nFor further details take a look at the property definition: {@link #childWidgets}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Array",
-            "desc": "Returns the value for childWidgets"
-          }
-        ]
-      }
-    },
-    "setChildWidgets": {
-      "type": "function",
-      "name": "setChildWidgets",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>childWidgets</code>.\n\nFor further details take a look at the property definition: {@link #childWidgets}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Array",
-            "paramName": "value",
-            "desc": "Value for childWidgets"
-          }
-        ]
-      }
-    },
-    "resetChildWidgets": {
-      "type": "function",
-      "name": "resetChildWidgets",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>childWidgets</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #childWidgets}."
-          }
-        ]
-      }
+      "params": [],
+      "returnType": {
+        "type": "DocumentFragment"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "include",
+    "MMock",
+    "members",
+    "testTrim",
+    "assertEquals",
+    "trim",
+    "testStartsWith",
+    "str",
+    "assertTrue",
+    "startsWith",
+    "assertFalse",
+    "testEndsWith",
+    "endsWith",
+    "Number",
+    "POSITIVE_INFINITY",
+    "test",
+    "lang",
+    "normalize",
+    "String"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/lang/normalize/String.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n\n/**\n * @require(qx.lang.normalize.String)\n */\nqx.Class.define(\"qx.test.lang.normalize.String\", {\n  extend: qx.dev.unit.TestCase,\n  include: [qx.dev.unit.MMock],\n\n  members: {\n    \"test trim()\"() {\n      this.assertEquals(\"y\", \"   y\".trim());\n      this.assertEquals(\"y\", \"y   \".trim());\n      this.assertEquals(\"y\", \" y  \".trim());\n    },\n\n    \"test startsWith()\"() {\n      var str = \"To be, or not to be, that is the question.\";\n\n      this.assertTrue(str.startsWith(\"To be\")); // true\n      this.assertFalse(str.startsWith(\"not to be\")); // false\n      this.assertTrue(str.startsWith(\"not to be\", 10)); // true\n    },\n\n    \"test endsWith()\"() {\n      var str = \"To be, or not to be, that is the question.\";\n\n      this.assertTrue(str.endsWith(\"question.\")); // true\n      this.assertFalse(str.endsWith(\"to be\")); // false\n      this.assertTrue(str.endsWith(\"to be\", 19)); // true\n\n      //\n      // Increase test covarage\n      //\n\n      // not finite\n      this.assertTrue(str.endsWith(\"question.\", Number.POSITIVE_INFINITY));\n      this.assertFalse(str.endsWith(\"to be\", Number.POSITIVE_INFINITY));\n      // float\n      this.assertTrue(str.endsWith(\"question.\", 42.2));\n      this.assertFalse(str.endsWith(\"to be\", 42.2));\n      // len > str.length\n      this.assertTrue(str.endsWith(\"question.\", 43));\n      this.assertFalse(str.endsWith(\"to be\", 43));\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,+BAA+B,EAAE;IAC/CC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAC5BC,OAAO,EAAE,CAACV,EAAE,CAACO,GAAG,CAACC,IAAI,CAACG,KAAK,CAAC;IAE5BC,OAAO,EAAE;MACP,aAAa,WAAAC,SAAA,EAAG;QACd,IAAI,CAACC,YAAY,CAAC,GAAG,EAAE,MAAM,CAACC,IAAI,CAAC,CAAC,CAAC;QACrC,IAAI,CAACD,YAAY,CAAC,GAAG,EAAE,MAAM,CAACC,IAAI,CAAC,CAAC,CAAC;QACrC,IAAI,CAACD,YAAY,CAAC,GAAG,EAAE,MAAM,CAACC,IAAI,CAAC,CAAC,CAAC;MACvC,CAAC;MAED,mBAAmB,WAAAC,eAAA,EAAG;QACpB,IAAIC,GAAG,GAAG,4CAA4C;QAEtD,IAAI,CAACC,UAAU,CAACD,GAAG,CAACE,UAAU,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC;QAC1C,IAAI,CAACC,WAAW,CAACH,GAAG,CAACE,UAAU,CAAC,WAAW,CAAC,CAAC,CAAC,CAAC;QAC/C,IAAI,CAACD,UAAU,CAACD,GAAG,CAACE,UAAU,CAAC,WAAW,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC;MACpD,CAAC;MAED,iBAAiB,WAAAE,aAAA,EAAG;QAClB,IAAIJ,GAAG,GAAG,4CAA4C;QAEtD,IAAI,CAACC,UAAU,CAACD,GAAG,CAACK,QAAQ,CAAC,WAAW,CAAC,CAAC,CAAC,CAAC;QAC5C,IAAI,CAACF,WAAW,CAACH,GAAG,CAACK,QAAQ,CAAC,OAAO,CAAC,CAAC,CAAC,CAAC;QACzC,IAAI,CAACJ,UAAU,CAACD,GAAG,CAACK,QAAQ,CAAC,OAAO,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC;;QAE5C;QACA;QACA;;QAEA;QACA,IAAI,CAACJ,UAAU,CAACD,GAAG,CAACK,QAAQ,CAAC,WAAW,EAAEC,MAAM,CAACC,iBAAiB,CAAC,CAAC;QACpE,IAAI,CAACJ,WAAW,CAACH,GAAG,CAACK,QAAQ,CAAC,OAAO,EAAEC,MAAM,CAACC,iBAAiB,CAAC,CAAC;QACjE;QACA,IAAI,CAACN,UAAU,CAACD,GAAG,CAACK,QAAQ,CAAC,WAAW,EAAE,IAAI,CAAC,CAAC;QAChD,IAAI,CAACF,WAAW,CAACH,GAAG,CAACK,QAAQ,CAAC,OAAO,EAAE,IAAI,CAAC,CAAC;QAC7C;QACA,IAAI,CAACJ,UAAU,CAACD,GAAG,CAACK,QAAQ,CAAC,WAAW,EAAE,EAAE,CAAC,CAAC;QAC9C,IAAI,CAACF,WAAW,CAACH,GAAG,CAACK,QAAQ,CAAC,OAAO,EAAE,EAAE,CAAC,CAAC;MAC7C;IACF;EACF,CAAC,CAAC;EA9DFtB,EAAE,CAACyB,IAAI,CAACC,IAAI,CAACC,SAAS,CAACC,MAAM,CAACzB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

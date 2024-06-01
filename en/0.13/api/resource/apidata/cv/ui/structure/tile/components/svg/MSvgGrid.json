@@ -1,47 +1,52 @@
 {
-  "className": "cv.ui.structure.tile.components.svg.MSvgGrid",
-  "packageName": "cv.ui.structure.tile.components.svg",
-  "name": "MSvgGrid",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 903
-      },
-      "end": {
-        "line": 215,
-        "column": 3,
-        "index": 6039
-      }
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/svg/MSvgGrid.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 903
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Mixin for SVG elements that provide a grid layout.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 2023</div>"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2023"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ]
+    "end": {
+      "line": 215,
+      "column": 3,
+      "index": 6039
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.structure.tile.components.svg.MSvgGrid",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin for SVG elements that provide a grid layout.",
+      " * @since 2023",
+      " * @author Tobias Bräutigam",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin for SVG elements that provide a grid layout.</p>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2023"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 32,
@@ -53,8 +58,7 @@
         "column": 3,
         "index": 1266
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "rows": {
@@ -70,14 +74,15 @@
           "index": 1553
         }
       },
-      "name": "rows",
-      "propertyType": "new",
-      "event": "changeRows",
-      "apply": "_invalidateLayout",
-      "init": 3,
-      "transform": "__P_90_0",
-      "check": "Number",
-      "defaultValue": 3
+      "json": {
+        "check": "Number",
+        "init": 3,
+        "event": "changeRows",
+        "apply": "_invalidateLayout",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "columns": {
       "location": {
@@ -92,14 +97,15 @@
           "index": 1705
         }
       },
-      "name": "columns",
-      "propertyType": "new",
-      "event": "changeColumns",
-      "apply": "_invalidateLayout",
-      "init": 3,
-      "transform": "__P_90_0",
-      "check": "Number",
-      "defaultValue": 3
+      "json": {
+        "check": "Number",
+        "init": 3,
+        "event": "changeColumns",
+        "apply": "_invalidateLayout",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "outerPadding": {
       "location": {
@@ -114,14 +120,15 @@
           "index": 1867
         }
       },
-      "name": "outerPadding",
-      "propertyType": "new",
-      "event": "changeOuterPadding",
-      "apply": "_invalidateLayout",
-      "init": 4,
-      "transform": "__P_90_0",
-      "check": "Number",
-      "defaultValue": 4
+      "json": {
+        "check": "Number",
+        "event": "changeOuterPadding",
+        "init": 4,
+        "apply": "_invalidateLayout",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "spacing": {
       "location": {
@@ -136,14 +143,15 @@
           "index": 2019
         }
       },
-      "name": "spacing",
-      "propertyType": "new",
-      "event": "changeSpacing",
-      "apply": "_invalidateLayout",
-      "init": 8,
-      "transform": "__P_90_0",
-      "check": "Number",
-      "defaultValue": 8
+      "json": {
+        "check": "Number",
+        "init": 8,
+        "event": "changeSpacing",
+        "apply": "_invalidateLayout",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "cellWidth": {
       "location": {
@@ -158,14 +166,15 @@
           "index": 2171
         }
       },
-      "name": "cellWidth",
-      "propertyType": "new",
-      "event": "changeSize",
-      "apply": "_invalidateLayout",
-      "init": 56,
-      "transform": "__P_90_0",
-      "check": "Number",
-      "defaultValue": 56
+      "json": {
+        "check": "Number",
+        "init": 56,
+        "apply": "_invalidateLayout",
+        "event": "changeSize",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "cellHeight": {
       "location": {
@@ -180,14 +189,15 @@
           "index": 2324
         }
       },
-      "name": "cellHeight",
-      "propertyType": "new",
-      "event": "changeSize",
-      "apply": "_invalidateLayout",
-      "init": 56,
-      "transform": "__P_90_0",
-      "check": "Number",
-      "defaultValue": 56
+      "json": {
+        "check": "Number",
+        "init": 56,
+        "apply": "_invalidateLayout",
+        "event": "changeSize",
+        "transform": "__toInt"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "viewBox": {
       "location": {
@@ -202,16 +212,19 @@
           "index": 2421
         }
       },
-      "name": "viewBox",
-      "propertyType": "new",
-      "event": "changeViewBox",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeViewBox"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     }
   },
   "members": {
     "_cells": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 105,
@@ -224,10 +237,11 @@
           "index": 2579
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_isLayoutValid": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 106,
@@ -240,10 +254,11 @@
           "index": 2605
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "__toInt": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 108,
@@ -257,9 +272,16 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "_invalidateLayout": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 115,
@@ -273,17 +295,12 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "rows",
-        "columns",
-        "outerPadding",
-        "spacing",
-        "cellWidth",
-        "cellHeight"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "_layoutAll": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 120,
@@ -297,22 +314,17 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "getCells": {
-      "location": {
-        "start": {
-          "line": 133,
-          "column": 4,
-          "index": 3225
-        },
-        "end": {
-          "line": 135,
-          "column": 5,
-          "index": 3292
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the number of cells in this grid",
+          "     * @returns {number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -328,23 +340,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "layout": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 145,
+          "line": 133,
           "column": 4,
-          "index": 3815
+          "index": 3225
         },
         "end": {
-          "line": 172,
+          "line": 135,
           "column": 5,
-          "index": 4850
+          "index": 3292
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "layout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a SVGElement to a cell in the grid.",
+          "     * @param element {SVGGraphicsElement} element to place",
+          "     * @param row {number} row number (-1 to find next free row)",
+          "     * @param column {number} column cumber (-1 to use next free cell)",
+          "     * @param replace {boolean} it true replace current item in cell, otherwise the element will not be added when the cell is not empty",
+          "     * @param retries {number} internal value used to limit layout retries for one element. Do not set this externally!",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -389,10 +416,47 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3815
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 4850
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element",
+          "type": "SVGGraphicsElement"
+        },
+        {
+          "name": "row",
+          "type": "number"
+        },
+        {
+          "name": "column",
+          "type": "number"
+        },
+        {
+          "name": "replace",
+          "type": "boolean"
+        },
+        {
+          "name": "retries",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
     },
     "getNextFreeCell": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 174,
@@ -406,470 +470,16 @@
         }
       },
       "type": "function",
-      "access": "public"
-    },
-    "getRows": {
-      "type": "function",
-      "name": "getRows",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>rows</code>.\n\nFor further details take a look at the property definition: {@link #rows}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for rows"
-          }
-        ]
-      }
-    },
-    "setRows": {
-      "type": "function",
-      "name": "setRows",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>rows</code>.\n\nFor further details take a look at the property definition: {@link #rows}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for rows"
-          }
-        ]
-      }
-    },
-    "resetRows": {
-      "type": "function",
-      "name": "resetRows",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>rows</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rows}."
-          }
-        ]
-      }
-    },
-    "getColumns": {
-      "type": "function",
-      "name": "getColumns",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>columns</code>.\n\nFor further details take a look at the property definition: {@link #columns}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for columns"
-          }
-        ]
-      }
-    },
-    "setColumns": {
-      "type": "function",
-      "name": "setColumns",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>columns</code>.\n\nFor further details take a look at the property definition: {@link #columns}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for columns"
-          }
-        ]
-      }
-    },
-    "resetColumns": {
-      "type": "function",
-      "name": "resetColumns",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>columns</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #columns}."
-          }
-        ]
-      }
-    },
-    "getOuterPadding": {
-      "type": "function",
-      "name": "getOuterPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>outerPadding</code>.\n\nFor further details take a look at the property definition: {@link #outerPadding}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for outerPadding"
-          }
-        ]
-      }
-    },
-    "setOuterPadding": {
-      "type": "function",
-      "name": "setOuterPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>outerPadding</code>.\n\nFor further details take a look at the property definition: {@link #outerPadding}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for outerPadding"
-          }
-        ]
-      }
-    },
-    "resetOuterPadding": {
-      "type": "function",
-      "name": "resetOuterPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>outerPadding</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #outerPadding}."
-          }
-        ]
-      }
-    },
-    "getSpacing": {
-      "type": "function",
-      "name": "getSpacing",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>spacing</code>.\n\nFor further details take a look at the property definition: {@link #spacing}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for spacing"
-          }
-        ]
-      }
-    },
-    "setSpacing": {
-      "type": "function",
-      "name": "setSpacing",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>spacing</code>.\n\nFor further details take a look at the property definition: {@link #spacing}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for spacing"
-          }
-        ]
-      }
-    },
-    "resetSpacing": {
-      "type": "function",
-      "name": "resetSpacing",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>spacing</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #spacing}."
-          }
-        ]
-      }
-    },
-    "getCellWidth": {
-      "type": "function",
-      "name": "getCellWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>cellWidth</code>.\n\nFor further details take a look at the property definition: {@link #cellWidth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for cellWidth"
-          }
-        ]
-      }
-    },
-    "setCellWidth": {
-      "type": "function",
-      "name": "setCellWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>cellWidth</code>.\n\nFor further details take a look at the property definition: {@link #cellWidth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for cellWidth"
-          }
-        ]
-      }
-    },
-    "resetCellWidth": {
-      "type": "function",
-      "name": "resetCellWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>cellWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cellWidth}."
-          }
-        ]
-      }
-    },
-    "getCellHeight": {
-      "type": "function",
-      "name": "getCellHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>cellHeight</code>.\n\nFor further details take a look at the property definition: {@link #cellHeight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for cellHeight"
-          }
-        ]
-      }
-    },
-    "setCellHeight": {
-      "type": "function",
-      "name": "setCellHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>cellHeight</code>.\n\nFor further details take a look at the property definition: {@link #cellHeight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for cellHeight"
-          }
-        ]
-      }
-    },
-    "resetCellHeight": {
-      "type": "function",
-      "name": "resetCellHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>cellHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cellHeight}."
-          }
-        ]
-      }
-    },
-    "getViewBox": {
-      "type": "function",
-      "name": "getViewBox",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>viewBox</code>.\n\nFor further details take a look at the property definition: {@link #viewBox}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for viewBox"
-          }
-        ]
-      }
-    },
-    "setViewBox": {
-      "type": "function",
-      "name": "setViewBox",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>viewBox</code>.\n\nFor further details take a look at the property definition: {@link #viewBox}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for viewBox"
-          }
-        ]
-      }
-    },
-    "resetViewBox": {
-      "type": "function",
-      "name": "resetViewBox",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>viewBox</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #viewBox}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "row"
+        },
+        {
+          "name": "column"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

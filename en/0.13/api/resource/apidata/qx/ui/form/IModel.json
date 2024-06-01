@@ -1,67 +1,74 @@
 {
-  "className": "qx.ui.form.IModel",
-  "packageName": "qx.ui.form",
-  "name": "IModel",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 628
-      },
-      "end": {
-        "line": 61,
-        "column": 3,
-        "index": 1537
-      }
+  "version": 0.3,
+  "lastModified": 1717235171294,
+  "lastModifiedIso": "2024-06-01T09:46:11.294Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/IModel.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 606
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Each object which wants to store data representative for the real item\n should implement this interface.</p>"
-        }
-      ]
+    "end": {
+      "line": 61,
+      "column": 3,
+      "index": 1477
     }
   },
-  "type": "interface",
+  "className": "qx.ui.form.IModel",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Each object which wants to store data representative for the real item",
+      " * should implement this interface.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Each object which wants to store data representative for the real item\n should implement this interface.</p>"
+      }
+    ]
+  },
   "events": {
     "changeModel": {
-      "type": "event",
-      "name": "changeModel",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": null,
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fired when the model data changes "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired when the model data changes</p>"
           }
         ]
+      },
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 893
+        },
+        "end": {
+          "line": 32,
+          "column": 37,
+          "index": 926
+        }
       }
     }
   },
   "members": {
     "setModel": {
-      "location": {
-        "start": {
-          "line": 47,
-          "column": 4,
-          "index": 1288
-        },
-        "end": {
-          "line": 47,
-          "column": 22,
-          "index": 1306
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the representative data for the item.",
+          "     *",
+          "     * @param value {var} The data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -78,23 +85,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getModel": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 54,
+          "line": 47,
           "column": 4,
-          "index": 1426
+          "index": 1242
         },
         "end": {
-          "line": 54,
-          "column": 17,
-          "index": 1439
+          "line": 47,
+          "column": 22,
+          "index": 1260
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getModel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the representative data for the item",
+          "     *",
+          "     * @return {var} The data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -106,27 +127,37 @@
             "name": "@return",
             "body": "{var} The data.",
             "type": "var",
-            "description": " The data."
+            "description": "The data."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetModel": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 59,
+          "line": 54,
           "column": 4,
-          "index": 1512
+          "index": 1373
         },
         "end": {
-          "line": 59,
-          "column": 19,
-          "index": 1527
+          "line": 54,
+          "column": 17,
+          "index": 1386
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "resetModel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the representative data to null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -134,9 +165,24 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1454
+        },
+        "end": {
+          "line": 59,
+          "column": 19,
+          "index": 1469
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -51,8 +51,8 @@
       if (lineSize !== undefined) {
         this.setDefaultLineSize(lineSize);
       }
-      this.__P_490_0 = [];
-      this.__P_490_1 = [];
+      this.__P_709_0 = [];
+      this.__P_709_1 = [];
       this._isHorizontal = (orientation || "horizontal") == "horizontal";
     },
     /*
@@ -83,9 +83,9 @@
 
     members: {
       /** Stores the colors for deviant grid lines. */
-      __P_490_0: null,
+      __P_709_0: null,
       /** Stores the width/height for deviant grid lines. */
-      __P_490_1: null,
+      __P_709_1: null,
       /**
        * Whether horizontal lines are rendered
        *
@@ -101,8 +101,8 @@
        * @param color {Color} The color.
        */
       setLineColor: function setLineColor(index, color) {
-        this.__P_490_0[index] = color;
-        if (this.__P_490_2(index)) {
+        this.__P_709_0[index] = color;
+        if (this.__P_709_2(index)) {
           this.updateLayerData();
         }
       },
@@ -113,8 +113,8 @@
        * @param size {PositiveInteger} The size.
        */
       setLineSize: function setLineSize(index, size) {
-        this.__P_490_1[index] = size;
-        if (this.__P_490_2(index)) {
+        this.__P_709_1[index] = size;
+        if (this.__P_709_2(index)) {
           this.updateLayerData();
         }
       },
@@ -125,7 +125,7 @@
        * @param index {Integer} The line's index
        * @return {Boolean} Whether the line is rendered
        */
-      __P_490_2: function __P_490_2(index) {
+      __P_709_2: function __P_709_2(index) {
         if (this._isHorizontal) {
           var firstColumn = this.getFirstColumn();
           var lastColumn = firstColumn + this.getColumnSizes().length - 1;
@@ -143,7 +143,7 @@
        * @return {PositiveInteger} The size.
        */
       getLineSize: function getLineSize(index) {
-        return this.__P_490_1[index] || this.getDefaultLineSize();
+        return this.__P_709_1[index] || this.getDefaultLineSize();
       },
       /**
        * Returns the color of the grid line with the given index.
@@ -152,7 +152,7 @@
        * @return {String} The color.
        */
       getLineColor: function getLineColor(index) {
-        return this.__P_490_0[index] || this.getDefaultLineColor();
+        return this.__P_709_0[index] || this.getDefaultLineColor();
       },
       /**
        * Helper function to render horizontal lines.
@@ -161,7 +161,7 @@
        * @param firstRow {Integer} The first visible row
        * @param rowSizes {Array} An array containing the row sizes.
        */
-      __P_490_3: function __P_490_3(htmlArr, firstRow, rowSizes) {
+      __P_709_3: function __P_709_3(htmlArr, firstRow, rowSizes) {
         var top = 0;
         var color, height;
         for (var y = 0; y < rowSizes.length - 1; y++) {
@@ -178,7 +178,7 @@
        * @param firstColumn {Integer} The first visible column
        * @param columnSizes {Array} An array containing the column sizes.
        */
-      __P_490_4: function __P_490_4(htmlArr, firstColumn, columnSizes) {
+      __P_709_4: function __P_709_4(htmlArr, firstColumn, columnSizes) {
         var left = 0;
         var color, width;
         for (var x = 0; x < columnSizes.length - 1; x++) {
@@ -192,9 +192,9 @@
       _fullUpdate: function _fullUpdate(firstRow, firstColumn, rowSizes, columnSizes) {
         var html = [];
         if (this._isHorizontal) {
-          this.__P_490_3(html, firstRow, rowSizes);
+          this.__P_709_3(html, firstRow, rowSizes);
         } else {
-          this.__P_490_4(html, firstColumn, columnSizes);
+          this.__P_709_4(html, firstColumn, columnSizes);
         }
         this.getContentElement().setAttribute("html", html.join(""));
       },
@@ -213,10 +213,10 @@
      *****************************************************************************
      */
     destruct: function destruct() {
-      this.__P_490_0 = this.__P_490_1 = null;
+      this.__P_709_0 = this.__P_709_1 = null;
     }
   });
   qx.ui.virtual.layer.GridLines.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GridLines.js.map?dt=1709410167787
+//# sourceMappingURL=GridLines.js.map?dt=1717235418963

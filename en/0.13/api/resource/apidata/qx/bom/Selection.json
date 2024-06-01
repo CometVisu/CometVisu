@@ -1,55 +1,56 @@
 {
-  "className": "qx.bom.Selection",
-  "packageName": "qx.bom",
-  "name": "Selection",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 702
-      },
-      "end": {
-        "line": 660,
-        "column": 3,
-        "index": 21797
-      }
+  "version": 0.3,
+  "lastModified": 1717235172226,
+  "lastModifiedIso": "2024-06-01T09:46:12.226Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Selection.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 678
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Low-level selection API to select elements like input and textarea elements\n as well as text nodes or elements which their child nodes.</p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.bom.Element, qx.bom.Element.blur"
-        }
-      ]
+    "end": {
+      "line": 660,
+      "column": 3,
+      "index": 21138
     }
   },
-  "type": "class",
+  "className": "qx.bom.Selection",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Low-level selection API to select elements like input and textarea elements",
+      " * as well as text nodes or elements which their child nodes.",
+      " *",
+      " * @ignore(qx.bom.Element, qx.bom.Element.blur)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Low-level selection API to select elements like input and textarea elements\n as well as text nodes or elements which their child nodes.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.bom.Element, qx.bom.Element.blur"
+      }
+    ]
+  },
   "statics": {
     "getSelectionObject": {
-      "location": {
-        "start": {
-          "line": 40,
-          "column": 4,
-          "index": 1212
-        },
-        "end": {
-          "line": 49,
-          "column": 6,
-          "index": 1539
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the native selection object.",
+          "     *",
+          "     * @signature function(documentNode)",
+          "     * @param documentNode {document} Document node to retrieve the connected selection from",
+          "     * @return {Selection} native selection object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -76,27 +77,39 @@
             "name": "@return",
             "body": "{Selection} native selection object",
             "type": "qx.bom.Selection",
-            "description": " native selection object"
+            "description": "native selection object"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "get": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 58,
+          "line": 40,
           "column": 4,
-          "index": 1767
+          "index": 1173
         },
         "end": {
-          "line": 77,
+          "line": 49,
           "column": 6,
-          "index": 2520
+          "index": 1491
         }
       },
+      "returnType": {
+        "type": "qx.bom.Selection"
+      },
+      "appearsIn": []
+    },
+    "get": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current selected text.",
+          "     *",
+          "     * @signature function(node)",
+          "     * @param node {Node} node to retrieve the selection for",
+          "     * @return {String|null} selected text as string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -123,27 +136,39 @@
             "name": "@return",
             "body": "{String|null} selected text as string",
             "type": "String|null",
-            "description": " selected text as string"
+            "description": "selected text as string"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "getLength": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 86,
+          "line": 58,
           "column": 4,
-          "index": 2762
+          "index": 1710
         },
         "end": {
-          "line": 129,
+          "line": 77,
           "column": 6,
-          "index": 4403
+          "index": 2444
         }
       },
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getLength": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the length of the selection",
+          "     *",
+          "     * @signature function(node)",
+          "     * @param node {Node} Form node or document/window to check.",
+          "     * @return {Integer|null} length of the selection or null",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -170,27 +195,40 @@
             "name": "@return",
             "body": "{Integer|null} length of the selection or null",
             "type": "Integer|null",
-            "description": " length of the selection or null"
+            "description": "length of the selection or null"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "getStart": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 139,
+          "line": 86,
           "column": 4,
-          "index": 4701
+          "index": 2677
         },
         "end": {
-          "line": 234,
+          "line": 129,
           "column": 6,
-          "index": 7983
+          "index": 4275
         }
       },
+      "returnType": {
+        "type": "Integer|null"
+      },
+      "appearsIn": []
+    },
+    "getStart": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the start of the selection",
+          "     *",
+          "     * @signature function(node)",
+          "     * @param node {Node} node to check for",
+          "     * @return {Integer} start of current selection or \"-1\" if the current",
+          "     *                   selection is not within the given node",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -217,27 +255,39 @@
             "name": "@return",
             "body": "{Integer} start of current selection or \"-1\" if the current\n                   selection is not within the given node",
             "type": "Integer",
-            "description": " start of current selection or \"-1\" if the current\n                   selection is not within the given node"
+            "description": "start of current selection or \"-1\" if the current\n                   selection is not within the given node"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "getEnd": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 243,
+          "line": 139,
           "column": 4,
-          "index": 8185
+          "index": 4563
         },
         "end": {
-          "line": 339,
+          "line": 234,
           "column": 6,
-          "index": 11505
+          "index": 7750
         }
       },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getEnd": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the end of the selection",
+          "     *",
+          "     * @signature function(node)",
+          "     * @param node {Node} node to check",
+          "     * @return {Integer} end of current selection",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -264,27 +314,38 @@
             "name": "@return",
             "body": "{Integer} end of current selection",
             "type": "Integer",
-            "description": " end of current selection"
+            "description": "end of current selection"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "__isInputOrTextarea": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 347,
+          "line": 243,
           "column": 4,
-          "index": 11727
+          "index": 7943
         },
         "end": {
-          "line": 353,
-          "column": 5,
-          "index": 11933
+          "line": 339,
+          "column": 6,
+          "index": 11167
         }
       },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__isInputOrTextarea": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Utility method to check for an input or textarea element",
+          "     *",
+          "     * @param node {Node} node to check",
+          "     * @return {Boolean} Whether the given node is an input or textarea element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -304,28 +365,53 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the given node is an input or textarea element",
-            "type": "Boolean",
-            "description": " Whether the given node is an input or textarea element"
+            "type": "boolean",
+            "description": "Whether the given node is an input or textarea element"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "set": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 368,
+          "line": 347,
           "column": 4,
-          "index": 12542
+          "index": 11381
         },
         "end": {
-          "line": 569,
-          "column": 6,
-          "index": 18823
+          "line": 353,
+          "column": 5,
+          "index": 11581
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "Node"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "set": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a selection at the given node with the given start and end.",
+          "     * For text nodes, input and textarea elements the start and end parameters",
+          "     * set the boundaries at the text.",
+          "     * For element nodes the start and end parameters are used to select the",
+          "     * childNodes of the given element.",
+          "     *",
+          "     * @signature function(node, start, end)",
+          "     * @param node {Node} node to set the selection at",
+          "     * @param start {Integer} start of the selection",
+          "     * @param end {Integer} end of the selection",
+          "     * @return {Boolean} whether a selection is drawn",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -365,28 +451,39 @@
           {
             "name": "@return",
             "body": "{Boolean} whether a selection is drawn",
-            "type": "Boolean",
-            "description": " whether a selection is drawn"
+            "type": "boolean",
+            "description": "whether a selection is drawn"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "setAll": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 577,
+          "line": 368,
           "column": 4,
-          "index": 19028
+          "index": 12175
         },
         "end": {
-          "line": 579,
-          "column": 5,
-          "index": 19094
+          "line": 569,
+          "column": 6,
+          "index": 18255
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setAll": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Selects all content/childNodes of the given node",
+          "     *",
+          "     * @param node {Node} text, element or document node",
+          "     * @return {Boolean} whether a selection is drawn",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -406,28 +503,45 @@
           {
             "name": "@return",
             "body": "{Boolean} whether a selection is drawn",
-            "type": "Boolean",
-            "description": " whether a selection is drawn"
+            "type": "boolean",
+            "description": "whether a selection is drawn"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clear": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 586,
+          "line": 577,
           "column": 4,
-          "index": 19236
+          "index": 18452
         },
         "end": {
-          "line": 658,
-          "column": 6,
-          "index": 21787
+          "line": 579,
+          "column": 5,
+          "index": 18516
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "Node"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "clear": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the selection on the given node.",
+          "     *",
+          "     * @param node {Node} node to clear the selection for",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -444,9 +558,22 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 586,
+          "column": 4,
+          "index": 18651
+        },
+        "end": {
+          "line": 658,
+          "column": 6,
+          "index": 21130
+        }
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

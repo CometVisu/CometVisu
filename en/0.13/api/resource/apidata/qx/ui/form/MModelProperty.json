@@ -1,49 +1,75 @@
 {
-  "className": "qx.ui.form.MModelProperty",
-  "packageName": "qx.ui.form",
-  "name": "MModelProperty",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 661
-      },
-      "end": {
-        "line": 54,
-        "column": 3,
-        "index": 1649
-      }
+  "version": 0.3,
+  "lastModified": 1717235171782,
+  "lastModifiedIso": "2024-06-01T09:46:11.782Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/MModelProperty.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 640
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Can be included for implementing {@link qx.ui.form.IModel}. It only contains\n a nullable property named 'model' with a 'changeModel' event.</p>"
-        }
-      ]
+    "end": {
+      "line": 54,
+      "column": 3,
+      "index": 1596
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.form.MModelProperty",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Can be included for implementing {@link qx.ui.form.IModel}. It only contains",
+      " * a nullable property named 'model' with a 'changeModel' event.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Can be included for implementing {@link qx.ui.form.IModel}. It only contains\n a nullable property named 'model' with a 'changeModel' event.</p>"
+      }
+    ]
+  },
   "properties": {
     "model": {
       "location": {
         "start": {
           "line": 40,
           "column": 4,
-          "index": 1406
+          "index": 1367
         },
         "end": {
           "line": 45,
           "column": 5,
-          "index": 1527
+          "index": 1483
         }
       },
+      "json": {
+        "nullable": true,
+        "event": "changeModel",
+        "apply": "_applyModel",
+        "dereference": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Model property for storing additional information for the including",
+          "     * object. It can act as value property on form items for example.",
+          "     *",
+          "     * Be careful using that property as this is used for the",
+          "     * {@link qx.ui.form.MModelSelection} it has some restrictions:",
+          "     *",
+          "     * * Don't use equal models in one widget using the",
+          "     *     {@link qx.ui.form.MModelSelection}.",
+          "     *",
+          "     * * Avoid setting only some model properties if the widgets are added to",
+          "     *     a {@link qx.ui.form.MModelSelection} widget.",
+          "     *",
+          "     * Both restrictions result of the fact, that the set models are deputies",
+          "     * for their widget.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,101 +77,40 @@
           }
         ]
       },
-      "name": "model",
-      "propertyType": "new",
-      "event": "changeModel",
-      "apply": "_applyModel",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     }
   },
   "members": {
     "_applyModel": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 50,
           "column": 4,
-          "index": 1576
+          "index": 1527
         },
         "end": {
           "line": 52,
           "column": 5,
-          "index": 1639
+          "index": 1588
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "model"
-      ]
-    },
-    "getModel": {
-      "type": "function",
-      "name": "getModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for model"
-          }
-        ]
-      }
-    },
-    "setModel": {
-      "type": "function",
-      "name": "setModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for model"
-          }
-        ]
-      }
-    },
-    "resetModel": {
-      "type": "function",
-      "name": "resetModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>model</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

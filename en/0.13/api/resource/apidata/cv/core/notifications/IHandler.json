@@ -1,48 +1,84 @@
 {
-  "className": "cv.core.notifications.IHandler",
-  "packageName": "cv.core.notifications",
-  "name": "IHandler",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 911
-      },
-      "end": {
-        "line": 40,
-        "column": 3,
-        "index": 1353
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/core/notifications/IHandler.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 911
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Interface for notification handlers.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 0.11.0</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "0.11.0"
-        }
-      ]
+    "end": {
+      "line": 40,
+      "column": 3,
+      "index": 1353
     }
   },
-  "type": "interface",
+  "className": "cv.core.notifications.IHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Interface for notification handlers.",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.11.0",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Interface for notification handlers.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.11.0"
+      }
+    ]
+  },
   "members": {
     "handleMessage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle messages from {@link cv.core.notifications.Router}",
+          "     * @param message {Map}",
+          "     * @param config {Map?} optional configuration of this message for the handler",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle messages from {@link cv.core.notifications.Router}</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {Map}",
+            "paramName": "message",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "config {Map?} optional configuration of this message for the handler",
+            "paramName": "config",
+            "description": " optional configuration of this message for the handler",
+            "optional": true,
+            "type": "Map"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 38,
@@ -55,31 +91,21 @@
           "index": 1345
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Handle messages from {@link cv.core.notifications.Router}</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "message {Map}"
-          },
-          {
-            "name": "@param",
-            "body": "config {Map?} optional configuration of this message for the handler",
-            "paramName": "config",
-            "description": " optional configuration of this message for the handler",
-            "optional": true,
-            "type": "Map"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "message",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "config",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

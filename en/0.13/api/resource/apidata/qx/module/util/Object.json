@@ -1,61 +1,65 @@
 {
-  "className": "qx.module.util.Object",
-  "packageName": "qx.module.util",
-  "name": "Object",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 620
-      },
-      "end": {
-        "line": 101,
-        "column": 3,
-        "index": 2898
-      }
+  "version": 0.3,
+  "lastModified": 1717235171898,
+  "lastModifiedIso": "2024-06-01T09:46:11.898Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/util/Object.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 596
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Helper functions to handle an Object as a Hash map.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Utilities"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.util.Array"
-        }
-      ]
+    "end": {
+      "line": 101,
+      "column": 3,
+      "index": 2798
     }
   },
-  "type": "class",
+  "className": "qx.module.util.Object",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Helper functions to handle an Object as a Hash map.",
+      " *",
+      " * @group (Utilities)",
+      " * @require (qx.module.util.Array)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Helper functions to handle an Object as a Hash map.</p>"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Utilities"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.util.Array"
+      }
+    ]
+  },
   "statics": {
     "clone": {
-      "location": {
-        "start": {
-          "line": 37,
-          "column": 4,
-          "index": 1000
-        },
-        "end": {
-          "line": 37,
-          "column": 31,
-          "index": 1027
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return a copy of an Object",
+          "     *",
+          "     * @signature function(source, deep)",
+          "     * @attachStatic {qxWeb, object.clone}",
+          "     *",
+          "     * @param source {Object} Object to copy",
+          "     * @param deep {Boolean} If the clone should be a deep clone.",
+          "     * @return {Object} A copy of the object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -80,42 +84,56 @@
             "body": "source {Object} Object to copy",
             "paramName": "source",
             "description": " Object to copy",
-            "type": "qx.module.util.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "deep {Boolean} If the clone should be a deep clone.",
             "paramName": "deep",
             "description": " If the clone should be a deep clone.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} A copy of the object",
-            "type": "qx.module.util.Object",
-            "description": " A copy of the object"
+            "type": "Record<any, any>",
+            "description": "A copy of the object"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getValues": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 48,
+          "line": 37,
           "column": 4,
-          "index": 1283
+          "index": 964
         },
         "end": {
-          "line": 48,
-          "column": 39,
-          "index": 1318
+          "line": 37,
+          "column": 31,
+          "index": 991
         }
       },
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getValues": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the values of a map as array",
+          "     *",
+          "     * @signature function(map)",
+          "     * @attachStatic {qxWeb, object.getValues}",
+          "     *",
+          "     * @param map {Object} the map",
+          "     * @return {Array} array of the values of the map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -140,35 +158,52 @@
             "body": "map {Object} the map",
             "paramName": "map",
             "description": " the map",
-            "type": "qx.module.util.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} array of the values of the map",
-            "type": "qx.module.util.Array",
-            "description": " array of the values of the map"
+            "type": "Array<any>",
+            "description": "array of the values of the map"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "invert": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 48,
           "column": 4,
-          "index": 1751
+          "index": 1236
         },
         "end": {
-          "line": 62,
-          "column": 33,
-          "index": 1780
+          "line": 48,
+          "column": 39,
+          "index": 1271
         }
       },
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "invert": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Inverts a map by exchanging the keys with the values.",
+          "     *",
+          "     * @signature function(map)",
+          "     * @attachStatic {qxWeb, object.invert}",
+          "     *",
+          "     * If the map has the same values for different keys, information will get lost.",
+          "     * The values will be converted to strings using the toString methods.",
+          "     *",
+          "     * @param map {Object} Map to invert",
+          "     * @return {Object} inverted Map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -193,35 +228,50 @@
             "body": "map {Object} Map to invert",
             "paramName": "map",
             "description": " Map to invert",
-            "type": "qx.module.util.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} inverted Map",
-            "type": "qx.module.util.Object",
-            "description": " inverted Map"
+            "type": "Record<any, any>",
+            "description": "inverted Map"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "contains": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 74,
+          "line": 62,
           "column": 4,
-          "index": 2127
+          "index": 1690
         },
         "end": {
-          "line": 74,
-          "column": 37,
-          "index": 2160
+          "line": 62,
+          "column": 33,
+          "index": 1719
         }
       },
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "contains": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the map contains the given value.",
+          "     *",
+          "     * @signature function(map, value)",
+          "     * @attachStatic {qxWeb, object.contains}",
+          "     *",
+          "     * @param map {Object} Map to search for the value",
+          "     * @param value {var} Value to look for",
+          "     * @return {Boolean} Whether the value was found in the map.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -246,7 +296,7 @@
             "body": "map {Object} Map to search for the value",
             "paramName": "map",
             "description": " Map to search for the value",
-            "type": "qx.module.util.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -260,28 +310,43 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value was found in the map.",
-            "type": "Boolean",
-            "description": " Whether the value was found in the map."
+            "type": "boolean",
+            "description": "Whether the value was found in the map."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "merge": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 86,
+          "line": 74,
           "column": 4,
-          "index": 2538
+          "index": 2054
         },
         "end": {
-          "line": 95,
-          "column": 5,
-          "index": 2821
+          "line": 74,
+          "column": 37,
+          "index": 2087
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "merge": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Merges one or more objects into the 'target' object.",
+          "     * *The objects are merged by overwriting existing keys.*",
+          "     *",
+          "     * @attachStatic {qxWeb, object.merge}",
+          "     *",
+          "     * @param target {Object} target object to merge into",
+          "     * @param varargs {var} As many items as you want to merge.",
+          "     * @return {Object} the merged object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -300,7 +365,7 @@
             "body": "target {Object} target object to merge into",
             "paramName": "target",
             "description": " target object to merge into",
-            "type": "qx.module.util.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -314,28 +379,41 @@
           {
             "name": "@return",
             "body": "{Object} the merged object",
-            "type": "qx.module.util.Object",
-            "description": " the merged object"
+            "type": "Record<any, any>",
+            "description": "the merged object"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 98,
-        "column": 2,
-        "index": 2833
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2453
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2727
+        }
       },
-      "end": {
-        "line": 100,
-        "column": 3,
-        "index": 2893
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "varargs",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

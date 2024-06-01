@@ -1,49 +1,49 @@
 {
-  "className": "qx.bom.request.IRequest",
-  "packageName": "qx.bom.request",
-  "name": "IRequest",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 836
-      },
-      "end": {
-        "line": 164,
-        "column": 3,
-        "index": 3623
-      }
+  "version": 0.3,
+  "lastModified": 1717235171442,
+  "lastModifiedIso": "2024-06-01T09:46:11.442Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/request/IRequest.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 809
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Interface of a low-level transport compatible with\n {@link qx.io.request.AbstractRequest}.\n Based on interface specified in\n <a href=\"http://www.w3.org/TR/XMLHttpRequest/\">XmlHttpRequest</a>. Also\n borrows some methods as described in\n <a href=\"http://www.w3.org/TR/XMLHttpRequest2/\">XmlHttpRequest2</a>.</p>"
-        }
-      ]
+    "end": {
+      "line": 164,
+      "column": 3,
+      "index": 3460
     }
   },
-  "type": "interface",
+  "className": "qx.bom.request.IRequest",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Interface of a low-level transport compatible with",
+      " * {@link qx.io.request.AbstractRequest}.",
+      " *",
+      " * Based on interface specified in",
+      " * <a href=\"http://www.w3.org/TR/XMLHttpRequest/\">XmlHttpRequest</a>. Also",
+      " * borrows some methods as described in",
+      " * <a href=\"http://www.w3.org/TR/XMLHttpRequest2/\">XmlHttpRequest2</a>.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Interface of a low-level transport compatible with\n {@link qx.io.request.AbstractRequest}.\n Based on interface specified in\n <a href=\"http://www.w3.org/TR/XMLHttpRequest/\">XmlHttpRequest</a>. Also\n borrows some methods as described in\n <a href=\"http://www.w3.org/TR/XMLHttpRequest2/\">XmlHttpRequest2</a>.</p>"
+      }
+    ]
+  },
   "members": {
     "transport": {
-      "location": {
-        "start": {
-          "line": 38,
-          "column": 4,
-          "index": 1027
-        },
-        "end": {
-          "line": 38,
-          "column": 19,
-          "index": 1042
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Object} Native transport.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +57,35 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "readyState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 50,
+          "line": 38,
           "column": 4,
-          "index": 1280
+          "index": 990
         },
         "end": {
-          "line": 50,
-          "column": 17,
-          "index": 1293
+          "line": 38,
+          "column": 19,
+          "index": 1005
         }
       },
+      "appearsIn": []
+    },
+    "readyState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Number} Ready state.",
+          "     *",
+          "     * States can be:",
+          "     * UNSENT:           0,",
+          "     * OPENED:           1,",
+          "     * HEADERS_RECEIVED: 2,",
+          "     * LOADING:          3,",
+          "     * DONE:             4",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,23 +99,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "status": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 55,
+          "line": 50,
           "column": 4,
-          "index": 1360
+          "index": 1231
         },
         "end": {
-          "line": 55,
-          "column": 13,
-          "index": 1369
+          "line": 50,
+          "column": 17,
+          "index": 1244
         }
       },
+      "appearsIn": []
+    },
+    "status": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Number} The status code.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,23 +134,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "statusText": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 60,
+          "line": 55,
           "column": 4,
-          "index": 1436
+          "index": 1306
         },
         "end": {
-          "line": 60,
-          "column": 18,
-          "index": 1450
+          "line": 55,
+          "column": 13,
+          "index": 1315
         }
       },
+      "appearsIn": []
+    },
+    "statusText": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {String} The status text.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -147,23 +169,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "responseText": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 65,
+          "line": 60,
           "column": 4,
-          "index": 1537
+          "index": 1377
         },
         "end": {
-          "line": 65,
-          "column": 20,
-          "index": 1553
+          "line": 60,
+          "column": 18,
+          "index": 1391
         }
       },
+      "appearsIn": []
+    },
+    "responseText": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {String} The response of the request as text.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -177,23 +204,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "timeout": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 65,
           "column": 4,
-          "index": 1680
+          "index": 1473
         },
         "end": {
-          "line": 72,
-          "column": 14,
-          "index": 1690
+          "line": 65,
+          "column": 20,
+          "index": 1489
         }
       },
+      "appearsIn": []
+    },
+    "timeout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Number} Timeout limit in milliseconds.",
+          "     *",
+          "     * 0 (default) means no timeout.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -207,23 +241,35 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "open": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 88,
+          "line": 72,
           "column": 4,
-          "index": 2034
+          "index": 1609
         },
         "end": {
-          "line": 88,
-          "column": 31,
-          "index": 2061
+          "line": 72,
+          "column": 14,
+          "index": 1619
         }
       },
+      "appearsIn": []
+    },
+    "open": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes (prepares) request.",
+          "     *",
+          "     * @param method {String}",
+          "     *  The method to use.",
+          "     * @param url {String}",
+          "     *  The URL to which to send the request.",
+          "     * @param async {Boolean?true}",
+          "     *  Whether or not to perform the operation asynchronously.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -236,14 +282,14 @@
             "body": "method {String}\n  The method to use.",
             "paramName": "method",
             "description": "\n  The method to use.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "url {String}\n  The URL to which to send the request.",
             "paramName": "url",
             "description": "\n  The URL to which to send the request.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -256,23 +302,48 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "send": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 96,
+          "line": 88,
           "column": 4,
-          "index": 2194
+          "index": 1947
         },
         "end": {
-          "line": 96,
-          "column": 17,
-          "index": 2207
+          "line": 88,
+          "column": 31,
+          "index": 1974
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "method",
+          "type": "string"
+        },
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "async",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "appearsIn": []
+    },
+    "send": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sends request.",
+          "     *",
+          "     * @param data {String|Document?null}",
+          "     *  Optional data to send.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -294,23 +365,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "abort": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 101,
+          "line": 96,
           "column": 4,
-          "index": 2256
+          "index": 2099
         },
         "end": {
-          "line": 101,
-          "column": 14,
-          "index": 2266
+          "line": 96,
+          "column": 17,
+          "index": 2112
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": [
+            "String",
+            "Document"
+          ],
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "abort": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Abort request",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -318,23 +406,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAllResponseHeaders": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 108,
+          "line": 101,
           "column": 4,
-          "index": 2396
+          "index": 2156
         },
         "end": {
-          "line": 108,
-          "column": 30,
-          "index": 2422
+          "line": 101,
+          "column": 14,
+          "index": 2166
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getAllResponseHeaders": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get all response headers from response.",
+          "     *",
+          "     * @return {String} All response headers.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -345,28 +442,43 @@
           {
             "name": "@return",
             "body": "{String} All response headers.",
-            "type": "String",
-            "description": " All response headers."
+            "type": "string",
+            "description": "All response headers."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getResponseHeader": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 118,
+          "line": 108,
           "column": 4,
-          "index": 2641
+          "index": 2289
         },
         "end": {
-          "line": 118,
-          "column": 32,
-          "index": 2669
+          "line": 108,
+          "column": 30,
+          "index": 2315
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getResponseHeader": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a single response header from response.",
+          "     *",
+          "     * @param header {String}",
+          "     *  Key of the header to get the value from.",
+          "     * @return {String}",
+          "     *  Response header.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -379,35 +491,55 @@
             "body": "header {String}\n  Key of the header to get the value from.",
             "paramName": "header",
             "description": "\n  Key of the header to get the value from.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String}\n  Response header.",
-            "type": "String",
-            "description": "\n  Response header."
+            "type": "string",
+            "description": "  Response header."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setRequestHeader": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 128,
+          "line": 118,
           "column": 4,
-          "index": 2930
+          "index": 2524
         },
         "end": {
-          "line": 128,
-          "column": 35,
-          "index": 2961
+          "line": 118,
+          "column": 32,
+          "index": 2552
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "header",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setRequestHeader": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a request header to be used by the request.",
+          "     *",
+          "     * @param key {String}",
+          "     *  The name of the header whose value is to be set.",
+          "     * @param value {String}",
+          "     *  The value to set as the body of the header.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -420,34 +552,50 @@
             "body": "key {String}\n  The name of the header whose value is to be set.",
             "paramName": "key",
             "description": "\n  The name of the header whose value is to be set.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "value {String}\n  The value to set as the body of the header.",
             "paramName": "value",
             "description": "\n  The value to set as the body of the header.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "onreadystatechange": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 137,
+          "line": 128,
           "column": 4,
-          "index": 3084
+          "index": 2803
         },
         "end": {
-          "line": 137,
-          "column": 27,
-          "index": 3107
+          "line": 128,
+          "column": 35,
+          "index": 2834
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onreadystatechange": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for event fired at every state change.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -455,23 +603,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "onload": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 142,
+          "line": 137,
           "column": 4,
-          "index": 3197
+          "index": 2948
         },
         "end": {
-          "line": 142,
-          "column": 15,
-          "index": 3208
+          "line": 137,
+          "column": 27,
+          "index": 2971
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onload": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for event fired on successful retrieval.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -479,23 +634,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "onloadend": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 147,
+          "line": 142,
           "column": 4,
-          "index": 3287
+          "index": 3056
         },
         "end": {
-          "line": 147,
-          "column": 18,
-          "index": 3301
+          "line": 142,
+          "column": 15,
+          "index": 3067
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onloadend": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for event fired on retrieval.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -503,23 +665,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "onerror": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 152,
+          "line": 147,
           "column": 4,
-          "index": 3386
+          "index": 3141
         },
         "end": {
-          "line": 152,
-          "column": 16,
-          "index": 3398
+          "line": 147,
+          "column": 18,
+          "index": 3155
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onerror": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for event fired on a network error.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -527,23 +696,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "onabort": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 157,
+          "line": 152,
           "column": 4,
-          "index": 3488
+          "index": 3235
         },
         "end": {
-          "line": 157,
+          "line": 152,
           "column": 16,
-          "index": 3500
+          "index": 3247
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "onabort": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for event fired when request is aborted.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -551,23 +727,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "ontimeout": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 162,
+          "line": 157,
           "column": 4,
-          "index": 3599
+          "index": 3332
         },
         "end": {
-          "line": 162,
-          "column": 18,
-          "index": 3613
+          "line": 157,
+          "column": 16,
+          "index": 3344
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "ontimeout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for event fired when timeout interval has passed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -575,9 +758,24 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 3438
+        },
+        "end": {
+          "line": 162,
+          "column": 18,
+          "index": 3452
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

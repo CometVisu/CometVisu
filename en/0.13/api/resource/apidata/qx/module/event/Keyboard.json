@@ -1,65 +1,68 @@
 {
-  "className": "qx.module.event.Keyboard",
-  "packageName": "qx.module.event",
-  "name": "Keyboard",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 31,
-        "column": 0,
-        "index": 839
-      },
-      "end": {
-        "line": 205,
-        "column": 3,
-        "index": 7235
-      }
+  "version": 0.3,
+  "lastModified": 1717235171526,
+  "lastModifiedIso": "2024-06-01T09:46:11.526Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/Keyboard.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 809
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Normalization for native keyboard events.\n NOTE: Some browsers won't fire the <code>keypress</code> event for all keys.\n It's generally better to listen for <code>keyup</code> or <code>keydown</code>\n instead.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Environment"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Event_Normalization"
-        }
-      ]
+    "end": {
+      "line": 205,
+      "column": 3,
+      "index": 7031
     }
   },
-  "type": "class",
+  "className": "qx.module.event.Keyboard",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Normalization for native keyboard events.",
+      " *",
+      " * NOTE: Some browsers won't fire the <code>keypress</code> event for all keys.",
+      " * It's generally better to listen for <code>keyup</code> or <code>keydown</code>",
+      " * instead.",
+      " *",
+      " * @require(qx.module.Event)",
+      " * @require(qx.module.Environment)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Normalization for native keyboard events.\n NOTE: Some browsers won't fire the <code>keypress</code> event for all keys.\n It's generally better to listen for <code>keyup</code> or <code>keydown</code>\n instead.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.Environment"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
   "statics": {
     "TYPES": {
-      "location": {
-        "start": {
-          "line": 36,
-          "column": 4,
-          "index": 971
-        },
-        "end": {
-          "line": 36,
-          "column": 43,
-          "index": 1010
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of event types to be normalized",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -67,23 +70,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "BIND_METHODS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 43,
+          "line": 36,
           "column": 4,
-          "index": 1154
+          "index": 936
         },
         "end": {
-          "line": 43,
-          "column": 38,
-          "index": 1188
+          "line": 36,
+          "column": 43,
+          "index": 975
         }
       },
+      "appearsIn": []
+    },
+    "BIND_METHODS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List qx.module.event.Keyboard methods to be attached to native mouse event",
+          "     * objects",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -97,23 +107,76 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "getKeyIdentifier": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 96,
+          "line": 43,
           "column": 4,
-          "index": 4074
+          "index": 1112
         },
         "end": {
-          "line": 106,
-          "column": 5,
-          "index": 4429
+          "line": 43,
+          "column": 38,
+          "index": 1146
         }
       },
+      "appearsIn": []
+    },
+    "getKeyIdentifier": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Identifier of the pressed key. This property is modeled after the <em>KeyboardEvent.keyIdentifier</em> property",
+          "     * of the W3C DOM 3 event specification",
+          "     * (http://www.w3.org/TR/2003/NOTE-DOM-Level-3-Events-20031107/events.html#Events-KeyboardEvent-keyIdentifier).",
+          "     *",
+          "     * Printable keys are represented by an unicode string, non-printable keys",
+          "     * have one of the following values:",
+          "     *",
+          "     * <table>",
+          "     * <tr><th>Backspace</th><td>The Backspace (Back) key.</td></tr>",
+          "     * <tr><th>Tab</th><td>The Horizontal Tabulation (Tab) key.</td></tr>",
+          "     * <tr><th>Space</th><td>The Space (Spacebar) key.</td></tr>",
+          "     * <tr><th>Enter</th><td>The Enter key. Note: This key identifier is also used for the Return (Macintosh numpad) key.</td></tr>",
+          "     * <tr><th>Shift</th><td>The Shift key.</td></tr>",
+          "     * <tr><th>Control</th><td>The Control (Ctrl) key.</td></tr>",
+          "     * <tr><th>Alt</th><td>The Alt (Menu) key.</td></tr>",
+          "     * <tr><th>CapsLock</th><td>The CapsLock key</td></tr>",
+          "     * <tr><th>Meta</th><td>The Meta key. (Apple Meta and Windows key)</td></tr>",
+          "     * <tr><th>Escape</th><td>The Escape (Esc) key.</td></tr>",
+          "     * <tr><th>Left</th><td>The Left Arrow key.</td></tr>",
+          "     * <tr><th>Up</th><td>The Up Arrow key.</td></tr>",
+          "     * <tr><th>Right</th><td>The Right Arrow key.</td></tr>",
+          "     * <tr><th>Down</th><td>The Down Arrow key.</td></tr>",
+          "     * <tr><th>PageUp</th><td>The Page Up key.</td></tr>",
+          "     * <tr><th>PageDown</th><td>The Page Down (Next) key.</td></tr>",
+          "     * <tr><th>End</th><td>The End key.</td></tr>",
+          "     * <tr><th>Home</th><td>The Home key.</td></tr>",
+          "     * <tr><th>Insert</th><td>The Insert (Ins) key. (Does not fire in Opera/Win)</td></tr>",
+          "     * <tr><th>Delete</th><td>The Delete (Del) Key.</td></tr>",
+          "     * <tr><th>F1</th><td>The F1 key.</td></tr>",
+          "     * <tr><th>F2</th><td>The F2 key.</td></tr>",
+          "     * <tr><th>F3</th><td>The F3 key.</td></tr>",
+          "     * <tr><th>F4</th><td>The F4 key.</td></tr>",
+          "     * <tr><th>F5</th><td>The F5 key.</td></tr>",
+          "     * <tr><th>F6</th><td>The F6 key.</td></tr>",
+          "     * <tr><th>F7</th><td>The F7 key.</td></tr>",
+          "     * <tr><th>F8</th><td>The F8 key.</td></tr>",
+          "     * <tr><th>F9</th><td>The F9 key.</td></tr>",
+          "     * <tr><th>F10</th><td>The F10 key.</td></tr>",
+          "     * <tr><th>F11</th><td>The F11 key.</td></tr>",
+          "     * <tr><th>F12</th><td>The F12 key.</td></tr>",
+          "     * <tr><th>NumLock</th><td>The Num Lock key.</td></tr>",
+          "     * <tr><th>PrintScreen</th><td>The Print Screen (PrintScrn, SnapShot) key.</td></tr>",
+          "     * <tr><th>Scroll</th><td>The scroll lock key</td></tr>",
+          "     * <tr><th>Pause</th><td>The pause/break key</td></tr>",
+          "     * <tr><th>Win</th><td>The Windows Logo key</td></tr>",
+          "     * <tr><th>Apps</th><td>The Application key (Windows Context Menu)</td></tr>",
+          "     * </table>",
+          "     *",
+          "     * @return {String} The key identifier",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -124,28 +187,44 @@
           {
             "name": "@return",
             "body": "{String} The key identifier",
-            "type": "String",
-            "description": " The key identifier"
+            "type": "string",
+            "description": "The key identifier"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "normalize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 117,
+          "line": 96,
           "column": 4,
-          "index": 4752
+          "index": 3979
         },
         "end": {
-          "line": 130,
+          "line": 106,
           "column": 5,
-          "index": 5168
+          "index": 4324
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "normalize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the native event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element the listener was attached to",
+          "     * @return {Event} Normalized event object",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -173,7 +252,7 @@
             "name": "@return",
             "body": "{Event} Normalized event object",
             "type": "Event",
-            "description": " Normalized event object"
+            "description": "Normalized event object"
           }
         ],
         "@internal": [
@@ -183,23 +262,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "registerInputFix": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 140,
+          "line": 117,
           "column": 4,
-          "index": 5511
+          "index": 4636
         },
         "end": {
-          "line": 153,
+          "line": 130,
           "column": 5,
-          "index": 5872
+          "index": 5039
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
+    },
+    "registerInputFix": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * IE9 will not fire an \"input\" event on text input elements if the user changes",
+          "     * the field's value by pressing the Backspace key. We fix this by listening",
+          "     * for the \"keyup\" event and emitting the missing event if necessary",
+          "     *",
+          "     * @param element {Element} Target element",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -222,23 +325,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "unregisterInputFix": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 161,
+          "line": 140,
           "column": 4,
-          "index": 6013
+          "index": 5372
         },
         "end": {
-          "line": 166,
+          "line": 153,
           "column": 5,
-          "index": 6241
+          "index": 5720
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unregisterInputFix": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the IE9 input event fix",
+          "     *",
+          "     * @param element {Element} target element",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -261,23 +379,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_inputFix": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 173,
+          "line": 161,
           "column": 4,
-          "index": 6422
+          "index": 5853
         },
         "end": {
-          "line": 185,
+          "line": 166,
           "column": 5,
-          "index": 6822
+          "index": 6076
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_inputFix": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * IE9 fix: Emits an \"input\" event if a text input element's value was changed",
+          "     * using the Backspace key",
+          "     * @param ev {Event} Keyup event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -294,23 +426,29 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 188,
-        "column": 2,
-        "index": 6834
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 6250
+        },
+        "end": {
+          "line": 185,
+          "column": 5,
+          "index": 6638
+        }
       },
-      "end": {
-        "line": 204,
-        "column": 3,
-        "index": 7230
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

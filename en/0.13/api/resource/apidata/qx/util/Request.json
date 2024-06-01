@@ -1,49 +1,47 @@
 {
-  "className": "qx.util.Request",
-  "packageName": "qx.util",
-  "name": "Request",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 594
-      },
-      "end": {
-        "line": 102,
-        "column": 3,
-        "index": 2624
-      }
+  "version": 0.3,
+  "lastModified": 1717235172110,
+  "lastModifiedIso": "2024-06-01T09:46:12.110Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/Request.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 572
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Static helpers for handling HTTP requests.</p>"
-        }
-      ]
+    "end": {
+      "line": 102,
+      "column": 3,
+      "index": 2523
     }
   },
-  "type": "class",
+  "className": "qx.util.Request",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Static helpers for handling HTTP requests.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Static helpers for handling HTTP requests.</p>"
+      }
+    ]
+  },
   "statics": {
     "isCrossDomain": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 868
-        },
-        "end": {
-          "line": 56,
-          "column": 5,
-          "index": 1461
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether URL given points to resource that is cross-domain,",
+          "     * i.e. not of same origin.",
+          "     *",
+          "     * @param url {String} URL.",
+          "     * @return {Boolean} Whether URL is cross domain.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,35 +54,53 @@
             "body": "url {String} URL.",
             "paramName": "url",
             "description": " URL.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether URL is cross domain.",
-            "type": "Boolean",
-            "description": " Whether URL is cross domain."
+            "type": "boolean",
+            "description": "Whether URL is cross domain."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isSuccessful": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 64,
+          "line": 32,
           "column": 4,
-          "index": 1672
+          "index": 837
         },
         "end": {
-          "line": 66,
+          "line": 56,
           "column": 5,
-          "index": 1766
+          "index": 1406
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isSuccessful": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine if given HTTP status is considered successful.",
+          "     *",
+          "     * @param status {Number} HTTP status.",
+          "     * @return {Boolean} Whether status is considered successful.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -97,35 +113,53 @@
             "body": "status {Number} HTTP status.",
             "paramName": "status",
             "description": " HTTP status.",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether status is considered successful.",
-            "type": "Boolean",
-            "description": " Whether status is considered successful."
+            "type": "boolean",
+            "description": "Whether status is considered successful."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isMethod": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 74,
+          "line": 64,
           "column": 4,
-          "index": 1959
+          "index": 1609
         },
         "end": {
-          "line": 88,
+          "line": 66,
           "column": 5,
-          "index": 2250
+          "index": 1701
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "status",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isMethod": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine if given HTTP method is valid.",
+          "     *",
+          "     * @param method {String} HTTP method.",
+          "     * @return {Boolean} Whether method is a valid HTTP method.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -138,35 +172,55 @@
             "body": "method {String} HTTP method.",
             "paramName": "method",
             "description": " HTTP method.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether method is a valid HTTP method.",
-            "type": "Boolean",
-            "description": " Whether method is a valid HTTP method."
+            "type": "boolean",
+            "description": "Whether method is a valid HTTP method."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "methodAllowsRequestBody": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 98,
+          "line": 74,
           "column": 4,
-          "index": 2530
+          "index": 1886
         },
         "end": {
-          "line": 100,
+          "line": 88,
           "column": 5,
-          "index": 2614
+          "index": 2163
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "method",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "methodAllowsRequestBody": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Request body is ignored for HTTP method GET and HEAD.",
+          "     *",
+          "     * See http://www.w3.org/TR/XMLHttpRequest2/#the-send-method.",
+          "     *",
+          "     * @param method {String} The HTTP method.",
+          "     * @return {Boolean} Whether request may contain body.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -179,21 +233,44 @@
             "body": "method {String} The HTTP method.",
             "paramName": "method",
             "description": " The HTTP method.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether request may contain body.",
-            "type": "Boolean",
-            "description": " Whether request may contain body."
+            "type": "boolean",
+            "description": "Whether request may contain body."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2433
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2515
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "method",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

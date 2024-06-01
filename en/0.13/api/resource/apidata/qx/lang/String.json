@@ -1,55 +1,55 @@
 {
-  "className": "qx.lang.String",
-  "packageName": "qx.lang",
-  "name": "String",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 58,
-        "column": 0,
-        "index": 1435
-      },
-      "end": {
-        "line": 444,
-        "column": 3,
-        "index": 15887
-      }
+  "version": 0.3,
+  "lastModified": 1717235172414,
+  "lastModifiedIso": "2024-06-01T09:46:12.414Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/String.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 58,
+      "column": 0,
+      "index": 1378
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>String helper functions\n The native JavaScript String is not modified by this class. However,\n there are modifications to the native String in {@link qx.lang.normalize.String} for\n browsers that do not support certain features.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.String"
-        }
-      ]
+    "end": {
+      "line": 444,
+      "column": 3,
+      "index": 15444
     }
   },
-  "type": "class",
+  "className": "qx.lang.String",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * String helper functions",
+      " *",
+      " * The native JavaScript String is not modified by this class. However,",
+      " * there are modifications to the native String in {@link qx.lang.normalize.String} for",
+      " * browsers that do not support certain features.",
+      " *",
+      " * @require(qx.lang.normalize.String)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>String helper functions\n The native JavaScript String is not modified by this class. However,\n there are modifications to the native String in {@link qx.lang.normalize.String} for\n browsers that do not support certain features.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.String"
+      }
+    ]
+  },
   "statics": {
     "__unicodeLetters": {
-      "location": {
-        "start": {
-          "line": 63,
-          "column": 4,
-          "index": 1653
-        },
-        "end": {
-          "line": 64,
-          "column": 2769,
-          "index": 4441
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Unicode letters.  they are taken from Steve Levithan's excellent XRegExp library [http://xregexp.com/addons/unicode/unicode-base.js]",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +57,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__unicodeFirstLetterInWordRegexp": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 69,
+          "line": 63,
           "column": 4,
-          "index": 4541
+          "index": 1591
         },
         "end": {
-          "line": 69,
-          "column": 42,
-          "index": 4579
+          "line": 64,
+          "column": 2769,
+          "index": 4378
         }
       },
+      "appearsIn": []
+    },
+    "__unicodeFirstLetterInWordRegexp": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * A RegExp that matches the first letter in a word - unicode aware",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -81,23 +86,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__camelCaseMap": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 75,
+          "line": 69,
           "column": 4,
-          "index": 4732
+          "index": 4473
         },
         "end": {
-          "line": 75,
-          "column": 22,
-          "index": 4750
+          "line": 69,
+          "column": 42,
+          "index": 4511
         }
       },
+      "appearsIn": []
+    },
+    "__camelCaseMap": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Cache for often used string operations [camelCasing and hyphenation]",
+          "     * e.g. marginTop => margin-top",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -111,23 +122,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__hyphenationMap": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 81,
+          "line": 75,
           "column": 4,
-          "index": 4872
+          "index": 4658
         },
         "end": {
-          "line": 81,
-          "column": 24,
-          "index": 4892
+          "line": 75,
+          "column": 22,
+          "index": 4676
         }
       },
+      "appearsIn": []
+    },
+    "__hyphenationMap": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * {Map} Cache for often used hyphenation operations",
+          "     * e.g. marginTop => margin-top",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -135,23 +152,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__characterTypes": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 84,
+          "line": 81,
           "column": 4,
-          "index": 5022
+          "index": 4792
         },
         "end": {
-          "line": 84,
-          "column": 26,
-          "index": 5044
+          "line": 81,
+          "column": 24,
+          "index": 4812
         }
       },
+      "appearsIn": []
+    },
+    "__characterTypes": {
       "jsdoc": {
+        "raw": [
+          "* @type{Map<char, String} character types, key is the character and the vaklue is `upper`, `lower`, or `digit` "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -165,23 +185,34 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "camelCase": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 95,
+          "line": 84,
           "column": 4,
-          "index": 5370
+          "index": 4939
         },
         "end": {
-          "line": 104,
-          "column": 5,
-          "index": 5654
+          "line": 84,
+          "column": 26,
+          "index": 4961
         }
       },
+      "appearsIn": []
+    },
+    "camelCase": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a hyphenated string (separated by '-') to camel case.",
+          "     *",
+          "     * Example:",
+          "     * <pre class='javascript'>qx.lang.String.camelCase(\"I-like-cookies\"); //returns \"ILikeCookies\"</pre>",
+          "     *",
+          "     * @param str {String} hyphenated string",
+          "     * @return {String} camelcase string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -194,35 +225,56 @@
             "body": "str {String} hyphenated string",
             "paramName": "str",
             "description": " hyphenated string",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} camelcase string",
-            "type": "qx.lang.String",
-            "description": " camelcase string"
+            "type": "string",
+            "description": "camelcase string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hyphenate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 115,
+          "line": 95,
           "column": 4,
-          "index": 5992
+          "index": 5276
         },
         "end": {
-          "line": 124,
+          "line": 104,
           "column": 5,
-          "index": 6289
+          "index": 5551
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "hyphenate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a camelcased string to a hyphenated (separated by '-') string.",
+          "     *",
+          "     * Example:",
+          "     * <pre class='javascript'>qx.lang.String.hyphenate(\"weLikeCookies\"); //returns \"we-like-cookies\"</pre>",
+          "     *",
+          "     * @param str {String} camelcased string",
+          "     * @return {String} hyphenated string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -235,35 +287,56 @@
             "body": "str {String} camelcased string",
             "paramName": "str",
             "description": " camelcased string",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} hyphenated string",
-            "type": "qx.lang.String",
-            "description": " hyphenated string"
+            "type": "string",
+            "description": "hyphenated string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "capitalize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 135,
+          "line": 115,
           "column": 4,
-          "index": 6582
+          "index": 5878
         },
         "end": {
-          "line": 157,
+          "line": 124,
           "column": 5,
-          "index": 7323
+          "index": 6166
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "capitalize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a string to camel case.",
+          "     *",
+          "     * Example:",
+          "     * <pre class='javascript'>qx.lang.String.camelCase(\"i like cookies\"); //returns \"I Like Cookies\"</pre>",
+          "     *",
+          "     * @param str {String} any string",
+          "     * @return {String} capitalized string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -276,35 +349,52 @@
             "body": "str {String} any string",
             "paramName": "str",
             "description": " any string",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} capitalized string",
-            "type": "qx.lang.String",
-            "description": " capitalized string"
+            "type": "string",
+            "description": "capitalized string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isUpperCase": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 164,
+          "line": 135,
           "column": 4,
-          "index": 7458
+          "index": 6448
         },
         "end": {
-          "line": 166,
+          "line": 157,
           "column": 5,
-          "index": 7543
+          "index": 7167
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "isUpperCase": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the string is all upper case",
+          "     * @param {String} str",
+          "     * @returns {Boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -314,35 +404,55 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{String} str"
+            "body": "{String} str",
+            "paramName": "str",
+            "description": "",
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean}",
-            "type": "Boolean",
+            "type": "boolean",
             "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isLowerCase": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 173,
+          "line": 164,
           "column": 4,
-          "index": 7678
+          "index": 7295
         },
         "end": {
-          "line": 175,
+          "line": 166,
           "column": 5,
-          "index": 7763
+          "index": 7378
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isLowerCase": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the string is all lower case",
+          "     * @param {String} str",
+          "     * @returns {Boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -352,35 +462,55 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{String} str"
+            "body": "{String} str",
+            "paramName": "str",
+            "description": "",
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean}",
-            "type": "Boolean",
+            "type": "boolean",
             "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isLetters": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 182,
+          "line": 173,
           "column": 4,
-          "index": 7895
+          "index": 7506
         },
         "end": {
-          "line": 184,
+          "line": 175,
           "column": 5,
-          "index": 7979
+          "index": 7589
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isLetters": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the string is all letters",
+          "     * @param {String} str",
+          "     * @returns {Boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -390,35 +520,55 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{String} str"
+            "body": "{String} str",
+            "paramName": "str",
+            "description": "",
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean}",
-            "type": "Boolean",
+            "type": "boolean",
             "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isDigits": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 191,
+          "line": 182,
           "column": 4,
-          "index": 8110
+          "index": 7714
         },
         "end": {
-          "line": 193,
+          "line": 184,
           "column": 5,
-          "index": 8192
+          "index": 7796
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isDigits": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the string is all digits",
+          "     * @param {String} str",
+          "     * @returns {Boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -428,35 +578,64 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{String} str"
+            "body": "{String} str",
+            "paramName": "str",
+            "description": "",
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean}",
-            "type": "Boolean",
+            "type": "boolean",
             "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clean": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 209,
+          "line": 191,
           "column": 4,
-          "index": 8563
+          "index": 7920
         },
         "end": {
-          "line": 211,
+          "line": 193,
           "column": 5,
-          "index": 8629
+          "index": 8000
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "clean": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes all extraneous whitespace from a string and trims it",
+          "     *",
+          "     * Example:",
+          "     *",
+          "     * <code>",
+          "     * qx.lang.String.clean(\" i      like     cookies      \\n\\n\");",
+          "     * </code>",
+          "     *",
+          "     * Returns \"i like cookies\"",
+          "     *",
+          "     * @param str {String} the string to clean up",
+          "     * @return {String} Cleaned up string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -469,35 +648,53 @@
             "body": "str {String} the string to clean up",
             "paramName": "str",
             "description": " the string to clean up",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} Cleaned up string",
-            "type": "qx.lang.String",
-            "description": " Cleaned up string"
+            "type": "string",
+            "description": "Cleaned up string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "trimLeft": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 219,
+          "line": 209,
           "column": 4,
-          "index": 8814
+          "index": 8355
         },
         "end": {
-          "line": 221,
+          "line": 211,
           "column": 5,
-          "index": 8875
+          "index": 8419
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "trimLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * removes white space from the left side of a string",
+          "     *",
+          "     * @param str {String} the string to trim",
+          "     * @return {String} the trimmed string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -510,35 +707,53 @@
             "body": "str {String} the string to trim",
             "paramName": "str",
             "description": " the string to trim",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the trimmed string",
-            "type": "qx.lang.String",
-            "description": " the trimmed string"
+            "type": "string",
+            "description": "the trimmed string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "trimRight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 229,
+          "line": 219,
           "column": 4,
-          "index": 9061
+          "index": 8596
         },
         "end": {
-          "line": 231,
+          "line": 221,
           "column": 5,
-          "index": 9123
+          "index": 8655
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "trimRight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * removes white space from the right side of a string",
+          "     *",
+          "     * @param str {String} the string to trim",
+          "     * @return {String} the trimmed string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -551,35 +766,56 @@
             "body": "str {String} the string to trim",
             "paramName": "str",
             "description": " the string to trim",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the trimmed string",
-            "type": "qx.lang.String",
-            "description": " the trimmed string"
+            "type": "string",
+            "description": "the trimmed string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "startsWith": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 242,
+          "line": 229,
           "column": 4,
-          "index": 9500
+          "index": 8833
         },
         "end": {
-          "line": 244,
+          "line": 231,
           "column": 5,
-          "index": 9578
+          "index": 8893
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "startsWith": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether the string starts with the given substring",
+          "     *",
+          "     * @deprecated {6.0} Please use String instance startsWith method instead",
+          "     *",
+          "     * @param fullstr {String} the string to search in",
+          "     * @param substr {String} the substring to look for",
+          "     * @return {Boolean} whether the string starts with the given substring",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -598,42 +834,67 @@
             "body": "fullstr {String} the string to search in",
             "paramName": "fullstr",
             "description": " the string to search in",
-            "type": "qx.lang.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "substr {String} the substring to look for",
             "paramName": "substr",
             "description": " the substring to look for",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the string starts with the given substring",
-            "type": "Boolean",
-            "description": " whether the string starts with the given substring"
+            "type": "boolean",
+            "description": "whether the string starts with the given substring"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "endsWith": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 255,
+          "line": 242,
           "column": 4,
-          "index": 9949
+          "index": 9259
         },
         "end": {
-          "line": 257,
+          "line": 244,
           "column": 5,
-          "index": 10023
+          "index": 9335
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "fullstr",
+          "type": "string"
+        },
+        {
+          "name": "substr",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "endsWith": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether the string ends with the given substring",
+          "     *",
+          "     * @deprecated {6.0} Please use String instance endsWith method instead",
+          "     *",
+          "     * @param fullstr {String} the string to search in",
+          "     * @param substr {String} the substring to look for",
+          "     * @return {Boolean} whether the string ends with the given substring",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -652,42 +913,65 @@
             "body": "fullstr {String} the string to search in",
             "paramName": "fullstr",
             "description": " the string to search in",
-            "type": "qx.lang.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "substr {String} the substring to look for",
             "paramName": "substr",
             "description": " the substring to look for",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the string ends with the given substring",
-            "type": "Boolean",
-            "description": " whether the string ends with the given substring"
+            "type": "boolean",
+            "description": "whether the string ends with the given substring"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "repeat": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 266,
+          "line": 255,
           "column": 4,
-          "index": 10270
+          "index": 9695
         },
         "end": {
-          "line": 268,
+          "line": 257,
           "column": 5,
-          "index": 10365
+          "index": 9767
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "fullstr",
+          "type": "string"
+        },
+        {
+          "name": "substr",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "repeat": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a string, which repeats a string 'length' times",
+          "     *",
+          "     * @param str {String} string used to repeat",
+          "     * @param times {Integer} the number of repetitions",
+          "     * @return {String} repeated string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -700,7 +984,7 @@
             "body": "str {String} string used to repeat",
             "paramName": "str",
             "description": " string used to repeat",
-            "type": "qx.lang.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -714,28 +998,52 @@
           {
             "name": "@return",
             "body": "{String} repeated string",
-            "type": "qx.lang.String",
-            "description": " repeated string"
+            "type": "string",
+            "description": "repeated string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "pad": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 278,
+          "line": 266,
           "column": 4,
-          "index": 10711
+          "index": 10005
         },
         "end": {
-          "line": 288,
+          "line": 268,
           "column": 5,
-          "index": 10982
+          "index": 10098
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        },
+        {
+          "name": "times",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "pad": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pad a string up to a given length. Padding characters are added to the left of the string.",
+          "     *",
+          "     * @param str {String} the string to pad",
+          "     * @param length {Integer} the final length of the string",
+          "     * @param ch {String} character used to fill up the string",
+          "     * @return {String} padded string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -748,7 +1056,7 @@
             "body": "str {String} the string to pad",
             "paramName": "str",
             "description": " the string to pad",
-            "type": "qx.lang.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -762,35 +1070,62 @@
             "body": "ch {String} character used to fill up the string",
             "paramName": "ch",
             "description": " character used to fill up the string",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} padded string",
-            "type": "qx.lang.String",
-            "description": " padded string"
+            "type": "string",
+            "description": "padded string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "firstUp": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 297,
+          "line": 278,
           "column": 4,
-          "index": 11225
+          "index": 10434
         },
         "end": {
-          "line": 297,
-          "column": 33,
-          "index": 11254
+          "line": 288,
+          "column": 5,
+          "index": 10695
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        },
+        {
+          "name": "length",
+          "type": "Integer"
+        },
+        {
+          "name": "ch",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "firstUp": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convert the first character of the string to upper case.",
+          "     *",
+          "     * @signature function(str)",
+          "     * @param str {String} the string",
+          "     * @return {String} the string with an upper case first character",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -809,35 +1144,47 @@
             "body": "str {String} the string",
             "paramName": "str",
             "description": " the string",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the string with an upper case first character",
-            "type": "qx.lang.String",
-            "description": " the string with an upper case first character"
+            "type": "string",
+            "description": "the string with an upper case first character"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "firstLow": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 306,
+          "line": 297,
           "column": 4,
-          "index": 11496
+          "index": 10929
         },
         "end": {
-          "line": 306,
-          "column": 35,
-          "index": 11527
+          "line": 297,
+          "column": 33,
+          "index": 10958
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "firstLow": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convert the first character of the string to lower case.",
+          "     *",
+          "     * @signature function(str)",
+          "     * @param str {String} the string",
+          "     * @return {String} the string with a lower case first character",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -856,35 +1203,47 @@
             "body": "str {String} the string",
             "paramName": "str",
             "description": " the string",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the string with a lower case first character",
-            "type": "qx.lang.String",
-            "description": " the string with a lower case first character"
+            "type": "string",
+            "description": "the string with a lower case first character"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "contains": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 315,
+          "line": 306,
           "column": 4,
-          "index": 11787
+          "index": 11191
         },
         "end": {
-          "line": 317,
-          "column": 5,
-          "index": 11864
+          "line": 306,
+          "column": 35,
+          "index": 11222
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "contains": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether the string contains a given substring",
+          "     *",
+          "     * @param str {String} the string",
+          "     * @param substring {String} substring to search for",
+          "     * @return {Boolean} whether the string contains the substring",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -897,42 +1256,72 @@
             "body": "str {String} the string",
             "paramName": "str",
             "description": " the string",
-            "type": "qx.lang.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "substring {String} substring to search for",
             "paramName": "substring",
             "description": " substring to search for",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the string contains the substring",
-            "type": "Boolean",
-            "description": " whether the string contains the substring"
+            "type": "boolean",
+            "description": "whether the string contains the substring"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "format": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 333,
+          "line": 315,
           "column": 4,
-          "index": 12800
+          "index": 11473
         },
         "end": {
-          "line": 367,
+          "line": 317,
           "column": 5,
-          "index": 13652
+          "index": 11548
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        },
+        {
+          "name": "substring",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "format": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Print a list of arguments using a format string",
+          "     * In the format string occurrences of %n are replaced by the n'th element of the args list.",
+          "     * You can give an object as argument.",
+          "     * In this case you should specify namedArgument in your string with %{namedArgument}.",
+          "     * The named argument will be replace by the value of the property of the object named \"namedArgument\"",
+          "     * Example:",
+          "     * <pre class='javascript'>qx.lang.String.format(\"Hello %1, my name is %2\", [\"Egon\", \"Franz\"]) == \"Hello Egon, my name is Franz\"</pre>",
+          "     * <pre class='javascript'>qx.lang.String.format(\"Hello %{yourName}, my name is %{myName}\", {yourName: \"Egon\", myName: \"Franz\"}) == \"Hello Egon, my name is Franz\"</pre>",
+          "     *",
+          "     * @param pattern {String} format string",
+          "     * @param args {Array} array of arguments to insert into the format string",
+          "     * @return {String} the formatted string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -945,42 +1334,64 @@
             "body": "pattern {String} format string",
             "paramName": "pattern",
             "description": " format string",
-            "type": "qx.lang.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "args {Array} array of arguments to insert into the format string",
             "paramName": "args",
             "description": " array of arguments to insert into the format string",
-            "type": "qx.lang.Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the formatted string",
-            "type": "qx.lang.String",
-            "description": " the formatted string"
+            "type": "string",
+            "description": "the formatted string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "escapeRegexpChars": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 375,
+          "line": 333,
           "column": 4,
-          "index": 13890
+          "index": 12468
         },
         "end": {
-          "line": 377,
+          "line": 367,
           "column": 5,
-          "index": 13983
+          "index": 13286
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "pattern",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "escapeRegexpChars": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Escapes all chars that have a special meaning in regular expressions",
+          "     *",
+          "     * @param str {String} the string where to escape the chars.",
+          "     * @return {String} the string with the escaped chars.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -993,35 +1404,54 @@
             "body": "str {String} the string where to escape the chars.",
             "paramName": "str",
             "description": " the string where to escape the chars.",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the string with the escaped chars.",
-            "type": "qx.lang.String",
-            "description": " the string with the escaped chars."
+            "type": "string",
+            "description": "the string with the escaped chars."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toArray": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 386,
+          "line": 375,
           "column": 4,
-          "index": 14246
+          "index": 13516
         },
         "end": {
-          "line": 388,
+          "line": 377,
           "column": 5,
-          "index": 14302
+          "index": 13607
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toArray": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a string to an array of characters.",
+          "     * <pre>\"hello\" => [ \"h\", \"e\", \"l\", \"l\", \"o\" ];</pre>",
+          "     *",
+          "     * @param str {String} the string which should be split",
+          "     * @return {Array} the result array of characters",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1034,35 +1464,55 @@
             "body": "str {String} the string which should be split",
             "paramName": "str",
             "description": " the string which should be split",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} the result array of characters",
-            "type": "qx.lang.Array",
-            "description": " the result array of characters"
+            "type": "Array<any>",
+            "description": "the result array of characters"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "stripTags": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 398,
+          "line": 386,
           "column": 4,
-          "index": 14601
+          "index": 13861
         },
         "end": {
-          "line": 400,
+          "line": 388,
           "column": 5,
-          "index": 14671
+          "index": 13915
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "stripTags": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove HTML/XML tags from a string",
+          "     * Example:",
+          "     * <pre class='javascript'>qx.lang.String.stripTags(\"&lt;h1>Hello&lt;/h1>\") == \"Hello\"</pre>",
+          "     *",
+          "     * @param str {String} string containing tags",
+          "     * @return {String} the string with stripped tags",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1075,35 +1525,54 @@
             "body": "str {String} string containing tags",
             "paramName": "str",
             "description": " string containing tags",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the string with stripped tags",
-            "type": "qx.lang.String",
-            "description": " the string with stripped tags"
+            "type": "string",
+            "description": "the string with stripped tags"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "stripScripts": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 409,
+          "line": 398,
           "column": 4,
-          "index": 14957
+          "index": 14204
         },
         "end": {
-          "line": 424,
+          "line": 400,
           "column": 5,
-          "index": 15310
+          "index": 14272
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "stripScripts": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Strips <script> tags including its content from the given string.",
+          "     *",
+          "     * @param str {String} string containing tags",
+          "     * @param exec {Boolean?false} Whether the filtered code should be executed",
+          "     * @return {String} The filtered string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1116,7 +1585,7 @@
             "body": "str {String} string containing tags",
             "paramName": "str",
             "description": " string containing tags",
-            "type": "qx.lang.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -1132,28 +1601,51 @@
           {
             "name": "@return",
             "body": "{String} The filtered string",
-            "type": "qx.lang.String",
-            "description": " The filtered string"
+            "type": "string",
+            "description": "The filtered string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "quote": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 431,
+          "line": 409,
           "column": 4,
-          "index": 15459
+          "index": 14549
         },
         "end": {
-          "line": 433,
+          "line": 424,
           "column": 5,
-          "index": 15554
+          "index": 14887
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        },
+        {
+          "name": "exec",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "quote": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Quotes the given string.",
+          "     * @param str {String} String to quote.",
+          "     * @return {String} The quoted string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1166,35 +1658,44 @@
             "body": "str {String} String to quote.",
             "paramName": "str",
             "description": " String to quote.",
-            "type": "qx.lang.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The quoted string.",
-            "type": "qx.lang.String",
-            "description": " The quoted string."
+            "type": "string",
+            "description": "The quoted string."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 436,
-        "column": 2,
-        "index": 15566
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 431,
+          "column": 4,
+          "index": 15029
+        },
+        "end": {
+          "line": 433,
+          "column": 5,
+          "index": 15122
+        }
       },
-      "end": {
-        "line": 443,
-        "column": 3,
-        "index": 15882
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

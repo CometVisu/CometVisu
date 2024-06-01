@@ -1,135 +1,165 @@
 {
-  "className": "qx.core.GlobalError",
-  "packageName": "qx.core",
-  "name": "GlobalError",
-  "superClass": "Error",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 623
-      },
-      "end": {
-        "line": 88,
-        "column": 3,
-        "index": 2089
-      }
+  "version": 0.3,
+  "lastModified": 1717235171058,
+  "lastModifiedIso": "2024-06-01T09:46:11.058Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/GlobalError.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 601
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This exception is thrown by the {@link qx.event.GlobalError} handler if a\n observed method throws an exception.</p>"
-        }
-      ]
+    "end": {
+      "line": 88,
+      "column": 3,
+      "index": 2002
     }
   },
-  "type": "class",
+  "className": "qx.core.GlobalError",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This exception is thrown by the {@link qx.event.GlobalError} handler if a",
+      " * observed method throws an exception.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This exception is thrown by the {@link qx.event.GlobalError} handler if a\n observed method throws an exception.</p>"
+      }
+    ]
+  },
+  "superClass": "Error",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "exc"
+      },
+      {
+        "name": "args"
+      }
+    ],
     "location": {
       "start": {
         "line": 30,
         "column": 2,
-        "index": 783
+        "index": 754
       },
       "end": {
         "line": 54,
         "column": 3,
-        "index": 1504
+        "index": 1451
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "exc {Error} source exception",
-          "paramName": "exc",
-          "description": " source exception",
-          "type": "Error"
-        },
-        {
-          "name": "@param",
-          "body": "args {Array} arguments",
-          "paramName": "args",
-          "description": " arguments",
-          "type": "Array"
-        }
-      ]
     }
   },
   "members": {
     "__exc": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 57,
           "column": 4,
-          "index": 1527
+          "index": 1471
         },
         "end": {
           "line": 57,
           "column": 15,
-          "index": 1538
+          "index": 1482
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__arguments": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 58,
           "column": 4,
-          "index": 1545
+          "index": 1488
         },
         "end": {
           "line": 58,
           "column": 21,
-          "index": 1562
+          "index": 1505
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__failMessage": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 59,
           "column": 4,
-          "index": 1569
+          "index": 1511
         },
         "end": {
           "line": 59,
           "column": 23,
-          "index": 1588
+          "index": 1530
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
-    "getArguments": {
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the error message.",
+          "     *",
+          "     * @return {String} error message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the error message.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} error message",
+            "type": "string",
+            "description": "error message"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 66,
           "column": 4,
-          "index": 1860
+          "index": 1632
         },
         "end": {
-          "line": 77,
+          "line": 68,
           "column": 5,
-          "index": 1915
+          "index": 1683
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getArguments": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the arguments which are",
+          "     *",
+          "     * @return {Object} arguments",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -140,28 +170,40 @@
           {
             "name": "@return",
             "body": "{Object} arguments",
-            "type": "qx.core.Object",
-            "description": " arguments"
+            "type": "Record<any, any>",
+            "description": "arguments"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSourceException": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 84,
+          "line": 75,
           "column": 4,
-          "index": 2024
+          "index": 1786
         },
         "end": {
-          "line": 86,
+          "line": 77,
           "column": 5,
-          "index": 2079
+          "index": 1839
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getSourceException": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the source exception",
+          "     *",
+          "     * @return {Error} source exception",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -173,13 +215,31 @@
             "name": "@return",
             "body": "{Error} source exception",
             "type": "Error",
-            "description": " source exception"
+            "description": "source exception"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 1941
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 1994
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "Error"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "include",
+    "MRequirements",
+    "members",
+    "hasReader",
+    "core",
+    "Environment",
+    "get",
+    "setUp",
+    "tearDown",
+    "test",
+    "bom",
+    "FileReader"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/bom/FileReader.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Derrell Lipman (derrell)\n\n************************************************************************ */\n\n/* ************************************************************************\n\n\n************************************************************************ */\n/**\n *\n * @asset(qx/test/webworker.js)\n */\n\nqx.Class.define(\"qx.test.bom.FileReader\", {\n  extend: qx.dev.unit.TestCase,\n  include: [qx.dev.unit.MRequirements],\n\n  members: {\n    hasReader() {\n      return qx.core.Environment.get(\"html.filereader\");\n    },\n\n    setUp() {},\n\n    tearDown() {}\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxCC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAC5BC,OAAO,EAAE,CAACV,EAAE,CAACO,GAAG,CAACC,IAAI,CAACG,aAAa,CAAC;IAEpCC,OAAO,EAAE;MACPC,SAAS,WAAAA,UAAA,EAAG;QACV,OAAOb,EAAE,CAACc,IAAI,CAACC,WAAW,CAACC,GAAG,CAAC,iBAAiB,CAAC;MACnD,CAAC;MAEDC,KAAK,WAAAA,MAAA,EAAG,CAAC,CAAC;MAEVC,QAAQ,WAAAA,SAAA,EAAG,CAAC;IACd;EACF,CAAC,CAAC;EAxCFlB,EAAE,CAACmB,IAAI,CAACC,GAAG,CAACC,UAAU,CAAClB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

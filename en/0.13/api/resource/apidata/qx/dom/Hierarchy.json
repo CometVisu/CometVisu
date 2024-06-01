@@ -1,49 +1,49 @@
 {
-  "className": "qx.dom.Hierarchy",
-  "packageName": "qx.dom",
-  "name": "Hierarchy",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 63,
-        "column": 0,
-        "index": 2282
-      },
-      "end": {
-        "line": 453,
-        "column": 3,
-        "index": 13151
-      }
+  "version": 0.3,
+  "lastModified": 1717235171122,
+  "lastModifiedIso": "2024-06-01T09:46:11.122Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dom/Hierarchy.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 63,
+      "column": 0,
+      "index": 2220
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Methods to operate on nodes and elements on a DOM tree. This contains\n special getters to query for child nodes, siblings, etc. This class also\n supports to operate on one element and reorganize the content with\n the insertion of new HTML or nodes.</p>"
-        }
-      ]
+    "end": {
+      "line": 453,
+      "column": 3,
+      "index": 12699
     }
   },
-  "type": "class",
+  "className": "qx.dom.Hierarchy",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Methods to operate on nodes and elements on a DOM tree. This contains",
+      " * special getters to query for child nodes, siblings, etc. This class also",
+      " * supports to operate on one element and reorganize the content with",
+      " * the insertion of new HTML or nodes.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Methods to operate on nodes and elements on a DOM tree. This contains\n special getters to query for child nodes, siblings, etc. This class also\n supports to operate on one element and reorganize the content with\n the insertion of new HTML or nodes.</p>"
+      }
+    ]
+  },
   "statics": {
     "getNodeIndex": {
-      "location": {
-        "start": {
-          "line": 71,
-          "column": 4,
-          "index": 2501
-        },
-        "end": {
-          "line": 79,
-          "column": 5,
-          "index": 2657
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the DOM index of the given node",
+          "     *",
+          "     * @param node {Node} Node to look for",
+          "     * @return {Integer} The DOM index",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -64,27 +64,45 @@
             "name": "@return",
             "body": "{Integer} The DOM index",
             "type": "Integer",
-            "description": " The DOM index"
+            "description": "The DOM index"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getElementIndex": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 87,
+          "line": 71,
           "column": 4,
-          "index": 2860
+          "index": 2431
         },
         "end": {
-          "line": 98,
+          "line": 79,
           "column": 5,
-          "index": 3124
+          "index": 2579
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.dom.Node"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getElementIndex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the DOM index of the given element (ignoring non-elements)",
+          "     *",
+          "     * @param element {Element} Element to look for",
+          "     * @return {Integer} The DOM index",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -105,27 +123,47 @@
             "name": "@return",
             "body": "{Integer} The DOM index",
             "type": "Integer",
-            "description": " The DOM index"
+            "description": "The DOM index"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getNextElementSibling": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 108,
+          "line": 87,
           "column": 4,
-          "index": 3413
+          "index": 2774
         },
         "end": {
-          "line": 118,
+          "line": 98,
           "column": 5,
-          "index": 3644
+          "index": 3027
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getNextElementSibling": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the next element to the supplied element",
+          "     *",
+          "     * \"nextSibling\" is not good enough as it might return a text or comment element",
+          "     *",
+          "     * @param element {Element} Starting element node",
+          "     * @return {Element|null} Next element node",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -146,27 +184,47 @@
             "name": "@return",
             "body": "{Element|null} Next element node",
             "type": "Element|null",
-            "description": " Next element node"
+            "description": "Next element node"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPreviousElementSibling": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 128,
+          "line": 108,
           "column": 4,
-          "index": 3945
+          "index": 3306
         },
         "end": {
-          "line": 138,
+          "line": 118,
           "column": 5,
-          "index": 4184
+          "index": 3527
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "Element|null"
+      },
+      "appearsIn": []
+    },
+    "getPreviousElementSibling": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the previous element to the supplied element",
+          "     *",
+          "     * \"previousSibling\" is not good enough as it might return a text or comment element",
+          "     *",
+          "     * @param element {Element} Starting element node",
+          "     * @return {Element|null} Previous element node",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -187,27 +245,49 @@
             "name": "@return",
             "body": "{Element|null} Previous element node",
             "type": "Element|null",
-            "description": " Previous element node"
+            "description": "Previous element node"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "contains": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 150,
+          "line": 128,
           "column": 4,
-          "index": 4524
+          "index": 3818
         },
         "end": {
-          "line": 176,
+          "line": 138,
           "column": 5,
-          "index": 5378
+          "index": 4047
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "Element|null"
+      },
+      "appearsIn": []
+    },
+    "contains": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the first element contains the second one",
+          "     *",
+          "     * Uses native non-standard contains() in Internet Explorer,",
+          "     * Opera and Webkit (supported since Safari 3.0 beta)",
+          "     *",
+          "     * @param element {Element} Parent element",
+          "     * @param target {Node} Child node",
+          "     * @return {Boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -234,28 +314,52 @@
           {
             "name": "@return",
             "body": "{Boolean}",
-            "type": "Boolean",
+            "type": "boolean",
             "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isRendered": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 186,
+          "line": 150,
           "column": 4,
-          "index": 5662
+          "index": 4375
         },
         "end": {
-          "line": 212,
+          "line": 176,
           "column": 5,
-          "index": 6407
+          "index": 5203
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        },
+        {
+          "name": "target",
+          "type": "qx.dom.Node"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isRendered": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the element is inserted into the document",
+          "     * for which it was created.",
+          "     *",
+          "     * @param element {Element} DOM element to check",
+          "     * @return {Boolean} <code>true</code> when the element is inserted",
+          "     *    into the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -275,28 +379,47 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when the element is inserted\n    into the document.",
-            "type": "Boolean",
-            "description": " <code>true</code> when the element is inserted\n    into the document."
+            "type": "boolean",
+            "description": "<code>true</code> when the element is inserted\n    into the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isDescendantOf": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 221,
+          "line": 186,
           "column": 4,
-          "index": 6681
+          "index": 5477
         },
         "end": {
-          "line": 223,
+          "line": 212,
           "column": 5,
-          "index": 6771
+          "index": 6196
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isDescendantOf": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if <code>element</code> is a descendant of <code>ancestor</code>.",
+          "     *",
+          "     * @param element {Element} first element",
+          "     * @param ancestor {Element} second element",
+          "     * @return {Boolean} Element is a descendant of ancestor",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -323,28 +446,54 @@
           {
             "name": "@return",
             "body": "{Boolean} Element is a descendant of ancestor",
-            "type": "Boolean",
-            "description": " Element is a descendant of ancestor"
+            "type": "boolean",
+            "description": "Element is a descendant of ancestor"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCommonParent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 235,
+          "line": 221,
           "column": 4,
-          "index": 7200
+          "index": 6461
         },
         "end": {
-          "line": 275,
+          "line": 223,
           "column": 5,
-          "index": 8169
+          "index": 6549
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        },
+        {
+          "name": "ancestor",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getCommonParent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the common parent element of two given elements. Returns",
+          "     * <code>null</code> when no common element has been found.",
+          "     *",
+          "     * Uses native non-standard contains() in Opera and Internet Explorer",
+          "     *",
+          "     * @param element1 {Element} First element",
+          "     * @param element2 {Element} Second element",
+          "     * @return {Element} the found parent, if none was found <code>null</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -372,27 +521,50 @@
             "name": "@return",
             "body": "{Element} the found parent, if none was found <code>null</code>",
             "type": "qx.dom.Element",
-            "description": " the found parent, if none was found <code>null</code>"
+            "description": "the found parent, if none was found <code>null</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAncestors": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 284,
+          "line": 235,
           "column": 4,
-          "index": 8410
+          "index": 6966
         },
         "end": {
-          "line": 286,
+          "line": 275,
           "column": 5,
-          "index": 8503
+          "index": 7895
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element1",
+          "type": "qx.dom.Element"
+        },
+        {
+          "name": "element2",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "qx.dom.Element"
+      },
+      "appearsIn": []
+    },
+    "getAncestors": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Collects all of element's ancestors and returns them as an array of",
+          "     * elements.",
+          "     *",
+          "     * @param element {Element} DOM element to query for ancestors",
+          "     * @return {Array} list of all parents",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -412,28 +584,46 @@
           {
             "name": "@return",
             "body": "{Array} list of all parents",
-            "type": "Array",
-            "description": " list of all parents"
+            "type": "Array<any>",
+            "description": "list of all parents"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getChildElements": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 294,
+          "line": 284,
           "column": 4,
-          "index": 8698
+          "index": 8127
         },
         "end": {
-          "line": 308,
+          "line": 286,
           "column": 5,
-          "index": 8973
+          "index": 8218
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getChildElements": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns element's children.",
+          "     *",
+          "     * @param element {Element} DOM element to query for child elements",
+          "     * @return {Array} list of all child elements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -453,28 +643,47 @@
           {
             "name": "@return",
             "body": "{Array} list of all child elements",
-            "type": "Array",
-            "description": " list of all child elements"
+            "type": "Array<any>",
+            "description": "list of all child elements"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDescendants": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 317,
+          "line": 294,
           "column": 4,
-          "index": 9235
+          "index": 8405
         },
         "end": {
-          "line": 319,
+          "line": 308,
           "column": 5,
-          "index": 9346
+          "index": 8666
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getDescendants": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Collects all of element's descendants (deep) and returns them as an array",
+          "     * of elements.",
+          "     *",
+          "     * @param element {Element} DOM element to query for child elements",
+          "     * @return {Array} list of all found elements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -494,28 +703,47 @@
           {
             "name": "@return",
             "body": "{Array} list of all found elements",
-            "type": "Array",
-            "description": " list of all found elements"
+            "type": "Array<any>",
+            "description": "list of all found elements"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getFirstDescendant": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 328,
+          "line": 317,
           "column": 4,
-          "index": 9667
+          "index": 8919
         },
         "end": {
-          "line": 336,
+          "line": 319,
           "column": 5,
-          "index": 9866
+          "index": 9028
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getFirstDescendant": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the first child that is an element. This is opposed to firstChild DOM",
+          "     * property which will return any node (whitespace in most usual cases).",
+          "     *",
+          "     * @param element {Element} DOM element to query for first descendant",
+          "     * @return {Element} the first descendant",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -536,27 +764,46 @@
             "name": "@return",
             "body": "{Element} the first descendant",
             "type": "qx.dom.Element",
-            "description": " the first descendant"
+            "description": "the first descendant"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLastDescendant": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 345,
+          "line": 328,
           "column": 4,
-          "index": 10183
+          "index": 9340
         },
         "end": {
-          "line": 353,
+          "line": 336,
           "column": 5,
-          "index": 10384
+          "index": 9531
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "qx.dom.Element"
+      },
+      "appearsIn": []
+    },
+    "getLastDescendant": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the last child that is an element. This is opposed to lastChild DOM",
+          "     * property which will return any node (whitespace in most usual cases).",
+          "     *",
+          "     * @param element {Element} DOM element to query for last descendant",
+          "     * @return {Element} the last descendant",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -577,27 +824,45 @@
             "name": "@return",
             "body": "{Element} the last descendant",
             "type": "qx.dom.Element",
-            "description": " the last descendant"
+            "description": "the last descendant"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPreviousSiblings": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 361,
+          "line": 345,
           "column": 4,
-          "index": 10640
+          "index": 9839
         },
         "end": {
-          "line": 363,
+          "line": 353,
           "column": 5,
-          "index": 10745
+          "index": 10032
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "qx.dom.Element"
+      },
+      "appearsIn": []
+    },
+    "getPreviousSiblings": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Collects all of element's previous siblings and returns them as an array of elements.",
+          "     *",
+          "     * @param element {Element} DOM element to query for previous siblings",
+          "     * @return {Array} list of found DOM elements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -617,28 +882,47 @@
           {
             "name": "@return",
             "body": "{Array} list of found DOM elements",
-            "type": "Array",
-            "description": " list of found DOM elements"
+            "type": "Array<any>",
+            "description": "list of found DOM elements"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getNextSiblings": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 372,
+          "line": 361,
           "column": 4,
-          "index": 11001
+          "index": 10280
         },
         "end": {
-          "line": 374,
+          "line": 363,
           "column": 5,
-          "index": 11098
+          "index": 10383
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getNextSiblings": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Collects all of element's next siblings and returns them as an array of",
+          "     * elements.",
+          "     *",
+          "     * @param element {Element} DOM element to query for next siblings",
+          "     * @return {Array} list of found DOM elements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -658,28 +942,50 @@
           {
             "name": "@return",
             "body": "{Array} list of found DOM elements",
-            "type": "Array",
-            "description": " list of found DOM elements"
+            "type": "Array<any>",
+            "description": "list of found DOM elements"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_recursivelyCollect": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 386,
+          "line": 372,
           "column": 4,
-          "index": 11529
+          "index": 10630
         },
         "end": {
-          "line": 396,
+          "line": 374,
           "column": 5,
-          "index": 11758
+          "index": 10725
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_recursivelyCollect": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Recursively collects elements whose relationship is specified by",
+          "     * property.  <code>property</code> has to be a property (a method won't",
+          "     * do!) of element that points to a single DOM node. Returns an array of",
+          "     * elements.",
+          "     *",
+          "     * @param element {Element} DOM element to start with",
+          "     * @param property {String} property to look for",
+          "     * @return {Array} result list",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -699,35 +1005,57 @@
             "body": "property {String} property to look for",
             "paramName": "property",
             "description": " property to look for",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} result list",
-            "type": "Array",
-            "description": " result list"
+            "type": "Array<any>",
+            "description": "result list"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "getSiblings": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 404,
+          "line": 386,
           "column": 4,
-          "index": 11984
+          "index": 11144
         },
         "end": {
-          "line": 408,
+          "line": 396,
           "column": 5,
-          "index": 12130
+          "index": 11363
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        },
+        {
+          "name": "property",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getSiblings": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Collects all of element's siblings and returns them as an array of elements.",
+          "     *",
+          "     * @param element {var} DOM element to start with",
+          "     * @return {Array} list of all found siblings",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -747,28 +1075,47 @@
           {
             "name": "@return",
             "body": "{Array} list of all found siblings",
-            "type": "Array",
-            "description": " list of all found siblings"
+            "type": "Array<any>",
+            "description": "list of all found siblings"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isEmpty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 417,
+          "line": 404,
           "column": 4,
-          "index": 12361
+          "index": 11581
         },
         "end": {
-          "line": 432,
+          "line": 408,
           "column": 5,
-          "index": 12690
+          "index": 11723
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "isEmpty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given element is empty.",
+          "     * Inspired by Base2 (Dean Edwards)",
+          "     *",
+          "     * @param element {Element} The element to check",
+          "     * @return {Boolean} true when the element is empty",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -788,28 +1135,45 @@
           {
             "name": "@return",
             "body": "{Boolean} true when the element is empty",
-            "type": "Boolean",
-            "description": " true when the element is empty"
+            "type": "boolean",
+            "description": "true when the element is empty"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "cleanWhitespace": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 439,
+          "line": 417,
           "column": 4,
-          "index": 12851
+          "index": 11945
         },
         "end": {
-          "line": 451,
+          "line": 432,
           "column": 5,
-          "index": 13141
+          "index": 12259
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "cleanWhitespace": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes all of element's text nodes which contain only whitespace",
+          "     *",
+          "     * @param element {Element} Element to cleanup",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -826,9 +1190,29 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 439,
+          "column": 4,
+          "index": 12413
+        },
+        "end": {
+          "line": 451,
+          "column": 5,
+          "index": 12691
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

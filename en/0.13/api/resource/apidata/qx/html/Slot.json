@@ -1,0 +1,289 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172382,
+  "lastModifiedIso": "2024-06-01T09:46:12.382Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/html/Slot.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 50,
+      "column": 0,
+      "index": 1254
+    },
+    "end": {
+      "line": 152,
+      "column": 3,
+      "index": 3851
+    }
+  },
+  "className": "qx.html.Slot",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The slot turns JSX from a syntax convenience into a declaratively expressive system.",
+      " *",
+      " * Passing children to a custom tag:",
+      " * ```jsx",
+      " * const MyFirstSlot = () => (",
+      " *   <p>",
+      " *     <slot />",
+      " *   </p>",
+      " * );",
+      " *",
+      " * const UseFirstSlot = (",
+      " *   <MyFirstSlot>",
+      " *     Lorem Ipsum Dolor Sit Amet",
+      " *   </MyFirstSlot>",
+      " * );",
+      " * ```",
+      " * Output:",
+      " * ```html",
+      " * <p>",
+      " *   Lorem Ipsum Dolor Sit Amet",
+      " * </p>",
+      " * ```",
+      " *",
+      " * Declared children of the slot are the default children to use when no",
+      " * children are passed or injected. Default children may be *any* valid JSX.",
+      " *",
+      " * Slots are named by passing a `name` attribute to the slot, and used by",
+      " * passing a corresponding `slot` attribute to the child. In this way, slots",
+      " * can be used to declare multiple remote children of the Custom Tag.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The slot turns JSX from a syntax convenience into a declaratively expressive system.\n Passing children to a custom tag:\n <code></code><code>jsx\n const MyFirstSlot = () =&gt; (\n   \n\n¨K0K\n\n\n );\n const UseFirstSlot = (\n   &lt;MyFirstSlot&gt;\n     Lorem Ipsum Dolor Sit Amet\n   &lt;/MyFirstSlot&gt;\n );\n </code><code></code>\n Output:\n <code></code><code>html\n \n\n¨K1K\n\n\n </code><code></code>\n Declared children of the slot are the default children to use when no\n children are passed or injected. Default children may be <em>any</em> valid JSX.\n Slots are named by passing a <code>name</code> attribute to the slot, and used by\n passing a corresponding <code>slot</code> attribute to the child. In this way, slots\n can be used to declare multiple remote children of the Custom Tag.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.html.Element",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "slotName"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 58,
+        "column": 2,
+        "index": 1395
+      },
+      "end": {
+        "line": 70,
+        "column": 3,
+        "index": 1783
+      }
+    }
+  },
+  "members": {
+    "inject": {
+      "jsdoc": {
+        "raw": [
+          "*@override "
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2007
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2159
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.html.Element",
+      "appearsIn": [
+        "qx.html.Element"
+      ]
+    },
+    "_serializeImpl": {
+      "jsdoc": {
+        "raw": [
+          "*@override "
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2186
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 2844
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "serializer"
+        }
+      ],
+      "overriddenFrom": "qx.html.Element",
+      "appearsIn": [
+        "qx.html.Element",
+        "qx.html.Node"
+      ]
+    },
+    "_defaultChildren": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "    ---------------------------------------------------------------------------",
+          "      SLOT API",
+          "    ---------------------------------------------------------------------------",
+          "    "
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3041
+        },
+        "end": {
+          "line": 116,
+          "column": 26,
+          "index": 3063
+        }
+      },
+      "appearsIn": []
+    },
+    "getDefaultChildren": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @returns {ReadonlyArray<qx.html.Node>} The default children of this slot",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{ReadonlyArray<qx.html.Node>} The default children of this slot",
+            "type": "ReadonlyArray<qx.html.Node>",
+            "description": "The default children of this slot"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3166
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3230
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "ReadonlyArray<qx.html.Node>"
+      },
+      "appearsIn": []
+    },
+    "addDefaultChild": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3237
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 3463
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        }
+      ],
+      "appearsIn": []
+    },
+    "sealDefaultChildren": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3470
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 3541
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getName": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3548
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 3605
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "DEFAULT": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 3812
+        },
+        "end": {
+          "line": 150,
+          "column": 35,
+          "index": 3843
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

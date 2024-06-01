@@ -13,7 +13,8 @@
         "construct": true
       },
       "qx.ui.basic.Label": {},
-      "qx.ui.basic.Image": {}
+      "qx.ui.basic.Image": {},
+      "qx.lang.String": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -256,21 +257,28 @@
         this._handleIcon();
       },
       // property apply
-      _applyGap: function _applyGap(value, old) {
-        this._getLayout().setGap(value);
-      },
-      // property apply
       _applyShow: function _applyShow(value, old) {
         this._handleLabel();
         this._handleIcon();
       },
-      // property apply
-      _applyIconPosition: function _applyIconPosition(value, old) {
-        this._getLayout().setIconPosition(value);
+      __P_523_0: function __P_523_0(value, propertyName) {
+        var layout = this._getLayout();
+        var propertySetter = "set".concat(qx.lang.String.firstUp(propertyName));
+        if (layout[propertySetter]) {
+          layout[propertySetter](value);
+        }
       },
       // property apply
-      _applyCenter: function _applyCenter(value, old) {
-        this._getLayout().setCenter(value);
+      _applyGap: function _applyGap(value) {
+        this.__P_523_0(value, "gap");
+      },
+      // property apply
+      _applyIconPosition: function _applyIconPosition(value) {
+        this.__P_523_0(value, "iconPosition");
+      },
+      // property apply
+      _applyCenter: function _applyCenter(value) {
+        this.__P_523_0(value, "center");
       },
       // overridden
       _applySelectable: function _applySelectable(value, old) {
@@ -285,4 +293,4 @@
   qx.ui.basic.Atom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Atom.js.map?dt=1709410157352
+//# sourceMappingURL=Atom.js.map?dt=1717235407820

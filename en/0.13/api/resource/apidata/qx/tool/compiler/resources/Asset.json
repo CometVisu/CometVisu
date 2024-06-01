@@ -1,0 +1,693 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169206,
+  "lastModifiedIso": "2024-06-01T09:46:09.206Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/resources/Asset.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 739
+    },
+    "end": {
+      "line": 285,
+      "column": 3,
+      "index": 7753
+    }
+  },
+  "className": "qx.tool.compiler.resources.Asset",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "library"
+      },
+      {
+        "name": "filename"
+      },
+      {
+        "name": "fileInfo"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 2,
+        "index": 822
+      },
+      "end": {
+        "line": 33,
+        "column": 3,
+        "index": 973
+      }
+    }
+  },
+  "members": {
+    "__library": {
+      "jsdoc": {
+        "raw": [
+          "* {Library} that this asset belongs to "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Library} that this asset belongs to</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1041
+        },
+        "end": {
+          "line": 37,
+          "column": 19,
+          "index": 1056
+        }
+      },
+      "appearsIn": []
+    },
+    "__filename": {
+      "jsdoc": {
+        "raw": [
+          "* {String} path within the library resources "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} path within the library resources</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1117
+        },
+        "end": {
+          "line": 40,
+          "column": 20,
+          "index": 1133
+        }
+      },
+      "appearsIn": []
+    },
+    "__fileInfo": {
+      "jsdoc": {
+        "raw": [
+          "* {Object} the data in the database "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Object} the data in the database</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1185
+        },
+        "end": {
+          "line": 43,
+          "column": 20,
+          "index": 1201
+        }
+      },
+      "appearsIn": []
+    },
+    "__loaders": {
+      "jsdoc": {
+        "raw": [
+          "* {ResourceLoader[]?} array of loaders "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{ResourceLoader[]?} array of loaders</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1256
+        },
+        "end": {
+          "line": 46,
+          "column": 19,
+          "index": 1271
+        }
+      },
+      "appearsIn": []
+    },
+    "__converters": {
+      "jsdoc": {
+        "raw": [
+          "* {ResourceConverter[]?} array of converters "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{ResourceConverter[]?} array of converters</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1332
+        },
+        "end": {
+          "line": 49,
+          "column": 22,
+          "index": 1350
+        }
+      },
+      "appearsIn": []
+    },
+    "__metaReferees": {
+      "jsdoc": {
+        "raw": [
+          "* {Asset[]?} list of assets which refer to this asset (eg for image combining) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Asset[]?} list of assets which refer to this asset (eg for image combining)</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1445
+        },
+        "end": {
+          "line": 52,
+          "column": 24,
+          "index": 1465
+        }
+      },
+      "appearsIn": []
+    },
+    "__metaReferTo": {
+      "jsdoc": {
+        "raw": [
+          "* {Asset[]?} list of assets which the meta in this asset refers to (eg for image combining) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Asset[]?} list of assets which the meta in this asset refers to (eg for image combining)</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1573
+        },
+        "end": {
+          "line": 55,
+          "column": 23,
+          "index": 1592
+        }
+      },
+      "appearsIn": []
+    },
+    "__dependsOn": {
+      "jsdoc": {
+        "raw": [
+          "* {Asset[]?} list of assets which this asset depends on "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Asset[]?} list of assets which this asset depends on</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1664
+        },
+        "end": {
+          "line": 58,
+          "column": 21,
+          "index": 1681
+        }
+      },
+      "appearsIn": []
+    },
+    "__dependsOnThisAsset": {
+      "jsdoc": {
+        "raw": [
+          "* {Asset[]?} list of assets which depend on this asset "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Asset[]?} list of assets which depend on this asset</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1752
+        },
+        "end": {
+          "line": 61,
+          "column": 30,
+          "index": 1778
+        }
+      },
+      "appearsIn": []
+    },
+    "getLibrary": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1785
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1834
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getFilename": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1841
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1892
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getFileInfo": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1899
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1950
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isThemeFile": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1957
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2036
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getSourceFilename": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2043
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2282
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getDestFilename": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2289
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2684
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setLoaders": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2691
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 2774
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "loaders"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setConverters": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2781
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2879
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "converters"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addMetaReferee": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 2886
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 3105
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "asset"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getMetaReferees": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3112
+        },
+        "end": {
+          "line": 122,
+          "column": 5,
+          "index": 3171
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "addMetaReferTo": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 3178
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3393
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "asset"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getMetaReferTo": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3400
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3457
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "setDependsOn": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3464
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 4125
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "assets"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getDependsOn": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 4132
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4185
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getDependsOnThisAsset": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 4192
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4329
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "load": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4336
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 4453
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "sync": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 4460
+        },
+        "end": {
+          "line": 275,
+          "column": 5,
+          "index": 7603
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        }
+      ],
+      "appearsIn": []
+    },
+    "toUri": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 277,
+          "column": 4,
+          "index": 7610
+        },
+        "end": {
+          "line": 279,
+          "column": 5,
+          "index": 7693
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "toString": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4,
+          "index": 7700
+        },
+        "end": {
+          "line": 283,
+          "column": 5,
+          "index": 7745
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.data.MBinding",
+        "qx.core.MLogging",
+        "qx.core.MEvent",
+        "qx.core.MProperty",
+        "qx.core.MObjectId",
+        "qx.core.MAssert"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

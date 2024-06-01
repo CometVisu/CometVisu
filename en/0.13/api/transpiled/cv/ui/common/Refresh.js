@@ -81,11 +81,11 @@
      */
     members: {
       _timer: null,
-      __P_549_0: null,
-      __P_549_1: false,
-      __P_549_2: null,
-      __P_549_3: null,
-      __P_549_4: false,
+      __P_768_0: null,
+      __P_768_1: false,
+      __P_768_2: null,
+      __P_768_3: null,
+      __P_768_4: false,
       _applyRestartOnVisible: function _applyRestartOnVisible(value) {
         if (value) {
           this._maintainTimerState();
@@ -95,18 +95,18 @@
        * Stop the while invisible
        */
       _maintainTimerState: function _maintainTimerState() {
-        if (this.__P_549_3) {
+        if (this.__P_768_3) {
           this.debug('aborting restart timer ' + this.getPath());
-          this.__P_549_3.stop();
-          this.__P_549_3.dispose();
-          this.__P_549_3 = null;
+          this.__P_768_3.stop();
+          this.__P_768_3.dispose();
+          this.__P_768_3 = null;
         }
         if (!this.isRestartOnVisible()) {
           return;
         }
         if (this._timer) {
           if (this.isVisible()) {
-            var delta = this.getRefresh() - (Date.now() - this.__P_549_2);
+            var delta = this.getRefresh() - (Date.now() - this.__P_768_2);
             if (delta <= 0) {
               // run immediately
               this.debug('immediate refresh because refresh time has been reached ' + this.getPath());
@@ -116,10 +116,10 @@
               this.debug('starting refresh ' + this.getPath() + ' in ' + delta + 'ms');
 
               // start when interval is finished
-              this.__P_549_3 = qx.event.Timer.once(function () {
+              this.__P_768_3 = qx.event.Timer.once(function () {
                 this._timer.start();
                 this._timer.fireEvent('interval');
-                this.__P_549_3 = null;
+                this.__P_768_3 = null;
               }, this, delta);
             }
           } else if (this._timer.isEnabled()) {
@@ -131,17 +131,17 @@
       setupRefreshAction: function setupRefreshAction() {
         var _this = this;
         if (this.getRefresh() && this.getRefresh() > 0) {
-          if (this.__P_549_1 === true) {
+          if (this.__P_768_1 === true) {
             return;
           }
-          this.__P_549_1 = true;
+          this.__P_768_1 = true;
           if (this._setupRefreshAction) {
             // overridden by inheriting class
             this._setupRefreshAction();
             if (this._timer) {
               // listen to foreign timer to get the last execution time;
               this._timer.addListener('interval', function () {
-                _this.__P_549_2 = Date.now();
+                _this.__P_768_2 = Date.now();
               });
             }
           } else if (!this._timer || !this._timer.isEnabled()) {
@@ -158,13 +158,13 @@
             this._timer.start();
           }
           if (this._timer && this._timer.isEnabled()) {
-            this.__P_549_2 = Date.now();
+            this.__P_768_2 = Date.now();
             this.setRestartOnVisible(true);
           }
         }
       },
       refreshAction: function refreshAction(target, src) {
-        this.__P_549_2 = Date.now();
+        this.__P_768_2 = Date.now();
         if (this._refreshAction) {
           this._refreshAction();
         } else {
@@ -195,7 +195,7 @@
                 target.setAttribute('src', src + '#' + new Date().getTime());
                 break;
               case 'force':
-                cv.ui.common.Refresh.__P_549_5(src);
+                cv.ui.common.Refresh.__P_768_5(src);
 
               // not needed as those are NOP:
               // case 'none':
@@ -223,7 +223,7 @@
      */
     statics: {
       // based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url
-      __P_549_5: function __P_549_5(src) {
+      __P_768_5: function __P_768_5(src) {
         window.fetch(src, {
           cache: 'reload',
           mode: 'no-cors'
@@ -238,4 +238,4 @@
   cv.ui.common.Refresh.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Refresh.js.map?dt=1709410171161
+//# sourceMappingURL=Refresh.js.map?dt=1717235422621

@@ -1,54 +1,39 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235169926,
+  "lastModifiedIso": "2024-06-01T09:46:09.926Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/simple/Decoration.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 535
+    },
+    "end": {
+      "line": 1035,
+      "column": 3,
+      "index": 21538
+    }
+  },
   "className": "qx.theme.simple.Decoration",
-  "packageName": "qx.theme.simple",
-  "name": "Decoration",
-  "superClass": null,
-  "interfaces": [],
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The simple qooxdoo decoration theme.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The simple qooxdoo decoration theme.</p>"
+      }
+    ]
+  },
   "mixins": [
     "qx.test.MDecoration"
   ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 556
-      },
-      "end": {
-        "line": 1035,
-        "column": 3,
-        "index": 22572
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The simple qooxdoo decoration theme.</p>"
-        }
-      ]
-    }
-  },
-  "type": "theme",
-  "aliases": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 2,
-        "index": 644
-      },
-      "end": {
-        "line": 27,
-        "column": 3,
-        "index": 699
-      }
-    },
-    "aliasMap": {
-      "decoration": "qx/decoration/Simple"
-    }
-  },
-  "descendants": [
-    "qx.theme.indigo.Decoration"
-  ]
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

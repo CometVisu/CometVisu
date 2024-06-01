@@ -1,0 +1,85 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171962,
+  "lastModifiedIso": "2024-06-01T09:46:11.962Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/jsdoc/ParamParser.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 743
+    },
+    "end": {
+      "line": 90,
+      "column": 3,
+      "index": 2586
+    }
+  },
+  "className": "qx.tool.compiler.jsdoc.ParamParser",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Parser for JSDoc \"@param\"",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Parser for JSDoc \"@param\"</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.jsdoc.CommandParser",
+  "members": {
+    "parseCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 898
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2578
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "pdoc"
+        },
+        {
+          "name": "typeResolver"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.jsdoc.CommandParser",
+      "appearsIn": [
+        "qx.tool.compiler.jsdoc.CommandParser"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

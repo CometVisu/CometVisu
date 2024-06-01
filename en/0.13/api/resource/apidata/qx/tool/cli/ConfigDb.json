@@ -1,0 +1,509 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169790,
+  "lastModifiedIso": "2024-06-01T09:46:09.790Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/ConfigDb.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 556
+    },
+    "end": {
+      "line": 162,
+      "column": 3,
+      "index": 3953
+    }
+  },
+  "className": "qx.tool.cli.ConfigDb",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Controls access to the local configuration",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Controls access to the local configuration</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 27,
+        "column": 2,
+        "index": 627
+      },
+      "end": {
+        "line": 30,
+        "column": 3,
+        "index": 684
+      }
+    }
+  },
+  "properties": {
+    "path": {
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 707
+        },
+        "end": {
+          "line": 37,
+          "column": 5,
+          "index": 792
+        }
+      },
+      "json": {
+        "nullable": false,
+        "check": "String",
+        "apply": "_applyPath"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__db": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 816
+        },
+        "end": {
+          "line": 41,
+          "column": 14,
+          "index": 826
+        }
+      },
+      "appearsIn": []
+    },
+    "__overrides": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 832
+        },
+        "end": {
+          "line": 42,
+          "column": 21,
+          "index": 849
+        }
+      },
+      "appearsIn": []
+    },
+    "_applyPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply for path property",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply for path property</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 919
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 982
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "load": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads the configuration",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads the configuration</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1036
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1146
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "save": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Saves the configuration",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Saves the configuration</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1200
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1356
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "setOverride": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a temporary override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets a temporary override</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1412
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 1576
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key"
+        },
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    },
+    "db": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the database root.  If the `path` parameter is provided, this will try and locate it;",
+          "     * if `defaultValue` is provided then it will create the object and also any intermediate objects",
+          "     * along the way.  If `path` is not returned, then the root object is returned",
+          "     *",
+          "     * @param path {String?} optional path into the database; note array subscripts are not supported",
+          "     * @param defaultValue {Object?} optional value to assign if it does not exist.",
+          "     * @return {Object?} the value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the database root.  If the <code>path</code> parameter is provided, this will try and locate it;\n if <code>defaultValue</code> is provided then it will create the object and also any intermediate objects\n along the way.  If <code>path</code> is not returned, then the root object is returned</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String?} optional path into the database; note array subscripts are not supported",
+            "paramName": "path",
+            "description": " optional path into the database; note array subscripts are not supported",
+            "optional": true,
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "defaultValue {Object?} optional value to assign if it does not exist.",
+            "paramName": "defaultValue",
+            "description": " optional value to assign if it does not exist.",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object?} the value",
+            "type": "Object?",
+            "description": "the value"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2113
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 2836
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path",
+          "type": "String",
+          "optional": true
+        },
+        {
+          "name": "defaultValue",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Object?"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "__instance": {
+      "jsdoc": {
+        "raw": [
+          "* Singleton default instance "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Singleton default instance</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 2998
+        },
+        "end": {
+          "line": 123,
+          "column": 20,
+          "index": 3014
+        }
+      },
+      "appearsIn": []
+    },
+    "__directory": {
+      "jsdoc": {
+        "raw": [
+          "* The directory where config files (any any other temporary/cached data) is kept "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The directory where config files (any any other temporary/cached data) is kept</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3111
+        },
+        "end": {
+          "line": 126,
+          "column": 21,
+          "index": 3128
+        }
+      },
+      "appearsIn": []
+    },
+    "getInstance": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the default instance of ConfigDb, loaded with the global config",
+          "     *",
+          "     * @returns {ConfigDb}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the default instance of ConfigDb, loaded with the global config</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{ConfigDb}",
+            "type": "qx.tool.cli.ConfigDb",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3261
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 3582
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.cli.ConfigDb"
+      },
+      "appearsIn": []
+    },
+    "getDirectory": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the local directory, where cache and configuration are kept",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the local directory, where cache and configuration are kept</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 3680
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 3733
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "db": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wrapper for non-static version of db",
+          "     *",
+          "     * @see qx.tool.cli.ConfigDb.db",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Wrapper for non-static version of db</p>"
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.tool.cli.ConfigDb.db"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 3843
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 3945
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        },
+        {
+          "name": "defaultValue"
+        }
+      ],
+      "appearsIn": []
+    }
+  }
+}

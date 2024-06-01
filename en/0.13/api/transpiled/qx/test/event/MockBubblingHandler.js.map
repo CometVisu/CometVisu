@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "implement",
+    "event",
+    "IEventHandler",
+    "statics",
+    "PRIORITY",
+    "Registration",
+    "PRIORITY_LAST",
+    "members",
+    "canHandleEvent",
+    "target",
+    "type",
+    "nodeType",
+    "undefined",
+    "registerEvent",
+    "capture",
+    "unregisterEvent",
+    "defer",
+    "addHandler",
+    "test",
+    "MockBubblingHandler"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/event/MockBubblingHandler.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.event.MockBubblingHandler\", {\n  extend: qx.core.Object,\n  implement: qx.event.IEventHandler,\n\n  statics: {\n    /** @type {Integer} Priority of this handler */\n    PRIORITY: qx.event.Registration.PRIORITY_LAST\n  },\n\n  members: {\n    // interface implementation\n    canHandleEvent(target, type) {\n      return target.nodeType !== undefined;\n    },\n\n    // interface implementation\n    registerEvent(target, type, capture) {},\n\n    // interface implementation\n    unregisterEvent(target, type, capture) {}\n  },\n\n  defer(statics) {\n    qx.event.Registration.addHandler(statics);\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,mCAAmC,EAAE;IACnDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IACtBC,SAAS,EAAET,EAAE,CAACU,KAAK,CAACC,aAAa;IAEjCC,OAAO,EAAE;MACP;MACAC,QAAQ,EAAEb,EAAE,CAACU,KAAK,CAACI,YAAY,CAACC;IAClC,CAAC;IAEDC,OAAO,EAAE;MACP;MACAC,cAAc,WAAAA,eAACC,MAAM,EAAEC,IAAI,EAAE;QAC3B,OAAOD,MAAM,CAACE,QAAQ,KAAKC,SAAS;MACtC,CAAC;MAED;MACAC,aAAa,WAAAA,cAACJ,MAAM,EAAEC,IAAI,EAAEI,OAAO,EAAE,CAAC,CAAC;MAEvC;MACAC,eAAe,WAAAA,gBAACN,MAAM,EAAEC,IAAI,EAAEI,OAAO,EAAE,CAAC;IAC1C,CAAC;IAEDE,KAAK,WAAAA,MAACb,OAAO,EAAE;MACbZ,EAAE,CAACU,KAAK,CAACI,YAAY,CAACY,UAAU,CAACd,OAAO,CAAC;IAC3C;EACF,CAAC,CAAC;EA3CFZ,EAAE,CAAC2B,IAAI,CAACjB,KAAK,CAACkB,mBAAmB,CAACzB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

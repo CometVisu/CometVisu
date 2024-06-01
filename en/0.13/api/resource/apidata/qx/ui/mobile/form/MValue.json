@@ -1,88 +1,76 @@
 {
-  "className": "qx.ui.mobile.form.MValue",
-  "packageName": "qx.ui.mobile.form",
-  "name": "MValue",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 631
-      },
-      "end": {
-        "line": 262,
-        "column": 3,
-        "index": 6880
-      }
+  "version": 0.3,
+  "lastModified": 1717235171846,
+  "lastModifiedIso": "2024-06-01T09:46:11.846Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/form/MValue.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 607
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The mixin contains all functionality to provide a value property for input\n widgets.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.event.handler.Input"
-        }
-      ]
+    "end": {
+      "line": 262,
+      "column": 3,
+      "index": 6619
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.mobile.form.MValue",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The mixin contains all functionality to provide a value property for input",
+      " * widgets.",
+      " *",
+      " * @require(qx.event.handler.Input)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The mixin contains all functionality to provide a value property for input\n widgets.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Input"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "value"
+      }
+    ],
     "location": {
       "start": {
         "line": 35,
         "column": 2,
-        "index": 943
+        "index": 909
       },
       "end": {
         "line": 58,
         "column": 3,
-        "index": 1510
+        "index": 1453
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "value {var?null} The value of the widget.",
-          "paramName": "value",
-          "description": " The value of the widget.",
-          "optional": true,
-          "defaultValue": "null",
-          "type": "var"
-        }
-      ]
     }
   },
   "events": {
     "input": {
-      "location": {
-        "start": {
-          "line": 73,
-          "column": 4,
-          "index": 1934
-        },
-        "end": {
-          "line": 73,
-          "column": 31,
-          "index": 1961
-        }
-      },
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The event is fired on every keystroke modifying the value of the field.",
+          "     *",
+          "     * The method {@link qx.event.type.Data#getData} returns the",
+          "     * current value of the text field.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -90,23 +78,35 @@
           }
         ]
       },
-      "name": "input",
-      "type": "qx.event.type.Data"
-    },
-    "changeValue": {
       "location": {
         "start": {
-          "line": 86,
+          "line": 73,
           "column": 4,
-          "index": 2459
+          "index": 1862
         },
         "end": {
-          "line": 86,
-          "column": 37,
-          "index": 2492
+          "line": 73,
+          "column": 31,
+          "index": 1889
         }
-      },
+      }
+    },
+    "changeValue": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The event is fired each time the text field looses focus and the",
+          "     * text field values has changed.",
+          "     *",
+          "     * If you change {@link #liveUpdate} to true, the changeValue event will",
+          "     * be fired after every keystroke and not only after every focus loss. In",
+          "     * that mode, the changeValue event is equal to the {@link #input} event.",
+          "     *",
+          "     * The method {@link qx.event.type.Data#getData} returns the",
+          "     * current text value of the field.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -114,8 +114,18 @@
           }
         ]
       },
-      "name": "changeValue",
-      "type": "qx.event.type.Data"
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2374
+        },
+        "end": {
+          "line": 86,
+          "column": 37,
+          "index": 2407
+        }
+      }
     }
   },
   "properties": {
@@ -124,15 +134,26 @@
         "start": {
           "line": 101,
           "column": 4,
-          "index": 2909
+          "index": 2809
         },
         "end": {
           "line": 104,
           "column": 5,
-          "index": 2973
+          "index": 2870
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the {@link #changeValue} event should be fired on every key",
+          "     * input. If set to true, the changeValue event is equal to the",
+          "     * {@link #input} event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -140,76 +161,71 @@
           }
         ]
       },
-      "name": "liveUpdate",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     }
   },
   "members": {
     "__oldValue": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 114,
           "column": 4,
-          "index": 3191
+          "index": 3078
         },
         "end": {
           "line": 114,
           "column": 20,
-          "index": 3207
+          "index": 3094
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__inputTimeoutHandle": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 115,
           "column": 4,
-          "index": 3214
+          "index": 3100
         },
         "end": {
           "line": 115,
           "column": 30,
-          "index": 3240
+          "index": 3126
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__hasFocus": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 116,
           "column": 4,
-          "index": 3247
+          "index": 3132
         },
         "end": {
           "line": 116,
           "column": 20,
-          "index": 3263
+          "index": 3148
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_convertValue": {
-      "location": {
-        "start": {
-          "line": 124,
-          "column": 4,
-          "index": 3425
-        },
-        "end": {
-          "line": 132,
-          "column": 5,
-          "index": 3642
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the incoming value.",
+          "     *",
+          "     * @param value {var} The value to convert",
+          "     * @return {var} The converted value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -230,27 +246,42 @@
             "name": "@return",
             "body": "{var} The converted value",
             "type": "var",
-            "description": " The converted value"
+            "description": "The converted value"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onFocus": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 137,
+          "line": 124,
           "column": 4,
-          "index": 3715
+          "index": 3302
         },
         "end": {
-          "line": 139,
+          "line": 132,
           "column": 5,
-          "index": 3765
+          "index": 3511
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "_onFocus": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for <code>focus</code> event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -258,23 +289,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onBlur": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 144,
+          "line": 137,
           "column": 4,
-          "index": 3837
+          "index": 3579
         },
         "end": {
-          "line": 146,
+          "line": 139,
           "column": 5,
-          "index": 3887
+          "index": 3627
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onBlur": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for <code>blur</code> event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -282,23 +320,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "hasFocus": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 152,
+          "line": 144,
           "column": 4,
-          "index": 4034
+          "index": 3694
         },
         "end": {
-          "line": 154,
+          "line": 146,
           "column": 5,
-          "index": 4084
+          "index": 3742
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "hasFocus": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether this widget has focus or not.",
+          "     * @return {Boolean} <code>true</code> or <code>false</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -309,28 +355,40 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> or <code>false</code>",
-            "type": "Boolean",
-            "description": " <code>true</code> or <code>false</code>"
+            "type": "boolean",
+            "description": "<code>true</code> or <code>false</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 161,
+          "line": 152,
           "column": 4,
-          "index": 4187
+          "index": 3883
         },
         "end": {
-          "line": 171,
+          "line": 154,
           "column": 5,
-          "index": 4482
+          "index": 3931
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the value.",
+          "     *",
+          "     * @param value {var} The value to set",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -347,23 +405,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 178,
+          "line": 161,
           "column": 4,
-          "index": 4584
+          "index": 4027
         },
         "end": {
-          "line": 182,
+          "line": 171,
           "column": 5,
-          "index": 4720
+          "index": 4312
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the set value.",
+          "     *",
+          "     * @return {var} The set value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -375,27 +447,37 @@
             "name": "@return",
             "body": "{var} The set value",
             "type": "var",
-            "description": " The set value"
+            "description": "The set value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 187,
+          "line": 178,
           "column": 4,
-          "index": 4773
+          "index": 4407
         },
         "end": {
-          "line": 189,
+          "line": 182,
           "column": 5,
-          "index": 4822
+          "index": 4539
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "resetValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -403,23 +485,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_onChangeContent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 196,
+          "line": 187,
           "column": 4,
-          "index": 5014
+          "index": 4587
         },
         "end": {
-          "line": 198,
+          "line": 189,
           "column": 5,
-          "index": 5110
+          "index": 4634
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onChangeContent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the {@link #changeValue} event occurs.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The event, containing the changed content.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -436,23 +527,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onInput": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 205,
+          "line": 196,
           "column": 4,
-          "index": 5296
+          "index": 4819
         },
         "end": {
-          "line": 215,
+          "line": 198,
           "column": 5,
-          "index": 5597
+          "index": 4913
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onInput": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the {@link #input} event occurs.",
+          "     *",
+          "     * @param evt {qx.event.type.Data} The event, containing the changed content.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -469,23 +574,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getCaretPosition": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 221,
+          "line": 205,
           "column": 4,
-          "index": 5721
+          "index": 5092
         },
         "end": {
-          "line": 228,
+          "line": 215,
           "column": 5,
-          "index": 5990
+          "index": 5383
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getCaretPosition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the caret position of this widget.",
+          "     * @return {Integer} the caret position.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -497,27 +615,38 @@
             "name": "@return",
             "body": "{Integer} the caret position.",
             "type": "Integer",
-            "description": " the caret position."
+            "description": "the caret position."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_setCaretPosition": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 234,
+          "line": 221,
           "column": 4,
-          "index": 6119
+          "index": 5501
         },
         "end": {
-          "line": 243,
+          "line": 228,
           "column": 5,
-          "index": 6435
+          "index": 5763
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_setCaretPosition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the caret position on this widget.",
+          "     * @param position {Integer} the caret position.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -534,23 +663,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__fireChangeValue": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 250,
+          "line": 234,
           "column": 4,
-          "index": 6570
+          "index": 5886
         },
         "end": {
-          "line": 255,
+          "line": 243,
           "column": 5,
-          "index": 6736
+          "index": 6193
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "position",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__fireChangeValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fires the {@link #changeValue} event.",
+          "     *",
+          "     * @param value {var} The current value to fire.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -567,113 +710,44 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 6321
+        },
+        "end": {
+          "line": 255,
+          "column": 5,
+          "index": 6482
+        }
+      },
       "type": "function",
-      "access": "private"
-    },
-    "getLiveUpdate": {
-      "type": "function",
-      "name": "getLiveUpdate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>liveUpdate</code>.\n\nFor further details take a look at the property definition: {@link #liveUpdate}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for liveUpdate"
-          }
-        ]
-      }
-    },
-    "isLiveUpdate": {
-      "type": "function",
-      "name": "isLiveUpdate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>liveUpdate</code>.\n\nFor further details take a look at the property definition: {@link #liveUpdate}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for liveUpdate"
-          }
-        ]
-      }
-    },
-    "setLiveUpdate": {
-      "type": "function",
-      "name": "setLiveUpdate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>liveUpdate</code>.\n\nFor further details take a look at the property definition: {@link #liveUpdate}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for liveUpdate"
-          }
-        ]
-      }
-    },
-    "resetLiveUpdate": {
-      "type": "function",
-      "name": "resetLiveUpdate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>liveUpdate</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #liveUpdate}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 258,
         "column": 2,
-        "index": 6748
+        "index": 6491
       },
       "end": {
         "line": 261,
         "column": 3,
-        "index": 6875
+        "index": 6615
       }
     }
   },
-  "descendants": []
+  "statics": {}
 }

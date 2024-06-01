@@ -1,63 +1,64 @@
 {
-  "className": "qx.ui.form.Form",
-  "packageName": "qx.ui.form",
-  "name": "Form",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 874
-      },
-      "end": {
-        "line": 439,
-        "column": 3,
-        "index": 13680
-      }
+  "version": 0.3,
+  "lastModified": 1717235171002,
+  "lastModifiedIso": "2024-06-01T09:46:11.002Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/Form.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 848
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The form object is responsible for managing form items. For that, it takes\n advantage of two existing qooxdoo classes.\n The {@link qx.ui.form.Resetter} is used for resetting and the\n {@link qx.ui.form.validation.Manager} is used for all validation purposes.\n The view code can be found in the used renderer ({@link qx.ui.form.renderer}).</p>"
-        }
-      ]
+    "end": {
+      "line": 439,
+      "column": 3,
+      "index": 13242
     }
   },
-  "type": "class",
+  "className": "qx.ui.form.Form",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The form object is responsible for managing form items. For that, it takes",
+      " * advantage of two existing qooxdoo classes.",
+      " * The {@link qx.ui.form.Resetter} is used for resetting and the",
+      " * {@link qx.ui.form.validation.Manager} is used for all validation purposes.",
+      " *",
+      " * The view code can be found in the used renderer ({@link qx.ui.form.renderer}).",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The form object is responsible for managing form items. For that, it takes\n advantage of two existing qooxdoo classes.\n The {@link qx.ui.form.Resetter} is used for resetting and the\n {@link qx.ui.form.validation.Manager} is used for all validation purposes.\n The view code can be found in the used renderer ({@link qx.ui.form.renderer}).</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 30,
         "column": 2,
-        "index": 943
+        "index": 914
       },
       "end": {
         "line": 38,
         "column": 3,
-        "index": 1168
+        "index": 1131
       }
     }
   },
   "events": {
     "change": {
-      "location": {
-        "start": {
-          "line": 42,
-          "column": 4,
-          "index": 1249
-        },
-        "end": {
-          "line": 42,
-          "column": 33,
-          "index": 1278
-        }
-      },
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "* Fired as soon as something changes in the form."
+        ],
         "@description": [
           {
             "name": "@description",
@@ -65,121 +66,144 @@
           }
         ]
       },
-      "name": "change",
-      "type": "qx.event.type.Event"
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1208
+        },
+        "end": {
+          "line": 42,
+          "column": 33,
+          "index": 1237
+        }
+      }
     }
   },
   "members": {
     "__groups": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 46,
           "column": 4,
-          "index": 1306
+          "index": 1261
         },
         "end": {
           "line": 46,
           "column": 18,
-          "index": 1320
+          "index": 1275
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_validationManager": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 47,
           "column": 4,
-          "index": 1327
+          "index": 1281
         },
         "end": {
           "line": 47,
           "column": 28,
-          "index": 1351
+          "index": 1305
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_groupCounter": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 48,
           "column": 4,
-          "index": 1358
+          "index": 1311
         },
         "end": {
           "line": 48,
           "column": 20,
-          "index": 1374
+          "index": 1327
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_buttons": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 49,
           "column": 4,
-          "index": 1381
+          "index": 1333
         },
         "end": {
           "line": 49,
           "column": 18,
-          "index": 1395
+          "index": 1347
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_buttonOptions": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 50,
           "column": 4,
-          "index": 1402
+          "index": 1353
         },
         "end": {
           "line": 50,
           "column": 24,
-          "index": 1422
+          "index": 1373
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_resetter": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 51,
           "column": 4,
-          "index": 1429
+          "index": 1379
         },
         "end": {
           "line": 51,
           "column": 19,
-          "index": 1444
+          "index": 1394
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "add": {
-      "location": {
-        "start": {
-          "line": 76,
-          "column": 4,
-          "index": 2581
-        },
-        "end": {
-          "line": 106,
-          "column": 5,
-          "index": 3675
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a form item to the form including its internal",
+          "     * {@link qx.ui.form.validation.Manager} and {@link qx.ui.form.Resetter}.",
+          "     *",
+          "     * *Hint:* The order of all add calls represent the order in the layout.",
+          "     *",
+          "     * @param item {qx.ui.form.IForm} A supported form item.",
+          "     * @param label {String} The string, which should be used as label.",
+          "     * @param validator {Function | qx.ui.form.validation.AsyncValidator ? null}",
+          "     *   The validator which is used by the validation",
+          "     *   {@link qx.ui.form.validation.Manager}.",
+          "     * @param name {String?null} The name which is used by the data binding",
+          "     *   controller {@link qx.data.controller.Form}.",
+          "     * @param validatorContext {var?null} The context of the validator.",
+          "     * @param options {Map?null} An additional map containing custom data which",
+          "     *   will be available in your form renderer specific to the added item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -199,7 +223,7 @@
             "body": "label {String} The string, which should be used as label.",
             "paramName": "label",
             "description": " The string, which should be used as label.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -242,23 +266,72 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addGroupHeader": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 117,
+          "line": 76,
           "column": 4,
-          "index": 4008
+          "index": 2506
         },
         "end": {
-          "line": 132,
+          "line": 106,
           "column": 5,
-          "index": 4366
+          "index": 3570
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.form.IForm"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "validator",
+          "type": [
+            "Function",
+            "qx.ui.form.validation.AsyncValidator"
+          ],
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "validatorContext",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addGroupHeader": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a group header to the form.",
+          "     *",
+          "     * *Hint:* The order of all add calls represent the order in the layout.",
+          "     *",
+          "     * @param title {String} The title of the group header.",
+          "     * @param options {Map?null} A special set of custom data which will be",
+          "     *   given to the renderer.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -271,7 +344,7 @@
             "body": "title {String} The title of the group header.",
             "paramName": "title",
             "description": " The title of the group header.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -284,23 +357,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addButton": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 143,
+          "line": 117,
           "column": 4,
-          "index": 4744
+          "index": 3892
         },
         "end": {
-          "line": 148,
+          "line": 132,
           "column": 5,
-          "index": 4929
+          "index": 4235
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addButton": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a button to the form.",
+          "     *",
+          "     * *Hint:* The order of all add calls represent the order in the layout.",
+          "     *",
+          "     * @param button {qx.ui.form.Button} The button to add.",
+          "     * @param options {Map?null} An additional map containing custom data which",
+          "     *   will be available in your form renderer specific to the added button.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -326,23 +423,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__isFirstAdd": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 155,
+          "line": 143,
           "column": 4,
-          "index": 5085
+          "index": 4602
         },
         "end": {
-          "line": 157,
+          "line": 148,
           "column": 5,
-          "index": 5150
+          "index": 4782
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "button",
+          "type": "qx.ui.form.Button"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__isFirstAdd": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether something has already been added.",
+          "     *",
+          "     * @return {Boolean} true, if nothing has been added jet.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -353,28 +470,41 @@
           {
             "name": "@return",
             "body": "{Boolean} true, if nothing has been added jet.",
-            "type": "Boolean",
-            "description": " true, if nothing has been added jet."
+            "type": "boolean",
+            "description": "true, if nothing has been added jet."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "remove": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 171,
+          "line": 155,
           "column": 4,
-          "index": 5563
+          "index": 4931
         },
         "end": {
-          "line": 195,
+          "line": 157,
           "column": 5,
-          "index": 6380
+          "index": 4994
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the given item from the form.",
+          "     *",
+          "     * @param item {qx.ui.form.IForm} A supported form item.",
+          "     * @return {Boolean} <code>true</code>, if the item could be removed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -394,28 +524,48 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if the item could be removed.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if the item could be removed."
+            "type": "boolean",
+            "description": "<code>true</code>, if the item could be removed."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeGroupHeader": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 205,
+          "line": 171,
           "column": 4,
-          "index": 6778
+          "index": 5393
         },
         "end": {
-          "line": 247,
+          "line": 195,
           "column": 5,
-          "index": 8182
+          "index": 6186
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.form.IForm"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeGroupHeader": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the given group header from the form. All items in the group will be moved to",
+          "     * another group (usually the previous group). If there is more than one group with",
+          "     * the same title, only the first group will be removed.",
+          "     *",
+          "     * @param title {String} The title.",
+          "     * @return {Boolean} <code>true</code>, if the header could be removed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -428,35 +578,53 @@
             "body": "title {String} The title.",
             "paramName": "title",
             "description": " The title.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if the header could be removed.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if the header could be removed."
+            "type": "boolean",
+            "description": "<code>true</code>, if the header could be removed."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeButton": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 255,
+          "line": 205,
           "column": 4,
-          "index": 8406
+          "index": 6574
         },
         "end": {
-          "line": 267,
+          "line": 247,
           "column": 5,
-          "index": 8799
+          "index": 7936
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "title",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeButton": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the given button from the form.",
+          "     *",
+          "     * @param button {qx.ui.form.Button} The button to remove.",
+          "     * @return {Boolean} <code>true</code>, if the button could be removed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -476,28 +644,45 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if the button could be removed.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if the button could be removed."
+            "type": "boolean",
+            "description": "<code>true</code>, if the button could be removed."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getItems": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 274,
+          "line": 255,
           "column": 4,
-          "index": 8954
+          "index": 8152
         },
         "end": {
-          "line": 286,
+          "line": 267,
           "column": 5,
-          "index": 9323
+          "index": 8533
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "button",
+          "type": "qx.ui.form.Button"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getItems": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all added items as a map.",
+          "     *",
+          "     * @return {Map} A map containing for every item an entry with its name.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -508,28 +693,41 @@
           {
             "name": "@return",
             "body": "{Map} A map containing for every item an entry with its name.",
-            "type": "Map",
-            "description": " A map containing for every item an entry with its name."
+            "type": "Map<any, any>",
+            "description": "A map containing for every item an entry with its name."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 294,
+          "line": 274,
           "column": 4,
-          "index": 9493
+          "index": 8681
         },
         "end": {
-          "line": 305,
+          "line": 286,
           "column": 5,
-          "index": 9799
+          "index": 9038
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return an item by name.",
+          "     *",
+          "     * @param name {string} Item name.",
+          "     * @return {qx.ui.form.IForm|null} The form item or null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -550,27 +748,42 @@
             "name": "@return",
             "body": "{qx.ui.form.IForm|null} The form item or null.",
             "type": "qx.ui.form.IForm|null",
-            "description": " The form item or null."
+            "description": "The form item or null."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "reset": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 316,
+          "line": 294,
           "column": 4,
-          "index": 10108
+          "index": 9200
         },
         "end": {
-          "line": 319,
+          "line": 305,
           "column": 5,
-          "index": 10195
+          "index": 9495
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.form.IForm|null"
+      },
+      "appearsIn": []
+    },
+    "reset": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the form. This means reseting all form items and the validation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -578,8 +791,21 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 4,
+          "index": 9793
+        },
+        "end": {
+          "line": 319,
+          "column": 5,
+          "index": 9877
+        }
+      },
+      "type": "function",
+      "params": [],
       "overriddenFrom": "qx.core.Object",
       "appearsIn": [
         "qx.core.Object",
@@ -587,19 +813,13 @@
       ]
     },
     "redefineResetter": {
-      "location": {
-        "start": {
-          "line": 325,
-          "column": 4,
-          "index": 10338
-        },
-        "end": {
-          "line": 327,
-          "column": 5,
-          "index": 10399
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Redefines the values used for resetting. It calls",
+          "     * {@link qx.ui.form.Resetter#redefine} to get that.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -607,23 +827,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "redefineResetterItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 335,
+          "line": 325,
           "column": 4,
-          "index": 10633
+          "index": 10014
         },
         "end": {
-          "line": 337,
+          "line": 327,
           "column": 5,
-          "index": 10710
+          "index": 10073
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "redefineResetterItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Redefines the value used for resetting of the given item. It calls",
+          "     * {@link qx.ui.form.Resetter#redefineItem} to get that.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The item to redefine.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -640,23 +870,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "validate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 351,
+          "line": 335,
           "column": 4,
-          "index": 11098
+          "index": 10299
         },
         "end": {
-          "line": 353,
+          "line": 337,
           "column": 5,
-          "index": 11167
+          "index": 10374
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "validate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validates the form using the",
+          "     * {@link qx.ui.form.validation.Manager#validate} method.",
+          "     *",
+          "     * @return {Boolean|null} The validation result.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -668,27 +913,40 @@
             "name": "@return",
             "body": "{Boolean|null} The validation result.",
             "type": "Boolean|null",
-            "description": " The validation result."
+            "description": "The validation result."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getValidationManager": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 361,
+          "line": 351,
           "column": 4,
-          "index": 11422
+          "index": 10748
         },
         "end": {
-          "line": 363,
+          "line": 353,
           "column": 5,
-          "index": 11492
+          "index": 10815
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Boolean|null"
+      },
+      "appearsIn": []
+    },
+    "getValidationManager": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the internally used validation manager. If you want to do some",
+          "     * enhanced validation tasks, you need to use the validation manager.",
+          "     *",
+          "     * @return {qx.ui.form.validation.Manager} The used manager.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -700,27 +958,42 @@
             "name": "@return",
             "body": "{qx.ui.form.validation.Manager} The used manager.",
             "type": "qx.ui.form.validation.Manager",
-            "description": " The used manager."
+            "description": "The used manager."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getGroups": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 379,
+          "line": 361,
           "column": 4,
-          "index": 12009
+          "index": 11062
         },
         "end": {
-          "line": 381,
+          "line": 363,
           "column": 5,
-          "index": 12058
+          "index": 11130
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.validation.Manager"
+      },
+      "appearsIn": []
+    },
+    "getGroups": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Accessor method for the renderer which returns all added items in a",
+          "     * array containing a map of all items:",
+          "     * {title: title, items: [], labels: [], names: []}",
+          "     *",
+          "     * @return {Array} An array containing all necessary data for the renderer.",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -731,8 +1004,8 @@
           {
             "name": "@return",
             "body": "{Array} An array containing all necessary data for the renderer.",
-            "type": "Array",
-            "description": " An array containing all necessary data for the renderer."
+            "type": "Array<any>",
+            "description": "An array containing all necessary data for the renderer."
           }
         ],
         "@internal": [
@@ -742,23 +1015,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getButtons": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 389,
+          "line": 379,
           "column": 4,
-          "index": 12260
+          "index": 11631
         },
         "end": {
-          "line": 391,
+          "line": 381,
           "column": 5,
-          "index": 12310
+          "index": 11678
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getButtons": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Accessor method for the renderer which returns all added buttons in an",
+          "     * array.",
+          "     * @return {Array} An array containing all added buttons.",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -769,8 +1055,8 @@
           {
             "name": "@return",
             "body": "{Array} An array containing all added buttons.",
-            "type": "Array",
-            "description": " An array containing all added buttons."
+            "type": "Array<any>",
+            "description": "An array containing all added buttons."
           }
         ],
         "@internal": [
@@ -780,23 +1066,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getButtonOptions": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 399,
+          "line": 389,
           "column": 4,
-          "index": 12544
+          "index": 11872
         },
         "end": {
-          "line": 401,
+          "line": 391,
           "column": 5,
-          "index": 12606
+          "index": 11920
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "getButtonOptions": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Accessor method for the renderer which returns all added options for",
+          "     * the buttons in an array.",
+          "     * @return {Array} An array containing all added options for the buttons.",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -807,8 +1106,8 @@
           {
             "name": "@return",
             "body": "{Array} An array containing all added options for the buttons.",
-            "type": "Array",
-            "description": " An array containing all added options for the buttons."
+            "type": "Array<any>",
+            "description": "An array containing all added options for the buttons."
           }
         ],
         "@internal": [
@@ -818,23 +1117,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_createValidationManager": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 414,
+          "line": 399,
           "column": 4,
-          "index": 12967
+          "index": 12146
         },
         "end": {
-          "line": 416,
+          "line": 401,
           "column": 5,
-          "index": 13053
+          "index": 12206
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_createValidationManager": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and returns the used validation manager.",
+          "     *",
+          "     * @return {qx.ui.form.validation.Manager} The validation manager.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -846,27 +1157,39 @@
             "name": "@return",
             "body": "{qx.ui.form.validation.Manager} The validation manager.",
             "type": "qx.ui.form.validation.Manager",
-            "description": " The validation manager."
+            "description": "The validation manager."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_createResetter": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 423,
+          "line": 414,
           "column": 4,
-          "index": 13193
+          "index": 12554
         },
         "end": {
-          "line": 425,
+          "line": 416,
           "column": 5,
-          "index": 13260
+          "index": 12638
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.validation.Manager"
+      },
+      "appearsIn": []
+    },
+    "_createResetter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and returns the used resetter.",
+          "     *",
+          "     * @return {qx.ui.form.Resetter} the resetter class.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -878,168 +1201,47 @@
             "name": "@return",
             "body": "{qx.ui.form.Resetter} the resetter class.",
             "type": "qx.ui.form.Resetter",
-            "description": " the resetter class."
+            "description": "the resetter class."
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 423,
+          "column": 4,
+          "index": 12771
+        },
+        "end": {
+          "line": 425,
+          "column": 5,
+          "index": 12836
+        }
+      },
       "type": "function",
-      "access": "protected"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.Resetter"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 433,
         "column": 2,
-        "index": 13463
+        "index": 13031
       },
       "end": {
         "line": 438,
         "column": 3,
-        "index": 13675
+        "index": 13238
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": [
-    "qx.ui.mobile.form.Form"
-  ]
+  "statics": {},
+  "properties": {}
 }

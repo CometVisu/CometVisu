@@ -1,0 +1,1132 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171946,
+  "lastModifiedIso": "2024-06-01T09:46:11.946Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/Package.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 893
+    },
+    "end": {
+      "line": 311,
+      "column": 3,
+      "index": 8318
+    }
+  },
+  "className": "qx.tool.compiler.targets.meta.Package",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A Package is a collection of files and resources, used by either the boot process",
+      " * or by one or more Parts",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A Package is a collection of files and resources, used by either the boot process\n or by one or more Parts</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "appMeta"
+      },
+      {
+        "name": "packageIndex"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 1010
+      },
+      "end": {
+        "line": 49,
+        "column": 3,
+        "index": 1388
+      }
+    }
+  },
+  "properties": {
+    "embedAllJavascript": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1494
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1563
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to embed all the javascript into the one, main package .js file "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to embed all the javascript into the one, main package .js file</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "needsWriteToDisk": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1642
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1747
+        }
+      },
+      "json": {
+        "init": true,
+        "check": "Boolean",
+        "apply": "_applyNeedsWriteToDisk"
+      },
+      "jsdoc": {
+        "raw": [
+          "* If true, this is generated on the fly and needs to be output "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If true, this is generated on the fly and needs to be output</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__appMeta": {
+      "jsdoc": {
+        "raw": [
+          "* @type {AppMeta} the AppMeta instance "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{AppMeta} the AppMeta instance"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1819
+        },
+        "end": {
+          "line": 68,
+          "column": 19,
+          "index": 1834
+        }
+      },
+      "appearsIn": []
+    },
+    "__packageIndex": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} the package index, 0 == boot package "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} the package index, 0 == boot package"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1905
+        },
+        "end": {
+          "line": 71,
+          "column": 22,
+          "index": 1923
+        }
+      },
+      "appearsIn": []
+    },
+    "__assets": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.tool.compiler.resources.Asset[]} assets to be included in this package "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.tool.compiler.resources.Asset[]} assets to be included in this package"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 2022
+        },
+        "end": {
+          "line": 74,
+          "column": 18,
+          "index": 2036
+        }
+      },
+      "appearsIn": []
+    },
+    "__locales": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} locale data, indexed by locale ID "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} locale data, indexed by locale ID"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2100
+        },
+        "end": {
+          "line": 77,
+          "column": 19,
+          "index": 2115
+        }
+      },
+      "appearsIn": []
+    },
+    "__translations": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} translations, indexed by message ID "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} translations, indexed by message ID"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2181
+        },
+        "end": {
+          "line": 80,
+          "column": 24,
+          "index": 2201
+        }
+      },
+      "appearsIn": []
+    },
+    "__classnames": {
+      "jsdoc": {
+        "raw": [
+          "* @type {String[]} array of class names loaded by this package "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String[]} array of class names loaded by this package"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2280
+        },
+        "end": {
+          "line": 83,
+          "column": 22,
+          "index": 2298
+        }
+      },
+      "appearsIn": []
+    },
+    "__javascriptMetas": {
+      "jsdoc": {
+        "raw": [
+          "* @type {AbstractJavascriptMeta[]} array of Javascript sources loaded by this package "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{AbstractJavascriptMeta[]} array of Javascript sources loaded by this package"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2400
+        },
+        "end": {
+          "line": 86,
+          "column": 27,
+          "index": 2423
+        }
+      },
+      "appearsIn": []
+    },
+    "__javascript": {
+      "jsdoc": {
+        "raw": [
+          "* @type {AbstractJavascriptMeta} the javascript generated by this package "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{AbstractJavascriptMeta} the javascript generated by this package"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2513
+        },
+        "end": {
+          "line": 89,
+          "column": 22,
+          "index": 2531
+        }
+      },
+      "appearsIn": []
+    },
+    "isEmpty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether this package is empty; packages can be added for a number",
+          "     * of reasons, but sometimes they don't actually end up with anything in them.",
+          "     *",
+          "     * Note that this is used to suppress the generation of an additional `package-*.js`",
+          "     * file in the output, and just means that the content of the file should be embedded",
+          "     * (or ignored) instead of written into that package file; however, there can still",
+          "     * be script files which need to be loaded by this package (and that is handled by",
+          "     * the index.js file)",
+          "     *",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether this package is empty; packages can be added for a number\n of reasons, but sometimes they don't actually end up with anything in them.\n Note that this is used to suppress the generation of an additional <code>package-*.js</code>\n file in the output, and just means that the content of the file should be embedded\n (or ignored) instead of written into that package file; however, there can still\n be script files which need to be loaded by this package (and that is handled by\n the index.js file)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 3137
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3637
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getPackageIndex": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the package index",
+          "     *",
+          "     * @return {Integer}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the package index</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}",
+            "type": "Integer",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3725
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 3784
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "addAsset": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an asset, expected to be unique",
+          "     *",
+          "     * @param asset {qx.tool.compiler.resources.Asset}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an asset, expected to be unique</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "asset {qx.tool.compiler.resources.Asset}",
+            "paramName": "asset",
+            "type": "qx.tool.compiler.resources.Asset"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3913
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 3969
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "asset",
+          "type": "qx.tool.compiler.resources.Asset"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAssets": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the array of assets",
+          "     *",
+          "     * @return {qx.tool.compiler.resources.Asset[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the array of assets</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.compiler.resources.Asset[]}",
+            "type": "qx.tool.compiler.resources.Asset[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 4086
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 4133
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.compiler.resources.Asset[]"
+      },
+      "appearsIn": []
+    },
+    "addLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds locale data",
+          "     *",
+          "     * @param localeId {String}",
+          "     * @param localeData {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds locale data</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "localeId {String}",
+            "paramName": "localeId",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "localeData {Object}",
+            "paramName": "localeData",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 4253
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4337
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "localeId",
+          "type": "string"
+        },
+        {
+          "name": "localeData",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLocales": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns locale data, as a map where the key is the locale ID",
+          "     *",
+          "     * @return {Map}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns locale data, as a map where the key is the locale ID</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}",
+            "type": "Map<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4,
+          "index": 4456
+        },
+        "end": {
+          "line": 169,
+          "column": 5,
+          "index": 4505
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "addTranslationEntry": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a translation",
+          "     *",
+          "     * @param localeId {String} locale ID",
+          "     * @param entry {Object} translation",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a translation</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "localeId {String} locale ID",
+            "paramName": "localeId",
+            "description": " locale ID",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "entry {Object} translation",
+            "paramName": "entry",
+            "description": " translation",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 4644
+        },
+        "end": {
+          "line": 192,
+          "column": 5,
+          "index": 5134
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "localeId",
+          "type": "string"
+        },
+        {
+          "name": "entry",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getTranslations": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map of all translations, indexed by Locale ID",
+          "     *",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a map of all translations, indexed by Locale ID</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4,
+          "index": 5251
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 5310
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "addJavascriptMeta": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a Javascript to be loaded by this package.  You typically need to",
+          "     * call `addClassname` also.",
+          "     *",
+          "     * @param jsMeta {AbstractJavascriptMeta}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a Javascript to be loaded by this package.  You typically need to\n call <code>addClassname</code> also.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "jsMeta {AbstractJavascriptMeta}",
+            "paramName": "jsMeta",
+            "type": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 5497
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 5573
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "jsMeta",
+          "type": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getJavascriptMetas": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of all Javascripts to be loaded by this package",
+          "     *",
+          "     * @return {AbstractJavascriptMeta[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of all Javascripts to be loaded by this package</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{AbstractJavascriptMeta[]}",
+            "type": "AbstractJavascriptMeta[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 5715
+        },
+        "end": {
+          "line": 220,
+          "column": 5,
+          "index": 5780
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "AbstractJavascriptMeta[]"
+      },
+      "appearsIn": []
+    },
+    "removeJavascriptMeta": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a Javascript",
+          "     *",
+          "     * @param jsMeta {AbstractJavascriptMeta} the javascript to remove",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes a Javascript</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "jsMeta {AbstractJavascriptMeta} the javascript to remove",
+            "paramName": "jsMeta",
+            "description": " the javascript to remove",
+            "type": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4,
+          "index": 5909
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 6005
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "jsMeta",
+          "type": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addClassname": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a classname to the list which is loaded by this package; this does not",
+          "     * cause the code to be loaded, @see {addJavascriptMeta}.",
+          "     *",
+          "     * @param classname {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a classname to the list which is loaded by this package; this does not\n cause the code to be loaded, @see {addJavascriptMeta}.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "classname {String}",
+            "paramName": "classname",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4,
+          "index": 6213
+        },
+        "end": {
+          "line": 239,
+          "column": 5,
+          "index": 6285
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "classname",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getClassnames": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of all classnames",
+          "     *",
+          "     * @return {String[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of all classnames</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]}",
+            "type": "String[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4,
+          "index": 6381
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 6436
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getJavascript": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the AbstractJavascriptMeta for this Package",
+          "     *",
+          "     * @return {AbstractJavascriptMeta}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the AbstractJavascriptMeta for this Package</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{AbstractJavascriptMeta}",
+            "type": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 4,
+          "index": 6565
+        },
+        "end": {
+          "line": 257,
+          "column": 5,
+          "index": 6620
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      },
+      "appearsIn": []
+    },
+    "serializeInto": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the data into the configuration which is passed to the loader template",
+          "     *",
+          "     * @param packages {Object} the `qx.$$packages` object data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the data into the configuration which is passed to the loader template</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "packages {Object} the <code>qx.$$packages</code> object data",
+            "paramName": "packages",
+            "description": " the <code>qx.$$packages</code> object data",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4,
+          "index": 6799
+        },
+        "end": {
+          "line": 302,
+          "column": 5,
+          "index": 8155
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "packages",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyNeedsWriteToDisk": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply for needsWriteToDisk property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply for needsWriteToDisk property</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 307,
+          "column": 4,
+          "index": 8221
+        },
+        "end": {
+          "line": 309,
+          "column": 5,
+          "index": 8310
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

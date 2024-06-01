@@ -1,49 +1,53 @@
 {
-  "className": "qx.ui.core.MLayoutHandling",
-  "packageName": "qx.ui.core",
-  "name": "MLayoutHandling",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 916
-      },
-      "end": {
-        "line": 81,
-        "column": 3,
-        "index": 2681
-      }
+  "version": 0.3,
+  "lastModified": 1717235171770,
+  "lastModifiedIso": "2024-06-01T09:46:11.770Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/MLayoutHandling.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 889
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin exposes all methods to manage the layout manager of a widget.\n It can only be included into instances of {@link qx.ui.core.Widget}.\n To optimize the method calls the including widget should call the method\n {@link #remap} in its defer function. This will map the protected\n methods to the public ones and save one method call for each function.</p>"
-        }
-      ]
+    "end": {
+      "line": 81,
+      "column": 3,
+      "index": 2601
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.core.MLayoutHandling",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin exposes all methods to manage the layout manager of a widget.",
+      " * It can only be included into instances of {@link qx.ui.core.Widget}.",
+      " *",
+      " * To optimize the method calls the including widget should call the method",
+      " * {@link #remap} in its defer function. This will map the protected",
+      " * methods to the public ones and save one method call for each function.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin exposes all methods to manage the layout manager of a widget.\n It can only be included into instances of {@link qx.ui.core.Widget}.\n To optimize the method calls the including widget should call the method\n {@link #remap} in its defer function. This will map the protected\n methods to the public ones and save one method call for each function.</p>"
+      }
+    ]
+  },
   "members": {
     "setLayout": {
-      "location": {
-        "start": {
-          "line": 44,
-          "column": 4,
-          "index": 1533
-        },
-        "end": {
-          "line": 46,
-          "column": 5,
-          "index": 1591
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set a layout manager for the widget. A a layout manager can only be connected",
+          "     * with one widget. Reset the connection with a previous widget first, if you",
+          "     * like to use it in another widget instead.",
+          "     *",
+          "     * @param layout {qx.ui.layout.Abstract} The new layout or",
+          "     *     <code>null</code> to reset the layout.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,23 +64,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLayout": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 53,
+          "line": 44,
           "column": 4,
-          "index": 1735
+          "index": 1490
         },
         "end": {
-          "line": 55,
+          "line": 46,
           "column": 5,
-          "index": 1788
+          "index": 1546
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "layout",
+          "type": "qx.ui.layout.Abstract"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLayout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the widget's layout manager.",
+          "     *",
+          "     * @return {qx.ui.layout.Abstract} The widget's layout manager",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -88,29 +106,44 @@
             "name": "@return",
             "body": "{qx.ui.layout.Abstract} The widget's layout manager",
             "type": "qx.ui.layout.Abstract",
-            "description": " The widget's layout manager"
+            "description": "The widget's layout manager"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1683
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1734
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.layout.Abstract"
+      },
+      "appearsIn": []
     }
   },
   "statics": {
     "remap": {
-      "location": {
-        "start": {
-          "line": 73,
-          "column": 4,
-          "index": 2387
-        },
-        "end": {
-          "line": 79,
-          "column": 5,
-          "index": 2671
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mapping of protected methods to public.",
+          "     * This omits an additional function call when using these methods. Call",
+          "     * this methods in the defer block of the including class.",
+          "     *",
+          "     * @param members {Map} The including classes members map",
+          "     * @deprecated {7.0} this is not necessary in modern compilers and leads to unexpected behaviour",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -123,7 +156,7 @@
             "body": "members {Map} The including classes members map",
             "paramName": "members",
             "description": " The including classes members map",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@deprecated": [
@@ -133,9 +166,28 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2315
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2593
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "members",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

@@ -1,63 +1,63 @@
 {
-  "className": "qx.core.Init",
-  "packageName": "qx.core",
-  "name": "Init",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 689
-      },
-      "end": {
-        "line": 97,
-        "column": 3,
-        "index": 2534
-      }
+  "version": 0.3,
+  "lastModified": 1717235171418,
+  "lastModifiedIso": "2024-06-01T09:46:11.418Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/Init.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 664
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This is the base class for all qooxdoo applications.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.event.handler.Application"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.handler.Window"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.dispatch.Direct"
-        }
-      ]
+    "end": {
+      "line": 97,
+      "column": 3,
+      "index": 2438
     }
   },
-  "type": "class",
+  "className": "qx.core.Init",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is the base class for all qooxdoo applications.",
+      " *",
+      " * @require(qx.event.handler.Application)",
+      " * @require(qx.event.handler.Window)",
+      " * @require(qx.event.dispatch.Direct)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is the base class for all qooxdoo applications.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Application"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Window"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.dispatch.Direct"
+      }
+    ]
+  },
   "statics": {
     "getApplication": {
-      "location": {
-        "start": {
-          "line": 39,
-          "column": 4,
-          "index": 1071
-        },
-        "end": {
-          "line": 39,
-          "column": 51,
-          "index": 1118
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the instantiated qooxdoo application.",
+          "     *",
+          "     * @return {qx.core.Object} The application instance.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -69,27 +69,37 @@
             "name": "@return",
             "body": "{qx.core.Object} The application instance.",
             "type": "qx.core.Object",
-            "description": " The application instance."
+            "description": "The application instance."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "ready": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 46,
+          "line": 39,
           "column": 4,
-          "index": 1305
+          "index": 1033
         },
         "end": {
-          "line": 46,
-          "column": 33,
-          "index": 1334
+          "line": 39,
+          "column": 51,
+          "index": 1080
         }
       },
+      "returnType": {
+        "type": "qx.core.Object"
+      },
+      "appearsIn": []
+    },
+    "ready": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Runs when the application is loaded. Automatically creates an instance",
+          "     * of the class defined by the setting <code>qx.application</code>.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -97,23 +107,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__close": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 54,
+          "line": 46,
           "column": 4,
-          "index": 1579
+          "index": 1260
         },
         "end": {
-          "line": 59,
-          "column": 5,
-          "index": 1705
+          "line": 46,
+          "column": 33,
+          "index": 1289
         }
       },
+      "appearsIn": []
+    },
+    "__close": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Runs before the document is unloaded. Calls the application's close",
+          "     * method to check if the unload process should be stopped.",
+          "     *",
+          "     * @param e {qx.event.type.Native} Incoming beforeunload event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -130,23 +148,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__shutdown": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 66,
+          "line": 54,
           "column": 4,
-          "index": 1860
+          "index": 1526
         },
         "end": {
-          "line": 72,
+          "line": 59,
           "column": 5,
-          "index": 1976
+          "index": 1647
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Native"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__shutdown": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Runs when the document is unloaded. Automatically terminates a previously",
+          "     * created application instance.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -154,24 +186,24 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1795
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1905
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 81,
-        "column": 2,
-        "index": 2176
-      },
-      "end": {
-        "line": 96,
-        "column": 3,
-        "index": 2529
-      }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

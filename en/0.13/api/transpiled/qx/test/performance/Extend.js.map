@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "performance",
+    "Base",
+    "members",
+    "foo_base",
+    "a",
+    "b",
+    "c",
+    "Extend",
+    "superclass",
+    "prototype",
+    "call",
+    "foo_call",
+    "foo_apply",
+    "apply",
+    "arguments"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/performance/Extend.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qx.test.performance.Extend\", {\n  extend: qx.test.performance.Base,\n\n  members: {\n    foo_base(a, b, c) {\n      super.foo_base(a, b, c);\n    },\n\n    foo_call(a, b, c) {\n      qx.test.performance.Base.prototype.foo_base.call(this, a, b, c);\n    },\n\n    foo_apply(a, b, c) {\n      qx.test.performance.Base.prototype.foo_base.apply(this, arguments);\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,4BAA4B,EAAE;IAC5CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,IAAI;IAEhCC,OAAO,EAAE;MACPC,QAAQ,WAAAA,SAACC,CAAC,EAAEC,CAAC,EAAEC,CAAC,EAAE;QAChBd,EAAA,CAAAO,IAAA,CAAAC,WAAA,CAAAO,MAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAN,QAAA,CAAAO,IAAA,OAAeN,CAAC,EAAEC,CAAC,EAAEC,CAAC;MACxB,CAAC;MAEDK,QAAQ,WAAAA,SAACP,CAAC,EAAEC,CAAC,EAAEC,CAAC,EAAE;QAChBd,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,IAAI,CAACQ,SAAS,CAACN,QAAQ,CAACO,IAAI,CAAC,IAAI,EAAEN,CAAC,EAAEC,CAAC,EAAEC,CAAC,CAAC;MACjE,CAAC;MAEDM,SAAS,WAAAA,UAACR,CAAC,EAAEC,CAAC,EAAEC,CAAC,EAAE;QACjBd,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,IAAI,CAACQ,SAAS,CAACN,QAAQ,CAACU,KAAK,CAAC,IAAI,EAAEC,SAAS,CAAC;MACpE;IACF;EACF,CAAC,CAAC;EAhBFtB,EAAE,CAACO,IAAI,CAACC,WAAW,CAACO,MAAM,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

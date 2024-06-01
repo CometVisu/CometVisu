@@ -1,49 +1,82 @@
 {
-  "className": "qx.ui.decoration.MTransition",
-  "packageName": "qx.ui.decoration",
-  "name": "MTransition",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 46,
-        "column": 0,
-        "index": 1219
-      },
-      "end": {
-        "line": 138,
-        "column": 3,
-        "index": 3782
-      }
+  "version": 0.3,
+  "lastModified": 1717235171842,
+  "lastModifiedIso": "2024-06-01T09:46:11.842Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/decoration/MTransition.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 46,
+      "column": 0,
+      "index": 1174
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Mixin responsible for setting the css transition properties of a widget\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n Keep in mind that this is not supported by all browsers:</p>\n<ul>\n<li>Firefox 16+</li>\n<li>IE 10+</li>\n<li>Edge</li>\n<li>Safari 6.1+</li>\n<li>Opera 12.10+</li>\n<li><p>Chrome 26+\nIt is possible to define transitions by setting an\narray containing the needed values as the property value.\nIn case multiple values are specified, the values of the properties\nare repeated until all match in length.\nAn example:</p></li>\n</ul>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       transitionProperty: ['top','left']\n       transitionDuration: '1s'\n     }\n   }\n </pre>"
-        }
-      ]
+    "end": {
+      "line": 138,
+      "column": 3,
+      "index": 3645
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.decoration.MTransition",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin responsible for setting the css transition properties of a widget",
+      " * This mixin is usually used by {@link qx.ui.decoration.Decorator}.",
+      " *",
+      " * Keep in mind that this is not supported by all browsers:",
+      " *",
+      " * * Firefox 16+",
+      " * * IE 10+",
+      " * * Edge",
+      " * * Safari 6.1+",
+      " * * Opera 12.10+",
+      " * * Chrome 26+",
+      " *",
+      " * It is possible to define transitions by setting an",
+      " * array containing the needed values as the property value.",
+      " * In case multiple values are specified, the values of the properties",
+      " * are repeated until all match in length.",
+      " *",
+      " * An example:",
+      " * <pre class=\"javascript\">",
+      " *   'my-decorator': {",
+      " *     style: {",
+      " *       transitionProperty: ['top','left']",
+      " *       transitionDuration: '1s'",
+      " *     }",
+      " *   }",
+      " * </pre>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin responsible for setting the css transition properties of a widget\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n Keep in mind that this is not supported by all browsers:</p>\n<ul>\n<li>Firefox 16+</li>\n<li>IE 10+</li>\n<li>Edge</li>\n<li>Safari 6.1+</li>\n<li>Opera 12.10+</li>\n<li><p>Chrome 26+\nIt is possible to define transitions by setting an\narray containing the needed values as the property value.\nIn case multiple values are specified, the values of the properties\nare repeated until all match in length.\nAn example:</p></li>\n</ul>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       transitionProperty: ['top','left']\n       transitionDuration: '1s'\n     }\n   }\n </pre>"
+      }
+    ]
+  },
   "properties": {
     "transitionProperty": {
       "location": {
         "start": {
           "line": 49,
           "column": 4,
-          "index": 1323
+          "index": 1275
         },
         "end": {
           "line": 52,
           "column": 5,
-          "index": 1407
+          "index": 1356
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyTransition"
+      },
       "jsdoc": {
+        "raw": [
+          "* transition property "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,26 +84,29 @@
           }
         ]
       },
-      "name": "transitionProperty",
-      "propertyType": "new",
-      "apply": "_applyTransition",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "transitionDuration": {
       "location": {
         "start": {
           "line": 55,
           "column": 4,
-          "index": 1448
+          "index": 1394
         },
         "end": {
           "line": 58,
           "column": 5,
-          "index": 1532
+          "index": 1475
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyTransition"
+      },
       "jsdoc": {
+        "raw": [
+          "* transition duration "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -78,26 +114,29 @@
           }
         ]
       },
-      "name": "transitionDuration",
-      "propertyType": "new",
-      "apply": "_applyTransition",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "transitionTimingFunction": {
       "location": {
         "start": {
           "line": 61,
           "column": 4,
-          "index": 1570
+          "index": 1510
         },
         "end": {
           "line": 64,
           "column": 5,
-          "index": 1660
+          "index": 1597
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyTransition"
+      },
       "jsdoc": {
+        "raw": [
+          "* transition delay "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -105,26 +144,29 @@
           }
         ]
       },
-      "name": "transitionTimingFunction",
-      "propertyType": "new",
-      "apply": "_applyTransition",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "transitionDelay": {
       "location": {
         "start": {
           "line": 67,
           "column": 4,
-          "index": 1698
+          "index": 1632
         },
         "end": {
           "line": 70,
           "column": 5,
-          "index": 1779
+          "index": 1710
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyTransition"
+      },
       "jsdoc": {
+        "raw": [
+          "* transition delay "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -132,28 +174,21 @@
           }
         ]
       },
-      "name": "transitionDelay",
-      "propertyType": "new",
-      "apply": "_applyTransition",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     }
   },
   "members": {
     "_styleTransition": {
-      "location": {
-        "start": {
-          "line": 81,
-          "column": 4,
-          "index": 2055
-        },
-        "end": {
-          "line": 125,
-          "column": 5,
-          "index": 3476
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes a styles map and adds the box shadow styles in place to the",
+          "     * given map. This is the needed behavior for",
+          "     * {@link qx.ui.decoration.Decorator}.",
+          "     *",
+          "     * @param styles {Map} A map to add the styles.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -166,300 +201,55 @@
             "body": "styles {Map} A map to add the styles.",
             "paramName": "styles",
             "description": " A map to add the styles.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 1975
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 3352
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyTransition": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 128,
           "column": 4,
-          "index": 3508
+          "index": 3381
         },
         "end": {
           "line": 136,
           "column": 5,
-          "index": 3772
+          "index": 3637
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "transitionProperty",
-        "transitionDuration",
-        "transitionTimingFunction",
-        "transitionDelay"
-      ]
-    },
-    "getTransitionProperty": {
-      "type": "function",
-      "name": "getTransitionProperty",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>transitionProperty</code>.\n\nFor further details take a look at the property definition: {@link #transitionProperty}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for transitionProperty"
-          }
-        ]
-      }
-    },
-    "setTransitionProperty": {
-      "type": "function",
-      "name": "setTransitionProperty",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>transitionProperty</code>.\n\nFor further details take a look at the property definition: {@link #transitionProperty}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for transitionProperty"
-          }
-        ]
-      }
-    },
-    "resetTransitionProperty": {
-      "type": "function",
-      "name": "resetTransitionProperty",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>transitionProperty</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transitionProperty}."
-          }
-        ]
-      }
-    },
-    "getTransitionDuration": {
-      "type": "function",
-      "name": "getTransitionDuration",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>transitionDuration</code>.\n\nFor further details take a look at the property definition: {@link #transitionDuration}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for transitionDuration"
-          }
-        ]
-      }
-    },
-    "setTransitionDuration": {
-      "type": "function",
-      "name": "setTransitionDuration",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>transitionDuration</code>.\n\nFor further details take a look at the property definition: {@link #transitionDuration}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for transitionDuration"
-          }
-        ]
-      }
-    },
-    "resetTransitionDuration": {
-      "type": "function",
-      "name": "resetTransitionDuration",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>transitionDuration</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transitionDuration}."
-          }
-        ]
-      }
-    },
-    "getTransitionTimingFunction": {
-      "type": "function",
-      "name": "getTransitionTimingFunction",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>transitionTimingFunction</code>.\n\nFor further details take a look at the property definition: {@link #transitionTimingFunction}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for transitionTimingFunction"
-          }
-        ]
-      }
-    },
-    "setTransitionTimingFunction": {
-      "type": "function",
-      "name": "setTransitionTimingFunction",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>transitionTimingFunction</code>.\n\nFor further details take a look at the property definition: {@link #transitionTimingFunction}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for transitionTimingFunction"
-          }
-        ]
-      }
-    },
-    "resetTransitionTimingFunction": {
-      "type": "function",
-      "name": "resetTransitionTimingFunction",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>transitionTimingFunction</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transitionTimingFunction}."
-          }
-        ]
-      }
-    },
-    "getTransitionDelay": {
-      "type": "function",
-      "name": "getTransitionDelay",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>transitionDelay</code>.\n\nFor further details take a look at the property definition: {@link #transitionDelay}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for transitionDelay"
-          }
-        ]
-      }
-    },
-    "setTransitionDelay": {
-      "type": "function",
-      "name": "setTransitionDelay",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>transitionDelay</code>.\n\nFor further details take a look at the property definition: {@link #transitionDelay}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for transitionDelay"
-          }
-        ]
-      }
-    },
-    "resetTransitionDelay": {
-      "type": "function",
-      "name": "resetTransitionDelay",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>transitionDelay</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transitionDelay}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

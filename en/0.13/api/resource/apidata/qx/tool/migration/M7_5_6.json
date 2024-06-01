@@ -1,0 +1,57 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171662,
+  "lastModifiedIso": "2024-06-01T09:46:11.662Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/migration/M7_5_6.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 663
+    },
+    "end": {
+      "line": 75,
+      "column": 3,
+      "index": 2225
+    }
+  },
+  "className": "qx.tool.migration.M7_5_6",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Migration class for updating to v7.5.6",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Migration class for updating to v7.5.6</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.migration.BaseMigration",
+  "members": {
+    "migrateManifest": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 769
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2217
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

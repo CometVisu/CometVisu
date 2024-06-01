@@ -1,49 +1,49 @@
 {
-  "className": "qx.theme.iconfont.LoadMaterialIconsRound",
-  "packageName": "qx.theme.iconfont",
-  "name": "LoadMaterialIconsRound",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 668
-      },
-      "end": {
-        "line": 26,
-        "column": 64,
-        "index": 732
-      }
+  "version": 0.3,
+  "lastModified": 1717235171626,
+  "lastModifiedIso": "2024-06-01T09:46:11.626Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/iconfont/LoadMaterialIconsRound.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 643
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A dummy class to trigger the compiler to copy the MaterialIconsRound font files</p>"
-        },
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@usefont": [
-        {
-          "name": "@usefont",
-          "body": "MaterialIconsRound"
-        }
-      ],
-      "@deprecated": [
-        {
-          "name": "@deprecated",
-          "body": "use the <code>@usefont</code> directive directly in your code"
-        }
-      ]
+    "end": {
+      "line": 26,
+      "column": 64,
+      "index": 707
     }
   },
-  "type": "class",
-  "descendants": []
+  "className": "qx.theme.iconfont.LoadMaterialIconsRound",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @usefont(MaterialIconsRound)",
+      " * @deprecated use the `@usefont` directive directly in your code",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@usefont": [
+      {
+        "name": "@usefont",
+        "body": "MaterialIconsRound"
+      }
+    ],
+    "@deprecated": [
+      {
+        "name": "@deprecated",
+        "body": "use the <code>@usefont</code> directive directly in your code"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

@@ -1,0 +1,386 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/Confirm.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 19,
+      "column": 0,
+      "index": 563
+    },
+    "end": {
+      "line": 172,
+      "column": 3,
+      "index": 4457
+    }
+  },
+  "className": "qxl.dialog.Confirm",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A dialog widget used to confirm a question or proposed course of action",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A dialog widget used to confirm a question or proposed course of action</p>"
+      }
+    ]
+  },
+  "superClass": "qxl.dialog.Dialog",
+  "statics": {
+    "getInstance": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns singleton instance of this class. This method has to",
+          "     * be part of any subclass extending this widget.",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns singleton instance of this class. This method has to\n be part of any subclass extending this widget.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "index": 811
+        },
+        "end": {
+          "line": 29,
+          "column": 5,
+          "index": 890
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {
+    "yesButtonLabel": {
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 973
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1098
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": false,
+        "init": "Yes",
+        "event": "changeYesButtonLabel"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Label used for the \"yes button\"",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Label used for the \"yes button\"</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "yesButtonIcon": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1159
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1296
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "init": "qxl.dialog.icon.ok",
+        "event": "changeYesButtonIcon"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Icon used for the \"yes button\"",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Icon used for the \"yes button\"</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "noButtonLabel": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1357
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1479
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": false,
+        "init": "No",
+        "event": "changeNoButtonLabel"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Label used for the \"no button\"",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Label used for the \"no button\"</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "noButtonIcon": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1539
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1678
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "init": "qxl.dialog.icon.cancel",
+        "event": "changeNoButtonIcon"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Icon used for the \"no button\"",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Icon used for the \"no button\"</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "allowCancel": {
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1762
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 1821
+        }
+      },
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This property controls the display of a cancel button",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This property controls the display of a cancel button</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    }
+  },
+  "members": {
+    "_yesButton": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 1846
+        },
+        "end": {
+          "line": 83,
+          "column": 20,
+          "index": 1862
+        }
+      },
+      "appearsIn": []
+    },
+    "_noButton": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 1868
+        },
+        "end": {
+          "line": 84,
+          "column": 19,
+          "index": 1883
+        }
+      },
+      "appearsIn": []
+    },
+    "_createWidgetContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create the main content of the widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create the main content of the widget</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 1951
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 3945
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_handleYes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle click on yes button. Calls callback with",
+          "     * a \"true\" value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle click on yes button. Calls callback with\n a \"true\" value</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4045
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 4210
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_handleNo": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle click on no button. Calls callback with",
+          "     * a \"false\" value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle click on no button. Calls callback with\n a \"false\" value</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4310
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4447
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  }
+}

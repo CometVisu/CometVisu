@@ -1,52 +1,51 @@
 {
-  "className": "cv.parser.pure.widgets.Web",
-  "packageName": "cv.parser.pure.widgets",
-  "name": "Web",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 821
-      },
-      "end": {
-        "line": 109,
-        "column": 3,
-        "index": 3150
-      }
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/parser/pure/widgets/Web.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 821
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 109,
+      "column": 3,
+      "index": 3150
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.parser.pure.widgets.Web",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "parse": {
-      "location": {
-        "start": {
-          "line": 41,
-          "column": 4,
-          "index": 1382
-        },
-        "end": {
-          "line": 81,
-          "column": 5,
-          "index": 2577
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,28 +65,82 @@
             "body": "path {String} internal path of the widget",
             "paramName": "path",
             "description": " internal path of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "flavour {String} Flavour of the widget",
             "paramName": "flavour",
             "description": " Flavour of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "pageType {String} Page type (2d, 3d, ...)",
             "paramName": "pageType",
             "description": " Page type (2d, 3d, ...)",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1382
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2577
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     },
     "getAttributeToPropertyMappings": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a mapping to map XML-Attributes to properties to help the parser to parse the config element.",
+          "     * @return {Map}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a mapping to map XML-Attributes to properties to help the parser to parse the config element.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}",
+            "type": "Map<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 87,
@@ -100,39 +153,14 @@
           "index": 3030
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns a mapping to map XML-Attributes to properties to help the parser to parse the config element.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map}",
-            "type": "Map",
-            "description": ""
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 105,
-        "column": 2,
-        "index": 3039
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
       },
-      "end": {
-        "line": 108,
-        "column": 3,
-        "index": 3146
-      }
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

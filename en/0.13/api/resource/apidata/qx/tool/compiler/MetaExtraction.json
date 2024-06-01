@@ -1,0 +1,543 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171750,
+  "lastModifiedIso": "2024-06-01T09:46:11.750Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/MetaExtraction.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 4,
+      "column": 0,
+      "index": 58
+    },
+    "end": {
+      "line": 508,
+      "column": 3,
+      "index": 15537
+    }
+  },
+  "className": "qx.tool.compiler.MetaExtraction",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "metaRootDir"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 7,
+        "column": 2,
+        "index": 140
+      },
+      "end": {
+        "line": 10,
+        "column": 3,
+        "index": 227
+      }
+    }
+  },
+  "properties": {
+    "metaRootDir": {
+      "location": {
+        "start": {
+          "line": 16,
+          "column": 4,
+          "index": 407
+        },
+        "end": {
+          "line": 20,
+          "column": 5,
+          "index": 489
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Root directory for meta data; if provided then paths are stored relative, not absolute, which helps make",
+          "     * meta directories relocatable",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Root directory for meta data; if provided then paths are stored relative, not absolute, which helps make\n meta directories relocatable</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "VERSION": {
+      "jsdoc": {
+        "raw": [
+          "* Meta Data Version - stored in meta data files "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Meta Data Version - stored in meta data files</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4,
+          "index": 570
+        },
+        "end": {
+          "line": 25,
+          "column": 16,
+          "index": 582
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__metaData": {
+      "jsdoc": {
+        "raw": [
+          "* @type{Object} the parsed data"
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Object} the parsed data"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 646
+        },
+        "end": {
+          "line": 30,
+          "column": 20,
+          "index": 662
+        }
+      },
+      "appearsIn": []
+    },
+    "loadMeta": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads the meta from disk",
+          "     *",
+          "     * @param {String} filename",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads the meta from disk</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} filename",
+            "paramName": "filename",
+            "description": "",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 756
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1025
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "saveMeta": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Saves the meta to disk",
+          "     *",
+          "     * @param {String} filename",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Saves the meta to disk</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} filename",
+            "paramName": "filename",
+            "description": "",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1117
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1279
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getMetaData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the actual meta data",
+          "     *",
+          "     * @returns {*}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the actual meta data</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*}",
+            "type": "*",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1365
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1416
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": []
+    },
+    "isOutOfDate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the meta data is out of date compared to the last modified",
+          "     * timestamp of the classname",
+          "     *",
+          "     * @returns {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether the meta data is out of date compared to the last modified\n timestamp of the classname</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1587
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2014
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "parse": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the file and returns the metadata",
+          "     *",
+          "     * @param {String} classFilename the .js file to parse",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the file and returns the metadata</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} classFilename the .js file to parse",
+            "paramName": "classFilename",
+            "description": "the .js file to parse",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2175
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 3686
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "classFilename",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__plugin": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The Babel plugin",
+          "     *",
+          "     * @returns {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The Babel plugin</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 3765
+        },
+        "end": {
+          "line": 207,
+          "column": 5,
+          "index": 5541
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__scanClassDef": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scans the class definition",
+          "     *",
+          "     * @param {NodePath} path",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scans the class definition</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{NodePath} path",
+            "paramName": "path",
+            "description": "",
+            "type": "NodePath"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4,
+          "index": 5635
+        },
+        "end": {
+          "line": 415,
+          "column": 5,
+          "index": 12836
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path",
+          "type": "NodePath"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__scanProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scans the properties in the class definition",
+          "     *",
+          "     * @param {NodePath[]} paths",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scans the properties in the class definition</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{NodePath[]} paths",
+            "paramName": "paths",
+            "description": "",
+            "type": "NodePath[]"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 422,
+          "column": 4,
+          "index": 12951
+        },
+        "end": {
+          "line": 445,
+          "column": 5,
+          "index": 13616
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "paths",
+          "type": "NodePath[]"
+        }
+      ],
+      "appearsIn": []
+    },
+    "fixupJsDoc": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 447,
+          "column": 4,
+          "index": 13623
+        },
+        "end": {
+          "line": 506,
+          "column": 5,
+          "index": 15529
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "typeResolver"
+        }
+      ],
+      "appearsIn": []
+    }
+  }
+}

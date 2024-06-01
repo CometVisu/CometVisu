@@ -23,14 +23,14 @@
     implement: [qx.ui.virtual.cell.IWidgetCell],
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_480_0 = [];
+      this.__P_699_0 = [];
     },
     events: {
       /** Fired when a new <code>LayoutItem</code> is created. */
       created: "qx.event.type.Data"
     },
     members: {
-      __P_480_0: null,
+      __P_699_0: null,
       /**
        * Creates the widget instance.
        *
@@ -72,23 +72,23 @@
       },
       // interface implementation
       getCellWidget: function getCellWidget(data, states) {
-        var widget = this.__P_480_1();
+        var widget = this.__P_699_1();
         this.updateStates(widget, states);
         this.updateData(widget, data);
         return widget;
       },
       // interface implementation
       pool: function pool(widget) {
-        this.__P_480_0.push(widget);
+        this.__P_699_0.push(widget);
       },
       /**
        * Cleanup all <code>LayoutItem</code> and destroy them.
        */
       _cleanupPool: function _cleanupPool() {
-        var widget = this.__P_480_0.pop();
+        var widget = this.__P_699_0.pop();
         while (widget) {
           widget.destroy();
-          widget = this.__P_480_0.pop();
+          widget = this.__P_699_0.pop();
         }
       },
       /**
@@ -97,8 +97,8 @@
        *
        * @return {qx.ui.core.LayoutItem} The cell widget
        */
-      __P_480_1: function __P_480_1() {
-        var widget = this.__P_480_0.shift();
+      __P_699_1: function __P_699_1() {
+        var widget = this.__P_699_0.shift();
         if (widget == null) {
           widget = this._createWidget();
           this.fireDataEvent("created", widget);
@@ -113,10 +113,10 @@
      */
     destruct: function destruct() {
       this._cleanupPool();
-      this.__P_480_0 = null;
+      this.__P_699_0 = null;
     }
   });
   qx.ui.virtual.cell.AbstractWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractWidget.js.map?dt=1709410167290
+//# sourceMappingURL=AbstractWidget.js.map?dt=1717235418457

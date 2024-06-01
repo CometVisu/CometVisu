@@ -1,61 +1,61 @@
 {
-  "className": "qx.module.event.Swipe",
-  "packageName": "qx.module.event",
-  "name": "Swipe",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 803
-      },
-      "end": {
-        "line": 132,
-        "column": 3,
-        "index": 3283
-      }
+  "version": 0.3,
+  "lastModified": 1717235172442,
+  "lastModifiedIso": "2024-06-01T09:46:12.442Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/Swipe.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 776
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Normalization for the swipe gesture. This gesture is based on <a href=\"#Pointer\">Pointer events</a>\n meaning that it's available on all devices, no matter which input device type is used (e.g. mouse or\n touchscreen).</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Event_Normalization"
-        }
-      ]
+    "end": {
+      "line": 132,
+      "column": 3,
+      "index": 3152
     }
   },
-  "type": "class",
+  "className": "qx.module.event.Swipe",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Normalization for the swipe gesture. This gesture is based on <a href=\"#Pointer\">Pointer events</a>",
+      " * meaning that it's available on all devices, no matter which input device type is used (e.g. mouse or",
+      " * touchscreen).",
+      " *",
+      " * @require(qx.module.Event)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Normalization for the swipe gesture. This gesture is based on <a href=\"#Pointer\">Pointer events</a>\n meaning that it's available on all devices, no matter which input device type is used (e.g. mouse or\n touchscreen).</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
   "statics": {
     "TYPES": {
-      "location": {
-        "start": {
-          "line": 33,
-          "column": 4,
-          "index": 932
-        },
-        "end": {
-          "line": 33,
-          "column": 20,
-          "index": 948
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of event types to be normalized",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,39 +63,47 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 900
+        },
+        "end": {
+          "line": 33,
+          "column": 20,
+          "index": 916
+        }
+      },
+      "appearsIn": []
     },
     "BIND_METHODS": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 35,
           "column": 4,
-          "index": 957
+          "index": 923
         },
         "end": {
           "line": 42,
           "column": 5,
-          "index": 1108
+          "index": 1067
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "getStartTime": {
-      "location": {
-        "start": {
-          "line": 49,
-          "column": 4,
-          "index": 1239
-        },
-        "end": {
-          "line": 51,
-          "column": 5,
-          "index": 1308
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the start time of the performed swipe.",
+          "     *",
+          "     * @return {Integer} the start time",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -107,27 +115,39 @@
             "name": "@return",
             "body": "{Integer} the start time",
             "type": "Integer",
-            "description": " the start time"
+            "description": "the start time"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDuration": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 58,
+          "line": 49,
           "column": 4,
-          "index": 1437
+          "index": 1191
         },
         "end": {
-          "line": 60,
+          "line": 51,
           "column": 5,
-          "index": 1504
+          "index": 1258
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getDuration": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the duration the performed swipe took.",
+          "     *",
+          "     * @return {Integer} the duration",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -139,27 +159,39 @@
             "name": "@return",
             "body": "{Integer} the duration",
             "type": "Integer",
-            "description": " the duration"
+            "description": "the duration"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAxis": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 67,
+          "line": 58,
           "column": 4,
-          "index": 1645
+          "index": 1380
         },
         "end": {
-          "line": 69,
+          "line": 60,
           "column": 5,
-          "index": 1704
+          "index": 1445
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getAxis": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the performed swipe was on the x or y axis.",
+          "     *",
+          "     * @return {String} \"x\"/\"y\" axis",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -170,28 +202,42 @@
           {
             "name": "@return",
             "body": "{String} \"x\"/\"y\" axis",
-            "type": "String",
-            "description": " \"x\"/\"y\" axis"
+            "type": "string",
+            "description": "\"x\"/\"y\" axis"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDirection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 78,
+          "line": 67,
           "column": 4,
-          "index": 1904
+          "index": 1579
         },
         "end": {
-          "line": 80,
+          "line": 69,
           "column": 5,
-          "index": 1973
+          "index": 1636
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getDirection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the direction of the performed swipe in reference to the axis.",
+          "     * y = up / down",
+          "     * x = left / right",
+          "     *",
+          "     * @return {String} the direction",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -202,28 +248,40 @@
           {
             "name": "@return",
             "body": "{String} the direction",
-            "type": "String",
-            "description": " the direction"
+            "type": "string",
+            "description": "the direction"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getVelocity": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 87,
+          "line": 78,
           "column": 4,
-          "index": 2099
+          "index": 1827
         },
         "end": {
-          "line": 89,
+          "line": 80,
           "column": 5,
-          "index": 2166
+          "index": 1894
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getVelocity": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the velocity of the performed swipe.",
+          "     *",
+          "     * @return {Number} the velocity",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -234,28 +292,40 @@
           {
             "name": "@return",
             "body": "{Number} the velocity",
-            "type": "Number",
-            "description": " the velocity"
+            "type": "number",
+            "description": "the velocity"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDistance": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 96,
+          "line": 87,
           "column": 4,
-          "index": 2293
+          "index": 2013
         },
         "end": {
-          "line": 98,
+          "line": 89,
           "column": 5,
-          "index": 2360
+          "index": 2078
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getDistance": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the distance of the performed swipe.",
+          "     *",
+          "     * @return {Integer} the distance",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -267,27 +337,43 @@
             "name": "@return",
             "body": "{Integer} the distance",
             "type": "Integer",
-            "description": " the distance"
+            "description": "the distance"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "normalize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 109,
+          "line": 96,
           "column": 4,
-          "index": 2683
+          "index": 2198
         },
         "end": {
-          "line": 123,
+          "line": 98,
           "column": 5,
-          "index": 3136
+          "index": 2263
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "normalize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the native event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element the listener was attached to",
+          "     * @return {Event} Normalized event object",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -315,7 +401,7 @@
             "name": "@return",
             "body": "{Event} Normalized event object",
             "type": "Event",
-            "description": " Normalized event object"
+            "description": "Normalized event object"
           }
         ],
         "@internal": [
@@ -325,23 +411,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 126,
-        "column": 2,
-        "index": 3148
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 2575
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3014
+        }
       },
-      "end": {
-        "line": 131,
-        "column": 3,
-        "index": 3278
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

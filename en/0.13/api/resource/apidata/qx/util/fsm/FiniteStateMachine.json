@@ -1,80 +1,69 @@
 {
-  "className": "qx.util.fsm.FiniteStateMachine",
-  "packageName": "qx.util.fsm",
-  "name": "FiniteStateMachine",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 675
-      },
-      "end": {
-        "line": 1253,
-        "column": 3,
-        "index": 39380
-      }
+  "version": 0.3,
+  "lastModified": 1717235170490,
+  "lastModifiedIso": "2024-06-01T09:46:10.490Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/fsm/FiniteStateMachine.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 650
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A finite state machine.\n See {@link qx.util.fsm.State} for details on creating States,\n and {@link qx.util.fsm.Transition} for details on creating\n transitions between states.</p>"
-        }
-      ]
+    "end": {
+      "line": 1253,
+      "column": 3,
+      "index": 38128
     }
   },
-  "type": "class",
+  "className": "qx.util.fsm.FiniteStateMachine",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A finite state machine.",
+      " *",
+      " * See {@link qx.util.fsm.State} for details on creating States,",
+      " * and {@link qx.util.fsm.Transition} for details on creating",
+      " * transitions between states.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A finite state machine.\n See {@link qx.util.fsm.State} for details on creating States,\n and {@link qx.util.fsm.Transition} for details on creating\n transitions between states.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "machineName"
+      }
+    ],
     "location": {
       "start": {
         "line": 32,
         "column": 2,
-        "index": 845
+        "index": 814
       },
       "end": {
         "line": 77,
         "column": 3,
-        "index": 2382
+        "index": 2306
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "machineName {String} The name of this finite state machine",
-          "paramName": "machineName",
-          "description": " The name of this finite state machine",
-          "type": "String"
-        }
-      ]
     }
   },
   "statics": {
     "StateChange": {
-      "location": {
-        "start": {
-          "line": 84,
-          "column": 4,
-          "index": 2556
-        },
-        "end": {
-          "line": 95,
-          "column": 5,
-          "index": 2913
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Constants which may be values of the nextState member in the",
+          "     * transitionInfo parameter of the Transition constructor.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -82,23 +71,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "EventHandling": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 101,
+          "line": 84,
           "column": 4,
-          "index": 3058
+          "index": 2473
         },
         "end": {
-          "line": 110,
+          "line": 95,
           "column": 5,
-          "index": 3350
+          "index": 2819
         }
       },
+      "appearsIn": []
+    },
+    "EventHandling": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Constants for use in the events member of the transitionInfo parameter",
+          "     * of the Transition constructor.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -106,23 +101,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "DebugFlags": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 115,
+          "line": 101,
           "column": 4,
-          "index": 3407
+          "index": 2958
         },
         "end": {
-          "line": 129,
+          "line": 110,
           "column": 5,
-          "index": 3757
+          "index": 3241
         }
       },
+      "appearsIn": []
+    },
+    "DebugFlags": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Debug bitmask values.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -130,25 +130,32 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3293
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3629
+        }
+      },
+      "appearsIn": []
     }
   },
   "events": {
     "terminated": {
-      "location": {
-        "start": {
-          "line": 137,
-          "column": 4,
-          "index": 3909
-        },
-        "end": {
-          "line": 137,
-          "column": 36,
-          "index": 3941
-        }
-      },
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when the finite state machine terminates. Data is the last state",
+          "     * before termination.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -156,8 +163,18 @@
           }
         ]
       },
-      "name": "terminated",
-      "type": "qx.event.type.Data"
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3773
+        },
+        "end": {
+          "line": 137,
+          "column": 36,
+          "index": 3805
+        }
+      }
     }
   },
   "properties": {
@@ -166,15 +183,24 @@
         "start": {
           "line": 144,
           "column": 4,
-          "index": 4057
+          "index": 3914
         },
         "end": {
           "line": 147,
           "column": 5,
-          "index": 4117
+          "index": 3971
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of this finite state machine (for debug messages)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -182,26 +208,31 @@
           }
         ]
       },
-      "name": "name",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "state": {
       "location": {
         "start": {
           "line": 152,
           "column": 4,
-          "index": 4199
+          "index": 4048
         },
         "end": {
           "line": 155,
           "column": 5,
-          "index": 4260
+          "index": 4106
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The current state of the finite state machine.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -209,26 +240,34 @@
           }
         ]
       },
-      "name": "state",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "previousState": {
       "location": {
         "start": {
           "line": 163,
           "column": 4,
-          "index": 4541
+          "index": 4379
         },
         "end": {
           "line": 166,
           "column": 5,
-          "index": 4610
+          "index": 4445
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The previous state of the finite state machine, i.e. the state from",
+          "     * which we most recently transitioned.  Note that this could be the same",
+          "     * as the current state if a successful transition brought us back to the",
+          "     * same state.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -236,26 +275,33 @@
           }
         ]
       },
-      "name": "previousState",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "nextState": {
       "location": {
         "start": {
           "line": 173,
           "column": 4,
-          "index": 4843
+          "index": 4671
         },
         "end": {
           "line": 176,
           "column": 5,
-          "index": 4908
+          "index": 4733
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The state to which we will be transitioning.  This property is valid",
+          "     * only during a Transition's ontransition function and a State's onexit",
+          "     * function.  At all other times, it is null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -263,26 +309,35 @@
           }
         ]
       },
-      "name": "nextState",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "maxSavedStates": {
       "location": {
         "start": {
           "line": 185,
           "column": 4,
-          "index": 5269
+          "index": 5085
         },
         "end": {
           "line": 188,
           "column": 5,
-          "index": 5332
+          "index": 5145
         }
       },
+      "json": {
+        "check": "Number",
+        "init": 2
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximum number of states which may pushed onto the state-stack.  It",
+          "     * is generally a poor idea to have very many states saved on a stack.",
+          "     * Following program logic becomes very difficult, and the code can be",
+          "     * highly unmaintainable.  The default should be more than adequate.",
+          "     * You've been warned.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -290,26 +345,42 @@
           }
         ]
       },
-      "name": "maxSavedStates",
-      "propertyType": "new",
-      "init": 2,
-      "check": "Number",
-      "defaultValue": 2
+      "appearsIn": []
     },
     "debugFlags": {
       "location": {
         "start": {
           "line": 204,
           "column": 4,
-          "index": 5873
+          "index": 5670
         },
         "end": {
           "line": 212,
           "column": 5,
-          "index": 6153
+          "index": 5942
         }
       },
+      "json": {
+        "check": "Number",
+        "init": 7
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Debug flags, composed of the bitmask values in the DebugFlags constant.",
+          "     *",
+          "     * Set the debug flags from the application by or-ing together bits, akin",
+          "     * to this:",
+          "     *",
+          "     * <pre class='javascript'>",
+          "     * var FSM = qx.util.fsm.FiniteStateMachine;",
+          "     * fsm.setDebugFlags(FSM.DebugFlags.EVENTS |",
+          "     *                   FSM.DebugFlags.TRANSITIONS |",
+          "     *                   FSM.DebugFlags.FUNCTION_DETAIL |",
+          "     *                   FSM.DebugFlags.OBJECT_NOT_FOUND);",
+          "     * </pre>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -317,252 +388,223 @@
           }
         ]
       },
-      "name": "debugFlags",
-      "propertyType": "new",
-      "init": 7,
-      "check": "Number",
-      "defaultValue": 7
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "__states": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 216,
           "column": 4,
-          "index": 6181
+          "index": 5966
         },
         "end": {
           "line": 216,
           "column": 18,
-          "index": 6195
+          "index": 5980
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__startState": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 217,
           "column": 4,
-          "index": 6202
+          "index": 5986
         },
         "end": {
           "line": 217,
           "column": 22,
-          "index": 6220
+          "index": 6004
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__eventQueue": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 218,
           "column": 4,
-          "index": 6227
+          "index": 6010
         },
         "end": {
           "line": 218,
           "column": 22,
-          "index": 6245
+          "index": 6028
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__blockedEvents": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 219,
           "column": 4,
-          "index": 6252
+          "index": 6034
         },
         "end": {
           "line": 219,
           "column": 25,
-          "index": 6273
+          "index": 6055
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__savedStates": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 220,
           "column": 4,
-          "index": 6280
+          "index": 6061
         },
         "end": {
           "line": 220,
           "column": 23,
-          "index": 6299
+          "index": 6080
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__friendlyToObject": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 221,
           "column": 4,
-          "index": 6306
+          "index": 6086
         },
         "end": {
           "line": 221,
           "column": 28,
-          "index": 6330
+          "index": 6110
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__friendlyToHash": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 222,
           "column": 4,
-          "index": 6337
+          "index": 6116
         },
         "end": {
           "line": 222,
           "column": 26,
-          "index": 6359
+          "index": 6138
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__hashToFriendly": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 223,
           "column": 4,
-          "index": 6366
+          "index": 6144
         },
         "end": {
           "line": 223,
           "column": 26,
-          "index": 6388
+          "index": 6166
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__groupToFriendly": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 224,
           "column": 4,
-          "index": 6395
+          "index": 6172
         },
         "end": {
           "line": 224,
           "column": 27,
-          "index": 6418
+          "index": 6195
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__friendlyToGroups": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 225,
           "column": 4,
-          "index": 6425
+          "index": 6201
         },
         "end": {
           "line": 225,
           "column": 28,
-          "index": 6449
+          "index": 6225
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__bEventProcessingInProgress": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 226,
           "column": 4,
-          "index": 6456
+          "index": 6231
         },
         "end": {
           "line": 226,
           "column": 39,
-          "index": 6491
+          "index": 6266
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__bTerminated": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 227,
           "column": 4,
-          "index": 6498
+          "index": 6272
         },
         "end": {
           "line": 227,
           "column": 23,
-          "index": 6517
+          "index": 6291
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "isTerminated": {
-      "location": {
-        "start": {
-          "line": 234,
-          "column": 4,
-          "index": 6691
-        },
-        "end": {
-          "line": 236,
-          "column": 5,
-          "index": 6748
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the finite state machine is terminated or not.",
+          "     *",
+          "     * @return {Boolean} If the finite state machine is terminated.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -573,28 +615,47 @@
           {
             "name": "@return",
             "body": "{Boolean} If the finite state machine is terminated.",
-            "type": "Boolean",
-            "description": " If the finite state machine is terminated."
+            "type": "boolean",
+            "description": "If the finite state machine is terminated."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 250,
+          "line": 234,
           "column": 4,
-          "index": 7172
+          "index": 6458
         },
         "end": {
-          "line": 274,
+          "line": 236,
           "column": 5,
-          "index": 7970
+          "index": 6513
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "addState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a state to the finite state machine.",
+          "     *",
+          "     *",
+          "     * @param state {qx.util.fsm.State}",
+          "     *   An object of class qx.util.fsm.State representing a state which is to",
+          "     *   be a part of this finite state machine.",
+          "     *",
+          "     *",
+          "     * @throws {Error} If the given state is not an instanceof of qx.util.fsm.State.",
+          "     * @throws {Error} If the given state already exists.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -625,23 +686,54 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "replaceState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 298,
+          "line": 250,
           "column": 4,
-          "index": 9019
+          "index": 6923
         },
         "end": {
-          "line": 322,
+          "line": 274,
           "column": 5,
-          "index": 9779
+          "index": 7697
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "qx.util.fsm.State"
+        }
+      ],
+      "appearsIn": []
+    },
+    "replaceState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replace a state in the finite state machine.  This is useful if",
+          "     * initially \"dummy\" states are created which load the real state table",
+          "     * for a series of operations (and possibly also load the gui associated",
+          "     * with the new states at the same time).  Having portions of the finite",
+          "     * state machine and their associated gui pages loaded at run time can",
+          "     * help prevent long delays at application start-up time.",
+          "     *",
+          "     *",
+          "     * @param state {qx.util.fsm.State}",
+          "     *   An object of class qx.util.fsm.State representing a state which is to",
+          "     *   be a part of this finite state machine.",
+          "     *",
+          "     * @param bDispose {Boolean}",
+          "     *   If <i>true</i>, then dispose the old state object.  If <i>false</i>,",
+          "     *   the old state object is returned for disposing by the caller.",
+          "     *",
+          "     * @return {Object}",
+          "     *   The old state object if it was not disposed; otherwise null.",
+          "     *",
+          "     * @throws {Error} If the given state is not an instanceof of qx.util.fsm.State.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -661,15 +753,15 @@
             "body": "bDispose {Boolean}\n   If <i>true</i>, then dispose the old state object.  If <i>false</i>,\n   the old state object is returned for disposing by the caller.",
             "paramName": "bDispose",
             "description": "\n   If <i>true</i>, then dispose the old state object.  If <i>false</i>,\n   the old state object is returned for disposing by the caller.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object}\n   The old state object if it was not disposed; otherwise null.",
-            "type": "Object",
-            "description": "\n   The old state object if it was not disposed; otherwise null."
+            "type": "Record<any, any>",
+            "description": "   The old state object if it was not disposed; otherwise null."
           }
         ],
         "@throws": [
@@ -681,23 +773,54 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addObject": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 339,
+          "line": 298,
           "column": 4,
-          "index": 10291
+          "index": 8722
         },
         "end": {
-          "line": 380,
+          "line": 322,
           "column": 5,
-          "index": 11821
+          "index": 9458
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "qx.util.fsm.State"
+        },
+        {
+          "name": "bDispose",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "addObject": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an object (typically a widget) that is to be accessed during state",
+          "     * transitions, to the finite state machine.",
+          "     *",
+          "     *",
+          "     * @param friendlyName {String}",
+          "     *   The friendly name to used for access to the object being added.",
+          "     *",
+          "     * @param obj {Object}",
+          "     *   The object to associate with the specified friendly name",
+          "     *",
+          "     * @param groupNames {Array}",
+          "     *   An optional list of group names of which this object is a member.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -710,41 +833,67 @@
             "body": "friendlyName {String}\n   The friendly name to used for access to the object being added.",
             "paramName": "friendlyName",
             "description": "\n   The friendly name to used for access to the object being added.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "obj {Object}\n   The object to associate with the specified friendly name",
             "paramName": "obj",
             "description": "\n   The object to associate with the specified friendly name",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "groupNames {Array}\n   An optional list of group names of which this object is a member.",
             "paramName": "groupNames",
             "description": "\n   An optional list of group names of which this object is a member.",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeObject": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 391,
+          "line": 339,
           "column": 4,
-          "index": 12096
+          "index": 9953
         },
         "end": {
-          "line": 427,
+          "line": 380,
           "column": 5,
-          "index": 13331
+          "index": 11442
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "friendlyName",
+          "type": "string"
+        },
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "groupNames",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeObject": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an object which had previously been added by {@link #addObject}.",
+          "     *",
+          "     *",
+          "     * @param friendlyName {String}",
+          "     *   The friendly name associated with an object, specifying which object",
+          "     *   is to be removed.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -757,27 +906,48 @@
             "body": "friendlyName {String}\n   The friendly name associated with an object, specifying which object\n   is to be removed.",
             "paramName": "friendlyName",
             "description": "\n   The friendly name associated with an object, specifying which object\n   is to be removed.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getObject": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 441,
+          "line": 391,
           "column": 4,
-          "index": 13736
+          "index": 11706
         },
         "end": {
-          "line": 443,
+          "line": 427,
           "column": 5,
-          "index": 13821
+          "index": 12905
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "friendlyName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getObject": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Retrieve an object previously saved via {@link #addObject}, using its",
+          "     * Friendly Name.",
+          "     *",
+          "     *",
+          "     * @param friendlyName {String}",
+          "     *   The friendly name of the object to be retrieved.",
+          "     *",
+          "     * @return {Object}",
+          "     *   The object which has the specified friendly name, or undefined if no",
+          "     *   object has been associated with that name.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -790,35 +960,58 @@
             "body": "friendlyName {String}\n   The friendly name of the object to be retrieved.",
             "paramName": "friendlyName",
             "description": "\n   The friendly name of the object to be retrieved.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object}\n   The object which has the specified friendly name, or undefined if no\n   object has been associated with that name.",
-            "type": "Object",
-            "description": "\n   The object which has the specified friendly name, or undefined if no\n   object has been associated with that name."
+            "type": "Record<any, any>",
+            "description": "   The object which has the specified friendly name, or undefined if no\n   object has been associated with that name."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getFriendlyName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 456,
+          "line": 441,
           "column": 4,
-          "index": 14185
+          "index": 13296
         },
         "end": {
-          "line": 459,
+          "line": 443,
           "column": 5,
-          "index": 14342
+          "index": 13379
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "friendlyName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getFriendlyName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the friendly name of an object.",
+          "     *",
+          "     *",
+          "     * @param obj {Object}",
+          "     *   The object for which the friendly name is desired",
+          "     *",
+          "     * @return {String}",
+          "     *   If the object has been previously registered via {@link #addObject},",
+          "     *   then the friendly name of the object is returned; otherwise, null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -831,35 +1024,59 @@
             "body": "obj {Object}\n   The object for which the friendly name is desired",
             "paramName": "obj",
             "description": "\n   The object for which the friendly name is desired",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String}\n   If the object has been previously registered via {@link #addObject},\n   then the friendly name of the object is returned; otherwise, null.",
-            "type": "String",
-            "description": "\n   If the object has been previously registered via {@link #addObject},\n   then the friendly name of the object is returned; otherwise, null."
+            "type": "string",
+            "description": "   If the object has been previously registered via {@link #addObject},\n   then the friendly name of the object is returned; otherwise, null."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getGroupObjects": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 473,
+          "line": 456,
           "column": 4,
-          "index": 14804
+          "index": 13730
         },
         "end": {
-          "line": 481,
+          "line": 459,
           "column": 5,
-          "index": 14972
+          "index": 13884
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getGroupObjects": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Retrieve the list of objects which have registered, via {@link #addObject}",
+          "     * as being members of the specified group.",
+          "     *",
+          "     *",
+          "     * @param groupName {String}",
+          "     *   The name of the group for which the member list is desired.",
+          "     *",
+          "     * @return {Array}",
+          "     *   An array containing the friendly names of any objects which are",
+          "     *   members of the specified group.  The resultant array may be empty.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -872,35 +1089,51 @@
             "body": "groupName {String}\n   The name of the group for which the member list is desired.",
             "paramName": "groupName",
             "description": "\n   The name of the group for which the member list is desired.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array}\n   An array containing the friendly names of any objects which are\n   members of the specified group.  The resultant array may be empty.",
-            "type": "Array",
-            "description": "\n   An array containing the friendly names of any objects which are\n   members of the specified group.  The resultant array may be empty."
+            "type": "Array<any>",
+            "description": "   An array containing the friendly names of any objects which are\n   members of the specified group.  The resultant array may be empty."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "displayAllObjects": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 487,
+          "line": 473,
           "column": 4,
-          "index": 15076
+          "index": 14332
         },
         "end": {
-          "line": 501,
+          "line": 481,
           "column": 5,
-          "index": 15638
+          "index": 14492
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "groupName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "displayAllObjects": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Display all of the saved objects and their reverse mappings.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -908,23 +1141,44 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_getInternalData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 520,
+          "line": 487,
           "column": 4,
-          "index": 16093
+          "index": 14590
         },
         "end": {
-          "line": 533,
+          "line": 501,
           "column": 5,
-          "index": 16595
+          "index": 15138
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getInternalData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get internal data for debugging",
+          "     *",
+          "     * @return {Map}",
+          "     *   A map containing the following:",
+          "     *     __states",
+          "     *     __startState",
+          "     *     __eventQueue",
+          "     *     __blockedEvents",
+          "     *     __savedStates",
+          "     *     __friendlyToObject",
+          "     *     __friendlyToHash",
+          "     *     __hashToFriendly",
+          "     *     __groupToFriendly",
+          "     *     __friendlyToGroups",
+          "     *     __bEventProcessingInProgress",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -935,28 +1189,42 @@
           {
             "name": "@return",
             "body": "{Map}\n   A map containing the following:\n     __states\n     __startState\n     __eventQueue\n     __blockedEvents\n     __savedStates\n     __friendlyToObject\n     __friendlyToHash\n     __hashToFriendly\n     __groupToFriendly\n     __friendlyToGroups\n     __bEventProcessingInProgress",
-            "type": "Map",
-            "description": "\n   A map containing the following:\n     __states\n     __startState\n     __eventQueue\n     __blockedEvents\n     __savedStates\n     __friendlyToObject\n     __friendlyToHash\n     __hashToFriendly\n     __groupToFriendly\n     __friendlyToGroups\n     __bEventProcessingInProgress"
+            "type": "Map<any, any>",
+            "description": "   A map containing the following:\n     __states\n     __startState\n     __eventQueue\n     __blockedEvents\n     __savedStates\n     __friendlyToObject\n     __friendlyToHash\n     __hashToFriendly\n     __groupToFriendly\n     __friendlyToGroups\n     __bEventProcessingInProgress"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "start": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 542,
+          "line": 520,
           "column": 4,
-          "index": 16905
+          "index": 15574
         },
         "end": {
-          "line": 581,
+          "line": 533,
           "column": 5,
-          "index": 18196
+          "index": 16063
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "start": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start (or restart, after it has terminated) the finite state machine",
+          "     * from the starting state.  The starting state is defined as the first",
+          "     * state added to the finite state machine.",
+          "     *",
+          "     * @throws {Error} If the machine stared with not available state.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -972,23 +1240,52 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "pushState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 608,
+          "line": 542,
           "column": 4,
-          "index": 19235
+          "index": 16364
         },
         "end": {
-          "line": 624,
+          "line": 581,
           "column": 5,
-          "index": 19853
+          "index": 17616
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "pushState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Save the current or previous state on the saved-state stack.  A future",
+          "     * transition can then provide, as its nextState value, the class",
+          "     * constant:",
+          "     *",
+          "     *   <code>",
+          "     *   qx.util.fsm.FiniteStateMachine.StateChange.POP_STATE_STACK",
+          "     *   </code>",
+          "     *",
+          "     * which will cause the next state to be whatever is at the top of the",
+          "     * saved-state stack, and remove that top element from the saved-state",
+          "     * stack.",
+          "     *",
+          "     *",
+          "     * @param state {Boolean|String}",
+          "     *   When <i>true</i>, then push the current state onto the stack.  This",
+          "     *   might be used in a transition, before the state has changed.  When",
+          "     *   <i>false</i>, then push the previous state onto the stack.  This",
+          "     *   might be used in an on entry function to save the previous state to",
+          "     *   return to.  If this parameter is a string, it is taken to be the",
+          "     *   name of the state to transition to.",
+          "     *",
+          "     *",
+          "     * @throws {Error} If the saved-state stack is full.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1016,23 +1313,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "popState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 633,
+          "line": 608,
           "column": 4,
-          "index": 20077
+          "index": 18628
         },
         "end": {
-          "line": 641,
+          "line": 624,
           "column": 5,
-          "index": 20338
+          "index": 19230
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": [
+            "Boolean",
+            "String"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "popState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pop the saved state stack.",
+          "     *",
+          "     * @return {String|Boolean}",
+          "     *   The name of a state or a boolean flag that had most recently been",
+          "     *   pushed onto the saved-state stack.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1044,27 +1360,43 @@
             "name": "@return",
             "body": "{String|Boolean}\n   The name of a state or a boolean flag that had most recently been\n   pushed onto the saved-state stack.",
             "type": "String|Boolean",
-            "description": "\n   The name of a state or a boolean flag that had most recently been\n   pushed onto the saved-state stack."
+            "description": "   The name of a state or a boolean flag that had most recently been\n   pushed onto the saved-state stack."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "postponeEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 652,
+          "line": 633,
           "column": 4,
-          "index": 20632
+          "index": 19445
         },
         "end": {
-          "line": 656,
+          "line": 641,
           "column": 5,
-          "index": 20824
+          "index": 19698
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|Boolean"
+      },
+      "appearsIn": []
+    },
+    "postponeEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add the specified event to a list of events to be passed to the next",
+          "     * state following state transition.",
+          "     *",
+          "     *",
+          "     * @param event {qx.event.type.Event}",
+          "     *   The event to add to the event queue for processing after state change.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1081,23 +1413,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "enqueueEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 671,
+          "line": 652,
           "column": 4,
-          "index": 21248
+          "index": 19981
         },
         "end": {
-          "line": 703,
+          "line": 656,
           "column": 5,
-          "index": 22246
+          "index": 20169
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "enqueueEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Enqueue an event for processing",
+          "     *",
+          "     *",
+          "     * @param event {qx.event.type.Event}",
+          "     *   The event to be enqueued",
+          "     *",
+          "     * @param bAddAtHead {Boolean}",
+          "     *   If <i>true</i>, put the event at the head of the queue for immediate",
+          "     *   processing.  If <i>false</i>, place the event at the tail of the",
+          "     *   queue so that it receives in-order processing.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1117,27 +1471,45 @@
             "body": "bAddAtHead {Boolean}\n   If <i>true</i>, put the event at the head of the queue for immediate\n   processing.  If <i>false</i>, place the event at the tail of the\n   queue so that it receives in-order processing.",
             "paramName": "bAddAtHead",
             "description": "\n   If <i>true</i>, put the event at the head of the queue for immediate\n   processing.  If <i>false</i>, place the event at the tail of the\n   queue so that it receives in-order processing.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "eventListener": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 710,
+          "line": 671,
           "column": 4,
-          "index": 22426
+          "index": 20578
         },
         "end": {
-          "line": 734,
+          "line": 703,
           "column": 5,
-          "index": 23245
+          "index": 21544
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Event"
+        },
+        {
+          "name": "bAddAtHead",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "eventListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for all event types in the finite state machine",
+          "     *",
+          "     * @param event {qx.event.type.Event} The event that was dispatched.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1154,23 +1526,48 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fireImmediateEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 752,
+          "line": 710,
           "column": 4,
-          "index": 23809
+          "index": 21717
         },
         "end": {
-          "line": 779,
+          "line": 734,
           "column": 5,
-          "index": 24511
+          "index": 22512
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "fireImmediateEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an event and send it immediately to the finite state machine.",
+          "     *",
+          "     * @param type {String}",
+          "     *   The type of event, e.g. \"execute\"",
+          "     *",
+          "     * @param target {qx.core.Object}",
+          "     *   The target of the event",
+          "     *",
+          "     * @param data {Object|null}",
+          "     *   The data, if any, to issue in the event.  If this parameter is null",
+          "     *   then a qx.event.type.Event is instantiated.  Otherwise, an event of",
+          "     *   type qx.event.type.Data is instantiated and this data is applied to",
+          "     *   it.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1183,7 +1580,7 @@
             "body": "type {String}\n   The type of event, e.g. \"execute\"",
             "paramName": "type",
             "description": "\n   The type of event, e.g. \"execute\"",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -1204,23 +1601,63 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "scheduleEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 801,
+          "line": 752,
           "column": 4,
-          "index": 25242
+          "index": 23058
         },
         "end": {
-          "line": 809,
+          "line": 779,
           "column": 5,
-          "index": 25460
+          "index": 23733
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "target",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "data",
+          "type": [
+            "Object",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "scheduleEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create and schedule an event to be sent to the finite state machine",
+          "     * \"shortly\".  This allows such things as letting a progress cursor",
+          "     * display prior to handling the event.",
+          "     *",
+          "     * @param type {String}",
+          "     *   The type of event, e.g. \"execute\"",
+          "     *",
+          "     * @param target {qx.core.Object}",
+          "     *   The target of the event",
+          "     *",
+          "     * @param data {Object|null}",
+          "     *   See {@link #fireImmediateEvent} for details.",
+          "     *",
+          "     * @param timeout {Integer|null}",
+          "     *   If provided, this is the number of milliseconds to wait before firing",
+          "     *   the event.  If not provided, a default short interval (on the order",
+          "     *   of 20 milliseconds) is used.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1233,7 +1670,7 @@
             "body": "type {String}\n   The type of event, e.g. \"execute\"",
             "paramName": "type",
             "description": "\n   The type of event, e.g. \"execute\"",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -1264,23 +1701,54 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__processEvents": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 815,
+          "line": 801,
           "column": 4,
-          "index": 25549
+          "index": 24442
         },
         "end": {
-          "line": 842,
+          "line": 809,
           "column": 5,
-          "index": 26461
+          "index": 24652
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "target",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "data",
+          "type": [
+            "Object",
+            "null"
+          ]
+        },
+        {
+          "name": "timeout",
+          "type": [
+            "Integer",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "__processEvents": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process all of the events on the event queue.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1288,23 +1756,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__run": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 864,
+          "line": 815,
           "column": 4,
-          "index": 27447
+          "index": 24735
         },
         "end": {
-          "line": 1245,
+          "line": 842,
           "column": 5,
-          "index": 39213
+          "index": 25620
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__run": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Run the finite state machine to process a single event.",
+          "     *",
+          "     *",
+          "     * @param event {qx.event.type.Event}",
+          "     *   An event that has been dispatched.  The event may be handled (if the",
+          "     *   current state handles this event type), queued (if the current state",
+          "     *   blocks this event type), or discarded (if the current state neither",
+          "     *   handles nor blocks this event type).",
+          "     *",
+          "     * @return {Boolean}",
+          "     *   Whether the event should be disposed.  If it was blocked, we've",
+          "     *   pushed it back onto the event queue, and it should not be disposed.",
+          "     *",
+          "     * @throws {Error} If the explicit transitions does not exist.",
+          "     * @throws {Error} If the transition returns an invalid value.",
+          "     * @throws {Error} If the next step will transit to an nonexistent state.",
+          "     * @throws {Error} If the state stack is empty and the next state is POP_STATE_STACK",
+          "     * @throws {Error} If the next state is invalid.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1324,8 +1816,8 @@
           {
             "name": "@return",
             "body": "{Boolean}\n   Whether the event should be disposed.  If it was blocked, we've\n   pushed it back onto the event queue, and it should not be disposed.",
-            "type": "Boolean",
-            "description": "\n   Whether the event should be disposed.  If it was blocked, we've\n   pushed it back onto the event queue, and it should not be disposed."
+            "type": "boolean",
+            "description": "   Whether the event should be disposed.  If it was blocked, we've\n   pushed it back onto the event queue, and it should not be disposed."
           }
         ],
         "@throws": [
@@ -1361,557 +1853,46 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 864,
+          "column": 4,
+          "index": 26584
+        },
+        "end": {
+          "line": 1245,
+          "column": 5,
+          "index": 37969
+        }
+      },
       "type": "function",
-      "access": "private"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getName": {
-      "type": "function",
-      "name": "getName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for name"
-          }
-        ]
-      }
-    },
-    "setName": {
-      "type": "function",
-      "name": "setName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for name"
-          }
-        ]
-      }
-    },
-    "resetName": {
-      "type": "function",
-      "name": "resetName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ]
-      }
-    },
-    "getState": {
-      "type": "function",
-      "name": "getState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>state</code>.\n\nFor further details take a look at the property definition: {@link #state}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for state"
-          }
-        ]
-      }
-    },
-    "setState": {
-      "type": "function",
-      "name": "setState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>state</code>.\n\nFor further details take a look at the property definition: {@link #state}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for state"
-          }
-        ]
-      }
-    },
-    "resetState": {
-      "type": "function",
-      "name": "resetState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>state</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #state}."
-          }
-        ]
-      }
-    },
-    "getPreviousState": {
-      "type": "function",
-      "name": "getPreviousState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>previousState</code>.\n\nFor further details take a look at the property definition: {@link #previousState}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for previousState"
-          }
-        ]
-      }
-    },
-    "setPreviousState": {
-      "type": "function",
-      "name": "setPreviousState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>previousState</code>.\n\nFor further details take a look at the property definition: {@link #previousState}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for previousState"
-          }
-        ]
-      }
-    },
-    "resetPreviousState": {
-      "type": "function",
-      "name": "resetPreviousState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>previousState</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #previousState}."
-          }
-        ]
-      }
-    },
-    "getNextState": {
-      "type": "function",
-      "name": "getNextState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>nextState</code>.\n\nFor further details take a look at the property definition: {@link #nextState}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for nextState"
-          }
-        ]
-      }
-    },
-    "setNextState": {
-      "type": "function",
-      "name": "setNextState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>nextState</code>.\n\nFor further details take a look at the property definition: {@link #nextState}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for nextState"
-          }
-        ]
-      }
-    },
-    "resetNextState": {
-      "type": "function",
-      "name": "resetNextState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>nextState</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #nextState}."
-          }
-        ]
-      }
-    },
-    "getMaxSavedStates": {
-      "type": "function",
-      "name": "getMaxSavedStates",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxSavedStates</code>.\n\nFor further details take a look at the property definition: {@link #maxSavedStates}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for maxSavedStates"
-          }
-        ]
-      }
-    },
-    "setMaxSavedStates": {
-      "type": "function",
-      "name": "setMaxSavedStates",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxSavedStates</code>.\n\nFor further details take a look at the property definition: {@link #maxSavedStates}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for maxSavedStates"
-          }
-        ]
-      }
-    },
-    "resetMaxSavedStates": {
-      "type": "function",
-      "name": "resetMaxSavedStates",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxSavedStates</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxSavedStates}."
-          }
-        ]
-      }
-    },
-    "getDebugFlags": {
-      "type": "function",
-      "name": "getDebugFlags",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>debugFlags</code>.\n\nFor further details take a look at the property definition: {@link #debugFlags}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for debugFlags"
-          }
-        ]
-      }
-    },
-    "setDebugFlags": {
-      "type": "function",
-      "name": "setDebugFlags",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>debugFlags</code>.\n\nFor further details take a look at the property definition: {@link #debugFlags}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for debugFlags"
-          }
-        ]
-      }
-    },
-    "resetDebugFlags": {
-      "type": "function",
-      "name": "resetDebugFlags",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>debugFlags</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #debugFlags}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 1248,
         "column": 2,
-        "index": 39225
+        "index": 37978
       },
       "end": {
         "line": 1252,
         "column": 3,
-        "index": 39375
+        "index": 38124
       }
     }
-  },
-  "descendants": []
+  }
 }

@@ -1,84 +1,84 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235170442,
+  "lastModifiedIso": "2024-06-01T09:46:10.442Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/core/EventHandler.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 687
+    },
+    "end": {
+      "line": 419,
+      "column": 3,
+      "index": 10779
+    }
+  },
   "className": "qx.ui.mobile.core.EventHandler",
-  "packageName": "qx.ui.mobile.core",
-  "name": "EventHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Connects the widgets to the browser DOM events.",
+      " *",
+      " * @require(qx.event.handler.Touch)",
+      " * @require(qx.event.handler.Pointer)",
+      " * @require(qx.event.dispatch.DomBubbling)",
+      " * @require(qx.ui.mobile.core.Widget)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Connects the widgets to the browser DOM events.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Touch"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Pointer"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.dispatch.DomBubbling"
+      },
+      {
+        "name": "@require",
+        "body": "qx.ui.mobile.core.Widget"
+      }
+    ]
+  },
   "superClass": "qx.core.Object",
   "interfaces": [
     "qx.event.IEventHandler"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 713
-      },
-      "end": {
-        "line": 419,
-        "column": 3,
-        "index": 11197
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Connects the widgets to the browser DOM events.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.event.handler.Touch"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.handler.Pointer"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.dispatch.DomBubbling"
-        },
-        {
-          "name": "@require",
-          "body": "qx.ui.mobile.core.Widget"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 37,
         "column": 2,
-        "index": 1029
+        "index": 993
       },
       "end": {
         "line": 41,
         "column": 3,
-        "index": 1127
+        "index": 1087
       }
-    },
-    "jsdoc": {}
+    }
   },
   "statics": {
     "PRIORITY": {
-      "location": {
-        "start": {
-          "line": 51,
-          "column": 4,
-          "index": 1393
-        },
-        "end": {
-          "line": 51,
-          "column": 50,
-          "index": 1439
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -92,23 +92,26 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "SUPPORTED_TYPES": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 54,
+          "line": 51,
           "column": 4,
-          "index": 1540
+          "index": 1343
         },
         "end": {
-          "line": 128,
-          "column": 5,
-          "index": 2877
+          "line": 51,
+          "column": 50,
+          "index": 1389
         }
       },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types. Identical to events map of qx.ui.core.Widget "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -122,23 +125,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "IGNORE_CAN_HANDLE": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 131,
+          "line": 54,
           "column": 4,
-          "index": 2965
+          "index": 1487
         },
         "end": {
-          "line": 131,
-          "column": 28,
-          "index": 2989
+          "line": 128,
+          "column": 5,
+          "index": 2750
         }
       },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -152,103 +158,117 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 2835
+        },
+        "end": {
+          "line": 131,
+          "column": 28,
+          "index": 2859
+        }
+      },
+      "appearsIn": []
     },
     "__activeTarget": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 133,
           "column": 4,
-          "index": 2998
+          "index": 2866
         },
         "end": {
           "line": 133,
           "column": 24,
-          "index": 3018
+          "index": 2886
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__scrollLeft": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 134,
           "column": 4,
-          "index": 3025
+          "index": 2892
         },
         "end": {
           "line": 134,
           "column": 22,
-          "index": 3043
+          "index": 2910
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__scrollTop": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 135,
           "column": 4,
-          "index": 3050
+          "index": 2916
         },
         "end": {
           "line": 135,
           "column": 21,
-          "index": 3067
+          "index": 2933
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__startY": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 136,
           "column": 4,
-          "index": 3074
+          "index": 2939
         },
         "end": {
           "line": 136,
           "column": 18,
-          "index": 3088
+          "index": 2953
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__timer": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 137,
           "column": 4,
-          "index": 3095
+          "index": 2959
         },
         "end": {
           "line": 137,
           "column": 17,
-          "index": 3108
+          "index": 2972
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__onPointerDown": {
-      "location": {
-        "start": {
-          "line": 146,
-          "column": 4,
-          "index": 3372
-        },
-        "end": {
-          "line": 181,
-          "column": 5,
-          "index": 4465
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the pointerdown event occurs.",
+          "     * Sets the <code>active</class> class to the event target after a certain",
+          "     * time.",
+          "     *",
+          "     * @param domEvent {qx.event.type.Pointer} The pointerdown event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -265,23 +285,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__onPointerUp": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 189,
+          "line": 146,
           "column": 4,
-          "index": 4701
+          "index": 3227
         },
         "end": {
-          "line": 191,
+          "line": 181,
           "column": 5,
-          "index": 4794
+          "index": 4285
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onPointerUp": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the pointerup event occurs.",
+          "     * Removes the <code>active</class> class from the event target.",
+          "     *",
+          "     * @param domEvent {qx.event.type.Pointer} The pointerup event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -298,23 +333,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__onPointerMove": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 200,
+          "line": 189,
           "column": 4,
-          "index": 5073
+          "index": 4513
         },
         "end": {
-          "line": 224,
+          "line": 191,
           "column": 5,
-          "index": 5818
+          "index": 4604
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onPointerMove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the pointermove event occurs.",
+          "     * Removes the <code>active</class> class from the event target",
+          "     * when the viewport was scrolled.",
+          "     *",
+          "     * @param domEvent {qx.event.type.Pointer} The pointermove event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -331,23 +382,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__cancelActiveStateTimer": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 229,
+          "line": 200,
           "column": 4,
-          "index": 5885
+          "index": 4874
         },
         "end": {
-          "line": 235,
+          "line": 224,
           "column": 5,
-          "index": 6115
+          "index": 5595
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__cancelActiveStateTimer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Cancels the active state timer.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -355,23 +418,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__removeActiveState": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 240,
+          "line": 229,
           "column": 4,
-          "index": 6213
+          "index": 5657
         },
         "end": {
-          "line": 248,
+          "line": 235,
           "column": 5,
-          "index": 6545
+          "index": 5881
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__removeActiveState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the <code>active</class> class from the active target.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -379,104 +449,153 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 5974
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 6298
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     }
   },
   "members": {
     "__manager": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 258,
           "column": 4,
-          "index": 6763
+          "index": 6506
         },
         "end": {
           "line": 258,
           "column": 19,
-          "index": 6778
+          "index": 6521
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 261,
           "column": 4,
-          "index": 6820
+          "index": 6560
         },
         "end": {
           "line": 263,
           "column": 5,
-          "index": 6915
+          "index": 6653
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.event.IEventHandler",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
       "appearsIn": [
         "qx.event.IEventHandler"
       ]
     },
     "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 266,
           "column": 4,
-          "index": 6957
+          "index": 6692
         },
         "end": {
           "line": 275,
           "column": 5,
-          "index": 7200
+          "index": 6926
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.event.IEventHandler",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
       "appearsIn": [
         "qx.event.IEventHandler"
       ]
     },
     "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 278,
           "column": 4,
-          "index": 7242
+          "index": 6965
         },
         "end": {
           "line": 287,
           "column": 5,
-          "index": 7490
+          "index": 7204
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.event.IEventHandler",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
       "appearsIn": [
         "qx.event.IEventHandler"
       ]
     },
     "_dispatchEvent": {
-      "location": {
-        "start": {
-          "line": 294,
-          "column": 4,
-          "index": 7645
-        },
-        "end": {
-          "line": 374,
-          "column": 5,
-          "index": 10204
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatches a DOM event on a widget.",
+          "     *",
+          "     * @param domEvent {qx.event.type.Event} The event object to dispatch.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -493,177 +612,44 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 294,
+          "column": 4,
+          "index": 7352
+        },
+        "end": {
+          "line": 374,
+          "column": 5,
+          "index": 9831
+        }
+      },
       "type": "function",
-      "access": "protected"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 383,
         "column": 2,
-        "index": 10409
+        "index": 10027
       },
       "end": {
         "line": 385,
         "column": 3,
-        "index": 10454
+        "index": 10070
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 393,
-        "column": 2,
-        "index": 10649
-      },
-      "end": {
-        "line": 418,
-        "column": 3,
-        "index": 11192
-      }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+  "properties": {}
 }

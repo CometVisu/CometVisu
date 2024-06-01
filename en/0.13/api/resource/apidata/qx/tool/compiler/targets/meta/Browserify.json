@@ -1,0 +1,267 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169434,
+  "lastModifiedIso": "2024-06-01T09:46:09.434Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/Browserify.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 703
+    },
+    "end": {
+      "line": 238,
+      "column": 3,
+      "index": 7705
+    }
+  },
+  "className": "qx.tool.compiler.targets.meta.Browserify",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "appMeta"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 832
+      },
+      "end": {
+        "line": 34,
+        "column": 3,
+        "index": 969
+      }
+    }
+  },
+  "members": {
+    "__commonjsModules": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 989
+        },
+        "end": {
+          "line": 37,
+          "column": 27,
+          "index": 1012
+        }
+      },
+      "appearsIn": []
+    },
+    "__references": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1018
+        },
+        "end": {
+          "line": 38,
+          "column": 22,
+          "index": 1036
+        }
+      },
+      "appearsIn": []
+    },
+    "__getCommonjsModules": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1043
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2478
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "writeToDisk": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2518
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 3962
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    },
+    "writeSourceCodeToStream": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 4002
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 4811
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ws"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    },
+    "__browserify": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 4818
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 7610
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "commonjsModules"
+        },
+        {
+          "name": "references"
+        },
+        {
+          "name": "localModules"
+        },
+        {
+          "name": "ws"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSourceMap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 7650
+        },
+        "end": {
+          "line": 236,
+          "column": 5,
+          "index": 7697
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

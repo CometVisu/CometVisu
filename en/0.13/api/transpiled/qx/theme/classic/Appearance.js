@@ -264,11 +264,12 @@
       listitem: {
         alias: "atom",
         style: function style(states) {
+          var useSelectionState = !states.readonly && states.selected;
           return {
             gap: 4,
             padding: states.lead ? [2, 4] : [3, 5],
-            backgroundColor: states.selected ? "background-selected" : undefined,
-            textColor: states.selected ? "text-selected" : undefined,
+            backgroundColor: useSelectionState ? "background-selected" : undefined,
+            textColor: useSelectionState ? "text-selected" : undefined,
             decorator: states.lead ? "lead-item" : undefined,
             opacity: states.drag ? 0.5 : undefined
           };
@@ -2015,4 +2016,4 @@
   qx.theme.classic.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1709410156243
+//# sourceMappingURL=Appearance.js.map?dt=1717235397671

@@ -1,49 +1,56 @@
 {
-  "className": "qx.bom.element.Dimension",
-  "packageName": "qx.bom.element",
-  "name": "Dimension",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 845
-      },
-      "end": {
-        "line": 282,
-        "column": 3,
-        "index": 9470
-      }
+  "version": 0.3,
+  "lastModified": 1717235170242,
+  "lastModifiedIso": "2024-06-01T09:46:10.242Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/Dimension.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 818
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Contains support for calculating dimensions of HTML elements.\n We differ between the box (or border) size which is available via\n {@link #getWidth} and {@link #getHeight} and the content or scroll\n sizes which are available via {@link #getContentWidth} and\n {@link #getContentHeight}.</p>"
-        }
-      ]
+    "end": {
+      "line": 282,
+      "column": 3,
+      "index": 9189
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.Dimension",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Contains support for calculating dimensions of HTML elements.",
+      " *",
+      " * We differ between the box (or border) size which is available via",
+      " * {@link #getWidth} and {@link #getHeight} and the content or scroll",
+      " * sizes which are available via {@link #getContentWidth} and",
+      " * {@link #getContentHeight}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Contains support for calculating dimensions of HTML elements.\n We differ between the box (or border) size which is available via\n {@link #getWidth} and {@link #getHeight} and the content or scroll\n sizes which are available via {@link #getContentWidth} and\n {@link #getContentHeight}.</p>"
+      }
+    ]
+  },
   "statics": {
     "getWidth": {
-      "location": {
-        "start": {
-          "line": 47,
-          "column": 4,
-          "index": 1553
-        },
-        "end": {
-          "line": 50,
-          "column": 5,
-          "index": 1680
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the rendered width of the given element.",
+          "     *",
+          "     * This is the visible width of the object, which need not to be identical",
+          "     * to the width configured via CSS. This highly depends on the current",
+          "     * box-sizing for the document and maybe even for the element.",
+          "     *",
+          "     * @signature function(element)",
+          "     * @param element {Element} element to query",
+          "     * @return {Integer} width of the element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -70,27 +77,50 @@
             "name": "@return",
             "body": "{Integer} width of the element",
             "type": "Integer",
-            "description": " width of the element"
+            "description": "width of the element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 63,
+          "line": 47,
           "column": 4,
-          "index": 2142
+          "index": 1507
         },
         "end": {
-          "line": 66,
+          "line": 50,
           "column": 5,
-          "index": 2270
+          "index": 1631
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the rendered height of the given element.",
+          "     *",
+          "     * This is the visible height of the object, which need not to be identical",
+          "     * to the height configured via CSS. This highly depends on the current",
+          "     * box-sizing for the document and maybe even for the element.",
+          "     *",
+          "     * @signature function(element)",
+          "     * @param element {Element} element to query",
+          "     * @return {Integer} height of the element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,27 +147,45 @@
             "name": "@return",
             "body": "{Integer} height of the element",
             "type": "Integer",
-            "description": " height of the element"
+            "description": "height of the element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 74,
+          "line": 63,
           "column": 4,
-          "index": 2484
+          "index": 2080
         },
         "end": {
-          "line": 79,
+          "line": 66,
           "column": 5,
-          "index": 2616
+          "index": 2205
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getSize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the rendered size of the given element.",
+          "     *",
+          "     * @param element {Element} element to query",
+          "     * @return {Map} map containing the width and height of the element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -157,28 +205,47 @@
           {
             "name": "@return",
             "body": "{Map} map containing the width and height of the element",
-            "type": "Map",
-            "description": " map containing the width and height of the element"
+            "type": "Map<any, any>",
+            "description": "map containing the width and height of the element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getOuterHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 88,
+          "line": 74,
           "column": 4,
-          "index": 2940
+          "index": 2411
         },
         "end": {
-          "line": 107,
+          "line": 79,
           "column": 5,
-          "index": 3503
+          "index": 2538
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getOuterHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the outer height of the given element, including height, vertical padding, and vertical borders",
+          "     *",
+          "     * @param element {Element} element to query",
+          "     * @param includeMargins {Boolean?} whether to include margins in teh",
+          "     * @return {Integer} the height of the element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -207,27 +274,51 @@
             "name": "@return",
             "body": "{Integer} the height of the element",
             "type": "Integer",
-            "description": " the height of the element"
+            "description": "the height of the element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getOuterWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 116,
+          "line": 88,
           "column": 4,
-          "index": 3825
+          "index": 2853
         },
         "end": {
-          "line": 135,
+          "line": 107,
           "column": 5,
-          "index": 4385
+          "index": 3397
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "includeMargins",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getOuterWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the outer width of the given element, including height, vertical padding, and vertical borders",
+          "     *",
+          "     * @param element {Element} element to query",
+          "     * @param includeMargins {Boolean?} whether to include margins in teh",
+          "     * @return {Integer} the width of the element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -256,27 +347,51 @@
             "name": "@return",
             "body": "{Integer} the width of the element",
             "type": "Integer",
-            "description": " the width of the element"
+            "description": "the width of the element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getOuterSize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 144,
+          "line": 116,
           "column": 4,
-          "index": 4728
+          "index": 3710
         },
         "end": {
-          "line": 149,
+          "line": 135,
           "column": 5,
-          "index": 4923
+          "index": 4251
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "includeMargins",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getOuterSize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the outer size of the given element, including height, vertical padding, and vertical borders",
+          "     *",
+          "     * @param element {Element} element to query",
+          "     * @param includeMargins {Boolean?} whether to include margins in teh",
+          "     * @return {Map} map containing the width and height of the element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -304,28 +419,46 @@
           {
             "name": "@return",
             "body": "{Map} map containing the width and height of the element",
-            "type": "Map",
-            "description": " map containing the width and height of the element"
+            "type": "Map<any, any>",
+            "description": "map containing the width and height of the element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__hiddenScrollbars": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 152,
+          "line": 144,
           "column": 4,
-          "index": 5016
+          "index": 4585
         },
         "end": {
-          "line": 155,
+          "line": 149,
           "column": 5,
-          "index": 5086
+          "index": 4775
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "includeMargins",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__hiddenScrollbars": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Contains all overflow values where scrollbars are invisible "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -339,23 +472,39 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "getContentWidth": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 171,
+          "line": 152,
           "column": 4,
-          "index": 5663
+          "index": 4865
         },
         "end": {
-          "line": 225,
+          "line": 155,
           "column": 5,
-          "index": 7479
+          "index": 4932
         }
       },
+      "appearsIn": []
+    },
+    "getContentWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the content width.",
+          "     *",
+          "     * The content width is basically the maximum",
+          "     * width used or the maximum width which can be used by the content. This",
+          "     * excludes all kind of styles of the element like borders, paddings, margins,",
+          "     * and even scrollbars.",
+          "     *",
+          "     * Please note that with visible scrollbars the content width returned",
+          "     * may be larger than the box width returned via {@link #getWidth}.",
+          "     *",
+          "     * @param element {Element} element to query",
+          "     * @return {Integer} Computed content width",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -376,27 +525,53 @@
             "name": "@return",
             "body": "{Integer} Computed content width",
             "type": "Integer",
-            "description": " Computed content width"
+            "description": "Computed content width"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getContentHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 241,
+          "line": 171,
           "column": 4,
-          "index": 8064
+          "index": 5493
         },
         "end": {
-          "line": 267,
+          "line": 225,
           "column": 5,
-          "index": 9077
+          "index": 7255
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getContentHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the content height.",
+          "     *",
+          "     * The content height is basically the maximum",
+          "     * height used or the maximum height which can be used by the content. This",
+          "     * excludes all kind of styles of the element like borders, paddings, margins,",
+          "     * and even scrollbars.",
+          "     *",
+          "     * Please note that with visible scrollbars the content height returned",
+          "     * may be larger than the box height returned via {@link #getHeight}.",
+          "     *",
+          "     * @param element {Element} element to query",
+          "     * @return {Integer} Computed content height",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -417,27 +592,45 @@
             "name": "@return",
             "body": "{Integer} Computed content height",
             "type": "Integer",
-            "description": " Computed content height"
+            "description": "Computed content height"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getContentSize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 275,
+          "line": 241,
           "column": 4,
-          "index": 9307
+          "index": 7824
         },
         "end": {
-          "line": 280,
+          "line": 267,
           "column": 5,
-          "index": 9460
+          "index": 8811
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getContentSize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the rendered content size of the given element.",
+          "     *",
+          "     * @param element {Element} element to query",
+          "     * @return {Map} map containing the content width and height of the element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -457,14 +650,37 @@
           {
             "name": "@return",
             "body": "{Map} map containing the content width and height of the element",
-            "type": "Map",
-            "description": " map containing the content width and height of the element"
+            "type": "Map<any, any>",
+            "description": "map containing the content width and height of the element"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 275,
+          "column": 4,
+          "index": 9033
+        },
+        "end": {
+          "line": 280,
+          "column": 5,
+          "index": 9181
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

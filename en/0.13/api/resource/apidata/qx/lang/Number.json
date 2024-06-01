@@ -1,49 +1,51 @@
 {
-  "className": "qx.lang.Number",
-  "packageName": "qx.lang",
-  "name": "Number",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 644
-      },
-      "end": {
-        "line": 95,
-        "column": 3,
-        "index": 2770
-      }
+  "version": 0.3,
+  "lastModified": 1717235171882,
+  "lastModifiedIso": "2024-06-01T09:46:11.882Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/Number.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 619
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Helper functions for numbers.\n The native JavaScript Number is not modified by this class.</p>"
-        }
-      ]
+    "end": {
+      "line": 95,
+      "column": 3,
+      "index": 2676
     }
   },
-  "type": "class",
+  "className": "qx.lang.Number",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Helper functions for numbers.",
+      " *",
+      " * The native JavaScript Number is not modified by this class.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Helper functions for numbers.\n The native JavaScript Number is not modified by this class.</p>"
+      }
+    ]
+  },
   "statics": {
     "isInRange": {
-      "location": {
-        "start": {
-          "line": 36,
-          "column": 4,
-          "index": 1003
-        },
-        "end": {
-          "line": 38,
-          "column": 5,
-          "index": 1077
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether the number is in a given range",
+          "     *",
+          "     * @param nr {Number} the number to check",
+          "     * @param vmin {Integer} lower bound of the range",
+          "     * @param vmax {Integer} upper bound of the range",
+          "     * @return {Boolean} whether the number is >= vmin and <= vmax",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,7 +58,7 @@
             "body": "nr {Number} the number to check",
             "paramName": "nr",
             "description": " the number to check",
-            "type": "qx.lang.Number"
+            "type": "number"
           },
           {
             "name": "@param",
@@ -77,28 +79,56 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the number is >= vmin and <= vmax",
-            "type": "Boolean",
-            "description": " whether the number is >= vmin and <= vmax"
+            "type": "boolean",
+            "description": "whether the number is >= vmin and <= vmax"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isBetweenRange": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 48,
+          "line": 36,
           "column": 4,
-          "index": 1393
+          "index": 968
         },
         "end": {
-          "line": 50,
+          "line": 38,
           "column": 5,
-          "index": 1470
+          "index": 1040
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "nr",
+          "type": "number"
+        },
+        {
+          "name": "vmin",
+          "type": "Integer"
+        },
+        {
+          "name": "vmax",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isBetweenRange": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether the number is between a given range",
+          "     *",
+          "     * @param nr {Number} the number to check",
+          "     * @param vmin {Integer} lower bound of the range",
+          "     * @param vmax {Integer} upper bound of the range",
+          "     * @return {Boolean} whether the number is > vmin and < vmax",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -111,7 +141,7 @@
             "body": "nr {Number} the number to check",
             "paramName": "nr",
             "description": " the number to check",
-            "type": "qx.lang.Number"
+            "type": "number"
           },
           {
             "name": "@param",
@@ -132,28 +162,60 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the number is > vmin and < vmax",
-            "type": "Boolean",
-            "description": " whether the number is > vmin and < vmax"
+            "type": "boolean",
+            "description": "whether the number is > vmin and < vmax"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "limit": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 64,
+          "line": 48,
           "column": 4,
-          "index": 1991
+          "index": 1346
         },
         "end": {
-          "line": 72,
+          "line": 50,
           "column": 5,
-          "index": 2197
+          "index": 1421
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "nr",
+          "type": "number"
+        },
+        {
+          "name": "vmin",
+          "type": "Integer"
+        },
+        {
+          "name": "vmax",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "limit": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Limit the number to a given range",
+          "     *",
+          "     * * If the number is greater than the upper bound, the upper bound is returned",
+          "     * * If the number is smaller than the lower bound, the lower bound is returned",
+          "     * * If the number is in the range, the number is returned",
+          "     *",
+          "     * @param nr {Number} the number to limit",
+          "     * @param vmin {Integer} lower bound of the range",
+          "     * @param vmax {Integer} upper bound of the range",
+          "     * @return {Integer} the limited number",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -166,7 +228,7 @@
             "body": "nr {Number} the number to limit",
             "paramName": "nr",
             "description": " the number to limit",
-            "type": "qx.lang.Number"
+            "type": "number"
           },
           {
             "name": "@param",
@@ -188,27 +250,54 @@
             "name": "@return",
             "body": "{Integer} the limited number",
             "type": "Integer",
-            "description": " the limited number"
+            "description": "the limited number"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "equals": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 81,
+          "line": 64,
           "column": 4,
-          "index": 2390
+          "index": 1928
         },
         "end": {
-          "line": 93,
+          "line": 72,
           "column": 5,
-          "index": 2760
+          "index": 2126
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "nr",
+          "type": "number"
+        },
+        {
+          "name": "vmin",
+          "type": "Integer"
+        },
+        {
+          "name": "vmax",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "equals": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks the equality of two numbers regarding the imprecision of floats.",
+          "     *",
+          "     * @param x {Number}",
+          "     * @param y {Number}",
+          "     * @return {Boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -218,25 +307,56 @@
         "@param": [
           {
             "name": "@param",
-            "body": "x {Number}"
+            "body": "x {Number}",
+            "paramName": "x",
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "y {Number}"
+            "body": "y {Number}",
+            "paramName": "y",
+            "type": "number"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean}",
-            "type": "Boolean",
+            "type": "boolean",
             "description": ""
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2310
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2668
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "x",
+          "type": "number"
+        },
+        {
+          "name": "y",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

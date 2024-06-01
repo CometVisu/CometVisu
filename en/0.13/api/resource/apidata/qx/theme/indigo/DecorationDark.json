@@ -1,33 +1,37 @@
 {
-  "className": "qx.theme.indigo.DecorationDark",
-  "packageName": "qx.theme.indigo",
-  "name": "DecorationDark",
-  "superClass": "qx.theme.indigo.Decoration",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 20,
-        "column": 0,
-        "index": 502
-      },
-      "end": {
-        "line": 30,
-        "column": 3,
-        "index": 726
-      }
+  "version": 0.3,
+  "lastModified": 1717235169938,
+  "lastModifiedIso": "2024-06-01T09:46:09.938Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/DecorationDark.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 483
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The indigo dark qooxdoo decoration theme.</p>"
-        }
-      ]
+    "end": {
+      "line": 30,
+      "column": 3,
+      "index": 697
     }
   },
-  "type": "theme",
-  "descendants": []
+  "className": "qx.theme.indigo.DecorationDark",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The indigo dark qooxdoo decoration theme.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The indigo dark qooxdoo decoration theme.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.theme.indigo.Decoration",
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

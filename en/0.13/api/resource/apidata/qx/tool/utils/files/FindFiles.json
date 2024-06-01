@@ -1,0 +1,139 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235170490,
+  "lastModifiedIso": "2024-06-01T09:46:10.490Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/files/FindFiles.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 762
+    },
+    "end": {
+      "line": 97,
+      "column": 3,
+      "index": 2267
+    }
+  },
+  "className": "qx.tool.utils.files.FindFiles",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "root"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 29,
+        "column": 2,
+        "index": 842
+      },
+      "end": {
+        "line": 32,
+        "column": 3,
+        "index": 900
+      }
+    }
+  },
+  "properties": {
+    "matchFiles": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 923
+        },
+        "end": {
+          "line": 39,
+          "column": 5,
+          "index": 1003
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "RegEx"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__root": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1027
+        },
+        "end": {
+          "line": 43,
+          "column": 16,
+          "index": 1039
+        }
+      },
+      "appearsIn": []
+    },
+    "scan": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1046
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2096
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "notify"
+        },
+        {
+          "name": "cb"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onFindFile": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2103
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2259
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "file"
+        },
+        {
+          "name": "notify"
+        },
+        {
+          "name": "cb"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

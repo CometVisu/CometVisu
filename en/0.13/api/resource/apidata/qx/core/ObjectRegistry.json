@@ -1,55 +1,54 @@
 {
-  "className": "qx.core.ObjectRegistry",
-  "packageName": "qx.core",
-  "name": "ObjectRegistry",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 739
-      },
-      "end": {
-        "line": 315,
-        "column": 3,
-        "index": 8652
-      }
+  "version": 0.3,
+  "lastModified": 1717235171910,
+  "lastModifiedIso": "2024-06-01T09:46:11.910Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/ObjectRegistry.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 714
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Registration for all instances of qooxdoo classes. Mainly\n used to manage them for the final shutdown sequence and to\n use weak references when connecting widgets to DOM nodes etc.</p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.dev, qx.dev.Debug.*"
-        }
-      ]
+    "end": {
+      "line": 315,
+      "column": 3,
+      "index": 8338
     }
   },
-  "type": "class",
+  "className": "qx.core.ObjectRegistry",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Registration for all instances of qooxdoo classes. Mainly",
+      " * used to manage them for the final shutdown sequence and to",
+      " * use weak references when connecting widgets to DOM nodes etc.",
+      " *",
+      " * @ignore(qx.dev, qx.dev.Debug.*)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Registration for all instances of qooxdoo classes. Mainly\n used to manage them for the final shutdown sequence and to\n use weak references when connecting widgets to DOM nodes etc.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.dev, qx.dev.Debug.*"
+      }
+    ]
+  },
   "statics": {
     "inShutDown": {
-      "location": {
-        "start": {
-          "line": 38,
-          "column": 4,
-          "index": 1167
-        },
-        "end": {
-          "line": 38,
-          "column": 21,
-          "index": 1184
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} Whether the application is in the shutdown phase",
+          "     * @deprecated {6.0} shutdown is not a valid mechanism to terminate apps",
+          "     * "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -69,23 +68,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "__registry": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 41,
+          "line": 38,
           "column": 4,
-          "index": 1258
+          "index": 1130
         },
         "end": {
-          "line": 41,
-          "column": 18,
-          "index": 1272
+          "line": 38,
+          "column": 21,
+          "index": 1147
         }
       },
+      "appearsIn": []
+    },
+    "__registry": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Internal data structure to store objects "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -99,23 +101,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__nextHash": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 44,
+          "line": 41,
           "column": 4,
-          "index": 1329
+          "index": 1218
         },
         "end": {
-          "line": 44,
-          "column": 17,
-          "index": 1342
+          "line": 41,
+          "column": 18,
+          "index": 1232
         }
       },
+      "appearsIn": []
+    },
+    "__nextHash": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} Next new hash code. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -129,23 +134,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__postId": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 47,
+          "line": 44,
           "column": 4,
-          "index": 1410
+          "index": 1286
         },
         "end": {
-          "line": 47,
-          "column": 16,
-          "index": 1422
+          "line": 44,
+          "column": 17,
+          "index": 1299
         }
       },
+      "appearsIn": []
+    },
+    "__postId": {
       "jsdoc": {
+        "raw": [
+          "* @type {String} Post id for hash code creation. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -159,23 +167,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__stackTraces": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 50,
+          "line": 47,
           "column": 4,
-          "index": 1514
+          "index": 1364
         },
         "end": {
-          "line": 50,
-          "column": 21,
-          "index": 1531
+          "line": 47,
+          "column": 16,
+          "index": 1376
         }
       },
+      "appearsIn": []
+    },
+    "__stackTraces": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Object hashes to stack traces (for dispose profiling only) "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -189,23 +200,37 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "register": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 64,
+          "line": 50,
           "column": 4,
-          "index": 2072
+          "index": 1465
         },
         "end": {
-          "line": 79,
-          "column": 5,
-          "index": 2429
+          "line": 50,
+          "column": 21,
+          "index": 1482
         }
       },
+      "appearsIn": []
+    },
+    "register": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers an object into the database. This adds a hashcode",
+          "     * to the object (if not already done before) and stores it under",
+          "     * this hashcode. You can access this object later using the hashcode",
+          "     * by calling {@link #fromHashCode}.",
+          "     *",
+          "     * All registered objects are automatically disposed on application",
+          "     * shutdown. Each registered object must at least have a method",
+          "     * called <code>dispose</code>.",
+          "     *",
+          "     * @param obj {Object} Any object with a dispose() method",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -218,27 +243,41 @@
             "body": "obj {Object} Any object with a dispose() method",
             "paramName": "obj",
             "description": " Any object with a dispose() method",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "unregister": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 86,
+          "line": 64,
           "column": 4,
-          "index": 2577
+          "index": 2009
         },
         "end": {
-          "line": 98,
+          "line": 79,
           "column": 5,
-          "index": 2841
+          "index": 2351
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unregister": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the given object from the database.",
+          "     *",
+          "     * @param obj {Object} Any previously registered object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -251,27 +290,43 @@
             "body": "obj {Object} Any previously registered object",
             "paramName": "obj",
             "description": " Any previously registered object",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toHashCode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 107,
+          "line": 86,
           "column": 4,
-          "index": 3123
+          "index": 2492
         },
         "end": {
-          "line": 132,
+          "line": 98,
           "column": 5,
-          "index": 3762
+          "index": 2744
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "toHashCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an unique identifier for the given object. If such an identifier",
+          "     * does not yet exist, create it.",
+          "     *",
+          "     * @param obj {Object} the object to get the hashcode for",
+          "     * @return {String} unique identifier for the given object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -284,35 +339,52 @@
             "body": "obj {Object} the object to get the hashcode for",
             "paramName": "obj",
             "description": " the object to get the hashcode for",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} unique identifier for the given object",
-            "type": "String",
-            "description": " unique identifier for the given object"
+            "type": "string",
+            "description": "unique identifier for the given object"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createHashCode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 139,
+          "line": 107,
           "column": 4,
-          "index": 3850
+          "index": 3017
         },
         "end": {
-          "line": 142,
+          "line": 132,
           "column": 5,
-          "index": 3956
+          "index": 3631
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "createHashCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a hash code",
+          "     *",
+          "     * @return {String}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -323,28 +395,40 @@
           {
             "name": "@return",
             "body": "{String}",
-            "type": "String",
+            "type": "string",
             "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clearHashCode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 149,
+          "line": 139,
           "column": 4,
-          "index": 4114
+          "index": 3712
         },
         "end": {
-          "line": 170,
+          "line": 142,
           "column": 5,
-          "index": 4721
+          "index": 3815
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "clearHashCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the unique identifier on the given object.",
+          "     *",
+          "     * @param obj {Object} the object to clear the hashcode for",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -357,27 +441,45 @@
             "body": "obj {Object} the object to clear the hashcode for",
             "paramName": "obj",
             "description": " the object to clear the hashcode for",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fromHashCode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 181,
+          "line": 149,
           "column": 4,
-          "index": 5175
+          "index": 3966
         },
         "end": {
-          "line": 192,
+          "line": 170,
           "column": 5,
-          "index": 5599
+          "index": 4552
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "fromHashCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get an object instance by its hash code as returned by {@link #toHashCode}.",
+          "     * If the object is already disposed or the hashCode is invalid,",
+          "     * <code>null</code> is returned.",
+          "     *",
+          "     * @param hash {String} The object's hash code.",
+          "     * @param suppressWarnings {Boolean?} if true warnings are suppressed; default is false",
+          "     * @return {qx.core.Object} The corresponding object or <code>null</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -390,7 +492,7 @@
             "body": "hash {String} The object's hash code.",
             "paramName": "hash",
             "description": " The object's hash code.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -406,27 +508,51 @@
             "name": "@return",
             "body": "{qx.core.Object} The corresponding object or <code>null</code>.",
             "type": "qx.core.Object",
-            "description": " The corresponding object or <code>null</code>."
+            "description": "The corresponding object or <code>null</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasHashCode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 201,
+          "line": 181,
           "column": 4,
-          "index": 5970
+          "index": 4995
         },
         "end": {
-          "line": 203,
+          "line": 192,
           "column": 5,
-          "index": 6035
+          "index": 5408
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "hash",
+          "type": "string"
+        },
+        {
+          "name": "suppressWarnings",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.core.Object"
+      },
+      "appearsIn": []
+    },
+    "hasHashCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether an object instance is indexed by its hash code as returned by {@link #toHashCode}.",
+          "     * Unlike {@link #fromHashCode} this does not output warnings if the object does not exist",
+          "     *",
+          "     * @param hash {String} The object's hash code.",
+          "     * @return {qx.core.Object} The corresponding object or <code>null</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -439,7 +565,7 @@
             "body": "hash {String} The object's hash code.",
             "paramName": "hash",
             "description": " The object's hash code.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -447,27 +573,47 @@
             "name": "@return",
             "body": "{qx.core.Object} The corresponding object or <code>null</code>.",
             "type": "qx.core.Object",
-            "description": " The corresponding object or <code>null</code>."
+            "description": "The corresponding object or <code>null</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "shutdown": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 213,
+          "line": 201,
           "column": 4,
-          "index": 6408
+          "index": 5770
         },
         "end": {
-          "line": 261,
+          "line": 203,
           "column": 5,
-          "index": 7483
+          "index": 5833
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "hash",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.core.Object"
+      },
+      "appearsIn": []
+    },
+    "shutdown": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Disposing all registered object and cleaning up registry. This is",
+          "     * automatically executed at application shutdown.",
+          "     *",
+          "     * @deprecated {6.0} shutdown is not a valid means to clean up because destruction order",
+          "     * is not defined and dispose()/destructors are deprecated in favour of automatic",
+          "     * garbage collection",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -481,23 +627,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRegistry": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 268,
+          "line": 213,
           "column": 4,
-          "index": 7593
+          "index": 6196
         },
         "end": {
-          "line": 270,
+          "line": 261,
           "column": 5,
-          "index": 7646
+          "index": 7223
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getRegistry": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the object registry.",
+          "     *",
+          "     * @return {Object} The registry",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -508,28 +663,41 @@
           {
             "name": "@return",
             "body": "{Object} The registry",
-            "type": "qx.core.Object",
-            "description": " The registry"
+            "type": "Record<any, any>",
+            "description": "The registry"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getNextHash": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 278,
+          "line": 268,
           "column": 4,
-          "index": 7798
+          "index": 7326
         },
         "end": {
-          "line": 280,
+          "line": 270,
           "column": 5,
-          "index": 7851
+          "index": 7377
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getNextHash": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the next hash code that will be used.",
+          "     *",
+          "     * @return {Integer} The next hash code",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -541,7 +709,7 @@
             "name": "@return",
             "body": "{Integer} The next hash code",
             "type": "Integer",
-            "description": " The next hash code"
+            "description": "The next hash code"
           }
         ],
         "@internal": [
@@ -551,23 +719,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPostId": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 288,
+          "line": 278,
           "column": 4,
-          "index": 8012
+          "index": 7521
         },
         "end": {
-          "line": 290,
+          "line": 280,
           "column": 5,
-          "index": 8061
+          "index": 7572
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getPostId": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the postfix that identifies the current iframe",
+          "     *",
+          "     * @return {Integer} The next hash code",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -579,7 +760,7 @@
             "name": "@return",
             "body": "{Integer} The next hash code",
             "type": "Integer",
-            "description": " The next hash code"
+            "description": "The next hash code"
           }
         ],
         "@internal": [
@@ -589,23 +770,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getStackTraces": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 298,
+          "line": 288,
           "column": 4,
-          "index": 8276
+          "index": 7725
         },
         "end": {
-          "line": 300,
+          "line": 290,
           "column": 5,
-          "index": 8335
+          "index": 7772
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getStackTraces": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the map of stack traces recorded when objects are registered",
+          "     * (for dispose profiling)",
+          "     * @return {Map} Map: object hash codes to stack traces",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -616,8 +810,8 @@
           {
             "name": "@return",
             "body": "{Map} Map: object hash codes to stack traces",
-            "type": "Map",
-            "description": " Map: object hash codes to stack traces"
+            "type": "Map<any, any>",
+            "description": "Map: object hash codes to stack traces"
           }
         ],
         "@internal": [
@@ -627,23 +821,27 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 303,
-        "column": 2,
-        "index": 8347
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 298,
+          "column": 4,
+          "index": 7979
+        },
+        "end": {
+          "line": 300,
+          "column": 5,
+          "index": 8036
+        }
       },
-      "end": {
-        "line": 314,
-        "column": 3,
-        "index": 8647
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

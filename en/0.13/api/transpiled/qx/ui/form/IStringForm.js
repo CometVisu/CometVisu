@@ -61,6 +61,7 @@
        * Sets the element's value.
        *
        * @param value {String|null} The new value of the element.
+       * @return {String|null} The current value of the element.
        */
       setValue: function setValue(value) {
         return arguments.length == 1;
@@ -80,4 +81,4 @@
   qx.ui.form.IStringForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IStringForm.js.map?dt=1709410160197
+//# sourceMappingURL=IStringForm.js.map?dt=1717235410891

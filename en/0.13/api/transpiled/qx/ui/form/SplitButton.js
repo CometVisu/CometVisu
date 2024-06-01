@@ -154,7 +154,7 @@
     */
 
     members: {
-      __P_368_0: null,
+      __P_587_0: null,
       /*
       ---------------------------------------------------------------------------
         WIDGET API
@@ -245,7 +245,7 @@
         this.addState("hovered");
 
         // Delete cursor out flag
-        delete this.__P_368_0;
+        delete this.__P_587_0;
       },
       /**
        * Listener for <code>pointerout</code> event
@@ -273,7 +273,7 @@
         // keep the hover state on the whole button
         var menu = this.getMenu();
         if (menu && menu.isVisible()) {
-          this.__P_368_0 = true;
+          this.__P_587_0 = true;
           return;
         }
 
@@ -326,7 +326,7 @@
        * @param e {qx.event.type.Data} property change event
        */
       _onChangeMenuVisibility: function _onChangeMenuVisibility(e) {
-        if (!this.getMenu().isVisible() && this.__P_368_0) {
+        if (!this.getMenu().isVisible() && this.__P_587_0) {
           this.removeState("hovered");
         }
       }
@@ -335,4 +335,4 @@
   qx.ui.form.SplitButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SplitButton.js.map?dt=1709410160716
+//# sourceMappingURL=SplitButton.js.map?dt=1717235411425

@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "include",
+    "MMeasure",
+    "members",
+    "ITERATIONS",
+    "testBaseCall",
+    "obj",
+    "test",
+    "performance",
+    "Extend",
+    "self",
+    "measure",
+    "i",
+    "foo_base",
+    "testPlainCall",
+    "foo_call",
+    "testPlainApply",
+    "foo_apply",
+    "BaseCall"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/performance/BaseCall.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qx.test.performance.BaseCall\", {\n  extend: qx.dev.unit.TestCase,\n  include: qx.dev.unit.MMeasure,\n\n  members: {\n    ITERATIONS: 100000,\n\n    testBaseCall() {\n      var obj = new qx.test.performance.Extend();\n      var self = this;\n      this.measure(\n        \"this.base()\",\n        function () {\n          for (var i = 0; i < self.ITERATIONS; i++) {\n            obj.foo_base();\n          }\n        },\n        function () {},\n        this.ITERATIONS\n      );\n    },\n\n    testPlainCall() {\n      var obj = new qx.test.performance.Extend();\n      var self = this;\n      this.measure(\n        \"Base.prototype.foo_base.call\",\n        function () {\n          for (var i = 0; i < self.ITERATIONS; i++) {\n            obj.foo_call();\n          }\n        },\n        function () {},\n        this.ITERATIONS\n      );\n    },\n\n    testPlainApply() {\n      var obj = new qx.test.performance.Extend();\n      var self = this;\n      this.measure(\n        \"Base.prototype.foo_base.apply\",\n        function () {\n          for (var i = 0; i < self.ITERATIONS; i++) {\n            obj.foo_apply();\n          }\n        },\n        function () {},\n        this.ITERATIONS\n      );\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,8BAA8B,EAAE;IAC9CC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAC5BC,OAAO,EAAEV,EAAE,CAACO,GAAG,CAACC,IAAI,CAACG,QAAQ;IAE7BC,OAAO,EAAE;MACPC,UAAU,EAAE,MAAM;MAElBC,YAAY,WAAAA,aAAA,EAAG;QACb,IAAIC,GAAG,GAAG,IAAIf,EAAE,CAACgB,IAAI,CAACC,WAAW,CAACC,MAAM,CAAC,CAAC;QAC1C,IAAIC,IAAI,GAAG,IAAI;QACf,IAAI,CAACC,OAAO,CACV,aAAa,EACb,YAAY;UACV,KAAK,IAAIC,CAAC,GAAG,CAAC,EAAEA,CAAC,GAAGF,IAAI,CAACN,UAAU,EAAEQ,CAAC,EAAE,EAAE;YACxCN,GAAG,CAACO,QAAQ,CAAC,CAAC;UAChB;QACF,CAAC,EACD,YAAY,CAAC,CAAC,EACd,IAAI,CAACT,UACP,CAAC;MACH,CAAC;MAEDU,aAAa,WAAAA,cAAA,EAAG;QACd,IAAIR,GAAG,GAAG,IAAIf,EAAE,CAACgB,IAAI,CAACC,WAAW,CAACC,MAAM,CAAC,CAAC;QAC1C,IAAIC,IAAI,GAAG,IAAI;QACf,IAAI,CAACC,OAAO,CACV,8BAA8B,EAC9B,YAAY;UACV,KAAK,IAAIC,CAAC,GAAG,CAAC,EAAEA,CAAC,GAAGF,IAAI,CAACN,UAAU,EAAEQ,CAAC,EAAE,EAAE;YACxCN,GAAG,CAACS,QAAQ,CAAC,CAAC;UAChB;QACF,CAAC,EACD,YAAY,CAAC,CAAC,EACd,IAAI,CAACX,UACP,CAAC;MACH,CAAC;MAEDY,cAAc,WAAAA,eAAA,EAAG;QACf,IAAIV,GAAG,GAAG,IAAIf,EAAE,CAACgB,IAAI,CAACC,WAAW,CAACC,MAAM,CAAC,CAAC;QAC1C,IAAIC,IAAI,GAAG,IAAI;QACf,IAAI,CAACC,OAAO,CACV,+BAA+B,EAC/B,YAAY;UACV,KAAK,IAAIC,CAAC,GAAG,CAAC,EAAEA,CAAC,GAAGF,IAAI,CAACN,UAAU,EAAEQ,CAAC,EAAE,EAAE;YACxCN,GAAG,CAACW,SAAS,CAAC,CAAC;UACjB;QACF,CAAC,EACD,YAAY,CAAC,CAAC,EACd,IAAI,CAACb,UACP,CAAC;MACH;IACF;EACF,CAAC,CAAC;EApDFb,EAAE,CAACgB,IAAI,CAACC,WAAW,CAACU,QAAQ,CAACxB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

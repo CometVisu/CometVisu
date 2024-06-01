@@ -1,48 +1,76 @@
 {
-  "className": "cv.core.notifications.IActionHandler",
-  "packageName": "cv.core.notifications",
-  "name": "IActionHandler",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 924
-      },
-      "end": {
-        "line": 45,
-        "column": 3,
-        "index": 1342
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/core/notifications/IActionHandler.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 924
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Interface for notification action handlers.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 0.11.0</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "0.11.0"
-        }
-      ]
+    "end": {
+      "line": 45,
+      "column": 3,
+      "index": 1342
     }
   },
-  "type": "interface",
+  "className": "cv.core.notifications.IActionHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Interface for notification action handlers.",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.11.0",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Interface for notification action handlers.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.11.0"
+      }
+    ]
+  },
   "members": {
     "handleAction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle message actions",
+          "     *",
+          "     * @param ev {Event}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle message actions</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 38,
@@ -55,24 +83,30 @@
           "index": 1236
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getDomElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a DOM element which usually starts the action",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Handle message actions</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "ev {Event}"
+            "body": "<p>Get a DOM element which usually starts the action</p>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDomElement": {
+      "access": "public",
       "location": {
         "start": {
           "line": 43,
@@ -85,17 +119,11 @@
           "index": 1334
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Get a DOM element which usually starts the action</p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

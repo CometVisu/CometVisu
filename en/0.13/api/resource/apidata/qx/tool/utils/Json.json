@@ -1,0 +1,363 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171506,
+  "lastModifiedIso": "2024-06-01T09:46:11.506Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/Json.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 876
+    },
+    "end": {
+      "line": 185,
+      "column": 3,
+      "index": 5835
+    }
+  },
+  "className": "qx.tool.utils.Json",
+  "jsdoc": null,
+  "statics": {
+    "parseJson": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses JSON string into an object",
+          "     * @param str {String} the data to parse",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses JSON string into an object</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "str {String} the data to parse",
+            "paramName": "str",
+            "description": " the data to parse",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1059
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1277
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "validate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validates a json object against the given schema signature and outputs",
+          "     * diagnostic information if validation failed",
+          "     * @param json {Object} The json object to check",
+          "     * @param schema {Array|Object}",
+          "     *    The json-schema object or an array of schema objects. If array,",
+          "     *    only the first is used to validate, but the first schema can",
+          "     *    refer to the others.",
+          "     * @param warnOnly {Boolean} If true, do not throw a fatal error",
+          "     * @return {Boolean}",
+          "     *    Returns true if successful and false on failure if the",
+          "     *    'warnOnly' parameter is true",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Validates a json object against the given schema signature and outputs\n diagnostic information if validation failed</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "json {Object} The json object to check",
+            "paramName": "json",
+            "description": " The json object to check",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "schema {Array|Object}\n    The json-schema object or an array of schema objects. If array,\n    only the first is used to validate, but the first schema can\n    refer to the others.",
+            "paramName": "schema",
+            "description": "\n    The json-schema object or an array of schema objects. If array,\n    only the first is used to validate, but the first schema can\n    refer to the others.",
+            "type": [
+              "Array",
+              "Object"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "warnOnly {Boolean} If true, do not throw a fatal error",
+            "paramName": "warnOnly",
+            "description": " If true, do not throw a fatal error",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}\n    Returns true if successful and false on failure if the\n    'warnOnly' parameter is true",
+            "type": "boolean",
+            "description": "    Returns true if successful and false on failure if the\n    'warnOnly' parameter is true"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1892
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 3209
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "json",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "schema",
+          "type": [
+            "Array",
+            "Object"
+          ]
+        },
+        {
+          "name": "warnOnly",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSchemaInfo": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Identify the type and version of the config file schema in the data that",
+          "     * has been passed. Return an object containing type and version of the json",
+          "     * schema, or null if no schema could been detected",
+          "     * Todo: This needs to be rewritten.",
+          "     * @param data {Object} JSON data",
+          "     * @return {{type,version}|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Identify the type and version of the config file schema in the data that\n has been passed. Return an object containing type and version of the json\n schema, or null if no schema could been detected\n Todo: This needs to be rewritten.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {Object} JSON data",
+            "paramName": "data",
+            "description": " JSON data",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{type,version}|null}",
+            "type": "{type,version}|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3565
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 4693
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "{type,version}|null"
+      },
+      "appearsIn": []
+    },
+    "loadJsonAsync": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads JSON data from a file and returns it as an object; if the file does not exist, then",
+          "     * null is returned",
+          "     *",
+          "     * @param filename {String} the filename to load",
+          "     * @return {Object|null} the parsed contents, or null if the file does not exist",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads JSON data from a file and returns it as an object; if the file does not exist, then\n null is returned</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} the filename to load",
+            "paramName": "filename",
+            "description": " the filename to load",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object|null} the parsed contents, or null if the file does not exist",
+            "type": "Object|null",
+            "description": "the parsed contents, or null if the file does not exist"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 4982
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 5313
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Object|null"
+      },
+      "appearsIn": []
+    },
+    "saveJsonAsync": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Saves JSON data to a file, or erases the file if data is null",
+          "     *",
+          "     * @param filename {String} filename to write to",
+          "     * @param data {Object|null} the data to write. If null, remove the file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Saves JSON data to a file, or erases the file if data is null</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} filename to write to",
+            "paramName": "filename",
+            "description": " filename to write to",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "data {Object|null} the data to write. If null, remove the file",
+            "paramName": "data",
+            "description": " the data to write. If null, remove the file",
+            "type": [
+              "Object",
+              "null"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 5542
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 5827
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": [
+            "Object",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

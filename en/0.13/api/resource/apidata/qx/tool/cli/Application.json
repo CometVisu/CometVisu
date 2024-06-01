@@ -1,0 +1,83 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169058,
+  "lastModifiedIso": "2024-06-01T09:46:09.058Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/Application.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 560
+    },
+    "end": {
+      "line": 47,
+      "column": 3,
+      "index": 1133
+    }
+  },
+  "className": "qx.tool.cli.Application",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is the main application class of the compiler.",
+      " *",
+      " * @asset(qx/tool/*)",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is the main application class of the compiler.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/tool/*"
+      }
+    ]
+  },
+  "superClass": "qx.application.Basic",
+  "members": {
+    "main": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method contains the initial application code and gets called",
+          "     * during startup of the application",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method contains the initial application code and gets called\n during startup of the application</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 784
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1063
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.application.Basic",
+      "appearsIn": [
+        "qx.application.Basic",
+        "qx.application.IApplication"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

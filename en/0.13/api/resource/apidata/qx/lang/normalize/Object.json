@@ -1,55 +1,61 @@
 {
-  "className": "qx.lang.normalize.Object",
-  "packageName": "qx.lang.normalize",
-  "name": "Object",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 777
-      },
-      "end": {
-        "line": 141,
-        "column": 3,
-        "index": 4503
-      }
+  "version": 0.3,
+  "lastModified": 1717235171898,
+  "lastModifiedIso": "2024-06-01T09:46:11.898Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/normalize/Object.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 752
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is responsible for the normalization of the native Object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Polyfill"
-        }
-      ]
+    "end": {
+      "line": 141,
+      "column": 3,
+      "index": 4363
     }
   },
-  "type": "class",
+  "className": "qx.lang.normalize.Object",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is responsible for the normalization of the native Object.",
+      " * It checks if these methods are available and, if not, appends them to",
+      " * ensure compatibility in all browsers.",
+      " * For usage samples, check out the attached links.",
+      " *",
+      " * @group (Polyfill)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is responsible for the normalization of the native Object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Polyfill"
+      }
+    ]
+  },
   "statics": {
     "keys": {
-      "location": {
-        "start": {
-          "line": 38,
-          "column": 4,
-          "index": 1288
-        },
-        "end": {
-          "line": 38,
-          "column": 27,
-          "index": 1311
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the keys of a map as array as returned by a \"for ... in\" statement.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.2.3.14\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @signature function(map)",
+          "     * @param map {Object} the map",
+          "     * @return {Array} array of the keys of the map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -68,35 +74,46 @@
             "body": "map {Object} the map",
             "paramName": "map",
             "description": " the map",
-            "type": "qx.lang.normalize.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} array of the keys of the map",
-            "type": "qx.lang.normalize.Array",
-            "description": " array of the keys of the map"
+            "type": "Array<any>",
+            "description": "array of the keys of the map"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "values": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 46,
+          "line": 38,
           "column": 4,
-          "index": 1478
+          "index": 1251
         },
         "end": {
-          "line": 60,
-          "column": 5,
-          "index": 1830
+          "line": 38,
+          "column": 27,
+          "index": 1274
         }
       },
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "values": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the values of a map as array",
+          "     *",
+          "     * @param map {Object} the map",
+          "     * @return {Array} array of the values of the map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -109,35 +126,57 @@
             "body": "map {Object} the map",
             "paramName": "map",
             "description": " the map",
-            "type": "qx.lang.normalize.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} array of the values of the map",
-            "type": "qx.lang.normalize.Array",
-            "description": " array of the values of the map"
+            "type": "Array<any>",
+            "description": "array of the values of the map"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "is": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 46,
           "column": 4,
-          "index": 2300
+          "index": 1433
         },
         "end": {
-          "line": 83,
+          "line": 60,
           "column": 5,
-          "index": 2627
+          "index": 1771
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "map",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "is": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determines whether two values are the same value.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is\">MDN web docs: Object.is()</a>",
+          "     *",
+          "     * @signature function(x,y)",
+          "     * @param x {Object} the first value to compare",
+          "     * @param y {Object} the second value to compare",
+          "     * @return {Boolean} indicating whether or not the two arguments are the same value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -156,42 +195,68 @@
             "body": "x {Object} the first value to compare",
             "paramName": "x",
             "description": " the first value to compare",
-            "type": "qx.lang.normalize.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "y {Object} the second value to compare",
             "paramName": "y",
             "description": " the second value to compare",
-            "type": "qx.lang.normalize.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} indicating whether or not the two arguments are the same value.",
-            "type": "Boolean",
-            "description": " indicating whether or not the two arguments are the same value."
+            "type": "boolean",
+            "description": "indicating whether or not the two arguments are the same value."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assign": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 95,
+          "line": 72,
           "column": 4,
-          "index": 3244
+          "index": 2229
         },
         "end": {
-          "line": 117,
+          "line": 83,
           "column": 5,
-          "index": 3979
+          "index": 2545
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "x",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "y",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "assign": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Copies all enumerable own properties from one or more source objects to a target object..",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign\">MDN web docs: Object.assign()</a>",
+          "     *",
+          "     * @signature function(target,varArgs)",
+          "     * @param target {Object} The target object - what to apply the sources’ properties to, which is returned after it is modified.",
+          "     * @param sources {Object} The source object(s) - objects containing the properties you want to apply.",
+          "     * @return {Object} The target object.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -210,42 +275,55 @@
             "body": "target {Object} The target object - what to apply the sources’ properties to, which is returned after it is modified.",
             "paramName": "target",
             "description": " The target object - what to apply the sources’ properties to, which is returned after it is modified.",
-            "type": "qx.lang.normalize.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "sources {Object} The source object(s) - objects containing the properties you want to apply.",
             "paramName": "sources",
             "description": " The source object(s) - objects containing the properties you want to apply.",
-            "type": "qx.lang.normalize.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} The target object.",
-            "type": "qx.lang.normalize.Object",
-            "description": " The target object."
+            "type": "Record<any, any>",
+            "description": "The target object."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 120,
-        "column": 2,
-        "index": 3991
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 3150
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3863
+        }
       },
-      "end": {
-        "line": 140,
-        "column": 3,
-        "index": 4498
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "sources",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -1,0 +1,390 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172502,
+  "lastModifiedIso": "2024-06-01T09:46:12.502Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Test.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 38,
+      "column": 0,
+      "index": 1199
+    },
+    "end": {
+      "line": 232,
+      "column": 3,
+      "index": 6526
+    }
+  },
+  "className": "qx.tool.cli.commands.Test",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Compiles the project, serves it up as a web page (default, can be turned off),",
+      " * and dispatches the \"runTests\" event.",
+      " *",
+      " * All tests that should be run need to register themselves by the",
+      " * test command. This is usually done in a `compile.js` file by either",
+      " *",
+      " * - adding a listener for the \"runTests\" event fired on the command",
+      " * instance  in the `load()` method of the class extending {@link",
+      " * qx.tool.cli.api.CompilerApi} or {@link qx.tool.cli.api.CompilerApi}.",
+      " *",
+      " * - or by implementing a `beforeTests()` method in the class",
+      " * extending {@link qx.tool.cli.api.CompilerApi}",
+      " *",
+      " * The event and/or method is called with a {@link qx.event.type.Data}",
+      " * containing the command instance.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Compiles the project, serves it up as a web page (default, can be turned off),\n and dispatches the \"runTests\" event.\n All tests that should be run need to register themselves by the\n test command. This is usually done in a <code>compile.js</code> file by either</p>\n<ul>\n<li>adding a listener for the \"runTests\" event fired on the command\ninstance  in the <code>load()</code> method of the class extending {@link\nqx.tool.cli.api.CompilerApi} or {@link qx.tool.cli.api.CompilerApi}.</li>\n<li>or by implementing a <code>beforeTests()</code> method in the class\nextending {@link qx.tool.cli.api.CompilerApi}\nThe event and/or method is called with a {@link qx.event.type.Data}\ncontaining the command instance.</li>\n</ul>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Serve",
+  "statics": {
+    "CONFIG_FILENAME": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the file containing the compile config for the testrunner",
+          "     * defaults to \"compile-test.json\"",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of the file containing the compile config for the testrunner\n defaults to \"compile-test.json\"</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1434
+        },
+        "end": {
+          "line": 46,
+          "column": 40,
+          "index": 1470
+        }
+      },
+      "appearsIn": []
+    },
+    "YARGS_BUILDER": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1477
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1768
+        }
+      },
+      "appearsIn": [
+        "qx.tool.cli.commands.Serve",
+        "qx.tool.cli.commands.Compile"
+      ]
+    },
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1775
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2374
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.tool.cli.commands.Serve",
+        "qx.tool.cli.commands.Compile"
+      ]
+    }
+  },
+  "events": {
+    "runTests": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired to start tests.",
+          "     *",
+          "     * The event data is the command instance:",
+          "     *  cmd: {qx.tool.cli.commands.Test}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired to start tests.\n The event data is the command instance:\n  cmd: {qx.tool.cli.commands.Test}</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2537
+        },
+        "end": {
+          "line": 92,
+          "column": 34,
+          "index": 2567
+        }
+      }
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "argv"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 95,
+        "column": 2,
+        "index": 2576
+      },
+      "end": {
+        "line": 105,
+        "column": 3,
+        "index": 2867
+      }
+    }
+  },
+  "properties": {
+    "exitCode": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 2948
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 3056
+        }
+      },
+      "json": {
+        "check": "Number",
+        "event": "changeExitCode",
+        "nullable": false,
+        "init": 0
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The exit code of all tests.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The exit code of all tests.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "needsServer": {
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3133
+        },
+        "end": {
+          "line": 126,
+          "column": 5,
+          "index": 3218
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": false,
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Is the webserver instance needed for the test?",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Is the webserver instance needed for the test?</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__tests": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @var {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{Array}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3278
+        },
+        "end": {
+          "line": 133,
+          "column": 17,
+          "index": 3291
+        }
+      },
+      "appearsIn": []
+    },
+    "addTest": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * add a test object and listens for the change of exitCode property",
+          "     * @param {qx.tool.cli.api.Test} test",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>add a test object and listens for the change of exitCode property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.tool.cli.api.Test} test",
+            "paramName": "test",
+            "description": "",
+            "type": "qx.tool.cli.api.Test"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3429
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4190
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "test",
+          "type": "qx.tool.cli.api.Test"
+        }
+      ],
+      "appearsIn": []
+    },
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4230
+        },
+        "end": {
+          "line": 222,
+          "column": 5,
+          "index": 6331
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Serve",
+      "appearsIn": [
+        "qx.tool.cli.commands.Serve",
+        "qx.tool.cli.commands.Compile",
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "__needsServer": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 6338
+        },
+        "end": {
+          "line": 230,
+          "column": 5,
+          "index": 6518
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  }
+}

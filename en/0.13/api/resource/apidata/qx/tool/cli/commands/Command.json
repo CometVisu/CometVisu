@@ -1,0 +1,518 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169754,
+  "lastModifiedIso": "2024-06-01T09:46:09.754Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Command.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 676
+    },
+    "end": {
+      "line": 193,
+      "column": 3,
+      "index": 5216
+    }
+  },
+  "className": "qx.tool.cli.commands.Command",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for commands",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for commands</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "argv"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 29,
+        "column": 2,
+        "index": 755
+      },
+      "end": {
+        "line": 32,
+        "column": 3,
+        "index": 811
+      }
+    }
+  },
+  "properties": {
+    "compilerApi": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 947
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1032
+        }
+      },
+      "json": {
+        "check": "qx.tool.cli.api.CompilerApi",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A reference to the current compilerApi instance",
+          "     * @var {qx.tool.cli.api.CompilerApi}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A reference to the current compilerApi instance</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{qx.tool.cli.api.CompilerApi}"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "argv": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1056
+        },
+        "end": {
+          "line": 46,
+          "column": 14,
+          "index": 1066
+        }
+      },
+      "appearsIn": []
+    },
+    "compileJs": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1072
+        },
+        "end": {
+          "line": 47,
+          "column": 19,
+          "index": 1087
+        }
+      },
+      "appearsIn": []
+    },
+    "process": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1094
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1651
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "processArgs": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This is to notify the commands after loading the full args.",
+          "     * The commands can overload special arg arguments here.",
+          "     * e.g. Deploy will will overload the target.",
+          "     *",
+          "     * @param {*} argv : args to process",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This is to notify the commands after loading the full args.\n The commands can overload special arg arguments here.\n e.g. Deploy will will overload the target.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} argv : args to process",
+            "paramName": "argv",
+            "description": ": args to process",
+            "type": "*"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1907
+        },
+        "end": {
+          "line": 78,
+          "column": 5,
+          "index": 1949
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "argv",
+          "type": "*"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getArgs": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the parsed command line arguments",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the parsed command line arguments</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2045
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2086
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "checkMigrations": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if the current application needs to be migrated",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Check if the current application needs to be migrated</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2170
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3390
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getQxPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @see {@link qx.tool.config.Utils#getQxPath}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "{@link qx.tool.config.Utils#getQxPath}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3464
+        },
+        "end": {
+          "line": 133,
+          "column": 72,
+          "index": 3532
+        }
+      },
+      "appearsIn": []
+    },
+    "getCompilerVersion": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @see {@link qx.tool.config.Utils#getCompilerVersion}",
+          "     * @returns {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "{@link qx.tool.config.Utils#getCompilerVersion}"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3647
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 3731
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getQxVersion": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the qooxdoo version, either from the `--qx-version` command line",
+          "     * parameter (if supported by the command and supplied by the user) or from",
+          "     * {@link qqx.tool.config.Utils#getQxVersion()}. Throws if no version can be",
+          "     * determined.",
+          "     *",
+          "     * @throws {typeof qx.tool.utils.Utils.UserError}",
+          "     *",
+          "     * @return {Promise<String>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the qooxdoo version, either from the <code>--qx-version</code> command line\n parameter (if supported by the command and supplied by the user) or from\n {@link qqx.tool.config.Utils#getQxVersion()}. Throws if no version can be\n determined.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{typeof qx.tool.utils.Utils.UserError}",
+            "type": "typeof qx.tool.utils.Utils.UserError",
+            "description": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<String>}",
+            "type": "Promise<String>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 4115
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4312
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<String>"
+      },
+      "appearsIn": []
+    },
+    "getAppQxVersion": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the qooxdoo version used in the application in the current",
+          "     * directory via {@link qx.tool.config.Utils#getAppQxVersion}. Can be",
+          "     * overridden by the `--qx-version` command line parameter (if supported by",
+          "     * the command and supplied by the user). Throws if no version can be",
+          "     * determined.",
+          "     *",
+          "     * @throws {typeof qx.tool.utils.Utils.UserError}",
+          "     *",
+          "     * @return {Promise<String>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the qooxdoo version used in the application in the current\n directory via {@link qx.tool.config.Utils#getAppQxVersion}. Can be\n overridden by the <code>--qx-version</code> command line parameter (if supported by\n the command and supplied by the user). Throws if no version can be\n determined.</p>"
+          }
+        ],
+        "@throws": [
+          {
+            "name": "@throws",
+            "body": "{typeof qx.tool.utils.Utils.UserError}",
+            "type": "typeof qx.tool.utils.Utils.UserError",
+            "description": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<String>}",
+            "type": "Promise<String>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 4757
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 4960
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<String>"
+      },
+      "appearsIn": []
+    },
+    "getTargetType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the calculated target type",
+          "     * @returns {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the calculated target type</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 5050
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 5208
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

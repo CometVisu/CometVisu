@@ -1,55 +1,72 @@
 {
-  "className": "qx.module.Environment",
-  "packageName": "qx.module",
-  "name": "Environment",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 39,
-        "column": 0,
-        "index": 1488
-      },
-      "end": {
-        "line": 85,
-        "column": 3,
-        "index": 2914
-      }
+  "version": 0.3,
+  "lastModified": 1717235170394,
+  "lastModifiedIso": "2024-06-01T09:46:10.394Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Environment.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 39,
+      "column": 0,
+      "index": 1450
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Module for querying information about the environment / runtime.\n It adds a static key <code>env</code> to qxWeb and offers the given methods.\n The following values are predefined:</p>\n<ul>\n<li><code>browser.name</code> : The name of the browser</li>\n<li><code>browser.version</code> : The version of the browser</li>\n<li><code>browser.quirksmode</code>  : <code>true</code> if the browser is in quirksmode</li>\n<li><code>browser.documentmode</code> : The document mode of the browser</li>\n<li><code>device.name</code> : The name of the device e.g. <code>iPad</code>.</li>\n<li><code>device.type</code> : Either <code>desktop</code>, <code>tablet</code> or <code>mobile</code>.</li>\n<li><code>engine.name</code> : The name of the browser engine</li>\n<li><code>engine.version</code> : The version of the browser engine</li>\n<li><code>event.touch</code> : Checks if touch events are supported</li>\n<li><code>event.mspointer</code> : Checks if MSPointer events are available</li>\n</ul>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Core"
-        }
-      ]
+    "end": {
+      "line": 85,
+      "column": 3,
+      "index": 2830
     }
   },
-  "type": "class",
+  "className": "qx.module.Environment",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Module for querying information about the environment / runtime.",
+      " * It adds a static key <code>env</code> to qxWeb and offers the given methods.",
+      " *",
+      " * The following values are predefined:",
+      " *",
+      " * * <code>browser.name</code> : The name of the browser",
+      " * * <code>browser.version</code> : The version of the browser",
+      " * * <code>browser.quirksmode</code>  : <code>true</code> if the browser is in quirksmode",
+      " * * <code>browser.documentmode</code> : The document mode of the browser",
+      " *",
+      " * * <code>device.name</code> : The name of the device e.g. <code>iPad</code>.",
+      " * * <code>device.type</code> : Either <code>desktop</code>, <code>tablet</code> or <code>mobile</code>.",
+      " *",
+      " * * <code>engine.name</code> : The name of the browser engine",
+      " * * <code>engine.version</code> : The version of the browser engine",
+      " *",
+      " * * <code>event.touch</code> : Checks if touch events are supported",
+      " * * <code>event.mspointer</code> : Checks if MSPointer events are available",
+      " * @group (Core)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Module for querying information about the environment / runtime.\n It adds a static key <code>env</code> to qxWeb and offers the given methods.\n The following values are predefined:</p>\n<ul>\n<li><code>browser.name</code> : The name of the browser</li>\n<li><code>browser.version</code> : The version of the browser</li>\n<li><code>browser.quirksmode</code>  : <code>true</code> if the browser is in quirksmode</li>\n<li><code>browser.documentmode</code> : The document mode of the browser</li>\n<li><code>device.name</code> : The name of the device e.g. <code>iPad</code>.</li>\n<li><code>device.type</code> : Either <code>desktop</code>, <code>tablet</code> or <code>mobile</code>.</li>\n<li><code>engine.name</code> : The name of the browser engine</li>\n<li><code>engine.version</code> : The version of the browser engine</li>\n<li><code>event.touch</code> : Checks if touch events are supported</li>\n<li><code>event.mspointer</code> : Checks if MSPointer events are available</li>\n</ul>"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Core"
+      }
+    ]
+  },
   "statics": {
     "get": {
-      "location": {
-        "start": {
-          "line": 49,
-          "column": 4,
-          "index": 1819
-        },
-        "end": {
-          "line": 51,
-          "column": 5,
-          "index": 1880
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the value stored for the given key.",
+          "     *",
+          "     * @attachStatic {qxWeb, env.get}",
+          "     * @param key {String} The key to check for.",
+          "     * @return {var} The value stored for the given key.",
+          "     * @lint environmentNonLiteralKey(key)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -68,7 +85,7 @@
             "body": "key {String} The key to check for.",
             "paramName": "key",
             "description": " The key to check for.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -76,7 +93,7 @@
             "name": "@return",
             "body": "{var} The value stored for the given key.",
             "type": "var",
-            "description": " The value stored for the given key."
+            "description": "The value stored for the given key."
           }
         ],
         "@lint": [
@@ -86,23 +103,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "add": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 61,
+          "line": 49,
           "column": 4,
-          "index": 2192
+          "index": 1771
         },
         "end": {
-          "line": 64,
+          "line": 51,
           "column": 5,
-          "index": 2280
+          "index": 1830
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "add": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a new environment setting which can be queried via {@link #get}.",
+          "     * @param key {String} The key to store the value for.",
+          "     *",
+          "     * @attachStatic {qxWeb, env.add}",
+          "     * @param value {var} The value to store.",
+          "     * @return {qxWeb} The collection for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -115,7 +152,7 @@
             "body": "key {String} The key to store the value for.",
             "paramName": "key",
             "description": " The key to store the value for.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -136,27 +173,40 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining.",
             "type": "qxWeb",
-            "description": " The collection for chaining."
+            "description": "The collection for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 67,
-        "column": 2,
-        "index": 2292
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 2132
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 2217
+        }
       },
-      "end": {
-        "line": 84,
-        "column": 3,
-        "index": 2909
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

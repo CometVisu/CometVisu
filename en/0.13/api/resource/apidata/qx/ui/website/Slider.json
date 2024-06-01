@@ -1,73 +1,137 @@
 {
-  "className": "qx.ui.website.Slider",
-  "packageName": "qx.ui.website",
-  "name": "Slider",
-  "superClass": "qx.ui.website.Widget",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 62,
-        "column": 0,
-        "index": 1667
-      },
-      "end": {
-        "line": 668,
-        "column": 3,
-        "index": 18966
-      }
+  "version": 0.3,
+  "lastModified": 1717235172378,
+  "lastModifiedIso": "2024-06-01T09:46:12.378Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/website/Slider.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 62,
+      "column": 0,
+      "index": 1606
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The Slider control is used to select a numerical value from a given range.\n It supports custom minimum/maximum values, step sizes and offsets (which limit\n the knob's range).\n </p>\n<h2>Markup</h2>\n<p>The Slider contains a single button element (the knob), which will be\n created if it's not already present.\n </p>\n<h2>CSS Classes</h2>\n<table>\n   <thead>\n     <tr>\n       <td>Class Name</td>\n       <td>Applied to</td>\n       <td>Description</td>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td><code>qx-slider</code></td>\n       <td>Container element</td>\n       <td>Identifies the Slider widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-slider-knob</code></td>\n       <td>Slider knob (button)</td>\n       <td>Identifies and styles the Slider's draggable knob</td>\n     </tr>\n   </tbody>\n </table>\n<h2 class=\"widget-markup\">Generated DOM Structure</h2>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.event.Pointer"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Transform"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Template"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.util.Type"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Widget"
-        }
-      ]
+    "end": {
+      "line": 668,
+      "column": 3,
+      "index": 18299
     }
   },
-  "type": "class",
+  "className": "qx.ui.website.Slider",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Slider control is used to select a numerical value from a given range.",
+      " * It supports custom minimum/maximum values, step sizes and offsets (which limit",
+      " * the knob's range).",
+      " *",
+      " * <h2>Markup</h2>",
+      " * The Slider contains a single button element (the knob), which will be",
+      " * created if it's not already present.",
+      " *",
+      " * <h2>CSS Classes</h2>",
+      " * <table>",
+      " *   <thead>",
+      " *     <tr>",
+      " *       <td>Class Name</td>",
+      " *       <td>Applied to</td>",
+      " *       <td>Description</td>",
+      " *     </tr>",
+      " *   </thead>",
+      " *   <tbody>",
+      " *     <tr>",
+      " *       <td><code>qx-slider</code></td>",
+      " *       <td>Container element</td>",
+      " *       <td>Identifies the Slider widget</td>",
+      " *     </tr>",
+      " *     <tr>",
+      " *       <td><code>qx-slider-knob</code></td>",
+      " *       <td>Slider knob (button)</td>",
+      " *       <td>Identifies and styles the Slider's draggable knob</td>",
+      " *     </tr>",
+      " *   </tbody>",
+      " * </table>",
+      " *",
+      " * <h2 class=\"widget-markup\">Generated DOM Structure</h2>",
+      " *",
+      " * @require(qx.module.event.Pointer)",
+      " * @require(qx.module.Transform)",
+      " * @require(qx.module.Template)",
+      " * @require(qx.module.util.Type)",
+      " *",
+      " *",
+      " * @group (Widget)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Slider control is used to select a numerical value from a given range.\n It supports custom minimum/maximum values, step sizes and offsets (which limit\n the knob's range).\n </p>\n<h2>Markup</h2>\n<p>The Slider contains a single button element (the knob), which will be\n created if it's not already present.\n </p>\n<h2>CSS Classes</h2>\n<table>\n   <thead>\n     <tr>\n       <td>Class Name</td>\n       <td>Applied to</td>\n       <td>Description</td>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td><code>qx-slider</code></td>\n       <td>Container element</td>\n       <td>Identifies the Slider widget</td>\n     </tr>\n     <tr>\n       <td><code>qx-slider-knob</code></td>\n       <td>Slider knob (button)</td>\n       <td>Identifies and styles the Slider's draggable knob</td>\n     </tr>\n   </tbody>\n </table>\n<h2 class=\"widget-markup\">Generated DOM Structure</h2>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.event.Pointer"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.Transform"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.Template"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.util.Type"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Widget"
+      }
+    ]
+  },
+  "superClass": "qx.ui.website.Widget",
   "statics": {
     "_config": {
-      "location": {
-        "start": {
-          "line": 99,
-          "column": 4,
-          "index": 2653
-        },
-        "end": {
-          "line": 104,
-          "column": 5,
-          "index": 2743
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * *step*",
+          "     *",
+          "     * The steps can be either a number or an array of predefined steps. In the",
+          "     * case of a number, it defines the amount of each step. In the case of an",
+          "     * array, the values of the array will be used as step values.",
+          "     *",
+          "     * Default value: <pre>1</pre>",
+          "     *",
+          "     *",
+          "     * *minimum*",
+          "     *",
+          "     * The minimum value of the slider. This will only be used if no explicit",
+          "     * steps are given.",
+          "     *",
+          "     * Default value: <pre>0 </pre>",
+          "     *",
+          "     *",
+          "     * *maximum*",
+          "     *",
+          "     * The maximum value of the slider. This will only be used if no explicit",
+          "     * steps are given.",
+          "     *",
+          "     * Default value: <pre>100</pre>",
+          "     *",
+          "     *",
+          "     * *offset*",
+          "     *",
+          "     * The amount of pixel the slider should be position away from its left and",
+          "     * right border.",
+          "     *",
+          "     * Default value: <pre>0 </pre>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -75,23 +139,32 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_templates": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 113,
+          "line": 99,
           "column": 4,
-          "index": 2893
+          "index": 2555
         },
         "end": {
-          "line": 115,
+          "line": 104,
           "column": 5,
-          "index": 2945
+          "index": 2640
         }
       },
+      "appearsIn": []
+    },
+    "_templates": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * *knobContent*",
+          "     *",
+          "     * The content of the knob element.",
+          "     *",
+          "     * Default value: <pre>{{value}}</pre>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -99,23 +172,35 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "slider": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 127,
+          "line": 113,
           "column": 4,
-          "index": 3373
+          "index": 2781
         },
         "end": {
-          "line": 140,
+          "line": 115,
           "column": 5,
-          "index": 3747
+          "index": 2831
         }
       },
+      "appearsIn": []
+    },
+    "slider": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method which converts the current collection into a collection of",
+          "     * slider widgets.",
+          "     *",
+          "     * @param value {Number?} The initial value of each slider widget",
+          "     * @param step {Number|Array?} The step config value to configure the step",
+          "     * width or the steps as array of numbers.",
+          "     * @return {qx.ui.website.Slider} A new Slider collection.",
+          "     * @attach {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -148,7 +233,7 @@
             "name": "@return",
             "body": "{qx.ui.website.Slider} A new Slider collection.",
             "type": "qx.ui.website.Slider",
-            "description": " A new Slider collection."
+            "description": "A new Slider collection."
           }
         ],
         "@attach": [
@@ -158,39 +243,71 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3247
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 3608
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "value",
+          "type": "Number",
+          "optional": true
+        },
+        {
+          "name": "step",
+          "type": [
+            "Number",
+            "Array"
+          ],
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.website.Slider"
+      },
+      "appearsIn": []
     }
   },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "selector"
+      },
+      {
+        "name": "context"
+      }
+    ],
     "location": {
       "start": {
         "line": 143,
         "column": 2,
-        "index": 3759
+        "index": 3617
       },
       "end": {
         "line": 145,
         "column": 3,
-        "index": 3825
+        "index": 3681
       }
     }
   },
   "events": {
     "changeValue": {
-      "location": {
-        "start": {
-          "line": 149,
-          "column": 4,
-          "index": 3886
-        },
-        "end": {
-          "line": 149,
-          "column": 25,
-          "index": 3907
-        }
-      },
+      "type": "Number",
       "jsdoc": {
+        "raw": [
+          "* Fired at each value change "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -198,23 +315,25 @@
           }
         ]
       },
-      "name": "changeValue",
-      "type": "Number"
-    },
-    "changePosition": {
       "location": {
         "start": {
-          "line": 152,
+          "line": 149,
           "column": 4,
-          "index": 3963
+          "index": 3738
         },
         "end": {
-          "line": 152,
-          "column": 28,
-          "index": 3987
+          "line": 149,
+          "column": 25,
+          "index": 3759
         }
-      },
+      }
+    },
+    "changePosition": {
+      "type": "Number",
       "jsdoc": {
+        "raw": [
+          "* Fired with each pointer move event "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -222,87 +341,86 @@
           }
         ]
       },
-      "name": "changePosition",
-      "type": "Number"
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 3812
+        },
+        "end": {
+          "line": 152,
+          "column": 28,
+          "index": 3836
+        }
+      }
     }
   },
   "members": {
     "__dragMode": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 156,
           "column": 4,
-          "index": 4015
+          "index": 3860
         },
         "end": {
           "line": 156,
           "column": 20,
-          "index": 4031
+          "index": 3876
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_value": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 157,
           "column": 4,
-          "index": 4038
+          "index": 3882
         },
         "end": {
           "line": 157,
           "column": 13,
-          "index": 4047
+          "index": 3891
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "init": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 159,
           "column": 4,
-          "index": 4056
+          "index": 3898
         },
         "end": {
           "line": 198,
           "column": 5,
-          "index": 5328
+          "index": 5131
         }
       },
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.ui.website.Widget",
       "appearsIn": [
         "qx.ui.website.Widget"
-      ],
-      "jsdoc": {
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} <code>true</code> if the widget has been initialized",
-            "type": "Boolean",
-            "description": " <code>true</code> if the widget has been initialized"
-          }
-        ]
-      }
+      ]
     },
     "getValue": {
-      "location": {
-        "start": {
-          "line": 205,
-          "column": 4,
-          "index": 5450
-        },
-        "end": {
-          "line": 207,
-          "column": 5,
-          "index": 5496
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current value of the slider",
+          "     *",
+          "     * @return {Integer} slider value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -314,27 +432,41 @@
             "name": "@return",
             "body": "{Integer} slider value",
             "type": "Integer",
-            "description": " slider value"
+            "description": "slider value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 216,
+          "line": 205,
           "column": 4,
-          "index": 5707
+          "index": 5246
         },
         "end": {
-          "line": 248,
+          "line": 207,
           "column": 5,
-          "index": 6625
+          "index": 5290
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the current value of the slider.",
+          "     *",
+          "     * @param value {Integer} new value of the slider",
+          "     *",
+          "     * @return {qx.ui.website.Slider} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -355,57 +487,65 @@
             "name": "@return",
             "body": "{qx.ui.website.Slider} The collection for chaining",
             "type": "qx.ui.website.Slider",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 5492
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 6378
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "value",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.website.Slider"
+      },
+      "appearsIn": []
     },
     "render": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 250,
           "column": 4,
-          "index": 6634
+          "index": 6385
         },
         "end": {
           "line": 269,
           "column": 5,
-          "index": 7247
+          "index": 6979
         }
       },
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.ui.website.Widget",
       "appearsIn": [
         "qx.ui.website.Widget"
-      ],
-      "jsdoc": {
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.website.Widget} The widget collection for chaining.",
-            "type": "qx.ui.website.Widget",
-            "description": " The widget collection for chaining."
-          }
-        ]
-      }
+      ]
     },
     "_getKnobContent": {
-      "location": {
-        "start": {
-          "line": 275,
-          "column": 4,
-          "index": 7377
-        },
-        "end": {
-          "line": 279,
-          "column": 5,
-          "index": 7517
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the content that should be displayed in the knob",
+          "     * @return {String} knob content",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -416,28 +556,39 @@
           {
             "name": "@return",
             "body": "{String} knob content",
-            "type": "String",
-            "description": " knob content"
+            "type": "string",
+            "description": "knob content"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getHalfKnobWidth": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 285,
+          "line": 275,
           "column": 4,
-          "index": 7656
+          "index": 7103
         },
         "end": {
-          "line": 290,
+          "line": 279,
           "column": 5,
-          "index": 7844
+          "index": 7239
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_getHalfKnobWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns half of the slider knob's width, used for positioning",
+          "     * @return {Integer} half knob width",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -449,27 +600,38 @@
             "name": "@return",
             "body": "{Integer} half knob width",
             "type": "Integer",
-            "description": " half knob width"
+            "description": "half knob width"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getDragBoundaries": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 296,
+          "line": 285,
           "column": 4,
-          "index": 8026
+          "index": 7372
         },
         "end": {
-          "line": 310,
+          "line": 290,
           "column": 5,
-          "index": 8473
+          "index": 7555
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getDragBoundaries": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the boundaries (in pixels) of the slider's range of motion",
+          "     * @return {Map} a map with the keys <code>min</code> and <code>max</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -480,28 +642,41 @@
           {
             "name": "@return",
             "body": "{Map} a map with the keys <code>min</code> and <code>max</code>",
-            "type": "Map",
-            "description": " a map with the keys <code>min</code> and <code>max</code>"
+            "type": "Map<any, any>",
+            "description": "a map with the keys <code>min</code> and <code>max</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getPixels": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 318,
+          "line": 296,
           "column": 4,
-          "index": 8699
+          "index": 7731
         },
         "end": {
-          "line": 361,
+          "line": 310,
           "column": 5,
-          "index": 9863
+          "index": 8164
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_getPixels": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a lookup table to get the pixel values for each slider step",
+          "     * and computes the \"breakpoint\" between two steps in pixel.",
+          "     *",
+          "     * @return {Integer[]} list of pixel values",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -513,27 +688,39 @@
             "name": "@return",
             "body": "{Integer[]} list of pixel values",
             "type": "Integer[]",
-            "description": " list of pixel values"
+            "description": "list of pixel values"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getNearestValue": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 368,
+          "line": 318,
           "column": 4,
-          "index": 10111
+          "index": 8382
         },
         "end": {
-          "line": 410,
+          "line": 361,
           "column": 5,
-          "index": 11462
+          "index": 9503
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer[]"
+      },
+      "appearsIn": []
+    },
+    "_getNearestValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the nearest existing slider value according to he position of the knob element.",
+          "     * @param position {Integer} The current knob position in pixels",
+          "     * @return {Integer} The next position to snap to",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -554,27 +741,44 @@
             "name": "@return",
             "body": "{Integer} The next position to snap to",
             "type": "Integer",
-            "description": " The next position to snap to"
+            "description": "The next position to snap to"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onSliderPointerUp": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 417,
+          "line": 368,
           "column": 4,
-          "index": 11635
+          "index": 9744
         },
         "end": {
-          "line": 425,
+          "line": 410,
           "column": 5,
-          "index": 11876
+          "index": 11053
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "position",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_onSliderPointerUp": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reads the pointer's position and sets slider value to the nearest step.",
+          "     *",
+          "     * @param e {qx.event.Emitter} Incoming event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -591,23 +795,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onPointerDown": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 432,
+          "line": 417,
           "column": 4,
-          "index": 12048
+          "index": 11219
         },
         "end": {
-          "line": 446,
+          "line": 425,
           "column": 5,
-          "index": 12445
+          "index": 11452
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.Emitter"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerDown": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener for the pointerdown event. Initializes drag or tracking mode.",
+          "     *",
+          "     * @param e {qx.event.Emitter} Incoming event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -624,23 +842,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onDocPointerUp": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 454,
+          "line": 432,
           "column": 4,
-          "index": 12638
+          "index": 11617
         },
         "end": {
-          "line": 466,
+          "line": 446,
           "column": 5,
-          "index": 13002
+          "index": 12000
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.Emitter"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onDocPointerUp": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener for the pointerup event. Used for cleanup of previously",
+          "     * initialized modes.",
+          "     *",
+          "     * @param e {qx.event.Emitter} Incoming event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -657,23 +890,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onPointerMove": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 473,
+          "line": 454,
           "column": 4,
-          "index": 13176
+          "index": 12185
         },
         "end": {
-          "line": 501,
+          "line": 466,
           "column": 5,
-          "index": 14018
+          "index": 12537
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.Emitter"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerMove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener for the pointermove event for the knob. Only used in drag mode.",
+          "     *",
+          "     * @param e {qx.event.Emitter} Incoming event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -690,23 +937,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onDragStart": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 507,
+          "line": 473,
           "column": 4,
-          "index": 14129
+          "index": 12704
         },
         "end": {
-          "line": 510,
+          "line": 501,
           "column": 5,
-          "index": 14208
+          "index": 13518
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.Emitter"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onDragStart": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Prevents drag event propagation",
+          "     * @param e {Event} e drag start event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -723,23 +983,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onSliderFocus": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 516,
+          "line": 507,
           "column": 4,
-          "index": 14321
+          "index": 13623
         },
         "end": {
-          "line": 518,
+          "line": 510,
           "column": 5,
-          "index": 14417
+          "index": 13699
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onSliderFocus": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delegates the Slider's focus to the knob",
+          "     * @param e {Event} focus event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -756,23 +1029,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onKnobFocus": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 524,
+          "line": 516,
           "column": 4,
-          "index": 14559
+          "index": 13806
         },
         "end": {
-          "line": 530,
+          "line": 518,
           "column": 5,
-          "index": 14718
+          "index": 13900
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onKnobFocus": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attaches the event listener for keyboard support to the knob on focus",
+          "     * @param e {Event} focus event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -789,23 +1075,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onKnobBlur": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 536,
+          "line": 524,
           "column": 4,
-          "index": 14859
+          "index": 14036
         },
         "end": {
-          "line": 542,
+          "line": 530,
           "column": 5,
-          "index": 15018
+          "index": 14189
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onKnobBlur": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the event listener for keyboard support from the knob on blur",
+          "     * @param e {Event} blur event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -822,23 +1121,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onKeyDown": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 548,
+          "line": 536,
           "column": 4,
-          "index": 15149
+          "index": 14324
         },
         "end": {
-          "line": 582,
+          "line": 542,
           "column": 5,
-          "index": 16202
+          "index": 14477
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onKeyDown": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Moves the knob if the left or right arrow key is pressed",
+          "     * @param e {Event} keydown event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -855,23 +1167,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_setKnobPosition": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 588,
+          "line": 548,
           "column": 4,
-          "index": 16320
+          "index": 14602
         },
         "end": {
-          "line": 595,
+          "line": 582,
           "column": 5,
-          "index": 16576
+          "index": 15621
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setKnobPosition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the horizontal position",
+          "     * @param x {Integer} the position to move to",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -888,23 +1213,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onWindowResize": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 601,
+          "line": 588,
           "column": 4,
-          "index": 16748
+          "index": 15733
         },
         "end": {
-          "line": 606,
+          "line": 595,
           "column": 5,
-          "index": 16919
+          "index": 15982
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "x",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onWindowResize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener for window resize events. This listener method resets the",
+          "     * calculated values which are used to position the slider knob.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -912,23 +1250,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__valueToPosition": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 614,
+          "line": 601,
           "column": 4,
-          "index": 17139
+          "index": 16148
         },
         "end": {
-          "line": 640,
+          "line": 606,
           "column": 5,
-          "index": 18152
+          "index": 16314
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__valueToPosition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Positions the slider knob to the given value and fires the \"changePosition\"",
+          "     * event with the current position as integer.",
+          "     *",
+          "     * @param value {Integer} slider step value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -945,55 +1293,51 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 614,
+          "column": 4,
+          "index": 16526
+        },
+        "end": {
+          "line": 640,
+          "column": 5,
+          "index": 17513
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "value",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
     },
     "dispose": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 642,
           "column": 4,
-          "index": 18161
+          "index": 17520
         },
         "end": {
           "line": 661,
           "column": 5,
-          "index": 18823
+          "index": 18163
         }
       },
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.ui.website.Widget",
       "appearsIn": [
         "qx.ui.website.Widget",
         "qx.core.IDisposable"
-      ],
-      "jsdoc": {
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qxWeb} Plain qxWeb collection",
-            "type": "qxWeb",
-            "description": " Plain qxWeb collection"
-          }
-        ]
-      }
+      ]
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 665,
-        "column": 2,
-        "index": 18892
-      },
-      "end": {
-        "line": 667,
-        "column": 3,
-        "index": 18961
-      }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+  "properties": {}
 }

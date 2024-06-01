@@ -1,28 +1,24 @@
 {
-  "className": "qx.theme.tangible.ColorEngine",
-  "packageName": "qx.theme.tangible",
-  "name": "ColorEngine",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 145,
-        "column": 0,
-        "index": 3852
-      },
-      "end": {
-        "line": 210,
-        "column": 3,
-        "index": 6318
-      }
+  "version": 0.3,
+  "lastModified": 1717235169710,
+  "lastModifiedIso": "2024-06-01T09:46:09.710Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/tangible/ColorEngine.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 145,
+      "column": 0,
+      "index": 3708
+    },
+    "end": {
+      "line": 210,
+      "column": 3,
+      "index": 6109
     }
   },
-  "type": "theme",
-  "descendants": [
-    "qx.theme.tangible.ColorDark",
-    "qx.theme.tangible.ColorLight"
-  ]
+  "className": "qx.theme.tangible.ColorEngine",
+  "jsdoc": null,
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

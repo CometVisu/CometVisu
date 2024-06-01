@@ -1,85 +1,70 @@
 {
-  "className": "qx.type.Array",
-  "packageName": "qx.type",
-  "name": "Array",
-  "superClass": "qx.type.BaseArray",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 697
-      },
-      "end": {
-        "line": 207,
-        "column": 3,
-        "index": 5654
-      }
+  "version": 0.3,
+  "lastModified": 1717235169190,
+  "lastModifiedIso": "2024-06-01T09:46:09.190Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/type/Array.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 673
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>An extended array class which adds a lot of often used\n convenience methods to the regular array like <code>remove</code> or\n <code>contains</code>.</p>"
-        }
-      ]
+    "end": {
+      "line": 207,
+      "column": 3,
+      "index": 5448
     }
   },
-  "type": "class",
+  "className": "qx.type.Array",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * An extended array class which adds a lot of often used",
+      " * convenience methods to the regular array like <code>remove</code> or",
+      " * <code>contains</code>.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>An extended array class which adds a lot of often used\n convenience methods to the regular array like <code>remove</code> or\n <code>contains</code>.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.type.BaseArray",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "length_or_items"
+      }
+    ],
     "location": {
       "start": {
         "line": 48,
         "column": 2,
-        "index": 1501
+        "index": 1454
       },
       "end": {
         "line": 50,
         "column": 3,
-        "index": 1581
+        "index": 1532
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Creates a new Array with the given length or the listed items.\n </p>\n<pre class=\"javascript\">\n var arr1 = new qx.type.Array(length);\n var arr2 = new qx.type.Array(elem0, elem1, ..., elemN);\n </pre>\n<ul>\n<li><code>length</code>: The initial length of the array.</li>\n<li><code>item1, item2. .. itemN</code>:  the items that will make up the newly created array</li>\n</ul>"
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "length_or_items {Integer|var?null} The initial size of the collection\n        OR an argument list of elements.",
-          "paramName": "length_or_items",
-          "description": " The initial size of the collection\n        OR an argument list of elements.",
-          "optional": true,
-          "defaultValue": "null",
-          "type": [
-            "Integer",
-            "var"
-          ]
-        }
-      ]
     }
   },
   "members": {
     "clone": {
-      "location": {
-        "start": {
-          "line": 60,
-          "column": 4,
-          "index": 1804
-        },
-        "end": {
-          "line": 60,
-          "column": 45,
-          "index": 1845
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a clone of the array. Primitive values are copied.",
+          "     * Others are referenced.",
+          "     *",
+          "     * @return {Array} Cloned array instance",
+          "     * @signature function()",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -90,8 +75,8 @@
           {
             "name": "@return",
             "body": "{Array} Cloned array instance",
-            "type": "qx.type.Array",
-            "description": " Cloned array instance"
+            "type": "Array<any>",
+            "description": "Cloned array instance"
           }
         ],
         "@signature": [
@@ -101,23 +86,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "insertAt": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 69,
+          "line": 60,
           "column": 4,
-          "index": 2084
+          "index": 1745
         },
         "end": {
-          "line": 72,
-          "column": 5,
-          "index": 2160
+          "line": 60,
+          "column": 45,
+          "index": 1786
         }
       },
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "insertAt": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Insert an element at a given position",
+          "     *",
+          "     * @param obj {var} the element to insert",
+          "     * @param i {Integer} position where to insert the element into the arr",
+          "     * @return {Array} the array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -144,28 +141,51 @@
           {
             "name": "@return",
             "body": "{Array} the array",
-            "type": "qx.type.Array",
-            "description": " the array"
+            "type": "Array<any>",
+            "description": "the array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "insertBefore": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 81,
+          "line": 69,
           "column": 4,
-          "index": 2389
+          "index": 2016
         },
         "end": {
-          "line": 91,
+          "line": 72,
           "column": 5,
-          "index": 2585
+          "index": 2089
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "var"
+        },
+        {
+          "name": "i",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "insertBefore": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Insert an element before a given second element",
+          "     *",
+          "     * @param obj {var} object to be inserted",
+          "     * @param obj2 {var} insert obj1 before this object",
+          "     * @return {Array} the array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -192,28 +212,51 @@
           {
             "name": "@return",
             "body": "{Array} the array",
-            "type": "qx.type.Array",
-            "description": " the array"
+            "type": "Array<any>",
+            "description": "the array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "insertAfter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 100,
+          "line": 81,
           "column": 4,
-          "index": 2812
+          "index": 2309
         },
         "end": {
-          "line": 110,
+          "line": 91,
           "column": 5,
-          "index": 3035
+          "index": 2495
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "var"
+        },
+        {
+          "name": "obj2",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "insertAfter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Insert an element after a given second element",
+          "     *",
+          "     * @param obj {var} object to be inserted",
+          "     * @param obj2 {var} insert obj1 after this object",
+          "     * @return {Array} the array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -240,28 +283,50 @@
           {
             "name": "@return",
             "body": "{Array} the array",
-            "type": "qx.type.Array",
-            "description": " the array"
+            "type": "Array<any>",
+            "description": "the array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeAt": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 118,
+          "line": 100,
           "column": 4,
-          "index": 3220
+          "index": 2713
         },
         "end": {
-          "line": 120,
+          "line": 110,
           "column": 5,
-          "index": 3276
+          "index": 2926
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "var"
+        },
+        {
+          "name": "obj2",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "removeAt": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an element at the given index",
+          "     *",
+          "     * @param i {Integer} index of the element to be removed",
+          "     * @return {var} The removed element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -282,27 +347,44 @@
             "name": "@return",
             "body": "{var} The removed element.",
             "type": "var",
-            "description": " The removed element."
+            "description": "The removed element."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeAll": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 127,
+          "line": 118,
           "column": 4,
-          "index": 3375
+          "index": 3103
         },
         "end": {
-          "line": 130,
+          "line": 120,
           "column": 5,
-          "index": 3439
+          "index": 3157
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "i",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "removeAll": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all elements",
+          "     *",
+          "     * @return {Array} empty array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -313,28 +395,42 @@
           {
             "name": "@return",
             "body": "{Array} empty array",
-            "type": "qx.type.Array",
-            "description": " empty array"
+            "type": "Array<any>",
+            "description": "empty array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "append": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 139,
+          "line": 127,
           "column": 4,
-          "index": 3713
+          "index": 3249
         },
         "end": {
-          "line": 143,
+          "line": 130,
           "column": 5,
-          "index": 3842
+          "index": 3310
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "append": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Append the elements of the given array",
+          "     *",
+          "     * @param arr {Array} the elements of this array will be appended to other one",
+          "     * @return {Array} The modified array.",
+          "     * @throws {Error} if one of the arguments is not an array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -347,15 +443,15 @@
             "body": "arr {Array} the elements of this array will be appended to other one",
             "paramName": "arr",
             "description": " the elements of this array will be appended to other one",
-            "type": "qx.type.Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} The modified array.",
-            "type": "qx.type.Array",
-            "description": " The modified array."
+            "type": "Array<any>",
+            "description": "The modified array."
           }
         ],
         "@throws": [
@@ -367,23 +463,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "prepend": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 152,
+          "line": 139,
           "column": 4,
-          "index": 4119
+          "index": 3575
         },
         "end": {
-          "line": 156,
+          "line": 143,
           "column": 5,
-          "index": 4266
+          "index": 3700
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "arr",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "prepend": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Prepend the elements of the given array.",
+          "     *",
+          "     * @param arr {Array} The elements of this array will be prepended to other one",
+          "     * @return {Array} The modified array.",
+          "     * @throws {Error} if one of the arguments is not an array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -396,15 +511,15 @@
             "body": "arr {Array} The elements of this array will be prepended to other one",
             "paramName": "arr",
             "description": " The elements of this array will be prepended to other one",
-            "type": "qx.type.Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} The modified array.",
-            "type": "qx.type.Array",
-            "description": " The modified array."
+            "type": "Array<any>",
+            "description": "The modified array."
           }
         ],
         "@throws": [
@@ -416,23 +531,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__toPlainArray": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 165,
+          "line": 152,
           "column": 4,
-          "index": 4516
+          "index": 3968
         },
         "end": {
-          "line": 181,
+          "line": 156,
           "column": 5,
-          "index": 5086
+          "index": 4111
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "arr",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "__toPlainArray": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper which checks for the given element and converts that to a",
+          "     * native array if necessary.",
+          "     *",
+          "     * @param arr {Array} Native or qx.type.BaseArray to convert.",
+          "     * @return {Array} A native array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -445,35 +579,53 @@
             "body": "arr {Array} Native or qx.type.BaseArray to convert.",
             "paramName": "arr",
             "description": " Native or qx.type.BaseArray to convert.",
-            "type": "qx.type.Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} A native array.",
-            "type": "qx.type.Array",
-            "description": " A native array."
+            "type": "Array<any>",
+            "description": "A native array."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "remove": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 189,
+          "line": 165,
           "column": 4,
-          "index": 5251
+          "index": 4352
         },
         "end": {
-          "line": 195,
+          "line": 181,
           "column": 5,
-          "index": 5385
+          "index": 4906
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "arr",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an element",
+          "     *",
+          "     * @param obj {var} element to be removed from the array",
+          "     * @return {var} the removed element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -494,27 +646,45 @@
             "name": "@return",
             "body": "{var} the removed element",
             "type": "var",
-            "description": " the removed element"
+            "description": "the removed element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "contains": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 203,
+          "line": 189,
           "column": 4,
-          "index": 5582
+          "index": 5063
         },
         "end": {
-          "line": 205,
+          "line": 195,
           "column": 5,
-          "index": 5644
+          "index": 5191
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "contains": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the array contains the given element",
+          "     *",
+          "     * @param obj {var} object to look for",
+          "     * @return {Boolean} whether the array contains the element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -534,14 +704,37 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the array contains the element",
-            "type": "Boolean",
-            "description": " whether the array contains the element"
+            "type": "boolean",
+            "description": "whether the array contains the element"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 5380
+        },
+        "end": {
+          "line": 205,
+          "column": 5,
+          "index": 5440
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "obj",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

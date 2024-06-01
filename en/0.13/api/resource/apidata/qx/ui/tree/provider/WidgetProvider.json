@@ -1,7 +1,45 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235172870,
+  "lastModifiedIso": "2024-06-01T09:46:12.870Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/tree/provider/WidgetProvider.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 726
+    },
+    "end": {
+      "line": 268,
+      "column": 3,
+      "index": 6928
+    }
+  },
   "className": "qx.ui.tree.provider.WidgetProvider",
-  "packageName": "qx.ui.tree.provider",
-  "name": "WidgetProvider",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The provider implements the {@link qx.ui.virtual.core.IWidgetCellProvider}",
+      " * API, which can be used as delegate for the widget cell rendering and it",
+      " * provides a API to bind the model with the rendered item.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The provider implements the {@link qx.ui.virtual.core.IWidgetCellProvider}\n API, which can be used as delegate for the widget cell rendering and it\n provides a API to bind the model with the rendered item.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "superClass": "qx.core.Object",
   "interfaces": [
     "qx.ui.virtual.core.IWidgetCellProvider",
@@ -10,82 +48,32 @@
   "mixins": [
     "qx.ui.tree.core.MWidgetController"
   ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 751
-      },
-      "end": {
-        "line": 268,
-        "column": 3,
-        "index": 7195
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The provider implements the {@link qx.ui.virtual.core.IWidgetCellProvider}\n API, which can be used as delegate for the widget cell rendering and it\n provides a API to bind the model with the rendered item.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "tree"
+      }
+    ],
     "location": {
       "start": {
         "line": 39,
         "column": 2,
-        "index": 1079
+        "index": 1041
       },
       "end": {
         "line": 46,
         "column": 3,
-        "index": 1245
+        "index": 1200
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "tree {qx.ui.tree.VirtualTree} tree to provide.",
-          "paramName": "tree",
-          "description": " tree to provide.",
-          "type": "qx.ui.tree.VirtualTree"
-        }
-      ]
     }
   },
   "members": {
     "_tree": {
-      "location": {
-        "start": {
-          "line": 50,
-          "column": 4,
-          "index": 1328
-        },
-        "end": {
-          "line": 50,
-          "column": 15,
-          "index": 1339
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.tree.VirtualTree} tree to provide. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -99,23 +87,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_renderer": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 53,
+          "line": 50,
           "column": 4,
-          "index": 1422
+          "index": 1279
         },
         "end": {
-          "line": 53,
-          "column": 19,
-          "index": 1437
+          "line": 50,
+          "column": 15,
+          "index": 1290
         }
       },
+      "appearsIn": []
+    },
+    "_renderer": {
       "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.virtual.cell.WidgetCell} the used item renderer. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -129,170 +120,228 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1370
+        },
+        "end": {
+          "line": 53,
+          "column": 19,
+          "index": 1385
+        }
+      },
+      "appearsIn": []
     },
     "getCellWidget": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 62,
           "column": 4,
-          "index": 1677
+          "index": 1616
         },
         "end": {
           "line": 102,
           "column": 5,
-          "index": 2967
+          "index": 2866
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.virtual.core.IWidgetCellProvider",
+      "params": [
+        {
+          "name": "row"
+        },
+        {
+          "name": "column"
+        }
+      ],
       "appearsIn": [
         "qx.ui.virtual.core.IWidgetCellProvider"
       ]
     },
     "poolCellWidget": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 105,
           "column": 4,
-          "index": 3009
+          "index": 2905
         },
         "end": {
           "line": 110,
           "column": 5,
-          "index": 3218
+          "index": 3109
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.virtual.core.IWidgetCellProvider",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
       "appearsIn": [
         "qx.ui.virtual.core.IWidgetCellProvider"
       ]
     },
     "createLayer": {
+      "jsdoc": {
+        "raw": [
+          " Interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 113,
           "column": 4,
-          "index": 3260
+          "index": 3148
         },
         "end": {
           "line": 115,
           "column": 5,
-          "index": 3338
+          "index": 3224
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.provider.IVirtualTreeProvider",
+      "params": [],
       "appearsIn": [
         "qx.ui.tree.provider.IVirtualTreeProvider"
       ]
     },
     "createRenderer": {
+      "jsdoc": {
+        "raw": [
+          " Interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 118,
           "column": 4,
-          "index": 3380
+          "index": 3263
         },
         "end": {
           "line": 136,
           "column": 5,
-          "index": 3824
+          "index": 3689
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.provider.IVirtualTreeProvider",
+      "params": [],
       "appearsIn": [
         "qx.ui.tree.provider.IVirtualTreeProvider"
       ]
     },
     "styleSelectabled": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 139,
           "column": 4,
-          "index": 3866
+          "index": 3728
         },
         "end": {
           "line": 142,
           "column": 5,
-          "index": 4004
+          "index": 3863
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.provider.IVirtualTreeProvider",
+      "params": [
+        {
+          "name": "row"
+        }
+      ],
       "appearsIn": [
         "qx.ui.tree.provider.IVirtualTreeProvider"
       ]
     },
     "styleUnselectabled": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 145,
           "column": 4,
-          "index": 4046
+          "index": 3902
         },
         "end": {
           "line": 148,
           "column": 5,
-          "index": 4188
+          "index": 4041
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.provider.IVirtualTreeProvider",
+      "params": [
+        {
+          "name": "row"
+        }
+      ],
       "appearsIn": [
         "qx.ui.tree.provider.IVirtualTreeProvider"
       ]
     },
     "isSelectable": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 151,
           "column": 4,
-          "index": 4230
+          "index": 4080
         },
         "end": {
           "line": 158,
           "column": 5,
-          "index": 4437
+          "index": 4280
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.provider.IVirtualTreeProvider",
+      "params": [
+        {
+          "name": "row"
+        }
+      ],
       "appearsIn": [
         "qx.ui.tree.provider.IVirtualTreeProvider"
       ]
     },
     "_styleSelectabled": {
-      "location": {
-        "start": {
-          "line": 171,
-          "column": 4,
-          "index": 4763
-        },
-        "end": {
-          "line": 177,
-          "column": 5,
-          "index": 4915
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Styles a selected item.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} widget to style.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -309,23 +358,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_styleUnselectabled": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 184,
+          "line": 171,
           "column": 4,
-          "index": 5045
+          "index": 4593
         },
         "end": {
-          "line": 190,
+          "line": 177,
           "column": 5,
-          "index": 5186
+          "index": 4739
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_styleUnselectabled": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Styles a not selected item.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} widget to style.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -342,23 +405,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onPool": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 198,
+          "line": 184,
           "column": 4,
-          "index": 5390
+          "index": 4862
         },
         "end": {
-          "line": 204,
+          "line": 190,
           "column": 5,
-          "index": 5553
+          "index": 4997
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPool": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calls the delegate <code>onPool</code> method when it is used in the",
+          "     * {@link #delegate} property.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Item to modify.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -375,23 +453,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onItemCreated": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 217,
+          "line": 198,
           "column": 4,
-          "index": 5891
+          "index": 5193
         },
         "end": {
-          "line": 227,
+          "line": 204,
           "column": 5,
-          "index": 6154
+          "index": 5350
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onItemCreated": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the created item's.",
+          "     *",
+          "     * @param event {qx.event.type.Data} fired event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -408,23 +500,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onChangeDelegate": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 234,
+          "line": 217,
           "column": 4,
-          "index": 6297
+          "index": 5675
         },
         "end": {
-          "line": 242,
+          "line": 227,
           "column": 5,
-          "index": 6565
+          "index": 5928
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangeDelegate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the change delegate event.",
+          "     *",
+          "     * @param event {qx.event.type.Data} fired event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -441,23 +547,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__onOpenChanged": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 249,
+          "line": 234,
           "column": 4,
-          "index": 6718
+          "index": 6064
         },
         "end": {
-          "line": 260,
+          "line": 242,
           "column": 5,
-          "index": 7061
+          "index": 6324
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onOpenChanged": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler when a node changes opened or closed state.",
+          "     *",
+          "     * @param event {qx.event.type.Data} The data event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -474,72 +594,79 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 249,
+          "column": 4,
+          "index": 6470
+        },
+        "end": {
+          "line": 260,
+          "column": 5,
+          "index": 6802
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "event",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
     },
-    "setChildProperty": {
-      "type": "function",
-      "name": "setChildProperty",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.provider.IVirtualTreeProvider",
-      "property": "set",
+    "__boundItems": {
       "jsdoc": {
+        "raw": [
+          "* @type {Array} which contains the bounded items "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sets the name of the property, where the children are stored in the model.</p>"
+            "body": ""
           }
         ],
-        "@param": [
+        "@type": [
           {
-            "name": "@param",
-            "body": "value {String} The child property name.",
-            "paramName": "value",
-            "description": " The child property name.",
-            "type": "String"
+            "name": "@type",
+            "body": "{Array} which contains the bounded items"
           }
         ]
-      }
-    },
-    "setLabelPath": {
-      "type": "function",
-      "name": "setLabelPath",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.provider.IVirtualTreeProvider",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Sets the name of the property, where the value for the tree folders label\n is stored in the model classes.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {String} The label path.",
-            "paramName": "value",
-            "description": " The label path.",
-            "type": "String"
-          }
-        ]
-      }
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2167
+        },
+        "end": {
+          "line": 88,
+          "column": 22,
+          "index": 2185
+        }
+      },
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
     },
     "bindDefaultProperties": {
-      "type": "function",
-      "name": "bindDefaultProperties",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding the default properties from the model to the",
+          "     * target widget. The used default properties  depends on the passed item.",
+          "     *",
+          "     * This method should only be called in the {@link IVirtualTreeDelegate#bindItem}",
+          "     * function implemented by the {@link #delegate} property.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The internally created and used node or",
+          "     *   leaf.",
+          "     * @param index {Integer} The index of the item (node or leaf).",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -562,17 +689,54 @@
             "type": "Integer"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2690
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 3830
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
     },
     "bindProperty": {
-      "type": "function",
-      "name": "bindProperty",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding a given property from the model to the target",
+          "     * widget.",
+          "     *",
+          "     * This method should only be called in the {@link IVirtualTreeDelegate#bindItem}",
+          "     * function implemented by the {@link #delegate} property.",
+          "     *",
+          "     * @param sourcePath {String | null} The path to the property in the model.",
+          "     *   If you use an empty string, the whole model item will be bound.",
+          "     * @param targetProperty {String} The name of the property in the target widget.",
+          "     * @param options {Map | null} The options to use for the binding.",
+          "     * @param targetWidget {qx.ui.core.Widget} The target widget.",
+          "     * @param index {Integer} The index of the current binding.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -595,7 +759,7 @@
             "body": "targetProperty {String} The name of the property in the target widget.",
             "paramName": "targetProperty",
             "description": " The name of the property in the target widget.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -622,17 +786,71 @@
             "type": "Integer"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4,
+          "index": 4549
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 4864
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "sourcePath",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "targetProperty",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": [
+            "Map",
+            "null"
+          ]
+        },
+        {
+          "name": "targetWidget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
     },
     "bindPropertyReverse": {
-      "type": "function",
-      "name": "bindPropertyReverse",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding a given property from the target widget to",
+          "     * the model.",
+          "     * This method should only be called in the",
+          "     * {@link qx.ui.tree.core.IVirtualTreeDelegate#bindItem} function implemented by the",
+          "     * {@link #delegate} property.",
+          "     *",
+          "     * @param targetPath {String | null} The path to the property in the model.",
+          "     * @param sourceProperty {String} The name of the property in the target.",
+          "     * @param options {Map | null} The options to use for the binding.",
+          "     * @param sourceWidget {qx.ui.core.Widget} The source widget.",
+          "     * @param index {Integer} The index of the current binding.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -655,7 +873,7 @@
             "body": "sourceProperty {String} The name of the property in the target.",
             "paramName": "sourceProperty",
             "description": " The name of the property in the target.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -682,34 +900,98 @@
             "type": "Integer"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 5519
+        },
+        "end": {
+          "line": 200,
+          "column": 5,
+          "index": 5877
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "targetPath",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "sourceProperty",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": [
+            "Map",
+            "null"
+          ]
+        },
+        {
+          "name": "sourceWidget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
     },
     "removeBindings": {
-      "type": "function",
-      "name": "removeBindings",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all bindings from all bounded items.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Remove all bindings from all bounded items.</p>"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5951
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 6112
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
     },
     "_bindItem": {
-      "type": "function",
-      "name": "_bindItem",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets up the binding for the given item and index.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The internally created and used item.",
+          "     * @param index {Integer} The index of the item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -732,17 +1014,46 @@
             "type": "Integer"
           }
         ]
-      }
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 6329
+        },
+        "end": {
+          "line": 226,
+          "column": 5,
+          "index": 6580
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
     },
     "_removeBindingsFrom": {
-      "type": "function",
-      "name": "_removeBindingsFrom",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the binding of the given item.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The item which the binding should be",
+          "     *   removed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -758,17 +1069,43 @@
             "type": "qx.ui.core.Widget"
           }
         ]
-      }
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 6750
+        },
+        "end": {
+          "line": 250,
+          "column": 5,
+          "index": 7156
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
     },
     "__getBindPath": {
-      "type": "function",
-      "name": "__getBindPath",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to create the path for binding.",
+          "     *",
+          "     * @param index {Integer} The index of the item.",
+          "     * @param path {String|null} The path to the property.",
+          "     * @return {String} The binding path",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -798,21 +1135,56 @@
           {
             "name": "@return",
             "body": "{String} The binding path",
-            "type": "String",
-            "description": " The binding path"
+            "type": "string",
+            "description": "The binding path"
           }
         ]
-      }
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4,
+          "index": 7392
+        },
+        "end": {
+          "line": 265,
+          "column": 5,
+          "index": 7569
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "path",
+          "type": [
+            "String",
+            "null"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
     },
     "__addBinding": {
-      "type": "function",
-      "name": "__addBinding",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to save the binding for the widget.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} widget to save binding.",
+          "     * @param id {var} the id from the binding.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -835,17 +1207,46 @@
             "type": "var"
           }
         ]
-      }
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4,
+          "index": 7769
+        },
+        "end": {
+          "line": 283,
+          "column": 5,
+          "index": 8020
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "id",
+          "type": "var"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
     },
     "__getBindings": {
-      "type": "function",
-      "name": "__getBindings",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method which returns all bound id from the widget.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} widget to get all binding.",
+          "     * @return {Array} all bound id's.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -865,526 +1266,272 @@
           {
             "name": "@return",
             "body": "{Array} all bound id's.",
-            "type": "Array",
-            "description": " all bound id's."
+            "type": "Array<any>",
+            "description": "all bound id's."
           }
         ]
-      }
-    },
-    "getLabelPath": {
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4,
+          "index": 8222
+        },
+        "end": {
+          "line": 300,
+          "column": 5,
+          "index": 8444
+        }
+      },
       "type": "function",
-      "name": "getLabelPath",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>labelPath</code>.\n\nFor further details take a look at the property definition: {@link #labelPath}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for labelPath"
-          }
-        ]
-      }
-    },
-    "resetLabelPath": {
-      "type": "function",
-      "name": "resetLabelPath",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>labelPath</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #labelPath}."
-          }
-        ]
-      }
-    },
-    "getIconPath": {
-      "type": "function",
-      "name": "getIconPath",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>iconPath</code>.\n\nFor further details take a look at the property definition: {@link #iconPath}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for iconPath"
-          }
-        ]
-      }
-    },
-    "setIconPath": {
-      "type": "function",
-      "name": "setIconPath",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>iconPath</code>.\n\nFor further details take a look at the property definition: {@link #iconPath}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for iconPath"
-          }
-        ]
-      }
-    },
-    "resetIconPath": {
-      "type": "function",
-      "name": "resetIconPath",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>iconPath</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #iconPath}."
-          }
-        ]
-      }
-    },
-    "getLabelOptions": {
-      "type": "function",
-      "name": "getLabelOptions",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>labelOptions</code>.\n\nFor further details take a look at the property definition: {@link #labelOptions}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for labelOptions"
-          }
-        ]
-      }
-    },
-    "setLabelOptions": {
-      "type": "function",
-      "name": "setLabelOptions",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>labelOptions</code>.\n\nFor further details take a look at the property definition: {@link #labelOptions}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for labelOptions"
-          }
-        ]
-      }
-    },
-    "resetLabelOptions": {
-      "type": "function",
-      "name": "resetLabelOptions",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>labelOptions</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #labelOptions}."
-          }
-        ]
-      }
-    },
-    "getIconOptions": {
-      "type": "function",
-      "name": "getIconOptions",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>iconOptions</code>.\n\nFor further details take a look at the property definition: {@link #iconOptions}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for iconOptions"
-          }
-        ]
-      }
-    },
-    "setIconOptions": {
-      "type": "function",
-      "name": "setIconOptions",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>iconOptions</code>.\n\nFor further details take a look at the property definition: {@link #iconOptions}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for iconOptions"
-          }
-        ]
-      }
-    },
-    "resetIconOptions": {
-      "type": "function",
-      "name": "resetIconOptions",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>iconOptions</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #iconOptions}."
-          }
-        ]
-      }
-    },
-    "getChildProperty": {
-      "type": "function",
-      "name": "getChildProperty",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>childProperty</code>.\n\nFor further details take a look at the property definition: {@link #childProperty}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for childProperty"
-          }
-        ]
-      }
-    },
-    "resetChildProperty": {
-      "type": "function",
-      "name": "resetChildProperty",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>childProperty</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #childProperty}."
-          }
-        ]
-      }
-    },
-    "getDelegate": {
-      "type": "function",
-      "name": "getDelegate",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for delegate"
-          }
-        ]
-      }
-    },
-    "setDelegate": {
-      "type": "function",
-      "name": "setDelegate",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for delegate"
-          }
-        ]
-      }
-    },
-    "resetDelegate": {
-      "type": "function",
-      "name": "resetDelegate",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.tree.core.MWidgetController",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>delegate</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 263,
         "column": 2,
-        "index": 7073
+        "index": 6811
       },
       "end": {
         "line": 267,
         "column": 3,
-        "index": 7190
+        "index": 6924
       }
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {
+    "labelPath": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 871
+        },
+        "end": {
+          "line": 38,
+          "column": 5,
+          "index": 933
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the property, where the value for the tree node/leaf label",
+          "     * is stored in the model classes.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of the property, where the value for the tree node/leaf label\n is stored in the model classes.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
+    },
+    "iconPath": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1056
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1117
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the property which holds the information that should be",
+          "     * shown as an icon.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the property which holds the information that should be\n shown as an icon.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
+    },
+    "labelOptions": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1294
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1336
+        }
+      },
+      "json": {
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A map containing the options for the label binding. The possible keys",
+          "     * can be found in the {@link qx.data.SingleValueBinding} documentation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A map containing the options for the label binding. The possible keys\n can be found in the {@link qx.data.SingleValueBinding} documentation.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
+    },
+    "iconOptions": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1512
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1553
+        }
+      },
+      "json": {
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A map containing the options for the icon binding. The possible keys",
+          "     * can be found in the {@link qx.data.SingleValueBinding} documentation.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A map containing the options for the icon binding. The possible keys\n can be found in the {@link qx.data.SingleValueBinding} documentation.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
+    },
+    "childProperty": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1768
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1834
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the property, where the children are stored in the model.",
+          "     * Instead of the {@link #labelPath} must the child property a direct",
+          "     * property form the model instance.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of the property, where the children are stored in the model.\n Instead of the {@link #labelPath} must the child property a direct\n property form the model instance.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
+    },
+    "delegate": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 1998
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2085
+        }
+      },
+      "json": {
+        "event": "changeDelegate",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delegation object, which can have one or more functions defined by the",
+          "     * {@link qx.ui.tree.core.IVirtualTreeDelegate} interface.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delegation object, which can have one or more functions defined by the\n {@link qx.ui.tree.core.IVirtualTreeDelegate} interface.</p>"
+          }
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.tree.core.MWidgetController"
+      ],
+      "mixin": "qx.ui.tree.core.MWidgetController"
+    }
+  }
 }

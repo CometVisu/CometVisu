@@ -72,6 +72,9 @@
       isAbstract: function isAbstract() {
         return this._meta.isAbstract || false;
       },
+      isAsync: function isAsync() {
+        return this._meta.async || false;
+      },
       isConstructor: function isConstructor() {
         return this.getName() == "construct";
       },
@@ -113,4 +116,4 @@
   qxl.apiviewer.dao.Method.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Method.js.map?dt=1709410173929
+//# sourceMappingURL=Method.js.map?dt=1717235425661

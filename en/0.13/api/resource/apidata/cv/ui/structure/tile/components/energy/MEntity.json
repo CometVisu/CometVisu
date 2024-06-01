@@ -1,46 +1,50 @@
 {
-  "className": "cv.ui.structure.tile.components.energy.MEntity",
-  "packageName": "cv.ui.structure.tile.components.energy",
-  "name": "MEntity",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 885
-      },
-      "end": {
-        "line": 71,
-        "column": 3,
-        "index": 1913
-      }
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/energy/MEntity.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 885
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Mixin for all Entity-Classes.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 2023</div>"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2023"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ]
+    "end": {
+      "line": 71,
+      "column": 3,
+      "index": 1913
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.structure.tile.components.energy.MEntity",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin for all Entity-Classes.",
+      " *",
+      " * @since 2023",
+      " * @author Tobias Bräutigam",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin for all Entity-Classes.</p>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2023"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ]
+  },
   "properties": {
     "type": {
       "location": {
@@ -55,20 +59,21 @@
           "index": 1244
         }
       },
-      "name": "type",
-      "propertyType": "new",
-      "apply": "_applyType",
-      "nullable": true,
-      "allowNull": true,
-      "possibleValues": [
-        "pv",
-        "battery",
-        "grid",
-        "house",
-        "charger",
-        "heatpump",
-        "consumer"
-      ]
+      "json": {
+        "check": [
+          "pv",
+          "battery",
+          "grid",
+          "house",
+          "charger",
+          "heatpump",
+          "consumer"
+        ],
+        "nullable": true,
+        "apply": "_applyType"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "foregroundColor": {
       "location": {
@@ -83,16 +88,19 @@
           "index": 1357
         }
       },
-      "name": "foregroundColor",
-      "propertyType": "new",
-      "apply": "_applyForegroundColor",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyForegroundColor"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     }
   },
   "members": {
     "_noValue": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 53,
@@ -105,10 +113,11 @@
           "index": 1517
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "hasNoValue": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 55,
@@ -122,9 +131,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "preMappingHook": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 59,
@@ -138,9 +150,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyForegroundColor": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 64,
@@ -154,143 +173,13 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "foregroundColor"
-      ]
-    },
-    "getType": {
-      "type": "function",
-      "name": "getType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>type</code>.\n\nFor further details take a look at the property definition: {@link #type}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for type"
-          }
-        ]
-      }
-    },
-    "setType": {
-      "type": "function",
-      "name": "setType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>type</code>.\n\nFor further details take a look at the property definition: {@link #type}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for type"
-          }
-        ]
-      }
-    },
-    "resetType": {
-      "type": "function",
-      "name": "resetType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>type</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #type}."
-          }
-        ]
-      }
-    },
-    "getForegroundColor": {
-      "type": "function",
-      "name": "getForegroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>foregroundColor</code>.\n\nFor further details take a look at the property definition: {@link #foregroundColor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for foregroundColor"
-          }
-        ]
-      }
-    },
-    "setForegroundColor": {
-      "type": "function",
-      "name": "setForegroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>foregroundColor</code>.\n\nFor further details take a look at the property definition: {@link #foregroundColor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for foregroundColor"
-          }
-        ]
-      }
-    },
-    "resetForegroundColor": {
-      "type": "function",
-      "name": "resetForegroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>foregroundColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #foregroundColor}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

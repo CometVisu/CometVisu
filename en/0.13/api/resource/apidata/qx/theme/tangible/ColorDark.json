@@ -1,35 +1,37 @@
 {
-  "className": "qx.theme.tangible.ColorDark",
-  "packageName": "qx.theme.tangible",
-  "name": "ColorDark",
-  "superClass": "qx.theme.tangible.ColorEngine",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 549
-      },
-      "end": {
-        "line": 31,
-        "column": 3,
-        "index": 782
-      }
+  "version": 0.3,
+  "lastModified": 1717235169710,
+  "lastModifiedIso": "2024-06-01T09:46:09.710Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/tangible/ColorDark.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 528
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Simple color theme</p>"
-        }
-      ]
+    "end": {
+      "line": 31,
+      "column": 3,
+      "index": 752
     }
   },
-  "type": "theme",
-  "descendants": [
-    "cv.theme.dark.Color"
-  ]
+  "className": "qx.theme.tangible.ColorDark",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Simple color theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Simple color theme</p>"
+      }
+    ]
+  },
+  "superClass": "qx.theme.tangible.ColorEngine",
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

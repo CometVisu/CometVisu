@@ -80,7 +80,11 @@
             titleHtml.add("?");
           }
         }
-        titleHtml.add('<span class="parenthesis">)</span></span>');
+        titleHtml.add('<span class="parenthesis">)</span>');
+        if (method.isAsync()) {
+          titleHtml.add('<span class="async"> async</span>');
+        }
+        titleHtml.add("</span>");
         return titleHtml.get();
       },
       /**
@@ -218,4 +222,4 @@
   qxl.apiviewer.ui.panels.AbstractMethodPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractMethodPanel.js.map?dt=1709410174613
+//# sourceMappingURL=AbstractMethodPanel.js.map?dt=1717235426424

@@ -1,92 +1,91 @@
 {
-  "className": "qx.data.store.Json",
-  "packageName": "qx.data.store",
-  "name": "Json",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 45,
-        "column": 0,
-        "index": 1493
-      },
-      "end": {
-        "line": 330,
-        "column": 3,
-        "index": 9081
-      }
+  "version": 0.3,
+  "lastModified": 1717235171498,
+  "lastModifiedIso": "2024-06-01T09:46:11.498Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/store/Json.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 45,
+      "column": 0,
+      "index": 1449
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The JSON data store is responsible for fetching data from an url. The type\n of the data has to be json.\n The loaded data will be parsed and saved in qooxdoo objects. Every value\n of the loaded data will be stored in a qooxdoo property. The model classes\n for the data will be created automatically.\n For the fetching itself it uses the {@link qx.io.request.Xhr} class and\n for parsing the loaded javascript objects into qooxdoo objects, the\n {@link qx.data.marshal.Json} class will be used.\n Please note that if you</p>\n<ul>\n<li>upgrade from qooxdoo 1.4 or lower</li>\n<li>choose not to force the old transport</li>\n<li>use a delegate with qx.data.store.IStoreDelegate#configureRequest\nyou probably need to change the implementation of your delegate to configure\nthe {@link qx.io.request.Xhr} request.\nThis class only needs to be disposed if you want to abort any current I/O\nrequest</li>\n</ul>"
-        }
-      ]
+    "end": {
+      "line": 330,
+      "column": 3,
+      "index": 8752
     }
   },
-  "type": "class",
+  "className": "qx.data.store.Json",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The JSON data store is responsible for fetching data from an url. The type",
+      " * of the data has to be json.",
+      " *",
+      " * The loaded data will be parsed and saved in qooxdoo objects. Every value",
+      " * of the loaded data will be stored in a qooxdoo property. The model classes",
+      " * for the data will be created automatically.",
+      " *",
+      " * For the fetching itself it uses the {@link qx.io.request.Xhr} class and",
+      " * for parsing the loaded javascript objects into qooxdoo objects, the",
+      " * {@link qx.data.marshal.Json} class will be used.",
+      " *",
+      " * Please note that if you",
+      " *",
+      " * * upgrade from qooxdoo 1.4 or lower",
+      " * * choose not to force the old transport",
+      " * * use a delegate with qx.data.store.IStoreDelegate#configureRequest",
+      " *",
+      " * you probably need to change the implementation of your delegate to configure",
+      " * the {@link qx.io.request.Xhr} request.",
+      " *",
+      " * This class only needs to be disposed if you want to abort any current I/O",
+      " * request",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The JSON data store is responsible for fetching data from an url. The type\n of the data has to be json.\n The loaded data will be parsed and saved in qooxdoo objects. Every value\n of the loaded data will be stored in a qooxdoo property. The model classes\n for the data will be created automatically.\n For the fetching itself it uses the {@link qx.io.request.Xhr} class and\n for parsing the loaded javascript objects into qooxdoo objects, the\n {@link qx.data.marshal.Json} class will be used.\n Please note that if you</p>\n<ul>\n<li>upgrade from qooxdoo 1.4 or lower</li>\n<li>choose not to force the old transport</li>\n<li>use a delegate with qx.data.store.IStoreDelegate#configureRequest\nyou probably need to change the implementation of your delegate to configure\nthe {@link qx.io.request.Xhr} request.\nThis class only needs to be disposed if you want to abort any current I/O\nrequest</li>\n</ul>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "url"
+      },
+      {
+        "name": "delegate"
+      }
+    ],
     "location": {
       "start": {
         "line": 56,
         "column": 2,
-        "index": 1979
+        "index": 1924
       },
       "end": {
         "line": 66,
         "column": 3,
-        "index": 2220
+        "index": 2155
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "url {String|null} The url where to find the data. The store starts\n   loading as soon as the URL is give. If you want to change some details\n   concerning the request, add null here and set the URL as soon as\n   everything is set up.",
-          "paramName": "url",
-          "description": " The url where to find the data. The store starts\n   loading as soon as the URL is give. If you want to change some details\n   concerning the request, add null here and set the URL as soon as\n   everything is set up.",
-          "type": [
-            "String",
-            "null"
-          ]
-        },
-        {
-          "name": "@param",
-          "body": "delegate {Object?null} The delegate containing one of the methods\n   specified in {@link qx.data.store.IStoreDelegate}.",
-          "paramName": "delegate",
-          "description": " The delegate containing one of the methods\n   specified in {@link qx.data.store.IStoreDelegate}.",
-          "optional": true,
-          "defaultValue": "null",
-          "type": "Object"
-        }
-      ]
     }
   },
   "events": {
     "loaded": {
-      "location": {
-        "start": {
-          "line": 73,
-          "column": 4,
-          "index": 2363
-        },
-        "end": {
-          "line": 73,
-          "column": 32,
-          "index": 2391
-        }
-      },
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Data event fired after the model has been created. The data will be the",
+          "     * created model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -94,23 +93,29 @@
           }
         ]
       },
-      "name": "loaded",
-      "type": "qx.event.type.Data"
-    },
-    "parseError": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 73,
           "column": 4,
-          "index": 2603
+          "index": 2291
         },
         "end": {
-          "line": 80,
-          "column": 36,
-          "index": 2635
+          "line": 73,
+          "column": 32,
+          "index": 2319
         }
-      },
+      }
+    },
+    "parseError": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when a parse error (i.e. broken JSON) occurred",
+          "     * during the load. The data contains a hash of the original",
+          "     * response and the parser error (exception object).",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -118,23 +123,29 @@
           }
         ]
       },
-      "name": "parseError",
-      "type": "qx.event.type.Data"
-    },
-    "error": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 80,
           "column": 4,
-          "index": 2870
+          "index": 2524
         },
         "end": {
-          "line": 87,
-          "column": 31,
-          "index": 2897
+          "line": 80,
+          "column": 36,
+          "index": 2556
         }
-      },
+      }
+    },
+    "error": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when an error (aborted, timeout or failed) occurred",
+          "     * during the load. The data contains the response of the request.",
+          "     * If you want more details, use the {@link #changeState} event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -142,8 +153,18 @@
           }
         ]
       },
-      "name": "error",
-      "type": "qx.event.type.Data"
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2784
+        },
+        "end": {
+          "line": 87,
+          "column": 31,
+          "index": 2811
+        }
+      }
     }
   },
   "properties": {
@@ -152,15 +173,24 @@
         "start": {
           "line": 94,
           "column": 4,
-          "index": 3002
+          "index": 2909
         },
         "end": {
           "line": 97,
           "column": 5,
-          "index": 3068
+          "index": 2972
         }
       },
+      "json": {
+        "nullable": true,
+        "event": "changeModel"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Property for holding the loaded model instance.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -168,26 +198,43 @@
           }
         ]
       },
-      "name": "model",
-      "propertyType": "new",
-      "event": "changeModel",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "state": {
       "location": {
         "start": {
           "line": 104,
           "column": 4,
-          "index": 3281
+          "index": 3178
         },
         "end": {
           "line": 118,
           "column": 5,
-          "index": 3543
+          "index": 3426
         }
       },
+      "json": {
+        "check": [
+          "configured",
+          "queued",
+          "sending",
+          "receiving",
+          "completed",
+          "aborted",
+          "timeout",
+          "failed"
+        ],
+        "init": "configured",
+        "event": "changeState"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The state of the request as an url. If you want to check if the request",
+          "     * did it’s job, use, the {@link #changeState} event and check for one of the",
+          "     * listed values.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -195,36 +242,33 @@
           }
         ]
       },
-      "name": "state",
-      "propertyType": "new",
-      "event": "changeState",
-      "init": "configured",
-      "possibleValues": [
-        "configured",
-        "queued",
-        "sending",
-        "receiving",
-        "completed",
-        "aborted",
-        "timeout",
-        "failed"
-      ],
-      "defaultValue": "configured"
+      "appearsIn": []
     },
     "url": {
       "location": {
         "start": {
           "line": 123,
           "column": 4,
-          "index": 3618
+          "index": 3496
         },
         "end": {
           "line": 128,
           "column": 5,
-          "index": 3731
+          "index": 3604
         }
       },
+      "json": {
+        "check": "String",
+        "apply": "_applyUrl",
+        "event": "changeUrl",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The url where the request should go to.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -232,130 +276,100 @@
           }
         ]
       },
-      "name": "url",
-      "propertyType": "new",
-      "event": "changeUrl",
-      "apply": "_applyUrl",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "_marshaler": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 132,
           "column": 4,
-          "index": 3759
+          "index": 3628
         },
         "end": {
           "line": 132,
           "column": 20,
-          "index": 3775
+          "index": 3644
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_delegate": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 133,
           "column": 4,
-          "index": 3782
+          "index": 3650
         },
         "end": {
           "line": 133,
           "column": 19,
-          "index": 3797
+          "index": 3665
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "__request": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 135,
           "column": 4,
-          "index": 3806
+          "index": 3672
         },
         "end": {
           "line": 135,
           "column": 19,
-          "index": 3821
+          "index": 3687
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_applyUrl": {
+      "jsdoc": {
+        "raw": [
+          " apply function"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 138,
           "column": 4,
-          "index": 3853
+          "index": 3716
         },
         "end": {
           "line": 146,
           "column": 5,
-          "index": 4145
+          "index": 4000
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "url"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_getRequest": {
-      "location": {
-        "start": {
-          "line": 153,
-          "column": 4,
-          "index": 4238
-        },
-        "end": {
-          "line": 155,
-          "column": 5,
-          "index": 4290
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get request",
+          "     *",
+          "     * @return {Object} The request.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -366,28 +380,40 @@
           {
             "name": "@return",
             "body": "{Object} The request.",
-            "type": "Object",
-            "description": " The request."
+            "type": "Record<any, any>",
+            "description": "The request."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_setRequest": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 162,
+          "line": 153,
           "column": 4,
-          "index": 4391
+          "index": 4086
         },
         "end": {
-          "line": 164,
+          "line": 155,
           "column": 5,
-          "index": 4453
+          "index": 4136
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_setRequest": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set request.",
+          "     *",
+          "     * @param request {Object} The request.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -400,27 +426,44 @@
             "body": "request {Object} The request.",
             "paramName": "request",
             "description": " The request.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_createRequest": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 174,
+          "line": 162,
           "column": 4,
-          "index": 4720
+          "index": 4230
         },
         "end": {
-          "line": 208,
+          "line": 164,
           "column": 5,
-          "index": 5833
+          "index": 4290
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "request",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createRequest": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and sends a GET request with the given url.",
+          "     *",
+          "     * Listeners will be added to respond to the request’s \"success\",",
+          "     * \"changePhase\" and \"fail\" event.",
+          "     *",
+          "     * @param url {String} The url for the request.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -433,27 +476,43 @@
             "body": "url {String} The url for the request.",
             "paramName": "url",
             "description": " The url for the request.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onChangePhase": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 217,
+          "line": 174,
           "column": 4,
-          "index": 6031
+          "index": 4547
         },
         "end": {
-          "line": 236,
+          "line": 208,
           "column": 5,
-          "index": 6525
+          "index": 5626
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onChangePhase": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler called when request phase changes.",
+          "     *",
+          "     * Sets the store’s state.",
+          "     *",
+          "     * @param ev {qx.event.type.Data} The request’s changePhase event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -470,23 +529,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onFail": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 243,
+          "line": 217,
           "column": 4,
-          "index": 6695
+          "index": 5815
         },
         "end": {
-          "line": 246,
+          "line": 236,
           "column": 5,
-          "index": 6789
+          "index": 6290
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onFail": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler called when not completing the request successfully.",
+          "     *",
+          "     * @param ev {qx.event.type.Event} The request’s fail event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -503,23 +576,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onParseError": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 255,
+          "line": 243,
           "column": 4,
-          "index": 7096
+          "index": 6453
         },
         "end": {
-          "line": 257,
+          "line": 246,
           "column": 5,
-          "index": 7177
+          "index": 6544
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onParseError": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler called when not completing the request successfully because",
+          "     * of parse errors.",
+          "     *",
+          "     * @param ev {qx.event.type.Data} Hash map containing the original 'request'",
+          "     *                                and the original parser 'error' exception object.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -536,23 +625,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onSuccess": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 266,
+          "line": 255,
           "column": 4,
-          "index": 7466
+          "index": 6842
         },
         "end": {
-          "line": 301,
+          "line": 257,
           "column": 5,
-          "index": 8377
+          "index": 6921
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onSuccess": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the completion of the requests. It invokes the creation of",
+          "     * the needed classes and instances for the fetched data using",
+          "     * {@link qx.data.marshal.Json}.",
+          "     *",
+          "     * @param ev {qx.event.type.Event} The request’s success event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -569,23 +674,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "reload": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 306,
+          "line": 266,
           "column": 4,
-          "index": 8476
+          "index": 7201
         },
         "end": {
-          "line": 311,
+          "line": 301,
           "column": 5,
-          "index": 8595
+          "index": 8077
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "reload": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reloads the data with the url set in the {@link #url} property.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -593,362 +710,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 306,
+          "column": 4,
+          "index": 8171
+        },
+        "end": {
+          "line": 311,
+          "column": 5,
+          "index": 8285
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getModel": {
-      "type": "function",
-      "name": "getModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for model"
-          }
-        ]
-      }
-    },
-    "setModel": {
-      "type": "function",
-      "name": "setModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for model"
-          }
-        ]
-      }
-    },
-    "resetModel": {
-      "type": "function",
-      "name": "resetModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>model</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ]
-      }
-    },
-    "getState": {
-      "type": "function",
-      "name": "getState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>state</code>.\n\nFor further details take a look at the property definition: {@link #state}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for state"
-          }
-        ]
-      }
-    },
-    "setState": {
-      "type": "function",
-      "name": "setState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>state</code>.\n\nFor further details take a look at the property definition: {@link #state}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for state"
-          }
-        ]
-      }
-    },
-    "resetState": {
-      "type": "function",
-      "name": "resetState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>state</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #state}."
-          }
-        ]
-      }
-    },
-    "getUrl": {
-      "type": "function",
-      "name": "getUrl",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>url</code>.\n\nFor further details take a look at the property definition: {@link #url}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for url"
-          }
-        ]
-      }
-    },
-    "setUrl": {
-      "type": "function",
-      "name": "setUrl",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>url</code>.\n\nFor further details take a look at the property definition: {@link #url}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for url"
-          }
-        ]
-      }
-    },
-    "resetUrl": {
-      "type": "function",
-      "name": "resetUrl",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>url</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #url}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 320,
         "column": 2,
-        "index": 8802
+        "index": 8483
       },
       "end": {
         "line": 329,
         "column": 3,
-        "index": 9076
+        "index": 8748
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": [
-    "qx.data.store.Jsonp"
-  ]
+  "statics": {}
 }

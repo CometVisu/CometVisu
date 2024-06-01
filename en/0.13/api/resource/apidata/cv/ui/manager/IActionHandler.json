@@ -1,49 +1,44 @@
 {
-  "className": "cv.ui.manager.IActionHandler",
-  "packageName": "cv.ui.manager",
-  "name": "IActionHandler",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 938
-      },
-      "end": {
-        "line": 58,
-        "column": 3,
-        "index": 2081
-      }
+  "version": 0.3,
+  "lastModified": 1717235105606,
+  "lastModifiedIso": "2024-06-01T09:45:05.606Z",
+  "classFilename": "../../source/class/cv/ui/manager/IActionHandler.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 938
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>All Widgets that need to handle actions from the managers action event, need to implement this interface.</p>"
-        }
-      ]
+    "end": {
+      "line": 58,
+      "column": 3,
+      "index": 2081
     }
   },
-  "type": "interface",
+  "className": "cv.ui.manager.IActionHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * All Widgets that need to handle actions from the managers action event, need to implement this interface.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>All Widgets that need to handle actions from the managers action event, need to implement this interface.</p>"
+      }
+    ]
+  },
   "members": {
     "canHandleAction": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 1252
-        },
-        "end": {
-          "line": 34,
-          "column": 34,
-          "index": 1282
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the action handle can process the action.",
+          "     * @param actionName {String} action name",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,27 +51,41 @@
             "body": "actionName {String} action name",
             "paramName": "actionName",
             "description": " action name",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "handleAction": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 41,
+          "line": 34,
           "column": 4,
-          "index": 1428
+          "index": 1252
         },
         "end": {
-          "line": 41,
-          "column": 37,
-          "index": 1461
+          "line": 34,
+          "column": 34,
+          "index": 1282
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "actionName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "handleAction": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Executes the action handling.",
+          "     * @param actionName {String} action name",
+          "     * @param data {var} action payload",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -89,7 +98,7 @@
             "body": "actionName {String} action name",
             "paramName": "actionName",
             "description": " action name",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -100,23 +109,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "configureButton": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 41,
           "column": 4,
-          "index": 1796
+          "index": 1428
         },
         "end": {
-          "line": 49,
-          "column": 40,
-          "index": 1832
+          "line": 41,
+          "column": 37,
+          "index": 1461
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "actionName",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "configureButton": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The ActionHandler can configure the menubutton itself, e.g. disable it, when that action is currently not possible",
+          "     * or change the button text / tooltip text etc.",
+          "     * @param actionId {String} ID of the action that button triggers",
+          "     * @param button {Widget} the button that should be configured",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -129,7 +157,7 @@
             "body": "actionId {String} ID of the action that button triggers",
             "paramName": "actionId",
             "description": " ID of the action that button triggers",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -140,23 +168,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "unConfigureButton": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 56,
+          "line": 49,
           "column": 4,
-          "index": 2035
+          "index": 1796
         },
         "end": {
-          "line": 56,
-          "column": 42,
-          "index": 2073
+          "line": 49,
+          "column": 40,
+          "index": 1832
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "actionId",
+          "type": "string"
+        },
+        {
+          "name": "button",
+          "type": "Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unConfigureButton": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Undo all changes that have been applied to the button in configureButton",
+          "     * @param actionId {String} ID of the action that button triggers",
+          "     * @param button {Widget}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -169,17 +215,43 @@
             "body": "actionId {String} ID of the action that button triggers",
             "paramName": "actionId",
             "description": " ID of the action that button triggers",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
-            "body": "button {Widget}"
+            "body": "button {Widget}",
+            "paramName": "button",
+            "type": "Widget"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 2035
+        },
+        "end": {
+          "line": 56,
+          "column": 42,
+          "index": 2073
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "actionId",
+          "type": "string"
+        },
+        {
+          "name": "button",
+          "type": "Widget"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -1,111 +1,162 @@
 {
-  "className": "qx.bom.storage.Memory",
-  "packageName": "qx.bom.storage",
-  "name": "Memory",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 31,
-        "column": 0,
-        "index": 991
-      },
-      "end": {
-        "line": 152,
-        "column": 3,
-        "index": 4029
-      }
+  "version": 0.3,
+  "lastModified": 1717235171722,
+  "lastModifiedIso": "2024-06-01T09:46:11.722Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/storage/Memory.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 961
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Fallback storage implementation which offers the same API as every other storage\n but is not persistent. Basically, its just a storage API on a JavaScript map.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.bom.storage.Memory#getLength"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.storage.Memory#setItem"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.storage.Memory#getItem"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.storage.Memory#removeItem"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.storage.Memory#clear"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.storage.Memory#getKey"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.storage.Memory#forEach"
-        }
-      ]
+    "end": {
+      "line": 152,
+      "column": 3,
+      "index": 3878
     }
   },
-  "type": "class",
+  "className": "qx.bom.storage.Memory",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Fallback storage implementation which offers the same API as every other storage",
+      " * but is not persistent. Basically, its just a storage API on a JavaScript map.",
+      " *",
+      " * @require(qx.bom.storage.Memory#getLength)",
+      " * @require(qx.bom.storage.Memory#setItem)",
+      " * @require(qx.bom.storage.Memory#getItem)",
+      " * @require(qx.bom.storage.Memory#removeItem)",
+      " * @require(qx.bom.storage.Memory#clear)",
+      " * @require(qx.bom.storage.Memory#getKey)",
+      " * @require(qx.bom.storage.Memory#forEach)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Fallback storage implementation which offers the same API as every other storage\n but is not persistent. Basically, its just a storage API on a JavaScript map.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.bom.storage.Memory#getLength"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.storage.Memory#setItem"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.storage.Memory#getItem"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.storage.Memory#removeItem"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.storage.Memory#clear"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.storage.Memory#getKey"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.storage.Memory#forEach"
+      }
+    ]
+  },
   "statics": {
     "__local": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 33,
           "column": 4,
-          "index": 1057
+          "index": 1025
         },
         "end": {
           "line": 33,
           "column": 17,
-          "index": 1070
+          "index": 1038
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__session": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 34,
           "column": 4,
-          "index": 1077
+          "index": 1044
         },
         "end": {
           "line": 34,
           "column": 19,
-          "index": 1092
+          "index": 1059
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getLocal": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an instance of {@link qx.bom.storage.Memory} which is of course",
+          "     * not persisted on reload.",
+          "     * @return {qx.bom.storage.Memory} A memory storage.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an instance of {@link qx.bom.storage.Memory} which is of course\n not persisted on reload.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.bom.storage.Memory} A memory storage.",
+            "type": "qx.bom.storage.Memory",
+            "description": "A memory storage."
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 41,
           "column": 4,
-          "index": 1290
+          "index": 1250
         },
         "end": {
           "line": 46,
           "column": 5,
-          "index": 1435
+          "index": 1390
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.bom.storage.Memory"
+      },
+      "appearsIn": []
+    },
+    "getSession": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an instance of {@link qx.bom.storage.Memory} which is of course",
+          "     * not persisted on reload.",
+          "     * @return {qx.bom.storage.Memory} A memory storage.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,91 +168,74 @@
             "name": "@return",
             "body": "{qx.bom.storage.Memory} A memory storage.",
             "type": "qx.bom.storage.Memory",
-            "description": " A memory storage."
+            "description": "A memory storage."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSession": {
+      "access": "public",
       "location": {
         "start": {
           "line": 53,
           "column": 4,
-          "index": 1633
+          "index": 1581
         },
         "end": {
           "line": 58,
           "column": 5,
-          "index": 1786
+          "index": 1729
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns an instance of {@link qx.bom.storage.Memory} which is of course\n not persisted on reload.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.bom.storage.Memory} A memory storage.",
-            "type": "qx.bom.storage.Memory",
-            "description": " A memory storage."
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "qx.bom.storage.Memory"
+      },
+      "appearsIn": []
     }
   },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 61,
         "column": 2,
-        "index": 1798
+        "index": 1738
       },
       "end": {
         "line": 63,
         "column": 3,
-        "index": 1842
+        "index": 1780
       }
     }
   },
   "members": {
     "__storage": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 66,
           "column": 4,
-          "index": 1865
+          "index": 1800
         },
         "end": {
           "line": 66,
           "column": 19,
-          "index": 1880
+          "index": 1815
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getStorage": {
-      "location": {
-        "start": {
-          "line": 73,
-          "column": 4,
-          "index": 1999
-        },
-        "end": {
-          "line": 75,
-          "column": 5,
-          "index": 2050
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the internal used map.",
+          "     * @return {Map} The storage.",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -212,8 +246,8 @@
           {
             "name": "@return",
             "body": "{Map} The storage.",
-            "type": "Map",
-            "description": " The storage."
+            "type": "Map<any, any>",
+            "description": "The storage."
           }
         ],
         "@internal": [
@@ -223,23 +257,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLength": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 81,
+          "line": 73,
           "column": 4,
-          "index": 2184
+          "index": 1927
         },
         "end": {
-          "line": 83,
+          "line": 75,
           "column": 5,
-          "index": 2254
+          "index": 1976
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getLength": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the amount of key-value pairs stored.",
+          "     * @return {Integer} The length of the storage.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -251,27 +296,40 @@
             "name": "@return",
             "body": "{Integer} The length of the storage.",
             "type": "Integer",
-            "description": " The length of the storage."
+            "description": "The length of the storage."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 91,
+          "line": 81,
           "column": 4,
-          "index": 2442
+          "index": 2104
         },
         "end": {
-          "line": 94,
+          "line": 83,
           "column": 5,
-          "index": 2552
+          "index": 2172
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Store an item in the storage.",
+          "     *",
+          "     * @param key {String} The identifier key.",
+          "     * @param value {var} The data, which will be stored as JSON.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -284,7 +342,7 @@
             "body": "key {String} The identifier key.",
             "paramName": "key",
             "description": " The identifier key.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -295,23 +353,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 102,
+          "line": 91,
           "column": 4,
-          "index": 2719
+          "index": 2352
         },
         "end": {
-          "line": 109,
+          "line": 94,
           "column": 5,
-          "index": 2894
+          "index": 2459
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the stored item.",
+          "     *",
+          "     * @param key {String} The identifier to get the data.",
+          "     * @return {var} The stored data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -324,7 +401,7 @@
             "body": "key {String} The identifier to get the data.",
             "paramName": "key",
             "description": " The identifier to get the data.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -332,27 +409,43 @@
             "name": "@return",
             "body": "{var} The stored data.",
             "type": "var",
-            "description": " The stored data."
+            "description": "The stored data."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 115,
+          "line": 102,
           "column": 4,
-          "index": 3007
+          "index": 2618
         },
         "end": {
-          "line": 117,
+          "line": 109,
           "column": 5,
-          "index": 3066
+          "index": 2786
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "removeItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes an item form the storage.",
+          "     * @param key {String} The identifier.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -365,27 +458,39 @@
             "body": "key {String} The identifier.",
             "paramName": "key",
             "description": " The identifier.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clear": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 122,
+          "line": 115,
           "column": 4,
-          "index": 3143
+          "index": 2893
         },
         "end": {
-          "line": 124,
+          "line": 117,
           "column": 5,
-          "index": 3187
+          "index": 2950
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clear": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deletes every stored item in the storage.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -393,23 +498,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getKey": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 131,
+          "line": 122,
           "column": 4,
-          "index": 3381
+          "index": 3022
         },
         "end": {
-          "line": 134,
+          "line": 124,
           "column": 5,
-          "index": 3477
+          "index": 3064
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getKey": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the named key at the given index.",
+          "     * @param index {Integer} The index in the storage.",
+          "     * @return {String} The key stored at the given index.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -429,28 +543,48 @@
           {
             "name": "@return",
             "body": "{String} The key stored at the given index.",
-            "type": "String",
-            "description": " The key stored at the given index."
+            "type": "string",
+            "description": "The key stored at the given index."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "forEach": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 144,
+          "line": 131,
           "column": 4,
-          "index": 3807
+          "index": 3251
         },
         "end": {
-          "line": 150,
+          "line": 134,
           "column": 5,
-          "index": 4019
+          "index": 3344
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "forEach": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper to access every stored item.",
+          "     *",
+          "     * @param callback {Function} A function which will be called for every item.",
+          "     *   The function will have two arguments, first the key and second the value",
+          "     *    of the stored data.",
+          "     * @param scope {var} The scope of the function.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -463,7 +597,7 @@
             "body": "callback {Function} A function which will be called for every item.\n   The function will have two arguments, first the key and second the value\n    of the stored data.",
             "paramName": "callback",
             "description": " A function which will be called for every item.\n   The function will have two arguments, first the key and second the value\n    of the stored data.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -474,9 +608,32 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3664
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 3870
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "scope",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

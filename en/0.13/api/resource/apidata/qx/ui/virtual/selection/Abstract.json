@@ -1,148 +1,155 @@
 {
-  "className": "qx.ui.virtual.selection.Abstract",
-  "packageName": "qx.ui.virtual.selection",
-  "name": "Abstract",
-  "superClass": "qx.ui.core.selection.Abstract",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 679
-      },
-      "end": {
-        "line": 218,
-        "column": 3,
-        "index": 6856
-      }
+  "version": 0.3,
+  "lastModified": 1717235168726,
+  "lastModifiedIso": "2024-06-01T09:46:08.726Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/selection/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 656
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Abstract base class for selection manager, which manage selectable items\n rendered in a virtual {@link qx.ui.virtual.core.Pane}.</p>"
-        }
-      ]
+    "end": {
+      "line": 218,
+      "column": 3,
+      "index": 6639
     }
   },
-  "type": "class",
+  "className": "qx.ui.virtual.selection.Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Abstract base class for selection manager, which manage selectable items",
+      " * rendered in a virtual {@link qx.ui.virtual.core.Pane}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Abstract base class for selection manager, which manage selectable items\n rendered in a virtual {@link qx.ui.virtual.core.Pane}.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.core.selection.Abstract",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "pane"
+      },
+      {
+        "name": "selectionDelegate"
+      }
+    ],
     "location": {
       "start": {
         "line": 40,
         "column": 2,
-        "index": 1319
+        "index": 1280
       },
       "end": {
         "line": 49,
         "column": 3,
-        "index": 1563
+        "index": 1515
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "pane {qx.ui.virtual.core.Pane} The virtual pane on which the\n    selectable item are rendered",
-          "paramName": "pane",
-          "description": " The virtual pane on which the\n    selectable item are rendered",
-          "type": "qx.ui.virtual.core.Pane"
-        },
-        {
-          "name": "@param",
-          "body": "selectionDelegate {qx.ui.virtual.selection.ISelectionDelegate?null} An optional delegate,\n    which can be used to customize the behavior of the selection manager\n    without sub classing it.",
-          "paramName": "selectionDelegate",
-          "description": " An optional delegate,\n    which can be used to customize the behavior of the selection manager\n    without sub classing it.",
-          "optional": true,
-          "defaultValue": "null",
-          "type": "qx.ui.virtual.selection.ISelectionDelegate"
-        }
-      ]
     }
   },
   "members": {
     "_autoScrollIntoView": {
+      "jsdoc": {
+        "raw": [
+          " Determines if automatically scrolling of selected item into view is active."
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 59,
           "column": 4,
-          "index": 1860
+          "index": 1802
         },
         "end": {
           "line": 59,
           "column": 29,
-          "index": 1885
+          "index": 1827
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_isSelectable": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 68,
           "column": 4,
-          "index": 2117
+          "index": 2050
         },
         "end": {
           "line": 72,
           "column": 5,
-          "index": 2257
+          "index": 2186
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
       "overriddenFrom": "qx.ui.core.selection.Abstract",
       "appearsIn": [
         "qx.ui.core.selection.Abstract"
       ]
     },
     "_styleSelectable": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 75,
           "column": 4,
-          "index": 2285
+          "index": 2211
         },
         "end": {
           "line": 79,
           "column": 5,
-          "index": 2447
+          "index": 2369
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "item"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "enabled"
+        }
+      ],
       "overriddenFrom": "qx.ui.core.selection.Abstract",
       "appearsIn": [
         "qx.ui.core.selection.Abstract"
       ]
     },
     "attachPointerEvents": {
-      "location": {
-        "start": {
-          "line": 90,
-          "column": 4,
-          "index": 2719
-        },
-        "end": {
-          "line": 97,
-          "column": 5,
-          "index": 3175
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach pointer events to the managed pane.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -150,23 +157,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "detatchPointerEvents": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 104,
+          "line": 90,
           "column": 4,
-          "index": 3341
+          "index": 2630
         },
         "end": {
-          "line": 106,
+          "line": 97,
           "column": 5,
-          "index": 3407
+          "index": 3079
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "detatchPointerEvents": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detach pointer events from the managed pane.",
+          "     *",
+          "     * @deprecated {6.0} misspelled, please use detachPointerEvents instead!",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -180,23 +196,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "detachPointerEvents": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 111,
+          "line": 104,
           "column": 4,
-          "index": 3487
+          "index": 3238
         },
         "end": {
-          "line": 118,
+          "line": 106,
           "column": 5,
-          "index": 3958
+          "index": 3302
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "detachPointerEvents": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detach pointer events from the managed pane.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -204,23 +227,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "attachKeyEvents": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 129,
+          "line": 111,
           "column": 4,
-          "index": 4334
+          "index": 3377
         },
         "end": {
-          "line": 131,
+          "line": 118,
           "column": 5,
-          "index": 4432
+          "index": 3841
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "attachKeyEvents": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach key events to manipulate the selection using the keyboard. The",
+          "     * event target doesn't need to be the pane itself. It can be an widget,",
+          "     * which received key events. Usually the key event target is the",
+          "     * {@link qx.ui.virtual.core.Scroller}.",
+          "     *",
+          "     * @param target {qx.core.Object} the key event target.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -237,23 +273,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "detachKeyEvents": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 138,
+          "line": 129,
           "column": 4,
-          "index": 4555
+          "index": 4206
         },
         "end": {
-          "line": 140,
+          "line": 131,
           "column": 5,
-          "index": 4656
+          "index": 4302
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.core.Object"
+        }
+      ],
+      "appearsIn": []
+    },
+    "detachKeyEvents": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detach key events.",
+          "     *",
+          "     * @param target {qx.core.Object} the key event target.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -270,23 +320,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "attachListEvents": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 151,
+          "line": 138,
           "column": 4,
-          "index": 5082
+          "index": 4418
         },
         "end": {
-          "line": 154,
+          "line": 140,
           "column": 5,
-          "index": 5243
+          "index": 4517
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.core.Object"
+        }
+      ],
+      "appearsIn": []
+    },
+    "attachListEvents": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach list events. The selection mode <code>one</code> need to know,",
+          "     * when selectable items are added or removed. If this mode is used the",
+          "     * <code>list</code> parameter must fire <code>addItem</code> and",
+          "     * <code>removeItem</code> events.",
+          "     *",
+          "     * @param list {qx.core.Object} the event target for <code>addItem</code> and",
+          "     *    <code>removeItem</code> events",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -303,23 +371,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "detachListEvents": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 162,
+          "line": 151,
           "column": 4,
-          "index": 5431
+          "index": 4932
         },
         "end": {
-          "line": 165,
+          "line": 154,
           "column": 5,
-          "index": 5598
+          "index": 5090
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "list",
+          "type": "qx.core.Object"
+        }
+      ],
+      "appearsIn": []
+    },
+    "detachListEvents": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detach list events.",
+          "     *",
+          "     * @param list {qx.core.Object} the event target for <code>addItem</code> and",
+          "     *    <code>removeItem</code> events",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -336,643 +419,208 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 5270
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 5434
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "list",
+          "type": "qx.core.Object"
+        }
+      ],
+      "appearsIn": []
     },
     "_capture": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 174,
           "column": 4,
-          "index": 5840
+          "index": 5667
         },
         "end": {
           "line": 176,
           "column": 5,
-          "index": 5888
+          "index": 5713
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.ui.core.selection.Abstract",
       "appearsIn": [
         "qx.ui.core.selection.Abstract"
       ]
     },
     "_releaseCapture": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 179,
           "column": 4,
-          "index": 5916
+          "index": 5738
         },
         "end": {
           "line": 181,
           "column": 5,
-          "index": 5978
+          "index": 5798
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.ui.core.selection.Abstract",
       "appearsIn": [
         "qx.ui.core.selection.Abstract"
       ]
     },
     "_getScroll": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 184,
           "column": 4,
-          "index": 6006
+          "index": 5823
         },
         "end": {
           "line": 189,
           "column": 5,
-          "index": 6131
+          "index": 5943
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.ui.core.selection.Abstract",
       "appearsIn": [
         "qx.ui.core.selection.Abstract"
       ]
     },
     "_scrollBy": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 192,
           "column": 4,
-          "index": 6159
+          "index": 5968
         },
         "end": {
           "line": 195,
           "column": 5,
-          "index": 6313
+          "index": 6119
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "xoff"
+        },
+        {
+          "name": "yoff"
+        }
+      ],
       "overriddenFrom": "qx.ui.core.selection.Abstract",
       "appearsIn": [
         "qx.ui.core.selection.Abstract"
       ]
     },
     "_getLocation": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 198,
           "column": 4,
-          "index": 6341
+          "index": 6144
         },
         "end": {
           "line": 201,
           "column": 5,
-          "index": 6493
+          "index": 6293
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.ui.core.selection.Abstract",
       "appearsIn": [
         "qx.ui.core.selection.Abstract"
       ]
     },
     "_getDimension": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 204,
           "column": 4,
-          "index": 6521
+          "index": 6318
         },
         "end": {
           "line": 206,
           "column": 5,
-          "index": 6586
+          "index": 6381
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.ui.core.selection.Abstract",
       "appearsIn": [
         "qx.ui.core.selection.Abstract"
       ]
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getMode": {
-      "type": "function",
-      "name": "getMode",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>mode</code>.\n\nFor further details take a look at the property definition: {@link #mode}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for mode"
-          }
-        ]
-      }
-    },
-    "setMode": {
-      "type": "function",
-      "name": "setMode",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>mode</code>.\n\nFor further details take a look at the property definition: {@link #mode}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for mode"
-          }
-        ]
-      }
-    },
-    "resetMode": {
-      "type": "function",
-      "name": "resetMode",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>mode</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #mode}."
-          }
-        ]
-      }
-    },
-    "getDrag": {
-      "type": "function",
-      "name": "getDrag",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>drag</code>.\n\nFor further details take a look at the property definition: {@link #drag}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for drag"
-          }
-        ]
-      }
-    },
-    "isDrag": {
-      "type": "function",
-      "name": "isDrag",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>drag</code>.\n\nFor further details take a look at the property definition: {@link #drag}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for drag"
-          }
-        ]
-      }
-    },
-    "setDrag": {
-      "type": "function",
-      "name": "setDrag",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>drag</code>.\n\nFor further details take a look at the property definition: {@link #drag}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for drag"
-          }
-        ]
-      }
-    },
-    "resetDrag": {
-      "type": "function",
-      "name": "resetDrag",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>drag</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #drag}."
-          }
-        ]
-      }
-    },
-    "getQuick": {
-      "type": "function",
-      "name": "getQuick",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>quick</code>.\n\nFor further details take a look at the property definition: {@link #quick}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for quick"
-          }
-        ]
-      }
-    },
-    "isQuick": {
-      "type": "function",
-      "name": "isQuick",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>quick</code>.\n\nFor further details take a look at the property definition: {@link #quick}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for quick"
-          }
-        ]
-      }
-    },
-    "setQuick": {
-      "type": "function",
-      "name": "setQuick",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>quick</code>.\n\nFor further details take a look at the property definition: {@link #quick}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for quick"
-          }
-        ]
-      }
-    },
-    "resetQuick": {
-      "type": "function",
-      "name": "resetQuick",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>quick</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #quick}."
-          }
-        ]
-      }
-    },
-    "getReadOnly": {
-      "type": "function",
-      "name": "getReadOnly",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>readOnly</code>.\n\nFor further details take a look at the property definition: {@link #readOnly}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for readOnly"
-          }
-        ]
-      }
-    },
-    "isReadOnly": {
-      "type": "function",
-      "name": "isReadOnly",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>readOnly</code>.\n\nFor further details take a look at the property definition: {@link #readOnly}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for readOnly"
-          }
-        ]
-      }
-    },
-    "setReadOnly": {
-      "type": "function",
-      "name": "setReadOnly",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>readOnly</code>.\n\nFor further details take a look at the property definition: {@link #readOnly}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for readOnly"
-          }
-        ]
-      }
-    },
-    "resetReadOnly": {
-      "type": "function",
-      "name": "resetReadOnly",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.selection.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>readOnly</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #readOnly}."
-          }
-        ]
-      }
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 215,
         "column": 2,
-        "index": 6793
+        "index": 6579
       },
       "end": {
         "line": 217,
         "column": 3,
-        "index": 6851
+        "index": 6635
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "events": {},
-  "descendants": [
-    "qx.ui.virtual.selection.CellRectangle",
-    "qx.ui.virtual.selection.Row"
-  ]
+  "statics": {},
+  "properties": {}
 }

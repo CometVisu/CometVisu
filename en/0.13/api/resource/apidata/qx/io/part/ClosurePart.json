@@ -1,137 +1,134 @@
 {
-  "className": "qx.io.part.ClosurePart",
-  "packageName": "qx.io.part",
-  "name": "ClosurePart",
-  "superClass": "qx.io.part.Part",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 725
-      },
-      "end": {
-        "line": 151,
-        "column": 3,
-        "index": 4547
-      }
+  "version": 0.3,
+  "lastModified": 1717235169678,
+  "lastModifiedIso": "2024-06-01T09:46:09.678Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/part/ClosurePart.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 700
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Wrapper for a part as defined in the config file. This class knows about all\n packages the part depends on and provides functionality to load the part.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 151,
+      "column": 3,
+      "index": 4397
     }
   },
-  "type": "class",
+  "className": "qx.io.part.ClosurePart",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Wrapper for a part as defined in the config file. This class knows about all",
+      " * packages the part depends on and provides functionality to load the part.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Wrapper for a part as defined in the config file. This class knows about all\n packages the part depends on and provides functionality to load the part.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
+  "superClass": "qx.io.part.Part",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "name"
+      },
+      {
+        "name": "packages"
+      },
+      {
+        "name": "loader"
+      }
+    ],
     "location": {
       "start": {
         "line": 35,
         "column": 2,
-        "index": 1047
+        "index": 1013
       },
       "end": {
         "line": 37,
         "column": 3,
-        "index": 1144
+        "index": 1108
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "name {String} Name of the part as defined in the config file at\n    compile time.",
-          "paramName": "name",
-          "description": " Name of the part as defined in the config file at\n    compile time.",
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "packages {qx.io.part.Package[]} List of dependent packages",
-          "paramName": "packages",
-          "description": " List of dependent packages",
-          "type": "qx.io.part.Package[]"
-        },
-        {
-          "name": "@param",
-          "body": "loader {qx.Part} The loader of this part.",
-          "paramName": "loader",
-          "description": " The loader of this part.",
-          "type": "qx.Part"
-        }
-      ]
     }
   },
   "members": {
     "__packagesToLoad": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 40,
           "column": 4,
-          "index": 1167
+          "index": 1128
         },
         "end": {
           "line": 40,
           "column": 23,
-          "index": 1186
+          "index": 1147
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "preload": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 43,
           "column": 4,
-          "index": 1214
+          "index": 1172
         },
         "end": {
           "line": 61,
           "column": 5,
-          "index": 1841
+          "index": 1781
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "callback"
+        },
+        {
+          "name": "self"
+        }
+      ],
       "overriddenFrom": "qx.io.part.Part",
       "appearsIn": [
         "qx.io.part.Part"
       ]
     },
     "load": {
-      "location": {
-        "start": {
-          "line": 71,
-          "column": 4,
-          "index": 2202
-        },
-        "end": {
-          "line": 112,
-          "column": 5,
-          "index": 3450
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads the closure part including all its packages. The loading will",
+          "     * be done parallel. After all packages are available, the closures are",
+          "     * executed in the correct order.",
+          "     *",
+          "     * @param callback {Function} The function to call after the loading.",
+          "     * @param self {Object?} The context of the callback.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -144,7 +141,7 @@
             "body": "callback {Function} The function to call after the loading.",
             "paramName": "callback",
             "description": " The function to call after the loading.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -156,27 +153,44 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2132
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 3339
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true
+        }
+      ],
       "overriddenFrom": "qx.io.part.Part",
       "appearsIn": [
         "qx.io.part.Part"
       ]
     },
     "__executePackages": {
-      "location": {
-        "start": {
-          "line": 118,
-          "column": 4,
-          "index": 3586
-        },
-        "end": {
-          "line": 123,
-          "column": 5,
-          "index": 3760
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Executes the packages in their correct order and marks the part as",
+          "     * complete after execution.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -184,23 +198,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "_onPackageLoad": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 132,
+          "line": 118,
           "column": 4,
-          "index": 4027
+          "index": 3469
         },
         "end": {
-          "line": 149,
+          "line": 123,
           "column": 5,
-          "index": 4537
+          "index": 3638
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onPackageLoad": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for every package load. It checks for errors and decreases the",
+          "     * packages to load. If all packages has been loaded, it invokes the",
+          "     * execution.",
+          "     *",
+          "     * @param pkg {qx.io.part.Package} The loaded package.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -217,9 +242,29 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3896
+        },
+        "end": {
+          "line": 149,
+          "column": 5,
+          "index": 4389
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "pkg",
+          "type": "qx.io.part.Package"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

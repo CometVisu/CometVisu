@@ -1,61 +1,59 @@
 {
-  "className": "qx.module.event.Orientation",
-  "packageName": "qx.module.event",
-  "name": "Orientation",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 623
-      },
-      "end": {
-        "line": 107,
-        "column": 3,
-        "index": 3031
-      }
+  "version": 0.3,
+  "lastModified": 1717235171930,
+  "lastModifiedIso": "2024-06-01T09:46:11.930Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/Orientation.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 598
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Normalization for orientationchange events</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Event_Normalization"
-        }
-      ]
+    "end": {
+      "line": 107,
+      "column": 3,
+      "index": 2925
     }
   },
-  "type": "class",
+  "className": "qx.module.event.Orientation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Normalization for orientationchange events",
+      " *",
+      " * @require(qx.module.Event)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Normalization for orientationchange events</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
   "statics": {
     "TYPES": {
-      "location": {
-        "start": {
-          "line": 31,
-          "column": 4,
-          "index": 758
-        },
-        "end": {
-          "line": 31,
-          "column": 32,
-          "index": 786
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of event types to be normalized",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,23 +61,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "BIND_METHODS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 38,
+          "line": 31,
           "column": 4,
-          "index": 930
+          "index": 728
         },
         "end": {
-          "line": 38,
-          "column": 65,
-          "index": 991
+          "line": 31,
+          "column": 32,
+          "index": 756
         }
       },
+      "appearsIn": []
+    },
+    "BIND_METHODS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of qx.module.event.Orientation methods to be attached to native",
+          "     * event objects",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -93,23 +98,37 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "getOrientation": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 38,
           "column": 4,
-          "index": 1467
+          "index": 893
         },
         "end": {
-          "line": 54,
-          "column": 5,
-          "index": 1525
+          "line": 38,
+          "column": 65,
+          "index": 954
         }
       },
+      "appearsIn": []
+    },
+    "getOrientation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current orientation of the viewport in degrees.",
+          "     *",
+          "     * All possible values and their meaning:",
+          "     *",
+          "     * * <code>0</code>: \"Portrait\"",
+          "     * * <code>-90</code>: \"Landscape (right, screen turned clockwise)\"",
+          "     * * <code>90</code>: \"Landscape (left, screen turned counterclockwise)\"",
+          "     * * <code>180</code>: \"Portrait (upside-down portrait)\"",
+          "     *",
+          "     * @return {Number} The current orientation in degrees",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -120,28 +139,41 @@
           {
             "name": "@return",
             "body": "{Number} The current orientation in degrees",
-            "type": "Number",
-            "description": " The current orientation in degrees"
+            "type": "number",
+            "description": "The current orientation in degrees"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isLandscape": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 52,
           "column": 4,
-          "index": 1751
+          "index": 1416
         },
         "end": {
-          "line": 64,
+          "line": 54,
           "column": 5,
-          "index": 1814
+          "index": 1472
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "isLandscape": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the viewport orientation is currently in landscape mode.",
+          "     *",
+          "     * @return {Boolean} <code>true</code> when the viewport orientation",
+          "     *     is currently in landscape mode.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -152,28 +184,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when the viewport orientation\n     is currently in landscape mode.",
-            "type": "Boolean",
-            "description": " <code>true</code> when the viewport orientation\n     is currently in landscape mode."
+            "type": "boolean",
+            "description": "<code>true</code> when the viewport orientation\n     is currently in landscape mode."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isPortrait": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 62,
           "column": 4,
-          "index": 2038
+          "index": 1690
         },
         "end": {
-          "line": 74,
+          "line": 64,
           "column": 5,
-          "index": 2099
+          "index": 1751
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isPortrait": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the viewport orientation is currently in portrait mode.",
+          "     *",
+          "     * @return {Boolean} <code>true</code> when the viewport orientation",
+          "     *     is currently in portrait mode.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -184,28 +229,45 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when the viewport orientation\n     is currently in portrait mode.",
-            "type": "Boolean",
-            "description": " <code>true</code> when the viewport orientation\n     is currently in portrait mode."
+            "type": "boolean",
+            "description": "<code>true</code> when the viewport orientation\n     is currently in portrait mode."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "normalize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 86,
+          "line": 72,
           "column": 4,
-          "index": 2462
+          "index": 1967
         },
         "end": {
-          "line": 101,
+          "line": 74,
           "column": 5,
-          "index": 2919
+          "index": 2026
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "normalize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the native event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element the listener was attached to",
+          "     * @param type {String} Event type",
+          "     * @return {Event} Normalized event object",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -232,7 +294,7 @@
             "body": "type {String} Event type",
             "paramName": "type",
             "description": " Event type",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -240,7 +302,7 @@
             "name": "@return",
             "body": "{Event} Normalized event object",
             "type": "Event",
-            "description": " Normalized event object"
+            "description": "Normalized event object"
           }
         ],
         "@internal": [
@@ -250,23 +312,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 104,
-        "column": 2,
-        "index": 2931
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2377
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2819
+        }
       },
-      "end": {
-        "line": 106,
-        "column": 3,
-        "index": 3026
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

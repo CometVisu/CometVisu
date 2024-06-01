@@ -1,51 +1,56 @@
 {
-  "className": "qx.ui.list.core.MWidgetController",
-  "packageName": "qx.ui.list.core",
-  "name": "MWidgetController",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 637
-      },
-      "end": {
-        "line": 355,
-        "column": 3,
-        "index": 10481
-      }
+  "version": 0.3,
+  "lastModified": 1717235171850,
+  "lastModifiedIso": "2024-06-01T09:46:11.850Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/list/core/MWidgetController.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 613
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The mixin controls the binding between model and item.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 355,
+      "column": 3,
+      "index": 10127
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.list.core.MWidgetController",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The mixin controls the binding between model and item.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The mixin controls the binding between model and item.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 26,
         "column": 2,
-        "index": 695
+        "index": 670
       },
       "end": {
         "line": 28,
         "column": 3,
-        "index": 742
+        "index": 715
       }
     }
   },
@@ -55,15 +60,25 @@
         "start": {
           "line": 35,
           "column": 4,
-          "index": 944
+          "index": 910
         },
         "end": {
           "line": 38,
           "column": 5,
-          "index": 1009
+          "index": 972
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the property which holds the information that should be",
+          "     * shown as a label. This is only needed if objects are stored in the model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -71,26 +86,33 @@
           }
         ]
       },
-      "name": "labelPath",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "iconPath": {
       "location": {
         "start": {
           "line": 45,
           "column": 4,
-          "index": 1234
+          "index": 1190
         },
         "end": {
           "line": 48,
           "column": 5,
-          "index": 1298
+          "index": 1251
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the property which holds the information that should be",
+          "     * shown as an icon. This is only needed if objects are stored in the model",
+          "     * and if the icon should be shown.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -98,26 +120,33 @@
           }
         ]
       },
-      "name": "iconPath",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "groupLabelPath": {
       "location": {
         "start": {
           "line": 55,
           "column": 4,
-          "index": 1501
+          "index": 1447
         },
         "end": {
           "line": 58,
           "column": 5,
-          "index": 1571
+          "index": 1514
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the property which holds the information that should be",
+          "     * displayed as a group label. This is only needed if objects are stored in the",
+          "     * model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -125,26 +154,31 @@
           }
         ]
       },
-      "name": "groupLabelPath",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "labelOptions": {
       "location": {
         "start": {
           "line": 64,
           "column": 4,
-          "index": 1754
+          "index": 1691
         },
         "end": {
           "line": 66,
           "column": 5,
-          "index": 1798
+          "index": 1733
         }
       },
+      "json": {
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * A map containing the options for the label binding. The possible keys",
+          "     * can be found in the {@link qx.data.SingleValueBinding} documentation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -152,25 +186,31 @@
           }
         ]
       },
-      "name": "labelOptions",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "iconOptions": {
       "location": {
         "start": {
           "line": 72,
           "column": 4,
-          "index": 1980
+          "index": 1909
         },
         "end": {
           "line": 74,
           "column": 5,
-          "index": 2023
+          "index": 1950
         }
       },
+      "json": {
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * A map containing the options for the icon binding. The possible keys",
+          "     * can be found in the {@link qx.data.SingleValueBinding} documentation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -178,25 +218,31 @@
           }
         ]
       },
-      "name": "iconOptions",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "groupLabelOptions": {
       "location": {
         "start": {
           "line": 80,
           "column": 4,
-          "index": 2212
+          "index": 2133
         },
         "end": {
           "line": 82,
           "column": 5,
-          "index": 2261
+          "index": 2180
         }
       },
+      "json": {
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * A map containing the options for the group label binding. The possible keys",
+          "     * can be found in the {@link qx.data.SingleValueBinding} documentation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -204,25 +250,32 @@
           }
         ]
       },
-      "name": "groupLabelOptions",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "delegate": {
       "location": {
         "start": {
           "line": 88,
           "column": 4,
-          "index": 2424
+          "index": 2337
         },
         "end": {
           "line": 92,
           "column": 5,
-          "index": 2515
+          "index": 2424
         }
       },
+      "json": {
+        "event": "changeDelegate",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delegation object, which can have one or more functions defined by the",
+          "     * {@link qx.ui.list.core.IListDelegate} interface.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -230,28 +283,15 @@
           }
         ]
       },
-      "name": "delegate",
-      "propertyType": "new",
-      "event": "changeDelegate",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     }
   },
   "members": {
     "__boundItems": {
-      "location": {
-        "start": {
-          "line": 97,
-          "column": 4,
-          "index": 2602
-        },
-        "end": {
-          "line": 97,
-          "column": 22,
-          "index": 2620
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Array} which contains the bounded items "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -265,23 +305,41 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "bindDefaultProperties": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 115,
+          "line": 97,
           "column": 4,
-          "index": 3305
+          "index": 2506
         },
         "end": {
-          "line": 146,
-          "column": 5,
-          "index": 4079
+          "line": 97,
+          "column": 22,
+          "index": 2524
         }
       },
+      "appearsIn": []
+    },
+    "bindDefaultProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding the default properties from",
+          "     * the model to the target widget. The used default properties",
+          "     * depends on the passed item. When the passed item is",
+          "     * a list item the \"label\" and \"icon\" property is used.",
+          "     * When the passed item is a group item the \"value\" property is",
+          "     * used.",
+          "     *",
+          "     * This method should only be called in the",
+          "     * {@link IListDelegate#bindItem} function",
+          "     * implemented by the {@link #delegate} property.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The internally created and used",
+          "     *   list or group item.",
+          "     * @param index {Integer} The index of the item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -305,23 +363,50 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "bindProperty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 162,
+          "line": 115,
           "column": 4,
-          "index": 4807
+          "index": 3191
         },
         "end": {
-          "line": 172,
+          "line": 146,
           "column": 5,
-          "index": 5215
+          "index": 3934
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "bindProperty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding a given property from the model to the target",
+          "     * widget.",
+          "     * This method should only be called in the",
+          "     * {@link IListDelegate#bindItem} function implemented by the",
+          "     * {@link #delegate} property.",
+          "     *",
+          "     * @param sourcePath {String | null} The path to the property in the model.",
+          "     *   If you use an empty string, the whole model item will be bound.",
+          "     * @param targetProperty {String} The name of the property in the target widget.",
+          "     * @param options {Map | null} The options to use for the binding.",
+          "     * @param targetWidget {qx.ui.core.Widget} The target widget.",
+          "     * @param index {Integer} The index of the current binding.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -344,7 +429,7 @@
             "body": "targetProperty {String} The name of the property in the target widget.",
             "paramName": "targetProperty",
             "description": " The name of the property in the target widget.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -372,23 +457,67 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "bindPropertyReverse": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 187,
+          "line": 162,
           "column": 4,
-          "index": 5862
+          "index": 4646
         },
         "end": {
-          "line": 199,
+          "line": 172,
           "column": 5,
-          "index": 6242
+          "index": 5044
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "sourcePath",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "targetProperty",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": [
+            "Map",
+            "null"
+          ]
+        },
+        {
+          "name": "targetWidget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "bindPropertyReverse": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper-Method for binding a given property from the target widget to",
+          "     * the model.",
+          "     * This method should only be called in the",
+          "     * {@link IListDelegate#bindItem} function implemented by the",
+          "     * {@link #delegate} property.",
+          "     *",
+          "     * @param targetPath {String | null} The path to the property in the model.",
+          "     * @param sourceProperty {String} The name of the property in the target.",
+          "     * @param options {Map | null} The options to use for the binding.",
+          "     * @param sourceWidget {qx.ui.core.Widget} The source widget.",
+          "     * @param index {Integer} The index of the current binding.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -411,7 +540,7 @@
             "body": "sourceProperty {String} The name of the property in the target.",
             "paramName": "sourceProperty",
             "description": " The name of the property in the target.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -439,23 +568,57 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeBindings": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 204,
+          "line": 187,
           "column": 4,
-          "index": 6321
+          "index": 5676
         },
         "end": {
-          "line": 209,
+          "line": 199,
           "column": 5,
-          "index": 6487
+          "index": 6044
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "targetPath",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "sourceProperty",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": [
+            "Map",
+            "null"
+          ]
+        },
+        {
+          "name": "sourceWidget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeBindings": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all bindings from all bounded items.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -463,23 +626,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_configureItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 217,
+          "line": 204,
           "column": 4,
-          "index": 6718
+          "index": 6118
         },
         "end": {
-          "line": 223,
+          "line": 209,
           "column": 5,
-          "index": 6904
+          "index": 6279
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_configureItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Configure the passed item if a delegate is set and the needed",
+          "     * function {@link IListDelegate#configureItem} is available.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} item to configure.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -496,23 +669,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_configureGroupItem": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 231,
+          "line": 217,
           "column": 4,
-          "index": 7140
+          "index": 6502
         },
         "end": {
-          "line": 237,
+          "line": 223,
           "column": 5,
-          "index": 7341
+          "index": 6682
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_configureGroupItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Configure the passed item if a delegate is set and the needed",
+          "     * function {@link IListDelegate#configureGroupItem} is available.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} item to configure.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -529,23 +717,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_bindItem": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 245,
+          "line": 231,
           "column": 4,
-          "index": 7566
+          "index": 6910
         },
         "end": {
-          "line": 253,
+          "line": 237,
           "column": 5,
-          "index": 7823
+          "index": 7105
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_bindItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets up the binding for the given item and index.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The internally created and used item.",
+          "     * @param index {Integer} The index of the item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -569,23 +772,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_bindGroupItem": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 261,
+          "line": 245,
           "column": 4,
-          "index": 8054
+          "index": 7322
         },
         "end": {
-          "line": 269,
+          "line": 253,
           "column": 5,
-          "index": 8326
+          "index": 7571
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_bindGroupItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets up the binding for the given group item and index.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The internally created and used item.",
+          "     * @param index {Integer} The index of the item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -609,23 +831,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_removeBindingsFrom": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 277,
+          "line": 261,
           "column": 4,
-          "index": 8504
+          "index": 7794
         },
         "end": {
-          "line": 293,
+          "line": 269,
           "column": 5,
-          "index": 8909
+          "index": 8058
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_removeBindingsFrom": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the binding of the given item.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The item which the binding should",
+          "     *   be removed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -642,23 +883,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__getBindPath": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 303,
+          "line": 277,
           "column": 4,
-          "index": 9224
+          "index": 8228
         },
         "end": {
-          "line": 314,
+          "line": 293,
           "column": 5,
-          "index": 9506
+          "index": 8617
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getBindPath": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to create the path for binding.",
+          "     *",
+          "     * @param index {Integer} The index of the item.",
+          "     * @param path {String|null} The path to the property.",
+          "     * @param type {String} The type <code>[\"item\", \"group\"]</code>.",
+          "     * @return {String} The binding path",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -688,35 +946,64 @@
             "body": "type {String} The type <code>[\"item\", \"group\"]</code>.",
             "paramName": "type",
             "description": " The type <code>[\"item\", \"group\"]</code>.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The binding path",
-            "type": "String",
-            "description": " The binding path"
+            "type": "string",
+            "description": "The binding path"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__addBinding": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 322,
+          "line": 303,
           "column": 4,
-          "index": 9714
+          "index": 8922
         },
         "end": {
-          "line": 332,
+          "line": 314,
           "column": 5,
-          "index": 9975
+          "index": 9193
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "path",
+          "type": [
+            "String",
+            "null"
+          ]
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__addBinding": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to save the binding for the widget.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} widget to save binding.",
+          "     * @param id {var} the id from the binding.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -740,23 +1027,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getBindings": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 340,
+          "line": 322,
           "column": 4,
-          "index": 10185
+          "index": 9393
         },
         "end": {
-          "line": 349,
+          "line": 332,
           "column": 5,
-          "index": 10416
+          "index": 9644
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "id",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getBindings": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method which returns all bound id from the widget.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} widget to get all binding.",
+          "     * @return {Array} all bound id's.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -776,490 +1082,52 @@
           {
             "name": "@return",
             "body": "{Array} all bound id's.",
-            "type": "Array",
-            "description": " all bound id's."
+            "type": "Array<any>",
+            "description": "all bound id's."
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 340,
+          "column": 4,
+          "index": 9846
+        },
+        "end": {
+          "line": 349,
+          "column": 5,
+          "index": 10068
+        }
+      },
       "type": "function",
-      "access": "private"
-    },
-    "getLabelPath": {
-      "type": "function",
-      "name": "getLabelPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>labelPath</code>.\n\nFor further details take a look at the property definition: {@link #labelPath}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for labelPath"
-          }
-        ]
-      }
-    },
-    "setLabelPath": {
-      "type": "function",
-      "name": "setLabelPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>labelPath</code>.\n\nFor further details take a look at the property definition: {@link #labelPath}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for labelPath"
-          }
-        ]
-      }
-    },
-    "resetLabelPath": {
-      "type": "function",
-      "name": "resetLabelPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>labelPath</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #labelPath}."
-          }
-        ]
-      }
-    },
-    "getIconPath": {
-      "type": "function",
-      "name": "getIconPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>iconPath</code>.\n\nFor further details take a look at the property definition: {@link #iconPath}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for iconPath"
-          }
-        ]
-      }
-    },
-    "setIconPath": {
-      "type": "function",
-      "name": "setIconPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>iconPath</code>.\n\nFor further details take a look at the property definition: {@link #iconPath}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for iconPath"
-          }
-        ]
-      }
-    },
-    "resetIconPath": {
-      "type": "function",
-      "name": "resetIconPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>iconPath</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #iconPath}."
-          }
-        ]
-      }
-    },
-    "getGroupLabelPath": {
-      "type": "function",
-      "name": "getGroupLabelPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>groupLabelPath</code>.\n\nFor further details take a look at the property definition: {@link #groupLabelPath}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for groupLabelPath"
-          }
-        ]
-      }
-    },
-    "setGroupLabelPath": {
-      "type": "function",
-      "name": "setGroupLabelPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>groupLabelPath</code>.\n\nFor further details take a look at the property definition: {@link #groupLabelPath}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for groupLabelPath"
-          }
-        ]
-      }
-    },
-    "resetGroupLabelPath": {
-      "type": "function",
-      "name": "resetGroupLabelPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>groupLabelPath</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #groupLabelPath}."
-          }
-        ]
-      }
-    },
-    "getLabelOptions": {
-      "type": "function",
-      "name": "getLabelOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>labelOptions</code>.\n\nFor further details take a look at the property definition: {@link #labelOptions}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for labelOptions"
-          }
-        ]
-      }
-    },
-    "setLabelOptions": {
-      "type": "function",
-      "name": "setLabelOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>labelOptions</code>.\n\nFor further details take a look at the property definition: {@link #labelOptions}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for labelOptions"
-          }
-        ]
-      }
-    },
-    "resetLabelOptions": {
-      "type": "function",
-      "name": "resetLabelOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>labelOptions</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #labelOptions}."
-          }
-        ]
-      }
-    },
-    "getIconOptions": {
-      "type": "function",
-      "name": "getIconOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>iconOptions</code>.\n\nFor further details take a look at the property definition: {@link #iconOptions}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for iconOptions"
-          }
-        ]
-      }
-    },
-    "setIconOptions": {
-      "type": "function",
-      "name": "setIconOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>iconOptions</code>.\n\nFor further details take a look at the property definition: {@link #iconOptions}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for iconOptions"
-          }
-        ]
-      }
-    },
-    "resetIconOptions": {
-      "type": "function",
-      "name": "resetIconOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>iconOptions</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #iconOptions}."
-          }
-        ]
-      }
-    },
-    "getGroupLabelOptions": {
-      "type": "function",
-      "name": "getGroupLabelOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>groupLabelOptions</code>.\n\nFor further details take a look at the property definition: {@link #groupLabelOptions}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for groupLabelOptions"
-          }
-        ]
-      }
-    },
-    "setGroupLabelOptions": {
-      "type": "function",
-      "name": "setGroupLabelOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>groupLabelOptions</code>.\n\nFor further details take a look at the property definition: {@link #groupLabelOptions}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for groupLabelOptions"
-          }
-        ]
-      }
-    },
-    "resetGroupLabelOptions": {
-      "type": "function",
-      "name": "resetGroupLabelOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>groupLabelOptions</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #groupLabelOptions}."
-          }
-        ]
-      }
-    },
-    "getDelegate": {
-      "type": "function",
-      "name": "getDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for delegate"
-          }
-        ]
-      }
-    },
-    "setDelegate": {
-      "type": "function",
-      "name": "setDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for delegate"
-          }
-        ]
-      }
-    },
-    "resetDelegate": {
-      "type": "function",
-      "name": "resetDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>delegate</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 352,
         "column": 2,
-        "index": 10428
+        "index": 10077
       },
       "end": {
         "line": 354,
         "column": 3,
-        "index": 10476
+        "index": 10123
       }
     }
   },
-  "descendants": []
+  "statics": {}
 }

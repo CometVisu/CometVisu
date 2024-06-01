@@ -1,0 +1,137 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235168786,
+  "lastModifiedIso": "2024-06-01T09:46:08.786Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/resources/AbstractMatcher.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 761
+    },
+    "end": {
+      "line": 72,
+      "column": 3,
+      "index": 2080
+    }
+  },
+  "className": "qx.tool.compiler.resources.AbstractMatcher",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Basic helper base class for matching files",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Basic helper base class for matching files</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "match"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 1036
+      },
+      "end": {
+        "line": 56,
+        "column": 3,
+        "index": 1619
+      }
+    }
+  },
+  "members": {
+    "__match": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1639
+        },
+        "end": {
+          "line": 59,
+          "column": 17,
+          "index": 1652
+        }
+      },
+      "appearsIn": []
+    },
+    "matches": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called to determine whether this handler is appropriate for the given filename;",
+          "     * default implementation is to check the RegEx passed to the constructor",
+          "     *",
+          "     * @param filename {String} the name of the resource",
+          "     * @param library {qx.tool.compiler.app.Library} the library its in",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called to determine whether this handler is appropriate for the given filename;\n default implementation is to check the RegEx passed to the constructor</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} the name of the resource",
+            "paramName": "filename",
+            "description": " the name of the resource",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "library {qx.tool.compiler.app.Library} the library its in",
+            "paramName": "library",
+            "description": " the library its in",
+            "type": "qx.tool.compiler.app.Library"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1976
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 2072
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        },
+        {
+          "name": "library",
+          "type": "qx.tool.compiler.app.Library"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

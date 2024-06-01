@@ -1,95 +1,90 @@
 {
-  "className": "qx.type.BaseArray",
-  "packageName": "qx.type",
-  "name": "BaseArray",
-  "superClass": "Array",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 57,
-        "column": 0,
-        "index": 1902
-      },
-      "end": {
-        "line": 425,
-        "column": 3,
-        "index": 20569
-      }
+  "version": 0.3,
+  "lastModified": 1717235169270,
+  "lastModifiedIso": "2024-06-01T09:46:09.270Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/type/BaseArray.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 57,
+      "column": 0,
+      "index": 1846
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is the common superclass for most array classes in\n qooxdoo. It supports all of the shiny 1.6 JavaScript array features\n like <code>forEach</code> and <code>map</code>.\n This class may be instantiated instead of the native Array if\n one wants to work with a feature-unified Array instead of the native\n one. This class uses native features whereever possible but fills\n all missing implementations with custom ones.\n Through the ability to extend from this class one could add even\n more utility features on top of it.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.bom.client.Engine"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Array"
-        }
-      ]
+    "end": {
+      "line": 425,
+      "column": 3,
+      "index": 20145
     }
   },
-  "type": "class",
+  "className": "qx.type.BaseArray",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is the common superclass for most array classes in",
+      " * qooxdoo. It supports all of the shiny 1.6 JavaScript array features",
+      " * like <code>forEach</code> and <code>map</code>.",
+      " *",
+      " * This class may be instantiated instead of the native Array if",
+      " * one wants to work with a feature-unified Array instead of the native",
+      " * one. This class uses native features whereever possible but fills",
+      " * all missing implementations with custom ones.",
+      " *",
+      " * Through the ability to extend from this class one could add even",
+      " * more utility features on top of it.",
+      " *",
+      " * @require(qx.bom.client.Engine)",
+      " * @require(qx.lang.normalize.Array)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is the common superclass for most array classes in\n qooxdoo. It supports all of the shiny 1.6 JavaScript array features\n like <code>forEach</code> and <code>map</code>.\n This class may be instantiated instead of the native Array if\n one wants to work with a feature-unified Array instead of the native\n one. This class uses native features whereever possible but fills\n all missing implementations with custom ones.\n Through the ability to extend from this class one could add even\n more utility features on top of it.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.bom.client.Engine"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Array"
+      }
+    ]
+  },
+  "superClass": "Array",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "length_or_items"
+      }
+    ],
     "location": {
       "start": {
         "line": 87,
         "column": 2,
-        "index": 3153
+        "index": 3067
       },
       "end": {
         "line": 87,
         "column": 31,
-        "index": 3182
+        "index": 3096
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Creates a new Array with the given length or the listed elements.\n </p>\n<pre class=\"javascript\">\n var arr1 = new qx.type.BaseArray(arrayLength);\n var arr2 = new qx.type.BaseArray(item0, item1, ..., itemN);\n </pre>\n<ul>\n<li><code>arrayLength</code>: The initial length of the array. You can access\nthis value using the length property. If the value specified is not a\nnumber, an array of length 1 is created, with the first element having\nthe specified value. The maximum length allowed for an\narray is 2^32-1, i.e. 4,294,967,295.</li>\n<li><code>itemN</code>:  A value for the element in that position in the\narray. When this form is used, the array is initialized with the specified\nvalues as its elements, and the array's length property is set to the\nnumber of arguments.</li>\n</ul>"
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "length_or_items {Integer|var?null} The initial length of the array\n        OR an argument list of values.",
-          "paramName": "length_or_items",
-          "description": " The initial length of the array\n        OR an argument list of values.",
-          "optional": true,
-          "defaultValue": "null",
-          "type": [
-            "Integer",
-            "var"
-          ]
-        }
-      ]
     }
   },
   "members": {
     "toArray": {
-      "location": {
-        "start": {
-          "line": 102,
-          "column": 4,
-          "index": 3540
-        },
-        "end": {
-          "line": 102,
-          "column": 17,
-          "index": 3553
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a base array to a native Array",
+          "     *",
+          "     * @signature function()",
+          "     * @return {Array} The native array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -106,28 +101,90 @@
           {
             "name": "@return",
             "body": "{Array} The native array",
-            "type": "qx.type.Array",
-            "description": " The native array"
+            "type": "Array<any>",
+            "description": "The native array"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "pop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 120,
+          "line": 102,
           "column": 4,
-          "index": 3976
+          "index": 3439
         },
         "end": {
-          "line": 120,
-          "column": 13,
-          "index": 3985
+          "line": 102,
+          "column": 17,
+          "index": 3452
         }
       },
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "valueOf": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current number of items stored in the Array",
+          "     *",
+          "     * @signature function()",
+          "     * @return {Integer} number of items",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the current number of items stored in the Array</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer} number of items",
+            "type": "Integer",
+            "description": "number of items"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3615
+        },
+        "end": {
+          "line": 110,
+          "column": 17,
+          "index": 3628
+        }
+      },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "pop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the last element from an array and returns that element.",
+          "     *",
+          "     * This method modifies the array.",
+          "     *",
+          "     * @signature function()",
+          "     * @return {var} The last element of the array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -145,27 +202,41 @@
             "name": "@return",
             "body": "{var} The last element of the array.",
             "type": "var",
-            "description": " The last element of the array."
+            "description": "The last element of the array."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "push": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 131,
+          "line": 120,
           "column": 4,
-          "index": 4326
+          "index": 3857
         },
         "end": {
-          "line": 131,
-          "column": 14,
-          "index": 4336
+          "line": 120,
+          "column": 13,
+          "index": 3866
         }
       },
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "push": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds one or more elements to the end of an array and returns the new length of the array.",
+          "     *",
+          "     * This method modifies the array.",
+          "     *",
+          "     * @signature function(varargs)",
+          "     * @param varargs {var} The elements to add to the end of the array.",
+          "     * @return {Integer} The new array's length",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -192,27 +263,40 @@
             "name": "@return",
             "body": "{Integer} The new array's length",
             "type": "Integer",
-            "description": " The new array's length"
+            "description": "The new array's length"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "reverse": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 141,
+          "line": 131,
           "column": 4,
-          "index": 4635
+          "index": 4196
         },
         "end": {
-          "line": 141,
-          "column": 17,
-          "index": 4648
+          "line": 131,
+          "column": 14,
+          "index": 4206
         }
       },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "reverse": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reverses the order of the elements of an array -- the first becomes the last, and the last becomes the first.",
+          "     *",
+          "     * This method modifies the array.",
+          "     *",
+          "     * @signature function()",
+          "     * @return {Array} Returns the modified array (works in place)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -229,28 +313,41 @@
           {
             "name": "@return",
             "body": "{Array} Returns the modified array (works in place)",
-            "type": "qx.type.Array",
-            "description": " Returns the modified array (works in place)"
+            "type": "Array<any>",
+            "description": "Returns the modified array (works in place)"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "shift": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 151,
+          "line": 141,
           "column": 4,
-          "index": 4889
+          "index": 4495
         },
         "end": {
-          "line": 151,
-          "column": 15,
-          "index": 4900
+          "line": 141,
+          "column": 17,
+          "index": 4508
         }
       },
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "shift": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the first element from an array and returns that element.",
+          "     *",
+          "     * This method modifies the array.",
+          "     *",
+          "     * @signature function()",
+          "     * @return {var} The first element of the array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -268,27 +365,42 @@
             "name": "@return",
             "body": "{var} The first element of the array.",
             "type": "var",
-            "description": " The first element of the array."
+            "description": "The first element of the array."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "sort": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 163,
+          "line": 151,
           "column": 4,
-          "index": 5367
+          "index": 4739
         },
         "end": {
-          "line": 163,
-          "column": 14,
-          "index": 5377
+          "line": 151,
+          "column": 15,
+          "index": 4750
         }
       },
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "sort": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sorts the elements of an array.",
+          "     *",
+          "     * This method modifies the array.",
+          "     *",
+          "     * @signature function(compareFunction)",
+          "     * @param compareFunction {Function?null} Specifies a function that defines the sort order. If omitted,",
+          "     *   the array is sorted lexicographically (in dictionary order) according to the string conversion of each element.",
+          "     * @return {Array} Returns the modified array (works in place)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -316,28 +428,46 @@
           {
             "name": "@return",
             "body": "{Array} Returns the modified array (works in place)",
-            "type": "qx.type.Array",
-            "description": " Returns the modified array (works in place)"
+            "type": "Array<any>",
+            "description": "Returns the modified array (works in place)"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "splice": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 178,
+          "line": 163,
           "column": 4,
-          "index": 6125
+          "index": 5205
         },
         "end": {
-          "line": 178,
-          "column": 16,
-          "index": 6137
+          "line": 163,
+          "column": 14,
+          "index": 5215
         }
       },
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "splice": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds and/or removes elements from an array.",
+          "     *",
+          "     * @signature function(index, howMany, varargs)",
+          "     * @param index {Integer} Index at which to start changing the array. If negative, will begin",
+          "     *   that many elements from the end.",
+          "     * @param howMany {Integer} An integer indicating the number of old array elements to remove.",
+          "     *   If <code>howMany</code> is 0, no elements are removed. In this case, you should specify",
+          "     *   at least one new element.",
+          "     * @param varargs {var?null} The elements to add to the array. If you don't specify any elements,",
+          "     *   splice simply removes elements from the array.",
+          "     * @return {qx.type.BaseArray} New array with the removed elements.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -380,27 +510,41 @@
             "name": "@return",
             "body": "{qx.type.BaseArray} New array with the removed elements.",
             "type": "qx.type.BaseArray",
-            "description": " New array with the removed elements."
+            "description": "New array with the removed elements."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "unshift": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 189,
+          "line": 178,
           "column": 4,
-          "index": 6482
+          "index": 5948
         },
         "end": {
-          "line": 189,
-          "column": 17,
-          "index": 6495
+          "line": 178,
+          "column": 16,
+          "index": 5960
         }
       },
+      "returnType": {
+        "type": "qx.type.BaseArray"
+      },
+      "appearsIn": []
+    },
+    "unshift": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds one or more elements to the front of an array and returns the new length of the array.",
+          "     *",
+          "     * This method modifies the array.",
+          "     *",
+          "     * @signature function(varargs)",
+          "     * @param varargs {var} The elements to add to the front of the array.",
+          "     * @return {Integer} The new array's length",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -427,27 +571,41 @@
             "name": "@return",
             "body": "{Integer} The new array's length",
             "type": "Integer",
-            "description": " The new array's length"
+            "description": "The new array's length"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "concat": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 200,
+          "line": 189,
           "column": 4,
-          "index": 6940
+          "index": 6294
         },
         "end": {
-          "line": 200,
-          "column": 16,
-          "index": 6952
+          "line": 189,
+          "column": 17,
+          "index": 6307
         }
       },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "concat": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a new array comprised of this array joined with other array(s) and/or value(s).",
+          "     *",
+          "     * This method does not modify the array and returns a modified copy of the original.",
+          "     *",
+          "     * @signature function(varargs)",
+          "     * @param varargs {Array|var} Arrays and/or values to concatenate to the resulting array.",
+          "     * @return {qx.type.BaseArray} New array built of the given arrays or values.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -477,27 +635,40 @@
             "name": "@return",
             "body": "{qx.type.BaseArray} New array built of the given arrays or values.",
             "type": "qx.type.BaseArray",
-            "description": " New array built of the given arrays or values."
+            "description": "New array built of the given arrays or values."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "join": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 210,
+          "line": 200,
           "column": 4,
-          "index": 7390
+          "index": 6741
         },
         "end": {
-          "line": 210,
-          "column": 14,
-          "index": 7400
+          "line": 200,
+          "column": 16,
+          "index": 6753
         }
       },
+      "returnType": {
+        "type": "qx.type.BaseArray"
+      },
+      "appearsIn": []
+    },
+    "join": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Joins all elements of an array into a string.",
+          "     *",
+          "     * @signature function(separator)",
+          "     * @param separator {String} Specifies a string to separate each element of the array. The separator is",
+          "     *   converted to a string if necessary. If omitted, the array elements are separated with a comma.",
+          "     * @return {String} The stringified values of all elements divided by the given separator.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -516,35 +687,53 @@
             "body": "separator {String} Specifies a string to separate each element of the array. The separator is\n   converted to a string if necessary. If omitted, the array elements are separated with a comma.",
             "paramName": "separator",
             "description": " Specifies a string to separate each element of the array. The separator is\n   converted to a string if necessary. If omitted, the array elements are separated with a comma.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The stringified values of all elements divided by the given separator.",
-            "type": "String",
-            "description": " The stringified values of all elements divided by the given separator."
+            "type": "string",
+            "description": "The stringified values of all elements divided by the given separator."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "slice": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 225,
+          "line": 210,
           "column": 4,
-          "index": 8384
+          "index": 7181
         },
         "end": {
-          "line": 225,
-          "column": 15,
-          "index": 8395
+          "line": 210,
+          "column": 14,
+          "index": 7191
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "slice": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Extracts a section of an array and returns a new array.",
+          "     *",
+          "     * @signature function(begin, end)",
+          "     * @param begin {Integer} Zero-based index at which to begin extraction. As a negative index, start indicates",
+          "     *   an offset from the end of the sequence. slice(-2) extracts the second-to-last element and the last element",
+          "     *   in the sequence.",
+          "     * @param end {Integer?length} Zero-based index at which to end extraction. slice extracts up to but not including end.",
+          "     *   <code>slice(1,4)</code> extracts the second element through the fourth element (elements indexed 1, 2, and 3).",
+          "     *   As a negative index, end indicates an offset from the end of the sequence. slice(2,-1) extracts the third element through the second-to-last element in the sequence.",
+          "     *   If end is omitted, slice extracts to the end of the sequence.",
+          "     * @return {qx.type.BaseArray} An new array which contains a copy of the given region.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -580,27 +769,94 @@
             "name": "@return",
             "body": "{qx.type.BaseArray} An new array which contains a copy of the given region.",
             "type": "qx.type.BaseArray",
-            "description": " An new array which contains a copy of the given region."
+            "description": "An new array which contains a copy of the given region."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "indexOf": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 248,
+          "line": 225,
           "column": 4,
-          "index": 9522
+          "index": 8160
         },
         "end": {
-          "line": 248,
-          "column": 17,
-          "index": 9535
+          "line": 225,
+          "column": 15,
+          "index": 8171
         }
       },
+      "returnType": {
+        "type": "qx.type.BaseArray"
+      },
+      "appearsIn": []
+    },
+    "toString": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a string representing the array and its elements. Overrides the Object.prototype.toString method.",
+          "     *",
+          "     * @signature function()",
+          "     * @return {String} The string representation of the array.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a string representing the array and its elements. Overrides the Object.prototype.toString method.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The string representation of the array.",
+            "type": "string",
+            "description": "The string representation of the array."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4,
+          "index": 8407
+        },
+        "end": {
+          "line": 233,
+          "column": 18,
+          "index": 8421
+        }
+      },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "indexOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the first (least) index of an element within the array equal to the specified value, or -1 if none is found.",
+          "     *",
+          "     * @signature function(searchElement, fromIndex)",
+          "     * @param searchElement {var} Element to locate in the array.",
+          "     * @param fromIndex {Integer?0} The index at which to begin the search. Defaults to 0, i.e. the",
+          "     *   whole array will be searched. If the index is greater than or equal to the length of the",
+          "     *   array, -1 is returned, i.e. the array will not be searched. If negative, it is taken as",
+          "     *   the offset from the end of the array. Note that even when the index is negative, the array",
+          "     *   is still searched from front to back. If the calculated index is less than 0, the whole",
+          "     *   array will be searched.",
+          "     * @return {Integer} The index of the given element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -636,27 +892,45 @@
             "name": "@return",
             "body": "{Integer} The index of the given element",
             "type": "Integer",
-            "description": " The index of the given element"
+            "description": "The index of the given element"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "lastIndexOf": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 263,
+          "line": 248,
           "column": 4,
-          "index": 10437
+          "index": 9275
         },
         "end": {
-          "line": 263,
-          "column": 21,
-          "index": 10454
+          "line": 248,
+          "column": 17,
+          "index": 9288
         }
       },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "lastIndexOf": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the last (greatest) index of an element within the array equal to the specified value, or -1 if none is found.",
+          "     *",
+          "     * @signature function(searchElement, fromIndex)",
+          "     * @param searchElement {var} Element to locate in the array.",
+          "     * @param fromIndex {Integer?length} The index at which to start searching backwards. Defaults to",
+          "     *   the array's length, i.e. the whole array will be searched. If the index is greater than",
+          "     *   or equal to the length of the array, the whole array will be searched. If negative, it",
+          "     *   is taken as the offset from the end of the array. Note that even when the index is",
+          "     *   negative, the array is still searched from back to front. If the calculated index is",
+          "     *   less than 0, -1 is returned, i.e. the array will not be searched.",
+          "     * @return {Integer} The index of the given element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -692,27 +966,60 @@
             "name": "@return",
             "body": "{Integer} The index of the given element",
             "type": "Integer",
-            "description": " The index of the given element"
+            "description": "The index of the given element"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "forEach": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 293,
+          "line": 263,
           "column": 4,
-          "index": 12178
+          "index": 10175
         },
         "end": {
-          "line": 293,
-          "column": 17,
-          "index": 12191
+          "line": 263,
+          "column": 21,
+          "index": 10192
         }
       },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "forEach": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Executes a provided function once per array element.",
+          "     *",
+          "     * <code>forEach</code> executes the provided function (<code>callback</code>) once for each",
+          "     * element present in the array.  <code>callback</code> is invoked only for indexes of the array",
+          "     * which have assigned values; it is not invoked for indexes which have been deleted or which",
+          "     * have never been assigned values.",
+          "     *",
+          "     * <code>callback</code> is invoked with three arguments: the value of the element, the index",
+          "     * of the element, and the Array object being traversed.",
+          "     *",
+          "     * If a <code>obj</code> parameter is provided to <code>forEach</code>, it will be used",
+          "     * as the <code>this</code> for each invocation of the <code>callback</code>.  If it is not",
+          "     * provided, or is <code>null</code>, the global object associated with <code>callback</code>",
+          "     * is used instead.",
+          "     *",
+          "     * <code>forEach</code> does not mutate the array on which it is called.",
+          "     *",
+          "     * The range of elements processed by <code>forEach</code> is set before the first invocation of",
+          "     * <code>callback</code>.  Elements which are appended to the array after the call to",
+          "     * <code>forEach</code> begins will not be visited by <code>callback</code>. If existing elements",
+          "     * of the array are changed, or deleted, their value as passed to <code>callback</code> will be",
+          "     * the value at the time <code>forEach</code> visits them; elements that are deleted are not visited.",
+          "     *",
+          "     * @signature function(callback, obj)",
+          "     * @param callback {Function} Function to execute for each element.",
+          "     * @param obj {Object} Object to use as this when executing callback.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -731,34 +1038,69 @@
             "body": "callback {Function} Function to execute for each element.",
             "paramName": "callback",
             "description": " Function to execute for each element.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "obj {Object} Object to use as this when executing callback.",
             "paramName": "obj",
             "description": " Object to use as this when executing callback.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "filter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 328,
+          "line": 293,
           "column": 4,
-          "index": 14307
+          "index": 11886
         },
         "end": {
-          "line": 328,
-          "column": 16,
-          "index": 14319
+          "line": 293,
+          "column": 17,
+          "index": 11899
         }
       },
+      "appearsIn": []
+    },
+    "filter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a new array with all elements that pass the test implemented by the provided",
+          "     * function.",
+          "     *",
+          "     * <code>filter</code> calls a provided <code>callback</code> function once for each",
+          "     * element in an array, and constructs a new array of all the values for which",
+          "     * <code>callback</code> returns a true value.  <code>callback</code> is invoked only",
+          "     * for indexes of the array which have assigned values; it is not invoked for indexes",
+          "     * which have been deleted or which have never been assigned values.  Array elements which",
+          "     * do not pass the <code>callback</code> test are simply skipped, and are not included",
+          "     * in the new array.",
+          "     *",
+          "     * <code>callback</code> is invoked with three arguments: the value of the element, the",
+          "     * index of the element, and the Array object being traversed.",
+          "     *",
+          "     * If a <code>obj</code> parameter is provided to <code>filter</code>, it will",
+          "     * be used as the <code>this</code> for each invocation of the <code>callback</code>.",
+          "     * If it is not provided, or is <code>null</code>, the global object associated with",
+          "     * <code>callback</code> is used instead.",
+          "     *",
+          "     * <code>filter</code> does not mutate the array on which it is called. The range of",
+          "     * elements processed by <code>filter</code> is set before the first invocation of",
+          "     * <code>callback</code>. Elements which are appended to the array after the call to",
+          "     * <code>filter</code> begins will not be visited by <code>callback</code>. If existing",
+          "     * elements of the array are changed, or deleted, their value as passed to <code>callback</code>",
+          "     * will be the value at the time <code>filter</code> visits them; elements that are deleted",
+          "     * are not visited.",
+          "     *",
+          "     * @signature function(callback, obj)",
+          "     * @param callback {Function} Function to test each element of the array.",
+          "     * @param obj {Object} Object to use as <code>this</code> when executing <code>callback</code>.",
+          "     * @return {qx.type.BaseArray} The newly created array with all matching elements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -777,14 +1119,14 @@
             "body": "callback {Function} Function to test each element of the array.",
             "paramName": "callback",
             "description": " Function to test each element of the array.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "obj {Object} Object to use as <code>this</code> when executing <code>callback</code>.",
             "paramName": "obj",
             "description": " Object to use as <code>this</code> when executing <code>callback</code>.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
@@ -792,27 +1134,60 @@
             "name": "@return",
             "body": "{qx.type.BaseArray} The newly created array with all matching elements",
             "type": "qx.type.BaseArray",
-            "description": " The newly created array with all matching elements"
+            "description": "The newly created array with all matching elements"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "map": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 358,
+          "line": 328,
           "column": 4,
-          "index": 16296
+          "index": 13980
         },
         "end": {
-          "line": 358,
-          "column": 13,
-          "index": 16305
+          "line": 328,
+          "column": 16,
+          "index": 13992
         }
       },
+      "returnType": {
+        "type": "qx.type.BaseArray"
+      },
+      "appearsIn": []
+    },
+    "map": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a new array with the results of calling a provided function on every element in this array.",
+          "     *",
+          "     * <code>map</code> calls a provided <code>callback</code> function once for each element in an array,",
+          "     * in order, and constructs a new array from the results.  <code>callback</code> is invoked only for",
+          "     * indexes of the array which have assigned values; it is not invoked for indexes which have been",
+          "     * deleted or which have never been assigned values.",
+          "     *",
+          "     * <code>callback</code> is invoked with three arguments: the value of the element, the index of the",
+          "     * element, and the Array object being traversed.",
+          "     *",
+          "     * If a <code>obj</code> parameter is provided to <code>map</code>, it will be used as the",
+          "     * <code>this</code> for each invocation of the <code>callback</code>. If it is not provided, or is",
+          "     * <code>null</code>, the global object associated with <code>callback</code> is used instead.",
+          "     *",
+          "     * <code>map</code> does not mutate the array on which it is called.",
+          "     *",
+          "     * The range of elements processed by <code>map</code> is set before the first invocation of",
+          "     * <code>callback</code>. Elements which are appended to the array after the call to <code>map</code>",
+          "     * begins will not be visited by <code>callback</code>.  If existing elements of the array are changed,",
+          "     * or deleted, their value as passed to <code>callback</code> will be the value at the time",
+          "     * <code>map</code> visits them; elements that are deleted are not visited.",
+          "     *",
+          "     * @signature function(callback, obj)",
+          "     * @param callback {Function} Function produce an element of the new Array from an element of the current one.",
+          "     * @param obj {Object} Object to use as <code>this</code> when executing <code>callback</code>.",
+          "     * @return {qx.type.BaseArray} A new array which contains the return values of every item executed through the given function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -831,14 +1206,14 @@
             "body": "callback {Function} Function produce an element of the new Array from an element of the current one.",
             "paramName": "callback",
             "description": " Function produce an element of the new Array from an element of the current one.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "obj {Object} Object to use as <code>this</code> when executing <code>callback</code>.",
             "paramName": "obj",
             "description": " Object to use as <code>this</code> when executing <code>callback</code>.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
@@ -846,27 +1221,63 @@
             "name": "@return",
             "body": "{qx.type.BaseArray} A new array which contains the return values of every item executed through the given function",
             "type": "qx.type.BaseArray",
-            "description": " A new array which contains the return values of every item executed through the given function"
+            "description": "A new array which contains the return values of every item executed through the given function"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "some": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 391,
+          "line": 358,
           "column": 4,
-          "index": 18414
+          "index": 15939
         },
         "end": {
-          "line": 391,
-          "column": 14,
-          "index": 18424
+          "line": 358,
+          "column": 13,
+          "index": 15948
         }
       },
+      "returnType": {
+        "type": "qx.type.BaseArray"
+      },
+      "appearsIn": []
+    },
+    "some": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tests whether some element in the array passes the test implemented by the provided function.",
+          "     *",
+          "     * <code>some</code> executes the <code>callback</code> function once for each element present in",
+          "     * the array until it finds one where <code>callback</code> returns a true value. If such an element",
+          "     * is found, <code>some</code> immediately returns <code>true</code>. Otherwise, <code>some</code>",
+          "     * returns <code>false</code>. <code>callback</code> is invoked only for indexes of the array which",
+          "     * have assigned values; it is not invoked for indexes which have been deleted or which have never",
+          "     * been assigned values.",
+          "     *",
+          "     * <code>callback</code> is invoked with three arguments: the value of the element, the index of the",
+          "     * element, and the Array object being traversed.",
+          "     *",
+          "     * If a <code>obj</code> parameter is provided to <code>some</code>, it will be used as the",
+          "     * <code>this</code> for each invocation of the <code>callback</code>. If it is not provided, or is",
+          "     * <code>null</code>, the global object associated with <code>callback</code> is used instead.",
+          "     *",
+          "     * <code>some</code> does not mutate the array on which it is called.",
+          "     *",
+          "     * The range of elements processed by <code>some</code> is set before the first invocation of",
+          "     * <code>callback</code>.  Elements that are appended to the array after the call to <code>some</code>",
+          "     * begins will not be visited by <code>callback</code>. If an existing, unvisited element of the array",
+          "     * is changed by <code>callback</code>, its value passed to the visiting <code>callback</code> will",
+          "     * be the value at the time that <code>some</code> visits that element's index; elements that are",
+          "     * deleted are not visited.",
+          "     *",
+          "     * @signature function(callback, obj)",
+          "     * @param callback {Function} Function to test for each element.",
+          "     * @param obj {Object} Object to use as <code>this</code> when executing <code>callback</code>.",
+          "     * @return {Boolean} Whether at least one elements passed the test",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -885,42 +1296,77 @@
             "body": "callback {Function} Function to test for each element.",
             "paramName": "callback",
             "description": " Function to test for each element.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "obj {Object} Object to use as <code>this</code> when executing <code>callback</code>.",
             "paramName": "obj",
             "description": " Object to use as <code>this</code> when executing <code>callback</code>.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether at least one elements passed the test",
-            "type": "Boolean",
-            "description": " Whether at least one elements passed the test"
+            "type": "boolean",
+            "description": "Whether at least one elements passed the test"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "every": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 423,
+          "line": 391,
           "column": 4,
-          "index": 20548
+          "index": 18024
         },
         "end": {
-          "line": 423,
-          "column": 15,
-          "index": 20559
+          "line": 391,
+          "column": 14,
+          "index": 18034
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "every": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tests whether all elements in the array pass the test implemented by the provided function.",
+          "     *",
+          "     * <code>every</code> executes the provided <code>callback</code> function once for each element",
+          "     * present in the array until it finds one where <code>callback</code> returns a false value. If",
+          "     * such an element is found, the <code>every</code> method immediately returns <code>false</code>.",
+          "     * Otherwise, if <code>callback</code> returned a true value for all elements, <code>every</code>",
+          "     * will return <code>true</code>.  <code>callback</code> is invoked only for indexes of the array",
+          "     * which have assigned values; it is not invoked for indexes which have been deleted or which have",
+          "     * never been assigned values.",
+          "     *",
+          "     * <code>callback</code> is invoked with three arguments: the value of the element, the index of",
+          "     * the element, and the Array object being traversed.",
+          "     *",
+          "     * If a <code>obj</code> parameter is provided to <code>every</code>, it will be used as",
+          "     * the <code>this</code> for each invocation of the <code>callback</code>. If it is not provided,",
+          "     * or is <code>null</code>, the global object associated with <code>callback</code> is used instead.",
+          "     *",
+          "     * <code>every</code> does not mutate the array on which it is called. The range of elements processed",
+          "     * by <code>every</code> is set before the first invocation of <code>callback</code>. Elements which",
+          "     * are appended to the array after the call to <code>every</code> begins will not be visited by",
+          "     * <code>callback</code>.  If existing elements of the array are changed, their value as passed",
+          "     * to <code>callback</code> will be the value at the time <code>every</code> visits them; elements",
+          "     * that are deleted are not visited.",
+          "     *",
+          "     * @signature function(callback, obj)",
+          "     * @param callback {Function} Function to test for each element.",
+          "     * @param obj {Object} Object to use as <code>this</code> when executing <code>callback</code>.",
+          "     * @return {Boolean} Whether all elements passed the test",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -939,32 +1385,44 @@
             "body": "callback {Function} Function to test for each element.",
             "paramName": "callback",
             "description": " Function to test for each element.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "obj {Object} Object to use as <code>this</code> when executing <code>callback</code>.",
             "paramName": "obj",
             "description": " Object to use as <code>this</code> when executing <code>callback</code>.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether all elements passed the test",
-            "type": "Boolean",
-            "description": " Whether all elements passed the test"
+            "type": "boolean",
+            "description": "Whether all elements passed the test"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 423,
+          "column": 4,
+          "index": 20126
+        },
+        "end": {
+          "line": 423,
+          "column": 15,
+          "index": 20137
+        }
+      },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": [
-    "qx.type.Array",
-    "qx.util.StringBuilder",
-    "qxWeb"
-  ]
+  "statics": {},
+  "properties": {}
 }

@@ -1,49 +1,48 @@
 {
-  "className": "qx.module.TextSelection",
-  "packageName": "qx.module",
-  "name": "TextSelection",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 584
-      },
-      "end": {
-        "line": 179,
-        "column": 3,
-        "index": 4519
-      }
+  "version": 0.3,
+  "lastModified": 1717235172534,
+  "lastModifiedIso": "2024-06-01T09:46:12.534Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/TextSelection.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 563
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Text selection manipulation module</p>"
-        }
-      ]
+    "end": {
+      "line": 179,
+      "column": 3,
+      "index": 4341
     }
   },
-  "type": "class",
+  "className": "qx.module.TextSelection",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Text selection manipulation module",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Text selection manipulation module</p>"
+      }
+    ]
+  },
   "statics": {
     "__isInput": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 907
-        },
-        "end": {
-          "line": 35,
-          "column": 5,
-          "index": 1045
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the given DOM node is a text input field or textarea",
+          "     *",
+          "     * @param el {Element} The node to check",
+          "     * @return {Boolean} <code>true</code> if the given node is an input field",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,8 +62,8 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the given node is an input field",
-            "type": "Boolean",
-            "description": " <code>true</code> if the given node is an input field"
+            "type": "boolean",
+            "description": "<code>true</code> if the given node is an input field"
           }
         ],
         "@attach": [
@@ -74,23 +73,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getTextNode": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 45,
+          "line": 32,
           "column": 4,
-          "index": 1253
+          "index": 876
         },
         "end": {
-          "line": 52,
+          "line": 35,
           "column": 5,
-          "index": 1466
+          "index": 1011
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__getTextNode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the first text child node of the given element",
+          "     *",
+          "     * @param el {Element} DOM element",
+          "     * @return {Node|null} text node",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -111,7 +130,7 @@
             "name": "@return",
             "body": "{Node|null} text node",
             "type": "Node|null",
-            "description": " text node"
+            "description": "text node"
           }
         ],
         "@attach": [
@@ -121,25 +140,42 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1209
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1415
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Node|null"
+      },
+      "appearsIn": []
     }
   },
   "members": {
     "getTextSelection": {
-      "location": {
-        "start": {
-          "line": 61,
-          "column": 4,
-          "index": 1603
-        },
-        "end": {
-          "line": 71,
-          "column": 5,
-          "index": 1882
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the text selection of the first element.",
+          "     *",
+          "     * @return {String|null}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -155,23 +191,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTextSelectionLength": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 81,
+          "line": 61,
           "column": 4,
-          "index": 2055
+          "index": 1543
         },
         "end": {
-          "line": 91,
+          "line": 71,
           "column": 5,
-          "index": 2346
+          "index": 1812
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getTextSelectionLength": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the length of the text selection of the first element.",
+          "     *",
+          "     *",
+          "     * @return {Integer|null}",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -193,23 +244,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTextSelectionStart": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 100,
+          "line": 81,
           "column": 4,
-          "index": 2510
+          "index": 1975
         },
         "end": {
-          "line": 110,
+          "line": 91,
           "column": 5,
-          "index": 2799
+          "index": 2256
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer|null"
+      },
+      "appearsIn": []
+    },
+    "getTextSelectionStart": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the start of the text selection of the first element.",
+          "     *",
+          "     * @return {Integer|null}",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -231,23 +296,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTextSelectionEnd": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 119,
+          "line": 100,
           "column": 4,
-          "index": 2961
+          "index": 2411
         },
         "end": {
-          "line": 129,
+          "line": 110,
           "column": 5,
-          "index": 3246
+          "index": 2690
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer|null"
+      },
+      "appearsIn": []
+    },
+    "getTextSelectionEnd": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the end of the text selection of the first element.",
+          "     *",
+          "     * @return {Integer|null}",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -269,23 +348,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setTextSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 142,
+          "line": 119,
           "column": 4,
-          "index": 3669
+          "index": 2843
         },
         "end": {
-          "line": 154,
+          "line": 129,
           "column": 5,
-          "index": 3983
+          "index": 3118
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer|null"
+      },
+      "appearsIn": []
+    },
+    "setTextSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the text selection of the first element in the collection",
+          "     * with the given start and end value.",
+          "     * If no end value is passed the selection will extend to the end.",
+          "     *",
+          "     * @param start {Integer} start of the selection (zero based)",
+          "     * @param end {Integer} end of the selection",
+          "     * @return {qxWeb} The collection for chaining.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -313,7 +410,7 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining.",
             "type": "qxWeb",
-            "description": " The collection for chaining."
+            "description": "The collection for chaining."
           }
         ],
         "@attach": [
@@ -323,23 +420,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clearTextSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 163,
+          "line": 142,
           "column": 4,
-          "index": 4154
+          "index": 3528
         },
         "end": {
-          "line": 173,
+          "line": 154,
           "column": 5,
-          "index": 4452
+          "index": 3830
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "start",
+          "type": "Integer"
+        },
+        {
+          "name": "end",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "clearTextSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the text selection of all elements.",
+          "     *",
+          "     * @return {qxWeb} The collection for chaining.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -351,7 +471,7 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining.",
             "type": "qxWeb",
-            "description": " The collection for chaining."
+            "description": "The collection for chaining."
           }
         ],
         "@attach": [
@@ -361,23 +481,26 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 176,
-        "column": 2,
-        "index": 4464
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 3992
+        },
+        "end": {
+          "line": 173,
+          "column": 5,
+          "index": 4280
+        }
       },
-      "end": {
-        "line": 178,
-        "column": 3,
-        "index": 4514
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

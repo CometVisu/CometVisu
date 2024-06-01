@@ -1,55 +1,58 @@
 {
-  "className": "qx.bom.client.Event",
-  "packageName": "qx.bom.client",
-  "name": "Event",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 773
-      },
-      "end": {
-        "line": 270,
-        "column": 3,
-        "index": 7694
-      }
+  "version": 0.3,
+  "lastModified": 1717235170418,
+  "lastModifiedIso": "2024-06-01T09:46:10.418Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Event.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 746
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Internal class which contains the checks used by {@link qx.core.Environment}.\n All checks in here are marked as internal which means you should never use\n them directly.\n This class should contain all checks about events.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 270,
+      "column": 3,
+      "index": 7425
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.Event",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Internal class which contains the checks used by {@link qx.core.Environment}.",
+      " * All checks in here are marked as internal which means you should never use",
+      " * them directly.",
+      " *",
+      " * This class should contain all checks about events.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Internal class which contains the checks used by {@link qx.core.Environment}.\n All checks in here are marked as internal which means you should never use\n them directly.\n This class should contain all checks about events.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "statics": {
     "getTouch": {
-      "location": {
-        "start": {
-          "line": 36,
-          "column": 4,
-          "index": 1002
-        },
-        "end": {
-          "line": 38,
-          "column": 5,
-          "index": 1061
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if touch events are supported.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if touch events are supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,28 +69,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if touch events are supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if touch events are supported."
+            "type": "boolean",
+            "description": "<code>true</code> if touch events are supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getMsPointer": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 46,
+          "line": 36,
           "column": 4,
-          "index": 1241
+          "index": 967
         },
         "end": {
-          "line": 60,
+          "line": 38,
           "column": 5,
-          "index": 1717
+          "index": 1024
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getMsPointer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if MSPointer events are available.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if pointer events are supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,28 +120,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if pointer events are supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if pointer events are supported."
+            "type": "boolean",
+            "description": "<code>true</code> if pointer events are supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getHelp": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 68,
+          "line": 46,
           "column": 4,
-          "index": 1920
+          "index": 1196
         },
         "end": {
-          "line": 70,
+          "line": 60,
           "column": 5,
-          "index": 1974
+          "index": 1658
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getHelp": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the proprietary <code>help</code> event is available.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if the \"help\" event is supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -142,28 +171,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the \"help\" event is supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if the \"help\" event is supported."
+            "type": "boolean",
+            "description": "<code>true</code> if the \"help\" event is supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getHashChange": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 78,
+          "line": 68,
           "column": 4,
-          "index": 2176
+          "index": 1853
         },
         "end": {
-          "line": 89,
+          "line": 70,
           "column": 5,
-          "index": 2552
+          "index": 1905
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getHashChange": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the <code>hashchange</code> event is available",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if the \"hashchange\" event is supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -180,28 +222,39 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the \"hashchange\" event is supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if the \"hashchange\" event is supported."
+            "type": "boolean",
+            "description": "<code>true</code> if the \"hashchange\" event is supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDispatchEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 95,
+          "line": 78,
           "column": 4,
-          "index": 2715
+          "index": 2099
         },
         "end": {
-          "line": 97,
+          "line": 89,
           "column": 5,
-          "index": 2801
+          "index": 2464
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getDispatchEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the DOM2 dispatchEvent method is available",
+          "     * @return {Boolean} <code>true</code> if dispatchEvent is supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -212,28 +265,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if dispatchEvent is supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if dispatchEvent is supported."
+            "type": "boolean",
+            "description": "<code>true</code> if dispatchEvent is supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCustomEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 105,
+          "line": 95,
           "column": 4,
-          "index": 3011
+          "index": 2621
         },
         "end": {
-          "line": 115,
+          "line": 97,
           "column": 5,
-          "index": 3231
+          "index": 2705
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getCustomEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the CustomEvent constructor is available and supports",
+          "     * custom event types.",
+          "     *",
+          "     * @return {Boolean} <code>true</code> if Custom Events are available",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -244,28 +310,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if Custom Events are available",
-            "type": "Boolean",
-            "description": " <code>true</code> if Custom Events are available"
+            "type": "boolean",
+            "description": "<code>true</code> if Custom Events are available"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getMouseEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 123,
+          "line": 105,
           "column": 4,
-          "index": 3439
+          "index": 2907
         },
         "end": {
-          "line": 133,
+          "line": 115,
           "column": 5,
-          "index": 3656
+          "index": 3117
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getMouseEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the MouseEvent constructor is available and supports",
+          "     * custom event types.",
+          "     *",
+          "     * @return {Boolean} <code>true</code> if Mouse Events are available",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -276,28 +355,40 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if Mouse Events are available",
-            "type": "Boolean",
-            "description": " <code>true</code> if Mouse Events are available"
+            "type": "boolean",
+            "description": "<code>true</code> if Mouse Events are available"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getMouseCreateEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 140,
+          "line": 123,
           "column": 4,
-          "index": 3850
+          "index": 3317
         },
         "end": {
-          "line": 173,
+          "line": 133,
           "column": 5,
-          "index": 4649
+          "index": 3524
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getMouseCreateEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the event type used in pointer layer to create mouse events.",
+          "     *",
+          "     * @return {String} Either <code>MouseEvents</code> or <code>UIEvents</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -308,28 +399,41 @@
           {
             "name": "@return",
             "body": "{String} Either <code>MouseEvents</code> or <code>UIEvents</code>",
-            "type": "String",
-            "description": " Either <code>MouseEvents</code> or <code>UIEvents</code>"
+            "type": "string",
+            "description": "Either <code>MouseEvents</code> or <code>UIEvents</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getMouseWheel": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 181,
+          "line": 140,
           "column": 4,
-          "index": 4898
+          "index": 3711
         },
         "end": {
-          "line": 207,
+          "line": 173,
           "column": 5,
-          "index": 5653
+          "index": 4477
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getMouseWheel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the MouseWheel event is available and on which target.",
+          "     *",
+          "     * @param win {Window ? null} An optional window instance to check.",
+          "     * @return {Map} A map containing two values: type and target.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -351,28 +455,49 @@
           {
             "name": "@return",
             "body": "{Map} A map containing two values: type and target.",
-            "type": "Map",
-            "description": " A map containing two values: type and target."
+            "type": "Map<any, any>",
+            "description": "A map containing two values: type and target."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAuxclickEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 216,
+          "line": 181,
           "column": 4,
-          "index": 5896
+          "index": 4718
         },
         "end": {
-          "line": 223,
+          "line": 207,
           "column": 5,
-          "index": 6100
+          "index": 5447
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "win",
+          "type": "Window",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getAuxclickEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects if the engine/browser supports auxclick events",
+          "     *",
+          "     * See https://github.com/qooxdoo/qooxdoo/issues/9268",
+          "     *",
+          "     * @return {Boolean} <code>true</code> if auxclick events are supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -383,28 +508,38 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if auxclick events are supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if auxclick events are supported."
+            "type": "boolean",
+            "description": "<code>true</code> if auxclick events are supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPassive": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 228,
+          "line": 216,
           "column": 4,
-          "index": 6195
+          "index": 5681
         },
         "end": {
-          "line": 250,
+          "line": 223,
           "column": 5,
-          "index": 6839
+          "index": 5878
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getPassive": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the browser supports passive event handlers.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -412,23 +547,24 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 253,
-        "column": 2,
-        "index": 6851
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4,
+          "index": 5968
+        },
+        "end": {
+          "line": 250,
+          "column": 5,
+          "index": 6590
+        }
       },
-      "end": {
-        "line": 269,
-        "column": 3,
-        "index": 7689
-      }
+      "type": "function",
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

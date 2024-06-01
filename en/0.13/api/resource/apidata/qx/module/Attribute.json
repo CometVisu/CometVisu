@@ -1,55 +1,52 @@
 {
-  "className": "qx.module.Attribute",
-  "packageName": "qx.module",
-  "name": "Attribute",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 615
-      },
-      "end": {
-        "line": 270,
-        "column": 3,
-        "index": 7803
-      }
+  "version": 0.3,
+  "lastModified": 1717235169226,
+  "lastModifiedIso": "2024-06-01T09:46:09.226Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Attribute.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 592
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Attribute/Property handling for DOM elements.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Core"
-        }
-      ]
+    "end": {
+      "line": 270,
+      "column": 3,
+      "index": 7534
     }
   },
-  "type": "class",
+  "className": "qx.module.Attribute",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Attribute/Property handling for DOM elements.",
+      " * @group (Core)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Attribute/Property handling for DOM elements.</p>"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Core"
+      }
+    ]
+  },
   "members": {
     "getHtml": {
-      "location": {
-        "start": {
-          "line": 31,
-          "column": 4,
-          "index": 868
-        },
-        "end": {
-          "line": 36,
-          "column": 5,
-          "index": 1026
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the HTML content of the first item in the collection",
+          "     * @attach {qxWeb}",
+          "     * @return {String|null} HTML content or null if the collection is empty",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -67,27 +64,41 @@
             "name": "@return",
             "body": "{String|null} HTML content or null if the collection is empty",
             "type": "String|null",
-            "description": " HTML content or null if the collection is empty"
+            "description": "HTML content or null if the collection is empty"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setHtml": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 45,
+          "line": 31,
           "column": 4,
-          "index": 1239
+          "index": 838
         },
         "end": {
-          "line": 51,
+          "line": 36,
           "column": 5,
-          "index": 1443
+          "index": 991
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "setHtml": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the HTML content of each item in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param html {String} HTML string",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -106,7 +117,7 @@
             "body": "html {String} HTML string",
             "paramName": "html",
             "description": " HTML string",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -114,27 +125,47 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setAttribute": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 61,
+          "line": 45,
           "column": 4,
-          "index": 1703
+          "index": 1195
         },
         "end": {
-          "line": 66,
+          "line": 51,
           "column": 5,
-          "index": 1872
+          "index": 1393
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "html",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "setAttribute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets an HTML attribute on each item in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Attribute name",
+          "     * @param value {var} Attribute value",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -153,7 +184,7 @@
             "body": "name {String} Attribute name",
             "paramName": "name",
             "description": " Attribute name",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -168,27 +199,51 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAttribute": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 76,
+          "line": 61,
           "column": 4,
-          "index": 2108
+          "index": 1643
         },
         "end": {
-          "line": 81,
+          "line": 66,
           "column": 5,
-          "index": 2273
+          "index": 1807
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "getAttribute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the value of the given attribute for the first item in the",
+          "     * collection.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Attribute name",
+          "     * @return {var} Attribute value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -207,7 +262,7 @@
             "body": "name {String} Attribute name",
             "paramName": "name",
             "description": " Attribute name",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -215,27 +270,46 @@
             "name": "@return",
             "body": "{var} Attribute value",
             "type": "var",
-            "description": " Attribute value"
+            "description": "Attribute value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeAttribute": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 90,
+          "line": 76,
           "column": 4,
-          "index": 2500
+          "index": 2033
         },
         "end": {
-          "line": 95,
+          "line": 81,
           "column": 5,
-          "index": 2664
+          "index": 2193
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "removeAttribute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the given attribute from all elements in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Attribute name",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -254,7 +328,7 @@
             "body": "name {String} Attribute name",
             "paramName": "name",
             "description": " Attribute name",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -262,27 +336,46 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setAttributes": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 104,
+          "line": 90,
           "column": 4,
-          "index": 2909
+          "index": 2411
         },
         "end": {
-          "line": 109,
+          "line": 95,
           "column": 5,
-          "index": 3062
+          "index": 2570
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "setAttributes": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets multiple attributes for each item in the collection.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param attributes {Map} A map of attribute name/value pairs",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -301,7 +394,7 @@
             "body": "attributes {Map} A map of attribute name/value pairs",
             "paramName": "attributes",
             "description": " A map of attribute name/value pairs",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
@@ -309,27 +402,46 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAttributes": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 118,
+          "line": 104,
           "column": 4,
-          "index": 3320
+          "index": 2806
         },
         "end": {
-          "line": 124,
+          "line": 109,
           "column": 5,
-          "index": 3521
+          "index": 2954
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "attributes",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "getAttributes": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the values of multiple attributes for the first item in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param names {String[]} List of attribute names",
+          "     * @return {Map} Map of attribute name/value pairs",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -355,28 +467,47 @@
           {
             "name": "@return",
             "body": "{Map} Map of attribute name/value pairs",
-            "type": "Map",
-            "description": " Map of attribute name/value pairs"
+            "type": "Map<any, any>",
+            "description": "Map of attribute name/value pairs"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeAttributes": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 133,
+          "line": 118,
           "column": 4,
-          "index": 3763
+          "index": 3203
         },
         "end": {
-          "line": 138,
+          "line": 124,
           "column": 5,
-          "index": 3935
+          "index": 3398
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "names",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "removeAttributes": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes multiple attributes from each item in the collection.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param attributes {String[]} List of attribute names",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -403,27 +534,47 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setProperty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 148,
+          "line": 133,
           "column": 4,
-          "index": 4186
+          "index": 3631
         },
         "end": {
-          "line": 153,
+          "line": 138,
           "column": 5,
-          "index": 4327
+          "index": 3798
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "attributes",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "setProperty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a property on each item in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Property name",
+          "     * @param value {var} Property value",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -442,7 +593,7 @@
             "body": "name {String} Property name",
             "paramName": "name",
             "description": " Property name",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -457,27 +608,51 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getProperty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 163,
+          "line": 148,
           "column": 4,
-          "index": 4559
+          "index": 4039
         },
         "end": {
-          "line": 168,
+          "line": 153,
           "column": 5,
-          "index": 4667
+          "index": 4175
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "getProperty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the value of the given property for the first item in the",
+          "     * collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Property name",
+          "     * @return {var} Property value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -496,7 +671,7 @@
             "body": "name {String} Property name",
             "paramName": "name",
             "description": " Property name",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -504,27 +679,46 @@
             "name": "@return",
             "body": "{var} Property value",
             "type": "var",
-            "description": " Property value"
+            "description": "Property value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setProperties": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 177,
+          "line": 163,
           "column": 4,
-          "index": 4911
+          "index": 4397
         },
         "end": {
-          "line": 182,
+          "line": 168,
           "column": 5,
-          "index": 5063
+          "index": 4500
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "setProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets multiple properties for each item in the collection.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param properties {Map} A map of property name/value pairs",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -543,7 +737,7 @@
             "body": "properties {Map} A map of property name/value pairs",
             "paramName": "properties",
             "description": " A map of property name/value pairs",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
@@ -551,27 +745,46 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeProperties": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 191,
+          "line": 177,
           "column": 4,
-          "index": 5307
+          "index": 4735
         },
         "end": {
-          "line": 196,
+          "line": 182,
           "column": 5,
-          "index": 5471
+          "index": 4882
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "properties",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "removeProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes multiple properties for each item in the collection.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param properties {String[]} An array of property names",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -598,27 +811,46 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getProperties": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 205,
+          "line": 191,
           "column": 4,
-          "index": 5727
+          "index": 5117
         },
         "end": {
-          "line": 211,
+          "line": 196,
           "column": 5,
-          "index": 5927
+          "index": 5276
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "properties",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "getProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the values of multiple properties for the first item in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param names {String[]} List of property names",
+          "     * @return {Map} Map of property name/value pairs",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -644,28 +876,47 @@
           {
             "name": "@return",
             "body": "{Map} Map of property name/value pairs",
-            "type": "Map",
-            "description": " Map of property name/value pairs"
+            "type": "Map<any, any>",
+            "description": "Map of property name/value pairs"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeProperty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 220,
+          "line": 205,
           "column": 4,
-          "index": 6141
+          "index": 5523
         },
         "end": {
-          "line": 225,
+          "line": 211,
           "column": 5,
-          "index": 6257
+          "index": 5717
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "names",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "removeProperty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deletes a property from each item in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Property name",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -684,7 +935,7 @@
             "body": "name {String} Property name",
             "paramName": "name",
             "description": " Property name",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -692,27 +943,48 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 236,
+          "line": 220,
           "column": 4,
-          "index": 6694
+          "index": 5922
         },
         "end": {
-          "line": 241,
+          "line": 225,
           "column": 5,
-          "index": 6838
+          "index": 6033
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "getValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the currently configured value for the first item in the collection.",
+          "     * Works with simple input fields as well as with select boxes or option",
+          "     * elements. Returns an array for select boxes with multi selection. In all",
+          "     * other cases, a string is returned.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @return {String|String[]} String value or Array of string values (for multiselect)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -730,27 +1002,49 @@
             "name": "@return",
             "body": "{String|String[]} String value or Array of string values (for multiselect)",
             "type": "String|String[]",
-            "description": " String value or Array of string values (for multiselect)"
+            "description": "String value or Array of string values (for multiselect)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 258,
+          "line": 236,
           "column": 4,
-          "index": 7588
+          "index": 6459
         },
         "end": {
-          "line": 264,
+          "line": 241,
           "column": 5,
-          "index": 7736
+          "index": 6598
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|String[]"
+      },
+      "appearsIn": []
+    },
+    "setValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the given value to each element in the collection.",
+          "     * Normally the value is given as a string/number value and applied to the",
+          "     * field content (textfield, textarea) or used to detect whether the field",
+          "     * is checked (checkbox, radiobutton).",
+          "     * Supports array values for selectboxes (multiple selection) and checkboxes",
+          "     * or radiobuttons (for convenience).",
+          "     *",
+          "     * Please note: To modify the value attribute of a checkbox or radiobutton",
+          "     * use {@link #setAttribute} instead and manipulate the <code>checked</code> attribute.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param value {String|Number|Array} The value to apply",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -781,27 +1075,40 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 267,
-        "column": 2,
-        "index": 7748
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 258,
+          "column": 4,
+          "index": 7331
+        },
+        "end": {
+          "line": 264,
+          "column": 5,
+          "index": 7473
+        }
       },
-      "end": {
-        "line": 269,
-        "column": 3,
-        "index": 7798
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "Number",
+            "Array"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

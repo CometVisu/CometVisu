@@ -1,10 +1,13 @@
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
-      "qx.module.Animation": {
-        "require": true,
-        "defer": "runtime"
-      },
       "qx.core.Environment": {
         "defer": "load",
         "require": true
@@ -32,11 +35,12 @@
       "qx.bom.element.Attribute": {},
       "qx.lang.Object": {},
       "qx.bom.element.Style": {},
-      "qx.lang.Array": {},
       "qx.core.Id": {},
+      "qx.html.Slot": {},
       "qx.bom.client.Css": {
         "require": true
       },
+      "qx.lang.Array": {},
       "qx.html.Text": {},
       "qx.bom.element.Location": {},
       "qx.bom.element.Dimension": {},
@@ -50,6 +54,7 @@
         "engine.name": {
           "className": "qx.bom.client.Engine"
         },
+        "module.objectid": {},
         "css.userselect": {
           "className": "qx.bom.client.Css"
         },
@@ -100,7 +105,9 @@
    *
    * NOTE: Instances of this class must be disposed of after use
    *
-   * @require(qx.module.Animation)
+   * NOTE:: This class used to require `qx.module.Animation` but that brings in a huge
+   * list of dependencies, so the require has been moved to the `qx.application.AbstractGui`
+   * class
    */
   qx.Class.define("qx.html.Element", {
     extend: qx.html.Node,
@@ -122,6 +129,7 @@
       qx.html.Node.constructor.call(this, tagName || "div");
       this.__P_244_0 = styles || null;
       this.__P_244_1 = attributes || null;
+      this.__P_244_2 = new Map();
       if (attributes) {
         for (var key in attributes) {
           if (!key) {
@@ -134,10 +142,8 @@
         if (this._domNode) {
           this._domNode.innerHTML = value;
         }
-      }, function (writer, property, name) {
-        if (property.value) {
-          writer(property.value);
-        }
+      }, function (serializer, property, name) {
+        serializer.rawTextInBody(property.value);
       });
     },
     /*
@@ -168,8 +174,7 @@
       /** @type {Array} List of post actions for elements. The key is the action name. The value the {@link qx.html.Element}. */
       _actions: [],
       /**  @type {Map} List of all selections. */
-      __P_244_2: {},
-      __P_244_3: null,
+      __P_244_3: {},
       __P_244_4: null,
       __P_244_5: null,
       /*
@@ -332,12 +337,12 @@
         }
 
         // Process selection
-        for (var hc in this.__P_244_2) {
-          var selection = this.__P_244_2[hc];
+        for (var hc in this.__P_244_3) {
+          var selection = this.__P_244_3[hc];
           var elem = selection.element._domNode;
           if (elem) {
             qx.bom.Selection.set(elem, selection.start, selection.end);
-            delete this.__P_244_2[hc];
+            delete this.__P_244_3[hc];
           }
         }
 
@@ -351,11 +356,11 @@
        */
       __P_244_7: function __P_244_7() {
         {
-          if (!this.__P_244_3) {
+          if (!this.__P_244_4) {
             var eventManager = qx.event.Registration.getManager(window);
-            this.__P_244_3 = eventManager.getHandler(qx.event.handler.Focus);
+            this.__P_244_4 = eventManager.getHandler(qx.event.handler.Focus);
           }
-          return this.__P_244_3;
+          return this.__P_244_4;
         }
       },
       /**
@@ -365,11 +370,11 @@
        */
       __P_244_9: function __P_244_9() {
         {
-          if (!this.__P_244_4) {
+          if (!this.__P_244_5) {
             var eventManager = qx.event.Registration.getManager(window);
-            this.__P_244_4 = eventManager.getDispatcher(qx.event.dispatch.MouseCapture);
+            this.__P_244_5 = eventManager.getDispatcher(qx.event.dispatch.MouseCapture);
           }
-          return this.__P_244_4.getCaptureElement();
+          return this.__P_244_5.getCaptureElement();
         }
       },
       /**
@@ -385,7 +390,7 @@
       /**
        * Finds the Widget for a given DOM element
        *
-       * @param domElement {DOM} the DOM element
+       * @param domElement {Node} the DOM element
        * @return {qx.ui.core.Widget} the Widget that created the DOM element
        * @deprecated {6.1} see qx.html.Node.fromDomNode
        */
@@ -433,6 +438,15 @@
         nullable: true,
         check: "String",
         apply: "_applyCssClass"
+      },
+      /**
+       * Used by the {@link qx.html.Slot}-related mechanisms to determine if an
+       * element is the top-level of a custom tag function.
+       */
+      isCustomElement: {
+        init: false,
+        check: "Boolean",
+        apply: "_applyIsCustomElement"
       }
     },
     /*
@@ -458,6 +472,12 @@
       __P_244_16: null,
       __P_244_0: null,
       __P_244_1: null,
+      /**
+       * This is a {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map | Map},
+       * not a POJO
+       * @type {Map<string, qx.html.Slot>}
+       */
+      __P_244_2: null,
       /*
        * @Override
        */
@@ -467,27 +487,24 @@
       /*
        * @Override
        */
-      serialize: function serialize(writer) {
-        if (this.__P_244_17) {
-          this.importQxObjectIds();
-          this.__P_244_17 = false;
-        }
-        return qx.html.Element.superclass.prototype.serialize.call(this, writer);
-      },
-      /*
-       * @Override
-       */
-      _serializeImpl: function _serializeImpl(writer) {
-        writer("<", this._nodeName);
+      _serializeImpl: function _serializeImpl(serializer) {
+        serializer.openTag(this._nodeName);
+        serializer.pushQxObject(this);
 
         // Copy attributes
-        var data = this.__P_244_1;
-        if (data) {
-          var Attribute = qx.bom.element.Attribute;
-          for (var key in data) {
-            writer(" ");
-            Attribute.serialize(writer, key, data[key]);
+        if (this.__P_244_1) {
+          for (var key in this.__P_244_1) {
+            var result = qx.bom.element.Attribute.serialize(key, this.__P_244_1[key]);
+            for (var _key in result) {
+              if (_key != "data-qx-object-id") {
+                serializer.setAttribute(_key, result[_key]);
+              }
+            }
           }
+        }
+        var id = serializer.getQxObjectIdFor(this);
+        if (id) {
+          serializer.setAttribute("data-qx-object-id", "\"".concat(id, "\""));
         }
 
         // Copy styles
@@ -500,7 +517,7 @@
           var Style = qx.bom.element.Style;
           var css = Style.compile(data);
           if (css) {
-            writer(' style="', css, '"');
+            serializer.setAttribute("style", "\"".concat(css, "\""));
           }
         }
 
@@ -510,30 +527,22 @@
           for (var key in this._properties) {
             var property = this._properties[key];
             if (property.serialize) {
-              writer(" ");
-              property.serialize.call(this, writer, key, property);
+              property.serialize.call(this, serializer, key, property);
             } else if (property.value !== undefined && property.value !== null) {
-              writer(" ");
               var value = JSON.stringify(property.value);
-              writer(key, "=", value);
+              serializer.setAttribute(key, value);
             }
           }
         }
 
         // Children
-        if (!this._children || !this._children.length) {
-          if (qx.html.Element.__P_244_5[this._nodeName]) {
-            writer(">");
-          } else {
-            writer("></", this._nodeName, ">");
-          }
-        } else {
-          writer(">");
+        if (this._children) {
           for (var i = 0; i < this._children.length; i++) {
-            this._children[i]._serializeImpl(writer);
+            this._children[i]._serializeImpl(serializer);
           }
-          writer("</", this._nodeName, ">");
         }
+        serializer.closeTag();
+        serializer.popQxObject(this);
       },
       /**
        * Connects a widget to this element, and to the DOM element in this Element.  They
@@ -559,6 +568,9 @@
        * @Override
        */
       _addChildImpl: function _addChildImpl(child) {
+        if (this.getIsCustomElement()) {
+          throw new Error("Cannot add children to Custom Elements! (use ".concat(this.classname, ".inject and <slot> tags instead)"));
+        }
         qx.html.Element.superclass.prototype._addChildImpl.call(this, child);
         this.__P_244_17 = true;
       },
@@ -566,101 +578,152 @@
        * @Override
        */
       _removeChildImpl: function _removeChildImpl(child) {
+        if (this.getIsCustomElement()) {
+          throw new Error("Cannot remove children from Custom Elements!");
+        }
         qx.html.Element.superclass.prototype._removeChildImpl.call(this, child);
         this.__P_244_17 = true;
       },
-      /*
-       * @Override
+      /**
+       * Works out the object ID to use on an actual DOM node
+       *
+       * @returns {String}
        */
-      getQxObject: function getQxObject(id) {
-        if (this.__P_244_17) {
-          this.importQxObjectIds();
-          this.__P_244_17 = false;
+      _getApplicableQxObjectId: function _getApplicableQxObjectId() {
+        if (qx.core.Environment.get("module.objectid")) {
+          var target = this.getQxObjectId() ? this : this._qxObject;
+          var id = target ? qx.core.Id.getAbsoluteIdOf(target, true) : null;
+          return id;
+        } else {
+          throw new Error("Cannot get qxObjectId because module.objectid is false");
         }
-        return qx.html.Element.superclass.prototype.getQxObject.call(this, id);
+      },
+      /*
+      ---------------------------------------------------------------------------
+        SLOTS API
+      ---------------------------------------------------------------------------
+      */
+      /**
+       * Retrieve the slots this element contains.
+       * The Map returned is a copy of the internal Map, as such modifications to
+       * it will not effect the element.
+       * @returns {Map<string, qx.html.Slot>} A `Map` of slots, keyed by slot name. The default slot, if it exists, is keyed as `qx.html.Slot.DEFAULT`
+       */
+      getSlots: function getSlots() {
+        if (!this.getIsCustomElement()) {
+          return null;
+        }
+        return new Map(this.__P_244_2);
       },
       /**
-       * When a tree of virtual dom is loaded via JSX code, the paths in the `data-qx-object-id`
-       * attribute are relative to the JSX, and these attribuite values need to be loaded into the
-       * `qxObjectId` property - while resolving the parent parts of the path.
+       * Returns whether the element has slot(s) matching the given projection.
        *
-       * EG
-       *  <div data-qx-object-id="root">
-       *    <div>
-       *      <div data-qx-object-id="root/child">
-       *
-       * The root DIV has to take on the qxObjectId of "root", and the third DIV has to have the
-       * ID "child" and be owned by the first DIV.
-       *
-       * This function imports and resolves those IDs
+       * @param projection {true | String?} `true` to check for the default slot, a string to check for a slot with the given name, or `null|undefined` to check for any slot(s)
+       * @return {Boolean} Indicates whether the projected slot exists, or if any slots exist if no projection was specified
+       * @example
+       * ```js
+       * myNode.hasSlots();             // `true` if there are any slots                 `false` if there are none
+       * myNode.hasSlots(true);         // `true` if there is a default (unnamed) slot   `false` if there is not
+       * myNode.hasSlots("mySlotName"); // `true` if there is a slot named `mySlotName`  `false` if there is not
+       * ```
        */
-      importQxObjectIds: function importQxObjectIds() {
-        var _this = this;
-        var thisId = this.getQxObjectId();
-        var thisAttributeId = this.getAttribute("data-qx-object-id");
-        if (thisId) {
-          this.setAttribute("data-qx-object-id", thisId, true);
-        } else if (thisAttributeId) {
-          this.setQxObjectId(thisAttributeId);
+      hasSlots: function hasSlots(projection) {
+        if (projection === null || projection === undefined) {
+          return this.__P_244_2.size > 0;
         }
-        var resolveImpl = function resolveImpl(node) {
-          if (!(node instanceof qx.html.Element)) {
-            return;
+        if (projection === true || projection === qx.html.Slot.DEFAULT) {
+          return this.__P_244_2.has(qx.html.Slot.DEFAULT);
+        }
+        if (typeof projection === "string") {
+          return this.__P_244_2.has(projection);
+        }
+        throw new Error("Cannot lookup slot for projection: ".concat(JSON.stringify(projection), " ! (expected: string, true, or null/undefined)"));
+      },
+      /**
+       * Provides devtime debugging assistance for invalid slot usage.
+       * @return {Boolean} `false` if no such slot, `true` otherwise
+       */
+      __P_244_18: function __P_244_18(slotName) {
+        if (!this.hasSlots(slotName)) {
+          return false;
+        }
+        return true;
+      },
+      /**
+       * Inject a child into a slot descendant of this element.
+       *
+       * @param childNode {qx.html.Element} element to insert. Use a fragment to inject many elements.
+       * @param slotNameOverride {String?} name of the slot to inject into. If not provided, the slot name will be read from the `slot` attribute of `childNode`. This may be useful when injecting fragments.
+       * @return {this} this object (for chaining support)
+       *
+       * @example
+       * ```js
+       * myElem.inject(<p>Hello World</p>);                   // inject one child to the default slot
+       * myElem.inject(<p slot="mySlotName">Hello World</p>); // inject one child to the slot named "mySlotName" (declarative syntax)
+       * myElem.inject(<p>Hello World</p>, "mySlotName");     // inject one child to the slot named "mySlotName" (functional syntax)
+       * myElem.inject((
+       *   <>
+       *     <p>Hello World</p>
+       *     <p>Hello Qooxdoo</p>
+       *   </>
+       * ), "mySlotName");                                    // inject a fragment of children to the slot named "mySlotName"
+       *
+       * ```
+       */
+      inject: function inject(childNode, slotNameOverride) {
+        var _ref, _childNode$getAttribu, _childNode$getAttribu2;
+        var slotName = (_ref = (_childNode$getAttribu = (_childNode$getAttribu2 = childNode.getAttribute) === null || _childNode$getAttribu2 === void 0 ? void 0 : _childNode$getAttribu2.call(childNode, "slot")) !== null && _childNode$getAttribu !== void 0 ? _childNode$getAttribu : slotNameOverride) !== null && _ref !== void 0 ? _ref : qx.html.Slot.DEFAULT;
+        if (!this.__P_244_18(slotName)) {
+          return;
+        }
+        this.__P_244_2.get(slotName).add(childNode);
+
+        // Chaining support
+        return this;
+      },
+      __P_244_19: function __P_244_19(element) {
+        var _element$getIsCustomE,
+          _element$getChildren,
+          _this = this;
+        // recursively iterate children. if any are instanceof qx.html.Slot, append to local slots, if any are `.getIscustomElement() === true`, do not look at their children
+        var slots = [];
+        if ((_element$getIsCustomE = element.getIsCustomElement) !== null && _element$getIsCustomE !== void 0 && _element$getIsCustomE.call(element)) {
+          return slots;
+        }
+        if (element instanceof qx.html.Slot) {
+          slots.push(element);
+        }
+        (_element$getChildren = element.getChildren()) === null || _element$getChildren === void 0 || _element$getChildren.forEach(function (child) {
+          return slots.push.apply(slots, _toConsumableArray(_this.__P_244_19(child)));
+        });
+        return slots;
+      },
+      _slotScanAdd: function _slotScanAdd(element) {
+        var _iterator = _createForOfIteratorHelper(this.__P_244_19(element)),
+          _step;
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var slot = _step.value;
+            this.__P_244_2.set(slot.getName(), slot);
           }
-          var id = node.getQxObjectId();
-          var attributeId = node.getAttribute("data-qx-object-id");
-          if (id) {
-            if (attributeId && !attributeId.endsWith(id)) {
-              _this.warn("Attribute ID ".concat(attributeId, " is not compatible with the qxObjectId ").concat(id, "; the qxObjectId will take prescedence"));
-            }
-            node.setAttribute("data-qx-object-id", id, true);
-          } else if (attributeId) {
-            var segs = attributeId ? attributeId.split("/") : [];
-
-            // Only one segment is easy, add directly to the parent
-            if (segs.length == 1) {
-              var parentNode = _this;
-              parentNode.addOwnedQxObject(node, attributeId);
-
-              // Lots of segments
-            } else if (segs.length > 1) {
-              var _parentNode = null;
-
-              // If the first segment is the outer parent
-              if (segs[0] == thisAttributeId || segs[0] == thisId) {
-                // Only two segments, means that the parent is the outer and the last segment
-                //  is the ID of the node being examined
-                if (segs.length == 2) {
-                  _parentNode = _this;
-
-                  // Otherwise resolve it further
-                } else {
-                  // Extract the segments, exclude the first and last, and that leaves us with a relative ID path
-                  var subId = qx.lang.Array.clone(segs);
-                  subId.shift();
-                  subId.pop();
-                  subId = subId.join("/");
-                  _parentNode = _this.getQxObject(subId);
-                }
-
-                // Not the outer node, then resolve as a global.
-              } else {
-                _parentNode = qx.core.Id.getQxObject(attributeId);
-              }
-              if (!_parentNode) {
-                throw new Error("Cannot resolve object id ancestors, id=".concat(attributeId));
-              }
-              _parentNode.addOwnedQxObject(node, segs[segs.length - 1]);
-            }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      },
+      _slotScanRemove: function _slotScanRemove(child) {
+        var _iterator2 = _createForOfIteratorHelper(this.__P_244_19(child)),
+          _step2;
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var slot = _step2.value;
+            this.__P_244_2["delete"](slot.getName());
           }
-          var children = node.getChildren();
-          if (children) {
-            children.forEach(resolveImpl);
-          }
-        };
-        var children = this.getChildren();
-        if (children) {
-          children.forEach(resolveImpl);
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
         }
       },
       /*
@@ -682,8 +745,8 @@
 
         // Copy attributes
         var data = this.__P_244_1;
+        var Attribute = qx.bom.element.Attribute;
         if (data) {
-          var Attribute = qx.bom.element.Attribute;
           if (fromMarkup) {
             var str;
             var classes = {};
@@ -716,6 +779,7 @@
             Attribute.set(elem, key, data[key]);
           }
         }
+        Attribute.set(elem, "data-qx-object-id", this._getApplicableQxObjectId());
 
         // Copy styles
         var data = this.__P_244_0;
@@ -837,18 +901,8 @@
 
         // Extract first element
         helper.innerHTML = html;
-        this.useElement(helper.firstChild);
+        this.useNode(helper.firstChild);
         return this._domNode;
-      },
-      /**
-       * Uses an existing element instead of creating one. This may be interesting
-       * when the DOM element is directly needed to add content etc.
-       *
-       * @param elem {Element} Element to reuse
-       * @deprecated {6.1} see useNode
-       */
-      useElement: function useElement(elem) {
-        this.useNode(elem);
       },
       /**
        * Whether the element is focusable (or will be when created)
@@ -1120,26 +1174,26 @@
         this.enableScrolling();
         this.scrollToX(0);
         this.scrollToY(0);
-        this.addListener("scroll", this.__P_244_18, this);
+        this.addListener("scroll", this.__P_244_20, this);
       },
       /**
        * Re-enables browser-native scrolling
        */
       enableScrolling: function enableScrolling() {
-        this.removeListener("scroll", this.__P_244_18, this);
+        this.removeListener("scroll", this.__P_244_20, this);
       },
-      __P_244_19: null,
+      __P_244_21: null,
       /**
        * Handler for the scroll-event
        *
        * @param e {qx.event.type.Native} scroll-event
        */
-      __P_244_18: function __P_244_18(e) {
-        if (!this.__P_244_19) {
-          this.__P_244_19 = true;
+      __P_244_20: function __P_244_20(e) {
+        if (!this.__P_244_21) {
+          this.__P_244_21 = true;
           this._domNode.scrollTop = 0;
           this._domNode.scrollLeft = 0;
-          delete this.__P_244_19;
+          delete this.__P_244_21;
         }
       },
       /*
@@ -1260,7 +1314,7 @@
         }
 
         // if element not created, save the selection for flushing
-        qx.html.Element.__P_244_2[this.toHashCode()] = {
+        qx.html.Element.__P_244_3[this.toHashCode()] = {
           element: this,
           start: start,
           end: end
@@ -1278,7 +1332,7 @@
         if (el) {
           qx.bom.Selection.clear(el);
         }
-        delete qx.html.Element.__P_244_2[this.toHashCode()];
+        delete qx.html.Element.__P_244_3[this.toHashCode()];
       },
       /*
       ---------------------------------------------------------------------------
@@ -1296,7 +1350,7 @@
        * @param action {String} action to queue
        * @param args {Array} optional list of arguments for the action
        */
-      __P_244_20: function __P_244_20(action, args) {
+      __P_244_22: function __P_244_22(action, args) {
         {
           var actions = qx.html.Element._actions;
           actions.push({
@@ -1317,7 +1371,7 @@
        */
       focus: function focus() {
         {
-          this.__P_244_20("focus");
+          this.__P_244_22("focus");
         }
       },
       /**
@@ -1328,7 +1382,7 @@
        */
       blur: function blur() {
         {
-          this.__P_244_20("blur");
+          this.__P_244_22("blur");
         }
       },
       /**
@@ -1339,7 +1393,7 @@
        */
       activate: function activate() {
         {
-          this.__P_244_20("activate");
+          this.__P_244_22("activate");
         }
       },
       /**
@@ -1350,7 +1404,7 @@
        */
       deactivate: function deactivate() {
         {
-          this.__P_244_20("deactivate");
+          this.__P_244_22("deactivate");
         }
       },
       /**
@@ -1364,7 +1418,7 @@
        */
       capture: function capture(containerCapture) {
         {
-          this.__P_244_20("capture", [containerCapture !== false]);
+          this.__P_244_22("capture", [containerCapture !== false]);
         }
       },
       /**
@@ -1374,7 +1428,7 @@
        */
       releaseCapture: function releaseCapture() {
         {
-          this.__P_244_20("releaseCapture");
+          this.__P_244_22("releaseCapture");
         }
       },
       /*
@@ -1453,7 +1507,6 @@
       setStyles: function setStyles(map, direct) {
         // inline calls to "set" because this method is very
         // performance critical!
-
         var Style = qx.bom.element.Style;
         if (!this.__P_244_0) {
           this.__P_244_0 = {};
@@ -1538,7 +1591,7 @@
         CSS CLASS SUPPORT
       ---------------------------------------------------------------------------
       */
-      __P_244_21: function __P_244_21() {
+      __P_244_23: function __P_244_23() {
         var map = {};
         (this.getAttribute("class") || "").split(" ").forEach(function (name) {
           if (name) {
@@ -1547,7 +1600,7 @@
         });
         return map;
       },
-      __P_244_22: function __P_244_22(map) {
+      __P_244_24: function __P_244_24(map) {
         var primaryClass = this.getCssClass();
         var arr = [];
         if (primaryClass) {
@@ -1565,7 +1618,7 @@
        */
       addClass: function addClass(name) {
         var _this2 = this;
-        var classes = this.__P_244_21();
+        var classes = this.__P_244_23();
         var primaryClass = (this.getCssClass() || "").toLowerCase();
         name.split(" ").forEach(function (name) {
           var nameLower = name.toLowerCase();
@@ -1574,7 +1627,7 @@
           }
           classes[nameLower] = name;
         });
-        this.setAttribute("class", this.__P_244_22(classes));
+        this.setAttribute("class", this.__P_244_24(classes));
         return this;
       },
       /**
@@ -1585,7 +1638,7 @@
        */
       removeClass: function removeClass(name) {
         var _this3 = this;
-        var classes = this.__P_244_21();
+        var classes = this.__P_244_23();
         var primaryClass = (this.getCssClass() || "").toLowerCase();
         name.split(" ").forEach(function (name) {
           var nameLower = name.toLowerCase();
@@ -1594,7 +1647,7 @@
           }
           delete classes[nameLower];
         });
-        this.setAttribute("class", this.__P_244_22(classes));
+        this.setAttribute("class", this.__P_244_24(classes));
         return this;
       },
       /**
@@ -1608,7 +1661,7 @@
        * Apply method for cssClass
        */
       _applyCssClass: function _applyCssClass(value, oldValue) {
-        var classes = this.__P_244_21();
+        var classes = this.__P_244_23();
         if (oldValue) {
           oldValue.split(" ").forEach(function (name) {
             return delete classes[name.toLowerCase()];
@@ -1619,7 +1672,24 @@
             return classes[name.toLowerCase()] = name;
           });
         }
-        this.setAttribute("class", this.__P_244_22(classes));
+        this.setAttribute("class", this.__P_244_24(classes));
+      },
+      _applyIsCustomElement: function _applyIsCustomElement(value, oldValue) {
+        var _this$getChildren,
+          _this4 = this;
+        // if currently `true` and trying to set `false`, throw an error
+        if (!value && oldValue) {
+          throw new Error("Cannot change isCustomElement property of ".concat(this.classname, " after it has been set"));
+        }
+        // if no change, return
+        if (value === oldValue) {
+          return;
+        }
+
+        // therefore currently `false` and trying to set `true`; re-grab all slots
+        (_this$getChildren = this.getChildren()) === null || _this$getChildren === void 0 || _this$getChildren.forEach(function (child) {
+          return _this4._slotScanAdd(child);
+        });
       },
       /*
       ---------------------------------------------------------------------------
@@ -1704,7 +1774,7 @@
           this.__P_244_1[key] = value;
         }
         if (key == "data-qx-object-id") {
-          this.setQxObjectId(value);
+          throw new Error("Cannot set the data-qx-object-id attribute directly");
         }
 
         // Uncreated elements simply copy all data
@@ -1774,10 +1844,6 @@
      */
     defer: function defer(statics) {
       statics.__P_244_6 = new qx.util.DeferredCall(statics.flush, statics);
-      statics.__P_244_5 = {};
-      ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"].forEach(function (tagName) {
-        statics.__P_244_5[tagName] = true;
-      });
     },
     /*
     *****************************************************************************
@@ -1797,4 +1863,4 @@
   qx.html.Element.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Element.js.map?dt=1709410152710
+//# sourceMappingURL=Element.js.map?dt=1717235381594

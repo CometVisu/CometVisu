@@ -1,49 +1,48 @@
 {
-  "className": "qx.util.OOUtil",
-  "packageName": "qx.util",
-  "name": "OOUtil",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 700
-      },
-      "end": {
-        "line": 164,
-        "column": 3,
-        "index": 4785
-      }
+  "version": 0.3,
+  "lastModified": 1717235171922,
+  "lastModifiedIso": "2024-06-01T09:46:11.922Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/OOUtil.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 678
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is a base class for the OO system defined by Class, Mixin\n and Interface. It contains helper which are basically needed to create the\n Classes which define the OO system.</p>"
-        }
-      ]
+    "end": {
+      "line": 164,
+      "column": 3,
+      "index": 4622
     }
   },
-  "type": "class",
+  "className": "qx.util.OOUtil",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is a base class for the OO system defined by Class, Mixin",
+      " * and Interface. It contains helper which are basically needed to create the",
+      " * Classes which define the OO system.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is a base class for the OO system defined by Class, Mixin\n and Interface. It contains helper which are basically needed to create the\n Classes which define the OO system.</p>"
+      }
+    ]
+  },
   "statics": {
     "classIsDefined": {
-      "location": {
-        "start": {
-          "line": 31,
-          "column": 4,
-          "index": 920
-        },
-        "end": {
-          "line": 33,
-          "column": 5,
-          "index": 1007
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given class exists",
+          "     *",
+          "     * @param name {String} class name to check",
+          "     * @return {Boolean} true if class exists",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,35 +55,55 @@
             "body": "name {String} class name to check",
             "paramName": "name",
             "description": " class name to check",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} true if class exists",
-            "type": "Boolean",
-            "description": " true if class exists"
+            "type": "boolean",
+            "description": "true if class exists"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPropertyDefinition": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 43,
+          "line": 31,
           "column": 4,
-          "index": 1342
+          "index": 890
         },
         "end": {
-          "line": 53,
+          "line": 33,
           "column": 5,
-          "index": 1594
+          "index": 975
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getPropertyDefinition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the definition of the given property, if not redefined.",
+          "     * Returns null if the property does not exist.",
+          "     *",
+          "     * @param clazz {Class} class to check",
+          "     * @param name {String} name of the class to check for",
+          "     * @return {Map|null} whether the object support the given event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,7 +123,7 @@
             "body": "name {String} name of the class to check for",
             "paramName": "name",
             "description": " name of the class to check for",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -112,27 +131,50 @@
             "name": "@return",
             "body": "{Map|null} whether the object support the given event.",
             "type": "Map|null",
-            "description": " whether the object support the given event."
+            "description": "whether the object support the given event."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasProperty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 43,
           "column": 4,
-          "index": 1856
+          "index": 1300
         },
         "end": {
-          "line": 64,
+          "line": 53,
           "column": 5,
-          "index": 1956
+          "index": 1542
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map|null"
+      },
+      "appearsIn": []
+    },
+    "hasProperty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a class has the given property",
+          "     *",
+          "     * @param clazz {Class} class to check",
+          "     * @param name {String} name of the property to check for",
+          "     * @return {Boolean} whether the class includes the given property.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -152,35 +194,59 @@
             "body": "name {String} name of the property to check for",
             "paramName": "name",
             "description": " name of the property to check for",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the class includes the given property.",
-            "type": "Boolean",
-            "description": " whether the class includes the given property."
+            "type": "boolean",
+            "description": "whether the class includes the given property."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getEventType": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 74,
+          "line": 62,
           "column": 4,
-          "index": 2244
+          "index": 1795
         },
         "end": {
-          "line": 86,
+          "line": 64,
           "column": 5,
-          "index": 2540
+          "index": 1893
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getEventType": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the event type of the given event. Returns null if",
+          "     * the event does not exist.",
+          "     *",
+          "     * @param clazz {Class} class to check",
+          "     * @param name {String} name of the event",
+          "     * @return {String|null} Event type of the given event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -200,7 +266,7 @@
             "body": "name {String} name of the event",
             "paramName": "name",
             "description": " name of the event",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -208,27 +274,50 @@
             "name": "@return",
             "body": "{String|null} Event type of the given event.",
             "type": "String|null",
-            "description": " Event type of the given event."
+            "description": "Event type of the given event."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "supportsEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 95,
+          "line": 74,
           "column": 4,
-          "index": 2803
+          "index": 2171
         },
         "end": {
-          "line": 97,
+          "line": 86,
           "column": 5,
-          "index": 2896
+          "index": 2455
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "supportsEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a class supports the given event type",
+          "     *",
+          "     * @param clazz {Class} class to check",
+          "     * @param name {String} name of the event to check for",
+          "     * @return {Boolean} whether the class supports the given event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -248,35 +337,60 @@
             "body": "name {String} name of the event to check for",
             "paramName": "name",
             "description": " name of the event to check for",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the class supports the given event.",
-            "type": "Boolean",
-            "description": " whether the class supports the given event."
+            "type": "boolean",
+            "description": "whether the class supports the given event."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getByInterface": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 108,
+          "line": 95,
           "column": 4,
-          "index": 3314
+          "index": 2709
         },
         "end": {
-          "line": 126,
+          "line": 97,
           "column": 5,
-          "index": 3706
+          "index": 2800
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getByInterface": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the class or one of its super classes which contains the",
+          "     * declaration of the given interface. Returns null if the interface is not",
+          "     * specified anywhere.",
+          "     *",
+          "     * @param clazz {Class} class to look for the interface",
+          "     * @param iface {Interface} interface to look for",
+          "     * @return {Class|null} the class which directly implements the given interface",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -304,27 +418,55 @@
             "name": "@return",
             "body": "{Class|null} the class which directly implements the given interface",
             "type": "Class|null",
-            "description": " the class which directly implements the given interface"
+            "description": "the class which directly implements the given interface"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasInterface": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 140,
+          "line": 108,
           "column": 4,
-          "index": 4220
+          "index": 3207
         },
         "end": {
-          "line": 142,
+          "line": 126,
           "column": 5,
-          "index": 4316
+          "index": 3581
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "iface",
+          "type": "Interface"
+        }
+      ],
+      "returnType": {
+        "type": "Class|null"
+      },
+      "appearsIn": []
+    },
+    "hasInterface": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a given class or any of its super classes includes a given interface.",
+          "     *",
+          "     * This function will return \"true\" if the interface was defined",
+          "     * in the class declaration ({@link qx.Class#define}) of the class",
+          "     * or any of its super classes using the \"implement\"",
+          "     * key.",
+          "     *",
+          "     * @param clazz {Class} class to check",
+          "     * @param iface {Interface} the interface to check for",
+          "     * @return {Boolean} whether the class includes the interface.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -351,28 +493,50 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the class includes the interface.",
-            "type": "Boolean",
-            "description": " whether the class includes the interface."
+            "type": "boolean",
+            "description": "whether the class includes the interface."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getMixins": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 150,
+          "line": 140,
           "column": 4,
-          "index": 4535
+          "index": 4081
         },
         "end": {
-          "line": 162,
+          "line": 142,
           "column": 5,
-          "index": 4775
+          "index": 4175
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "iface",
+          "type": "Interface"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getMixins": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of all mixins available in a given class.",
+          "     *",
+          "     * @param clazz {Class} class which should be inspected",
+          "     * @return {Mixin[]} array of mixins this class uses",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -393,13 +557,36 @@
             "name": "@return",
             "body": "{Mixin[]} array of mixins this class uses",
             "type": "Mixin[]",
-            "description": " array of mixins this class uses"
+            "description": "array of mixins this class uses"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 4386
+        },
+        "end": {
+          "line": 162,
+          "column": 5,
+          "index": 4614
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        }
+      ],
+      "returnType": {
+        "type": "Mixin[]"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

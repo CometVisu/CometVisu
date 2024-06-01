@@ -134,7 +134,7 @@
       /**
        * Returns the current selection.
        *
-       * @return {qx.data.Array} The current selected elements.
+       * @return {qx.data.IListData} The current selected elements.
        */
       getSelection: function getSelection() {}
     }
@@ -142,4 +142,4 @@
   qx.ui.tree.core.IVirtualTree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IVirtualTree.js.map?dt=1709410166754
+//# sourceMappingURL=IVirtualTree.js.map?dt=1717235417880

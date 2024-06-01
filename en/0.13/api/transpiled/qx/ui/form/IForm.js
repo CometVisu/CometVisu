@@ -63,6 +63,7 @@
        * Set the enabled state of the widget.
        *
        * @param enabled {Boolean} The enabled state.
+       * @return {Boolean}
        */
       setEnabled: function setEnabled(enabled) {
         return arguments.length == 1;
@@ -154,4 +155,4 @@
   qx.ui.form.IForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IForm.js.map?dt=1709410160097
+//# sourceMappingURL=IForm.js.map?dt=1717235410786

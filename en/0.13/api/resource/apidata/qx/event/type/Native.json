@@ -1,49 +1,59 @@
 {
-  "className": "qx.event.type.Native",
-  "packageName": "qx.event.type",
-  "name": "Native",
-  "superClass": "qx.event.type.Event",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 644
-      },
-      "end": {
-        "line": 125,
-        "column": 3,
-        "index": 3868
-      }
+  "version": 0.3,
+  "lastModified": 1717235171854,
+  "lastModifiedIso": "2024-06-01T09:46:11.854Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/type/Native.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 621
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Common base class for all native events (DOM events, IO events, …).</p>"
-        }
-      ]
+    "end": {
+      "line": 125,
+      "column": 3,
+      "index": 3744
     }
   },
-  "type": "class",
+  "className": "qx.event.type.Native",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Common base class for all native events (DOM events, IO events, ...).",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Common base class for all native events (DOM events, IO events, …).</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.Event",
   "members": {
     "init": {
-      "location": {
-        "start": {
-          "line": 46,
-          "column": 4,
-          "index": 1768
-        },
-        "end": {
-          "line": 61,
-          "column": 5,
-          "index": 2241
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize the fields of the event. The event must be initialized before",
+          "     * it can be dispatched.",
+          "     *",
+          "     * @param nativeEvent {Event} The DOM event to use",
+          "     * @param target {Object?} The event target",
+          "     * @param relatedTarget {Object?null} The related event target",
+          "     * @param canBubble {Boolean?false} Whether or not the event is a bubbling event.",
+          "     *     If the event is bubbling, the bubbling can be stopped using",
+          "     *     {@link qx.event.type.Event#stopPropagation}",
+          "     * @param cancelable {Boolean?false} Whether or not an event can have its default",
+          "     *     action prevented. The default action can either be the browser's",
+          "     *     default action of a native event (e.g. open the context menu on a",
+          "     *     right click) or the default action of a qooxdoo class (e.g. close",
+          "     *     the window widget). The default action can be prevented by calling",
+          "     *     {@link #preventDefault}",
+          "     * @return {qx.event.type.Event} The initialized event instance",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -99,33 +109,86 @@
             "name": "@return",
             "body": "{qx.event.type.Event} The initialized event instance",
             "type": "qx.event.type.Event",
-            "description": " The initialized event instance"
+            "description": "The initialized event instance"
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1723
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 2181
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "nativeEvent",
+          "type": "qx.event.type.Event"
+        },
+        {
+          "name": "target",
+          "type": "Object",
+          "optional": true
+        },
+        {
+          "name": "relatedTarget",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "canBubble",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        },
+        {
+          "name": "cancelable",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.type.Event"
+      },
       "overriddenFrom": "qx.event.type.Event",
       "appearsIn": [
         "qx.event.type.Event"
       ]
     },
     "clone": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 64,
           "column": 4,
-          "index": 2269
+          "index": 2206
         },
         "end": {
           "line": 73,
           "column": 5,
-          "index": 2508
+          "index": 2436
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "embryo"
+        }
+      ],
       "overriddenFrom": "qx.event.type.Event",
       "appearsIn": [
         "qx.event.type.Event",
@@ -133,19 +196,16 @@
       ]
     },
     "_cloneNativeEvent": {
-      "location": {
-        "start": {
-          "line": 82,
-          "column": 4,
-          "index": 2737
-        },
-        "end": {
-          "line": 85,
-          "column": 5,
-          "index": 2850
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clone the native browser event",
+          "     *",
+          "     * @param nativeEvent {Event} The native browser event",
+          "     * @param clone {Object} The initialized clone.",
+          "     * @return {Object} The cloned event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -165,35 +225,54 @@
             "body": "clone {Object} The initialized clone.",
             "paramName": "clone",
             "description": " The initialized clone.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} The cloned event",
-            "type": "Object",
-            "description": " The cloned event"
+            "type": "Record<any, any>",
+            "description": "The cloned event"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "preventDefault": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 90,
+          "line": 82,
           "column": 4,
-          "index": 2954
+          "index": 2656
         },
         "end": {
-          "line": 93,
+          "line": 85,
           "column": 5,
-          "index": 3060
+          "index": 2766
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "nativeEvent",
+          "type": "qx.event.type.Event"
+        },
+        {
+          "name": "clone",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "preventDefault": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Prevent browser default behavior, e.g. opening the context menu, ...",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -201,27 +280,35 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2865
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2968
+        }
+      },
+      "type": "function",
+      "params": [],
       "overriddenFrom": "qx.event.type.Event",
       "appearsIn": [
         "qx.event.type.Event"
       ]
     },
     "getNativeEvent": {
-      "location": {
-        "start": {
-          "line": 100,
-          "column": 4,
-          "index": 3203
-        },
-        "end": {
-          "line": 102,
-          "column": 5,
-          "index": 3256
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the native browser event object of this event.",
+          "     *",
+          "     * @return {Event} The native browser event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -233,27 +320,42 @@
             "name": "@return",
             "body": "{Event} The native browser event",
             "type": "qx.event.type.Event",
-            "description": " The native browser event"
+            "description": "The native browser event"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setReturnValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 112,
+          "line": 100,
           "column": 4,
-          "index": 3598
+          "index": 3104
         },
         "end": {
-          "line": 114,
+          "line": 102,
           "column": 5,
-          "index": 3674
+          "index": 3155
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.event.type.Event"
+      },
+      "appearsIn": []
+    },
+    "setReturnValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the event's return value. If the return value is set in a",
+          "     * beforeunload event, the user will be asked by the browser, whether",
+          "     * he really wants to leave the page. The return string will be displayed in",
+          "     * the message box.",
+          "     *",
+          "     * @param returnValue {String?null} Return value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -272,23 +374,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getReturnValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 121,
+          "line": 112,
           "column": 4,
-          "index": 3800
+          "index": 3487
         },
         "end": {
-          "line": 123,
+          "line": 114,
           "column": 5,
-          "index": 3858
+          "index": 3561
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "returnValue",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getReturnValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Retrieves the event's return value.",
+          "     *",
+          "     * @return {String?null} The return value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -300,153 +418,31 @@
             "name": "@return",
             "body": "{String?null} The return value",
             "type": "String?null",
-            "description": " The return value"
+            "description": "The return value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3680
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3736
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [],
+      "returnType": {
+        "type": "String?null"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": [
-    "qx.event.type.Dom"
-  ]
+  "statics": {},
+  "properties": {}
 }

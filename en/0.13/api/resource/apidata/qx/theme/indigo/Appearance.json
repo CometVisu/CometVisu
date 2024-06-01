@@ -1,70 +1,80 @@
 {
-  "className": "qx.theme.indigo.Appearance",
-  "packageName": "qx.theme.indigo",
-  "name": "Appearance",
-  "superClass": "qx.theme.simple.Appearance",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 36,
-        "column": 0,
-        "index": 1222
-      },
-      "end": {
-        "line": 174,
-        "column": 3,
-        "index": 4100
-      }
+  "version": 0.3,
+  "lastModified": 1717235168910,
+  "lastModifiedIso": "2024-06-01T09:46:08.910Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/Appearance.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 36,
+      "column": 0,
+      "index": 1187
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The simple qooxdoo appearance theme.</p>"
-        }
-      ],
-      "@asset": [
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/apps/office-calendar.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/places/folder-open.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/places/folder.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/mimetypes/text-plain.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/view-refresh.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/window-close.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/dialog-cancel.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/dialog-ok.png"
-        }
-      ]
+    "end": {
+      "line": 174,
+      "column": 3,
+      "index": 3927
     }
   },
-  "type": "theme",
-  "descendants": [
-    "qx.theme.indigo.AppearanceDark",
-    "qxl.apiviewer.Appearance"
-  ]
+  "className": "qx.theme.indigo.Appearance",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The simple qooxdoo appearance theme.",
+      " *",
+      " * @asset(qx/icon/${qx.icontheme}/16/apps/office-calendar.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/places/folder-open.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/places/folder.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/mimetypes/text-plain.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/view-refresh.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/window-close.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/dialog-cancel.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/dialog-ok.png)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The simple qooxdoo appearance theme.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/apps/office-calendar.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/places/folder-open.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/places/folder.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/mimetypes/text-plain.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/view-refresh.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/window-close.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/dialog-cancel.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/dialog-ok.png"
+      }
+    ]
+  },
+  "superClass": "qx.theme.simple.Appearance",
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

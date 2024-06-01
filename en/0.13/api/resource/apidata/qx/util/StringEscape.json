@@ -1,49 +1,50 @@
 {
-  "className": "qx.util.StringEscape",
-  "packageName": "qx.util",
-  "name": "StringEscape",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 680
-      },
-      "end": {
-        "line": 99,
-        "column": 3,
-        "index": 2707
-      }
+  "version": 0.3,
+  "lastModified": 1717235172426,
+  "lastModifiedIso": "2024-06-01T09:46:12.426Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/StringEscape.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 656
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Generic escaping and unescaping of DOM strings.\n {@link qx.bom.String} for (un)escaping of HTML strings.\n {@link qx.xml.String} for (un)escaping of XML strings.</p>"
-        }
-      ]
+    "end": {
+      "line": 99,
+      "column": 3,
+      "index": 2609
     }
   },
-  "type": "class",
+  "className": "qx.util.StringEscape",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Generic escaping and unescaping of DOM strings.",
+      " *",
+      " * {@link qx.bom.String} for (un)escaping of HTML strings.",
+      " * {@link qx.xml.String} for (un)escaping of XML strings.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Generic escaping and unescaping of DOM strings.\n {@link qx.bom.String} for (un)escaping of HTML strings.\n {@link qx.xml.String} for (un)escaping of XML strings.</p>"
+      }
+    ]
+  },
   "statics": {
     "escape": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 951
-        },
-        "end": {
-          "line": 58,
-          "column": 5,
-          "index": 1539
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * generic escaping method",
+          "     *",
+          "     * @param str {String} string to escape",
+          "     * @param charCodeToEntities {Map} entity to charcode map",
+          "     * @return {String} escaped string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,42 +57,65 @@
             "body": "str {String} string to escape",
             "paramName": "str",
             "description": " string to escape",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "charCodeToEntities {Map} entity to charcode map",
             "paramName": "charCodeToEntities",
             "description": " entity to charcode map",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} escaped string",
-            "type": "String",
-            "description": " escaped string"
+            "type": "string",
+            "description": "escaped string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "unescape": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 67,
+          "line": 34,
           "column": 4,
-          "index": 1760
+          "index": 918
         },
         "end": {
-          "line": 97,
+          "line": 58,
           "column": 5,
-          "index": 2697
+          "index": 1482
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        },
+        {
+          "name": "charCodeToEntities",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "unescape": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * generic unescaping method",
+          "     *",
+          "     * @param str {String} string to unescape",
+          "     * @param entitiesToCharCode {Map} charcode to entity map",
+          "     * @return {String} unescaped string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,28 +128,55 @@
             "body": "str {String} string to unescape",
             "paramName": "str",
             "description": " string to unescape",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "entitiesToCharCode {Map} charcode to entity map",
             "paramName": "entitiesToCharCode",
             "description": " charcode to entity map",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} unescaped string",
-            "type": "String",
-            "description": " unescaped string"
+            "type": "string",
+            "description": "unescaped string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1694
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2601
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        },
+        {
+          "name": "entitiesToCharCode",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

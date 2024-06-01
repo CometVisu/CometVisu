@@ -20,12 +20,10 @@
     "Controller",
     "PREFIX",
     "_QxConnector",
-    "_inherits",
     "_class",
-    "_super",
-    "_createSuper",
     "_classCallCheck",
-    "call",
+    "_callSuper",
+    "_inherits",
     "_createClass",
     "QxConnector",
     "widgets",
@@ -37,5 +35,6 @@
   "sourcesContent": [
     "/* Tile.js\n *\n * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.\n *\n * This program is free software; you can redistribute it and/or modify it\n * under the terms of the GNU General Public License as published by the Free\n * Software Foundation; either version 3 of the License, or (at your option)\n * any later version.\n *\n * This program is distributed in the hope that it will be useful, but WITHOUT\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for\n * more details.\n *\n * You should have received a copy of the GNU General Public License along\n * with this program; if not, write to the Free Software Foundation, Inc.,\n * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n */\n\n/**\n * Shows two half sized widgets as pair.\n */\nqx.Class.define('cv.ui.structure.tile.widgets.WidgetPair', {\n  extend: cv.ui.structure.tile.components.AbstractComponent,\n\n  defer(QxClass) {\n    customElements.define(\n      cv.ui.structure.tile.Controller.PREFIX + 'widget-pair',\n      class extends QxConnector {\n        constructor() {\n          super(QxClass);\n        }\n      }\n    );\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,yCAAyC,EAAE;IACzDC,MAAM,EAAEC,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,UAAU,CAACC,iBAAiB;IAEzDC,KAAK,WAAAA,MAACC,OAAO,EAAE;MACbC,cAAc,CAACV,MAAM,CACnBE,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACM,UAAU,CAACC,MAAM,GAAG,aAAa,yBAAAC,YAAA;QAAA;;QAAAC,SAAA,CAAAC,MAAA,EAAAF,YAAA;QAAA,IAAAG,MAAA,GAAAC,YAAA,CAAAF,MAAA;QAEpD,SAAAA,OAAA,EAAc;UAAAG,eAAA,OAAAH,MAAA;UAAA,OAAAC,MAAA,CAAAG,IAAA,OACNV,OAAO;QACf;QAAC,OAAAW,YAAA,CAAAL,MAAA;MAAA,EAHWM,WAAW,CAK3B,CAAC;IACH;EACF,CAAC,CAAC;EAnCFnB,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACiB,OAAO,CAACC,UAAU,CAACzB,aAAa,GAAGA,aAAa;AAAC"
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,yCAAyC,EAAE;IACzDC,MAAM,EAAEC,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACC,UAAU,CAACC,iBAAiB;IAEzDC,KAAK,WAAAA,MAACC,OAAO,EAAE;MACbC,cAAc,CAACV,MAAM,CACnBE,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACM,UAAU,CAACC,MAAM,GAAG,aAAa,yBAAAC,YAAA;QAAA;;QAEpD,SAAAC,OAAA,EAAc;UAAAC,eAAA,OAAAD,MAAA;UAAA,OAAAE,UAAA,OAAAF,MAAA,GACNL,OAAO;QACf;QAACQ,SAAA,CAAAH,MAAA,EAAAD,YAAA;QAAA,OAAAK,YAAA,CAAAJ,MAAA;MAAA,EAHWK,WAAW,CAK3B,CAAC;IACH;EACF,CAAC,CAAC;EAnCFjB,EAAE,CAACC,EAAE,CAACC,SAAS,CAACC,IAAI,CAACe,OAAO,CAACC,UAAU,CAACvB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
 }

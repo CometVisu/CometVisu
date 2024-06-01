@@ -1,0 +1,73 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171682,
+  "lastModifiedIso": "2024-06-01T09:46:11.682Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/config/Manifest.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 527
+    },
+    "end": {
+      "line": 35,
+      "column": 3,
+      "index": 786
+    }
+  },
+  "className": "qx.tool.config.Manifest",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A model for the Manifest.json file",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A model for the Manifest.json file</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.config.Abstract",
+  "isSingleton": true,
+  "abstract": false,
+  "statics": {
+    "config": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4,
+          "index": 645
+        },
+        "end": {
+          "line": 29,
+          "column": 5,
+          "index": 716
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 725
+      },
+      "end": {
+        "line": 34,
+        "column": 3,
+        "index": 782
+      }
+    }
+  },
+  "members": {},
+  "properties": {}
+}

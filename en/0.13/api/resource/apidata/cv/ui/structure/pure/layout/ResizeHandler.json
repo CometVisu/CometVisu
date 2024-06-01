@@ -1,39 +1,43 @@
 {
-  "className": "cv.ui.structure.pure.layout.ResizeHandler",
-  "packageName": "cv.ui.structure.pure.layout",
-  "name": "ResizeHandler",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 29,
-        "column": 0,
-        "index": 1106
-      },
-      "end": {
-        "line": 390,
-        "column": 3,
-        "index": 12904
-      }
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/pure/layout/ResizeHandler.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 1106
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Manager for all resizing issues. It ensures that the real resizing\n calculations are only done as often as really necessary.</p>"
-        }
-      ]
+    "end": {
+      "line": 390,
+      "column": 3,
+      "index": 12904
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.ui.structure.pure.layout.ResizeHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Manager for all resizing issues. It ensures that the real resizing",
+      " * calculations are only done as often as really necessary.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Manager for all resizing issues. It ensures that the real resizing\n calculations are only done as often as really necessary.</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "states": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 38,
@@ -46,10 +50,11 @@
           "index": 1389
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "$pageSize": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 40,
@@ -62,10 +67,11 @@
           "index": 1411
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "$navbarTop": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 41,
@@ -78,10 +84,11 @@
           "index": 1433
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "$navbarBottom": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 42,
@@ -94,10 +101,11 @@
           "index": 1458
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "width": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 43,
@@ -110,10 +118,11 @@
           "index": 1472
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "height": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 44,
@@ -126,10 +135,11 @@
           "index": 1487
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "__initial": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 45,
@@ -142,10 +152,11 @@
           "index": 1508
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__backdropRetries": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 47,
@@ -158,10 +169,11 @@
           "index": 1535
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "validationQueue": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 49,
@@ -174,10 +186,11 @@
           "index": 1561
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "reset": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 51,
@@ -191,9 +204,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "__request": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 60,
@@ -206,10 +222,11 @@
           "index": 1772
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getPageSize": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 62,
@@ -223,9 +240,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "noCache"
+        }
+      ],
+      "appearsIn": []
     },
     "getNavbarTop": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 69,
@@ -239,9 +263,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "noCache"
+        }
+      ],
+      "appearsIn": []
     },
     "getNavbarBottom": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 76,
@@ -255,9 +286,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "noCache"
+        }
+      ],
+      "appearsIn": []
     },
     "queueJob": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 83,
@@ -271,9 +309,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "callback"
+        }
+      ],
+      "appearsIn": []
     },
     "flush": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 92,
@@ -287,9 +332,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "makeAllSizesValid": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 100,
@@ -303,9 +351,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "makeBackdropValid": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 115,
@@ -319,9 +370,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "__makeBackdropValid": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 119,
@@ -335,9 +389,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "makeNavbarValid": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 264,
@@ -351,9 +408,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "__makeNavbarValid": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 268,
@@ -367,9 +427,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "makePagesizeValid": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 277,
@@ -383,9 +446,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "__makePagesizeValid": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 287,
@@ -399,9 +465,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "makeRowspanValid": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 310,
@@ -415,9 +484,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "__makeRowspanValid": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 314,
@@ -431,9 +503,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "__updateRowHeight": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 330,
@@ -447,9 +522,16 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "elem"
+        }
+      ],
+      "appearsIn": []
     },
     "invalidateBackdrop": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 359,
@@ -463,9 +545,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "invalidateNavbar": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 364,
@@ -479,9 +564,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "invalidateRowspan": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 370,
@@ -495,9 +583,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "invalidateScreensize": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 374,
@@ -511,22 +602,10 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 387,
-        "column": 2,
-        "index": 12784
-      },
-      "end": {
-        "line": 389,
-        "column": 3,
-        "index": 12900
-      }
-    }
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -1,32 +1,38 @@
 {
-  "className": "cv.ui.structure.pure.layout.Manager",
-  "packageName": "cv.ui.structure.pure.layout",
-  "name": "Manager",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 822
-      },
-      "end": {
-        "line": 319,
-        "column": 3,
-        "index": 12919
-      }
-    },
-    "jsdoc": {}
-  },
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/pure/layout/Manager.js",
   "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 822
+    },
+    "end": {
+      "line": 319,
+      "column": 3,
+      "index": 12919
+    }
+  },
+  "className": "cv.ui.structure.pure.layout.Manager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " "
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "lastBodyWidth": {
+      "jsdoc": {
+        "raw": [
+          " use to recognize if the screen width has crossed the maxMobileScreenWidth"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 32,
@@ -39,11 +45,11 @@
           "index": 1148
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "currentPageUnavailableWidth": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 33,
@@ -56,10 +62,11 @@
           "index": 1185
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "currentPageUnavailableHeight": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 34,
@@ -72,10 +79,11 @@
           "index": 1223
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "currentPageNavbarVisibility": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 35,
@@ -88,10 +96,11 @@
           "index": 1262
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "oldWidth": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 36,
@@ -104,10 +113,11 @@
           "index": 1280
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "LAYOUT_MODE": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 38,
@@ -120,10 +130,11 @@
           "index": 1309
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "COLSPAN_CLASS": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 40,
@@ -136,10 +147,11 @@
           "index": 1335
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "getCurrentPageNavbarVisibility": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 42,
@@ -153,9 +165,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "getColspanClass": {
+      "jsdoc": {
+        "raw": [
+          " return S, M or L depening on the passed width"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 58,
@@ -168,11 +187,17 @@
           "index": 2206
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "width"
+        }
+      ],
+      "appearsIn": []
     },
     "adjustColumns": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 68,
@@ -186,9 +211,27 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "getAvailableWidth": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * return the available width for a the currently visible page",
+          "     * the available width is calculated by subtracting the following elements widths (if they are visible) from the body width",
+          "     * - Left-Navbar",
+          "     * - Right-Navbar",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>return the available width for a the currently visible page\n the available width is calculated by subtracting the following elements widths (if they are visible) from the body width</p>\n<ul>\n<li>Left-Navbar</li>\n<li>Right-Navbar</li>\n</ul>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 84,
@@ -201,18 +244,33 @@
           "index": 5289
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getAvailableHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * return the available height for a the currently visible page",
+          "     * the available height is calculated by subtracting the following elements heights (if they are visible) from the window height",
+          "     * - Top-Navigation",
+          "     * - Top-Navbar",
+          "     * - Bottom-Navbar",
+          "     * - Statusbar",
+          "     *",
+          "     * Notice: the former way to use the subtract the main.position().top value from the total height leads to errors in certain cases",
+          "     *         because the value of main.position().top is not reliable all the time",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>return the available width for a the currently visible page\n the available width is calculated by subtracting the following elements widths (if they are visible) from the body width</p>\n<ul>\n<li>Left-Navbar</li>\n<li>Right-Navbar</li>\n</ul>"
+            "body": "<p>return the available height for a the currently visible page\n the available height is calculated by subtracting the following elements heights (if they are visible) from the window height</p>\n<ul>\n<li>Top-Navigation</li>\n<li>Top-Navbar</li>\n<li>Bottom-Navbar</li>\n<li>Statusbar\nNotice: the former way to use the subtract the main.position().top value from the total height leads to errors in certain cases\n     because the value of main.position().top is not reliable all the time</li>\n</ul>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAvailableHeight": {
+      "access": "public",
       "location": {
         "start": {
           "line": 141,
@@ -225,18 +283,13 @@
           "index": 8283
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>return the available height for a the currently visible page\n the available height is calculated by subtracting the following elements heights (if they are visible) from the window height</p>\n<ul>\n<li>Top-Navigation</li>\n<li>Top-Navbar</li>\n<li>Bottom-Navbar</li>\n<li>Statusbar\nNotice: the former way to use the subtract the main.position().top value from the total height leads to errors in certain cases\n     because the value of main.position().top is not reliable all the time</li>\n</ul>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "rowspanClass": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 188,
@@ -250,9 +303,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "rowspan"
+        }
+      ],
+      "appearsIn": []
     },
     "getWidgetColspan": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 193,
@@ -266,9 +326,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "widget"
+        },
+        {
+          "name": "width"
+        }
+      ],
+      "appearsIn": []
     },
     "getLayoutSuffix": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 206,
@@ -282,22 +352,23 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "width"
+        }
+      ],
+      "appearsIn": []
     },
     "applyColumnWidths": {
-      "location": {
-        "start": {
-          "line": 222,
-          "column": 4,
-          "index": 9310
-        },
-        "end": {
-          "line": 295,
-          "column": 5,
-          "index": 12252
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * applies the correct width to the widgets corresponding to the given colspan setting",
+          "     *",
+          "     * @param selector {String?} only update elements found by the given selector",
+          "     * @param includeNavbars {Boolean?} also update navbar elements (default: true)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -323,10 +394,37 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4,
+          "index": 9310
+        },
+        "end": {
+          "line": 295,
+          "column": 5,
+          "index": 12252
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "selector",
+          "type": "String",
+          "optional": true
+        },
+        {
+          "name": "includeNavbars",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
     },
     "__applyWidthClass": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 297,
@@ -340,8 +438,17 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "elem"
+        },
+        {
+          "name": "widthClassSuffix"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -1,0 +1,115 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172030,
+  "lastModifiedIso": "2024-06-01T09:46:12.030Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/Preprocess.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 732
+    },
+    "end": {
+      "line": 82,
+      "column": 3,
+      "index": 2140
+    }
+  },
+  "className": "qx.tool.compiler.Preprocess",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "path"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 28,
+        "column": 2,
+        "index": 810
+      },
+      "end": {
+        "line": 31,
+        "column": 3,
+        "index": 868
+      }
+    }
+  },
+  "members": {
+    "__path": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 888
+        },
+        "end": {
+          "line": 34,
+          "column": 16,
+          "index": 900
+        }
+      },
+      "appearsIn": []
+    },
+    "run": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 907
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1434
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "outputTo"
+        },
+        {
+          "name": "cb"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_process": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1441
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2132
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        },
+        {
+          "name": "cb"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

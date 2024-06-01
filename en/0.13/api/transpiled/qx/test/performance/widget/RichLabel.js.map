@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "performance",
+    "widget",
+    "AbstractWidget",
+    "members",
+    "_createWidget",
+    "ui",
+    "basic",
+    "Label",
+    "set",
+    "rich",
+    "RichLabel"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/performance/widget/RichLabel.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qx.test.performance.widget.RichLabel\", {\n  extend: qx.test.performance.widget.AbstractWidget,\n\n  members: {\n    _createWidget() {\n      return new qx.ui.basic.Label(\"<b>juhu</b>\").set({ rich: true });\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,sCAAsC,EAAE;IACtDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,MAAM,CAACC,cAAc;IAEjDC,OAAO,EAAE;MACPC,aAAa,WAAAA,cAAA,EAAG;QACd,OAAO,IAAIZ,EAAE,CAACa,EAAE,CAACC,KAAK,CAACC,KAAK,CAAC,aAAa,CAAC,CAACC,GAAG,CAAC;UAAEC,IAAI,EAAE;QAAK,CAAC,CAAC;MACjE;IACF;EACF,CAAC,CAAC;EARFjB,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,MAAM,CAACS,SAAS,CAACf,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

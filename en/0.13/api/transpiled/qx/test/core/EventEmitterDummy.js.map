@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "events",
+    "plain",
+    "error",
+    "data",
+    "eventName",
+    "test",
+    "EventEmitterDummy"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/core/EventEmitterDummy.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qx.test.core.EventEmitterDummy\", {\n  extend: qx.core.Object,\n  events: {\n    plain: \"qx.event.type.Event\",\n    error: \"qx.__12345__\",\n    data: \"qx.event.type.Data\",\n    eventName: \"qx.event.type.Data\"\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,gCAAgC,EAAE;IAChDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IACtBC,MAAM,EAAE;MACNC,KAAK,EAAE,qBAAqB;MAC5BC,KAAK,EAAE,cAAc;MACrBC,IAAI,EAAE,oBAAoB;MAC1BC,SAAS,EAAE;IACb;EACF,CAAC,CAAC;EARFb,EAAE,CAACc,IAAI,CAACP,IAAI,CAACQ,iBAAiB,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

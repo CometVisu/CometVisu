@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "ui",
+    "virtual",
+    "performance",
+    "AbstractLayerTest",
+    "type",
+    "members",
+    "getLayer",
+    "layer",
+    "DomCell"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/virtual/performance/DomCell.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.ui.virtual.performance.DomCell\", {\n  extend: qx.test.ui.virtual.performance.AbstractLayerTest,\n  type: \"abstract\", // disabled\n\n  members: {\n    getLayer() {\n      return new qx.test.ui.virtual.performance.layer.DomCell();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wCAAwC,EAAE;IACxDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,EAAE,CAACC,OAAO,CAACC,WAAW,CAACC,iBAAiB;IACxDC,IAAI,EAAE,UAAU;IAAE;;IAElBC,OAAO,EAAE;MACPC,QAAQ,WAAAA,SAAA,EAAG;QACT,OAAO,IAAId,EAAE,CAACO,IAAI,CAACC,EAAE,CAACC,OAAO,CAACC,WAAW,CAACK,KAAK,CAACC,OAAO,CAAC,CAAC;MAC3D;IACF;EACF,CAAC,CAAC;EA3BFhB,EAAE,CAACO,IAAI,CAACC,EAAE,CAACC,OAAO,CAACC,WAAW,CAACM,OAAO,CAACb,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

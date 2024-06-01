@@ -1,49 +1,50 @@
 {
-  "className": "qx.lang.Type",
-  "packageName": "qx.lang",
-  "name": "Type",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 581
-      },
-      "end": {
-        "line": 182,
-        "column": 3,
-        "index": 5951
-      }
+  "version": 0.3,
+  "lastModified": 1717235172618,
+  "lastModifiedIso": "2024-06-01T09:46:12.618Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/Type.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 559
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Utility class with type check for all native JavaScript data types.</p>"
-        }
-      ]
+    "end": {
+      "line": 182,
+      "column": 3,
+      "index": 5770
     }
   },
-  "type": "class",
+  "className": "qx.lang.Type",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Utility class with type check for all native JavaScript data types.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Utility class with type check for all native JavaScript data types.</p>"
+      }
+    ]
+  },
   "statics": {
     "getClass": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 979
-        },
-        "end": {
-          "line": 34,
-          "column": 35,
-          "index": 1010
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the internal class of the value. See",
+          "     * http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/",
+          "     * for details.",
+          "     *",
+          "     * @signature function(value)",
+          "     * @param value {var} value to get the class for",
+          "     * @return {String} the internal class of the value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -69,28 +70,40 @@
           {
             "name": "@return",
             "body": "{String} the internal class of the value",
-            "type": "qx.lang.String",
-            "description": " the internal class of the value"
+            "type": "string",
+            "description": "the internal class of the value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isString": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 43,
+          "line": 34,
           "column": 4,
-          "index": 1219
+          "index": 946
         },
         "end": {
-          "line": 43,
+          "line": 34,
           "column": 35,
-          "index": 1250
+          "index": 977
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "isString": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the value is a string.",
+          "     *",
+          "     * @signature function(value)",
+          "     * @param value {var} Value to check.",
+          "     * @return {Boolean} Whether the value is a string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -116,28 +129,40 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is a string.",
-            "type": "Boolean",
-            "description": " Whether the value is a string."
+            "type": "boolean",
+            "description": "Whether the value is a string."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isArray": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 43,
           "column": 4,
-          "index": 1459
+          "index": 1177
         },
         "end": {
-          "line": 52,
-          "column": 33,
-          "index": 1488
+          "line": 43,
+          "column": 35,
+          "index": 1208
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isArray": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the value is an array.",
+          "     *",
+          "     * @signature function(value)",
+          "     * @param value {var} Value to check.",
+          "     * @return {Boolean} Whether the value is an array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -163,28 +188,41 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is an array.",
-            "type": "Boolean",
-            "description": " Whether the value is an array."
+            "type": "boolean",
+            "description": "Whether the value is an array."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isObject": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 52,
           "column": 4,
-          "index": 1776
+          "index": 1408
         },
         "end": {
-          "line": 62,
-          "column": 35,
-          "index": 1807
+          "line": 52,
+          "column": 33,
+          "index": 1437
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isObject": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the value is an object. Note that built-in types like Window are",
+          "     * not reported to be objects.",
+          "     *",
+          "     * @signature function(value)",
+          "     * @param value {var} Value to check.",
+          "     * @return {Boolean} Whether the value is an object.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -210,28 +248,40 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is an object.",
-            "type": "Boolean",
-            "description": " Whether the value is an object."
+            "type": "boolean",
+            "description": "Whether the value is an object."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isFunction": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 71,
+          "line": 62,
           "column": 4,
-          "index": 2020
+          "index": 1715
         },
         "end": {
-          "line": 71,
-          "column": 39,
-          "index": 2055
+          "line": 62,
+          "column": 35,
+          "index": 1746
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isFunction": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the value is a function.",
+          "     *",
+          "     * @signature function(value)",
+          "     * @param value {var} Value to check.",
+          "     * @return {Boolean} Whether the value is a function.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -257,28 +307,40 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is a function.",
-            "type": "Boolean",
-            "description": " Whether the value is a function."
+            "type": "boolean",
+            "description": "Whether the value is a function."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isFunctionOrAsyncFunction": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 80,
+          "line": 71,
           "column": 4,
-          "index": 2310
+          "index": 1950
         },
         "end": {
-          "line": 80,
-          "column": 69,
-          "index": 2375
+          "line": 71,
+          "column": 39,
+          "index": 1985
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isFunctionOrAsyncFunction": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the value is a function or an async function.",
+          "     *",
+          "     * @signature function(value)",
+          "     * @param value {var} Value to check.",
+          "     * @return {Boolean} Whether the value is a function or an async function.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -304,28 +366,39 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is a function or an async function.",
-            "type": "Boolean",
-            "description": " Whether the value is a function or an async function."
+            "type": "boolean",
+            "description": "Whether the value is a function or an async function."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isRegExp": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 88,
+          "line": 80,
           "column": 4,
-          "index": 2573
+          "index": 2231
         },
         "end": {
-          "line": 90,
-          "column": 5,
-          "index": 2646
+          "line": 80,
+          "column": 69,
+          "index": 2296
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isRegExp": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the value is a regular expression.",
+          "     *",
+          "     * @param value {var} Value to check.",
+          "     * @return {Boolean} Whether the value is a regular expression.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -345,28 +418,51 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is a regular expression.",
-            "type": "Boolean",
-            "description": " Whether the value is a regular expression."
+            "type": "boolean",
+            "description": "Whether the value is a regular expression."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isNumber": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 103,
+          "line": 88,
           "column": 4,
-          "index": 3041
+          "index": 2486
         },
         "end": {
-          "line": 113,
+          "line": 90,
           "column": 5,
-          "index": 3555
+          "index": 2557
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isNumber": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the value is a number.",
+          "     *",
+          "     * This function checks if the _type_ of the value is Number.",
+          "     * Global properties *NaN*, *-Infinity*, *+Infinity*,",
+          "     * *Number.POSITIVE_INFINITY* and *Number.NEGATIVE_INFINITY*",
+          "     * return true.",
+          "     *",
+          "     * @param value {var} Value to check.",
+          "     * @return {Boolean} Whether the value is a number.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -386,28 +482,46 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is a number.",
-            "type": "Boolean",
-            "description": " Whether the value is a number."
+            "type": "boolean",
+            "description": "Whether the value is a number."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isBoolean": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 121,
+          "line": 103,
           "column": 4,
-          "index": 3731
+          "index": 2939
         },
         "end": {
-          "line": 131,
+          "line": 113,
           "column": 5,
-          "index": 4249
+          "index": 3443
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isBoolean": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the value is a boolean.",
+          "     *",
+          "     * @param value {var} Value to check.",
+          "     * @return {Boolean} Whether the value is a boolean.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -427,28 +541,46 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is a boolean.",
-            "type": "Boolean",
-            "description": " Whether the value is a boolean."
+            "type": "boolean",
+            "description": "Whether the value is a boolean."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isDate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 139,
+          "line": 121,
           "column": 4,
-          "index": 4419
+          "index": 3611
         },
         "end": {
-          "line": 149,
+          "line": 131,
           "column": 5,
-          "index": 4925
+          "index": 4119
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isDate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the value is a date.",
+          "     *",
+          "     * @param value {var} Value to check.",
+          "     * @return {Boolean} Whether the value is a date.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -468,28 +600,46 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is a date.",
-            "type": "Boolean",
-            "description": " Whether the value is a date."
+            "type": "boolean",
+            "description": "Whether the value is a date."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isError": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 157,
+          "line": 139,
           "column": 4,
-          "index": 5097
+          "index": 4281
         },
         "end": {
-          "line": 167,
+          "line": 149,
           "column": 5,
-          "index": 5607
+          "index": 4777
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isError": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the value is a Error.",
+          "     *",
+          "     * @param value {var} Value to check.",
+          "     * @return {Boolean} Whether the value is a Error.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -509,28 +659,49 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is a Error.",
-            "type": "Boolean",
-            "description": " Whether the value is a Error."
+            "type": "boolean",
+            "description": "Whether the value is a Error."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isPromise": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 178,
+          "line": 157,
           "column": 4,
-          "index": 5856
+          "index": 4941
         },
         "end": {
-          "line": 180,
+          "line": 167,
           "column": 5,
-          "index": 5941
+          "index": 5441
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isPromise": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the value is a Promise.",
+          "     *",
+          "     * checks if value exists and has a function 'then'",
+          "     *",
+          "     * @param value {var} Value to check.",
+          "     * @return {Boolean} Whether the value is a Promise.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -550,14 +721,37 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is a Promise.",
-            "type": "Boolean",
-            "description": " Whether the value is a Promise."
+            "type": "boolean",
+            "description": "Whether the value is a Promise."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 5679
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 5762
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

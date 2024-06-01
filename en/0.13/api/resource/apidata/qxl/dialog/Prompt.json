@@ -1,0 +1,429 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/Prompt.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 21,
+      "column": 0,
+      "index": 656
+    },
+    "end": {
+      "line": 172,
+      "column": 3,
+      "index": 4197
+    }
+  },
+  "className": "qxl.dialog.Prompt",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Prompts the user with a question or request for information and a text",
+      " * field in which the user can type something. Similar to window.prompt(),",
+      " * but asyncronous",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Prompts the user with a question or request for information and a text\n field in which the user can type something. Similar to window.prompt(),\n but asyncronous</p>"
+      }
+    ]
+  },
+  "superClass": "qxl.dialog.Dialog",
+  "properties": {
+    "value": {
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 824
+        },
+        "end": {
+          "line": 32,
+          "column": 5,
+          "index": 911
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeValue"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The default value of the textfield",
+          "     * @type {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The default value of the textfield</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String}"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "placeholder": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 960
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1059
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyPlaceholder"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A placeholder text",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A placeholder text</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "filter": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1140
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1229
+        }
+      },
+      "json": {
+        "check": "RegExp",
+        "nullable": true,
+        "apply": "_applyFilter"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A regular expression used to determine valid input",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A regular expression used to determine valid input</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "maxLength": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1291
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1387
+        }
+      },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyMaxLength"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximum length of the input",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximum length of the input</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_textField": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1412
+        },
+        "end": {
+          "line": 63,
+          "column": 20,
+          "index": 1428
+        }
+      },
+      "appearsIn": []
+    },
+    "_createWidgetContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create the main content of the widget",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create the main content of the widget</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1496
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 3447
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qxl.dialog.Dialog",
+      "appearsIn": [
+        "qxl.dialog.Dialog",
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_applyPlaceholder": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the 'placeholder' property",
+          "     * @param value",
+          "     * @param old",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Applies the 'placeholder' property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value",
+            "paramName": "value",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "old",
+            "paramName": "old",
+            "type": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3550
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 3632
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyFilter": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the 'filter' property",
+          "     * @param value",
+          "     * @param old",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Applies the 'filter' property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value",
+            "paramName": "value",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "old",
+            "paramName": "old",
+            "type": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 3730
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 3802
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyMaxLength": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the 'maxLength' propery",
+          "     * @param value",
+          "     * @param old",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Applies the 'maxLength' propery</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value",
+            "paramName": "value",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "old",
+            "paramName": "old",
+            "type": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 3902
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 3980
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_handleOk": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle click on the OK button",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle click on the OK button</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4040
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4187
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qxl.dialog.Dialog",
+      "appearsIn": [
+        "qxl.dialog.Dialog",
+        "qxl.dialog.MDialog"
+      ]
+    }
+  },
+  "statics": {}
+}

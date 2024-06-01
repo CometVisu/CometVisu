@@ -1,0 +1,57 @@
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Class": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.tool.cli.commands.Command": {
+        "require": true
+      },
+      "qx.tool.cli.Cli": {}
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2017 Christian Boulanger
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Christian Boulanger (info@bibliograph.org, @cboulanger)
+  
+  ************************************************************************ */
+  /**
+   * Adds scripts, classes, etc. to the projects
+   */
+  qx.Class.define("qx.tool.cli.commands.Add", {
+    extend: qx.tool.cli.commands.Command,
+    statics: {
+      getYargsCommand: function getYargsCommand() {
+        return {
+          command: "add <command> [options]",
+          desc: "adds new elements to an existing qooxdoo application/library",
+          builder: function builder(yargs) {
+            qx.tool.cli.Cli.addYargsCommands(yargs, ["Class", "Script"], "qx.tool.cli.commands.add");
+            return yargs.demandCommand().showHelpOnFail().help();
+          },
+          handler: function handler() {}
+        };
+      }
+    },
+    members: {
+      // place for common methods.
+    }
+  });
+  qx.tool.cli.commands.Add.$$dbClassInfo = $$dbClassInfo;
+})();
+
+//# sourceMappingURL=Add.js.map?dt=1717235399358

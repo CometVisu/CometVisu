@@ -1,0 +1,1041 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171942,
+  "lastModifiedIso": "2024-06-01T09:46:11.942Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Package.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 672
+    },
+    "end": {
+      "line": 298,
+      "column": 3,
+      "index": 7538
+    }
+  },
+  "className": "qx.tool.cli.commands.Package",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Handles library packages",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Handles library packages</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Command",
+  "statics": {
+    "cache_dir": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the directory in which to download the package files",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of the directory in which to download the package files</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 868
+        },
+        "end": {
+          "line": 33,
+          "column": 28,
+          "index": 892
+        }
+      },
+      "appearsIn": []
+    },
+    "package_cache_name": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the file that caches the package registry",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of the file that caches the package registry</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 976
+        },
+        "end": {
+          "line": 38,
+          "column": 44,
+          "index": 1016
+        }
+      },
+      "appearsIn": []
+    },
+    "lockfile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The lockfile with library versions etc.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The lockfile with library versions etc.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1086
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1134
+        }
+      },
+      "appearsIn": []
+    },
+    "repository_cache_url": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The URL of the cached repository data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The URL of the cached repository data</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1202
+        },
+        "end": {
+          "line": 51,
+          "column": 81,
+          "index": 1305
+        }
+      },
+      "appearsIn": []
+    },
+    "getYargsCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The yargs command data",
+          "     * @return {{}}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The yargs command data</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{}}",
+            "type": "{}",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1378
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 1974
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "{}"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__cache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The current cache object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The current cache object</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2046
+        },
+        "end": {
+          "line": 90,
+          "column": 17,
+          "index": 2059
+        }
+      },
+      "appearsIn": []
+    },
+    "checkMigrations": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@override": [
+          {
+            "name": "@override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2099
+        },
+        "end": {
+          "line": 95,
+          "column": 30,
+          "index": 2125
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "getLockfilePath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the absolute path to the lockfile.",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the absolute path to the lockfile.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2222
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 2327
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "deleteLockfile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deletes the lockfile",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deletes the lockfile</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 109,
+          "column": 4,
+          "index": 2409
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 2491
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "getLockfileData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the lockfile data. Deprecated. Use {@link qx.tool.cli.commands.Package#getLockfileModel}",
+          "     * @deprecated",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the lockfile data. Deprecated. Use {@link qx.tool.cli.commands.Package#getLockfileModel}</p>"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 2661
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 2748
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getLockfileModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the model of the lockfile",
+          "     * @return {Promise<qx.tool.config.Lockfile>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the model of the lockfile</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<qx.tool.config.Lockfile>}",
+            "type": "Promise<qx.tool.config.Lockfile>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 2862
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 2953
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<qx.tool.config.Lockfile>"
+      },
+      "appearsIn": []
+    },
+    "getManifestModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the model of the manifest",
+          "     * @return {Promise<qx.tool.config.Manifest>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the model of the manifest</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<qx.tool.config.Manifest>}",
+            "type": "Promise<qx.tool.config.Manifest>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3067
+        },
+        "end": {
+          "line": 136,
+          "column": 5,
+          "index": 3158
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<qx.tool.config.Manifest>"
+      },
+      "appearsIn": []
+    },
+    "_getConfigData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convenience method to return all config file models as an array",
+          "     * @return {Array} containing [{qx.tool.config.Manifest}, {qx.tool.config.Lockfile}, {qx.tool.config.Compile}]",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Convenience method to return all config file models as an array</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array} containing [{qx.tool.config.Manifest}, {qx.tool.config.Lockfile}, {qx.tool.config.Compile}]",
+            "type": "Array<any>",
+            "description": "containing [{qx.tool.config.Manifest}, {qx.tool.config.Lockfile}, {qx.tool.config.Compile}]"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3367
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 3474
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_saveConfigData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Save configuration data if their content has changed",
+          "     * @return {Promise<void>}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Save configuration data if their content has changed</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 3604
+        },
+        "end": {
+          "line": 169,
+          "column": 5,
+          "index": 4244
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "getInstalledLibraryTag": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the tag name of the given library in the given package, if installed.",
+          "     * Returns false if not installed.",
+          "     * @param {String} repo_name",
+          "     * @param {String} library_name",
+          "     * @return {String|false}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the tag name of the given library in the given package, if installed.\n Returns false if not installed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} repo_name",
+            "paramName": "repo_name",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} library_name",
+            "paramName": "library_name",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String|false}",
+            "type": "String|false",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4490
+        },
+        "end": {
+          "line": 187,
+          "column": 5,
+          "index": 4804
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "repo_name",
+          "type": "string"
+        },
+        {
+          "name": "library_name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String|false"
+      },
+      "appearsIn": []
+    },
+    "getInstalledLibraryData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the data of the given library, if installed.",
+          "     * Returns false if not installed.",
+          "     * @param {String} library_name",
+          "     * @return {Object|false}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the data of the given library, if installed.\n Returns false if not installed.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} library_name",
+            "paramName": "library_name",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object|false}",
+            "type": "Object|false",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 4992
+        },
+        "end": {
+          "line": 199,
+          "column": 5,
+          "index": 5176
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "library_name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Object|false"
+      },
+      "appearsIn": []
+    },
+    "getCachePath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the absolute path to the file that persists the cache object",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the absolute path to the file that persists the cache object</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5299
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 5447
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getRepositoryCacheUrl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the URL of the package registry data on GitHub",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the URL of the package registry data on GitHub</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 216,
+          "column": 4,
+          "index": 5556
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 5643
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the cache object, retrieving it from a local file if necessary",
+          "     * @return {Object}",
+          "     * @todo use config model API for cache file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the cache object, retrieving it from a local file if necessary</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ],
+        "@todo": [
+          {
+            "name": "@todo",
+            "body": "use config model API for cache file"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 5817
+        },
+        "end": {
+          "line": 244,
+          "column": 5,
+          "index": 6272
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "readFromFile"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "setCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manually overwrite the cache data",
+          "     * @param data {Object}",
+          "     * @return {void}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Manually overwrite the cache data</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {Object}",
+            "paramName": "data",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{void}",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 251,
+          "column": 4,
+          "index": 6386
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 6435
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "void"
+      },
+      "appearsIn": []
+    },
+    "saveCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Saves the cache to a hidden local file",
+          "     * @return {void}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Saves the cache to a hidden local file</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{void}",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4,
+          "index": 6526
+        },
+        "end": {
+          "line": 266,
+          "column": 5,
+          "index": 6751
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "void"
+      },
+      "appearsIn": []
+    },
+    "exportCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Exports the cache to an external file. Note that the structure of the cache",
+          "     * data can change any time. Do not build anything on it. You have been warned.",
+          "     * @param path {String}",
+          "     * @return {void}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Exports the cache to an external file. Note that the structure of the cache\n data can change any time. Do not build anything on it. You have been warned.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String}",
+            "paramName": "path",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{void}",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 274,
+          "column": 4,
+          "index": 6991
+        },
+        "end": {
+          "line": 286,
+          "column": 5,
+          "index": 7359
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "void"
+      },
+      "appearsIn": []
+    },
+    "clearCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the cache",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Clears the cache</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4,
+          "index": 7406
+        },
+        "end": {
+          "line": 296,
+          "column": 5,
+          "index": 7530
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

@@ -1,49 +1,49 @@
 {
-  "className": "qx.bom.Range",
-  "packageName": "qx.bom",
-  "name": "Range",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 690
-      },
-      "end": {
-        "line": 101,
-        "column": 3,
-        "index": 3128
-      }
+  "version": 0.3,
+  "lastModified": 1717235172094,
+  "lastModifiedIso": "2024-06-01T09:46:12.094Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Range.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 667
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Low-level Range API which is used together with the low-level Selection API.\n This is especially useful whenever a developer want to work on text level,\n e.g. for an editor.</p>"
-        }
-      ]
+    "end": {
+      "line": 101,
+      "column": 3,
+      "index": 3028
     }
   },
-  "type": "class",
+  "className": "qx.bom.Range",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Low-level Range API which is used together with the low-level Selection API.",
+      " * This is especially useful whenever a developer want to work on text level,",
+      " * e.g. for an editor.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Low-level Range API which is used together with the low-level Selection API.\n This is especially useful whenever a developer want to work on text level,\n e.g. for an editor.</p>"
+      }
+    ]
+  },
   "statics": {
     "get": {
-      "location": {
-        "start": {
-          "line": 39,
-          "column": 4,
-          "index": 1156
-        },
-        "end": {
-          "line": 99,
-          "column": 6,
-          "index": 3118
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the range object of the given node.",
+          "     *",
+          "     * @signature function(node)",
+          "     * @param node {Node} node to get the range of",
+          "     * @return {Range} valid range of given selection",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -70,13 +70,29 @@
             "name": "@return",
             "body": "{Range} valid range of given selection",
             "type": "qx.bom.Range",
-            "description": " valid range of given selection"
+            "description": "valid range of given selection"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1118
+        },
+        "end": {
+          "line": 99,
+          "column": 6,
+          "index": 3020
+        }
+      },
+      "returnType": {
+        "type": "qx.bom.Range"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

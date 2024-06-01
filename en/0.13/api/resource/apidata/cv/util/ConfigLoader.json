@@ -1,47 +1,55 @@
 {
-  "className": "cv.util.ConfigLoader",
-  "packageName": "cv.util",
-  "name": "ConfigLoader",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 1081
-      },
-      "end": {
-        "line": 353,
-        "column": 3,
-        "index": 12725
-      }
+  "version": 0.3,
+  "lastModified": 1717235105618,
+  "lastModifiedIso": "2024-06-01T09:45:05.618Z",
+  "classFilename": "../../source/class/cv/util/ConfigLoader.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 1081
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The ConfigLoader loads CometVisu config files from the backend. If the loaded config file contains\n <include> elements those config parts are loaded and add to the XML-Document.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam <tbraeutigam@gmail.com></div><div class=\"since\"><label>Since:</label> 2018</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam <tbraeutigam@gmail.com>"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2018"
-        }
-      ]
+    "end": {
+      "line": 353,
+      "column": 3,
+      "index": 12725
     }
   },
-  "type": "class",
+  "className": "cv.util.ConfigLoader",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The ConfigLoader loads CometVisu config files from the backend. If the loaded config file contains",
+      " * <include> elements those config parts are loaded and add to the XML-Document.",
+      " *",
+      " * @author Tobias Bräutigam <tbraeutigam@gmail.com>",
+      " * @since 2018",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The ConfigLoader loads CometVisu config files from the backend. If the loaded config file contains\n <include> elements those config parts are loaded and add to the XML-Document.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam <tbraeutigam@gmail.com>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2018"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 36,
@@ -53,11 +61,12 @@
         "column": 3,
         "index": 1366
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "__loadQueue": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 47,
@@ -70,10 +79,11 @@
           "index": 1539
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__doneCallback": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 48,
@@ -86,10 +96,11 @@
           "index": 1565
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__doneCallbackContext": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 49,
@@ -102,10 +113,11 @@
           "index": 1598
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__xml": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 50,
@@ -118,23 +130,17 @@
           "index": 1615
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "load": {
-      "location": {
-        "start": {
-          "line": 57,
-          "column": 4,
-          "index": 1709
-        },
-        "end": {
-          "line": 192,
-          "column": 5,
-          "index": 7586
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load a config file",
+          "     * @param callback",
+          "     * @param context",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -156,10 +162,54 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1709
+        },
+        "end": {
+          "line": 192,
+          "column": 5,
+          "index": 7586
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "callback"
+        },
+        {
+          "name": "context"
+        }
+      ],
+      "appearsIn": []
     },
     "loadInclude": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load an include source and replace it with the loaded content",
+          "     * @param includeElem {Element}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Load an include source and replace it with the loaded content</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "includeElem {Element}",
+            "paramName": "includeElem",
+            "type": "Element"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 198,
@@ -172,37 +222,23 @@
           "index": 8715
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Load an include source and replace it with the loaded content</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "includeElem {Element}"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "includeElem",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
     },
     "_checkQueue": {
-      "location": {
-        "start": {
-          "line": 233,
-          "column": 4,
-          "index": 8826
-        },
-        "end": {
-          "line": 238,
-          "column": 5,
-          "index": 8996
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if everything is loaded and call the callback in this case",
+          "     * @private",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -216,23 +252,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "configError": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 245,
+          "line": 233,
           "column": 4,
-          "index": 9189
+          "index": 8826
         },
         "end": {
-          "line": 339,
+          "line": 238,
           "column": 5,
-          "index": 12438
+          "index": 8996
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "configError": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle errors that occur during loading ot the config file",
+          "     * @param textStatus {String} error status",
+          "     * @param additionalErrorInfo {String} error message",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -245,160 +290,47 @@
             "body": "textStatus {String} error status",
             "paramName": "textStatus",
             "description": " error status",
-            "type": "cv.util.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "additionalErrorInfo {String} error message",
             "paramName": "additionalErrorInfo",
             "description": " error message",
-            "type": "cv.util.String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 245,
+          "column": 4,
+          "index": 9189
+        },
+        "end": {
+          "line": 339,
+          "column": 5,
+          "index": 12438
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "textStatus",
+          "type": "string"
+        },
+        {
+          "name": "additionalErrorInfo",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 347,
@@ -410,8 +342,8 @@
         "column": 3,
         "index": 12721
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

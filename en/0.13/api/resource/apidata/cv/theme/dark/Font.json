@@ -1,33 +1,37 @@
 {
-  "className": "cv.theme.dark.Font",
-  "packageName": "cv.theme.dark",
-  "name": "Font",
-  "superClass": "qx.theme.tangible.Font",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 839
-      },
-      "end": {
-        "line": 131,
-        "column": 3,
-        "index": 4057
-      }
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/theme/dark/Font.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 839
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Font definitions</p>"
-        }
-      ]
+    "end": {
+      "line": 131,
+      "column": 3,
+      "index": 4057
     }
   },
-  "type": "theme",
-  "descendants": []
+  "className": "cv.theme.dark.Font",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Font definitions",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Font definitions</p>"
+      }
+    ]
+  },
+  "superClass": "qx.theme.tangible.Font",
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

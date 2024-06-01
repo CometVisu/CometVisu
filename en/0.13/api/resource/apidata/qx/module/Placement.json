@@ -1,0 +1,547 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171998,
+  "lastModifiedIso": "2024-06-01T09:46:11.998Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Placement.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 793
+    },
+    "end": {
+      "line": 297,
+      "column": 3,
+      "index": 10002
+    }
+  },
+  "className": "qx.module.Placement",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Placement module provides a convenient way to align two elements relative",
+      " * to each other using various pre-defined algorithms.",
+      " *",
+      " * @require(qx.util.placement.KeepAlignAxis#computeStart)",
+      " * @require(qx.util.placement.BestFitAxis#computeStart)",
+      " * @require(qx.util.placement.DirectAxis#computeStart)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Placement module provides a convenient way to align two elements relative\n to each other using various pre-defined algorithms.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.util.placement.KeepAlignAxis#computeStart"
+      },
+      {
+        "name": "@require",
+        "body": "qx.util.placement.BestFitAxis#computeStart"
+      },
+      {
+        "name": "@require",
+        "body": "qx.util.placement.DirectAxis#computeStart"
+      }
+    ]
+  },
+  "statics": {
+    "_getAxis": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the appropriate axis implementation for the given placement",
+          "     * mode",
+          "     *",
+          "     * @param mode {String} Placement mode",
+          "     * @return {Object} Placement axis class",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the appropriate axis implementation for the given placement\n mode</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "mode {String} Placement mode",
+            "paramName": "mode",
+            "description": " Placement mode",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} Placement axis class",
+            "type": "Record<any, any>",
+            "description": "Placement axis class"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1053
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1344
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "mode",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_computePlacement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the computed coordinates for the element to be placed",
+          "     *",
+          "     * @param axes {Map} Map with the keys <code>x</code> and <code>y</code>. Values",
+          "     * are the axis implementations",
+          "     * @param size {Map} Map with the keys <code>width</code> and <code>height</code>",
+          "     * containing the size of the placement target",
+          "     * @param area {Map} Map with the keys <code>width</code> and <code>height</code>",
+          "     * containing the size of the two elements' common parent (available space for",
+          "     * placement)",
+          "     * @param target {Map} Location of the object to align the object to. This map",
+          "     * should have the keys <code>left</code>, <code>top</code>, <code>right</code>",
+          "     * and <code>bottom</code>",
+          "     * @param offsets {Map} Map of offsets (top, right, bottom, left)",
+          "     * @param position {Map} Map with the keys <code>x</code> and <code>y</code>,",
+          "     * containing the type of positioning for each axis",
+          "     * @return {Map} Map with the keys <code>left</code> and <code>top</code>",
+          "     * containing the computed coordinates to which the element should be moved",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the computed coordinates for the element to be placed</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "axes {Map} Map with the keys <code>x</code> and <code>y</code>. Values\n are the axis implementations",
+            "paramName": "axes",
+            "description": " Map with the keys <code>x</code> and <code>y</code>. Values\n are the axis implementations",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "size {Map} Map with the keys <code>width</code> and <code>height</code>\n containing the size of the placement target",
+            "paramName": "size",
+            "description": " Map with the keys <code>width</code> and <code>height</code>\n containing the size of the placement target",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "area {Map} Map with the keys <code>width</code> and <code>height</code>\n containing the size of the two elements' common parent (available space for\n placement)",
+            "paramName": "area",
+            "description": " Map with the keys <code>width</code> and <code>height</code>\n containing the size of the two elements' common parent (available space for\n placement)",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "target {Map} Location of the object to align the object to. This map\n should have the keys <code>left</code>, <code>top</code>, <code>right</code>\n and <code>bottom</code>",
+            "paramName": "target",
+            "description": " Location of the object to align the object to. This map\n should have the keys <code>left</code>, <code>top</code>, <code>right</code>\n and <code>bottom</code>",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "offsets {Map} Map of offsets (top, right, bottom, left)",
+            "paramName": "offsets",
+            "description": " Map of offsets (top, right, bottom, left)",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "position {Map} Map with the keys <code>x</code> and <code>y</code>,\n containing the type of positioning for each axis",
+            "paramName": "position",
+            "description": " Map with the keys <code>x</code> and <code>y</code>,\n containing the type of positioning for each axis",
+            "type": "Map<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} Map with the keys <code>left</code> and <code>top</code>\n containing the computed coordinates to which the element should be moved",
+            "type": "Map<any, any>",
+            "description": "Map with the keys <code>left</code> and <code>top</code>\n containing the computed coordinates to which the element should be moved"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 2452
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 3006
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "axes",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "size",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "area",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "target",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "offsets",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "position",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_getPositionX": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the X axis positioning type for the given edge and alignment",
+          "     * values",
+          "     *",
+          "     * @param edge {String} edge value",
+          "     * @param align {String} align value",
+          "     * @return {String} X positioning type",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the X axis positioning type for the given edge and alignment\n values</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "edge {String} edge value",
+            "paramName": "edge",
+            "description": " edge value",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "align {String} align value",
+            "paramName": "align",
+            "description": " align value",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} X positioning type",
+            "type": "string",
+            "description": "X positioning type"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 3249
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 3611
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "edge",
+          "type": "string"
+        },
+        {
+          "name": "align",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_getPositionY": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the Y axis positioning type for the given edge and alignment",
+          "     * values",
+          "     *",
+          "     * @param edge {String} edge value",
+          "     * @param align {String} align value",
+          "     * @return {String} Y positioning type",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the Y axis positioning type for the given edge and alignment\n values</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "edge {String} edge value",
+            "paramName": "edge",
+            "description": " edge value",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "align {String} align value",
+            "paramName": "align",
+            "description": " align value",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Y positioning type",
+            "type": "string",
+            "description": "Y positioning type"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3854
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 4216
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "edge",
+          "type": "string"
+        },
+        {
+          "name": "align",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "placeTo": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Moves the first element in the collection, aligning it with the given",
+          "     * target.",
+          "     *",
+          "     * <div>",
+          "     * <strong>NOTE:</strong> The <code>placeTo</code> method also works for hidden",
+          "     * elements. However, the visibility / display styles are only manipulated during",
+          "     * the placement operation. As a result a previously hidden element <strong>stays hidden</strong>",
+          "     * </div>",
+          "     *",
+          "     * <div>",
+          "     * <strong>NOTE:</strong> If the target is changing its position due e.g. a DOM manipulation the",
+          "     * placed element <strong>is not</strong> updated automatically. You have to call <code>placeTo</code>",
+          "     * again to place the element to the target. The element is <strong>always</strong> positioned by using",
+          "     * <code>position:absolute</code> independently on the chosen <code>position</code> and <code>mode</code>.",
+          "     * </div>",
+          "     *",
+          "     * @attach{qxWeb}",
+          "     * @param target {Element} Placement target",
+          "     * @param position {String} Alignment of the object with the target, any of",
+          "     * <code>\"top-left\"</code>, <code>\"top-center\"</code>, <code>\"top-right\"</code>,",
+          "     * <code>\"bottom-left\"</code>, <code>\"bottom-center\"</code>, <code>\"bottom-right\"</code>,",
+          "     * <code>\"left-top\"</code>, <code>\"left-middle\"</code>, <code>\"left-bottom\"</code>,",
+          "     * <code>\"right-top\"</code>, <code>\"right-middle\"</code>, <code>\"right-bottom\"</code>",
+          "     * @param offsets {Map?null} Map with the desired offsets between the two elements.",
+          "     * Must contain the keys <code>left</code>, <code>top</code>,",
+          "     * <code>right</code> and <code>bottom</code>",
+          "     * @param modeX {String?\"direct\"} Horizontal placement mode. Valid values are:",
+          "     *   <ul>",
+          "     *   <li><code>direct</code>: place the element directly at the given",
+          "     *   location.</li>",
+          "     *   <li><code>keep-align</code>: if the element is partially outside of the",
+          "     *   visible area, it is moved to the best fitting 'edge' and 'alignment' of",
+          "     *   the target.",
+          "     *   It is guaranteed the the new position attaches the object to one of the",
+          "     *   target edges and that it is aligned with a target edge.</li>",
+          "     *   <li><code>best-fit</code>: If the element is partially outside of the visible",
+          "     *   area, it is moved into the view port, ignoring any offset and position",
+          "     *   values.</li>",
+          "     *   </ul>",
+          "     * @param modeY {String?\"direct\"} Vertical placement mode. Accepts the same values as",
+          "     *   the 'modeX' argument.",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Moves the first element in the collection, aligning it with the given\n target.\n </p>\n<div>\n <strong>NOTE:</strong> The <code>placeTo</code> method also works for hidden\n elements. However, the visibility / display styles are only manipulated during\n the placement operation. As a result a previously hidden element <strong>stays hidden</strong>\n </div>\n<div>\n <strong>NOTE:</strong> If the target is changing its position due e.g. a DOM manipulation the\n placed element <strong>is not</strong> updated automatically. You have to call <code>placeTo</code>\n again to place the element to the target. The element is <strong>always</strong> positioned by using\n <code>position:absolute</code> independently on the chosen <code>position</code> and <code>mode</code>.\n </div>"
+          }
+        ],
+        "@attach": [
+          {
+            "name": "@attach",
+            "body": "{qxWeb}"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {Element} Placement target",
+            "paramName": "target",
+            "description": " Placement target",
+            "type": "Element"
+          },
+          {
+            "name": "@param",
+            "body": "position {String} Alignment of the object with the target, any of\n <code>\"top-left\"</code>, <code>\"top-center\"</code>, <code>\"top-right\"</code>,\n <code>\"bottom-left\"</code>, <code>\"bottom-center\"</code>, <code>\"bottom-right\"</code>,\n <code>\"left-top\"</code>, <code>\"left-middle\"</code>, <code>\"left-bottom\"</code>,\n <code>\"right-top\"</code>, <code>\"right-middle\"</code>, <code>\"right-bottom\"</code>",
+            "paramName": "position",
+            "description": " Alignment of the object with the target, any of\n <code>\"top-left\"</code>, <code>\"top-center\"</code>, <code>\"top-right\"</code>,\n <code>\"bottom-left\"</code>, <code>\"bottom-center\"</code>, <code>\"bottom-right\"</code>,\n <code>\"left-top\"</code>, <code>\"left-middle\"</code>, <code>\"left-bottom\"</code>,\n <code>\"right-top\"</code>, <code>\"right-middle\"</code>, <code>\"right-bottom\"</code>",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "offsets {Map?null} Map with the desired offsets between the two elements.\n Must contain the keys <code>left</code>, <code>top</code>,\n <code>right</code> and <code>bottom</code>",
+            "paramName": "offsets",
+            "description": " Map with the desired offsets between the two elements.\n Must contain the keys <code>left</code>, <code>top</code>,\n <code>right</code> and <code>bottom</code>",
+            "optional": true,
+            "defaultValue": "null",
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "modeX {String?\"direct\"} Horizontal placement mode. Valid values are:\n   <ul>\n   <li><code>direct</code>: place the element directly at the given\n   location.</li>\n   <li><code>keep-align</code>: if the element is partially outside of the\n   visible area, it is moved to the best fitting 'edge' and 'alignment' of\n   the target.\n   It is guaranteed the the new position attaches the object to one of the\n   target edges and that it is aligned with a target edge.</li>\n   <li><code>best-fit</code>: If the element is partially outside of the visible\n   area, it is moved into the view port, ignoring any offset and position\n   values.</li>\n   </ul>",
+            "paramName": "modeX",
+            "description": " Horizontal placement mode. Valid values are:\n   <ul>\n   <li><code>direct</code>: place the element directly at the given\n   location.</li>\n   <li><code>keep-align</code>: if the element is partially outside of the\n   visible area, it is moved to the best fitting 'edge' and 'alignment' of\n   the target.\n   It is guaranteed the the new position attaches the object to one of the\n   target edges and that it is aligned with a target edge.</li>\n   <li><code>best-fit</code>: If the element is partially outside of the visible\n   area, it is moved into the view port, ignoring any offset and position\n   values.</li>\n   </ul>",
+            "optional": true,
+            "defaultValue": "\"direct\"",
+            "type": "String"
+          },
+          {
+            "name": "@param",
+            "body": "modeY {String?\"direct\"} Vertical placement mode. Accepts the same values as\n   the 'modeX' argument.",
+            "paramName": "modeY",
+            "description": " Vertical placement mode. Accepts the same values as\n   the 'modeX' argument.",
+            "optional": true,
+            "defaultValue": "\"direct\"",
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxWeb} The collection for chaining",
+            "type": "qxWeb",
+            "description": "The collection for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 6738
+        },
+        "end": {
+          "line": 291,
+          "column": 5,
+          "index": 9941
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Element"
+        },
+        {
+          "name": "position",
+          "type": "string"
+        },
+        {
+          "name": "offsets",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "modeX",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "\"direct\""
+        },
+        {
+          "name": "modeY",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "\"direct\""
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

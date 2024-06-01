@@ -1,0 +1,1261 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/DialogEmbed.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 32,
+      "column": 0,
+      "index": 839
+    },
+    "end": {
+      "line": 86,
+      "column": 3,
+      "index": 2586
+    }
+  },
+  "className": "qxl.dialog.DialogEmbed",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for dialog widgets",
+      " * @ignore(qxl.dialog.alert)",
+      " * @ignore(qxl.dialog.error)",
+      " * @ignore(qxl.dialog.warning)",
+      " * @ignore(qxl.dialog.confirm)",
+      " * @ignore(qxl.dialog.prompt)",
+      " * @ignore(qxl.dialog.form)",
+      " * @ignore(qxl.dialog.select)",
+      " * @ignore(Promise)",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for dialog widgets</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qxl.dialog.alert"
+      },
+      {
+        "name": "@ignore",
+        "body": "qxl.dialog.error"
+      },
+      {
+        "name": "@ignore",
+        "body": "qxl.dialog.warning"
+      },
+      {
+        "name": "@ignore",
+        "body": "qxl.dialog.confirm"
+      },
+      {
+        "name": "@ignore",
+        "body": "qxl.dialog.prompt"
+      },
+      {
+        "name": "@ignore",
+        "body": "qxl.dialog.form"
+      },
+      {
+        "name": "@ignore",
+        "body": "qxl.dialog.select"
+      },
+      {
+        "name": "@ignore",
+        "body": "Promise"
+      }
+    ]
+  },
+  "superClass": "qx.ui.container.Composite",
+  "mixins": [
+    "qxl.dialog.MDialog"
+  ],
+  "statics": {
+    "getInstanceByType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a dialog instance by type",
+          "     * @param type {String} The dialog type to get",
+          "     * @return {qxl.dialog.Dialog}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a dialog instance by type</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} The dialog type to get"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxl.dialog.Dialog}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1079
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1276
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type"
+        }
+      ],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "form": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shortcut for form dialog. Cannot be reused.",
+          "     * @param message {String} The message to display",
+          "     * @param formData {Map} Map of form data. See {@link qxl.dialog.Form.formData}",
+          "     * @param callback {Function?} The callback function",
+          "     * @param context {Object?} The context to use with the callback function",
+          "     * @param caption {String?} The caption of the dialog window",
+          "     * @return {qxl.dialog.Form} The widget instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Shortcut for form dialog. Cannot be reused.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message {String} The message to display",
+            "paramName": "message",
+            "description": " The message to display",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "formData {Map} Map of form data. See {@link qxl.dialog.Form.formData}",
+            "paramName": "formData",
+            "description": " Map of form data. See {@link qxl.dialog.Form.formData}",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "callback {Function?} The callback function",
+            "paramName": "callback",
+            "description": " The callback function",
+            "optional": true,
+            "type": "Function"
+          },
+          {
+            "name": "@param",
+            "body": "context {Object?} The context to use with the callback function",
+            "paramName": "context",
+            "description": " The context to use with the callback function",
+            "optional": true,
+            "type": "Object"
+          },
+          {
+            "name": "@param",
+            "body": "caption {String?} The caption of the dialog window",
+            "paramName": "caption",
+            "description": " The caption of the dialog window",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qxl.dialog.Form} The widget instance",
+            "type": "qxl.dialog.Form",
+            "description": "The widget instance"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1633
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1900
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "formData",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "callback",
+          "type": "Function",
+          "optional": true
+        },
+        {
+          "name": "context",
+          "type": "Object",
+          "optional": true
+        },
+        {
+          "name": "caption",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qxl.dialog.Form"
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "properties"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 70,
+        "column": 2,
+        "index": 2125
+      },
+      "end": {
+        "line": 85,
+        "column": 3,
+        "index": 2581
+      }
+    }
+  },
+  "members": {
+    "_container": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The container widget",
+          "     * @var {qx.ui.container.Composite}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The container widget</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{qx.ui.container.Composite}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 2815
+        },
+        "end": {
+          "line": 125,
+          "column": 20,
+          "index": 2831
+        }
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_buttons": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The button pane",
+          "     * @var {qx.ui.basic.Label}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The button pane</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{qx.ui.basic.Label}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 2909
+        },
+        "end": {
+          "line": 131,
+          "column": 18,
+          "index": 2923
+        }
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_image": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The dialog image",
+          "     * @var {qx.ui.basic.Image}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The dialog image</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{qx.ui.basic.Image}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3002
+        },
+        "end": {
+          "line": 137,
+          "column": 16,
+          "index": 3014
+        }
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_message": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The dialog message",
+          "     * @var {qx.ui.basic.Label}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The dialog message</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{qx.ui.basic.Label}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 3095
+        },
+        "end": {
+          "line": 143,
+          "column": 18,
+          "index": 3109
+        }
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_okButton": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The OK Button",
+          "     * @var {qx.ui.form.Button}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The OK Button</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{qx.ui.form.Button}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 3185
+        },
+        "end": {
+          "line": 149,
+          "column": 19,
+          "index": 3200
+        }
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_cancelButton": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The cancel button",
+          "     * @var {qx.ui.form.Button}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The cancel button</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "{qx.ui.form.Button}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 3280
+        },
+        "end": {
+          "line": 155,
+          "column": 23,
+          "index": 3299
+        }
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_createWidgetContent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create the content of the qxl.dialog.",
+          "     * Extending classes must implement this method.",
+          "     * @param properties",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create the content of the qxl.dialog.\n Extending classes must implement this method.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "properties"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 3445
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 3544
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "properties"
+        }
+      ],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_createDialogContainer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the default container (VBox)",
+          "     * @return {qx.ui.container.Composite}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the default container (VBox)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.container.Composite}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 3654
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 3815
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_createButtonPane": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the button pane (HBox)",
+          "     * @return {qx.ui.container.Composite}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the button pane (HBox)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.container.Composite}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 3919
+        },
+        "end": {
+          "line": 190,
+          "column": 5,
+          "index": 4247
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_createOkButton": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an OK button",
+          "     * @param noFocus",
+          "     * @return {qx.ui.form.Button}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create an OK button</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "noFocus"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.Button}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 4354
+        },
+        "end": {
+          "line": 216,
+          "column": 5,
+          "index": 5023
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "noFocus"
+        }
+      ],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_createCancelButton": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create a cancel button, which is hidden by default and will be shown",
+          "     * if allowCancel property is set to true.",
+          "     * @return {qx.ui.form.Button}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create a cancel button, which is hidden by default and will be shown\n if allowCancel property is set to true.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.form.Button}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4,
+          "index": 5204
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 6000
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_applyImage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when the 'image' property is set",
+          "     * @param value {String} The current value",
+          "     * @param old {String|null} old The previous value",
+          "     * @return {void}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when the 'image' property is set</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} The current value"
+          },
+          {
+            "name": "@param",
+            "body": "old {String|null} old The previous value"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{void}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4,
+          "index": 6194
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 6326
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_applyMessage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when the 'message' property is set",
+          "     * @param value {String} The current value",
+          "     * @param old {String|null} old The previous value",
+          "     * @return {void}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when the 'message' property is set</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String} The current value"
+          },
+          {
+            "name": "@param",
+            "body": "old {String|null} old The previous value"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{void}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 6522
+        },
+        "end": {
+          "line": 270,
+          "column": 5,
+          "index": 6659
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "getDialogContainer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the widgets that is the container of the dialog",
+          "     * @return {qx.ui.core.LayoutItem}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the widgets that is the container of the dialog</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.ui.core.LayoutItem}"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 276,
+          "column": 4,
+          "index": 6784
+        },
+        "end": {
+          "line": 281,
+          "column": 5,
+          "index": 6926
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "promise": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Promise interface method, avoids callbacks",
+          "     * @return {Promise} A promise that resolves with the result of the dialog",
+          "     * action",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Promise interface method, avoids callbacks</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise} A promise that resolves with the result of the dialog\n action"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4,
+          "index": 7092
+        },
+        "end": {
+          "line": 299,
+          "column": 5,
+          "index": 7365
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_handleOk": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle click on ok button. Calls callback with a \"true\" argument",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle click on ok button. Calls callback with a \"true\" argument</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 4,
+          "index": 7460
+        },
+        "end": {
+          "line": 311,
+          "column": 5,
+          "index": 7652
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_handleCancel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle click on cancel button. Calls callback with",
+          "     * an \"undefined\" argument",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handle click on cancel button. Calls callback with\n an \"undefined\" argument</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 317,
+          "column": 4,
+          "index": 7764
+        },
+        "end": {
+          "line": 324,
+          "column": 5,
+          "index": 7982
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "_handleEscape": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles the press on the 'Escape' key",
+          "     * @param  e {qx.event.type.KeyInput}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles the press on the 'Escape' key</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "e {qx.event.type.KeyInput}"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 330,
+          "column": 4,
+          "index": 8092
+        },
+        "end": {
+          "line": 339,
+          "column": 5,
+          "index": 8304
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    }
+  },
+  "properties": {
+    "callback": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1510
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1574
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Callback function that will be called when the user",
+          "     * has interacted with the widget. See sample callback",
+          "     * method supplied in the source code of each dialog",
+          "     * widget.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Callback function that will be called when the user\n has interacted with the widget. See sample callback\n method supplied in the source code of each dialog\n widget.</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "context": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1642
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1703
+        }
+      },
+      "json": {
+        "check": "Object",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The context for the callback function",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The context for the callback function</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "image": {
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1807
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 1894
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyImage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A banner image/logo that is displayed on the widget,",
+          "     * if applicable",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A banner image/logo that is displayed on the widget,\n if applicable</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "message": {
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 1954
+        },
+        "end": {
+          "line": 85,
+          "column": 5,
+          "index": 2045
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyMessage"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The message that is displayed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The message that is displayed</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "allowCancel": {
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2114
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2210
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "event": "changeAllowCancel"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to allow cancelling the dialog",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to allow cancelling the dialog</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    },
+    "cancelOnEscape": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2368
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 2433
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to triger the cancel button on pressing the \"escape\" key",
+          "     * (default: true). Depends on the 'allowCancel' property.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to triger the cancel button on pressing the \"escape\" key\n (default: true). Depends on the 'allowCancel' property.</p>"
+          }
+        ]
+      },
+      "mixin": "qxl.dialog.MDialog",
+      "appearsIn": [
+        "qxl.dialog.MDialog"
+      ]
+    }
+  }
+}

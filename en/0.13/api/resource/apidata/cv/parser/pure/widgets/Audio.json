@@ -1,52 +1,52 @@
 {
-  "className": "cv.parser.pure.widgets.Audio",
-  "packageName": "cv.parser.pure.widgets",
-  "name": "Audio",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 859
-      },
-      "end": {
-        "line": 96,
-        "column": 3,
-        "index": 2795
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/parser/pure/widgets/Audio.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 859
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Parse &lt;audio;gt; config elements</p>"
-        }
-      ]
+    "end": {
+      "line": 96,
+      "column": 3,
+      "index": 2795
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.parser.pure.widgets.Audio",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Parse &lt;audio;gt; config elements",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Parse &lt;audio;gt; config elements</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "parse": {
-      "location": {
-        "start": {
-          "line": 42,
-          "column": 4,
-          "index": 1495
-        },
-        "end": {
-          "line": 55,
-          "column": 5,
-          "index": 1867
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     * @return {Map} extracted data from config element as key/value map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,36 +66,101 @@
             "body": "path {String} internal path of the widget",
             "paramName": "path",
             "description": " internal path of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "flavour {String} Flavour of the widget",
             "paramName": "flavour",
             "description": " Flavour of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "pageType {String} Page type (2d, 3d, ...)",
             "paramName": "pageType",
             "description": " Page type (2d, 3d, ...)",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Map} extracted data from config element as key/value map",
-            "type": "Map",
-            "description": " extracted data from config element as key/value map"
+            "type": "Map<any, any>",
+            "description": "extracted data from config element as key/value map"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1495
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1867
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
     },
     "getAttributeToPropertyMappings": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map with definitions for the XML Parser to map XML-Attribute values",
+          "     * to properties e.g",
+          "     * <pre>{",
+          "     *  <attribute-name>: {",
+          "     *    target: <property-name>,",
+          "     *    default: <default-value>,",
+          "     *    transform: <callback to transform the value to the desired value>",
+          "     *  }",
+          "     * }</pre>",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a map with definitions for the XML Parser to map XML-Attribute values\n to properties e.g\n </p>\n<pre>{\n  <attribute-name>: {\n    target: <property-name>,\n    default: <default-value>,\n    transform: <callback to transform the value to the desired value>\n  }\n }</pre>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 69,
@@ -108,39 +173,14 @@
           "index": 2673
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns a map with definitions for the XML Parser to map XML-Attribute values\n to properties e.g\n </p>\n<pre>{\n  <attribute-name>: {\n    target: <property-name>,\n    default: <default-value>,\n    transform: <callback to transform the value to the desired value>\n  }\n }</pre>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Object}",
-            "type": "Object",
-            "description": ""
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 92,
-        "column": 2,
-        "index": 2682
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
       },
-      "end": {
-        "line": 95,
-        "column": 3,
-        "index": 2791
-      }
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

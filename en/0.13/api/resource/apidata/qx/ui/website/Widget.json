@@ -1,71 +1,80 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235172838,
+  "lastModifiedIso": "2024-06-01T09:46:12.838Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/website/Widget.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 855
+    },
+    "end": {
+      "line": 336,
+      "column": 3,
+      "index": 10352
+    }
+  },
   "className": "qx.ui.website.Widget",
-  "packageName": "qx.ui.website",
-  "name": "Widget",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is the base collection for all widgets and offers a good foundation",
+      " * for all widgets including enabled state handling, config and template storage",
+      " * and event handling to name a few key features.",
+      " *",
+      " * @require(qx.module.Dataset)",
+      " * @require(qx.module.util.String)",
+      " * @require(qx.module.event.Native)",
+      " *",
+      " * @group (Widget)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is the base collection for all widgets and offers a good foundation\n for all widgets including enabled state handling, config and template storage\n and event handling to name a few key features.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Dataset"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.util.String"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.event.Native"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Widget"
+      }
+    ]
+  },
   "superClass": "qxWeb",
   "interfaces": [
     "qx.core.IDisposable"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 31,
-        "column": 0,
-        "index": 885
-      },
-      "end": {
-        "line": 336,
-        "column": 3,
-        "index": 10687
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This is the base collection for all widgets and offers a good foundation\n for all widgets including enabled state handling, config and template storage\n and event handling to name a few key features.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Dataset"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.util.String"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.event.Native"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Widget"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "statics": {
     "widget": {
-      "location": {
-        "start": {
-          "line": 45,
-          "column": 4,
-          "index": 1229
-        },
-        "end": {
-          "line": 49,
-          "column": 5,
-          "index": 1342
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method for the widget which converts a standard",
+          "     * collection into a collection of widgets.",
+          "     *",
+          "     * @return {qx.ui.website.Widget} A widget.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -77,7 +86,7 @@
             "name": "@return",
             "body": "{qx.ui.website.Widget} A widget.",
             "type": "qx.ui.website.Widget",
-            "description": " A widget."
+            "description": "A widget."
           }
         ],
         "@attach": [
@@ -87,23 +96,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "create": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 58,
+          "line": 45,
           "column": 4,
-          "index": 1639
+          "index": 1185
         },
         "end": {
-          "line": 60,
+          "line": 49,
           "column": 5,
-          "index": 1720
+          "index": 1294
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.website.Widget"
+      },
+      "appearsIn": []
+    },
+    "create": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a new collection from the given argument. This can either be an",
+          "     * HTML string, a single DOM element or an array of elements",
+          "     *",
+          "     * @param html {String|Element[]} HTML string or DOM element(s)",
+          "     * @return {qxWeb} Collection of elements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -130,27 +153,54 @@
             "name": "@return",
             "body": "{qxWeb} Collection of elements",
             "type": "qxWeb",
-            "description": " Collection of elements"
+            "description": "Collection of elements"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "initWidgets": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 71,
+          "line": 58,
           "column": 4,
-          "index": 2085
+          "index": 1582
         },
         "end": {
-          "line": 79,
+          "line": 60,
           "column": 5,
-          "index": 2337
+          "index": 1661
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "html",
+          "type": [
+            "String",
+            {
+              "type": "Element",
+              "dimensions": 2
+            }
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "initWidgets": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fetches elements with a data attribute named <code>data-qx-class</code>",
+          "     * containing the class name of the desired widget and initializes them as",
+          "     * widgets.",
+          "     *",
+          "     * @param selector {String?} Optional selector expression or filter function to",
+          "     * restrict the list of elements",
+          "     * @attachStatic {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -174,23 +224,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toWidgetCollection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 89,
+          "line": 71,
           "column": 4,
-          "index": 2603
+          "index": 2015
         },
         "end": {
-          "line": 100,
+          "line": 79,
           "column": 5,
-          "index": 3003
+          "index": 2259
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "selector",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "toWidgetCollection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a wrapper Array that maps the widget API available on",
+          "     * the first item in the current collection to all items in the",
+          "     * collection.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @return {qxWeb[]} Collection of widgets",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -208,59 +276,81 @@
             "name": "@return",
             "body": "{qxWeb[]} Collection of widgets",
             "type": "qxWeb[]",
-            "description": " Collection of widgets"
+            "description": "Collection of widgets"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2515
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2904
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "qxWeb[]"
+      },
+      "appearsIn": []
     }
   },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "selector"
+      },
+      {
+        "name": "context"
+      }
+    ],
     "location": {
       "start": {
         "line": 103,
         "column": 2,
-        "index": 3015
+        "index": 2913
       },
       "end": {
         "line": 112,
         "column": 3,
-        "index": 3315
+        "index": 3204
       }
     }
   },
   "members": {
     "__cssPrefix": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 115,
           "column": 4,
-          "index": 3338
+          "index": 3224
         },
         "end": {
           "line": 115,
           "column": 21,
-          "index": 3355
+          "index": 3241
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "init": {
-      "location": {
-        "start": {
-          "line": 122,
-          "column": 4,
-          "index": 3630
-        },
-        "end": {
-          "line": 134,
-          "column": 5,
-          "index": 4014
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Responsible for initializing of the widget. This checks for the data attribute",
+          "     * named <code>data-qx-class</code> and initializes the widget if necessary.",
+          "     * @return {Boolean} <code>true</code> if the widget has been initialized",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -271,28 +361,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the widget has been initialized",
-            "type": "Boolean",
-            "description": " <code>true</code> if the widget has been initialized"
+            "type": "boolean",
+            "description": "<code>true</code> if the widget has been initialized"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCssPrefix": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 142,
+          "line": 122,
           "column": 4,
-          "index": 4229
+          "index": 3509
         },
         "end": {
-          "line": 148,
+          "line": 134,
           "column": 5,
-          "index": 4448
+          "index": 3881
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getCssPrefix": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the proper CSS prefix for the current widget. This prefix is",
+          "     * based on the current classname.",
+          "     *",
+          "     * @return {String} The CSS prefix for the current object.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -303,28 +406,43 @@
           {
             "name": "@return",
             "body": "{String} The CSS prefix for the current object.",
-            "type": "String",
-            "description": " The CSS prefix for the current object."
+            "type": "string",
+            "description": "The CSS prefix for the current object."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setEnabled": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 158,
+          "line": 142,
           "column": 4,
-          "index": 4791
+          "index": 4088
         },
         "end": {
-          "line": 162,
+          "line": 148,
           "column": 5,
-          "index": 4939
+          "index": 4301
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setEnabled": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Changes the enabled state of the current collection, which means all",
+          "     * widgets in the collection. This sets the disabled attribute on the",
+          "     * elements and all its children.",
+          "     *",
+          "     * @param value {Boolean} The enabled value.",
+          "     * @return {qx.ui.website.Widget} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -337,7 +455,7 @@
             "body": "value {Boolean} The enabled value.",
             "paramName": "value",
             "description": " The enabled value.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
@@ -345,27 +463,44 @@
             "name": "@return",
             "body": "{qx.ui.website.Widget} The collection for chaining",
             "type": "qx.ui.website.Widget",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getEnabled": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 169,
+          "line": 158,
           "column": 4,
-          "index": 5115
+          "index": 4634
         },
         "end": {
-          "line": 171,
+          "line": 162,
           "column": 5,
-          "index": 5182
+          "index": 4778
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.website.Widget"
+      },
+      "appearsIn": []
+    },
+    "getEnabled": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns weather the first widget in the collection is enabled or not.",
+          "     *",
+          "     * @return {Boolean} The enabled state of the collection.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -376,28 +511,49 @@
           {
             "name": "@return",
             "body": "{Boolean} The enabled state of the collection.",
-            "type": "Boolean",
-            "description": " The enabled state of the collection."
+            "type": "boolean",
+            "description": "The enabled state of the collection."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setTemplate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 187,
+          "line": 169,
           "column": 4,
-          "index": 5786
+          "index": 4947
         },
         "end": {
-          "line": 189,
+          "line": 171,
           "column": 5,
-          "index": 5880
+          "index": 5012
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setTemplate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for the widget-specific templates. The available templates can",
+          "     * be found in the documentation of the corresponding widget. The templates",
+          "     * will be rendered using",
+          "     * <a href='https://github.com/janl/mustache.js/'>mustache.js</a>.",
+          "     *",
+          "     * Please keep in mind to call {@link #render} after you change any",
+          "     * template or config setting.",
+          "     *",
+          "     * @param name {String} The name of the template.",
+          "     * @param template {String} The template string.",
+          "     *",
+          "     * @return {qx.ui.website.Widget} The widget instance for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -410,14 +566,14 @@
             "body": "name {String} The name of the template.",
             "paramName": "name",
             "description": " The name of the template.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "template {String} The template string.",
             "paramName": "template",
             "description": " The template string.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -425,27 +581,56 @@
             "name": "@return",
             "body": "{qx.ui.website.Widget} The widget instance for chaining.",
             "type": "qx.ui.website.Widget",
-            "description": " The widget instance for chaining."
+            "description": "The widget instance for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setConfig": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 204,
+          "line": 187,
           "column": 4,
-          "index": 6528
+          "index": 5600
         },
         "end": {
-          "line": 206,
+          "line": 189,
           "column": 5,
-          "index": 6613
+          "index": 5692
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "template",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.website.Widget"
+      },
+      "appearsIn": []
+    },
+    "setConfig": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for the widget-specific config. The available config settings can",
+          "     * be found in the documentation of the corresponding widget. Each config",
+          "     * setting can be set in the markup as data-attribute, prefixed with",
+          "     * <code>data-qx</code> e.g. <code>data-qx-length=\"5\"</code>.",
+          "     *",
+          "     * Please keep in mind to call {@link #render} after you change any",
+          "     * template or config setting.",
+          "     *",
+          "     * @param name {String} The name of the config setting.",
+          "     * @param config {var} The value of the config setting.",
+          "     * @return {qx.ui.website.Widget} The widget instance for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -458,7 +643,7 @@
             "body": "name {String} The name of the config setting.",
             "paramName": "name",
             "description": " The name of the config setting.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -473,27 +658,51 @@
             "name": "@return",
             "body": "{qx.ui.website.Widget} The widget instance for chaining.",
             "type": "qx.ui.website.Widget",
-            "description": " The widget instance for chaining."
+            "description": "The widget instance for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_setData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 216,
+          "line": 204,
           "column": 4,
-          "index": 6967
+          "index": 6325
         },
         "end": {
-          "line": 223,
+          "line": 206,
           "column": 5,
-          "index": 7162
+          "index": 6408
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "config",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.website.Widget"
+      },
+      "appearsIn": []
+    },
+    "_setData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper to set either config or template values.",
+          "     *",
+          "     * @param type {String} Either <code>templates</code> or <code>config</code>.",
+          "     * @param name {String} The name for the value to store.",
+          "     * @param data {var} The data to store.",
+          "     * @return {qx.ui.website.Widget} The widget instance for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -506,14 +715,14 @@
             "body": "type {String} Either <code>templates</code> or <code>config</code>.",
             "paramName": "type",
             "description": " Either <code>templates</code> or <code>config</code>.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "name {String} The name for the value to store.",
             "paramName": "name",
             "description": " The name for the value to store.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -528,27 +737,54 @@
             "name": "@return",
             "body": "{qx.ui.website.Widget} The widget instance for chaining.",
             "type": "qx.ui.website.Widget",
-            "description": " The widget instance for chaining."
+            "description": "The widget instance for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "getTemplate": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 232,
+          "line": 216,
           "column": 4,
-          "index": 7447
+          "index": 6752
         },
         "end": {
-          "line": 234,
+          "line": 223,
           "column": 5,
-          "index": 7521
+          "index": 6940
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.website.Widget"
+      },
+      "appearsIn": []
+    },
+    "getTemplate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the used template. This includes custom templates",
+          "     * as the default templates defined by the widgets.",
+          "     *",
+          "     * @param name {String} The name of the template.",
+          "     * @return {String} The template string or <code>undefined</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -561,35 +797,56 @@
             "body": "name {String} The name of the template.",
             "paramName": "name",
             "description": " The name of the template.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The template string or <code>undefined</code>.",
-            "type": "String",
-            "description": " The template string or <code>undefined</code>."
+            "type": "string",
+            "description": "The template string or <code>undefined</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getConfig": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 245,
+          "line": 232,
           "column": 4,
-          "index": 7949
+          "index": 7216
         },
         "end": {
-          "line": 247,
+          "line": 234,
           "column": 5,
-          "index": 8018
+          "index": 7288
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getConfig": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the config setting currently in use for the given widget.",
+          "     * This can either be the user set config value, the value set in",
+          "     * the markup via data-attribute, the widgets default config value or",
+          "     * <code>undefined</code>, if non is set.",
+          "     *",
+          "     * @param name {String} The name of the config.",
+          "     * @return {var} The value of the config or <code>undefined</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -602,7 +859,7 @@
             "body": "name {String} The name of the config.",
             "paramName": "name",
             "description": " The name of the config.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -610,27 +867,48 @@
             "name": "@return",
             "body": "{var} The value of the config or <code>undefined</code>.",
             "type": "var",
-            "description": " The value of the config or <code>undefined</code>."
+            "description": "The value of the config or <code>undefined</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_getData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 258,
+          "line": 245,
           "column": 4,
-          "index": 8459
+          "index": 7705
         },
         "end": {
-          "line": 286,
+          "line": 247,
           "column": 5,
-          "index": 9221
+          "index": 7772
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "_getData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for querying the values for templates and configs. In the",
+          "     * case of a config value, the method also reads the corresponding data-attribute",
+          "     * for possible values.",
+          "     *",
+          "     * @param type {String} Either <code>templates</code> or <code>config</code>.",
+          "     * @param name {String} The name for the value to fetch.",
+          "     * @return {var} The value store for the given arguments.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -643,14 +921,14 @@
             "body": "type {String} Either <code>templates</code> or <code>config</code>.",
             "paramName": "type",
             "description": " Either <code>templates</code> or <code>config</code>.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "name {String} The name for the value to fetch.",
             "paramName": "name",
             "description": " The name for the value to fetch.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -658,27 +936,50 @@
             "name": "@return",
             "body": "{var} The value store for the given arguments.",
             "type": "var",
-            "description": " The value store for the given arguments."
+            "description": "The value store for the given arguments."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "render": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 295,
+          "line": 258,
           "column": 4,
-          "index": 9539
+          "index": 8202
         },
         "end": {
-          "line": 298,
+          "line": 286,
           "column": 5,
-          "index": 9599
+          "index": 8936
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "render": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The render method is responsible for applying changed config",
+          "     * and template settings. This method is usually overridden and specified",
+          "     * by the subclassing widgets like the slider or tabs.",
+          "     *",
+          "     * @return {qx.ui.website.Widget} The widget collection for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -690,27 +991,40 @@
             "name": "@return",
             "body": "{qx.ui.website.Widget} The widget collection for chaining.",
             "type": "qx.ui.website.Widget",
-            "description": " The widget collection for chaining."
+            "description": "The widget collection for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "dispose": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 306,
+          "line": 295,
           "column": 4,
-          "index": 9852
+          "index": 9245
         },
         "end": {
-          "line": 323,
+          "line": 298,
           "column": 5,
-          "index": 10456
+          "index": 9302
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.website.Widget"
+      },
+      "appearsIn": []
+    },
+    "dispose": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispose the widget, making sure all objects are ready for",
+          "     * garbage collection. This mainly means deleting connections to the",
+          "     * DOM including event listeners.",
+          "     * @return {qxWeb} Plain qxWeb collection",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -722,40 +1036,32 @@
             "name": "@return",
             "body": "{qxWeb} Plain qxWeb collection",
             "type": "qxWeb",
-            "description": " Plain qxWeb collection"
+            "description": "Plain qxWeb collection"
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.core.IDisposable",
+      "location": {
+        "start": {
+          "line": 306,
+          "column": 4,
+          "index": 9547
+        },
+        "end": {
+          "line": 323,
+          "column": 5,
+          "index": 10134
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qxWeb"
+      },
       "appearsIn": [
         "qx.core.IDisposable"
       ]
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 326,
-        "column": 2,
-        "index": 10468
-      },
-      "end": {
-        "line": 335,
-        "column": 3,
-        "index": 10682
-      }
-    }
-  },
-  "descendants": [
-    "qx.ui.website.Button",
-    "qx.ui.website.Calendar",
-    "qx.ui.website.Carousel",
-    "qx.ui.website.DatePicker",
-    "qx.ui.website.Rating",
-    "qx.ui.website.Slider",
-    "qx.ui.website.Table",
-    "qx.ui.website.Tabs"
-  ]
+  "properties": {}
 }

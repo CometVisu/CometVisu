@@ -1,0 +1,378 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171658,
+  "lastModifiedIso": "2024-06-01T09:46:11.658Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/LogManager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 60,
+      "column": 0,
+      "index": 1326
+    },
+    "end": {
+      "line": 210,
+      "column": 3,
+      "index": 4746
+    }
+  },
+  "className": "qx.tool.utils.LogManager",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 63,
+        "column": 2,
+        "index": 1401
+      },
+      "end": {
+        "line": 76,
+        "column": 3,
+        "index": 1773
+      }
+    }
+  },
+  "statics": {
+    "__instance": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 1793
+        },
+        "end": {
+          "line": 79,
+          "column": 20,
+          "index": 1809
+        }
+      },
+      "appearsIn": []
+    },
+    "createLog": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * create a logger for a specified category",
+          "     *",
+          "     * @param {*} categoryName",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>create a logger for a specified category</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} categoryName",
+            "paramName": "categoryName",
+            "description": "",
+            "type": "*"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 1918
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2075
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "categoryName",
+          "type": "*"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getInstance": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the global instance",
+          "     * @returns {null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the global instance</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{null}",
+            "type": "null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2156
+        },
+        "end": {
+          "line": 102,
+          "column": 5,
+          "index": 2303
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "null"
+      },
+      "appearsIn": []
+    },
+    "nullSink": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2310
+        },
+        "end": {
+          "line": 106,
+          "column": 5,
+          "index": 2363
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "logger"
+        },
+        {
+          "name": "level"
+        },
+        {
+          "name": "msg"
+        }
+      ],
+      "appearsIn": []
+    },
+    "consoleSink": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 2370
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 2956
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "logger"
+        },
+        {
+          "name": "level"
+        },
+        {
+          "name": "msg"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "loadConfig": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 2980
+        },
+        "end": {
+          "line": 149,
+          "column": 5,
+          "index": 3393
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "config"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLogger": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 3400
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 3631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLoggerLevel": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 3638
+        },
+        "end": {
+          "line": 176,
+          "column": 5,
+          "index": 4052
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "defaultLevel"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addSink": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4059
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 4110
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "sink"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeSink": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 4117
+        },
+        "end": {
+          "line": 187,
+          "column": 5,
+          "index": 4256
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "sink"
+        }
+      ],
+      "appearsIn": []
+    },
+    "output": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4,
+          "index": 4263
+        },
+        "end": {
+          "line": 196,
+          "column": 5,
+          "index": 4473
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "logger"
+        },
+        {
+          "name": "level"
+        },
+        {
+          "name": "msg"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setDefaultSink": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 4,
+          "index": 4480
+        },
+        "end": {
+          "line": 208,
+          "column": 5,
+          "index": 4738
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "sink"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

@@ -1,0 +1,227 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171946,
+  "lastModifiedIso": "2024-06-01T09:46:11.946Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/PackageJavascript.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 1032
+    },
+    "end": {
+      "line": 145,
+      "column": 3,
+      "index": 3919
+    }
+  },
+  "className": "qx.tool.compiler.targets.meta.PackageJavascript",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A PackageJavascript is the serialisation of the javascript required to produce a package;",
+      " * at the minimum, this is the locales and resources provided by the package, but also can be",
+      " * the javascript code from loaded classes, all merged into one .js file for the browser.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A PackageJavascript is the serialisation of the javascript required to produce a package;\n at the minimum, this is the locales and resources provided by the package, but also can be\n the javascript code from loaded classes, all merged into one .js file for the browser.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "appMeta"
+      },
+      {
+        "name": "pkg"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 1197
+      },
+      "end": {
+        "line": 43,
+        "column": 3,
+        "index": 1357
+      }
+    }
+  },
+  "properties": {
+    "needsWriteToDisk": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1380
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1442
+        }
+      },
+      "json": {
+        "init": true,
+        "refine": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    }
+  },
+  "members": {
+    "__sourceMapOffsets": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1466
+        },
+        "end": {
+          "line": 53,
+          "column": 28,
+          "index": 1490
+        }
+      },
+      "appearsIn": []
+    },
+    "writeSourceCodeToStream": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1529
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3162
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ws"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    },
+    "writeToDisk": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3201
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 3477
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    },
+    "getSourceMap": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3516
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 3911
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    }
+  },
+  "statics": {}
+}

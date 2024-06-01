@@ -1,65 +1,80 @@
 {
-  "className": "qx.data.controller.Object",
-  "packageName": "qx.data.controller",
-  "name": "Object",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 48,
-        "column": 0,
-        "index": 1665
-      },
-      "end": {
-        "line": 389,
-        "column": 3,
-        "index": 12117
-      }
+  "version": 0.3,
+  "lastModified": 1717235171894,
+  "lastModifiedIso": "2024-06-01T09:46:11.894Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/controller/Object.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 48,
+      "column": 0,
+      "index": 1618
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<h2>Object Controller</h2>\n<p><em>General idea</em>\n The idea of the object controller is to make the binding of one model object\n containing one or more properties as easy as possible. Therefore the\n controller can take a model as property. Every property in that model can be\n bound to one or more target properties. The binding will be for\n atomic types only like Numbers, Strings, …\n<em>Features</em></p>\n<ul>\n<li>Manages the bindings between the model properties and the different targets</li>\n<li>No need for the user to take care of the binding ids</li>\n<li>Can create an bidirectional binding (read- / write-binding)</li>\n<li>Handles the change of the model which means adding the old targets\n<em>Usage</em>\nThe controller only can work if a model is set. If the model property is\nnull, the controller is not working. But it can be null on any time.\n<em>Cross reference</em></li>\n<li>If you want to bind a list like widget, use {@link qx.data.controller.List}</li>\n<li>If you want to bind a tree widget, use {@link qx.data.controller.Tree}</li>\n<li>If you want to bind a form widget, use {@link qx.data.controller.Form}</li>\n</ul>"
-        }
-      ]
+    "end": {
+      "line": 389,
+      "column": 3,
+      "index": 11729
     }
   },
-  "type": "class",
+  "className": "qx.data.controller.Object",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * <h2>Object Controller</h2>",
+      " *",
+      " * *General idea*",
+      " *",
+      " * The idea of the object controller is to make the binding of one model object",
+      " * containing one or more properties as easy as possible. Therefore the",
+      " * controller can take a model as property. Every property in that model can be",
+      " * bound to one or more target properties. The binding will be for",
+      " * atomic types only like Numbers, Strings, ...",
+      " *",
+      " * *Features*",
+      " *",
+      " * * Manages the bindings between the model properties and the different targets",
+      " * * No need for the user to take care of the binding ids",
+      " * * Can create an bidirectional binding (read- / write-binding)",
+      " * * Handles the change of the model which means adding the old targets",
+      " *",
+      " * *Usage*",
+      " *",
+      " * The controller only can work if a model is set. If the model property is",
+      " * null, the controller is not working. But it can be null on any time.",
+      " *",
+      " * *Cross reference*",
+      " *",
+      " * * If you want to bind a list like widget, use {@link qx.data.controller.List}",
+      " * * If you want to bind a tree widget, use {@link qx.data.controller.Tree}",
+      " * * If you want to bind a form widget, use {@link qx.data.controller.Form}",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<h2>Object Controller</h2>\n<p><em>General idea</em>\n The idea of the object controller is to make the binding of one model object\n containing one or more properties as easy as possible. Therefore the\n controller can take a model as property. Every property in that model can be\n bound to one or more target properties. The binding will be for\n atomic types only like Numbers, Strings, …\n<em>Features</em></p>\n<ul>\n<li>Manages the bindings between the model properties and the different targets</li>\n<li>No need for the user to take care of the binding ids</li>\n<li>Can create an bidirectional binding (read- / write-binding)</li>\n<li>Handles the change of the model which means adding the old targets\n<em>Usage</em>\nThe controller only can work if a model is set. If the model property is\nnull, the controller is not working. But it can be null on any time.\n<em>Cross reference</em></li>\n<li>If you want to bind a list like widget, use {@link qx.data.controller.List}</li>\n<li>If you want to bind a tree widget, use {@link qx.data.controller.Tree}</li>\n<li>If you want to bind a form widget, use {@link qx.data.controller.Form}</li>\n</ul>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "model"
+      }
+    ],
     "location": {
       "start": {
         "line": 60,
         "column": 2,
-        "index": 2027
+        "index": 1968
       },
       "end": {
         "line": 71,
         "column": 3,
-        "index": 2285
+        "index": 2215
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "model {qx.core.Object?null} The model for the model property.",
-          "paramName": "model",
-          "description": " The model for the model property.",
-          "optional": true,
-          "defaultValue": "null",
-          "type": "qx.core.Object"
-        }
-      ]
     }
   },
   "properties": {
@@ -68,15 +83,25 @@
         "start": {
           "line": 81,
           "column": 4,
-          "index": 2581
+          "index": 2501
         },
         "end": {
           "line": 87,
           "column": 5,
-          "index": 2734
+          "index": 2648
         }
       },
+      "json": {
+        "check": "qx.core.Object",
+        "event": "changeModel",
+        "apply": "_applyModel",
+        "nullable": true,
+        "dereference": true
+      },
       "jsdoc": {
+        "raw": [
+          "* The model object which does have the properties for the binding. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -84,95 +109,59 @@
           }
         ]
       },
-      "name": "model",
-      "propertyType": "new",
-      "event": "changeModel",
-      "apply": "_applyModel",
-      "nullable": true,
-      "allowNull": true,
-      "check": "qx.core.Object"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "__targets": {
+      "jsdoc": {
+        "raw": [
+          " private members"
+        ]
+      },
+      "access": "private",
       "location": {
         "start": {
           "line": 98,
           "column": 4,
-          "index": 2976
+          "index": 2879
         },
         "end": {
           "line": 98,
           "column": 19,
-          "index": 2991
+          "index": 2894
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__bindings": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 99,
           "column": 4,
-          "index": 2998
+          "index": 2900
         },
         "end": {
           "line": 99,
           "column": 20,
-          "index": 3014
+          "index": 2916
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_applyModel": {
-      "location": {
-        "start": {
-          "line": 108,
-          "column": 4,
-          "index": 3287
-        },
-        "end": {
-          "line": 167,
-          "column": 5,
-          "index": 5344
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply-method which will be called if a new model has been set.",
+          "     * All bindings will be moved to the new model.",
+          "     *",
+          "     * @param value {qx.core.Object|null} The new model.",
+          "     * @param old {qx.core.Object|null} The old model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -202,26 +191,65 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
-      "applyFor": [
-        "model"
-      ]
-    },
-    "addTarget": {
       "location": {
         "start": {
-          "line": 192,
+          "line": 108,
           "column": 4,
-          "index": 6391
+          "index": 3180
         },
         "end": {
-          "line": 219,
+          "line": 167,
           "column": 5,
-          "index": 6962
+          "index": 5178
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "qx.core.Object",
+            "null"
+          ]
+        },
+        {
+          "name": "old",
+          "type": [
+            "qx.core.Object",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "addTarget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a new target to the controller. After adding the target, the given",
+          "     * property of the model will be bound to the targets property.",
+          "     *",
+          "     * @param targetObject {qx.core.Object} The object on which the property",
+          "     *   should be bound.",
+          "     *",
+          "     * @param targetProperty {String} The property to which the binding should",
+          "     *   go.",
+          "     *",
+          "     * @param sourceProperty {String} The name of the property in the model.",
+          "     *",
+          "     * @param bidirectional {Boolean?false} Signals if the binding should also work",
+          "     *   in the reverse direction, from the target to source.",
+          "     *",
+          "     * @param options {Map?null} The options Map used by the binding from source",
+          "     *   to target. The possible options can be found in the",
+          "     *   {@link qx.data.SingleValueBinding} class.",
+          "     *",
+          "     * @param reverseOptions {Map?null} The options used by the binding in the",
+          "     *   reverse direction. The possible options can be found in the",
+          "     *   {@link qx.data.SingleValueBinding} class.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -241,14 +269,14 @@
             "body": "targetProperty {String} The property to which the binding should\n   go.",
             "paramName": "targetProperty",
             "description": " The property to which the binding should\n   go.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "sourceProperty {String} The name of the property in the model.",
             "paramName": "sourceProperty",
             "description": " The name of the property in the model.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -279,23 +307,81 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__addTarget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 244,
+          "line": 192,
           "column": 4,
-          "index": 7976
+          "index": 6200
         },
         "end": {
-          "line": 289,
+          "line": 219,
           "column": 5,
-          "index": 9047
+          "index": 6744
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "targetObject",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "targetProperty",
+          "type": "string"
+        },
+        {
+          "name": "sourceProperty",
+          "type": "string"
+        },
+        {
+          "name": "bidirectional",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "reverseOptions",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__addTarget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Does the work for {@link #addTarget} but without saving the target",
+          "     * to the internal target registry.",
+          "     *",
+          "     * @param targetObject {qx.core.Object} The object on which the property",
+          "     *   should be bound.",
+          "     *",
+          "     * @param targetProperty {String} The property to which the binding should",
+          "     *   go.",
+          "     *",
+          "     * @param sourceProperty {String} The name of the property in the model.",
+          "     *",
+          "     * @param bidirectional {Boolean?false} Signals if the binding should also work",
+          "     *   in the reverse direction, from the target to source.",
+          "     *",
+          "     * @param options {Map?null} The options Map used by the binding from source",
+          "     *   to target. The possible options can be found in the",
+          "     *   {@link qx.data.SingleValueBinding} class.",
+          "     *",
+          "     * @param reverseOptions {Map?null} The options used by the binding in the",
+          "     *   reverse direction. The possible options can be found in the",
+          "     *   {@link qx.data.SingleValueBinding} class.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -315,14 +401,14 @@
             "body": "targetProperty {String} The property to which the binding should\n   go.",
             "paramName": "targetProperty",
             "description": " The property to which the binding should\n   go.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "sourceProperty {String} The name of the property in the model.",
             "paramName": "sourceProperty",
             "description": " The name of the property in the model.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -353,23 +439,69 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "removeTarget": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 302,
+          "line": 244,
           "column": 4,
-          "index": 9449
+          "index": 7733
         },
         "end": {
-          "line": 320,
+          "line": 289,
           "column": 5,
-          "index": 10009
+          "index": 8759
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "targetObject",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "targetProperty",
+          "type": "string"
+        },
+        {
+          "name": "sourceProperty",
+          "type": "string"
+        },
+        {
+          "name": "bidirectional",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        },
+        {
+          "name": "options",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "reverseOptions",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeTarget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the target identified by the three properties.",
+          "     *",
+          "     * @param targetObject {qx.core.Object} The target object on which the",
+          "     *   binding exist.",
+          "     *",
+          "     * @param targetProperty {String} The targets property name used by the",
+          "     *   adding of the target.",
+          "     *",
+          "     * @param sourceProperty {String} The name of the property of the model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -389,34 +521,66 @@
             "body": "targetProperty {String} The targets property name used by the\n   adding of the target.",
             "paramName": "targetProperty",
             "description": " The targets property name used by the\n   adding of the target.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "sourceProperty {String} The name of the property of the model.",
             "paramName": "sourceProperty",
             "description": " The name of the property of the model.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__removeTargetFrom": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 337,
+          "line": 302,
           "column": 4,
-          "index": 10567
+          "index": 9148
         },
         "end": {
-          "line": 374,
+          "line": 320,
           "column": 5,
-          "index": 11726
+          "index": 9690
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "targetObject",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "targetProperty",
+          "type": "string"
+        },
+        {
+          "name": "sourceProperty",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__removeTargetFrom": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Does the work for {@link #removeTarget} but without removing the target",
+          "     * from the internal registry.",
+          "     *",
+          "     * @param targetObject {qx.core.Object} The target object on which the",
+          "     *   binding exist.",
+          "     *",
+          "     * @param targetProperty {String} The targets property name used by the",
+          "     *   adding of the target.",
+          "     *",
+          "     * @param sourceProperty {String} The name of the property of the model.",
+          "     *",
+          "     * @param sourceObject {String} The source object from which the binding",
+          "     *   comes.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -436,246 +600,74 @@
             "body": "targetProperty {String} The targets property name used by the\n   adding of the target.",
             "paramName": "targetProperty",
             "description": " The targets property name used by the\n   adding of the target.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "sourceProperty {String} The name of the property of the model.",
             "paramName": "sourceProperty",
             "description": " The name of the property of the model.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "sourceObject {String} The source object from which the binding\n   comes.",
             "paramName": "sourceObject",
             "description": " The source object from which the binding\n   comes.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 337,
+          "column": 4,
+          "index": 10231
+        },
+        "end": {
+          "line": 374,
+          "column": 5,
+          "index": 11353
+        }
+      },
       "type": "function",
-      "access": "private"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getModel": {
-      "type": "function",
-      "name": "getModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for model"
-          }
-        ]
-      }
-    },
-    "setModel": {
-      "type": "function",
-      "name": "setModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for model"
-          }
-        ]
-      }
-    },
-    "resetModel": {
-      "type": "function",
-      "name": "resetModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>model</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "targetObject",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "targetProperty",
+          "type": "string"
+        },
+        {
+          "name": "sourceProperty",
+          "type": "string"
+        },
+        {
+          "name": "sourceObject",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 383,
         "column": 2,
-        "index": 11933
+        "index": 11551
       },
       "end": {
         "line": 388,
         "column": 3,
-        "index": 12112
+        "index": 11725
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {}
 }

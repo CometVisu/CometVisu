@@ -1,52 +1,51 @@
 {
-  "className": "cv.parser.pure.widgets.Refresh",
-  "packageName": "cv.parser.pure.widgets",
-  "name": "Refresh",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 825
-      },
-      "end": {
-        "line": 67,
-        "column": 3,
-        "index": 1996
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/parser/pure/widgets/Refresh.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 825
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 67,
+      "column": 3,
+      "index": 1996
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.parser.pure.widgets.Refresh",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "parse": {
-      "location": {
-        "start": {
-          "line": 41,
-          "column": 4,
-          "index": 1390
-        },
-        "end": {
-          "line": 54,
-          "column": 5,
-          "index": 1762
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,28 +65,61 @@
             "body": "path {String} internal path of the widget",
             "paramName": "path",
             "description": " internal path of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "flavour {String} Flavour of the widget",
             "paramName": "flavour",
             "description": " Flavour of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "pageType {String} Page type (2d, 3d, ...)",
             "paramName": "pageType",
             "description": " Page type (2d, 3d, ...)",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1390
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1762
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     },
     "getAttributeToPropertyMappings": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 56,
@@ -101,22 +133,10 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 63,
-        "column": 2,
-        "index": 1881
-      },
-      "end": {
-        "line": 66,
-        "column": 3,
-        "index": 1992
-      }
-    }
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

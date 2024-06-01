@@ -1,55 +1,98 @@
 {
-  "className": "qx.Mixin",
-  "packageName": "qx",
-  "name": "Mixin",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 30,
-        "column": 0,
-        "index": 888
-      },
-      "end": {
-        "line": 543,
-        "column": 3,
-        "index": 17279
-      }
+  "version": 0.3,
+  "lastModified": 1717235171766,
+  "lastModifiedIso": "2024-06-01T09:46:11.766Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/Mixin.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 859
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is used to define mixins (similar to mixins in Ruby).\n Mixins are collections of code and variables, which can be merged into\n other classes. They are similar to classes but don't support inheritance.\n See the description of the {@link #define} method how a mixin is defined.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Array"
-        }
-      ]
+    "end": {
+      "line": 548,
+      "column": 3,
+      "index": 16856
     }
   },
-  "type": "class",
+  "className": "qx.Mixin",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is used to define mixins (similar to mixins in Ruby).",
+      " *",
+      " * Mixins are collections of code and variables, which can be merged into",
+      " * other classes. They are similar to classes but don't support inheritance.",
+      " *",
+      " * See the description of the {@link #define} method how a mixin is defined.",
+      " *",
+      " * @require(qx.lang.normalize.Array)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is used to define mixins (similar to mixins in Ruby).\n Mixins are collections of code and variables, which can be merged into\n other classes. They are similar to classes but don't support inheritance.\n See the description of the {@link #define} method how a mixin is defined.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Array"
+      }
+    ]
+  },
   "statics": {
     "define": {
-      "location": {
-        "start": {
-          "line": 83,
-          "column": 4,
-          "index": 3148
-        },
-        "end": {
-          "line": 160,
-          "column": 5,
-          "index": 5309
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Define a new mixin.",
+          "     *",
+          "     * Example:",
+          "     * <pre class='javascript'>",
+          "     * qx.Mixin.define(\"name\",",
+          "     * {",
+          "     *   include: [SuperMixins],",
+          "     *",
+          "     *   properties: {",
+          "     *     tabIndex: {type: \"number\", init: -1}",
+          "     *   },",
+          "     *",
+          "     *   members:",
+          "     *   {",
+          "     *     prop1: \"foo\",",
+          "     *     meth1: function() {},",
+          "     *     meth2: function() {}",
+          "     *   }",
+          "     * });",
+          "     * </pre>",
+          "     *",
+          "     * @param name {String} name of the mixin",
+          "     * @param config {Map ? null} Mixin definition structure. The configuration map has the following keys:",
+          "     *   <table>",
+          "     *     <tr><th>Name</th><th>Type</th><th>Description</th></tr>",
+          "     *     <tr><th>construct</th><td>Function</td><td>An optional mixin constructor. It is called on instantiation each",
+          "     *         class including this mixin. The constructor takes no parameters.</td></tr>",
+          "     *     <tr><th>destruct</th><td>Function</td><td>An optional mixin destructor.</td></tr>",
+          "     *     <tr><th>include</th><td>Mixin[]</td><td>Array of mixins, which will be merged into the mixin.</td></tr>",
+          "     *     <tr><th>statics</th><td>Map</td><td>",
+          "     *         Map of statics of the mixin. The statics will not get copied into the target class. They remain",
+          "     *         accessible from the mixin. This is the same behaviour as statics in interfaces ({@link qx.Interface#define}).",
+          "     *     </td></tr>",
+          "     *     <tr><th>members</th><td>Map</td><td>Map of members of the mixin.</td></tr>",
+          "     *     <tr><th>properties</th><td>Map</td><td>Map of property definitions. For a description of the format of a property definition see",
+          "     *           {@link qx.core.Property}.</td></tr>",
+          "     *     <tr><th>events</th><td>Map</td><td>",
+          "     *         Map of events the mixin fires. The keys are the names of the events and the values are",
+          "     *         corresponding event type classes.",
+          "     *     </td></tr>",
+          "     *   </table>",
+          "     *",
+          "     * @return {qx.Mixin} The configured mixin",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -62,7 +105,7 @@
             "body": "name {String} name of the mixin",
             "paramName": "name",
             "description": " name of the mixin",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -79,27 +122,52 @@
             "name": "@return",
             "body": "{qx.Mixin} The configured mixin",
             "type": "qx.Mixin",
-            "description": " The configured mixin"
+            "description": "The configured mixin"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "checkCompatibility": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 169,
+          "line": 83,
           "column": 4,
-          "index": 5621
+          "index": 3066
         },
         "end": {
-          "line": 235,
+          "line": 164,
           "column": 5,
-          "index": 7186
+          "index": 5235
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "config",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Mixin"
+      },
+      "appearsIn": []
+    },
+    "checkCompatibility": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check compatibility between mixins (including their includes)",
+          "     *",
+          "     * @param mixins {Mixin[]} an array of mixins",
+          "     * @throws {Error} when there is a conflict between the mixins",
+          "     * @return {Boolean} <code>true</code> if the mixin passed the compatibility check",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -127,28 +195,48 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the mixin passed the compatibility check",
-            "type": "Boolean",
-            "description": " <code>true</code> if the mixin passed the compatibility check"
+            "type": "boolean",
+            "description": "<code>true</code> if the mixin passed the compatibility check"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isCompatible": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 245,
+          "line": 173,
           "column": 4,
-          "index": 7534
+          "index": 5538
         },
         "end": {
-          "line": 249,
+          "line": 239,
           "column": 5,
-          "index": 7694
+          "index": 7037
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "mixins",
+          "type": "Mixin[]"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isCompatible": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if a class is compatible to the given mixin (no conflicts)",
+          "     *",
+          "     * @param mixin {Mixin} mixin to check",
+          "     * @param clazz {Class} class to check",
+          "     * @throws {Error} when the given mixin is incompatible to the class",
+          "     * @return {Boolean} true if the mixin is compatible to the given class",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -183,28 +271,50 @@
           {
             "name": "@return",
             "body": "{Boolean} true if the mixin is compatible to the given class",
-            "type": "Boolean",
-            "description": " true if the mixin is compatible to the given class"
+            "type": "boolean",
+            "description": "true if the mixin is compatible to the given class"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getByName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 257,
+          "line": 249,
           "column": 4,
-          "index": 7846
+          "index": 7375
         },
         "end": {
-          "line": 259,
+          "line": 253,
           "column": 5,
-          "index": 7907
+          "index": 7531
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "mixin",
+          "type": "qx.Mixin"
+        },
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getByName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a mixin by name",
+          "     *",
+          "     * @param name {String} class name to resolve",
+          "     * @return {Class} the class",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -217,7 +327,7 @@
             "body": "name {String} class name to resolve",
             "paramName": "name",
             "description": " class name to resolve",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -225,27 +335,45 @@
             "name": "@return",
             "body": "{Class} the class",
             "type": "qx.Class",
-            "description": " the class"
+            "description": "the class"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isDefined": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 267,
+          "line": 261,
           "column": 4,
-          "index": 8072
+          "index": 7675
         },
         "end": {
-          "line": 269,
+          "line": 263,
           "column": 5,
-          "index": 8146
+          "index": 7734
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Class"
+      },
+      "appearsIn": []
+    },
+    "isDefined": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine if mixin exists",
+          "     *",
+          "     * @param name {String} mixin name to check",
+          "     * @return {Boolean} true if mixin exists",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -258,35 +386,52 @@
             "body": "name {String} mixin name to check",
             "paramName": "name",
             "description": " mixin name to check",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} true if mixin exists",
-            "type": "Boolean",
-            "description": " true if mixin exists"
+            "type": "boolean",
+            "description": "true if mixin exists"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTotalNumber": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 276,
+          "line": 271,
           "column": 4,
-          "index": 8284
+          "index": 7891
         },
         "end": {
-          "line": 278,
+          "line": 273,
           "column": 5,
-          "index": 8370
+          "index": 7963
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getTotalNumber": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine the number of mixins which are defined",
+          "     *",
+          "     * @return {Number} the number of mixins",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -297,28 +442,42 @@
           {
             "name": "@return",
             "body": "{Number} the number of mixins",
-            "type": "Number",
-            "description": " the number of mixins"
+            "type": "number",
+            "description": "the number of mixins"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "flatten": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 287,
+          "line": 280,
           "column": 4,
-          "index": 8603
+          "index": 8094
         },
         "end": {
-          "line": 302,
+          "line": 282,
           "column": 5,
-          "index": 8994
+          "index": 8178
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "flatten": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates a list of all mixins given plus all the",
+          "     * mixins these includes plus... (deep)",
+          "     *",
+          "     * @param mixins {Mixin[] ? []} List of mixins",
+          "     * @return {Array} List of all mixins",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -340,28 +499,65 @@
           {
             "name": "@return",
             "body": "{Array} List of all mixins",
-            "type": "Array",
-            "description": " List of all mixins"
+            "type": "Array<any>",
+            "description": "List of all mixins"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "baseClassMethod": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 327,
+          "line": 291,
           "column": 4,
-          "index": 10400
+          "index": 8402
         },
         "end": {
-          "line": 408,
+          "line": 306,
           "column": 5,
-          "index": 13389
+          "index": 8778
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "mixins",
+          "type": "Mixin[]",
+          "optional": true,
+          "defaultValue": "[]"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "baseClassMethod": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is used to determine the base method to call at runtime, and is used",
+          "     * by Mixins where the mixin method calls `this.base()`.  It is only required by the",
+          "     * compiler, and not the generator.",
+          "     *",
+          "     * The problem is that while Mixin's cannot override the same methods in a single class,",
+          "     * they can override methods that were implemented in a base base - but the compiler",
+          "     * cannot emit compile-time code which knows the base class method because that depends",
+          "     * on the class that the mixin is mixed-into.",
+          "     *",
+          "     * This method will search the hierarchy of the class at runtime, and figure out the",
+          "     * nearest superclass method to call; the result is cached, and it is acceptable for",
+          "     * a mixin's method to override a method mixed into a superclass.",
+          "     *",
+          "     * Technically, this method should be private - it is internal and no notification will",
+          "     * be given if the API changes.  However, because it needs to be called by generated code",
+          "     * in any class, it has to appear as public.  Do not use it directly.",
+          "     *",
+          "     * @param clazz {Class} the class that is to be examined",
+          "     * @param mixin {Mixin} the mixin that is calling `this.base`",
+          "     * @param methodName {String} the name of the method in `mixin` that is calling `this.base`",
+          "     * @return {Function} the base class function to call",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -388,35 +584,62 @@
             "body": "methodName {String} the name of the method in <code>mixin</code> that is calling <code>this.base</code>",
             "paramName": "methodName",
             "description": " the name of the method in <code>mixin</code> that is calling <code>this.base</code>",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Function} the base class function to call",
-            "type": "Function",
-            "description": " the base class function to call"
+            "type": "((...args: any[]) => any)",
+            "description": "the base class function to call"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "genericToString": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 423,
+          "line": 331,
           "column": 4,
-          "index": 13794
+          "index": 10159
         },
         "end": {
-          "line": 425,
+          "line": 412,
           "column": 5,
-          "index": 13863
+          "index": 13067
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "mixin",
+          "type": "qx.Mixin"
+        },
+        {
+          "name": "methodName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "genericToString": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method will be attached to all mixins to return",
+          "     * a nice identifier for them.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} The mixin identifier",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -433,28 +656,36 @@
           {
             "name": "@return",
             "body": "{String} The mixin identifier",
-            "type": "String",
-            "description": " The mixin identifier"
+            "type": "string",
+            "description": "The mixin identifier"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "$$registry": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 428,
+          "line": 427,
           "column": 4,
-          "index": 13913
+          "index": 13457
         },
         "end": {
-          "line": 428,
-          "column": 18,
-          "index": 13927
+          "line": 429,
+          "column": 5,
+          "index": 13524
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "$$registry": {
       "jsdoc": {
+        "raw": [
+          "* Registers all defined mixins "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -462,23 +693,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "__allowedKeys": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 431,
+          "line": 432,
           "column": 4,
-          "index": 13993
+          "index": 13571
         },
         "end": {
-          "line": 443,
-          "column": 6,
-          "index": 14379
+          "line": 432,
+          "column": 18,
+          "index": 13585
         }
       },
+      "appearsIn": []
+    },
+    "__allowedKeys": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} allowed keys in mixin definition "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -492,23 +726,32 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__validateConfig": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 452,
+          "line": 435,
           "column": 4,
-          "index": 14621
+          "index": 13648
         },
         "end": {
-          "line": 541,
+          "line": 448,
           "column": 6,
-          "index": 17269
+          "index": 14056
         }
       },
+      "appearsIn": []
+    },
+    "__validateConfig": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validates incoming configuration and checks keys and values",
+          "     *",
+          "     * @signature function(name, config)",
+          "     * @param name {String} The name of the class",
+          "     * @param config {Map} Configuration map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -527,20 +770,33 @@
             "body": "name {String} The name of the class",
             "paramName": "name",
             "description": " The name of the class",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "config {Map} Configuration map",
             "paramName": "config",
             "description": " Configuration map",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 457,
+          "column": 4,
+          "index": 14289
+        },
+        "end": {
+          "line": 546,
+          "column": 6,
+          "index": 16848
+        }
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

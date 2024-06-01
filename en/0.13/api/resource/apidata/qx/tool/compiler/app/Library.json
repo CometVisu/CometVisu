@@ -1,0 +1,1246 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171558,
+  "lastModifiedIso": "2024-06-01T09:46:11.558Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/app/Library.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 973
+    },
+    "end": {
+      "line": 562,
+      "column": 3,
+      "index": 15402
+    }
+  },
+  "className": "qx.tool.compiler.app.Library",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A Qooxdoo Library or application; typical usage is to call .loadManifest to configure from",
+      " * the library itself",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A Qooxdoo Library or application; typical usage is to call .loadManifest to configure from\n the library itself</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 37,
+        "column": 2,
+        "index": 1052
+      },
+      "end": {
+        "line": 42,
+        "column": 3,
+        "index": 1185
+      }
+    }
+  },
+  "properties": {
+    "namespace": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1248
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1288
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The namespace of the library "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The namespace of the library</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "version": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1333
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1371
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The version of the library "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The version of the library</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "rootDir": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1438
+        },
+        "end": {
+          "line": 59,
+          "column": 5,
+          "index": 1514
+        }
+      },
+      "json": {
+        "check": "String",
+        "transform": "_transformRootDir"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The directory; transformed into an absolute path "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The directory; transformed into an absolute path</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "sourcePath": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1578
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1647
+        }
+      },
+      "json": {
+        "init": "source/class",
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The path to source files, relative to rootDir "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to source files, relative to rootDir</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "transpiledPath": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1725
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1803
+        }
+      },
+      "json": {
+        "init": "source/transpiled",
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The path to generated transpiled files, relative to rootDir "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to generated transpiled files, relative to rootDir</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "libraryInfo": {
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1856
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 1895
+        }
+      },
+      "json": {
+        "check": "Map"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The info section form the Manifest "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The info section form the Manifest</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "resourcePath": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 1961
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2035
+        }
+      },
+      "json": {
+        "init": "source/resource",
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The path to resource files, relative to rootDir "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to resource files, relative to rootDir</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "themePath": {
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2101
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2169
+        }
+      },
+      "json": {
+        "init": "source/theme",
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The path to resource files, relative to rootDir "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to resource files, relative to rootDir</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "translationPath": {
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2238
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2318
+        }
+      },
+      "json": {
+        "init": "source/translation",
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The path to translation files, relative to rootDir "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to translation files, relative to rootDir</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "webFonts": {
+      "location": {
+        "start": {
+          "line": 100,
+          "column": 4,
+          "index": 2405
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 2483
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Array"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * {WebFont[]} List of webfonts provided",
+          "     * @deprecated",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{WebFont[]} List of webfonts provided</p>"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": ""
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "addScript": {
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2551
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2586
+        }
+      },
+      "json": {},
+      "jsdoc": {
+        "raw": [
+          "* Array of external scripts required by the library "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Array of external scripts required by the library</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "addCss": {
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 2658
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 2690
+        }
+      },
+      "json": {},
+      "jsdoc": {
+        "raw": [
+          "* Array of external stylesheets required by the library "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Array of external stylesheets required by the library</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "requires": {
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 2752
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 2786
+        }
+      },
+      "json": {},
+      "jsdoc": {
+        "raw": [
+          "*  Array of requires resources of the library "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Array of requires resources of the library</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__knownSymbols": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 2810
+        },
+        "end": {
+          "line": 123,
+          "column": 24,
+          "index": 2830
+        }
+      },
+      "appearsIn": []
+    },
+    "__sourceFileExtensions": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 2836
+        },
+        "end": {
+          "line": 124,
+          "column": 32,
+          "index": 2864
+        }
+      },
+      "appearsIn": []
+    },
+    "__promiseLoadManifest": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 2870
+        },
+        "end": {
+          "line": 125,
+          "column": 31,
+          "index": 2897
+        }
+      },
+      "appearsIn": []
+    },
+    "__environmentChecks": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 2903
+        },
+        "end": {
+          "line": 126,
+          "column": 29,
+          "index": 2928
+        }
+      },
+      "appearsIn": []
+    },
+    "__fontsData": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 2934
+        },
+        "end": {
+          "line": 127,
+          "column": 21,
+          "index": 2951
+        }
+      },
+      "appearsIn": []
+    },
+    "_transformRootDir": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transform for rootDir; converts it to an absolute path",
+          "     * @param value",
+          "     * @returns {*}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transform for rootDir; converts it to an absolute path</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value",
+            "paramName": "value",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*}",
+            "type": "*",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3092
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3214
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": []
+    },
+    "loadManifest": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads the Manifest.json from the directory and uses it to configure",
+          "     * properties",
+          "     * @param loadFromDir {String} directory",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads the Manifest.json from the directory and uses it to configure\n properties</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "loadFromDir {String} directory",
+            "paramName": "loadFromDir",
+            "description": " directory",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 3375
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 3589
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "loadFromDir",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__loadManifestImpl": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 3596
+        },
+        "end": {
+          "line": 275,
+          "column": 5,
+          "index": 7349
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "loadFromDir"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getFontsData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the provides.fonts data from the manifest",
+          "     *",
+          "     * @returns {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the provides.fonts data from the manifest</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 282,
+          "column": 4,
+          "index": 7460
+        },
+        "end": {
+          "line": 284,
+          "column": 5,
+          "index": 7513
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "scanForClasses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scans the filing system looking for classes; there are occasions (ie Qooxdoo's qxWeb module)",
+          "     * where the class name does not comply with the namespace, this method is used to find those",
+          "     * files and also to prepopulate the known symbols list",
+          "     * @param cb {Function} (err, classes) returns an array of class names",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scans the filing system looking for classes; there are occasions (ie Qooxdoo's qxWeb module)\n where the class name does not comply with the namespace, this method is used to find those\n files and also to prepopulate the known symbols list</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cb {Function} (err, classes) returns an array of class names",
+            "paramName": "cb",
+            "description": " (err, classes) returns an array of class names",
+            "type": "((...args: any[]) => any)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4,
+          "index": 7869
+        },
+        "end": {
+          "line": 386,
+          "column": 5,
+          "index": 10769
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cb",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isFontAsset": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the filename is one of the library's fonts",
+          "     *",
+          "     * @param {String} filename",
+          "     * @returns {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the filename is one of the library's fonts</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} filename",
+            "paramName": "filename",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 394,
+          "column": 4,
+          "index": 10923
+        },
+        "end": {
+          "line": 416,
+          "column": 5,
+          "index": 11597
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSymbolType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects the type of a symbol, \"class\", \"resource\", \"package\", \"environment\", or null if not found",
+          "     *",
+          "     * @param {String} name",
+          "     * @return {{symbolType,name,className}?}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects the type of a symbol, \"class\", \"resource\", \"package\", \"environment\", or null if not found</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} name",
+            "paramName": "name",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{symbolType,name,className}?}",
+            "type": "{symbolType,name,className}?",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 424,
+          "column": 4,
+          "index": 11806
+        },
+        "end": {
+          "line": 488,
+          "column": 5,
+          "index": 13353
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "{symbolType,name,className}?"
+      },
+      "appearsIn": []
+    },
+    "isClass": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the classname is an actual class, in this library",
+          "     *",
+          "     * @param classname {String} classname to look for",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks whether the classname is an actual class, in this library</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "classname {String} classname to look for",
+            "paramName": "classname",
+            "description": " classname to look for",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 496,
+          "column": 4,
+          "index": 13535
+        },
+        "end": {
+          "line": 499,
+          "column": 5,
+          "index": 13641
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "classname",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getKnownSymbols": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all known symbols as a map indexed by symbol name",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns all known symbols as a map indexed by symbol name</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 504,
+          "column": 4,
+          "index": 13729
+        },
+        "end": {
+          "line": 506,
+          "column": 5,
+          "index": 13788
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getSourceFileExtension": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the original extension of the class file that implemented the",
+          "     * given class name.",
+          "     *",
+          "     * @param {String} className",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the original extension of the class file that implemented the\n given class name.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} className",
+            "paramName": "className",
+            "description": "",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 514,
+          "column": 4,
+          "index": 13953
+        },
+        "end": {
+          "line": 516,
+          "column": 5,
+          "index": 14047
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "className",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getFilename": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the full filename for the file within this library",
+          "     *",
+          "     * @param filename {String} the filename relative to this library",
+          "     * @return {String} the full filename",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the full filename for the file within this library</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} the filename relative to this library",
+            "paramName": "filename",
+            "description": " the filename relative to this library",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the full filename",
+            "type": "string",
+            "description": "the full filename"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 524,
+          "column": 4,
+          "index": 14255
+        },
+        "end": {
+          "line": 526,
+          "column": 5,
+          "index": 14359
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getResourceFilename": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the full filename for the file within this library's resources",
+          "     *",
+          "     * @param filename {String} the filename relative to this library",
+          "     * @return {String} the full filename",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the full filename for the file within this library's resources</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} the filename relative to this library",
+            "paramName": "filename",
+            "description": " the filename relative to this library",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the full filename",
+            "type": "string",
+            "description": "the full filename"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 534,
+          "column": 4,
+          "index": 14579
+        },
+        "end": {
+          "line": 536,
+          "column": 5,
+          "index": 14693
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getThemeFilename": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the full filename for the file within this library's theme",
+          "     *",
+          "     * @param filename {String} the filename relative to this library",
+          "     * @return {String} the full filename",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the full filename for the file within this library's theme</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} the filename relative to this library",
+            "paramName": "filename",
+            "description": " the filename relative to this library",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the full filename",
+            "type": "string",
+            "description": "the full filename"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 544,
+          "column": 4,
+          "index": 14909
+        },
+        "end": {
+          "line": 546,
+          "column": 5,
+          "index": 15017
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "createLibrary": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to create a Library instance and load it's manifest",
+          "     *",
+          "     * @param rootDir {String} directory of the library (must contain a Manifest.json)",
+          "     * @return {Library}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method to create a Library instance and load it's manifest</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "rootDir {String} directory of the library (must contain a Manifest.json)",
+            "paramName": "rootDir",
+            "description": " directory of the library (must contain a Manifest.json)",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Library}",
+            "type": "qx.tool.compiler.app.Library",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 556,
+          "column": 4,
+          "index": 15249
+        },
+        "end": {
+          "line": 560,
+          "column": 5,
+          "index": 15394
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "rootDir",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.tool.compiler.app.Library"
+      },
+      "appearsIn": []
+    }
+  }
+}

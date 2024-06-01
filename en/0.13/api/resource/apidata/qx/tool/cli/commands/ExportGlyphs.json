@@ -1,0 +1,98 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235170454,
+  "lastModifiedIso": "2024-06-01T09:46:10.454Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/ExportGlyphs.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 639
+    },
+    "end": {
+      "line": 139,
+      "column": 3,
+      "index": 4239
+    }
+  },
+  "className": "qx.tool.cli.commands.ExportGlyphs",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Exports font ligatures as a map",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Exports font ligatures as a map</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Command",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 752
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 907
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@override": [
+          {
+            "name": "@override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 964
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 4231
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    }
+  },
+  "properties": {}
+}

@@ -1,0 +1,533 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/io/Reflection.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 877
+    },
+    "end": {
+      "line": 262,
+      "column": 3,
+      "index": 7332
+    }
+  },
+  "className": "cv.io.Reflection",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Reflection API for possible Editor communication",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Reflection API for possible Editor communication</p>"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "pathRegEx": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Function to test if the path is in a valid form.",
+          "     * Note: it doesn't check if it exists!",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Function to test if the path is in a valid form.\n Note: it doesn't check if it exists!</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1203
+        },
+        "end": {
+          "line": 36,
+          "column": 31,
+          "index": 1230
+        }
+      },
+      "appearsIn": []
+    },
+    "list": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return a list of all widgets.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return a list of all widgets.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1290
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 2281
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "read": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return all attributes of a widget.",
+          "     * @param path",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return all attributes of a widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path",
+            "paramName": "path",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2365
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2616
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": []
+    },
+    "select": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the selection state of a widget.",
+          "     * @param path",
+          "     * @param state",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set the selection state of a widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path",
+            "paramName": "path",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "state",
+            "paramName": "state",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2722
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2933
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        },
+        {
+          "name": "state"
+        }
+      ],
+      "appearsIn": []
+    },
+    "write": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set all attributes of a widget.",
+          "     * @param path",
+          "     * @param attributes",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Set all attributes of a widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path",
+            "paramName": "path",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "attributes",
+            "paramName": "attributes",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 3039
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3248
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        },
+        {
+          "name": "attributes"
+        }
+      ],
+      "appearsIn": []
+    },
+    "handleMessage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reflection API: communication",
+          "     * Handle messages that might be sent by the editor",
+          "     * @param event",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reflection API: communication\n Handle messages that might be sent by the editor</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "event",
+            "paramName": "event",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3384
+        },
+        "end": {
+          "line": 192,
+          "column": 5,
+          "index": 5617
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "lookupWidget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return a widget (to be precise: the widget_container) for the given path",
+          "     * @param path",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Return a widget (to be precise: the widget_container) for the given path</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path",
+            "paramName": "path",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4,
+          "index": 5772
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 5852
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getParentPage": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 5859
+        },
+        "end": {
+          "line": 209,
+          "column": 5,
+          "index": 6015
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "page"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getParentPageById": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 6022
+        },
+        "end": {
+          "line": 227,
+          "column": 5,
+          "index": 6488
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        },
+        {
+          "name": "isPageId"
+        }
+      ],
+      "appearsIn": []
+    },
+    "create": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create a new widget.",
+          "     * @param path",
+          "     * @param element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create a new widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path",
+            "paramName": "path",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "element",
+            "paramName": "element",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 234,
+          "column": 4,
+          "index": 6580
+        },
+        "end": {
+          "line": 236,
+          "column": 5,
+          "index": 6678
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        },
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "deleteCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delete an existing path, i.e. widget, group or even page - including",
+          "     * child elements.",
+          "     * @param path",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Delete an existing path, i.e. widget, group or even page - including\n child elements.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path",
+            "paramName": "path",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4,
+          "index": 6819
+        },
+        "end": {
+          "line": 247,
+          "column": 5,
+          "index": 7017
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": []
+    },
+    "focus": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Focus a widget.",
+          "     * @param path",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Focus a widget.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path",
+            "paramName": "path",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4,
+          "index": 7082
+        },
+        "end": {
+          "line": 256,
+          "column": 5,
+          "index": 7227
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

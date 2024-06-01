@@ -1,73 +1,76 @@
 {
-  "className": "qx.dev.StackTrace",
-  "packageName": "qx.dev",
-  "name": "StackTrace",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 723
-      },
-      "end": {
-        "line": 398,
-        "column": 3,
-        "index": 14036
-      }
+  "version": 0.3,
+  "lastModified": 1717235172398,
+  "lastModifiedIso": "2024-06-01T09:46:12.398Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/StackTrace.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 696
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Methods to get information about the JavaScript call stack.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.String"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.bom.client.EcmaScript.*"
-        },
-        {
-          "name": "@ignore",
-          "body": "qx.bom.client"
-        },
-        {
-          "name": "@ignore",
-          "body": "qx.bom"
-        },
-        {
-          "name": "@ignore",
-          "body": "qx.Class.*"
-        }
-      ]
+    "end": {
+      "line": 398,
+      "column": 3,
+      "index": 13639
     }
   },
-  "type": "class",
+  "className": "qx.dev.StackTrace",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Methods to get information about the JavaScript call stack.",
+      " *",
+      " * @require(qx.lang.normalize.String)",
+      " * @ignore(qx.bom.client.EcmaScript.*)",
+      " * @ignore(qx.bom.client)",
+      " * @ignore(qx.bom)",
+      " * @ignore(qx.Class.*)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Methods to get information about the JavaScript call stack.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.String"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.bom.client.EcmaScript.*"
+      },
+      {
+        "name": "@ignore",
+        "body": "qx.bom.client"
+      },
+      {
+        "name": "@ignore",
+        "body": "qx.bom"
+      },
+      {
+        "name": "@ignore",
+        "body": "qx.Class.*"
+      }
+    ]
+  },
   "statics": {
     "FILENAME_TO_CLASSNAME": {
-      "location": {
-        "start": {
-          "line": 36,
-          "column": 4,
-          "index": 1115
-        },
-        "end": {
-          "line": 36,
-          "column": 31,
-          "index": 1142
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Optional user-defined function to convert source file names into readable",
+          "     * class names. Will be called with the source file name extracted from the",
+          "     * browser's stack trace information as the only argument. The returned",
+          "     * string is used in the output of {@link #getStackTraceFromError}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -75,23 +78,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "FORMAT_STACKTRACE": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 44,
+          "line": 36,
           "column": 4,
-          "index": 1464
+          "index": 1080
         },
         "end": {
-          "line": 44,
-          "column": 27,
-          "index": 1487
+          "line": 36,
+          "column": 31,
+          "index": 1107
         }
       },
+      "appearsIn": []
+    },
+    "FORMAT_STACKTRACE": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Optional user-defined formatting function for stack trace information.",
+          "     * Will be called by with an array of strings representing the calls in the",
+          "     * stack trace. {@link #getStackTraceFromError} will return the output of",
+          "     * this function. Must return an array of strings.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -99,23 +110,40 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "getStackTrace": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 61,
+          "line": 44,
           "column": 4,
-          "index": 2182
+          "index": 1421
         },
         "end": {
-          "line": 130,
-          "column": 5,
-          "index": 4445
+          "line": 44,
+          "column": 27,
+          "index": 1444
         }
       },
+      "appearsIn": []
+    },
+    "getStackTrace": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a stack trace of the current position in the code.",
+          "     *",
+          "     * Browser compatibility:",
+          "     * <ul>",
+          "     *   <li>In new versions of Gecko, WebKit and Opera, the output of",
+          "     *   {@link #getStackTraceFromError} and {@link #getStackTraceFromCaller} is",
+          "     *   combined to generate the richest trace, including line numbers.</li>",
+          "     *   <li>For Internet Explorer (and other engines that do not provide stack",
+          "     *    traces), {@link #getStackTraceFromCaller} is used</li>",
+          "     * </ul>",
+          "     *",
+          "     * @return {String[]} Stack trace of the current position in the code. Each line in the array",
+          "     *     represents one call in the stack trace.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -127,27 +155,48 @@
             "name": "@return",
             "body": "{String[]} Stack trace of the current position in the code. Each line in the array\n     represents one call in the stack trace.",
             "type": "String[]",
-            "description": " Stack trace of the current position in the code. Each line in the array\n     represents one call in the stack trace."
+            "description": "Stack trace of the current position in the code. Each line in the array\n     represents one call in the stack trace."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getStackTraceFromCaller": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 146,
+          "line": 61,
           "column": 4,
-          "index": 5003
+          "index": 2122
         },
         "end": {
-          "line": 184,
+          "line": 130,
           "column": 5,
-          "index": 5892
+          "index": 4316
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getStackTraceFromCaller": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a stack trace from the arguments special variable using the",
+          "     * <code>caller</code> property.",
+          "     *",
+          "     * This methods returns class/mixin and function names of each step",
+          "     * in the call stack.",
+          "     *",
+          "     * Recursion is not supported.",
+          "     *",
+          "     * @param args {arguments} arguments variable.",
+          "     * @return {String[]} Stack trace of caller of the function the arguments variable belongs to.",
+          "     *     Each line in the array represents one call in the stack trace.",
+          "     * @signature function(args)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -168,7 +217,7 @@
             "name": "@return",
             "body": "{String[]} Stack trace of caller of the function the arguments variable belongs to.\n     Each line in the array represents one call in the stack trace.",
             "type": "String[]",
-            "description": " Stack trace of caller of the function the arguments variable belongs to.\n     Each line in the array represents one call in the stack trace."
+            "description": "Stack trace of caller of the function the arguments variable belongs to.\n     Each line in the array represents one call in the stack trace."
           }
         ],
         "@signature": [
@@ -178,23 +227,57 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getStackTraceFromError": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 208,
+          "line": 146,
           "column": 4,
-          "index": 7063
+          "index": 4858
         },
         "end": {
-          "line": 311,
+          "line": 184,
           "column": 5,
-          "index": 10951
+          "index": 5709
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "args",
+          "type": "arguments"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getStackTraceFromError": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Try to get a stack trace from an Error object. Mozilla sets the field",
+          "     * <code>stack</code> for Error objects thrown using <code>throw new Error()</code>.",
+          "     * From this field it is possible to get a stack trace from the position",
+          "     * the exception was thrown at.",
+          "     *",
+          "     * This will get the JavaScript file names and the line numbers of each call.",
+          "     * The file names are converted into qooxdoo class names if possible (customizable",
+          "     * via {@link #FILENAME_TO_CLASSNAME}).",
+          "     *",
+          "     * The stack trace can be custom formatted using {@link #FORMAT_STACKTRACE}.",
+          "     *",
+          "     * This works reliably in Gecko-based browsers. Later Opera versions and",
+          "     * Chrome also provide a useful stack trace. For Safari, only the class or",
+          "     * file name and line number where the error occurred are returned.",
+          "     * IE 6/7/8/9 does not attach any stack information to error objects so an",
+          "     * empty array is returned.",
+          "     *",
+          "     * @param error {Error} Error exception instance.",
+          "     * @return {String[]} Stack trace of the exception. Each line in the array",
+          "     *     represents one call in the stack trace.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -215,27 +298,47 @@
             "name": "@return",
             "body": "{String[]} Stack trace of the exception. Each line in the array\n     represents one call in the stack trace.",
             "type": "String[]",
-            "description": " Stack trace of the exception. Each line in the array\n     represents one call in the stack trace."
+            "description": "Stack trace of the exception. Each line in the array\n     represents one call in the stack trace."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__fileNameToClassName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 321,
+          "line": 208,
           "column": 4,
-          "index": 11296
+          "index": 6856
         },
         "end": {
-          "line": 334,
+          "line": 311,
           "column": 5,
-          "index": 11817
+          "index": 10641
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "error",
+          "type": "Error"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "__fileNameToClassName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the URL of a JavaScript file to a class name using either a",
+          "     * user-defined ({@link #FILENAME_TO_CLASSNAME}) or default",
+          "     * ({@link #__fileNameToClassNameDefault}) converter",
+          "     *",
+          "     * @param fileName {String} URL of the JavaScript file",
+          "     * @return {String} Result of the conversion",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -248,35 +351,55 @@
             "body": "fileName {String} URL of the JavaScript file",
             "paramName": "fileName",
             "description": " URL of the JavaScript file",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} Result of the conversion",
-            "type": "String",
-            "description": " Result of the conversion"
+            "type": "string",
+            "description": "Result of the conversion"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__fileNameToClassNameDefault": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 344,
+          "line": 321,
           "column": 4,
-          "index": 12172
+          "index": 10976
         },
         "end": {
-          "line": 363,
+          "line": 334,
           "column": 5,
-          "index": 12798
+          "index": 11484
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "fileName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__fileNameToClassNameDefault": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the URL of a JavaScript file to a class name if the file is",
+          "     * named using the qooxdoo naming conventions.",
+          "     *",
+          "     * @param fileName {String} URL of the JavaScript file",
+          "     * @return {String} class name of the file if conversion was possible.",
+          "     * Otherwise the fileName is returned unmodified.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -289,35 +412,55 @@
             "body": "fileName {String} URL of the JavaScript file",
             "paramName": "fileName",
             "description": " URL of the JavaScript file",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} class name of the file if conversion was possible.\n Otherwise the fileName is returned unmodified.",
-            "type": "String",
-            "description": " class name of the file if conversion was possible.\n Otherwise the fileName is returned unmodified."
+            "type": "string",
+            "description": "class name of the file if conversion was possible.\n Otherwise the fileName is returned unmodified."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__formatStackTrace": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 373,
+          "line": 344,
           "column": 4,
-          "index": 13131
+          "index": 11829
         },
         "end": {
-          "line": 386,
+          "line": 363,
           "column": 5,
-          "index": 13701
+          "index": 12436
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "fileName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__formatStackTrace": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Runs the given stack trace array through the formatter function",
+          "     * ({@link #FORMAT_STACKTRACE}) if available and returns it. Otherwise, the",
+          "     * original array is returned",
+          "     *",
+          "     * @param trace {String[]} Stack trace information",
+          "     * @return {String[]} Formatted stack trace info",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -338,27 +481,36 @@
             "name": "@return",
             "body": "{String[]} Formatted stack trace info",
             "type": "String[]",
-            "description": " Formatted stack trace info"
+            "description": "Formatted stack trace info"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 389,
-        "column": 2,
-        "index": 13713
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 373,
+          "column": 4,
+          "index": 12759
+        },
+        "end": {
+          "line": 386,
+          "column": 5,
+          "index": 13316
+        }
       },
-      "end": {
-        "line": 397,
-        "column": 3,
-        "index": 14031
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "trace",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

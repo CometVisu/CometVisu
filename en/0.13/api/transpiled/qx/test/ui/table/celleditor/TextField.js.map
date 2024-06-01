@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "ui",
+    "table",
+    "celleditor",
+    "AbstractField",
+    "members",
+    "setUp",
+    "factory",
+    "TextField",
+    "tearDown",
+    "superclass",
+    "prototype",
+    "call",
+    "dispose"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/table/celleditor/TextField.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.ui.table.celleditor.TextField\", {\n  extend: qx.test.ui.table.celleditor.AbstractField,\n\n  members: {\n    setUp() {\n      this.factory = new qx.ui.table.celleditor.TextField();\n    },\n\n    tearDown() {\n      super.tearDown();\n      this.factory.dispose();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,uCAAuC,EAAE;IACvDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,EAAE,CAACC,KAAK,CAACC,UAAU,CAACC,aAAa;IAEjDC,OAAO,EAAE;MACPC,KAAK,WAAAA,MAAA,EAAG;QACN,IAAI,CAACC,OAAO,GAAG,IAAId,EAAE,CAACQ,EAAE,CAACC,KAAK,CAACC,UAAU,CAACK,SAAS,CAAC,CAAC;MACvD,CAAC;MAEDC,QAAQ,WAAAA,SAAA,EAAG;QACThB,EAAA,CAAAO,IAAA,CAAAC,EAAA,CAAAC,KAAA,CAAAC,UAAA,CAAAK,SAAA,CAAAE,UAAA,CAAAC,SAAA,CAAAF,QAAA,CAAAG,IAAA;QACA,IAAI,CAACL,OAAO,CAACM,OAAO,CAAC,CAAC;MACxB;IACF;EACF,CAAC,CAAC;EA/BFpB,EAAE,CAACO,IAAI,CAACC,EAAE,CAACC,KAAK,CAACC,UAAU,CAACK,SAAS,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

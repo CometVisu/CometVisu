@@ -1,71 +1,82 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235168926,
+  "lastModifiedIso": "2024-06-01T09:46:08.926Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/simple/Appearance.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 36,
+      "column": 0,
+      "index": 1187
+    },
+    "end": {
+      "line": 2590,
+      "column": 3,
+      "index": 59953
+    }
+  },
   "className": "qx.theme.simple.Appearance",
-  "packageName": "qx.theme.simple",
-  "name": "Appearance",
-  "superClass": null,
-  "interfaces": [],
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The simple qooxdoo appearance theme.",
+      " *",
+      " * @asset(qx/icon/${qx.icontheme}/16/apps/office-calendar.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/places/folder-open.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/places/folder.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/mimetypes/text-plain.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/view-refresh.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/window-close.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/dialog-cancel.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/dialog-ok.png)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The simple qooxdoo appearance theme.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/apps/office-calendar.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/places/folder-open.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/places/folder.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/mimetypes/text-plain.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/view-refresh.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/window-close.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/dialog-cancel.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/dialog-ok.png"
+      }
+    ]
+  },
   "mixins": [
     "qx.test.MAppearance"
   ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 36,
-        "column": 0,
-        "index": 1222
-      },
-      "end": {
-        "line": 2589,
-        "column": 3,
-        "index": 62468
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The simple qooxdoo appearance theme.</p>"
-        }
-      ],
-      "@asset": [
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/apps/office-calendar.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/places/folder-open.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/places/folder.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/mimetypes/text-plain.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/view-refresh.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/window-close.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/dialog-cancel.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/dialog-ok.png"
-        }
-      ]
-    }
-  },
-  "type": "theme",
-  "descendants": [
-    "qx.theme.indigo.Appearance"
-  ]
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

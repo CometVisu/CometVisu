@@ -1,49 +1,48 @@
 {
-  "className": "qx.io.ImageLoader",
-  "packageName": "qx.io",
-  "name": "ImageLoader",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 29,
-        "column": 0,
-        "index": 892
-      },
-      "end": {
-        "line": 348,
-        "column": 3,
-        "index": 10234
-      }
+  "version": 0.3,
+  "lastModified": 1717235171282,
+  "lastModifiedIso": "2024-06-01T09:46:11.282Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/ImageLoader.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 864
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The ImageLoader can preload and manage loaded image resources. It easily\n handles multiple requests and supports callbacks for successful and failed\n requests.\n After loading of an image the dimension of the image is stored as long\n as the application is running. This is quite useful for in-memory layouting.\n Use {@link #load} to preload your own images.</p>"
-        }
-      ]
+    "end": {
+      "line": 348,
+      "column": 3,
+      "index": 9887
     }
   },
-  "type": "class",
+  "className": "qx.io.ImageLoader",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The ImageLoader can preload and manage loaded image resources. It easily",
+      " * handles multiple requests and supports callbacks for successful and failed",
+      " * requests.",
+      " *",
+      " * After loading of an image the dimension of the image is stored as long",
+      " * as the application is running. This is quite useful for in-memory layouting.",
+      " *",
+      " * Use {@link #load} to preload your own images.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The ImageLoader can preload and manage loaded image resources. It easily\n handles multiple requests and supports callbacks for successful and failed\n requests.\n After loading of an image the dimension of the image is stored as long\n as the application is running. This is quite useful for in-memory layouting.\n Use {@link #load} to preload your own images.</p>"
+      }
+    ]
+  },
   "statics": {
     "__data": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 1023
-        },
-        "end": {
-          "line": 32,
-          "column": 14,
-          "index": 1033
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Internal data structure to cache image sizes "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +56,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__defaultSize": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 35,
+          "line": 32,
           "column": 4,
-          "index": 1085
+          "index": 992
         },
         "end": {
-          "line": 38,
-          "column": 5,
-          "index": 1148
+          "line": 32,
+          "column": 14,
+          "index": 1002
         }
       },
+      "appearsIn": []
+    },
+    "__defaultSize": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Default image size "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,23 +89,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__knownImageTypesRegExp": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 41,
+          "line": 35,
           "column": 4,
-          "index": 1202
+          "index": 1051
         },
         "end": {
-          "line": 41,
-          "column": 58,
-          "index": 1256
+          "line": 38,
+          "column": 5,
+          "index": 1111
         }
       },
+      "appearsIn": []
+    },
+    "__knownImageTypesRegExp": {
       "jsdoc": {
+        "raw": [
+          "* @type {RegExp} Known image types "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,23 +122,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__dataUrlRegExp": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 44,
+          "line": 41,
           "column": 4,
-          "index": 1318
+          "index": 1162
         },
         "end": {
-          "line": 44,
-          "column": 61,
-          "index": 1375
+          "line": 41,
+          "column": 58,
+          "index": 1216
         }
       },
+      "appearsIn": []
+    },
+    "__dataUrlRegExp": {
       "jsdoc": {
+        "raw": [
+          "* @type {RegExp} Image types of a data URL "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -147,23 +155,32 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "isLoaded": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 53,
+          "line": 44,
           "column": 4,
-          "index": 1631
+          "index": 1275
         },
         "end": {
-          "line": 56,
-          "column": 5,
-          "index": 1737
+          "line": 44,
+          "column": 61,
+          "index": 1332
         }
       },
+      "appearsIn": []
+    },
+    "isLoaded": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given image has previously been loaded using the",
+          "     * {@link #load} method.",
+          "     *",
+          "     * @param source {String} Image source to query",
+          "     * @return {Boolean} <code>true</code> when the image is loaded",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -176,35 +193,54 @@
             "body": "source {String} Image source to query",
             "paramName": "source",
             "description": " Image source to query",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when the image is loaded",
-            "type": "Boolean",
-            "description": " <code>true</code> when the image is loaded"
+            "type": "boolean",
+            "description": "<code>true</code> when the image is loaded"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isFailed": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 65,
+          "line": 53,
           "column": 4,
-          "index": 2012
+          "index": 1579
         },
         "end": {
-          "line": 68,
+          "line": 56,
           "column": 5,
-          "index": 2118
+          "index": 1682
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isFailed": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given image has previously been requested using the",
+          "     * {@link #load} method but failed.",
+          "     *",
+          "     * @param source {String} Image source to query",
+          "     * @return {Boolean} <code>true</code> when the image loading failed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -217,35 +253,53 @@
             "body": "source {String} Image source to query",
             "paramName": "source",
             "description": " Image source to query",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when the image loading failed",
-            "type": "Boolean",
-            "description": " <code>true</code> when the image loading failed"
+            "type": "boolean",
+            "description": "<code>true</code> when the image loading failed"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isLoading": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 76,
+          "line": 65,
           "column": 4,
-          "index": 2345
+          "index": 1948
         },
         "end": {
-          "line": 79,
+          "line": 68,
           "column": 5,
-          "index": 2453
+          "index": 2051
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isLoading": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given image is currently loading.",
+          "     *",
+          "     * @param source {String} Image source to query",
+          "     * @return {Boolean} <code>true</code> when the image is loading in the moment.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -258,35 +312,53 @@
             "body": "source {String} Image source to query",
             "paramName": "source",
             "description": " Image source to query",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when the image is loading in the moment.",
-            "type": "Boolean",
-            "description": " <code>true</code> when the image is loading in the moment."
+            "type": "boolean",
+            "description": "<code>true</code> when the image is loading in the moment."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getFormat": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 87,
+          "line": 76,
           "column": 4,
-          "index": 2674
+          "index": 2270
         },
         "end": {
-          "line": 113,
+          "line": 79,
           "column": 5,
-          "index": 3464
+          "index": 2375
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getFormat": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the format of a previously loaded image",
+          "     *",
+          "     * @param source {String} Image source to query",
+          "     * @return {String ? null} The format of the image or <code>null</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -299,7 +371,7 @@
             "body": "source {String} Image source to query",
             "paramName": "source",
             "description": " Image source to query",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -307,27 +379,47 @@
             "name": "@return",
             "body": "{String ? null} The format of the image or <code>null</code>",
             "type": "String ? null",
-            "description": " The format of the image or <code>null</code>"
+            "description": "The format of the image or <code>null</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 123,
+          "line": 87,
           "column": 4,
-          "index": 3830
+          "index": 2588
         },
         "end": {
-          "line": 128,
+          "line": 113,
           "column": 5,
-          "index": 4001
+          "index": 3352
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String ? null"
+      },
+      "appearsIn": []
+    },
+    "getSize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the size of a previously loaded image",
+          "     *",
+          "     * @param source {String} Image source to query",
+          "     * @return {Map} The dimension of the image (<code>width</code> and",
+          "     *    <code>height</code> as key). If the image is not yet loaded, the",
+          "     *    dimensions are given as <code>null</code> for width and height.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -340,35 +432,53 @@
             "body": "source {String} Image source to query",
             "paramName": "source",
             "description": " Image source to query",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Map} The dimension of the image (<code>width</code> and\n    <code>height</code> as key). If the image is not yet loaded, the\n    dimensions are given as <code>null</code> for width and height.",
-            "type": "Map",
-            "description": " The dimension of the image (<code>width</code> and\n    <code>height</code> as key). If the image is not yet loaded, the\n    dimensions are given as <code>null</code> for width and height."
+            "type": "Map<any, any>",
+            "description": "The dimension of the image (<code>width</code> and\n    <code>height</code> as key). If the image is not yet loaded, the\n    dimensions are given as <code>null</code> for width and height."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 136,
+          "line": 123,
           "column": 4,
-          "index": 4207
+          "index": 3708
         },
         "end": {
-          "line": 139,
+          "line": 128,
           "column": 5,
-          "index": 4314
+          "index": 3874
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the image width",
+          "     *",
+          "     * @param source {String} Image source to query",
+          "     * @return {Integer} The width or <code>null</code> when the image is not loaded",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -381,7 +491,7 @@
             "body": "source {String} Image source to query",
             "paramName": "source",
             "description": " Image source to query",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -389,27 +499,45 @@
             "name": "@return",
             "body": "{Integer} The width or <code>null</code> when the image is not loaded",
             "type": "Integer",
-            "description": " The width or <code>null</code> when the image is not loaded"
+            "description": "The width or <code>null</code> when the image is not loaded"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 147,
+          "line": 136,
           "column": 4,
-          "index": 4522
+          "index": 4072
         },
         "end": {
-          "line": 150,
+          "line": 139,
           "column": 5,
-          "index": 4631
+          "index": 4176
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the image height",
+          "     *",
+          "     * @param source {String} Image source to query",
+          "     * @return {Integer} The height or <code>null</code> when the image is not loaded",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -422,7 +550,7 @@
             "body": "source {String} Image source to query",
             "paramName": "source",
             "description": " Image source to query",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -430,27 +558,52 @@
             "name": "@return",
             "body": "{Integer} The height or <code>null</code> when the image is not loaded",
             "type": "Integer",
-            "description": " The height or <code>null</code> when the image is not loaded"
+            "description": "The height or <code>null</code> when the image is not loaded"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "load": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 165,
+          "line": 147,
           "column": 4,
-          "index": 5207
+          "index": 4376
         },
         "end": {
-          "line": 226,
+          "line": 150,
           "column": 5,
-          "index": 6876
+          "index": 4482
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "load": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads the given image. Supports a callback which is",
+          "     * executed when the image is loaded.",
+          "     *",
+          "     * This method works asynchronous.",
+          "     *",
+          "     * @param source {String} Image source to load",
+          "     * @param callback {Function?} Callback function to execute",
+          "     *   The first parameter of the callback is the given source url, the",
+          "     *   second parameter is the data entry which contains additional",
+          "     *   information about the image.",
+          "     * @param context {Object?} Context in which the given callback should be executed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -463,7 +616,7 @@
             "body": "source {String} Image source to load",
             "paramName": "source",
             "description": " Image source to load",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -483,23 +636,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "abort": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 233,
+          "line": 165,
           "column": 4,
-          "index": 7026
+          "index": 5043
         },
         "end": {
-          "line": 259,
+          "line": 226,
           "column": 5,
-          "index": 7696
+          "index": 6651
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "callback",
+          "type": "Function",
+          "optional": true
+        },
+        {
+          "name": "context",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "abort": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Abort the loading for the given url.",
+          "     *",
+          "     * @param source {String} URL of the image to abort its loading.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -512,27 +689,39 @@
             "body": "source {String} URL of the image to abort its loading.",
             "paramName": "source",
             "description": " URL of the image to abort its loading.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__onload": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 264,
+          "line": 233,
           "column": 4,
-          "index": 7778
+          "index": 6794
         },
         "end": {
-          "line": 271,
+          "line": 259,
           "column": 5,
-          "index": 8037
+          "index": 7438
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__onload": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calls a method based on qx.globalErrorHandling",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -540,23 +729,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__onLoadHandler": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 282,
+          "line": 264,
           "column": 4,
-          "index": 8367
+          "index": 7515
         },
         "end": {
-          "line": 339,
+          "line": 271,
           "column": 5,
-          "index": 10123
+          "index": 7767
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__onLoadHandler": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal event listener for all load/error events.",
+          "     *",
+          "     * @signature function(event, element, source)",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element which represents the image",
+          "     * @param source {String} The image source loaded",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -589,27 +791,47 @@
             "body": "source {String} The image source loaded",
             "paramName": "source",
             "description": " The image source loaded",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "dispose": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 344,
+          "line": 282,
           "column": 4,
-          "index": 10181
+          "index": 8086
         },
         "end": {
-          "line": 346,
+          "line": 339,
           "column": 5,
-          "index": 10224
+          "index": 9785
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "dispose": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispose stored images.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -617,9 +839,24 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 344,
+          "column": 4,
+          "index": 9838
+        },
+        "end": {
+          "line": 346,
+          "column": 5,
+          "index": 9879
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

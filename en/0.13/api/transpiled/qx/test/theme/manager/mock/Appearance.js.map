@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Theme",
+    "define",
+    "extend",
+    "theme",
+    "simple",
+    "Appearance",
+    "appearances",
+    "alias",
+    "style",
+    "states",
+    "padding",
+    "decorator",
+    "textColor",
+    "test",
+    "manager",
+    "mock"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/theme/manager/mock/Appearance.js"
+  ],
+  "sourcesContent": [
+    "qx.Theme.define(\"qx.test.theme.manager.mock.Appearance\", {\n  extend: qx.theme.simple.Appearance,\n\n  appearances: {\n    \"test-button-gradient\": {\n      alias: \"button\",\n      style(states) {\n        return {\n          padding: [30, 80],\n          decorator: \"test-button-gradient\"\n        };\n      }\n    },\n\n    \"test-button-gradient/label\": {\n      style(states) {\n        return {\n          textColor: \"red\"\n        };\n      }\n    },\n\n    \"button-frame\": {\n      alias: \"atom\",\n\n      style(states) {\n        return {\n          decorator: \"button-box\",\n          padding: [30, 80]\n        };\n      }\n    },\n\n    \"button-frame/label\": {\n      alias: \"atom/label\",\n\n      style(states) {\n        return {\n          textColor: \"text\"\n        };\n      }\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,uCAAuC,EAAE;IACvDC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,MAAM,CAACC,UAAU;IAElCC,WAAW,EAAE;MACX,sBAAsB,EAAE;QACtBC,KAAK,EAAE,QAAQ;QACfC,KAAK,WAAAA,MAACC,MAAM,EAAE;UACZ,OAAO;YACLC,OAAO,EAAE,CAAC,EAAE,EAAE,EAAE,CAAC;YACjBC,SAAS,EAAE;UACb,CAAC;QACH;MACF,CAAC;MAED,4BAA4B,EAAE;QAC5BH,KAAK,WAAAA,MAACC,MAAM,EAAE;UACZ,OAAO;YACLG,SAAS,EAAE;UACb,CAAC;QACH;MACF,CAAC;MAED,cAAc,EAAE;QACdL,KAAK,EAAE,MAAM;QAEbC,KAAK,WAAAA,MAACC,MAAM,EAAE;UACZ,OAAO;YACLE,SAAS,EAAE,YAAY;YACvBD,OAAO,EAAE,CAAC,EAAE,EAAE,EAAE;UAClB,CAAC;QACH;MACF,CAAC;MAED,oBAAoB,EAAE;QACpBH,KAAK,EAAE,YAAY;QAEnBC,KAAK,WAAAA,MAACC,MAAM,EAAE;UACZ,OAAO;YACLG,SAAS,EAAE;UACb,CAAC;QACH;MACF;IACF;EACF,CAAC,CAAC;EA3CFhB,EAAE,CAACiB,IAAI,CAACV,KAAK,CAACW,OAAO,CAACC,IAAI,CAACV,UAAU,CAACN,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

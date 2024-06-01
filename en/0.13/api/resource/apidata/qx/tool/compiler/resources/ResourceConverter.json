@@ -1,0 +1,364 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172134,
+  "lastModifiedIso": "2024-06-01T09:46:12.134Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/resources/ResourceConverter.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 905
+    },
+    "end": {
+      "line": 81,
+      "column": 3,
+      "index": 3087
+    }
+  },
+  "className": "qx.tool.compiler.resources.ResourceConverter",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Instances of ResourceConverter are used by the resource manager to transfer resources into",
+      " * the target output, where they require something more than just copying (eg SCSS compilation)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Instances of ResourceConverter are used by the resource manager to transfer resources into\n the target output, where they require something more than just copying (eg SCSS compilation)</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.resources.AbstractMatcher",
+  "isSingleton": false,
+  "abstract": true,
+  "members": {
+    "isDoNotCopy": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Allows the converter to decide to not copy the resource at all",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Allows the converter to decide to not copy the resource at all</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1149
+        },
+        "end": {
+          "line": 37,
+          "column": 5,
+          "index": 1198
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        }
+      ],
+      "appearsIn": []
+    },
+    "needsConvert": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the file needs to be recompiled/coverted/analysed/ etc, and is done after",
+          "     * checks determine whether the file datetime stamp indicate it's necessary",
+          "     *",
+          "     * @param target {qx.tool.compiler.targets.Target} the target",
+          "     * @param asset {qx.tool.compiler.resources.Asset} the asset to copy",
+          "     * @param srcFilename {String} full path to the file",
+          "     * @param destFilename {String} full path to the destination file",
+          "     * @param isThemeFile {Boolean} true if the file is a theme file (as opposed to a normal resource file)",
+          "     *",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the file needs to be recompiled/coverted/analysed/ etc, and is done after\n checks determine whether the file datetime stamp indicate it's necessary</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {qx.tool.compiler.targets.Target} the target",
+            "paramName": "target",
+            "description": " the target",
+            "type": "qx.tool.compiler.targets.Target"
+          },
+          {
+            "name": "@param",
+            "body": "asset {qx.tool.compiler.resources.Asset} the asset to copy",
+            "paramName": "asset",
+            "description": " the asset to copy",
+            "type": "qx.tool.compiler.resources.Asset"
+          },
+          {
+            "name": "@param",
+            "body": "srcFilename {String} full path to the file",
+            "paramName": "srcFilename",
+            "description": " full path to the file",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "destFilename {String} full path to the destination file",
+            "paramName": "destFilename",
+            "description": " full path to the destination file",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "isThemeFile {Boolean} true if the file is a theme file (as opposed to a normal resource file)",
+            "paramName": "isThemeFile",
+            "description": " true if the file is a theme file (as opposed to a normal resource file)",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1811
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1912
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.tool.compiler.targets.Target"
+        },
+        {
+          "name": "asset",
+          "type": "qx.tool.compiler.resources.Asset"
+        },
+        {
+          "name": "srcFilename",
+          "type": "string"
+        },
+        {
+          "name": "destFilename",
+          "type": "string"
+        },
+        {
+          "name": "isThemeFile",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getDestFilename": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the destination filename, or null if default is to be used",
+          "     *",
+          "     * @param target {qx.tool.compiler.targets.Target} the target",
+          "     * @param asset {qx.tool.compiler.resources.Asset} the asset to copy",
+          "     * @return {String?} full path to the file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the destination filename, or null if default is to be used</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {qx.tool.compiler.targets.Target} the target",
+            "paramName": "target",
+            "description": " the target",
+            "type": "qx.tool.compiler.targets.Target"
+          },
+          {
+            "name": "@param",
+            "body": "asset {qx.tool.compiler.resources.Asset} the asset to copy",
+            "paramName": "asset",
+            "description": " the asset to copy",
+            "type": "qx.tool.compiler.resources.Asset"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String?} full path to the file",
+            "type": "String?",
+            "description": "full path to the file"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 2202
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 2259
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.tool.compiler.targets.Target"
+        },
+        {
+          "name": "asset",
+          "type": "qx.tool.compiler.resources.Asset"
+        }
+      ],
+      "returnType": {
+        "type": "String?"
+      },
+      "appearsIn": []
+    },
+    "compile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Allows a file to be recompiled/coverted/analysed/ etc; must return a Promise which resolves",
+          "     * when complete.  Data can be stored in the resource database by modifying the fileInfo",
+          "     *",
+          "     * @param target {qx.tool.compiler.targets.Target} the target",
+          "     * @param asset {qx.tool.compiler.resources.Asset} the asset to copy",
+          "     * @param srcFilename {String} full path to the file",
+          "     * @param destFilename {String} full path to the destination file",
+          "     * @param isThemeFile {Boolean} whether the file is in a theme",
+          "     * @return {String[]} list of filenames that are required for the compilation (dependencies); may be null",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Allows a file to be recompiled/coverted/analysed/ etc; must return a Promise which resolves\n when complete.  Data can be stored in the resource database by modifying the fileInfo</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {qx.tool.compiler.targets.Target} the target",
+            "paramName": "target",
+            "description": " the target",
+            "type": "qx.tool.compiler.targets.Target"
+          },
+          {
+            "name": "@param",
+            "body": "asset {qx.tool.compiler.resources.Asset} the asset to copy",
+            "paramName": "asset",
+            "description": " the asset to copy",
+            "type": "qx.tool.compiler.resources.Asset"
+          },
+          {
+            "name": "@param",
+            "body": "srcFilename {String} full path to the file",
+            "paramName": "srcFilename",
+            "description": " full path to the file",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "destFilename {String} full path to the destination file",
+            "paramName": "destFilename",
+            "description": " full path to the destination file",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "isThemeFile {Boolean} whether the file is in a theme",
+            "paramName": "isThemeFile",
+            "description": " whether the file is in a theme",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} list of filenames that are required for the compilation (dependencies); may be null",
+            "type": "String[]",
+            "description": "list of filenames that are required for the compilation (dependencies); may be null"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2924
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 3079
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.tool.compiler.targets.Target"
+        },
+        {
+          "name": "asset",
+          "type": "qx.tool.compiler.resources.Asset"
+        },
+        {
+          "name": "srcFilename",
+          "type": "string"
+        },
+        {
+          "name": "destFilename",
+          "type": "string"
+        },
+        {
+          "name": "isThemeFile",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

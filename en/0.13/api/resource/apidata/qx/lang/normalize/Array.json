@@ -1,61 +1,51 @@
 {
-  "className": "qx.lang.normalize.Array",
-  "packageName": "qx.lang.normalize",
-  "name": "Array",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 30,
-        "column": 0,
-        "index": 918
-      },
-      "end": {
-        "line": 462,
-        "column": 3,
-        "index": 17307
-      }
+  "version": 0.3,
+  "lastModified": 1717235169162,
+  "lastModifiedIso": "2024-06-01T09:46:09.162Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/normalize/Array.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 889
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is responsible for the normalization of the native 'Array' object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.\n MDN documentation &copy; Mozilla Contributors.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Polyfill"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.bom.client.EcmaScript"
-        }
-      ]
+    "end": {
+      "line": 462,
+      "column": 3,
+      "index": 16849
     }
   },
-  "type": "class",
+  "className": "qx.lang.normalize.Array",
+  "jsdoc": {
+    "raw": [
+      " eslint-disable no-extend-native "
+    ]
+  },
   "statics": {
     "indexOf": {
-      "location": {
-        "start": {
-          "line": 51,
-          "column": 4,
-          "index": 2138
-        },
-        "end": {
-          "line": 65,
-          "column": 5,
-          "index": 2499
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>indexOf()</code> method returns the first index at which a given",
+          "     * element can be found in the array, or -1 if it is not present.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.4.4.14\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @param searchElement {var} Element to locate in the array.",
+          "     * @param fromIndex {Integer?} The index to start the search at.",
+          "     * If the index is greater than or equal to the array's length,",
+          "     * -1 is returned, which means the array will not be searched.",
+          "     * If the provided index value is a negative number, it is taken",
+          "     * as the offset from the end of the array. Note: if the provided",
+          "     * index is negative, the array is still searched from front to",
+          "     * back. If the calculated index is less than 0, then the whole",
+          "     * array will be searched. Default: 0 (Entire array is searched)",
+          "     * @return {Integer} The first index at which the element was found or -1",
+          "     * if the element was not found in the array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -84,27 +74,66 @@
             "name": "@return",
             "body": "{Integer} The first index at which the element was found or -1\n if the element was not found in the array",
             "type": "Integer",
-            "description": " The first index at which the element was found or -1\n if the element was not found in the array"
+            "description": "The first index at which the element was found or -1\n if the element was not found in the array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "lastIndexOf": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 89,
+          "line": 51,
           "column": 4,
-          "index": 3765
+          "index": 2088
         },
         "end": {
-          "line": 103,
+          "line": 65,
           "column": 5,
-          "index": 4135
+          "index": 2435
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "searchElement",
+          "type": "var"
+        },
+        {
+          "name": "fromIndex",
+          "type": "Integer",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "lastIndexOf": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>lastIndexOf()</code> method returns the last index",
+          "     * at which a given element can be found in the array, or -1 if",
+          "     * it is not present. The array is searched backwards, starting at",
+          "     * <code>fromIndex</code>.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.4.4.15\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @param searchElement {var} Element to locate in the array.",
+          "     * @param fromIndex {Integer?} The index at which to start",
+          "     * searching backwards. Defaults to the array's length, i.e. the",
+          "     * whole array will be searched. If the index is greater than or",
+          "     * equal to the length of the array, the whole array will be",
+          "     * searched. If negative, it is taken as the offset from the end",
+          "     * of the array. Note that even when the index is negative, the",
+          "     * array is still searched from back to front. If the calculated",
+          "     * index is less than 0, -1 is returned, i.e. the array will not",
+          "     * be searched.",
+          "     * @return {Integer} The last index at which the element was found or -1",
+          "     * if the element was not found in the array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -133,27 +162,55 @@
             "name": "@return",
             "body": "{Integer} The last index at which the element was found or -1\n if the element was not found in the array",
             "type": "Integer",
-            "description": " The last index at which the element was found or -1\n if the element was not found in the array"
+            "description": "The last index at which the element was found or -1\n if the element was not found in the array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "forEach": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 116,
+          "line": 89,
           "column": 4,
-          "index": 4781
+          "index": 3677
         },
         "end": {
-          "line": 124,
+          "line": 103,
           "column": 5,
-          "index": 5020
+          "index": 4033
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "searchElement",
+          "type": "var"
+        },
+        {
+          "name": "fromIndex",
+          "type": "Integer",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "forEach": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>forEach()</code> method executes a provided function",
+          "     * once per array element. You can not break the loop with this function.",
+          "     * If you want to do so, use {@link #some} or {@link #every}.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.4.4.18\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @param callback {Function} Function to execute for each element.",
+          "     * @param obj {Object?} Value to use as <code>this</code> when executing <code>callback</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -166,7 +223,7 @@
             "body": "callback {Function} Function to execute for each element.",
             "paramName": "callback",
             "description": " Function to execute for each element.",
-            "type": "qx.lang.normalize.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -178,23 +235,49 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "filter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 138,
+          "line": 116,
           "column": 4,
-          "index": 5645
+          "index": 4666
         },
         "end": {
-          "line": 152,
+          "line": 124,
           "column": 5,
-          "index": 5978
+          "index": 4897
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "obj",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "filter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>filter()</code> method creates a new array with",
+          "     * all elements that pass the test implemented by the provided",
+          "     * function.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.4.4.20\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @param callback {Function} Function to test each element of the array.",
+          "     * @param obj {Object?} Value to use as <code>this</code> when executing <code>callback</code>.",
+          "     * @return {Array} filtered array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -207,7 +290,7 @@
             "body": "callback {Function} Function to test each element of the array.",
             "paramName": "callback",
             "description": " Function to test each element of the array.",
-            "type": "qx.lang.normalize.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -222,28 +305,63 @@
           {
             "name": "@return",
             "body": "{Array} filtered array",
-            "type": "qx.lang.normalize.Array",
-            "description": " filtered array"
+            "type": "Array<any>",
+            "description": "filtered array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "map": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 172,
+          "line": 138,
           "column": 4,
-          "index": 6932
+          "index": 5508
         },
         "end": {
-          "line": 184,
+          "line": 152,
           "column": 5,
-          "index": 7220
+          "index": 5827
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "obj",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "map": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>map()</code> method creates a new array with",
+          "     * the results of calling a provided function on every",
+          "     * element in this array.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.4.4.19\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @param callback {Function} Function that produces an element of the new Array,",
+          "     * taking three arguments:",
+          "     * <ul>",
+          "     *   <li><code>currentValue</code> The current element being processed in the array.</li>",
+          "     *   <li><code>index</code> The index of the current element being processed in the array.</li>",
+          "     *   <li><code>array</code> The array map was called upon.</li>",
+          "     * </ul>",
+          "     * @param obj {Object?} Value to use as <code>this</code> when executing <code>callback</code>.",
+          "     * @return {Array} result array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -256,7 +374,7 @@
             "body": "callback {Function} Function that produces an element of the new Array,\n taking three arguments:\n <ul>\n   <li><code>currentValue</code> The current element being processed in the array.</li>\n   <li><code>index</code> The index of the current element being processed in the array.</li>\n   <li><code>array</code> The array map was called upon.</li>\n </ul>",
             "paramName": "callback",
             "description": " Function that produces an element of the new Array,\n taking three arguments:\n <ul>\n   <li><code>currentValue</code> The current element being processed in the array.</li>\n   <li><code>index</code> The index of the current element being processed in the array.</li>\n   <li><code>array</code> The array map was called upon.</li>\n </ul>",
-            "type": "qx.lang.normalize.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -271,28 +389,57 @@
           {
             "name": "@return",
             "body": "{Array} result array",
-            "type": "qx.lang.normalize.Array",
-            "description": " result array"
+            "type": "Array<any>",
+            "description": "result array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "some": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 198,
+          "line": 172,
           "column": 4,
-          "index": 7829
+          "index": 6761
         },
         "end": {
-          "line": 210,
+          "line": 184,
           "column": 5,
-          "index": 8133
+          "index": 7037
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "obj",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "some": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>some()</code> method tests whether some",
+          "     * element in the array passes the test implemented by",
+          "     * the provided function.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.4.4.17\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @param callback {Function} Function to test for each element.",
+          "     * @param obj {Object?} Value to use as <code>this</code> when executing <code>callback</code>.",
+          "     * @return {Array} result array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -305,7 +452,7 @@
             "body": "callback {Function} Function to test for each element.",
             "paramName": "callback",
             "description": " Function to test for each element.",
-            "type": "qx.lang.normalize.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -320,28 +467,56 @@
           {
             "name": "@return",
             "body": "{Array} result array",
-            "type": "qx.lang.normalize.Array",
-            "description": " result array"
+            "type": "Array<any>",
+            "description": "result array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "every": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 223,
+          "line": 198,
           "column": 4,
-          "index": 8734
+          "index": 7632
         },
         "end": {
-          "line": 235,
+          "line": 210,
           "column": 5,
-          "index": 9040
+          "index": 7924
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "obj",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "every": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>every()</code> method tests whether all elements",
+          "     * in the array pass the test implemented by the provided function.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.4.4.16\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @param callback {Function} Function to test for each element.",
+          "     * @param obj {Object?} Value to use as <code>this</code> when executing <code>callback</code>.",
+          "     * @return {Array} result array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -354,7 +529,7 @@
             "body": "callback {Function} Function to test for each element.",
             "paramName": "callback",
             "description": " Function to test for each element.",
-            "type": "qx.lang.normalize.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -369,28 +544,55 @@
           {
             "name": "@return",
             "body": "{Array} result array",
-            "type": "qx.lang.normalize.Array",
-            "description": " result array"
+            "type": "Array<any>",
+            "description": "result array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "find": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 247,
+          "line": 223,
           "column": 4,
-          "index": 9622
+          "index": 8512
         },
         "end": {
-          "line": 261,
+          "line": 235,
           "column": 5,
-          "index": 9989
+          "index": 8806
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "obj",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "find": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>find()</code> method returns a value in the array, if an element in the",
+          "     * array satisfies the provided testing function. Otherwise undefined is returned.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find\">MDN documentation</a> |",
+          "     *",
+          "     * @param callback {Function} Function to test for each element.",
+          "     * @param obj {Object?} Value to use as <code>this</code> when executing <code>callback</code>.",
+          "     * @return {Object} result, undefined if not found",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -403,7 +605,7 @@
             "body": "callback {Function} Function to test for each element.",
             "paramName": "callback",
             "description": " Function to test for each element.",
-            "type": "qx.lang.normalize.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -418,28 +620,55 @@
           {
             "name": "@return",
             "body": "{Object} result, undefined if not found",
-            "type": "qx.lang.normalize.Object",
-            "description": " result, undefined if not found"
+            "type": "Record<any, any>",
+            "description": "result, undefined if not found"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "findIndex": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 273,
+          "line": 247,
           "column": 4,
-          "index": 10585
+          "index": 9376
         },
         "end": {
-          "line": 287,
+          "line": 261,
           "column": 5,
-          "index": 10946
+          "index": 9729
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "obj",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "findIndex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>findIndex()</code> method returns an index in the array, if an element in the",
+          "     * array satisfies the provided testing function. Otherwise -1 is returned.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex\">MDN documentation</a> |",
+          "     *",
+          "     * @param callback {Function} Function to test for each element.",
+          "     * @param obj {Object?} Value to use as <code>this</code> when executing <code>callback</code>.",
+          "     * @return {Integer} the index in the array, -1 if not found",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -452,7 +681,7 @@
             "body": "callback {Function} Function to test for each element.",
             "paramName": "callback",
             "description": " Function to test for each element.",
-            "type": "qx.lang.normalize.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -468,27 +697,65 @@
             "name": "@return",
             "body": "{Integer} the index in the array, -1 if not found",
             "type": "Integer",
-            "description": " the index in the array, -1 if not found"
+            "description": "the index in the array, -1 if not found"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "reduce": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 310,
+          "line": 273,
           "column": 4,
-          "index": 12121
+          "index": 10313
         },
         "end": {
-          "line": 327,
+          "line": 287,
           "column": 5,
-          "index": 12670
+          "index": 10660
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "obj",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "reduce": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>reduce()</code> method applies a function against",
+          "     * an accumulator and each value of the array (from left-to-right)",
+          "     * has to reduce it to a single value.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.4.4.21\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @param callback {Function} Function to execute on each value in",
+          "     * the array, taking four arguments:",
+          "     * <ul>",
+          "     *   <li><code>previousValue</code> The value previously returned in",
+          "     *   the last invocation of the callback, or initialValue, if supplied.",
+          "     *   (See below.)</li>",
+          "     *   <li><code>currentValue</code> The current element being processed in the array.</li>",
+          "     *   <li><code>index</code> The index of the current element being processed in the array.</li>",
+          "     *   <li><code>array</code> The array <code>reduce</code> was called upon.</li>",
+          "     * </ul>",
+          "     * @param init {Object?} Object to use as the first argument to the first call of the callback.",
+          "     * @return {var} result value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -501,7 +768,7 @@
             "body": "callback {Function} Function to execute on each value in\n the array, taking four arguments:\n <ul>\n   <li><code>previousValue</code> The value previously returned in\n   the last invocation of the callback, or initialValue, if supplied.\n   (See below.)</li>\n   <li><code>currentValue</code> The current element being processed in the array.</li>\n   <li><code>index</code> The index of the current element being processed in the array.</li>\n   <li><code>array</code> The array <code>reduce</code> was called upon.</li>\n </ul>",
             "paramName": "callback",
             "description": " Function to execute on each value in\n the array, taking four arguments:\n <ul>\n   <li><code>previousValue</code> The value previously returned in\n   the last invocation of the callback, or initialValue, if supplied.\n   (See below.)</li>\n   <li><code>currentValue</code> The current element being processed in the array.</li>\n   <li><code>index</code> The index of the current element being processed in the array.</li>\n   <li><code>array</code> The array <code>reduce</code> was called upon.</li>\n </ul>",
-            "type": "qx.lang.normalize.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -517,27 +784,65 @@
             "name": "@return",
             "body": "{var} result value",
             "type": "var",
-            "description": " result value"
+            "description": "result value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "reduceRight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 350,
+          "line": 310,
           "column": 4,
-          "index": 13841
+          "index": 11812
         },
         "end": {
-          "line": 371,
+          "line": 327,
           "column": 5,
-          "index": 14464
+          "index": 12344
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "init",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "reduceRight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The reduceRight() method applies a function against an",
+          "     * accumulator and each value of the array (from right-to-left)",
+          "     * as to reduce it to a single value.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.4.4.22\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @param callback {Function} Function to execute on each value in",
+          "     * the array, taking four arguments:",
+          "     * <ul>",
+          "     *   <li><code>previousValue</code> The value previously returned in",
+          "     *   the last invocation of the callback, or initialValue, if supplied.",
+          "     *   (See below.)</li>",
+          "     *   <li><code>currentValue</code> The current element being processed in the array.</li>",
+          "     *   <li><code>index</code> The index of the current element being processed in the array.</li>",
+          "     *   <li><code>array</code> The array <code>reduce</code> was called upon.</li>",
+          "     * </ul>",
+          "     * @param init {Object?} Object to use as the first argument to the first call of the callback.",
+          "     * @return {var} return value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -550,7 +855,7 @@
             "body": "callback {Function} Function to execute on each value in\n the array, taking four arguments:\n <ul>\n   <li><code>previousValue</code> The value previously returned in\n   the last invocation of the callback, or initialValue, if supplied.\n   (See below.)</li>\n   <li><code>currentValue</code> The current element being processed in the array.</li>\n   <li><code>index</code> The index of the current element being processed in the array.</li>\n   <li><code>array</code> The array <code>reduce</code> was called upon.</li>\n </ul>",
             "paramName": "callback",
             "description": " Function to execute on each value in\n the array, taking four arguments:\n <ul>\n   <li><code>previousValue</code> The value previously returned in\n   the last invocation of the callback, or initialValue, if supplied.\n   (See below.)</li>\n   <li><code>currentValue</code> The current element being processed in the array.</li>\n   <li><code>index</code> The index of the current element being processed in the array.</li>\n   <li><code>array</code> The array <code>reduce</code> was called upon.</li>\n </ul>",
-            "type": "qx.lang.normalize.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -566,27 +871,54 @@
             "name": "@return",
             "body": "{var} return value",
             "type": "var",
-            "description": " return value"
+            "description": "return value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "includes": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 383,
+          "line": 350,
           "column": 4,
-          "index": 14956
+          "index": 13492
         },
         "end": {
-          "line": 433,
+          "line": 371,
           "column": 5,
-          "index": 16350
+          "index": 14094
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "init",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "includes": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The includes() method determines whether an array includes a certain element, returning",
+          "     * true or false as appropriate.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes\">MDN documentation</a> |",
+          "     *",
+          "     * @param searchElement {var} Element which is checked for.",
+          "     * @param fromIndex {Number} Index to start search from",
+          "     * @return {boolean} true if element is included",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -606,49 +938,48 @@
             "body": "fromIndex {Number} Index to start search from",
             "paramName": "fromIndex",
             "description": " Index to start search from",
-            "type": "qx.lang.normalize.Number"
+            "type": "number"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{bool} true if element is included",
-            "type": "bool",
-            "description": " true if element is included"
+            "body": "{boolean} true if element is included",
+            "type": "boolean",
+            "description": "true if element is included"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 439,
-        "column": 2,
-        "index": 16415
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 383,
+          "column": 4,
+          "index": 14577
+        },
+        "end": {
+          "line": 433,
+          "column": 5,
+          "index": 15921
+        }
       },
-      "end": {
-        "line": 461,
-        "column": 3,
-        "index": 17302
-      }
-    },
-    "jsdoc": {
-      "@description": [
+      "type": "function",
+      "params": [
         {
-          "name": "@description",
-          "body": ""
+          "name": "searchElement",
+          "type": "var"
+        },
+        {
+          "name": "fromIndex",
+          "type": "number"
         }
       ],
-      "@lint": [
-        {
-          "name": "@lint",
-          "body": "environmentNonLiteralKey()"
-        }
-      ]
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

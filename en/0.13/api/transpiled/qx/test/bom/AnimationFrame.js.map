@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "include",
+    "MMock",
+    "members",
+    "setUp",
+    "__frame",
+    "bom",
+    "AnimationFrame",
+    "testStart",
+    "clb",
+    "spy",
+    "once",
+    "startSequence",
+    "wait",
+    "assertCalledOnce",
+    "assertTrue",
+    "args",
+    "testCancel",
+    "cancelSequence",
+    "assertNotCalled",
+    "test"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/bom/AnimationFrame.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (wittemann)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.bom.AnimationFrame\", {\n  extend: qx.dev.unit.TestCase,\n  include: [qx.dev.unit.MMock],\n\n  members: {\n    setUp() {\n      this.__frame = new qx.bom.AnimationFrame();\n    },\n\n    testStart() {\n      var clb = this.spy();\n      this.__frame.once(\"frame\", clb);\n      this.__frame.startSequence(300);\n      this.wait(\n        500,\n        function () {\n          this.assertCalledOnce(clb);\n          this.assertTrue(clb.args[0][0] >= 0);\n        },\n        this\n      );\n    },\n\n    testCancel() {\n      var clb = this.spy();\n      this.__frame.once(\"frame\", clb);\n      this.__frame.startSequence(300);\n      this.__frame.cancelSequence();\n      this.wait(\n        500,\n        function () {\n          this.assertNotCalled(clb);\n        },\n        this\n      );\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,4BAA4B,EAAE;IAC5CC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAC5BC,OAAO,EAAE,CAACV,EAAE,CAACO,GAAG,CAACC,IAAI,CAACG,KAAK,CAAC;IAE5BC,OAAO,EAAE;MACPC,KAAK,WAAAA,MAAA,EAAG;QACN,IAAI,CAACC,SAAO,GAAG,IAAId,EAAE,CAACe,GAAG,CAACC,cAAc,CAAC,CAAC;MAC5C,CAAC;MAEDC,SAAS,WAAAA,UAAA,EAAG;QACV,IAAIC,GAAG,GAAG,IAAI,CAACC,GAAG,CAAC,CAAC;QACpB,IAAI,CAACL,SAAO,CAACM,IAAI,CAAC,OAAO,EAAEF,GAAG,CAAC;QAC/B,IAAI,CAACJ,SAAO,CAACO,aAAa,CAAC,GAAG,CAAC;QAC/B,IAAI,CAACC,IAAI,CACP,GAAG,EACH,YAAY;UACV,IAAI,CAACC,gBAAgB,CAACL,GAAG,CAAC;UAC1B,IAAI,CAACM,UAAU,CAACN,GAAG,CAACO,IAAI,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,CAAC;QACtC,CAAC,EACD,IACF,CAAC;MACH,CAAC;MAEDC,UAAU,WAAAA,WAAA,EAAG;QACX,IAAIR,GAAG,GAAG,IAAI,CAACC,GAAG,CAAC,CAAC;QACpB,IAAI,CAACL,SAAO,CAACM,IAAI,CAAC,OAAO,EAAEF,GAAG,CAAC;QAC/B,IAAI,CAACJ,SAAO,CAACO,aAAa,CAAC,GAAG,CAAC;QAC/B,IAAI,CAACP,SAAO,CAACa,cAAc,CAAC,CAAC;QAC7B,IAAI,CAACL,IAAI,CACP,GAAG,EACH,YAAY;UACV,IAAI,CAACM,eAAe,CAACV,GAAG,CAAC;QAC3B,CAAC,EACD,IACF,CAAC;MACH;IACF;EACF,CAAC,CAAC;EAvDFlB,EAAE,CAAC6B,IAAI,CAACd,GAAG,CAACC,cAAc,CAACb,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

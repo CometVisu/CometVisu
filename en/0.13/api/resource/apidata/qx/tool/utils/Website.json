@@ -1,0 +1,784 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172786,
+  "lastModifiedIso": "2024-06-01T09:46:12.786Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/Website.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 43,
+      "column": 0,
+      "index": 1180
+    },
+    "end": {
+      "line": 421,
+      "column": 3,
+      "index": 11347
+    }
+  },
+  "className": "qx.tool.utils.Website",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "statics": {
+    "APP_NAMESPACE": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1267
+        },
+        "end": {
+          "line": 47,
+          "column": 25,
+          "index": 1288
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "options"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 50,
+        "column": 2,
+        "index": 1297
+      },
+      "end": {
+        "line": 65,
+        "column": 3,
+        "index": 1757
+      }
+    }
+  },
+  "properties": {
+    "appsNamespace": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1780
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1850
+        }
+      },
+      "json": {
+        "check": "String",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "sourceDir": {
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1857
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 1923
+        }
+      },
+      "json": {
+        "check": "String",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "targetDir": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1930
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 1996
+        }
+      },
+      "json": {
+        "check": "String",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__watcher": {
+      "jsdoc": {
+        "raw": [
+          "* @type {chokidar} watcher "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{chokidar} watcher"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2056
+        },
+        "end": {
+          "line": 86,
+          "column": 19,
+          "index": 2071
+        }
+      },
+      "appearsIn": []
+    },
+    "__watcherReady": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Boolean} whether the watcher is ready yet "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} whether the watcher is ready yet"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2138
+        },
+        "end": {
+          "line": 89,
+          "column": 25,
+          "index": 2159
+        }
+      },
+      "appearsIn": []
+    },
+    "__rebuildTimer": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Integer} setTimeout timer ID for debouncing builds "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Integer} setTimeout timer ID for debouncing builds"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2235
+        },
+        "end": {
+          "line": 92,
+          "column": 24,
+          "index": 2255
+        }
+      },
+      "appearsIn": []
+    },
+    "__rebuilding": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Whether the build is currently taking place "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether the build is currently taking place"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2333
+        },
+        "end": {
+          "line": 95,
+          "column": 23,
+          "index": 2352
+        }
+      },
+      "appearsIn": []
+    },
+    "__needsRebuild": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Whether a rebuild is needed ASAP "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether a rebuild is needed ASAP"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2419
+        },
+        "end": {
+          "line": 98,
+          "column": 25,
+          "index": 2440
+        }
+      },
+      "appearsIn": []
+    },
+    "startWatcher": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Starts the watcher for files in the source directory and compiles as needed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Starts the watcher for files in the source directory and compiles as needed</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2546
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3425
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "stopWatcher": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stops the watcher, if its running",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Stops the watcher, if its running</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3489
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 3654
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isWatching": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the watcher is running",
+          "     *",
+          "     * @return {Boolean} true if its running",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the watcher is running</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if its running",
+            "type": "boolean",
+            "description": "true if its running"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 3767
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 3824
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "waitForRebuildComplete": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Waits for the rebuild process to complete, if it is running",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Waits for the rebuild process to complete, if it is running</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 3914
+        },
+        "end": {
+          "line": 160,
+          "column": 5,
+          "index": 4032
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "rebuildAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Rebuilds everything needed for the website",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Rebuilds everything needed for the website</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4105
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 4196
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__onFileChange": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for changes to the source files",
+          "     *",
+          "     * @param type {String} type of change, one of \"change\", \"add\", \"unlink\"",
+          "     * @param filename {String} the file that changed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Event handler for changes to the source files</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} type of change, one of \"change\", \"add\", \"unlink\"",
+            "paramName": "type",
+            "description": " type of change, one of \"change\", \"add\", \"unlink\"",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "filename {String} the file that changed",
+            "paramName": "filename",
+            "description": " the file that changed",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4410
+        },
+        "end": {
+          "line": 184,
+          "column": 5,
+          "index": 4642
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "triggerRebuild": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Triggers a rebuild of the website, asynchronously.  Unless immediate is true,",
+          "     * the rebuild will only happen after a short delay; but each time this is called,",
+          "     * the delay is restarted.  This is to allow multiple files to be changed without",
+          "     * swamping the processor with compilations.",
+          "     *",
+          "     * @param immediate {Boolean?} if true, rebuild starts ASAP",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Triggers a rebuild of the website, asynchronously.  Unless immediate is true,\n the rebuild will only happen after a short delay; but each time this is called,\n the delay is restarted.  This is to allow multiple files to be changed without\n swamping the processor with compilations.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "immediate {Boolean?} if true, rebuild starts ASAP",
+            "paramName": "immediate",
+            "description": " if true, rebuild starts ASAP",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4,
+          "index": 5043
+        },
+        "end": {
+          "line": 225,
+          "column": 5,
+          "index": 5852
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "immediate",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPages": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Metalsmith Plugin that collates a list of pages that are to be included in the site navigation",
+          "     * into the metadata, along with their URLs.",
+          "     *",
+          "     * If the metadata has a `sites.pages`, then it is expected to be an array of URLs which indicates",
+          "     * the ordering to be applied; `sites.pages` is replaced with an array of objects, one per page,",
+          "     * that contains `url` and `title` properties.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Metalsmith Plugin that collates a list of pages that are to be included in the site navigation\n into the metadata, along with their URLs.\n If the metadata has a <code>sites.pages</code>, then it is expected to be an array of URLs which indicates\n the ordering to be applied; <code>sites.pages</code> is replaced with an array of objects, one per page,\n that contains <code>url</code> and <code>title</code> properties.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 236,
+          "column": 4,
+          "index": 6295
+        },
+        "end": {
+          "line": 273,
+          "column": 5,
+          "index": 7340
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "files"
+        },
+        {
+          "name": "metalsmith"
+        }
+      ],
+      "appearsIn": []
+    },
+    "loadPartials": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Metalsmith plugin that loads partials and adding them to the metadata.partials map.  Each file",
+          "     * is added with its filename, and if it is a .html filename is also added without the .html",
+          "     * extension.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Metalsmith plugin that loads partials and adding them to the metadata.partials map.  Each file\n is added with its filename, and if it is a .html filename is also added without the .html\n extension.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4,
+          "index": 7587
+        },
+        "end": {
+          "line": 315,
+          "column": 5,
+          "index": 8632
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "files"
+        },
+        {
+          "name": "metalsmith"
+        }
+      ],
+      "appearsIn": []
+    },
+    "generateSite": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the site with Metalsmith",
+          "     * @returns {Promise}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generates the site with Metalsmith</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise}",
+            "type": "Promise<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 321,
+          "column": 4,
+          "index": 8723
+        },
+        "end": {
+          "line": 358,
+          "column": 5,
+          "index": 9779
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "compileScss": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compiles SCSS into CSS",
+          "     *",
+          "     * @returns {Promise}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compiles SCSS into CSS</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise}",
+            "type": "Promise<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 365,
+          "column": 4,
+          "index": 9865
+        },
+        "end": {
+          "line": 387,
+          "column": 5,
+          "index": 10454
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<any>"
+      },
+      "appearsIn": []
+    },
+    "buildDevtools": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Build the development tool apps (APIViewer, Playground, Widgetbrowser, Demobrowser)",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Build the development tool apps (APIViewer, Playground, Widgetbrowser, Demobrowser)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 393,
+          "column": 4,
+          "index": 10599
+        },
+        "end": {
+          "line": 419,
+          "column": 5,
+          "index": 11339
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    }
+  }
+}

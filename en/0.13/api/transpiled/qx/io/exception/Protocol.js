@@ -39,4 +39,4 @@
   qx.io.exception.Protocol.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Protocol.js.map?dt=1709410153099
+//# sourceMappingURL=Protocol.js.map?dt=1717235382087

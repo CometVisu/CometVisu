@@ -1,49 +1,48 @@
 {
-  "className": "qx.dom.Element",
-  "packageName": "qx.dom",
-  "name": "Element",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 624
-      },
-      "end": {
-        "line": 362,
-        "column": 3,
-        "index": 10278
-      }
+  "version": 0.3,
+  "lastModified": 1717235170330,
+  "lastModifiedIso": "2024-06-01T09:46:10.330Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dom/Element.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 602
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Manages children structures of an element. Easy and convenient APIs\n to insert, remove and replace children.</p>"
-        }
-      ]
+    "end": {
+      "line": 362,
+      "column": 3,
+      "index": 9917
     }
   },
-  "type": "class",
+  "className": "qx.dom.Element",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Manages children structures of an element. Easy and convenient APIs",
+      " * to insert, remove and replace children.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Manages children structures of an element. Easy and convenient APIs\n to insert, remove and replace children.</p>"
+      }
+    ]
+  },
   "statics": {
     "hasChild": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 973
-        },
-        "end": {
-          "line": 34,
-          "column": 5,
-          "index": 1048
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given <code>child</code> is a child of <code>parent</code>",
+          "     *",
+          "     * @param parent {Element} parent element",
+          "     * @param child {Node} child node",
+          "     * @return {Boolean} true when the given <code>child</code> is a child of <code>parent</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -70,28 +69,50 @@
           {
             "name": "@return",
             "body": "{Boolean} true when the given <code>child</code> is a child of <code>parent</code>",
-            "type": "Boolean",
-            "description": " true when the given <code>child</code> is a child of <code>parent</code>"
+            "type": "boolean",
+            "description": "true when the given <code>child</code> is a child of <code>parent</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasChildren": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 42,
+          "line": 32,
           "column": 4,
-          "index": 1288
+          "index": 942
         },
         "end": {
-          "line": 44,
+          "line": 34,
           "column": 5,
-          "index": 1353
+          "index": 1015
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "parent",
+          "type": "qx.dom.Element"
+        },
+        {
+          "name": "child",
+          "type": "qx.dom.Node"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "hasChildren": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given <code>element</code> has children.",
+          "     *",
+          "     * @param element {Element} element to test",
+          "     * @return {Boolean} true when the given <code>element</code> has at least one child node",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -111,28 +132,46 @@
           {
             "name": "@return",
             "body": "{Boolean} true when the given <code>element</code> has at least one child node",
-            "type": "Boolean",
-            "description": " true when the given <code>element</code> has at least one child node"
+            "type": "boolean",
+            "description": "true when the given <code>element</code> has at least one child node"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasChildElements": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 42,
           "column": 4,
-          "index": 1606
+          "index": 1247
         },
         "end": {
-          "line": 64,
+          "line": 44,
           "column": 5,
-          "index": 1852
+          "index": 1310
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "hasChildElements": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given <code>element</code> has any child elements.",
+          "     *",
+          "     * @param element {Element} element to test",
+          "     * @return {Boolean} true when the given <code>element</code> has at least one child element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -152,28 +191,46 @@
           {
             "name": "@return",
             "body": "{Boolean} true when the given <code>element</code> has at least one child element",
-            "type": "Boolean",
-            "description": " true when the given <code>element</code> has at least one child element"
+            "type": "boolean",
+            "description": "true when the given <code>element</code> has at least one child element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getParentElement": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 52,
           "column": 4,
-          "index": 2053
+          "index": 1555
         },
         "end": {
-          "line": 74,
+          "line": 64,
           "column": 5,
-          "index": 2121
+          "index": 1789
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getParentElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the parent element of the given element.",
+          "     *",
+          "     * @param element {Element} Element to find the parent for",
+          "     * @return {Element} The parent element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -194,27 +251,48 @@
             "name": "@return",
             "body": "{Element} The parent element",
             "type": "qx.dom.Element",
-            "description": " The parent element"
+            "description": "The parent element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isInDom": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 85,
+          "line": 72,
           "column": 4,
-          "index": 2512
+          "index": 1982
         },
         "end": {
-          "line": 99,
+          "line": 74,
           "column": 5,
-          "index": 2846
+          "index": 2048
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "qx.dom.Element"
+      },
+      "appearsIn": []
+    },
+    "isInDom": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the <code>element</code> is in the DOM, but note that",
+          "     * the method is very expensive!",
+          "     *",
+          "     * @param element {Element} The DOM element to check.",
+          "     * @param win {Window} The window to check for.",
+          "     * @return {Boolean} <code>true</code> if the <code>element</code> is in",
+          "     *          the DOM, <code>false</code> otherwise.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -241,28 +319,53 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the <code>element</code> is in\n          the DOM, <code>false</code> otherwise.",
-            "type": "Boolean",
-            "description": " <code>true</code> if the <code>element</code> is in\n          the DOM, <code>false</code> otherwise."
+            "type": "boolean",
+            "description": "<code>true</code> if the <code>element</code> is in\n          the DOM, <code>false</code> otherwise."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "insertAt": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 116,
+          "line": 85,
           "column": 4,
-          "index": 3373
+          "index": 2428
         },
         "end": {
-          "line": 126,
+          "line": 99,
           "column": 5,
-          "index": 3597
+          "index": 2748
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        },
+        {
+          "name": "win",
+          "type": "Window"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "insertAt": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Inserts <code>node</code> at the given <code>index</code>",
+          "     * inside <code>parent</code>.",
+          "     *",
+          "     * @param node {Node} node to insert",
+          "     * @param parent {Element} parent element node",
+          "     * @param index {Integer} where to insert",
+          "     * @return {Boolean} returns true (successful)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -296,28 +399,56 @@
           {
             "name": "@return",
             "body": "{Boolean} returns true (successful)",
-            "type": "Boolean",
-            "description": " returns true (successful)"
+            "type": "boolean",
+            "description": "returns true (successful)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "insertBegin": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 136,
+          "line": 116,
           "column": 4,
-          "index": 3914
+          "index": 3258
         },
         "end": {
-          "line": 143,
+          "line": 126,
           "column": 5,
-          "index": 4113
+          "index": 3472
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.dom.Node"
+        },
+        {
+          "name": "parent",
+          "type": "qx.dom.Element"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "insertBegin": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Insert <code>node</code> into <code>parent</code> as first child.",
+          "     * Indexes of other children will be incremented by one.",
+          "     *",
+          "     * @param node {Node} Node to insert",
+          "     * @param parent {Element} parent element node",
+          "     * @return {Boolean} returns true (successful)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -344,28 +475,51 @@
           {
             "name": "@return",
             "body": "{Boolean} returns true (successful)",
-            "type": "Boolean",
-            "description": " returns true (successful)"
+            "type": "boolean",
+            "description": "returns true (successful)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "insertEnd": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 152,
+          "line": 136,
           "column": 4,
-          "index": 4367
+          "index": 3779
         },
         "end": {
-          "line": 155,
+          "line": 143,
           "column": 5,
-          "index": 4452
+          "index": 3971
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.dom.Node"
+        },
+        {
+          "name": "parent",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "insertEnd": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Insert <code>node</code> into <code>parent</code> as last child.",
+          "     *",
+          "     * @param node {Node} Node to insert",
+          "     * @param parent {Element} parent element node",
+          "     * @return {Boolean} returns true (successful)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -392,28 +546,51 @@
           {
             "name": "@return",
             "body": "{Boolean} returns true (successful)",
-            "type": "Boolean",
-            "description": " returns true (successful)"
+            "type": "boolean",
+            "description": "returns true (successful)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "insertBefore": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 164,
+          "line": 152,
           "column": 4,
-          "index": 4736
+          "index": 4216
         },
         "end": {
-          "line": 167,
+          "line": 155,
           "column": 5,
-          "index": 4835
+          "index": 4298
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.dom.Node"
+        },
+        {
+          "name": "parent",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "insertBefore": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Inserts <code>node</code> before <code>ref</code> in the same parent.",
+          "     *",
+          "     * @param node {Node} Node to insert",
+          "     * @param ref {Node} Node which will be used as reference for insertion",
+          "     * @return {Boolean} returns true (successful)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -440,28 +617,51 @@
           {
             "name": "@return",
             "body": "{Boolean} returns true (successful)",
-            "type": "Boolean",
-            "description": " returns true (successful)"
+            "type": "boolean",
+            "description": "returns true (successful)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "insertAfter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 176,
+          "line": 164,
           "column": 4,
-          "index": 5118
+          "index": 4573
         },
         "end": {
-          "line": 186,
+          "line": 167,
           "column": 5,
-          "index": 5365
+          "index": 4669
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.dom.Node"
+        },
+        {
+          "name": "ref",
+          "type": "qx.dom.Node"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "insertAfter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Inserts <code>node</code> after <code>ref</code> in the same parent.",
+          "     *",
+          "     * @param node {Node} Node to insert",
+          "     * @param ref {Node} Node which will be used as reference for insertion",
+          "     * @return {Boolean} returns true (successful)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -488,28 +688,51 @@
           {
             "name": "@return",
             "body": "{Boolean} returns true (successful)",
-            "type": "Boolean",
-            "description": " returns true (successful)"
+            "type": "boolean",
+            "description": "returns true (successful)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "remove": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 201,
+          "line": 176,
           "column": 4,
-          "index": 5825
+          "index": 4943
         },
         "end": {
-          "line": 208,
+          "line": 186,
           "column": 5,
-          "index": 5973
+          "index": 5180
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.dom.Node"
+        },
+        {
+          "name": "ref",
+          "type": "qx.dom.Node"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the given <code>node</code> from its parent element.",
+          "     *",
+          "     * @param node {Node} Node to remove",
+          "     * @return {Boolean} <code>true</code> when node was successfully removed,",
+          "     *   otherwise <code>false</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -529,28 +752,48 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when node was successfully removed,\n   otherwise <code>false</code>",
-            "type": "Boolean",
-            "description": " <code>true</code> when node was successfully removed,\n   otherwise <code>false</code>"
+            "type": "boolean",
+            "description": "<code>true</code> when node was successfully removed,\n   otherwise <code>false</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeChild": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 218,
+          "line": 201,
           "column": 4,
-          "index": 6327
+          "index": 5625
         },
         "end": {
-          "line": 225,
+          "line": 208,
           "column": 5,
-          "index": 6489
+          "index": 5766
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.dom.Node"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeChild": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the given <code>node</code> from the <code>parent</code>.",
+          "     *",
+          "     * @param node {Node} Node to remove",
+          "     * @param parent {Element} parent element which contains the <code>node</code>",
+          "     * @return {Boolean} <code>true</code> when node was successfully removed,",
+          "     *   otherwise <code>false</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -577,28 +820,53 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when node was successfully removed,\n   otherwise <code>false</code>",
-            "type": "Boolean",
-            "description": " <code>true</code> when node was successfully removed,\n   otherwise <code>false</code>"
+            "type": "boolean",
+            "description": "<code>true</code> when node was successfully removed,\n   otherwise <code>false</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeChildAt": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 236,
+          "line": 218,
           "column": 4,
-          "index": 6865
+          "index": 6110
         },
         "end": {
-          "line": 245,
+          "line": 225,
           "column": 5,
-          "index": 7058
+          "index": 6265
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.dom.Node"
+        },
+        {
+          "name": "parent",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeChildAt": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the node at the given <code>index</code>",
+          "     * from the <code>parent</code>.",
+          "     *",
+          "     * @param index {Integer} position of the node which should be removed",
+          "     * @param parent {Element} parent DOM element",
+          "     * @return {Boolean} <code>true</code> when node was successfully removed,",
+          "     *   otherwise <code>false</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -625,28 +893,52 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when node was successfully removed,\n   otherwise <code>false</code>",
-            "type": "Boolean",
-            "description": " <code>true</code> when node was successfully removed,\n   otherwise <code>false</code>"
+            "type": "boolean",
+            "description": "<code>true</code> when node was successfully removed,\n   otherwise <code>false</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "replaceChild": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 261,
+          "line": 236,
           "column": 4,
-          "index": 7585
+          "index": 6630
         },
         "end": {
-          "line": 268,
+          "line": 245,
           "column": 5,
-          "index": 7770
+          "index": 6814
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "parent",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "replaceChild": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces <code>oldNode</code> with <code>newNode</code> in the current",
+          "     * parent of <code>oldNode</code>.",
+          "     *",
+          "     * @param newNode {Node} DOM node to insert",
+          "     * @param oldNode {Node} DOM node to remove",
+          "     * @return {Boolean} <code>true</code> when node was successfully replaced",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -673,28 +965,53 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when node was successfully replaced",
-            "type": "Boolean",
-            "description": " <code>true</code> when node was successfully replaced"
+            "type": "boolean",
+            "description": "<code>true</code> when node was successfully replaced"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "replaceAt": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 279,
+          "line": 261,
           "column": 4,
-          "index": 8144
+          "index": 7325
         },
         "end": {
-          "line": 288,
+          "line": 268,
           "column": 5,
-          "index": 8358
+          "index": 7503
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "newNode",
+          "type": "qx.dom.Node"
+        },
+        {
+          "name": "oldNode",
+          "type": "qx.dom.Node"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "replaceAt": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces the node at <code>index</code> with <code>newNode</code> in",
+          "     * the given parent.",
+          "     *",
+          "     * @param newNode {Node} DOM node to insert",
+          "     * @param index {Integer} position of old DOM node",
+          "     * @param parent {Element} parent DOM element",
+          "     * @return {Boolean} <code>true</code> when node was successfully replaced",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -728,28 +1045,53 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when node was successfully replaced",
-            "type": "Boolean",
-            "description": " <code>true</code> when node was successfully replaced"
+            "type": "boolean",
+            "description": "<code>true</code> when node was successfully replaced"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__helperElement": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 295,
+          "line": 279,
           "column": 4,
-          "index": 8472
+          "index": 7866
         },
         "end": {
-          "line": 295,
-          "column": 23,
-          "index": 8491
+          "line": 288,
+          "column": 5,
+          "index": 8071
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "newNode",
+          "type": "qx.dom.Node"
+        },
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "parent",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__helperElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stores helper element for element creation in WebKit",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -763,23 +1105,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "getHelperElement": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 303,
+          "line": 295,
           "column": 4,
-          "index": 8689
+          "index": 8178
         },
         "end": {
-          "line": 324,
-          "column": 5,
-          "index": 9346
+          "line": 295,
+          "column": 23,
+          "index": 8197
         }
       },
+      "appearsIn": []
+    },
+    "getHelperElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and returns a DOM helper element.",
+          "     *",
+          "     * @param win {Window?} Window to create the element for",
+          "     * @return {Element} The created element node",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -801,27 +1151,48 @@
             "name": "@return",
             "body": "{Element} The created element node",
             "type": "qx.dom.Element",
-            "description": " The created element node"
+            "description": "The created element node"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "create": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 334,
+          "line": 303,
           "column": 4,
-          "index": 9638
+          "index": 8387
         },
         "end": {
-          "line": 350,
+          "line": 324,
           "column": 5,
-          "index": 10012
+          "index": 9023
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "win",
+          "type": "Window",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.dom.Element"
+      },
+      "appearsIn": []
+    },
+    "create": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a DOM element.",
+          "     *",
+          "     * @param name {String} Tag name of the element",
+          "     * @param attributes {Map?} Map of attributes to apply",
+          "     * @param win {Window?} Window to create the element for",
+          "     * @return {Element} The created element node",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -834,7 +1205,7 @@
             "body": "name {String} Tag name of the element",
             "paramName": "name",
             "description": " Tag name of the element",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -858,27 +1229,55 @@
             "name": "@return",
             "body": "{Element} The created element node",
             "type": "qx.dom.Element",
-            "description": " The created element node"
+            "description": "The created element node"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "empty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 358,
+          "line": 334,
           "column": 4,
-          "index": 10205
+          "index": 9305
         },
         "end": {
-          "line": 360,
+          "line": 350,
           "column": 5,
-          "index": 10268
+          "index": 9663
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "attributes",
+          "type": "Map",
+          "optional": true
+        },
+        {
+          "name": "win",
+          "type": "Window",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.dom.Element"
+      },
+      "appearsIn": []
+    },
+    "empty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes all content from the given element",
+          "     *",
+          "     * @param element {Element} element to clean",
+          "     * @return {String} empty string (new HTML content)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -898,14 +1297,37 @@
           {
             "name": "@return",
             "body": "{String} empty string (new HTML content)",
-            "type": "String",
-            "description": " empty string (new HTML content)"
+            "type": "string",
+            "description": "empty string (new HTML content)"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 358,
+          "column": 4,
+          "index": 9848
+        },
+        "end": {
+          "line": 360,
+          "column": 5,
+          "index": 9909
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.dom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

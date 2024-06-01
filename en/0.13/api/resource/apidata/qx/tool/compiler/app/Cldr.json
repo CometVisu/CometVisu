@@ -1,0 +1,113 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169634,
+  "lastModifiedIso": "2024-06-01T09:46:09.634Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/app/Cldr.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 37,
+      "column": 0,
+      "index": 1072
+    },
+    "end": {
+      "line": 725,
+      "column": 3,
+      "index": 20069
+    }
+  },
+  "className": "qx.tool.compiler.app.Cldr",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "statics": {
+    "getParentLocale": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the parent locale for a given locale",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the parent locale for a given locale</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1231
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1325
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale"
+        }
+      ],
+      "appearsIn": []
+    },
+    "loadCLDR": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads CLDR data from the Qx framework",
+          "     *",
+          "     * @param locale",
+          "     * @async",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads CLDR data from the Qx framework</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "locale",
+            "paramName": "locale",
+            "type": ""
+          }
+        ],
+        "@async": [
+          {
+            "name": "@async",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1435
+        },
+        "end": {
+          "line": 723,
+          "column": 5,
+          "index": 20061
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

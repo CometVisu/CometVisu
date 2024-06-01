@@ -1,0 +1,174 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172710,
+  "lastModifiedIso": "2024-06-01T09:46:12.710Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/Values.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 707
+    },
+    "end": {
+      "line": 97,
+      "column": 3,
+      "index": 2763
+    }
+  },
+  "className": "qx.tool.utils.Values",
+  "jsdoc": {
+    "raw": [
+      " ************************************************************************",
+      " *",
+      " *    qooxdoo-compiler - node.js based replacement for the Qooxdoo python",
+      " *    toolchain",
+      " *",
+      " *    https://github.com/qooxdoo/qooxdoo",
+      " *",
+      " *    Copyright:",
+      " *      2011-2017 Zenesis Limited, http://www.zenesis.com",
+      " *",
+      " *    License:",
+      " *      MIT: https://opensource.org/licenses/MIT",
+      " *",
+      " *      This software is provided under the same licensing terms as Qooxdoo,",
+      " *      please see the LICENSE file in the Qooxdoo project's top-level directory",
+      " *      for details.",
+      " *",
+      " *    Authors:",
+      " *      * John Spackman (john.spackman@zenesis.com, @johnspackman)",
+      " *",
+      " * *********************************************************************** "
+    ]
+  },
+  "statics": {
+    "binaryIndexOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Performs a binary search on the host array.",
+          "     *",
+          "     * Thanks to Oliver Caldwell for this snippet, https://oli.me.uk/2013/06/08/searching-javascript-arrays-with-a-binary-search/",
+          "     *",
+          "     * @param {*} array The array to search.",
+          "     * @param {*} searchElement The item to search for within the array.",
+          "     * @return {Number} The index of the element which defaults to -1 when not found.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Performs a binary search on the host array.\n Thanks to Oliver Caldwell for this snippet, https://oli.me.uk/2013/06/08/searching-javascript-arrays-with-a-binary-search/</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} array The array to search.",
+            "paramName": "array",
+            "description": "The array to search.",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{*} searchElement The item to search for within the array.",
+            "paramName": "searchElement",
+            "description": "The item to search for within the array.",
+            "type": "*"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The index of the element which defaults to -1 when not found.",
+            "type": "number",
+            "description": "The index of the element which defaults to -1 when not found."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1181
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1739
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "array",
+          "type": "*"
+        },
+        {
+          "name": "searchElement",
+          "type": "*"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "binaryStartsWith": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1746
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2539
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "array"
+        },
+        {
+          "name": "searchElement"
+        }
+      ],
+      "appearsIn": []
+    },
+    "merge": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2546
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2755
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "...sources"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

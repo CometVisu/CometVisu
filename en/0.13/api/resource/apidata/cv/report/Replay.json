@@ -1,0 +1,643 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/report/Replay.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 1093
+    },
+    "end": {
+      "line": 336,
+      "column": 3,
+      "index": 11076
+    }
+  },
+  "className": "cv.report.Replay",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Replay tool for user interactions on existing configs. Used for bug reproduction",
+      " *",
+      " * TODO:",
+      " * - Progressbar + Controls(Stop, Pause, Fast Mode)",
+      " * - weitere user events (slider, colorchooser)",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.11.0 (2017)",
+      " * @ignore(Document)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Replay tool for user interactions on existing configs. Used for bug reproduction\n TODO:</p>\n<ul>\n<li>Progressbar + Controls(Stop, Pause, Fast Mode)</li>\n<li>weitere user events (slider, colorchooser)</li>\n</ul>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.11.0 (2017)"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "Document"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 2,
+        "index": 1321
+      },
+      "end": {
+        "line": 43,
+        "column": 3,
+        "index": 1390
+      }
+    }
+  },
+  "statics": {
+    "CONFIG": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1546
+        },
+        "end": {
+          "line": 51,
+          "column": 20,
+          "index": 1562
+        }
+      },
+      "appearsIn": []
+    },
+    "BACKEND": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1568
+        },
+        "end": {
+          "line": 52,
+          "column": 22,
+          "index": 1586
+        }
+      },
+      "appearsIn": []
+    },
+    "USER": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1592
+        },
+        "end": {
+          "line": 53,
+          "column": 16,
+          "index": 1604
+        }
+      },
+      "appearsIn": []
+    },
+    "CACHE": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1610
+        },
+        "end": {
+          "line": 54,
+          "column": 18,
+          "index": 1624
+        }
+      },
+      "appearsIn": []
+    },
+    "REPLAYING": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1630
+        },
+        "end": {
+          "line": 55,
+          "column": 20,
+          "index": 1646
+        }
+      },
+      "appearsIn": []
+    },
+    "data": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1652
+        },
+        "end": {
+          "line": 56,
+          "column": 14,
+          "index": 1662
+        }
+      },
+      "appearsIn": []
+    },
+    "prepare": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1669
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 2004
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "start": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 2011
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2131
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__start": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2291
+        },
+        "end": {
+          "line": 82,
+          "column": 17,
+          "index": 2304
+        }
+      },
+      "appearsIn": []
+    },
+    "__end": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 2310
+        },
+        "end": {
+          "line": 83,
+          "column": 15,
+          "index": 2321
+        }
+      },
+      "appearsIn": []
+    },
+    "__log": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2327
+        },
+        "end": {
+          "line": 84,
+          "column": 15,
+          "index": 2338
+        }
+      },
+      "appearsIn": []
+    },
+    "__client": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2344
+        },
+        "end": {
+          "line": 85,
+          "column": 18,
+          "index": 2358
+        }
+      },
+      "appearsIn": []
+    },
+    "__data": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2364
+        },
+        "end": {
+          "line": 86,
+          "column": 16,
+          "index": 2376
+        }
+      },
+      "appearsIn": []
+    },
+    "__config": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2382
+        },
+        "end": {
+          "line": 87,
+          "column": 18,
+          "index": 2396
+        }
+      },
+      "appearsIn": []
+    },
+    "__cursor": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2402
+        },
+        "end": {
+          "line": 88,
+          "column": 18,
+          "index": 2416
+        }
+      },
+      "appearsIn": []
+    },
+    "__currentIndex": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2422
+        },
+        "end": {
+          "line": 89,
+          "column": 24,
+          "index": 2442
+        }
+      },
+      "appearsIn": []
+    },
+    "__skipMoveEvents": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2448
+        },
+        "end": {
+          "line": 90,
+          "column": 27,
+          "index": 2471
+        }
+      },
+      "appearsIn": []
+    },
+    "__startTime": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2477
+        },
+        "end": {
+          "line": 91,
+          "column": 21,
+          "index": 2494
+        }
+      },
+      "appearsIn": []
+    },
+    "prepare": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2501
+        },
+        "end": {
+          "line": 120,
+          "column": 5,
+          "index": 3625
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "log"
+        }
+      ],
+      "appearsIn": []
+    },
+    "start": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start replaying the given data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start replaying the given data</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3686
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4095
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__findElement": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Find DOM element for given path",
+          "     * @param path {String} CSS selector or \"Window\"",
+          "     * @return {Element|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Find DOM element for given path</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String} CSS selector or \"Window\"",
+            "paramName": "path",
+            "description": " CSS selector or \"Window\"",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Element|null}",
+            "type": "Element|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 4240
+        },
+        "end": {
+          "line": 164,
+          "column": 5,
+          "index": 4878
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "path",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Element|null"
+      },
+      "appearsIn": []
+    },
+    "__replay": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 4885
+        },
+        "end": {
+          "line": 194,
+          "column": 5,
+          "index": 5832
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__dispatchRecord": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 5839
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 8285
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "record"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__playScrollEvent": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 261,
+          "column": 4,
+          "index": 8292
+        },
+        "end": {
+          "line": 265,
+          "column": 5,
+          "index": 8544
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "record"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_simulateCursor": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 267,
+          "column": 4,
+          "index": 8551
+        },
+        "end": {
+          "line": 289,
+          "column": 5,
+          "index": 9414
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "record"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__dispatchBackendRecord": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4,
+          "index": 9421
+        },
+        "end": {
+          "line": 327,
+          "column": 5,
+          "index": 10907
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "record"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getDefaultClient": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 329,
+          "column": 4,
+          "index": 10914
+        },
+        "end": {
+          "line": 334,
+          "column": 5,
+          "index": 11068
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

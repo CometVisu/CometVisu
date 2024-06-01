@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "tool",
+    "config",
+    "Abstract",
+    "type",
+    "statics",
+    "fileName",
+    "version",
+    "construct",
+    "constructor",
+    "call",
+    "Registry",
+    "members",
+    "getLibraries",
+    "getValue"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/tool/config/Registry.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2019 The qooxdoo developers\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Boulanger (info@bibliograph.org, @cboulanger)\n\n************************************************************************ */\n\n/**\n * A model for the Manifest.json file\n */\nqx.Class.define(\"qx.tool.config.Registry\", {\n  extend: qx.tool.config.Abstract,\n  type: \"singleton\",\n  statics: {\n    config: {\n      fileName: \"qooxdoo.json\",\n      version: \"1.0.0\"\n    }\n  },\n\n  construct() {\n    super(this.self(arguments).config);\n  },\n\n  members: {\n    getLibraries() {\n      return this.getValue(\"libraries\");\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,yBAAyB,EAAE;IACzCC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM,CAACC,QAAQ;IAC/BC,IAAI,EAAE,WAAW;IACjBC,OAAO,EAAE;MACPH,MAAM,EAAE;QACNI,QAAQ,EAAE,cAAc;QACxBC,OAAO,EAAE;MACX;IACF,CAAC;IAEDC,SAAS,WAAAA,UAAA,EAAG;MACVd,EAAA,CAAAO,IAAA,CAAAC,MAAA,CAAAC,QAAA,CAAAM,WAAA,CAAAC,IAAA,OAAMhB,EAAA,CAAAO,IAAA,CAAAC,MAAA,CAAAS,QAAA,CAAqBT,MAAM;IACnC,CAAC;IAEDU,OAAO,EAAE;MACPC,YAAY,WAAAA,aAAA,EAAG;QACb,OAAO,IAAI,CAACC,QAAQ,CAAC,WAAW,CAAC;MACnC;IACF;EACF,CAAC,CAAC;EAxCFpB,EAAE,CAACO,IAAI,CAACC,MAAM,CAACS,QAAQ,CAACd,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

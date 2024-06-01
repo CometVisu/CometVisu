@@ -1,0 +1,657 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171414,
+  "lastModifiedIso": "2024-06-01T09:46:11.414Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/IndexedArray.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 839
+    },
+    "end": {
+      "line": 235,
+      "column": 3,
+      "index": 5268
+    }
+  },
+  "className": "qx.tool.utils.IndexedArray",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Provides a simple, array like interface which uses a lookup to provide indexed",
+      " * access.  Each element must be a string",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Provides a simple, array like interface which uses a lookup to provide indexed\n access.  Each element must be a string</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 30,
+        "column": 2,
+        "index": 916
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 1021
+      }
+    }
+  },
+  "properties": {
+    "keepSorted": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1044
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1128
+        }
+      },
+      "json": {
+        "init": false,
+        "nullable": false,
+        "check": "Boolean"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__dirtySort": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1152
+        },
+        "end": {
+          "line": 46,
+          "column": 22,
+          "index": 1170
+        }
+      },
+      "appearsIn": []
+    },
+    "__array": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1176
+        },
+        "end": {
+          "line": 47,
+          "column": 17,
+          "index": 1189
+        }
+      },
+      "appearsIn": []
+    },
+    "__lookup": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1195
+        },
+        "end": {
+          "line": 48,
+          "column": 18,
+          "index": 1209
+        }
+      },
+      "appearsIn": []
+    },
+    "__removed": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1215
+        },
+        "end": {
+          "line": 49,
+          "column": 20,
+          "index": 1231
+        }
+      },
+      "appearsIn": []
+    },
+    "push": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an entry",
+          "     *",
+          "     * @param name {String} the entry to add",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an entry</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} the entry to add",
+            "paramName": "name",
+            "description": " the entry to add",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1327
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1521
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "sort": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sort the array",
+          "     *",
+          "     * @param compareFn {Function} sort comparator, if null alphabetic is used",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sort the array</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "compareFn {Function} sort comparator, if null alphabetic is used",
+            "paramName": "compareFn",
+            "description": " sort comparator, if null alphabetic is used",
+            "type": "((...args: any[]) => any)"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1652
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2414
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "compareFn",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": []
+    },
+    "contains": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tests whether the entry exsts",
+          "     *",
+          "     * @param name {String} the entry to check for",
+          "     * @return {Boolean} true if found",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tests whether the entry exsts</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} the entry to check for",
+            "paramName": "name",
+            "description": " the entry to check for",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} true if found",
+            "type": "boolean",
+            "description": "true if found"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2571
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 2641
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "remove": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes an entry",
+          "     *",
+          "     * @param name {String} the entry to remove",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes an entry</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} the entry to remove",
+            "paramName": "name",
+            "description": " the entry to remove",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 2743
+        },
+        "end": {
+          "line": 122,
+          "column": 5,
+          "index": 2946
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "pop": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the last entry from the array and returns it",
+          "     *",
+          "     * @returns {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the last entry from the array and returns it</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3061
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 3448
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "shift": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the first entry from the array and returns it",
+          "     *",
+          "     * @returns {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Removes the first entry from the array and returns it</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 3564
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 3955
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getLength": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the length of the array",
+          "     *",
+          "     * @returns {Integer}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the length of the array</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Integer}",
+            "type": "Integer",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 173,
+          "column": 4,
+          "index": 4050
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 4103
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getItem": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the indexed item of the array",
+          "     *",
+          "     * @returns {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the indexed item of the array</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 4203
+        },
+        "end": {
+          "line": 187,
+          "column": 5,
+          "index": 4341
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "isEmpty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the array is empty",
+          "     *",
+          "     * @returns {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the array is empty</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 194,
+          "column": 4,
+          "index": 4439
+        },
+        "end": {
+          "line": 196,
+          "column": 5,
+          "index": 4494
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "toArray": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a native array (a copy)",
+          "     *",
+          "     * @returns {String[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a native array (a copy)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]}",
+            "type": "String[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 4590
+        },
+        "end": {
+          "line": 217,
+          "column": 5,
+          "index": 4935
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "toObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a native object (a copy)",
+          "     *",
+          "     * @returns {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a native object (a copy)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 224,
+          "column": 4,
+          "index": 5030
+        },
+        "end": {
+          "line": 233,
+          "column": 5,
+          "index": 5260
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

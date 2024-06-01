@@ -1,49 +1,44 @@
 {
-  "className": "qx.util.ExtendedColor",
-  "packageName": "qx.util",
-  "name": "ExtendedColor",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 579
-      },
-      "end": {
-        "line": 218,
-        "column": 3,
-        "index": 6896
-      }
+  "version": 0.3,
+  "lastModified": 1717235170454,
+  "lastModifiedIso": "2024-06-01T09:46:10.454Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/ExtendedColor.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 557
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Support for extended CSS color names</p>"
-        }
-      ]
+    "end": {
+      "line": 218,
+      "column": 3,
+      "index": 6679
     }
   },
-  "type": "class",
+  "className": "qx.util.ExtendedColor",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Support for extended CSS color names",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Support for extended CSS color names</p>"
+      }
+    ]
+  },
   "statics": {
     "EXTENDED": {
-      "location": {
-        "start": {
-          "line": 29,
-          "column": 4,
-          "index": 859
-        },
-        "end": {
-          "line": 178,
-          "column": 5,
-          "index": 5894
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * CSS 3 colors (http://www.w3.org/TR/css3-color/#svg-color)",
+          "     * This includes all classic HTML Color names (http://www.w3.org/TR/css3-color/#html4) and the <code>transparent</code> keyword.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +46,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "isExtendedColor": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 186,
+          "line": 29,
           "column": 4,
-          "index": 6117
+          "index": 831
         },
         "end": {
-          "line": 188,
+          "line": 178,
           "column": 5,
-          "index": 6198
+          "index": 5717
         }
       },
+      "appearsIn": []
+    },
+    "isExtendedColor": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the incoming value is an extended named color.",
+          "     *",
+          "     * @param value {String} the color value to test",
+          "     * @return {Boolean} true if the color is an extended named color",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -80,35 +83,53 @@
             "body": "value {String} the color value to test",
             "paramName": "value",
             "description": " the color value to test",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} true if the color is an extended named color",
-            "type": "Boolean",
-            "description": " true if the color is an extended named color"
+            "type": "boolean",
+            "description": "true if the color is an extended named color"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toRgb": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 196,
+          "line": 186,
           "column": 4,
-          "index": 6383
+          "index": 5932
         },
         "end": {
-          "line": 206,
+          "line": 188,
           "column": 5,
-          "index": 6602
+          "index": 6011
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "toRgb": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts an extended color to the RGB value",
+          "     *",
+          "     * @param value {String} The incoming string",
+          "     * @return {Array} the resulting RGB array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -121,35 +142,53 @@
             "body": "value {String} The incoming string",
             "paramName": "value",
             "description": " The incoming string",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} the resulting RGB array",
-            "type": "Array",
-            "description": " the resulting RGB array"
+            "type": "Array<any>",
+            "description": "the resulting RGB array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toRgbString": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 214,
+          "line": 196,
           "column": 4,
-          "index": 6792
+          "index": 6188
         },
         "end": {
-          "line": 216,
+          "line": 206,
           "column": 5,
-          "index": 6886
+          "index": 6397
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "toRgbString": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts an extended color to a CSS RGB string",
+          "     *",
+          "     * @param value {String} The incoming string",
+          "     * @return {String} the resulting RGB string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -162,21 +201,44 @@
             "body": "value {String} The incoming string",
             "paramName": "value",
             "description": " The incoming string",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the resulting RGB string",
-            "type": "String",
-            "description": " the resulting RGB string"
+            "type": "string",
+            "description": "the resulting RGB string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4,
+          "index": 6579
+        },
+        "end": {
+          "line": 216,
+          "column": 5,
+          "index": 6671
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

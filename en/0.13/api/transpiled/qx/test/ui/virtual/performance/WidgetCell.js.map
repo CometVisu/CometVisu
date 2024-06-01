@@ -1,0 +1,45 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "ui",
+    "virtual",
+    "performance",
+    "AbstractLayerTest",
+    "type",
+    "construct",
+    "constructor",
+    "call",
+    "_pool",
+    "members",
+    "ITERATIONS",
+    "getLayer",
+    "layer",
+    "WidgetCell",
+    "getCellWidget",
+    "row",
+    "column",
+    "widget",
+    "pop",
+    "basic",
+    "Label",
+    "setContent",
+    "poolCellWidget",
+    "push"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/virtual/performance/WidgetCell.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Jonathan Weiß (jonathan_rass)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.ui.virtual.performance.WidgetCell\", {\n  extend: qx.test.ui.virtual.performance.AbstractLayerTest,\n  type: \"abstract\", // disabled\n\n  construct() {\n    super();\n\n    this._pool = [];\n  },\n\n  members: {\n    ITERATIONS: 3,\n\n    getLayer() {\n      return new qx.ui.virtual.layer.WidgetCell(this);\n    },\n\n    getCellWidget(row, column) {\n      var widget = this._pool.pop() || new qx.ui.basic.Label();\n      widget.setContent(row + \" / \" + column);\n      return widget;\n    },\n\n    poolCellWidget(widget) {\n      this._pool.push(widget);\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,2CAA2C,EAAE;IAC3DC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,EAAE,CAACC,OAAO,CAACC,WAAW,CAACC,iBAAiB;IACxDC,IAAI,EAAE,UAAU;IAAE;IAElBC,SAAS,WAAAA,UAAA,EAAG;MACVb,EAAA,CAAAO,IAAA,CAAAC,EAAA,CAAAC,OAAA,CAAAC,WAAA,CAAAC,iBAAA,CAAAG,WAAA,CAAAC,IAAA;MAEA,IAAI,CAACC,KAAK,GAAG,EAAE;IACjB,CAAC;IAEDC,OAAO,EAAE;MACPC,UAAU,EAAE,CAAC;MAEbC,QAAQ,WAAAA,SAAA,EAAG;QACT,OAAO,IAAInB,EAAE,CAACQ,EAAE,CAACC,OAAO,CAACW,KAAK,CAACC,UAAU,CAAC,IAAI,CAAC;MACjD,CAAC;MAEDC,aAAa,WAAAA,cAACC,GAAG,EAAEC,MAAM,EAAE;QACzB,IAAIC,MAAM,GAAG,IAAI,CAACT,KAAK,CAACU,GAAG,CAAC,CAAC,IAAI,IAAI1B,EAAE,CAACQ,EAAE,CAACmB,KAAK,CAACC,KAAK,CAAC,CAAC;QACxDH,MAAM,CAACI,UAAU,CAACN,GAAG,GAAG,KAAK,GAAGC,MAAM,CAAC;QACvC,OAAOC,MAAM;MACf,CAAC;MAEDK,cAAc,WAAAA,eAACL,MAAM,EAAE;QACrB,IAAI,CAACT,KAAK,CAACe,IAAI,CAACN,MAAM,CAAC;MACzB;IACF;EACF,CAAC,CAAC;EA7CFzB,EAAE,CAACO,IAAI,CAACC,EAAE,CAACC,OAAO,CAACC,WAAW,CAACW,UAAU,CAAClB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

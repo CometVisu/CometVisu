@@ -1,0 +1,29 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "performance",
+    "widget",
+    "AbstractWidget",
+    "members",
+    "_createWidget",
+    "ui",
+    "core",
+    "Widget"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/performance/widget/Widget.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qx.test.performance.widget.Widget\", {\n  extend: qx.test.performance.widget.AbstractWidget,\n\n  members: {\n    _createWidget() {\n      return new qx.ui.core.Widget();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,mCAAmC,EAAE;IACnDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,MAAM,CAACC,cAAc;IAEjDC,OAAO,EAAE;MACPC,aAAa,WAAAA,cAAA,EAAG;QACd,OAAO,IAAIZ,EAAE,CAACa,EAAE,CAACC,IAAI,CAACC,MAAM,CAAC,CAAC;MAChC;IACF;EACF,CAAC,CAAC;EARFf,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,MAAM,CAACM,MAAM,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

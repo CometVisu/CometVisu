@@ -1,49 +1,43 @@
 {
-  "className": "qx.ui.core.MExecutable",
-  "packageName": "qx.ui.core",
-  "name": "MExecutable",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 687
-      },
-      "end": {
-        "line": 180,
-        "column": 3,
-        "index": 5171
-      }
+  "version": 0.3,
+  "lastModified": 1717235171754,
+  "lastModifiedIso": "2024-06-01T09:46:11.754Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/MExecutable.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 663
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin is included by all widgets, which support an 'execute' like\n buttons or menu entries.</p>"
-        }
-      ]
+    "end": {
+      "line": 180,
+      "column": 3,
+      "index": 4992
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.core.MExecutable",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin is included by all widgets, which support an 'execute' like",
+      " * buttons or menu entries.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin is included by all widgets, which support an 'execute' like\n buttons or menu entries.</p>"
+      }
+    ]
+  },
   "events": {
     "execute": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 998
-        },
-        "end": {
-          "line": 34,
-          "column": 34,
-          "index": 1028
-        }
-      },
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "* Fired if the {@link #execute} method is invoked."
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,8 +45,18 @@
           }
         ]
       },
-      "name": "execute",
-      "type": "qx.event.type.Event"
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 965
+        },
+        "end": {
+          "line": 34,
+          "column": 34,
+          "index": 995
+        }
+      }
     }
   },
   "properties": {
@@ -61,15 +65,27 @@
         "start": {
           "line": 48,
           "column": 4,
-          "index": 1367
+          "index": 1320
         },
         "end": {
           "line": 53,
           "column": 5,
-          "index": 1507
+          "index": 1455
         }
       },
+      "json": {
+        "check": "qx.ui.command.Command",
+        "apply": "_applyCommand",
+        "event": "changeCommand",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * A command called if the {@link #execute} method is called, e.g. on a",
+          "     * button tap.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -77,78 +93,71 @@
           }
         ]
       },
-      "name": "command",
-      "propertyType": "new",
-      "event": "changeCommand",
-      "apply": "_applyCommand",
-      "nullable": true,
-      "allowNull": true,
-      "check": "qx.ui.command.Command"
+      "appearsIn": []
     }
   },
   "members": {
     "__executableBindingIds": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 63,
           "column": 4,
-          "index": 1725
+          "index": 1663
         },
         "end": {
           "line": 63,
           "column": 32,
-          "index": 1753
+          "index": 1691
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__semaphore": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 64,
           "column": 4,
-          "index": 1760
+          "index": 1697
         },
         "end": {
           "line": 64,
           "column": 22,
-          "index": 1778
+          "index": 1715
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__executeListenerId": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 65,
           "column": 4,
-          "index": 1785
+          "index": 1721
         },
         "end": {
           "line": 65,
           "column": 29,
-          "index": 1810
+          "index": 1746
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_bindableProperties": {
-      "location": {
-        "start": {
-          "line": 73,
-          "column": 4,
-          "index": 2013
-        },
-        "end": {
-          "line": 77,
-          "column": 6,
-          "index": 2237
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Set of properties, which will by synced from the command to the",
+          "     *    including widget",
+          "     *",
+          "     * @lint ignoreReferenceField(_bindableProperties)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -168,23 +177,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "execute": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 82,
+          "line": 73,
           "column": 4,
-          "index": 2301
+          "index": 1941
         },
         "end": {
-          "line": 95,
-          "column": 5,
-          "index": 2585
+          "line": 77,
+          "column": 6,
+          "index": 2161
         }
       },
+      "appearsIn": []
+    },
+    "execute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initiate the execute action.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -192,23 +206,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__onCommandExecute": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 102,
+          "line": 82,
           "column": 4,
-          "index": 2747
+          "index": 2220
         },
         "end": {
-          "line": 113,
+          "line": 95,
           "column": 5,
-          "index": 3024
+          "index": 2491
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__onCommandExecute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the execute event of the command.",
+          "     *",
+          "     * @param e {qx.event.type.Event} The execute event of the command.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -225,109 +248,74 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2646
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 2912
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyCommand": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 116,
           "column": 4,
-          "index": 3056
+          "index": 2941
         },
         "end": {
           "line": 173,
           "column": 5,
-          "index": 5046
+          "index": 4874
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "command"
-      ]
-    },
-    "getCommand": {
-      "type": "function",
-      "name": "getCommand",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>command</code>.\n\nFor further details take a look at the property definition: {@link #command}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.ui.command.Command",
-            "desc": "Returns the value for command"
-          }
-        ]
-      }
-    },
-    "setCommand": {
-      "type": "function",
-      "name": "setCommand",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>command</code>.\n\nFor further details take a look at the property definition: {@link #command}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.ui.command.Command",
-            "paramName": "value",
-            "desc": "Value for command"
-          }
-        ]
-      }
-    },
-    "resetCommand": {
-      "type": "function",
-      "name": "resetCommand",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>command</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #command}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 176,
         "column": 2,
-        "index": 5058
+        "index": 4883
       },
       "end": {
         "line": 179,
         "column": 3,
-        "index": 5166
+        "index": 4988
       }
     }
   },
-  "descendants": []
+  "statics": {}
 }

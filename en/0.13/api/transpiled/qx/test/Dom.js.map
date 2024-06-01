@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "setUp",
+    "div",
+    "document",
+    "createElement",
+    "id",
+    "innerHTML",
+    "body",
+    "appendChild",
+    "tearDown",
+    "getElementById",
+    "removeChild",
+    "testIsDocument",
+    "assertTrue",
+    "dom",
+    "Node",
+    "isDocument",
+    "assertFalse",
+    "window",
+    "testContains",
+    "test1",
+    "test2",
+    "test3",
+    "test4",
+    "Hierarchy",
+    "contains",
+    "test",
+    "Dom"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/Dom.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.Dom\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    setUp() {\n      var div = document.createElement(\"div\");\n      div.id = \"html_basics\";\n\n      div.innerHTML =\n        '<div id=\"test1\">' +\n        '<div id=\"test2\"></div>' +\n        '<div id=\"test3\">' +\n        '<div id=\"test4\"></div>' +\n        \"</div>\" +\n        \"</div>\";\n\n      document.body.appendChild(div);\n    },\n\n    tearDown() {\n      var div = document.getElementById(\"html_basics\");\n      document.body.removeChild(div);\n    },\n\n    testIsDocument() {\n      this.assertTrue(qx.dom.Node.isDocument(document));\n      this.assertFalse(qx.dom.Node.isDocument(document.body));\n      this.assertFalse(qx.dom.Node.isDocument(window));\n    },\n\n    testContains() {\n      var test1 = document.getElementById(\"test1\");\n      var test2 = document.getElementById(\"test2\");\n      var test3 = document.getElementById(\"test3\");\n      var test4 = document.getElementById(\"test4\");\n\n      this.assertTrue(qx.dom.Hierarchy.contains(document, document.body));\n      this.assertTrue(qx.dom.Hierarchy.contains(test1, test2));\n      this.assertTrue(qx.dom.Hierarchy.contains(test1, test4));\n\n      this.assertTrue(qx.dom.Hierarchy.contains(document, test2));\n      this.assertTrue(qx.dom.Hierarchy.contains(document.body, test2));\n\n      this.assertFalse(qx.dom.Hierarchy.contains(document.body, document));\n      this.assertFalse(qx.dom.Hierarchy.contains(test2, test1));\n      this.assertFalse(qx.dom.Hierarchy.contains(test4, test1));\n\n      this.assertFalse(qx.dom.Hierarchy.contains(test2, document));\n      this.assertFalse(qx.dom.Hierarchy.contains(test2, document.body));\n\n      this.assertFalse(qx.dom.Hierarchy.contains(test2, test3));\n      this.assertFalse(qx.dom.Hierarchy.contains(test2, test4));\n    }\n  }\n});\n"
+  ],
+  "mappings": "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",
+  "ignoreList": []
+}

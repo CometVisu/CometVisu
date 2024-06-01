@@ -114,7 +114,7 @@
        * Blocks the whole document (if no parameter is given) or acts as an
        * underlying blocker for native controls.
        *
-       * @param element {element?null} If no element is given the whole document is blocked.
+       * @param element {Element?null} If no element is given the whole document is blocked.
        */
       block: function block(element) {
         if (!this.__P_108_4) {
@@ -347,4 +347,4 @@
   qx.bom.Blocker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Blocker.js.map?dt=1709410143438
+//# sourceMappingURL=Blocker.js.map?dt=1717235371600

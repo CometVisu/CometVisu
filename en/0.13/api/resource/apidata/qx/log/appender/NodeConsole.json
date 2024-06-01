@@ -1,55 +1,52 @@
 {
-  "className": "qx.log.appender.NodeConsole",
-  "packageName": "qx.log.appender",
-  "name": "NodeConsole",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 717
-      },
-      "end": {
-        "line": 147,
-        "column": 3,
-        "index": 3574
-      }
+  "version": 0.3,
+  "lastModified": 1717235171874,
+  "lastModifiedIso": "2024-06-01T09:46:11.874Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/log/appender/NodeConsole.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 691
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Log appender for qooxdoo applications running in Node.js. Writes log\n messages to STDOUT/STDERR.</p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "process.*"
-        }
-      ]
+    "end": {
+      "line": 147,
+      "column": 3,
+      "index": 3428
     }
   },
-  "type": "class",
+  "className": "qx.log.appender.NodeConsole",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Log appender for qooxdoo applications running in Node.js. Writes log",
+      " * messages to STDOUT/STDERR.",
+      " *",
+      " * @ignore(process.*)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Log appender for qooxdoo applications running in Node.js. Writes log\n messages to STDOUT/STDERR.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "process.*"
+      }
+    ]
+  },
   "statics": {
     "__OUT": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 826
-        },
-        "end": {
-          "line": 32,
-          "column": 15,
-          "index": 837
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * process.stdout",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +54,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__ERR": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 36,
+          "line": 32,
           "column": 4,
-          "index": 885
+          "index": 795
         },
         "end": {
-          "line": 36,
+          "line": 32,
           "column": 15,
-          "index": 896
+          "index": 806
         }
       },
+      "appearsIn": []
+    },
+    "__ERR": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * process.stderr",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -81,23 +83,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__useColors": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 41,
+          "line": 36,
           "column": 4,
-          "index": 958
+          "index": 850
         },
         "end": {
-          "line": 41,
-          "column": 22,
-          "index": 976
+          "line": 36,
+          "column": 15,
+          "index": 861
         }
       },
+      "appearsIn": []
+    },
+    "__useColors": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to use color codes",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -105,23 +112,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__colorCodes": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 46,
+          "line": 41,
           "column": 4,
-          "index": 1061
+          "index": 918
         },
         "end": {
-          "line": 52,
-          "column": 5,
-          "index": 1282
+          "line": 41,
+          "column": 22,
+          "index": 936
         }
       },
+      "appearsIn": []
+    },
+    "__colorCodes": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Which ANSI color codes to use for which log level",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -129,23 +141,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "setUseColors": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 58,
+          "line": 46,
           "column": 4,
-          "index": 1381
+          "index": 1016
         },
         "end": {
-          "line": 61,
+          "line": 52,
           "column": 5,
-          "index": 1486
+          "index": 1231
         }
       },
+      "appearsIn": []
+    },
+    "setUseColors": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Turn the use of colors on or off",
+          "     * @param {Boolean} value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -155,27 +173,46 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{Boolean} value"
+            "body": "{Boolean} value",
+            "paramName": "value",
+            "description": "",
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "log": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 70,
+          "line": 58,
           "column": 4,
-          "index": 1767
+          "index": 1324
         },
         "end": {
-          "line": 80,
+          "line": 61,
           "column": 5,
-          "index": 2113
+          "index": 1426
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "log": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes a message to the shell. Errors will be sent to STDERR, everything",
+          "     * else goes to STDOUT",
+          "     *",
+          "     * @param logMessage {String} Message to be logged",
+          "     * @param level {String} Log level. One of \"debug\", \"info\", \"warn\", \"error\"",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -188,34 +225,52 @@
             "body": "logMessage {String} Message to be logged",
             "paramName": "logMessage",
             "description": " Message to be logged",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "level {String} Log level. One of \"debug\", \"info\", \"warn\", \"error\"",
             "paramName": "level",
             "description": " Log level. One of \"debug\", \"info\", \"warn\", \"error\"",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "debug": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 87,
+          "line": 70,
           "column": 4,
-          "index": 2233
+          "index": 1698
         },
         "end": {
-          "line": 89,
+          "line": 80,
           "column": 5,
-          "index": 2297
+          "index": 2034
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "logMessage",
+          "type": "string"
+        },
+        {
+          "name": "level",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "debug": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Logs a debug message",
+          "     *",
+          "     * @param logMessage {String} Message to be logged",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -228,27 +283,41 @@
             "body": "logMessage {String} Message to be logged",
             "paramName": "logMessage",
             "description": " Message to be logged",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "info": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 96,
+          "line": 87,
           "column": 4,
-          "index": 2417
+          "index": 2147
         },
         "end": {
-          "line": 98,
+          "line": 89,
           "column": 5,
-          "index": 2479
+          "index": 2209
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "logMessage",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "info": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Logs an info message",
+          "     *",
+          "     * @param logMessage {String} Message to be logged",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -261,27 +330,41 @@
             "body": "logMessage {String} Message to be logged",
             "paramName": "logMessage",
             "description": " Message to be logged",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "warn": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 105,
+          "line": 96,
           "column": 4,
-          "index": 2601
+          "index": 2322
         },
         "end": {
-          "line": 107,
+          "line": 98,
           "column": 5,
-          "index": 2663
+          "index": 2382
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "logMessage",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "warn": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Logs a warning message",
+          "     *",
+          "     * @param logMessage {String} Message to be logged",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -294,27 +377,41 @@
             "body": "logMessage {String} Message to be logged",
             "paramName": "logMessage",
             "description": " Message to be logged",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "error": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 114,
+          "line": 105,
           "column": 4,
-          "index": 2784
+          "index": 2497
         },
         "end": {
-          "line": 116,
+          "line": 107,
           "column": 5,
-          "index": 2848
+          "index": 2557
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "logMessage",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "error": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Logs an error message",
+          "     *",
+          "     * @param logMessage {String} Message to be logged",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -327,27 +424,41 @@
             "body": "logMessage {String} Message to be logged",
             "paramName": "logMessage",
             "description": " Message to be logged",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "process": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 123,
+          "line": 114,
           "column": 4,
-          "index": 2993
+          "index": 2671
         },
         "end": {
-          "line": 134,
+          "line": 116,
           "column": 5,
-          "index": 3329
+          "index": 2733
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "logMessage",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "process": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Process a log entry object from qooxdoo's logging system.",
+          "     *",
+          "     * @param entry {Map} Log entry object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -360,41 +471,33 @@
             "body": "entry {Map} Log entry object",
             "paramName": "entry",
             "description": " Log entry object",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 140,
-        "column": 2,
-        "index": 3380
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 123,
+          "column": 4,
+          "index": 2871
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3196
+        }
       },
-      "end": {
-        "line": 146,
-        "column": 3,
-        "index": 3569
-      }
-    },
-    "jsdoc": {
-      "@description": [
+      "type": "function",
+      "params": [
         {
-          "name": "@description",
-          "body": ""
+          "name": "entry",
+          "type": "Map<any, any>"
         }
       ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "process.*"
-        }
-      ]
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

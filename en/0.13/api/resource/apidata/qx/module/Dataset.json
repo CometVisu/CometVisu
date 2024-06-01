@@ -1,49 +1,48 @@
 {
-  "className": "qx.module.Dataset",
-  "packageName": "qx.module",
-  "name": "Dataset",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 557
-      },
-      "end": {
-        "line": 96,
-        "column": 3,
-        "index": 2609
-      }
+  "version": 0.3,
+  "lastModified": 1717235169842,
+  "lastModifiedIso": "2024-06-01T09:46:09.842Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Dataset.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 536
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Module for handling of HTML5 data-* attributes</p>"
-        }
-      ]
+    "end": {
+      "line": 96,
+      "column": 3,
+      "index": 2514
     }
   },
-  "type": "class",
+  "className": "qx.module.Dataset",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Module for handling of HTML5 data-* attributes",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Module for handling of HTML5 data-* attributes</p>"
+      }
+    ]
+  },
   "members": {
     "setData": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 917
-        },
-        "end": {
-          "line": 38,
-          "column": 5,
-          "index": 1081
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets an HTML \"data-*\" attribute on each item in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Name of the attribute [CamelCase variant]",
+          "     * @param value {var} New value of the attribute",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -62,7 +61,7 @@
             "body": "name {String} Name of the attribute [CamelCase variant]",
             "paramName": "name",
             "description": " Name of the attribute [CamelCase variant]",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -77,27 +76,52 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 32,
           "column": 4,
-          "index": 1376
+          "index": 886
         },
         "end": {
-          "line": 53,
+          "line": 38,
           "column": 5,
-          "index": 1514
+          "index": 1044
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "getData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * Returns the value of the given HTML \"data-*\" attribute for the first item in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Name of the attribute [CamelCase variant]",
+          "     * @return {var} The value of the attribute",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -116,7 +140,7 @@
             "body": "name {String} Name of the attribute [CamelCase variant]",
             "paramName": "name",
             "description": " Name of the attribute [CamelCase variant]",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -124,27 +148,46 @@
             "name": "@return",
             "body": "{var} The value of the attribute",
             "type": "var",
-            "description": " The value of the attribute"
+            "description": "The value of the attribute"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAllData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 49,
           "column": 4,
-          "index": 1737
+          "index": 1328
         },
         "end": {
-          "line": 67,
+          "line": 53,
           "column": 5,
-          "index": 1889
+          "index": 1462
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "getAllData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map containing all the HTML \"data-*\" attributes of the specified element",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @return {Map} The map containing the \"data-*\" attributes",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -161,28 +204,39 @@
           {
             "name": "@return",
             "body": "{Map} The map containing the \"data-*\" attributes",
-            "type": "Map",
-            "description": " The map containing the \"data-*\" attributes"
+            "type": "Map<any, any>",
+            "description": "The map containing the \"data-*\" attributes"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 73,
+          "line": 62,
           "column": 4,
-          "index": 2078
+          "index": 1676
         },
         "end": {
-          "line": 75,
+          "line": 67,
           "column": 5,
-          "index": 2151
+          "index": 1823
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "hasData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if any element in the collection has a \"data-*\" attribute",
+          "     * @return {Boolean} True if any element in the collection has a \"data-*\" attribute",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -193,28 +247,42 @@
           {
             "name": "@return",
             "body": "{Boolean} True if any element in the collection has a \"data-*\" attribute",
-            "type": "Boolean",
-            "description": " True if any element in the collection has a \"data-*\" attribute"
+            "type": "boolean",
+            "description": "True if any element in the collection has a \"data-*\" attribute"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 84,
+          "line": 73,
           "column": 4,
-          "index": 2386
+          "index": 2006
         },
         "end": {
-          "line": 90,
+          "line": 75,
           "column": 5,
-          "index": 2542
+          "index": 2077
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an HTML \"data-*\" attribute on each item in the collection",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @param name {String} Name of the attribute",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -233,7 +301,7 @@
             "body": "name {String} Name of the attribute",
             "paramName": "name",
             "description": " Name of the attribute",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -241,27 +309,36 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 93,
-        "column": 2,
-        "index": 2554
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2303
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2453
+        }
       },
-      "end": {
-        "line": 95,
-        "column": 3,
-        "index": 2604
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

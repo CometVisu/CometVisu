@@ -1,35 +1,38 @@
 {
-  "className": "cv.report.utils.MXhrHook",
-  "packageName": "cv.report.utils",
-  "name": "MXhrHook",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 928
-      },
-      "end": {
-        "line": 138,
-        "column": 3,
-        "index": 4498
-      }
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/report/utils/MXhrHook.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 928
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin patches {qx.io.request.Xhr} to get noticed about every XHR request to record its response.</p>"
-        }
-      ]
+    "end": {
+      "line": 138,
+      "column": 3,
+      "index": 4498
     }
   },
-  "type": "mixin",
+  "className": "cv.report.utils.MXhrHook",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin patches {qx.io.request.Xhr} to get noticed about every XHR request to record its response.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin patches {qx.io.request.Xhr} to get noticed about every XHR request to record its response.</p>"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 29,
@@ -41,11 +44,12 @@
         "column": 3,
         "index": 1197
       }
-    },
-    "jsdoc": {}
+    }
   },
   "statics": {
     "PENDING": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 39,
@@ -58,12 +62,13 @@
           "index": 1364
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
   "members": {
     "__sendTime": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 48,
@@ -76,10 +81,23 @@
           "index": 1540
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getRequestHash": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculate Hash code for current request",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calculate Hash code for current request</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 53,
@@ -92,18 +110,13 @@
           "index": 1824
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Calculate Hash code for current request</p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "_onPhaseChange": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 61,
@@ -117,8 +130,13 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

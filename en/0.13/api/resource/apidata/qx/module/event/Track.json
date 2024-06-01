@@ -1,61 +1,61 @@
 {
-  "className": "qx.module.event.Track",
-  "packageName": "qx.module.event",
-  "name": "Track",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 804
-      },
-      "end": {
-        "line": 80,
-        "column": 3,
-        "index": 2275
-      }
+  "version": 0.3,
+  "lastModified": 1717235172578,
+  "lastModifiedIso": "2024-06-01T09:46:12.578Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/Track.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 777
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Normalization for the track gesture. This gesture is based on <a href=\"#Pointer\">Pointer events</a>,\n meaning that it's available on all devices, no matter which input device type is used (e.g. mouse or\n touchscreen).</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Event_Normalization"
-        }
-      ]
+    "end": {
+      "line": 80,
+      "column": 3,
+      "index": 2196
     }
   },
-  "type": "class",
+  "className": "qx.module.event.Track",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Normalization for the track gesture. This gesture is based on <a href=\"#Pointer\">Pointer events</a>,",
+      " * meaning that it's available on all devices, no matter which input device type is used (e.g. mouse or",
+      " * touchscreen).",
+      " *",
+      " * @require(qx.module.Event)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Normalization for the track gesture. This gesture is based on <a href=\"#Pointer\">Pointer events</a>,\n meaning that it's available on all devices, no matter which input device type is used (e.g. mouse or\n touchscreen).</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
   "statics": {
     "TYPES": {
-      "location": {
-        "start": {
-          "line": 33,
-          "column": 4,
-          "index": 933
-        },
-        "end": {
-          "line": 33,
-          "column": 20,
-          "index": 949
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of event types to be normalized",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,39 +63,49 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 901
+        },
+        "end": {
+          "line": 33,
+          "column": 20,
+          "index": 917
+        }
+      },
+      "appearsIn": []
     },
     "BIND_METHODS": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 35,
           "column": 4,
-          "index": 958
+          "index": 924
         },
         "end": {
           "line": 35,
           "column": 30,
-          "index": 984
+          "index": 950
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "getDelta": {
-      "location": {
-        "start": {
-          "line": 44,
-          "column": 4,
-          "index": 1297
-        },
-        "end": {
-          "line": 46,
-          "column": 5,
-          "index": 1352
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map with the calculated delta coordinates and axis,",
+          "     * relative to the position on <code>trackstart</code> event.",
+          "     *",
+          "     * @return {Map} a map with contains the delta as <code>x</code> and",
+          "     * <code>y</code> and the movement axis as <code>axis</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -106,28 +116,44 @@
           {
             "name": "@return",
             "body": "{Map} a map with contains the delta as <code>x</code> and\n <code>y</code> and the movement axis as <code>axis</code>.",
-            "type": "Map",
-            "description": " a map with contains the delta as <code>x</code> and\n <code>y</code> and the movement axis as <code>axis</code>."
+            "type": "Map<any, any>",
+            "description": "a map with contains the delta as <code>x</code> and\n <code>y</code> and the movement axis as <code>axis</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "normalize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 57,
+          "line": 44,
           "column": 4,
-          "index": 1675
+          "index": 1254
         },
         "end": {
-          "line": 71,
+          "line": 46,
           "column": 5,
-          "index": 2128
+          "index": 1307
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "normalize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the native event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element the listener was attached to",
+          "     * @return {Event} Normalized event object",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -155,7 +181,7 @@
             "name": "@return",
             "body": "{Event} Normalized event object",
             "type": "Event",
-            "description": " Normalized event object"
+            "description": "Normalized event object"
           }
         ],
         "@internal": [
@@ -165,23 +191,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 74,
-        "column": 2,
-        "index": 2140
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1619
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 2058
+        }
       },
-      "end": {
-        "line": 79,
-        "column": 3,
-        "index": 2270
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -1,97 +1,102 @@
 {
-  "className": "qx.util.EditDistance",
-  "packageName": "qx.util",
-  "name": "EditDistance",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 788
-      },
-      "end": {
-        "line": 171,
-        "column": 3,
-        "index": 5007
-      }
+  "version": 0.3,
+  "lastModified": 1717235170322,
+  "lastModifiedIso": "2024-06-01T09:46:10.322Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/EditDistance.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 763
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Class to implement different edit distance ideas.\n <a href=\"http://en.wikipedia.org/wiki/Edit_distance\">Edit distance on Wikipedia</a>\n <a href=\"http://en.wikipedia.org/wiki/Levenshtein_distance\">Levenshtein distance on Wikipedia</a></p>"
-        }
-      ]
+    "end": {
+      "line": 171,
+      "column": 3,
+      "index": 4837
     }
   },
-  "type": "class",
+  "className": "qx.util.EditDistance",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Class to implement different edit distance ideas.",
+      " *",
+      " * <a href=\"http://en.wikipedia.org/wiki/Edit_distance\">Edit distance on Wikipedia</a>",
+      " * <a href=\"http://en.wikipedia.org/wiki/Levenshtein_distance\">Levenshtein distance on Wikipedia</a>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Class to implement different edit distance ideas.\n <a href=\"http://en.wikipedia.org/wiki/Edit_distance\">Edit distance on Wikipedia</a>\n <a href=\"http://en.wikipedia.org/wiki/Levenshtein_distance\">Levenshtein distance on Wikipedia</a></p>"
+      }
+    ]
+  },
   "statics": {
     "OPERATION_DELETE": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 28,
           "column": 4,
-          "index": 849
+          "index": 822
         },
         "end": {
           "line": 28,
           "column": 23,
-          "index": 868
+          "index": 841
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "OPERATION_INSERT": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 29,
           "column": 4,
-          "index": 875
+          "index": 847
         },
         "end": {
           "line": 29,
           "column": 23,
-          "index": 894
+          "index": 866
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "OPERATION_REPLACE": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 30,
           "column": 4,
-          "index": 901
+          "index": 872
         },
         "end": {
           "line": 30,
           "column": 24,
-          "index": 921
+          "index": 892
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "__computeLevenshteinDistance": {
-      "location": {
-        "start": {
-          "line": 40,
-          "column": 4,
-          "index": 1214
-        },
-        "end": {
-          "line": 73,
-          "column": 5,
-          "index": 2254
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a distant matrix following a concept",
+          "     * named Levenshtein distance for two data structures",
+          "     *",
+          "     * @param dataA {Array} incoming source data",
+          "     * @param dataB {Array} incoming target data",
+          "     * @return {Integer[][]} outgoing matrix",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,14 +109,14 @@
             "body": "dataA {Array} incoming source data",
             "paramName": "dataA",
             "description": " incoming source data",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
             "body": "dataB {Array} incoming target data",
             "paramName": "dataB",
             "description": " incoming target data",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
@@ -119,27 +124,51 @@
             "name": "@return",
             "body": "{Integer[][]} outgoing matrix",
             "type": "Integer[][]",
-            "description": " outgoing matrix"
+            "description": "outgoing matrix"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__computeEditOperations": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 83,
+          "line": 40,
           "column": 4,
-          "index": 2605
+          "index": 1175
         },
         "end": {
-          "line": 155,
+          "line": 73,
           "column": 5,
-          "index": 4507
+          "index": 2182
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "dataA",
+          "type": "Array<any>"
+        },
+        {
+          "name": "dataB",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Integer[][]"
+      },
+      "appearsIn": []
+    },
+    "__computeEditOperations": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the operations needed to transform dataA to dataB.",
+          "     *",
+          "     * @param distance {Integer[][]} Precomputed matrix for the data fields",
+          "     * @param dataA {Array} incoming source data",
+          "     * @param dataB {Array} incoming target data",
+          "     * @return {Map[]} Array of maps describing the operations needed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -159,14 +188,14 @@
             "body": "dataA {Array} incoming source data",
             "paramName": "dataA",
             "description": " incoming source data",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
             "body": "dataB {Array} incoming target data",
             "paramName": "dataB",
             "description": " incoming target data",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
@@ -174,27 +203,54 @@
             "name": "@return",
             "body": "{Map[]} Array of maps describing the operations needed",
             "type": "Map[]",
-            "description": " Array of maps describing the operations needed"
+            "description": "Array of maps describing the operations needed"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "getEditOperations": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 164,
+          "line": 83,
           "column": 4,
-          "index": 4780
+          "index": 2523
         },
         "end": {
-          "line": 169,
+          "line": 155,
           "column": 5,
-          "index": 4997
+          "index": 4353
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "distance",
+          "type": "Integer[][]"
+        },
+        {
+          "name": "dataA",
+          "type": "Array<any>"
+        },
+        {
+          "name": "dataB",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "getEditOperations": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the operations needed to transform dataA to dataB.",
+          "     *",
+          "     * @param dataA {Array} incoming source data",
+          "     * @param dataB {Array} incoming target data",
+          "     * @return {Map[]} Array of maps describing the operations needed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -207,14 +263,14 @@
             "body": "dataA {Array} incoming source data",
             "paramName": "dataA",
             "description": " incoming source data",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
             "body": "dataB {Array} incoming target data",
             "paramName": "dataB",
             "description": " incoming target data",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
@@ -222,13 +278,40 @@
             "name": "@return",
             "body": "{Map[]} Array of maps describing the operations needed",
             "type": "Map[]",
-            "description": " Array of maps describing the operations needed"
+            "description": "Array of maps describing the operations needed"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 4617
+        },
+        "end": {
+          "line": 169,
+          "column": 5,
+          "index": 4829
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "dataA",
+          "type": "Array<any>"
+        },
+        {
+          "name": "dataB",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

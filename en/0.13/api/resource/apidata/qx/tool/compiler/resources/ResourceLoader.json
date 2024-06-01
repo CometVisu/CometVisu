@@ -1,0 +1,275 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172134,
+  "lastModifiedIso": "2024-06-01T09:46:12.134Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/resources/ResourceLoader.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 838
+    },
+    "end": {
+      "line": 82,
+      "column": 3,
+      "index": 2592
+    }
+  },
+  "className": "qx.tool.compiler.resources.ResourceLoader",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Instances of Handler are used by the resource manager to handle different types of resources that",
+      " *  need compilation.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Instances of Handler are used by the resource manager to handle different types of resources that\n  need compilation.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.resources.AbstractMatcher",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "match"
+      },
+      {
+        "name": "manager"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 37,
+        "column": 2,
+        "index": 1140
+      },
+      "end": {
+        "line": 40,
+        "column": 3,
+        "index": 1219
+      }
+    }
+  },
+  "members": {
+    "__manager": {
+      "jsdoc": {
+        "raw": [
+          "* @type{qx.tool.compiler.resources.Manager} the resource manager this loader belongs to "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.tool.compiler.resources.Manager} the resource manager this loader belongs to"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1336
+        },
+        "end": {
+          "line": 44,
+          "column": 19,
+          "index": 1351
+        }
+      },
+      "appearsIn": []
+    },
+    "needsLoad": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the file needs to be recompiled/coverted/analysed/ etc; this should",
+          "     * not take any time or be asynchronous, if you need to do any real work it should be",
+          "     * in `compile` because that is throttled.",
+          "     *",
+          "     * @param filename {String} absolute path to the file",
+          "     * @param fileInfo {Map?} this is the object in the resource database, contains info about the resource;",
+          "     *  this will be null if not yet in the resource database",
+          "     * @param stat {import(\"node:fs\").Stats} Stats object from fs.stat",
+          "     *",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the file needs to be recompiled/coverted/analysed/ etc; this should\n not take any time or be asynchronous, if you need to do any real work it should be\n in <code>compile</code> because that is throttled.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} absolute path to the file",
+            "paramName": "filename",
+            "description": " absolute path to the file",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "fileInfo {Map?} this is the object in the resource database, contains info about the resource;\n  this will be null if not yet in the resource database",
+            "paramName": "fileInfo",
+            "description": " this is the object in the resource database, contains info about the resource;\n  this will be null if not yet in the resource database",
+            "optional": true,
+            "type": "Map"
+          },
+          {
+            "name": "@param",
+            "body": "stat {import(\"node:fs\").Stats} Stats object from fs.stat",
+            "paramName": "stat",
+            "description": " Stats object from fs.stat",
+            "type": "import(\"node:fs\").Stats"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1941
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 2165
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        },
+        {
+          "name": "fileInfo",
+          "type": "Map",
+          "optional": true
+        },
+        {
+          "name": "stat",
+          "type": "import(\"node:fs\").Stats"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "load": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Allows a file to be loadeddata can be stored in the resource database by modifying the fileInfo",
+          "     *",
+          "     * @param asset {Asset} the asset to load",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Allows a file to be loadeddata can be stored in the resource database by modifying the fileInfo</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "asset {Asset} the asset to load",
+            "paramName": "asset",
+            "description": " the asset to load",
+            "type": "qx.tool.compiler.resources.Asset"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2344
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2448
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "asset",
+          "type": "qx.tool.compiler.resources.Asset"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getManager": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @return {qx.tool.compiler.resources.Manager} the manager",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.compiler.resources.Manager} the manager",
+            "type": "qx.tool.compiler.resources.Manager",
+            "description": "the manager"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2535
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2584
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.compiler.resources.Manager"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

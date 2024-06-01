@@ -20,9 +20,6 @@
       "required": {
         "qx.revision": {
           "construct": true
-        },
-        "qx.version": {
-          "construct": true
         }
       }
     }
@@ -63,8 +60,11 @@
         if (!version) {
           // revision or version number as fallback
           version = qx.core.Environment.get("qx.revision");
-          if (version == "") {
-            version = qx.core.Environment.get("qx.version");
+          if (!version) {
+            version = null;
+          }
+          if (!version) {
+            version = "7.7.1";
           }
         }
       }
@@ -87,4 +87,4 @@
   qxl.versionlabel.VersionLabel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VersionLabel.js.map?dt=1709410173450
+//# sourceMappingURL=VersionLabel.js.map?dt=1717235425131

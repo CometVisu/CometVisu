@@ -112,7 +112,7 @@
     */
 
     members: {
-      __P_338_0: null,
+      __P_556_0: null,
       /*
       ---------------------------------------------------------------------------
         CONTENT MANAGEMENT
@@ -316,17 +316,17 @@
         this.stopScrollAnimation();
         if (duration) {
           var from = this.getScrollX();
-          this.__P_338_0 = new qx.bom.AnimationFrame();
-          this.__P_338_0.on("end", function () {
+          this.__P_556_0 = new qx.bom.AnimationFrame();
+          this.__P_556_0.on("end", function () {
             this.setScrollX(value);
-            this.__P_338_0 = null;
+            this.__P_556_0 = null;
             this.fireEvent("scrollAnimationEnd");
           }, this);
-          this.__P_338_0.on("frame", function (timePassed) {
+          this.__P_556_0.on("frame", function (timePassed) {
             var newX = parseInt(timePassed / duration * (value - from) + from);
             this.setScrollX(newX);
           }, this);
-          this.__P_338_0.startSequence(duration);
+          this.__P_556_0.startSequence(duration);
         } else {
           this.setScrollX(value);
         }
@@ -347,17 +347,17 @@
         this.stopScrollAnimation();
         if (duration) {
           var from = this.getScrollY();
-          this.__P_338_0 = new qx.bom.AnimationFrame();
-          this.__P_338_0.on("end", function () {
+          this.__P_556_0 = new qx.bom.AnimationFrame();
+          this.__P_556_0.on("end", function () {
             this.setScrollY(value);
-            this.__P_338_0 = null;
+            this.__P_556_0 = null;
             this.fireEvent("scrollAnimationEnd");
           }, this);
-          this.__P_338_0.on("frame", function (timePassed) {
+          this.__P_556_0.on("frame", function (timePassed) {
             var newY = parseInt(timePassed / duration * (value - from) + from);
             this.setScrollY(newY);
           }, this);
-          this.__P_338_0.startSequence(duration);
+          this.__P_556_0.startSequence(duration);
         } else {
           this.setScrollY(value);
         }
@@ -384,9 +384,9 @@
        * If an scroll animation is running, it will be stopped with that method.
        */
       stopScrollAnimation: function stopScrollAnimation() {
-        if (this.__P_338_0) {
-          this.__P_338_0.cancelSequence();
-          this.__P_338_0 = null;
+        if (this.__P_556_0) {
+          this.__P_556_0.cancelSequence();
+          this.__P_556_0 = null;
         }
       },
       /*
@@ -425,4 +425,4 @@
   qx.ui.core.scroll.ScrollPane.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollPane.js.map?dt=1709410159035
+//# sourceMappingURL=ScrollPane.js.map?dt=1717235409646

@@ -1,48 +1,54 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235171714,
+  "lastModifiedIso": "2024-06-01T09:46:11.714Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/decoration/MDoubleBorder.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 668
+    },
+    "end": {
+      "line": 369,
+      "column": 3,
+      "index": 10432
+    }
+  },
   "className": "qx.ui.decoration.MDoubleBorder",
-  "packageName": "qx.ui.decoration",
-  "name": "MDoubleBorder",
-  "superClass": null,
-  "interfaces": [],
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Border implementation with two CSS borders. Both borders can be styled",
+      " * independent of each other.",
+      " * This mixin is usually used by {@link qx.ui.decoration.Decorator}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Border implementation with two CSS borders. Both borders can be styled\n independent of each other.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.</p>"
+      }
+    ]
+  },
   "mixins": [
     "qx.ui.decoration.MSingleBorder",
     "qx.ui.decoration.MBackgroundImage"
   ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 690
-      },
-      "end": {
-        "line": 369,
-        "column": 3,
-        "index": 10800
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Border implementation with two CSS borders. Both borders can be styled\n independent of each other.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.</p>"
-        }
-      ]
-    }
-  },
-  "type": "mixin",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 26,
         "column": 2,
-        "index": 828
+        "index": 803
       },
       "end": {
         "line": 30,
         "column": 3,
-        "index": 1043
+        "index": 1014
       }
     }
   },
@@ -52,15 +58,23 @@
         "start": {
           "line": 46,
           "column": 4,
-          "index": 1503
+          "index": 1458
         },
         "end": {
           "line": 50,
           "column": 5,
-          "index": 1601
+          "index": 1552
         }
       },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyDoubleBorder"
+      },
       "jsdoc": {
+        "raw": [
+          "* top width of border "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -68,27 +82,30 @@
           }
         ]
       },
-      "name": "innerWidthTop",
-      "propertyType": "new",
-      "apply": "_applyDoubleBorder",
-      "init": 0,
-      "check": "Number",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "innerWidthRight": {
       "location": {
         "start": {
           "line": 53,
           "column": 4,
-          "index": 1644
+          "index": 1592
         },
         "end": {
           "line": 57,
           "column": 5,
-          "index": 1744
+          "index": 1688
         }
       },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyDoubleBorder"
+      },
       "jsdoc": {
+        "raw": [
+          "* right width of border "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -96,27 +113,30 @@
           }
         ]
       },
-      "name": "innerWidthRight",
-      "propertyType": "new",
-      "apply": "_applyDoubleBorder",
-      "init": 0,
-      "check": "Number",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "innerWidthBottom": {
       "location": {
         "start": {
           "line": 60,
           "column": 4,
-          "index": 1788
+          "index": 1729
         },
         "end": {
           "line": 64,
           "column": 5,
-          "index": 1889
+          "index": 1826
         }
       },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyDoubleBorder"
+      },
       "jsdoc": {
+        "raw": [
+          "* bottom width of border "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -124,27 +144,30 @@
           }
         ]
       },
-      "name": "innerWidthBottom",
-      "propertyType": "new",
-      "apply": "_applyDoubleBorder",
-      "init": 0,
-      "check": "Number",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "innerWidthLeft": {
       "location": {
         "start": {
           "line": 67,
           "column": 4,
-          "index": 1931
+          "index": 1865
         },
         "end": {
           "line": 71,
           "column": 5,
-          "index": 2030
+          "index": 1960
         }
       },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyDoubleBorder"
+      },
       "jsdoc": {
+        "raw": [
+          "* left width of border "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -152,27 +175,34 @@
           }
         ]
       },
-      "name": "innerWidthLeft",
-      "propertyType": "new",
-      "apply": "_applyDoubleBorder",
-      "init": 0,
-      "check": "Number",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "innerWidth": {
       "location": {
         "start": {
           "line": 74,
           "column": 4,
-          "index": 2109
+          "index": 2036
         },
         "end": {
           "line": 83,
           "column": 5,
-          "index": 2291
+          "index": 2209
         }
       },
+      "json": {
+        "group": [
+          "innerWidthTop",
+          "innerWidthRight",
+          "innerWidthBottom",
+          "innerWidthLeft"
+        ],
+        "mode": "shorthand"
+      },
       "jsdoc": {
+        "raw": [
+          "* Property group to set the inner border width of all sides "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -180,29 +210,30 @@
           }
         ]
       },
-      "name": "innerWidth",
-      "propertyType": "new",
-      "group": [
-        "innerWidthTop",
-        "innerWidthRight",
-        "innerWidthBottom",
-        "innerWidthLeft"
-      ]
+      "appearsIn": []
     },
     "innerColorTop": {
       "location": {
         "start": {
           "line": 92,
           "column": 4,
-          "index": 2547
+          "index": 2456
         },
         "end": {
           "line": 96,
           "column": 5,
-          "index": 2651
+          "index": 2556
         }
       },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyDoubleBorder"
+      },
       "jsdoc": {
+        "raw": [
+          "* top inner color of border "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -210,27 +241,30 @@
           }
         ]
       },
-      "name": "innerColorTop",
-      "propertyType": "new",
-      "apply": "_applyDoubleBorder",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Color"
+      "appearsIn": []
     },
     "innerColorRight": {
       "location": {
         "start": {
           "line": 99,
           "column": 4,
-          "index": 2700
+          "index": 2602
         },
         "end": {
           "line": 103,
           "column": 5,
-          "index": 2806
+          "index": 2704
         }
       },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyDoubleBorder"
+      },
       "jsdoc": {
+        "raw": [
+          "* right inner color of border "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -238,27 +272,30 @@
           }
         ]
       },
-      "name": "innerColorRight",
-      "propertyType": "new",
-      "apply": "_applyDoubleBorder",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Color"
+      "appearsIn": []
     },
     "innerColorBottom": {
       "location": {
         "start": {
           "line": 106,
           "column": 4,
-          "index": 2856
+          "index": 2751
         },
         "end": {
           "line": 110,
           "column": 5,
-          "index": 2963
+          "index": 2854
         }
       },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyDoubleBorder"
+      },
       "jsdoc": {
+        "raw": [
+          "* bottom inner color of border "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -266,27 +303,30 @@
           }
         ]
       },
-      "name": "innerColorBottom",
-      "propertyType": "new",
-      "apply": "_applyDoubleBorder",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Color"
+      "appearsIn": []
     },
     "innerColorLeft": {
       "location": {
         "start": {
           "line": 113,
           "column": 4,
-          "index": 3011
+          "index": 2899
         },
         "end": {
           "line": 117,
           "column": 5,
-          "index": 3116
+          "index": 3000
         }
       },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyDoubleBorder"
+      },
       "jsdoc": {
+        "raw": [
+          "* left inner color of border "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -294,27 +334,36 @@
           }
         ]
       },
-      "name": "innerColorLeft",
-      "propertyType": "new",
-      "apply": "_applyDoubleBorder",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Color"
+      "appearsIn": []
     },
     "innerColor": {
       "location": {
         "start": {
           "line": 122,
           "column": 4,
-          "index": 3198
+          "index": 3077
         },
         "end": {
           "line": 131,
           "column": 5,
-          "index": 3380
+          "index": 3250
         }
       },
+      "json": {
+        "group": [
+          "innerColorTop",
+          "innerColorRight",
+          "innerColorBottom",
+          "innerColorLeft"
+        ],
+        "mode": "shorthand"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Property group for the inner color properties.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -322,29 +371,32 @@
           }
         ]
       },
-      "name": "innerColor",
-      "propertyType": "new",
-      "group": [
-        "innerColorTop",
-        "innerColorRight",
-        "innerColorBottom",
-        "innerColorLeft"
-      ]
+      "appearsIn": []
     },
     "innerOpacity": {
       "location": {
         "start": {
           "line": 136,
           "column": 4,
-          "index": 3448
+          "index": 3313
         },
         "end": {
           "line": 140,
           "column": 5,
-          "index": 3545
+          "index": 3406
         }
       },
+      "json": {
+        "check": "Number",
+        "init": 1,
+        "apply": "_applyDoubleBorder"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The opacity of the inner border.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -352,445 +404,982 @@
           }
         ]
       },
-      "name": "innerOpacity",
-      "propertyType": "new",
-      "apply": "_applyDoubleBorder",
-      "init": 1,
-      "check": "Number",
-      "defaultValue": 1
+      "appearsIn": []
     },
     "widthTop": {
-      "type": "property",
-      "name": "widthTop",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 931
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 1013
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyWidth"
+      },
       "jsdoc": {
+        "raw": [
+          "* top width of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>top width of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "widthRight": {
-      "type": "property",
-      "name": "widthRight",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1053
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1137
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyWidth"
+      },
       "jsdoc": {
+        "raw": [
+          "* right width of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>right width of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "widthBottom": {
-      "type": "property",
-      "name": "widthBottom",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1178
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1263
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyWidth"
+      },
       "jsdoc": {
+        "raw": [
+          "* bottom width of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>bottom width of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "widthLeft": {
-      "type": "property",
-      "name": "widthLeft",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1302
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1385
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyWidth"
+      },
       "jsdoc": {
+        "raw": [
+          "* left width of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>left width of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "styleTop": {
-      "type": "property",
-      "name": "styleTop",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1620
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 1872
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": [
+          "solid",
+          "dotted",
+          "dashed",
+          "double",
+          "inset",
+          "outset",
+          "ridge",
+          "groove"
+        ],
+        "init": "solid",
+        "apply": "_applyStyle"
+      },
       "jsdoc": {
+        "raw": [
+          "* top style of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>top style of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "styleRight": {
-      "type": "property",
-      "name": "styleRight",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 83,
+          "column": 4,
+          "index": 1912
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2166
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": [
+          "solid",
+          "dotted",
+          "dashed",
+          "double",
+          "inset",
+          "outset",
+          "ridge",
+          "groove"
+        ],
+        "init": "solid",
+        "apply": "_applyStyle"
+      },
       "jsdoc": {
+        "raw": [
+          "* right style of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>right style of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "styleBottom": {
-      "type": "property",
-      "name": "styleBottom",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2207
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 2462
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": [
+          "solid",
+          "dotted",
+          "dashed",
+          "double",
+          "inset",
+          "outset",
+          "ridge",
+          "groove"
+        ],
+        "init": "solid",
+        "apply": "_applyStyle"
+      },
       "jsdoc": {
+        "raw": [
+          "* bottom style of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>bottom style of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "styleLeft": {
-      "type": "property",
-      "name": "styleLeft",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 2501
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 2754
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": [
+          "solid",
+          "dotted",
+          "dashed",
+          "double",
+          "inset",
+          "outset",
+          "ridge",
+          "groove"
+        ],
+        "init": "solid",
+        "apply": "_applyStyle"
+      },
       "jsdoc": {
+        "raw": [
+          "* left style of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>left style of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "colorTop": {
-      "type": "property",
-      "name": "colorTop",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 2989
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 3077
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyStyle"
+      },
       "jsdoc": {
+        "raw": [
+          "* top color of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>top color of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "colorRight": {
-      "type": "property",
-      "name": "colorRight",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 3117
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 3207
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyStyle"
+      },
       "jsdoc": {
+        "raw": [
+          "* right color of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>right color of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "colorBottom": {
-      "type": "property",
-      "name": "colorBottom",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 3248
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 3339
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyStyle"
+      },
       "jsdoc": {
+        "raw": [
+          "* bottom color of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>bottom color of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "colorLeft": {
-      "type": "property",
-      "name": "colorLeft",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 3378
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 3467
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Color",
+        "apply": "_applyStyle"
+      },
       "jsdoc": {
+        "raw": [
+          "* left color of border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>left color of border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "left": {
-      "type": "property",
-      "name": "left",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 177,
+          "column": 4,
+          "index": 3731
+        },
+        "end": {
+          "line": 179,
+          "column": 5,
+          "index": 3797
+        }
+      },
+      "json": {
+        "group": [
+          "widthLeft",
+          "styleLeft",
+          "colorLeft"
+        ]
+      },
       "jsdoc": {
+        "raw": [
+          "* Property group to configure the left border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Property group to configure the left border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "right": {
-      "type": "property",
-      "name": "right",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 3860
+        },
+        "end": {
+          "line": 184,
+          "column": 5,
+          "index": 3930
+        }
+      },
+      "json": {
+        "group": [
+          "widthRight",
+          "styleRight",
+          "colorRight"
+        ]
+      },
       "jsdoc": {
+        "raw": [
+          "* Property group to configure the right border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Property group to configure the right border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "top": {
-      "type": "property",
-      "name": "top",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 3991
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 4053
+        }
+      },
+      "json": {
+        "group": [
+          "widthTop",
+          "styleTop",
+          "colorTop"
+        ]
+      },
       "jsdoc": {
+        "raw": [
+          "* Property group to configure the top border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Property group to configure the top border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "bottom": {
-      "type": "property",
-      "name": "bottom",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 192,
+          "column": 4,
+          "index": 4117
+        },
+        "end": {
+          "line": 194,
+          "column": 5,
+          "index": 4191
+        }
+      },
+      "json": {
+        "group": [
+          "widthBottom",
+          "styleBottom",
+          "colorBottom"
+        ]
+      },
       "jsdoc": {
+        "raw": [
+          "* Property group to configure the bottom border "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Property group to configure the bottom border</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "width": {
-      "type": "property",
-      "name": "width",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 4463
+        },
+        "end": {
+          "line": 206,
+          "column": 5,
+          "index": 4570
+        }
+      },
+      "json": {
+        "group": [
+          "widthTop",
+          "widthRight",
+          "widthBottom",
+          "widthLeft"
+        ],
+        "mode": "shorthand"
+      },
       "jsdoc": {
+        "raw": [
+          "* Property group to set the border width of all sides "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Property group to set the border width of all sides</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "style": {
-      "type": "property",
-      "name": "style",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 4640
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 4747
+        }
+      },
+      "json": {
+        "group": [
+          "styleTop",
+          "styleRight",
+          "styleBottom",
+          "styleLeft"
+        ],
+        "mode": "shorthand"
+      },
       "jsdoc": {
+        "raw": [
+          "* Property group to set the border style of all sides "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Property group to set the border style of all sides</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "color": {
-      "type": "property",
-      "name": "color",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4,
+          "index": 4817
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 4924
+        }
+      },
+      "json": {
+        "group": [
+          "colorTop",
+          "colorRight",
+          "colorBottom",
+          "colorLeft"
+        ],
+        "mode": "shorthand"
+      },
       "jsdoc": {
+        "raw": [
+          "* Property group to set the border color of all sides "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Property group to set the border color of all sides</p>"
           }
         ]
-      }
+      },
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "backgroundImage": {
-      "type": "property",
-      "name": "backgroundImage",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1731
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1814
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBackgroundImage"
+      },
       "jsdoc": {
+        "raw": [
+          "* The URL of the background image "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>The URL of the background image</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.decoration.MBackgroundImage"
+      ],
+      "mixin": "qx.ui.decoration.MBackgroundImage"
     },
     "backgroundRepeat": {
-      "type": "property",
-      "name": "backgroundRepeat",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1876
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1960
+        }
+      },
+      "json": {
+        "init": "repeat",
+        "apply": "_applyBackgroundImage"
+      },
       "jsdoc": {
+        "raw": [
+          "* How the background image should be repeated "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>How the background image should be repeated</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.decoration.MBackgroundImage"
+      ],
+      "mixin": "qx.ui.decoration.MBackgroundImage"
     },
     "backgroundPositionX": {
-      "type": "property",
-      "name": "backgroundPositionX",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 2282
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2372
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBackgroundPosition"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Either a string or a number, which defines the horizontal position",
+          "     * of the background image.",
+          "     *",
+          "     * If the value is an integer it is interpreted as a pixel value, otherwise",
+          "     * the value is taken to be a CSS value. For CSS, the values are \"center\",",
+          "     * \"left\" and \"right\".",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Either a string or a number, which defines the horizontal position\n of the background image.\n If the value is an integer it is interpreted as a pixel value, otherwise\n the value is taken to be a CSS value. For CSS, the values are \"center\",\n \"left\" and \"right\".</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.decoration.MBackgroundImage"
+      ],
+      "mixin": "qx.ui.decoration.MBackgroundImage"
     },
     "backgroundPositionY": {
-      "type": "property",
-      "name": "backgroundPositionY",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2692
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2782
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBackgroundPosition"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Either a string or a number, which defines the vertical position",
+          "     * of the background image.",
+          "     *",
+          "     * If the value is an integer it is interpreted as a pixel value, otherwise",
+          "     * the value is taken to be a CSS value. For CSS, the values are \"top\",",
+          "     * \"center\" and \"bottom\".",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Either a string or a number, which defines the vertical position\n of the background image.\n If the value is an integer it is interpreted as a pixel value, otherwise\n the value is taken to be a CSS value. For CSS, the values are \"top\",\n \"center\" and \"bottom\".</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.decoration.MBackgroundImage"
+      ],
+      "mixin": "qx.ui.decoration.MBackgroundImage"
     },
     "backgroundOrigin": {
-      "type": "property",
-      "name": "backgroundOrigin",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2864
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2948
+        }
+      },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBackgroundImage"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Specifies where the background image is positioned.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Specifies where the background image is positioned.</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.decoration.MBackgroundImage"
+      ],
+      "mixin": "qx.ui.decoration.MBackgroundImage"
     },
     "backgroundPosition": {
-      "type": "property",
-      "name": "backgroundPosition",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 3027
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 3114
+        }
+      },
+      "json": {
+        "group": [
+          "backgroundPositionY",
+          "backgroundPositionX"
+        ]
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Property group to define the background position",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Property group to define the background position</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.decoration.MBackgroundImage"
+      ],
+      "mixin": "qx.ui.decoration.MBackgroundImage"
     },
     "orderGradientsFront": {
-      "type": "property",
-      "name": "orderGradientsFront",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3343
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3413
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to order gradients before Image-URL-based background declarations",
+          "     * if both qx.ui.decoration.MBackgroundImage and",
+          "     * qx.ui.decoration.MLinearBackgroundGradient decorations are used.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Whether to order gradients before Image-URL-based background declarations\n if both qx.ui.decoration.MBackgroundImage and\n qx.ui.decoration.MLinearBackgroundGradient decorations are used.</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.decoration.MBackgroundImage"
+      ],
+      "mixin": "qx.ui.decoration.MBackgroundImage"
     }
   },
   "members": {
     "__styleDoubleBorder": {
-      "location": {
-        "start": {
-          "line": 151,
-          "column": 4,
-          "index": 3823
-        },
-        "end": {
-          "line": 318,
-          "column": 5,
-          "index": 9203
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes a styles map and adds the outer border styles in place",
+          "     * to the given map. This is the needed behavior for",
+          "     * {@link qx.ui.decoration.Decorator}.",
+          "     *",
+          "     * @param styles {Map} A map to add the styles.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -803,27 +1392,42 @@
             "body": "styles {Map} A map to add the styles.",
             "paramName": "styles",
             "description": " A map to add the styles.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__processInnerOpacity": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 326,
+          "line": 151,
           "column": 4,
-          "index": 9413
+          "index": 3673
         },
         "end": {
-          "line": 342,
+          "line": 318,
           "column": 5,
-          "index": 9994
+          "index": 8886
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__processInnerOpacity": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the inner border's colors to rgba.",
+          "     *",
+          "     * @param innerColor {Map} map of top, right, bottom and left colors",
+          "     * @param innerOpacity {Number} alpha value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -836,61 +1440,72 @@
             "body": "innerColor {Map} map of top, right, bottom and left colors",
             "paramName": "innerColor",
             "description": " map of top, right, bottom and left colors",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "innerOpacity {Number} alpha value",
             "paramName": "innerOpacity",
             "description": " alpha value",
-            "type": "Number"
+            "type": "number"
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 326,
+          "column": 4,
+          "index": 9088
+        },
+        "end": {
+          "line": 342,
+          "column": 5,
+          "index": 9653
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "innerColor",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "innerOpacity",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyDoubleBorder": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 344,
           "column": 4,
-          "index": 10003
+          "index": 9660
         },
         "end": {
           "line": 352,
           "column": 5,
-          "index": 10269
+          "index": 9918
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "innerWidthTop",
-        "innerWidthRight",
-        "innerWidthBottom",
-        "innerWidthLeft",
-        "innerColorTop",
-        "innerColorRight",
-        "innerColorBottom",
-        "innerColorLeft",
-        "innerOpacity"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "__getDefaultInsetsForDoubleBorder": {
-      "location": {
-        "start": {
-          "line": 360,
-          "column": 4,
-          "index": 10463
-        },
-        "end": {
-          "line": 367,
-          "column": 5,
-          "index": 10790
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Implementation of the interface for the double border.",
+          "     *",
+          "     * @return {Map} A map containing the default insets.",
+          "     *   (top, right, bottom, left)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -904,18 +1519,35 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 360,
+          "column": 4,
+          "index": 10104
+        },
+        "end": {
+          "line": 367,
+          "column": 5,
+          "index": 10424
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
     },
     "_styleBorder": {
-      "type": "function",
-      "name": "_styleBorder",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes a styles map and adds the border styles styles in place",
+          "     * to the given map. This is the needed behavior for",
+          "     * {@link qx.ui.decoration.Decorator}.",
+          "     *",
+          "     * @param styles {Map} A map to add the styles.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -925,23 +1557,44 @@
         "@param": [
           {
             "name": "@param",
-            "body": "styles {Map} A map to add the styles.",
-            "paramName": "styles",
-            "description": " A map to add the styles.",
-            "type": "Map"
+            "body": "styles {Map} A map to add the styles."
           }
         ]
-      }
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4,
+          "index": 5192
+        },
+        "end": {
+          "line": 280,
+          "column": 5,
+          "index": 6842
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "styles"
+        }
+      ],
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "_getDefaultInsetsForBorder": {
-      "type": "function",
-      "name": "_getDefaultInsetsForBorder",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Implementation of the interface for the single border.",
+          "     *",
+          "     * @return {Map} A map containing the default insets.",
+          "     *   (top, right, bottom, left)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -954,1123 +1607,87 @@
             "body": "top, right, bottom, left"
           }
         ]
-      }
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 288,
+          "column": 4,
+          "index": 7028
+        },
+        "end": {
+          "line": 295,
+          "column": 5,
+          "index": 7231
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "_applyWidth": {
-      "type": "function",
-      "name": "_applyWidth",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
-      "jsdoc": {}
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 4,
+          "index": 7465
+        },
+        "end": {
+          "line": 308,
+          "column": 5,
+          "index": 7540
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "_applyStyle": {
-      "type": "function",
-      "name": "_applyStyle",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MSingleBorder",
-      "jsdoc": {}
-    },
-    "getWidthTop": {
+      "location": {
+        "start": {
+          "line": 311,
+          "column": 4,
+          "index": 7569
+        },
+        "end": {
+          "line": 319,
+          "column": 5,
+          "index": 7820
+        }
+      },
       "type": "function",
-      "name": "getWidthTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>widthTop</code>.\n\nFor further details take a look at the property definition: {@link #widthTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for widthTop"
-          }
-        ]
-      }
-    },
-    "setWidthTop": {
-      "type": "function",
-      "name": "setWidthTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>widthTop</code>.\n\nFor further details take a look at the property definition: {@link #widthTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for widthTop"
-          }
-        ]
-      }
-    },
-    "resetWidthTop": {
-      "type": "function",
-      "name": "resetWidthTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>widthTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widthTop}."
-          }
-        ]
-      }
-    },
-    "getWidthRight": {
-      "type": "function",
-      "name": "getWidthRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>widthRight</code>.\n\nFor further details take a look at the property definition: {@link #widthRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for widthRight"
-          }
-        ]
-      }
-    },
-    "setWidthRight": {
-      "type": "function",
-      "name": "setWidthRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>widthRight</code>.\n\nFor further details take a look at the property definition: {@link #widthRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for widthRight"
-          }
-        ]
-      }
-    },
-    "resetWidthRight": {
-      "type": "function",
-      "name": "resetWidthRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>widthRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widthRight}."
-          }
-        ]
-      }
-    },
-    "getWidthBottom": {
-      "type": "function",
-      "name": "getWidthBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>widthBottom</code>.\n\nFor further details take a look at the property definition: {@link #widthBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for widthBottom"
-          }
-        ]
-      }
-    },
-    "setWidthBottom": {
-      "type": "function",
-      "name": "setWidthBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>widthBottom</code>.\n\nFor further details take a look at the property definition: {@link #widthBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for widthBottom"
-          }
-        ]
-      }
-    },
-    "resetWidthBottom": {
-      "type": "function",
-      "name": "resetWidthBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>widthBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widthBottom}."
-          }
-        ]
-      }
-    },
-    "getWidthLeft": {
-      "type": "function",
-      "name": "getWidthLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>widthLeft</code>.\n\nFor further details take a look at the property definition: {@link #widthLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for widthLeft"
-          }
-        ]
-      }
-    },
-    "setWidthLeft": {
-      "type": "function",
-      "name": "setWidthLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>widthLeft</code>.\n\nFor further details take a look at the property definition: {@link #widthLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for widthLeft"
-          }
-        ]
-      }
-    },
-    "resetWidthLeft": {
-      "type": "function",
-      "name": "resetWidthLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>widthLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #widthLeft}."
-          }
-        ]
-      }
-    },
-    "getStyleTop": {
-      "type": "function",
-      "name": "getStyleTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>styleTop</code>.\n\nFor further details take a look at the property definition: {@link #styleTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for styleTop"
-          }
-        ]
-      }
-    },
-    "setStyleTop": {
-      "type": "function",
-      "name": "setStyleTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>styleTop</code>.\n\nFor further details take a look at the property definition: {@link #styleTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for styleTop"
-          }
-        ]
-      }
-    },
-    "resetStyleTop": {
-      "type": "function",
-      "name": "resetStyleTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>styleTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styleTop}."
-          }
-        ]
-      }
-    },
-    "getStyleRight": {
-      "type": "function",
-      "name": "getStyleRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>styleRight</code>.\n\nFor further details take a look at the property definition: {@link #styleRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for styleRight"
-          }
-        ]
-      }
-    },
-    "setStyleRight": {
-      "type": "function",
-      "name": "setStyleRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>styleRight</code>.\n\nFor further details take a look at the property definition: {@link #styleRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for styleRight"
-          }
-        ]
-      }
-    },
-    "resetStyleRight": {
-      "type": "function",
-      "name": "resetStyleRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>styleRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styleRight}."
-          }
-        ]
-      }
-    },
-    "getStyleBottom": {
-      "type": "function",
-      "name": "getStyleBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>styleBottom</code>.\n\nFor further details take a look at the property definition: {@link #styleBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for styleBottom"
-          }
-        ]
-      }
-    },
-    "setStyleBottom": {
-      "type": "function",
-      "name": "setStyleBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>styleBottom</code>.\n\nFor further details take a look at the property definition: {@link #styleBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for styleBottom"
-          }
-        ]
-      }
-    },
-    "resetStyleBottom": {
-      "type": "function",
-      "name": "resetStyleBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>styleBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styleBottom}."
-          }
-        ]
-      }
-    },
-    "getStyleLeft": {
-      "type": "function",
-      "name": "getStyleLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>styleLeft</code>.\n\nFor further details take a look at the property definition: {@link #styleLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for styleLeft"
-          }
-        ]
-      }
-    },
-    "setStyleLeft": {
-      "type": "function",
-      "name": "setStyleLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>styleLeft</code>.\n\nFor further details take a look at the property definition: {@link #styleLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for styleLeft"
-          }
-        ]
-      }
-    },
-    "resetStyleLeft": {
-      "type": "function",
-      "name": "resetStyleLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>styleLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #styleLeft}."
-          }
-        ]
-      }
-    },
-    "getColorTop": {
-      "type": "function",
-      "name": "getColorTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>colorTop</code>.\n\nFor further details take a look at the property definition: {@link #colorTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for colorTop"
-          }
-        ]
-      }
-    },
-    "setColorTop": {
-      "type": "function",
-      "name": "setColorTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>colorTop</code>.\n\nFor further details take a look at the property definition: {@link #colorTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for colorTop"
-          }
-        ]
-      }
-    },
-    "resetColorTop": {
-      "type": "function",
-      "name": "resetColorTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>colorTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colorTop}."
-          }
-        ]
-      }
-    },
-    "getColorRight": {
-      "type": "function",
-      "name": "getColorRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>colorRight</code>.\n\nFor further details take a look at the property definition: {@link #colorRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for colorRight"
-          }
-        ]
-      }
-    },
-    "setColorRight": {
-      "type": "function",
-      "name": "setColorRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>colorRight</code>.\n\nFor further details take a look at the property definition: {@link #colorRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for colorRight"
-          }
-        ]
-      }
-    },
-    "resetColorRight": {
-      "type": "function",
-      "name": "resetColorRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>colorRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colorRight}."
-          }
-        ]
-      }
-    },
-    "getColorBottom": {
-      "type": "function",
-      "name": "getColorBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>colorBottom</code>.\n\nFor further details take a look at the property definition: {@link #colorBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for colorBottom"
-          }
-        ]
-      }
-    },
-    "setColorBottom": {
-      "type": "function",
-      "name": "setColorBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>colorBottom</code>.\n\nFor further details take a look at the property definition: {@link #colorBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for colorBottom"
-          }
-        ]
-      }
-    },
-    "resetColorBottom": {
-      "type": "function",
-      "name": "resetColorBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>colorBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colorBottom}."
-          }
-        ]
-      }
-    },
-    "getColorLeft": {
-      "type": "function",
-      "name": "getColorLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>colorLeft</code>.\n\nFor further details take a look at the property definition: {@link #colorLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for colorLeft"
-          }
-        ]
-      }
-    },
-    "setColorLeft": {
-      "type": "function",
-      "name": "setColorLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>colorLeft</code>.\n\nFor further details take a look at the property definition: {@link #colorLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for colorLeft"
-          }
-        ]
-      }
-    },
-    "resetColorLeft": {
-      "type": "function",
-      "name": "resetColorLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>colorLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #colorLeft}."
-          }
-        ]
-      }
-    },
-    "setLeft": {
-      "type": "function",
-      "name": "setLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>left</code>.\n\nFor further details take a look at the property definition: {@link #left}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for left"
-          }
-        ]
-      }
-    },
-    "resetLeft": {
-      "type": "function",
-      "name": "resetLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>left</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #left}."
-          }
-        ]
-      }
-    },
-    "setRight": {
-      "type": "function",
-      "name": "setRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>right</code>.\n\nFor further details take a look at the property definition: {@link #right}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for right"
-          }
-        ]
-      }
-    },
-    "resetRight": {
-      "type": "function",
-      "name": "resetRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>right</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #right}."
-          }
-        ]
-      }
-    },
-    "setTop": {
-      "type": "function",
-      "name": "setTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>top</code>.\n\nFor further details take a look at the property definition: {@link #top}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for top"
-          }
-        ]
-      }
-    },
-    "resetTop": {
-      "type": "function",
-      "name": "resetTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>top</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #top}."
-          }
-        ]
-      }
-    },
-    "setBottom": {
-      "type": "function",
-      "name": "setBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>bottom</code>.\n\nFor further details take a look at the property definition: {@link #bottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for bottom"
-          }
-        ]
-      }
-    },
-    "resetBottom": {
-      "type": "function",
-      "name": "resetBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>bottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #bottom}."
-          }
-        ]
-      }
-    },
-    "setWidth": {
-      "type": "function",
-      "name": "setWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for width"
-          }
-        ]
-      }
-    },
-    "resetWidth": {
-      "type": "function",
-      "name": "resetWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ]
-      }
-    },
-    "setStyle": {
-      "type": "function",
-      "name": "setStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>style</code>.\n\nFor further details take a look at the property definition: {@link #style}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for style"
-          }
-        ]
-      }
-    },
-    "resetStyle": {
-      "type": "function",
-      "name": "resetStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>style</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #style}."
-          }
-        ]
-      }
-    },
-    "setColor": {
-      "type": "function",
-      "name": "setColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>color</code>.\n\nFor further details take a look at the property definition: {@link #color}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for color"
-          }
-        ]
-      }
-    },
-    "resetColor": {
-      "type": "function",
-      "name": "resetColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>color</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #color}."
-          }
-        ]
-      }
+      "params": [],
+      "mixin": "qx.ui.decoration.MSingleBorder",
+      "appearsIn": [
+        "qx.ui.decoration.MSingleBorder"
+      ]
     },
     "_styleBackgroundImage": {
-      "type": "function",
-      "name": "_styleBackgroundImage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds the background-image styles to the given map",
+          "     * @param styles {Map} CSS style map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2083,1192 +1700,87 @@
             "body": "styles {Map} CSS style map",
             "paramName": "styles",
             "description": " CSS style map",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
-      }
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3551
+        },
+        "end": {
+          "line": 209,
+          "column": 5,
+          "index": 6112
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.decoration.MBackgroundImage"
+      ],
+      "mixin": "qx.ui.decoration.MBackgroundImage"
     },
     "_applyBackgroundImage": {
-      "type": "function",
-      "name": "_applyBackgroundImage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "jsdoc": {}
+      "location": {
+        "start": {
+          "line": 212,
+          "column": 4,
+          "index": 6141
+        },
+        "end": {
+          "line": 220,
+          "column": 5,
+          "index": 6402
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.decoration.MBackgroundImage"
+      ],
+      "mixin": "qx.ui.decoration.MBackgroundImage"
     },
     "_applyBackgroundPosition": {
-      "type": "function",
-      "name": "_applyBackgroundPosition",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
       "access": "protected",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "jsdoc": {}
-    },
-    "getBackgroundImage": {
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4,
+          "index": 6431
+        },
+        "end": {
+          "line": 239,
+          "column": 5,
+          "index": 6969
+        }
+      },
       "type": "function",
-      "name": "getBackgroundImage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundImage</code>.\n\nFor further details take a look at the property definition: {@link #backgroundImage}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backgroundImage"
-          }
-        ]
-      }
-    },
-    "setBackgroundImage": {
-      "type": "function",
-      "name": "setBackgroundImage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundImage</code>.\n\nFor further details take a look at the property definition: {@link #backgroundImage}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundImage"
-          }
-        ]
-      }
-    },
-    "resetBackgroundImage": {
-      "type": "function",
-      "name": "resetBackgroundImage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundImage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundImage}."
-          }
-        ]
-      }
-    },
-    "getBackgroundRepeat": {
-      "type": "function",
-      "name": "getBackgroundRepeat",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundRepeat</code>.\n\nFor further details take a look at the property definition: {@link #backgroundRepeat}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backgroundRepeat"
-          }
-        ]
-      }
-    },
-    "setBackgroundRepeat": {
-      "type": "function",
-      "name": "setBackgroundRepeat",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundRepeat</code>.\n\nFor further details take a look at the property definition: {@link #backgroundRepeat}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundRepeat"
-          }
-        ]
-      }
-    },
-    "resetBackgroundRepeat": {
-      "type": "function",
-      "name": "resetBackgroundRepeat",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundRepeat</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundRepeat}."
-          }
-        ]
-      }
-    },
-    "getBackgroundPositionX": {
-      "type": "function",
-      "name": "getBackgroundPositionX",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundPositionX</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backgroundPositionX"
-          }
-        ]
-      }
-    },
-    "setBackgroundPositionX": {
-      "type": "function",
-      "name": "setBackgroundPositionX",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundPositionX</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundPositionX"
-          }
-        ]
-      }
-    },
-    "resetBackgroundPositionX": {
-      "type": "function",
-      "name": "resetBackgroundPositionX",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundPositionX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPositionX}."
-          }
-        ]
-      }
-    },
-    "getBackgroundPositionY": {
-      "type": "function",
-      "name": "getBackgroundPositionY",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundPositionY</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backgroundPositionY"
-          }
-        ]
-      }
-    },
-    "setBackgroundPositionY": {
-      "type": "function",
-      "name": "setBackgroundPositionY",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundPositionY</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundPositionY"
-          }
-        ]
-      }
-    },
-    "resetBackgroundPositionY": {
-      "type": "function",
-      "name": "resetBackgroundPositionY",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundPositionY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPositionY}."
-          }
-        ]
-      }
-    },
-    "getBackgroundOrigin": {
-      "type": "function",
-      "name": "getBackgroundOrigin",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundOrigin</code>.\n\nFor further details take a look at the property definition: {@link #backgroundOrigin}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backgroundOrigin"
-          }
-        ]
-      }
-    },
-    "setBackgroundOrigin": {
-      "type": "function",
-      "name": "setBackgroundOrigin",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundOrigin</code>.\n\nFor further details take a look at the property definition: {@link #backgroundOrigin}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundOrigin"
-          }
-        ]
-      }
-    },
-    "resetBackgroundOrigin": {
-      "type": "function",
-      "name": "resetBackgroundOrigin",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundOrigin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundOrigin}."
-          }
-        ]
-      }
-    },
-    "setBackgroundPosition": {
-      "type": "function",
-      "name": "setBackgroundPosition",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundPosition</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPosition}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundPosition"
-          }
-        ]
-      }
-    },
-    "resetBackgroundPosition": {
-      "type": "function",
-      "name": "resetBackgroundPosition",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundPosition</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPosition}."
-          }
-        ]
-      }
-    },
-    "getOrderGradientsFront": {
-      "type": "function",
-      "name": "getOrderGradientsFront",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>orderGradientsFront</code>.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for orderGradientsFront"
-          }
-        ]
-      }
-    },
-    "isOrderGradientsFront": {
-      "type": "function",
-      "name": "isOrderGradientsFront",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>orderGradientsFront</code>.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for orderGradientsFront"
-          }
-        ]
-      }
-    },
-    "setOrderGradientsFront": {
-      "type": "function",
-      "name": "setOrderGradientsFront",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>orderGradientsFront</code>.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for orderGradientsFront"
-          }
-        ]
-      }
-    },
-    "resetOrderGradientsFront": {
-      "type": "function",
-      "name": "resetOrderGradientsFront",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.MBackgroundImage",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>orderGradientsFront</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
-          }
-        ]
-      }
-    },
-    "getInnerWidthTop": {
-      "type": "function",
-      "name": "getInnerWidthTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>innerWidthTop</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for innerWidthTop"
-          }
-        ]
-      }
-    },
-    "setInnerWidthTop": {
-      "type": "function",
-      "name": "setInnerWidthTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>innerWidthTop</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for innerWidthTop"
-          }
-        ]
-      }
-    },
-    "resetInnerWidthTop": {
-      "type": "function",
-      "name": "resetInnerWidthTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>innerWidthTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerWidthTop}."
-          }
-        ]
-      }
-    },
-    "getInnerWidthRight": {
-      "type": "function",
-      "name": "getInnerWidthRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>innerWidthRight</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for innerWidthRight"
-          }
-        ]
-      }
-    },
-    "setInnerWidthRight": {
-      "type": "function",
-      "name": "setInnerWidthRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>innerWidthRight</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for innerWidthRight"
-          }
-        ]
-      }
-    },
-    "resetInnerWidthRight": {
-      "type": "function",
-      "name": "resetInnerWidthRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>innerWidthRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerWidthRight}."
-          }
-        ]
-      }
-    },
-    "getInnerWidthBottom": {
-      "type": "function",
-      "name": "getInnerWidthBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>innerWidthBottom</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for innerWidthBottom"
-          }
-        ]
-      }
-    },
-    "setInnerWidthBottom": {
-      "type": "function",
-      "name": "setInnerWidthBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>innerWidthBottom</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for innerWidthBottom"
-          }
-        ]
-      }
-    },
-    "resetInnerWidthBottom": {
-      "type": "function",
-      "name": "resetInnerWidthBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>innerWidthBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerWidthBottom}."
-          }
-        ]
-      }
-    },
-    "getInnerWidthLeft": {
-      "type": "function",
-      "name": "getInnerWidthLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>innerWidthLeft</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for innerWidthLeft"
-          }
-        ]
-      }
-    },
-    "setInnerWidthLeft": {
-      "type": "function",
-      "name": "setInnerWidthLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>innerWidthLeft</code>.\n\nFor further details take a look at the property definition: {@link #innerWidthLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for innerWidthLeft"
-          }
-        ]
-      }
-    },
-    "resetInnerWidthLeft": {
-      "type": "function",
-      "name": "resetInnerWidthLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>innerWidthLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerWidthLeft}."
-          }
-        ]
-      }
-    },
-    "setInnerWidth": {
-      "type": "function",
-      "name": "setInnerWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>innerWidth</code>.\n\nFor further details take a look at the property definition: {@link #innerWidth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for innerWidth"
-          }
-        ]
-      }
-    },
-    "resetInnerWidth": {
-      "type": "function",
-      "name": "resetInnerWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>innerWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerWidth}."
-          }
-        ]
-      }
-    },
-    "getInnerColorTop": {
-      "type": "function",
-      "name": "getInnerColorTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>innerColorTop</code>.\n\nFor further details take a look at the property definition: {@link #innerColorTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for innerColorTop"
-          }
-        ]
-      }
-    },
-    "setInnerColorTop": {
-      "type": "function",
-      "name": "setInnerColorTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>innerColorTop</code>.\n\nFor further details take a look at the property definition: {@link #innerColorTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for innerColorTop"
-          }
-        ]
-      }
-    },
-    "resetInnerColorTop": {
-      "type": "function",
-      "name": "resetInnerColorTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>innerColorTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerColorTop}."
-          }
-        ]
-      }
-    },
-    "getInnerColorRight": {
-      "type": "function",
-      "name": "getInnerColorRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>innerColorRight</code>.\n\nFor further details take a look at the property definition: {@link #innerColorRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for innerColorRight"
-          }
-        ]
-      }
-    },
-    "setInnerColorRight": {
-      "type": "function",
-      "name": "setInnerColorRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>innerColorRight</code>.\n\nFor further details take a look at the property definition: {@link #innerColorRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for innerColorRight"
-          }
-        ]
-      }
-    },
-    "resetInnerColorRight": {
-      "type": "function",
-      "name": "resetInnerColorRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>innerColorRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerColorRight}."
-          }
-        ]
-      }
-    },
-    "getInnerColorBottom": {
-      "type": "function",
-      "name": "getInnerColorBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>innerColorBottom</code>.\n\nFor further details take a look at the property definition: {@link #innerColorBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for innerColorBottom"
-          }
-        ]
-      }
-    },
-    "setInnerColorBottom": {
-      "type": "function",
-      "name": "setInnerColorBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>innerColorBottom</code>.\n\nFor further details take a look at the property definition: {@link #innerColorBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for innerColorBottom"
-          }
-        ]
-      }
-    },
-    "resetInnerColorBottom": {
-      "type": "function",
-      "name": "resetInnerColorBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>innerColorBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerColorBottom}."
-          }
-        ]
-      }
-    },
-    "getInnerColorLeft": {
-      "type": "function",
-      "name": "getInnerColorLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>innerColorLeft</code>.\n\nFor further details take a look at the property definition: {@link #innerColorLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for innerColorLeft"
-          }
-        ]
-      }
-    },
-    "setInnerColorLeft": {
-      "type": "function",
-      "name": "setInnerColorLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>innerColorLeft</code>.\n\nFor further details take a look at the property definition: {@link #innerColorLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for innerColorLeft"
-          }
-        ]
-      }
-    },
-    "resetInnerColorLeft": {
-      "type": "function",
-      "name": "resetInnerColorLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>innerColorLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerColorLeft}."
-          }
-        ]
-      }
-    },
-    "setInnerColor": {
-      "type": "function",
-      "name": "setInnerColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>innerColor</code>.\n\nFor further details take a look at the property definition: {@link #innerColor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for innerColor"
-          }
-        ]
-      }
-    },
-    "resetInnerColor": {
-      "type": "function",
-      "name": "resetInnerColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>innerColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerColor}."
-          }
-        ]
-      }
-    },
-    "getInnerOpacity": {
-      "type": "function",
-      "name": "getInnerOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>innerOpacity</code>.\n\nFor further details take a look at the property definition: {@link #innerOpacity}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for innerOpacity"
-          }
-        ]
-      }
-    },
-    "setInnerOpacity": {
-      "type": "function",
-      "name": "setInnerOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>innerOpacity</code>.\n\nFor further details take a look at the property definition: {@link #innerOpacity}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for innerOpacity"
-          }
-        ]
-      }
-    },
-    "resetInnerOpacity": {
-      "type": "function",
-      "name": "resetInnerOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>innerOpacity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #innerOpacity}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": [
+        "qx.ui.decoration.MBackgroundImage"
+      ],
+      "mixin": "qx.ui.decoration.MBackgroundImage"
     }
   },
-  "descendants": []
+  "statics": {}
 }

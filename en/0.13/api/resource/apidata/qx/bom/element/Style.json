@@ -1,155 +1,177 @@
 {
-  "className": "qx.bom.element.Style",
-  "packageName": "qx.bom.element",
-  "name": "Style",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 86,
-        "column": 0,
-        "index": 2949
-      },
-      "end": {
-        "line": 499,
-        "column": 3,
-        "index": 17038
-      }
+  "version": 0.3,
+  "lastModified": 1717235172434,
+  "lastModifiedIso": "2024-06-01T09:46:12.434Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/Style.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 86,
+      "column": 0,
+      "index": 2864
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Style querying and modification of HTML elements.\n Automatically normalizes cross-browser differences for setting and reading\n CSS attributes. Optimized for performance.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.lang.String"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.client.Css"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Clip#set"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Cursor#set"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Opacity#set"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.BoxSizing#set"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Clip#get"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Cursor#get"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Opacity#get"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.BoxSizing#get"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Clip#reset"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Cursor#reset"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Opacity#reset"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.BoxSizing#reset"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Clip#compile"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Cursor#compile"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.Opacity#compile"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.element.BoxSizing#compile"
-        }
-      ]
+    "end": {
+      "line": 503,
+      "column": 3,
+      "index": 16685
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.Style",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Style querying and modification of HTML elements.",
+      " *",
+      " * Automatically normalizes cross-browser differences for setting and reading",
+      " * CSS attributes. Optimized for performance.",
+      " *",
+      " * @require(qx.lang.String)",
+      " * @require(qx.bom.client.Css)",
+      "",
+      " * @require(qx.bom.element.Clip#set)",
+      " * @require(qx.bom.element.Cursor#set)",
+      " * @require(qx.bom.element.Opacity#set)",
+      " * @require(qx.bom.element.BoxSizing#set)",
+      "",
+      " * @require(qx.bom.element.Clip#get)",
+      " * @require(qx.bom.element.Cursor#get)",
+      " * @require(qx.bom.element.Opacity#get)",
+      " * @require(qx.bom.element.BoxSizing#get)",
+      "",
+      " * @require(qx.bom.element.Clip#reset)",
+      " * @require(qx.bom.element.Cursor#reset)",
+      " * @require(qx.bom.element.Opacity#reset)",
+      " * @require(qx.bom.element.BoxSizing#reset)",
+      "",
+      " * @require(qx.bom.element.Clip#compile)",
+      " * @require(qx.bom.element.Cursor#compile)",
+      " * @require(qx.bom.element.Opacity#compile)",
+      " * @require(qx.bom.element.BoxSizing#compile)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Style querying and modification of HTML elements.\n Automatically normalizes cross-browser differences for setting and reading\n CSS attributes. Optimized for performance.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.lang.String"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.client.Css"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Clip#set"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Cursor#set"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Opacity#set"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.BoxSizing#set"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Clip#get"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Cursor#get"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Opacity#get"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.BoxSizing#get"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Clip#reset"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Cursor#reset"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Opacity#reset"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.BoxSizing#reset"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Clip#compile"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Cursor#compile"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.Opacity#compile"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.element.BoxSizing#compile"
+      }
+    ]
+  },
   "statics": {
     "__styleNames": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 94,
           "column": 4,
-          "index": 3204
+          "index": 3111
         },
         "end": {
           "line": 94,
           "column": 22,
-          "index": 3222
+          "index": 3129
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__cssNames": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 96,
           "column": 4,
-          "index": 3231
+          "index": 3136
         },
         "end": {
           "line": 96,
           "column": 20,
-          "index": 3247
+          "index": 3152
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__detectVendorProperties": {
-      "location": {
-        "start": {
-          "line": 101,
-          "column": 4,
-          "index": 3317
-        },
-        "end": {
-          "line": 126,
-          "column": 5,
-          "index": 4259
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detect vendor specific properties.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -157,23 +179,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getStyleName": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 136,
+          "line": 101,
           "column": 4,
-          "index": 4593
+          "index": 3217
         },
         "end": {
-          "line": 142,
+          "line": 126,
           "column": 5,
-          "index": 4785
+          "index": 4134
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__getStyleName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the (possibly vendor-prefixed) name of a style property and stores",
+          "     * it to avoid multiple checks.",
+          "     *",
+          "     * @param name {String} Style property name to check",
+          "     * @return {String|null} The client-specific name of the property, or",
+          "     * <code>null</code> if it's not supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -186,7 +220,7 @@
             "body": "name {String} Style property name to check",
             "paramName": "name",
             "description": " Style property name to check",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -194,27 +228,45 @@
             "name": "@return",
             "body": "{String|null} The client-specific name of the property, or\n <code>null</code> if it's not supported.",
             "type": "String|null",
-            "description": " The client-specific name of the property, or\n <code>null</code> if it's not supported."
+            "description": "The client-specific name of the property, or\n <code>null</code> if it's not supported."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__mshtmlPixel": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 150,
+          "line": 136,
           "column": 4,
-          "index": 4995
+          "index": 4458
         },
         "end": {
-          "line": 157,
+          "line": 142,
           "column": 5,
-          "index": 5183
+          "index": 4644
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "__mshtmlPixel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mshtml has proprietary pixel* properties for locations and dimensions",
+          "     * which return the pixel value. Used by getComputed() in mshtml variant.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -228,23 +280,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__special": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 164,
+          "line": 150,
           "column": 4,
-          "index": 5315
+          "index": 4846
         },
         "end": {
-          "line": 169,
+          "line": 157,
           "column": 5,
-          "index": 5489
+          "index": 5027
         }
       },
+      "appearsIn": []
+    },
+    "__special": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a special class is available for the processing of this style.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -258,23 +317,32 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "compile": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 184,
+          "line": 164,
           "column": 4,
-          "index": 5974
+          "index": 5152
         },
         "end": {
-          "line": 212,
+          "line": 169,
           "column": 5,
-          "index": 6712
+          "index": 5321
         }
       },
+      "appearsIn": []
+    },
+    "compile": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compiles the given styles into a string which can be used to",
+          "     * concat a HTML string for innerHTML usage.",
+          "     *",
+          "     * @param map {Map} Map of style properties to compile",
+          "     * @return {String} Compiled string of given style properties.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -287,35 +355,53 @@
             "body": "map {Map} Map of style properties to compile",
             "paramName": "map",
             "description": " Map of style properties to compile",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} Compiled string of given style properties.",
-            "type": "String",
-            "description": " Compiled string of given style properties."
+            "type": "string",
+            "description": "Compiled string of given style properties."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setCss": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 226,
+          "line": 184,
           "column": 4,
-          "index": 7116
+          "index": 5791
         },
         "end": {
-          "line": 228,
+          "line": 212,
           "column": 5,
-          "index": 7192
+          "index": 6501
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "map",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setCss": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the full CSS content of the style attribute",
+          "     *",
+          "     * @param element {Element} The DOM element to modify",
+          "     * @param value {String} The full CSS string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -335,27 +421,47 @@
             "body": "value {String} The full CSS string",
             "paramName": "value",
             "description": " The full CSS string",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCss": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 237,
+          "line": 226,
           "column": 4,
-          "index": 7424
+          "index": 6891
         },
         "end": {
-          "line": 239,
+          "line": 228,
           "column": 5,
-          "index": 7493
+          "index": 6965
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getCss": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the full content of the style attribute.",
+          "     *",
+          "     * @param element {Element} The DOM element to query",
+          "     * @return {String} the full CSS string",
+          "     * @signature function(element)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -375,8 +481,8 @@
           {
             "name": "@return",
             "body": "{String} the full CSS string",
-            "type": "String",
-            "description": " the full CSS string"
+            "type": "string",
+            "description": "the full CSS string"
           }
         ],
         "@signature": [
@@ -386,23 +492,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isPropertySupported": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 253,
+          "line": 237,
           "column": 4,
-          "index": 7929
+          "index": 7188
         },
         "end": {
-          "line": 259,
+          "line": 239,
           "column": 5,
-          "index": 8138
+          "index": 7255
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "isPropertySupported": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the browser supports the given CSS property.",
+          "     *",
+          "     * @param propertyName {String} The name of the property",
+          "     * @return {Boolean} Whether the property id supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -415,35 +539,51 @@
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether the property id supported",
-            "type": "Boolean",
-            "description": " Whether the property id supported"
+            "type": "boolean",
+            "description": "Whether the property id supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "COMPUTED_MODE": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 265,
+          "line": 253,
           "column": 4,
-          "index": 8359
+          "index": 7677
         },
         "end": {
-          "line": 265,
-          "column": 20,
-          "index": 8375
+          "line": 259,
+          "column": 5,
+          "index": 7880
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "propertyName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "COMPUTED_MODE": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} Computed value of a style property. Compared to the cascaded style,",
+          "     * this one also interprets the values e.g. translates <code>em</code> units to",
+          "     * <code>px</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -457,23 +597,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "CASCADED_MODE": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 268,
+          "line": 265,
           "column": 4,
-          "index": 8448
+          "index": 8095
         },
         "end": {
-          "line": 268,
+          "line": 265,
           "column": 20,
-          "index": 8464
+          "index": 8111
         }
       },
+      "appearsIn": []
+    },
+    "CASCADED_MODE": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} Cascaded value of a style property. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -487,23 +630,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "LOCAL_MODE": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 274,
+          "line": 268,
           "column": 4,
-          "index": 8614
+          "index": 8181
         },
         "end": {
-          "line": 274,
-          "column": 17,
-          "index": 8627
+          "line": 268,
+          "column": 20,
+          "index": 8197
         }
       },
+      "appearsIn": []
+    },
+    "LOCAL_MODE": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Integer} Local value of a style property. Ignores inheritance cascade.",
+          "     *   Does not interpret values.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -517,23 +666,34 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "set": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 285,
+          "line": 274,
           "column": 4,
-          "index": 9062
+          "index": 8341
         },
         "end": {
-          "line": 305,
-          "column": 5,
-          "index": 9894
+          "line": 274,
+          "column": 17,
+          "index": 8354
         }
       },
+      "appearsIn": []
+    },
+    "set": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the value of a style property",
+          "     *",
+          "     * @param element {Element} The DOM element to modify",
+          "     * @param name {String} Name of the style attribute (js variant e.g. marginTop, wordSpacing)",
+          "     * @param value {var} The value for the given style",
+          "     * @param smart {Boolean?true} Whether the implementation should automatically use",
+          "     *    special implementations for some properties",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -553,7 +713,7 @@
             "body": "name {String} Name of the style attribute (js variant e.g. marginTop, wordSpacing)",
             "paramName": "name",
             "description": " Name of the style attribute (js variant e.g. marginTop, wordSpacing)",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -573,23 +733,55 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setStyles": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 316,
+          "line": 285,
           "column": 4,
-          "index": 10315
+          "index": 8778
         },
         "end": {
-          "line": 350,
+          "line": 309,
           "column": 5,
-          "index": 11474
+          "index": 9735
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "smart",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setStyles": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convenience method to modify a set of styles at once.",
+          "     *",
+          "     * @param element {Element} The DOM element to modify",
+          "     * @param styles {Map} a map where the key is the name of the property",
+          "     *    and the value is the value to use.",
+          "     * @param smart {Boolean?true} Whether the implementation should automatically use",
+          "     *    special implementations for some properties",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -609,7 +801,7 @@
             "body": "styles {Map} a map where the key is the name of the property\n    and the value is the value to use.",
             "paramName": "styles",
             "description": " a map where the key is the name of the property\n    and the value is the value to use.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -622,23 +814,50 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "reset": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 360,
+          "line": 320,
           "column": 4,
-          "index": 11854
+          "index": 10145
         },
         "end": {
-          "line": 370,
+          "line": 354,
           "column": 5,
-          "index": 12204
+          "index": 11270
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "smart",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "appearsIn": []
+    },
+    "reset": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the value of a style property",
+          "     *",
+          "     * @param element {Element} The DOM element to modify",
+          "     * @param name {String} Name of the style attribute (js variant e.g. marginTop, wordSpacing)",
+          "     * @param smart {Boolean?true} Whether the implementation should automatically use",
+          "     *    special implementations for some properties",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -658,7 +877,7 @@
             "body": "name {String} Name of the style attribute (js variant e.g. marginTop, wordSpacing)",
             "paramName": "name",
             "description": " Name of the style attribute (js variant e.g. marginTop, wordSpacing)",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -671,23 +890,68 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "get": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 398,
+          "line": 364,
           "column": 4,
-          "index": 13277
+          "index": 11640
         },
         "end": {
-          "line": 493,
+          "line": 374,
           "column": 5,
-          "index": 16959
+          "index": 11980
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "smart",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "appearsIn": []
+    },
+    "get": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the value of a style property.",
+          "     *",
+          "     * *Computed*",
+          "     *",
+          "     * Returns the computed value of a style property. Compared to the cascaded style,",
+          "     * this one also interprets the values e.g. translates <code>em</code> units to",
+          "     * <code>px</code>.",
+          "     *",
+          "     * *Cascaded*",
+          "     *",
+          "     * Returns the cascaded value of a style property.",
+          "     *",
+          "     * *Local*",
+          "     *",
+          "     * Ignores inheritance cascade. Does not interpret values.",
+          "     *",
+          "     * @signature function(element, name, mode, smart)",
+          "     * @param element {Element} The DOM element to modify",
+          "     * @param name {String} Name of the style attribute (js variant e.g. marginTop, wordSpacing)",
+          "     * @param mode {Number} Choose one of the modes {@link #COMPUTED_MODE}, {@link #CASCADED_MODE},",
+          "     *   {@link #LOCAL_MODE}. The computed mode is the default one.",
+          "     * @param smart {Boolean?true} Whether the implementation should automatically use",
+          "     *    special implementations for some properties",
+          "     * @return {var} The value of the property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -713,14 +977,14 @@
             "body": "name {String} Name of the style attribute (js variant e.g. marginTop, wordSpacing)",
             "paramName": "name",
             "description": " Name of the style attribute (js variant e.g. marginTop, wordSpacing)",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "mode {Number} Choose one of the modes {@link #COMPUTED_MODE}, {@link #CASCADED_MODE},\n   {@link #LOCAL_MODE}. The computed mode is the default one.",
             "paramName": "mode",
             "description": " Choose one of the modes {@link #COMPUTED_MODE}, {@link #CASCADED_MODE},\n   {@link #LOCAL_MODE}. The computed mode is the default one.",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
@@ -737,27 +1001,50 @@
             "name": "@return",
             "body": "{var} The value of the property",
             "type": "var",
-            "description": " The value of the property"
+            "description": "The value of the property"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 496,
-        "column": 2,
-        "index": 16971
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 402,
+          "column": 4,
+          "index": 13025
+        },
+        "end": {
+          "line": 497,
+          "column": 5,
+          "index": 16612
+        }
       },
-      "end": {
-        "line": 498,
-        "column": 3,
-        "index": 17033
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "mode",
+          "type": "number"
+        },
+        {
+          "name": "smart",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

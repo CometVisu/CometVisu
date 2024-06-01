@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "construct",
+    "core",
+    "Assert",
+    "assertTrue",
+    "state",
+    "push",
+    "test",
+    "testclasses",
+    "MMixinTwo"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/testclasses/MMixinTwo.js"
+  ],
+  "sourcesContent": [
+    "qx.Mixin.define(\"qx.test.testclasses.MMixinTwo\", {\n  construct() {\n    qx.core.Assert.assertTrue(this.state !== null);\n    this.state.push(\"mixin-two\");\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,+BAA+B,EAAE;IAC/CC,SAAS,WAAAA,UAAA,EAAG;MACVN,EAAE,CAACO,IAAI,CAACC,MAAM,CAACC,UAAU,CAAC,IAAI,CAACC,KAAK,KAAK,IAAI,CAAC;MAC9C,IAAI,CAACA,KAAK,CAACC,IAAI,CAAC,WAAW,CAAC;IAC9B;EACF,CAAC,CAAC;EALFX,EAAE,CAACY,IAAI,CAACC,WAAW,CAACC,SAAS,CAACX,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

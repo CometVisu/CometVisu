@@ -1,49 +1,50 @@
 {
-  "className": "qx.ui.virtual.core.IWidgetCellProvider",
-  "packageName": "qx.ui.virtual.core",
-  "name": "IWidgetCellProvider",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 676
-      },
-      "end": {
-        "line": 43,
-        "column": 3,
-        "index": 1380
-      }
+  "version": 0.3,
+  "lastModified": 1717235171462,
+  "lastModifiedIso": "2024-06-01T09:46:11.462Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/core/IWidgetCellProvider.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 653
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A widget cell provider provides the {@link qx.ui.virtual.layer.WidgetCell}\n with configured widgets to render the cells and pools/releases unused\n cell widgets.</p>"
-        }
-      ]
+    "end": {
+      "line": 43,
+      "column": 3,
+      "index": 1338
     }
   },
-  "type": "interface",
+  "className": "qx.ui.virtual.core.IWidgetCellProvider",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A widget cell provider provides the {@link qx.ui.virtual.layer.WidgetCell}",
+      " * with configured widgets to render the cells and pools/releases unused",
+      " * cell widgets.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A widget cell provider provides the {@link qx.ui.virtual.layer.WidgetCell}\n with configured widgets to render the cells and pools/releases unused\n cell widgets.</p>"
+      }
+    ]
+  },
   "members": {
     "getCellWidget": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 1136
-        },
-        "end": {
-          "line": 34,
-          "column": 33,
-          "index": 1165
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method returns the configured cell for the given cell. The return",
+          "     * value may be <code>null</code> to indicate that the cell should be empty.",
+          "     *",
+          "     * @param row {Integer} The cell's row index.",
+          "     * @param column {Integer} The cell's column index.",
+          "     * @return {qx.ui.core.LayoutItem} The configured widget for the given cell.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -71,27 +72,48 @@
             "name": "@return",
             "body": "{qx.ui.core.LayoutItem} The configured widget for the given cell.",
             "type": "qx.ui.core.LayoutItem",
-            "description": " The configured widget for the given cell."
+            "description": "The configured widget for the given cell."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "poolCellWidget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 41,
+          "line": 34,
           "column": 4,
-          "index": 1345
+          "index": 1103
         },
         "end": {
-          "line": 41,
-          "column": 29,
-          "index": 1370
+          "line": 34,
+          "column": 33,
+          "index": 1132
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        },
+        {
+          "name": "column",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.LayoutItem"
+      },
+      "appearsIn": []
+    },
+    "poolCellWidget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Release the given cell widget. Either pool or destroy the widget.",
+          "     *",
+          "     * @param widget {qx.ui.core.LayoutItem} The cell widget to pool.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -108,9 +130,29 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1305
+        },
+        "end": {
+          "line": 41,
+          "column": 29,
+          "index": 1330
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.LayoutItem"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

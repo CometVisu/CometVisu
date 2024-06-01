@@ -1,33 +1,37 @@
 {
-  "className": "qx.core.ValidationError",
-  "packageName": "qx.core",
-  "name": "ValidationError",
-  "superClass": "qx.type.BaseError",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 585
-      },
-      "end": {
-        "line": 24,
-        "column": 3,
-        "index": 663
-      }
+  "version": 0.3,
+  "lastModified": 1717235172698,
+  "lastModifiedIso": "2024-06-01T09:46:12.698Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/ValidationError.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 564
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A validation Error which should be thrown if a validation fails.</p>"
-        }
-      ]
+    "end": {
+      "line": 24,
+      "column": 3,
+      "index": 640
     }
   },
-  "type": "class",
-  "descendants": []
+  "className": "qx.core.ValidationError",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A validation Error which should be thrown if a validation fails.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A validation Error which should be thrown if a validation fails.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.type.BaseError",
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

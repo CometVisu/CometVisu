@@ -1,33 +1,37 @@
 {
-  "className": "qx.theme.modern.Font",
-  "packageName": "qx.theme.modern",
-  "name": "Font",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 566
-      },
-      "end": {
-        "line": 94,
-        "column": 3,
-        "index": 3086
-      }
+  "version": 0.3,
+  "lastModified": 1717235170542,
+  "lastModifiedIso": "2024-06-01T09:46:10.542Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/modern/Font.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 543
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The modern font theme.</p>"
-        }
-      ]
+    "end": {
+      "line": 94,
+      "column": 3,
+      "index": 2993
     }
   },
-  "type": "theme",
-  "descendants": []
+  "className": "qx.theme.modern.Font",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The modern font theme.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The modern font theme.</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

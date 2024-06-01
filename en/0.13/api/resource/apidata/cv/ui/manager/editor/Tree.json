@@ -1,35 +1,39 @@
 {
-  "className": "cv.ui.manager.editor.Tree",
-  "packageName": "cv.ui.manager.editor",
-  "name": "Tree",
-  "superClass": "cv.ui.manager.editor.AbstractEditor",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 857
-      },
-      "end": {
-        "line": 2440,
-        "column": 3,
-        "index": 84854
-      }
+  "version": 0.3,
+  "lastModified": 1717235105606,
+  "lastModifiedIso": "2024-06-01T09:45:05.606Z",
+  "classFilename": "../../source/class/cv/ui/manager/editor/Tree.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 857
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>New XML-Editor base on a node tree</p>"
-        }
-      ]
+    "end": {
+      "line": 2440,
+      "column": 3,
+      "index": 84854
     }
   },
-  "type": "class",
+  "className": "cv.ui.manager.editor.Tree",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * New XML-Editor base on a node tree",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>New XML-Editor base on a node tree</p>"
+      }
+    ]
+  },
+  "superClass": "cv.ui.manager.editor.AbstractEditor",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 31,
@@ -41,11 +45,12 @@
         "column": 3,
         "index": 2068
       }
-    },
-    "jsdoc": {}
+    }
   },
   "statics": {
     "SUPPORTED_FILES": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 65,
@@ -58,10 +63,11 @@
           "index": 2261
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "TITLE": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 66,
@@ -74,10 +80,13 @@
           "index": 2308
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": [
+        "cv.ui.manager.editor.IEditor"
+      ]
     },
     "ICON": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 67,
@@ -90,10 +99,11 @@
           "index": 2359
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "Allowed": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 69,
@@ -106,8 +116,7 @@
           "index": 2506
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
   "properties": {
@@ -124,15 +133,14 @@
           "index": 2723
         }
       },
-      "name": "appearance",
-      "propertyType": "new",
-      "refine": true,
-      "init": "tree-editor",
-      "defaultValue": "tree-editor",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "appearsIn": {
-        "qx.ui.core.Widget": "class"
-      }
+      "json": {
+        "refine": true,
+        "init": "tree-editor"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
     },
     "expert": {
       "location": {
@@ -147,12 +155,16 @@
           "index": 2821
         }
       },
-      "jsdoc": {},
-      "name": "expert",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          " show expert level settings"
+        ]
+      },
+      "appearsIn": []
     },
     "ready": {
       "location": {
@@ -167,16 +179,15 @@
           "index": 2880
         }
       },
-      "name": "ready",
-      "propertyType": "new",
-      "refine": true,
-      "init": false,
-      "defaultValue": false,
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "appearsIn": {
-        "cv.ui.manager.editor.AbstractEditor": "class",
-        "cv.ui.manager.editor.IEditor": "interface"
-      }
+      "json": {
+        "refine": true,
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.manager.editor.AbstractEditor",
+        "cv.ui.manager.editor.IEditor"
+      ]
     },
     "selected": {
       "location": {
@@ -191,13 +202,14 @@
           "index": 3034
         }
       },
-      "name": "selected",
-      "propertyType": "new",
-      "event": "changeSelected",
-      "apply": "_applySelected",
-      "nullable": true,
-      "allowNull": true,
-      "check": "cv.ui.manager.model.XmlElement"
+      "json": {
+        "check": "cv.ui.manager.model.XmlElement",
+        "nullable": true,
+        "event": "changeSelected",
+        "apply": "_applySelected"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "clipboard": {
       "location": {
@@ -212,13 +224,14 @@
           "index": 3191
         }
       },
-      "name": "clipboard",
-      "propertyType": "new",
-      "event": "changeClipboard",
-      "apply": "_applyClipboard",
-      "nullable": true,
-      "allowNull": true,
-      "check": "cv.ui.manager.model.XmlElement"
+      "json": {
+        "check": "cv.ui.manager.model.XmlElement",
+        "nullable": true,
+        "event": "changeClipboard",
+        "apply": "_applyClipboard"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "unDos": {
       "location": {
@@ -233,9 +246,12 @@
           "index": 3267
         }
       },
-      "name": "unDos",
-      "propertyType": "new",
-      "check": "qx.data.Array"
+      "json": {
+        "check": "qx.data.Array",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "reDos": {
       "location": {
@@ -250,9 +266,12 @@
           "index": 3343
         }
       },
-      "name": "reDos",
-      "propertyType": "new",
-      "check": "qx.data.Array"
+      "json": {
+        "check": "qx.data.Array",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "autoRefreshPreview": {
       "location": {
@@ -267,11 +286,12 @@
           "index": 3419
         }
       },
-      "name": "autoRefreshPreview",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "previewState": {
       "location": {
@@ -286,7 +306,22 @@
           "index": 3658
         }
       },
+      "json": {
+        "check": [
+          "synced",
+          "changed",
+          "structureChanged"
+        ],
+        "init": "synced",
+        "event": "previewStateChanged",
+        "apply": "_updateHighlightWidget"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Content and shown preview are equal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -294,17 +329,7 @@
           }
         ]
       },
-      "name": "previewState",
-      "propertyType": "new",
-      "event": "previewStateChanged",
-      "apply": "_updateHighlightWidget",
-      "init": "synced",
-      "possibleValues": [
-        "synced",
-        "changed",
-        "structureChanged"
-      ],
-      "defaultValue": "synced"
+      "appearsIn": []
     },
     "showPreview": {
       "location": {
@@ -319,13 +344,14 @@
           "index": 3795
         }
       },
-      "name": "showPreview",
-      "propertyType": "new",
-      "event": "showPreviewChanged",
-      "apply": "_applyShowPreview",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyShowPreview",
+        "event": "showPreviewChanged"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "dragging": {
       "location": {
@@ -340,7 +366,17 @@
           "index": 3957
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeDragging"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * true while the user is dragging something",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -348,16 +384,13 @@
           }
         ]
       },
-      "name": "dragging",
-      "propertyType": "new",
-      "event": "changeDragging",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     }
   },
   "members": {
     "_schemas": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 162,
@@ -370,10 +403,11 @@
           "index": 4117
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "__modifiedElements": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 163,
@@ -386,10 +420,11 @@
           "index": 4147
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__modifiedPreviewElements": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 164,
@@ -402,10 +437,11 @@
           "index": 4184
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_workerWrapper": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 165,
@@ -418,10 +454,11 @@
           "index": 4210
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "__editing": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 166,
@@ -434,10 +471,11 @@
           "index": 4232
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__buttonListeners": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 167,
@@ -450,10 +488,11 @@
           "index": 4261
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__searchResults": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 168,
@@ -466,10 +505,11 @@
           "index": 4288
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__searchResultIndex": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 169,
@@ -482,10 +522,11 @@
           "index": 4316
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_structure": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 170,
@@ -498,10 +539,11 @@
           "index": 4338
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "getSchema": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 172,
@@ -515,10 +557,16 @@
         }
       },
       "type": "function",
-      "async": true,
-      "access": "public"
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "appearsIn": []
     },
     "isPreviewSynced": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 187,
@@ -532,9 +580,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "_applyHandlerOptions": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 191,
@@ -548,13 +599,15 @@
         }
       },
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
       "appearsIn": [
         "cv.ui.manager.editor.AbstractEditor"
       ]
     },
     "_maintainPreviewVisibility": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 195,
@@ -568,9 +621,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_applyShowPreview": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 211,
@@ -584,12 +640,16 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "showPreview"
-      ]
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "handleAction": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 238,
@@ -603,32 +663,20 @@
         }
       },
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "actionName"
+        }
+      ],
       "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
       "appearsIn": [
         "cv.ui.manager.editor.AbstractEditor",
         "cv.ui.manager.IActionHandler"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "actionName {String} action name",
-            "paramName": "actionName",
-            "description": " action name",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "data {var} action payload",
-            "paramName": "data",
-            "description": " action payload",
-            "type": "var"
-          }
-        ]
-      }
+      ]
     },
     "configureButton": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 278,
@@ -642,32 +690,23 @@
         }
       },
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "actionId"
+        },
+        {
+          "name": "button"
+        }
+      ],
       "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
       "appearsIn": [
         "cv.ui.manager.editor.AbstractEditor",
         "cv.ui.manager.IActionHandler"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "actionId {String} ID of the action that button triggers",
-            "paramName": "actionId",
-            "description": " ID of the action that button triggers",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "button {Widget} the button that should be configured",
-            "paramName": "button",
-            "description": " the button that should be configured",
-            "type": "Widget"
-          }
-        ]
-      }
+      ]
     },
     "unConfigureButton": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 352,
@@ -681,29 +720,23 @@
         }
       },
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "actionId"
+        },
+        {
+          "name": "button"
+        }
+      ],
       "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
       "appearsIn": [
         "cv.ui.manager.editor.AbstractEditor",
         "cv.ui.manager.IActionHandler"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "actionId {String} ID of the action that button triggers",
-            "paramName": "actionId",
-            "description": " ID of the action that button triggers",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "button {Widget}"
-          }
-        ]
-      }
+      ]
     },
     "addUndo": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 380,
@@ -717,9 +750,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "elementChange"
+        }
+      ],
+      "appearsIn": []
     },
     "undo": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 386,
@@ -733,9 +773,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "redo": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 399,
@@ -749,9 +792,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "clearUnDosReDos": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 412,
@@ -765,9 +811,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "clearReDos": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 419,
@@ -781,9 +830,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "_applyClipboard": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 425,
@@ -797,12 +849,16 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "clipboard"
-      ]
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "_initWorker": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 438,
@@ -816,9 +872,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "showErrors": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 442,
@@ -832,13 +891,22 @@
         }
       },
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "path"
+        },
+        {
+          "name": "errorList"
+        }
+      ],
       "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
       "appearsIn": [
         "cv.ui.manager.editor.AbstractEditor"
       ]
     },
     "showDecorations": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 443,
@@ -852,13 +920,22 @@
         }
       },
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "path"
+        },
+        {
+          "name": "decorators"
+        }
+      ],
       "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
       "appearsIn": [
         "cv.ui.manager.editor.AbstractEditor"
       ]
     },
     "_loadFile": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 445,
@@ -872,13 +949,26 @@
         }
       },
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "file"
+        },
+        {
+          "name": "old"
+        }
+      ],
       "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
       "appearsIn": [
         "cv.ui.manager.editor.AbstractEditor"
       ]
     },
     "_createChildControlImpl": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 461,
@@ -891,15 +981,23 @@
           "index": 22852
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
       "overriddenFrom": "qx.ui.core.Widget",
       "appearsIn": [
         "qx.ui.core.Widget"
       ]
     },
     "_onContextMenu": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 761,
@@ -913,9 +1011,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "_onContextMenuAction": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 779,
@@ -929,9 +1034,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "_onChangeTreeSelection": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 806,
@@ -945,9 +1057,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "openByQuerySelector": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 815,
@@ -961,9 +1080,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "selector"
+        },
+        {
+          "name": "edit"
+        }
+      ],
+      "appearsIn": []
     },
     "_onSearch": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 834,
@@ -977,9 +1106,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "_showNextResult": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 848,
@@ -993,9 +1129,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_showPreviousResult": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 855,
@@ -1009,9 +1148,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "__showSearchResult": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 862,
@@ -1025,9 +1167,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "_initDragDrop": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 898,
@@ -1041,22 +1186,25 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "control"
+        }
+      ],
+      "appearsIn": []
     },
     "_onCreate": {
-      "location": {
-        "start": {
-          "line": 1439,
-          "column": 4,
-          "index": 48026
-        },
-        "end": {
-          "line": 1636,
-          "column": 5,
-          "index": 55957
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create a new element an insert if after target",
+          "     *",
+          "     * @param target {cv.ui.manager.model.XmlElement} target element",
+          "     * @param position {String} one of \"after\", \"before\" or \"inside\"",
+          "     * @param elementName {String?} if not set a selection of possible elements at that position will be shown",
+          "     * @private",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1076,7 +1224,7 @@
             "body": "position {String} one of \"after\", \"before\" or \"inside\"",
             "paramName": "position",
             "description": " one of \"after\", \"before\" or \"inside\"",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -1094,10 +1242,40 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1439,
+          "column": 4,
+          "index": 48026
+        },
+        "end": {
+          "line": 1636,
+          "column": 5,
+          "index": 55957
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "target",
+          "type": "cv.ui.manager.model.XmlElement"
+        },
+        {
+          "name": "position",
+          "type": "string"
+        },
+        {
+          "name": "elementName",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
     },
     "__getAllowedPositions": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 1638,
@@ -1111,9 +1289,25 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "allowedSorting"
+        },
+        {
+          "name": "elementName"
+        },
+        {
+          "name": "targetName"
+        },
+        {
+          "name": "depth"
+        }
+      ],
+      "appearsIn": []
     },
     "__checkProvider": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 1668,
@@ -1127,9 +1321,22 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "formData"
+        },
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
     },
     "__getAttributeFormDefinition": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 1717,
@@ -1143,9 +1350,19 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "element"
+        },
+        {
+          "name": "attribute"
+        }
+      ],
+      "appearsIn": []
     },
     "_onEdit": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 1773,
@@ -1159,9 +1376,22 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        },
+        {
+          "name": "element"
+        },
+        {
+          "name": "isNew"
+        }
+      ],
+      "appearsIn": []
     },
     "_onDelete": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 1951,
@@ -1175,9 +1405,19 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        },
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
     },
     "_onCut": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 1963,
@@ -1191,9 +1431,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_onCopy": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 1974,
@@ -1207,9 +1450,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_onPaste": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 1986,
@@ -1223,9 +1469,34 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "updateModified": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Maintain global modification state.",
+          "     * This method is called by a single cv.ui.manager.model.XmlElement when it has changed its modified state.",
+          "     * @param element {cv.ui.manager.model.XmlElement}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Maintain global modification state.\n This method is called by a single cv.ui.manager.model.XmlElement when it has changed its modified state.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "element {cv.ui.manager.model.XmlElement}",
+            "paramName": "element",
+            "type": "cv.ui.manager.model.XmlElement"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 2002,
@@ -1238,24 +1509,18 @@
           "index": 70171
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Maintain global modification state.\n This method is called by a single cv.ui.manager.model.XmlElement when it has changed its modified state.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "element {cv.ui.manager.model.XmlElement}"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element",
+          "type": "cv.ui.manager.model.XmlElement"
+        }
+      ],
+      "appearsIn": []
     },
     "_draw": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 2032,
@@ -1269,9 +1534,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_applySelected": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 2060,
@@ -1285,12 +1553,19 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "selected"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_updateHighlightWidget": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 2077,
@@ -1304,12 +1579,12 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "previewState"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "_onElementKeyUp": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 2111,
@@ -1323,9 +1598,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyContent": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 2121,
@@ -1339,13 +1621,19 @@
         }
       },
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
       "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
       "appearsIn": [
         "cv.ui.manager.editor.AbstractEditor"
       ]
     },
     "__getPreviewFile": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 2181,
@@ -1359,9 +1647,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "__loadContent": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 2198,
@@ -1375,10 +1666,19 @@
         }
       },
       "type": "function",
-      "async": true,
-      "access": "private"
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "errors"
+        }
+      ],
+      "appearsIn": []
     },
     "_onContentChanged": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 2280,
@@ -1392,9 +1692,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_updatePreview": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 2290,
@@ -1408,9 +1711,22 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        },
+        {
+          "name": "content"
+        },
+        {
+          "name": "reset"
+        }
+      ],
+      "appearsIn": []
     },
     "getCurrentContent": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 2355,
@@ -1424,7 +1740,11 @@
         }
       },
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "fast"
+        }
+      ],
       "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
       "appearsIn": [
         "cv.ui.manager.editor.AbstractEditor",
@@ -1432,6 +1752,8 @@
       ]
     },
     "_onSaved": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 2368,
@@ -1445,13 +1767,15 @@
         }
       },
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
       "appearsIn": [
         "cv.ui.manager.editor.AbstractEditor"
       ]
     },
     "isSupported": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 2375,
@@ -1465,9 +1789,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "appearsIn": []
     },
     "_showHelp": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 2379,
@@ -1481,4889 +1812,13 @@
         }
       },
       "type": "function",
-      "access": "protected"
-    },
-    "getFile": {
-      "type": "function",
-      "name": "getFile",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>file</code>.\n\nFor further details take a look at the property definition: {@link #file}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "cv.ui.manager.model.FileItem",
-            "desc": "Returns the value for file"
-          }
-        ]
-      }
-    },
-    "setFile": {
-      "type": "function",
-      "name": "setFile",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>file</code>.\n\nFor further details take a look at the property definition: {@link #file}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "cv.ui.manager.model.FileItem",
-            "paramName": "value",
-            "desc": "Value for file"
-          }
-        ]
-      }
-    },
-    "resetFile": {
-      "type": "function",
-      "name": "resetFile",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>file</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #file}."
-          }
-        ]
-      }
-    },
-    "getExternal": {
-      "type": "function",
-      "name": "getExternal",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>external</code>.\n\nFor further details take a look at the property definition: {@link #external}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for external"
-          }
-        ]
-      }
-    },
-    "isExternal": {
-      "type": "function",
-      "name": "isExternal",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>external</code>.\n\nFor further details take a look at the property definition: {@link #external}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for external"
-          }
-        ]
-      }
-    },
-    "setExternal": {
-      "type": "function",
-      "name": "setExternal",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>external</code>.\n\nFor further details take a look at the property definition: {@link #external}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for external"
-          }
-        ]
-      }
-    },
-    "resetExternal": {
-      "type": "function",
-      "name": "resetExternal",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>external</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #external}."
-          }
-        ]
-      }
-    },
-    "getReady": {
-      "type": "function",
-      "name": "getReady",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for ready"
-          }
-        ]
-      }
-    },
-    "isReady": {
-      "type": "function",
-      "name": "isReady",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for ready"
-          }
-        ]
-      }
-    },
-    "setReady": {
-      "type": "function",
-      "name": "setReady",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>ready</code>.\n\nFor further details take a look at the property definition: {@link #ready}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for ready"
-          }
-        ]
-      }
-    },
-    "resetReady": {
-      "type": "function",
-      "name": "resetReady",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>ready</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #ready}."
-          }
-        ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getMinWidth": {
-      "type": "function",
-      "name": "getMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>minWidth</code>.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for minWidth"
-          }
-        ]
-      }
-    },
-    "setMinWidth": {
-      "type": "function",
-      "name": "setMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>minWidth</code>.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for minWidth"
-          }
-        ]
-      }
-    },
-    "resetMinWidth": {
-      "type": "function",
-      "name": "resetMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>minWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ]
-      }
-    },
-    "getWidth": {
-      "type": "function",
-      "name": "getWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for width"
-          }
-        ]
-      }
-    },
-    "setWidth": {
-      "type": "function",
-      "name": "setWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for width"
-          }
-        ]
-      }
-    },
-    "resetWidth": {
-      "type": "function",
-      "name": "resetWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ]
-      }
-    },
-    "getMaxWidth": {
-      "type": "function",
-      "name": "getMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxWidth</code>.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for maxWidth"
-          }
-        ]
-      }
-    },
-    "setMaxWidth": {
-      "type": "function",
-      "name": "setMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxWidth</code>.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for maxWidth"
-          }
-        ]
-      }
-    },
-    "resetMaxWidth": {
-      "type": "function",
-      "name": "resetMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ]
-      }
-    },
-    "getMinHeight": {
-      "type": "function",
-      "name": "getMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>minHeight</code>.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for minHeight"
-          }
-        ]
-      }
-    },
-    "setMinHeight": {
-      "type": "function",
-      "name": "setMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>minHeight</code>.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for minHeight"
-          }
-        ]
-      }
-    },
-    "resetMinHeight": {
-      "type": "function",
-      "name": "resetMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>minHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ]
-      }
-    },
-    "getHeight": {
-      "type": "function",
-      "name": "getHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for height"
-          }
-        ]
-      }
-    },
-    "setHeight": {
-      "type": "function",
-      "name": "setHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for height"
-          }
-        ]
-      }
-    },
-    "resetHeight": {
-      "type": "function",
-      "name": "resetHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>height</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ]
-      }
-    },
-    "getMaxHeight": {
-      "type": "function",
-      "name": "getMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for maxHeight"
-          }
-        ]
-      }
-    },
-    "setMaxHeight": {
-      "type": "function",
-      "name": "setMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for maxHeight"
-          }
-        ]
-      }
-    },
-    "resetMaxHeight": {
-      "type": "function",
-      "name": "resetMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ]
-      }
-    },
-    "getAllowGrowX": {
-      "type": "function",
-      "name": "getAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "isAllowGrowX": {
-      "type": "function",
-      "name": "isAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "setAllowGrowX": {
-      "type": "function",
-      "name": "setAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "resetAllowGrowX": {
-      "type": "function",
-      "name": "resetAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowGrowX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ]
-      }
-    },
-    "getAllowShrinkX": {
-      "type": "function",
-      "name": "getAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "isAllowShrinkX": {
-      "type": "function",
-      "name": "isAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "setAllowShrinkX": {
-      "type": "function",
-      "name": "setAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "resetAllowShrinkX": {
-      "type": "function",
-      "name": "resetAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowShrinkX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ]
-      }
-    },
-    "getAllowGrowY": {
-      "type": "function",
-      "name": "getAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "isAllowGrowY": {
-      "type": "function",
-      "name": "isAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "setAllowGrowY": {
-      "type": "function",
-      "name": "setAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "resetAllowGrowY": {
-      "type": "function",
-      "name": "resetAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowGrowY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ]
-      }
-    },
-    "getAllowShrinkY": {
-      "type": "function",
-      "name": "getAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "isAllowShrinkY": {
-      "type": "function",
-      "name": "isAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "setAllowShrinkY": {
-      "type": "function",
-      "name": "setAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "resetAllowShrinkY": {
-      "type": "function",
-      "name": "resetAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowShrinkY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ]
-      }
-    },
-    "setAllowStretchX": {
-      "type": "function",
-      "name": "setAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowStretchX</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for allowStretchX"
-          }
-        ]
-      }
-    },
-    "resetAllowStretchX": {
-      "type": "function",
-      "name": "resetAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ]
-      }
-    },
-    "setAllowStretchY": {
-      "type": "function",
-      "name": "setAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowStretchY</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for allowStretchY"
-          }
-        ]
-      }
-    },
-    "resetAllowStretchY": {
-      "type": "function",
-      "name": "resetAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowStretchY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ]
-      }
-    },
-    "getMarginTop": {
-      "type": "function",
-      "name": "getMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginTop</code>.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginTop"
-          }
-        ]
-      }
-    },
-    "setMarginTop": {
-      "type": "function",
-      "name": "setMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginTop</code>.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginTop"
-          }
-        ]
-      }
-    },
-    "resetMarginTop": {
-      "type": "function",
-      "name": "resetMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ]
-      }
-    },
-    "getMarginRight": {
-      "type": "function",
-      "name": "getMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginRight</code>.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginRight"
-          }
-        ]
-      }
-    },
-    "setMarginRight": {
-      "type": "function",
-      "name": "setMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginRight</code>.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginRight"
-          }
-        ]
-      }
-    },
-    "resetMarginRight": {
-      "type": "function",
-      "name": "resetMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ]
-      }
-    },
-    "getMarginBottom": {
-      "type": "function",
-      "name": "getMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginBottom</code>.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginBottom"
-          }
-        ]
-      }
-    },
-    "setMarginBottom": {
-      "type": "function",
-      "name": "setMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginBottom</code>.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginBottom"
-          }
-        ]
-      }
-    },
-    "resetMarginBottom": {
-      "type": "function",
-      "name": "resetMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ]
-      }
-    },
-    "getMarginLeft": {
-      "type": "function",
-      "name": "getMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginLeft</code>.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginLeft"
-          }
-        ]
-      }
-    },
-    "setMarginLeft": {
-      "type": "function",
-      "name": "setMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginLeft</code>.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginLeft"
-          }
-        ]
-      }
-    },
-    "resetMarginLeft": {
-      "type": "function",
-      "name": "resetMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ]
-      }
-    },
-    "setMargin": {
-      "type": "function",
-      "name": "setMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>margin</code>.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for margin"
-          }
-        ]
-      }
-    },
-    "resetMargin": {
-      "type": "function",
-      "name": "resetMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>margin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ]
-      }
-    },
-    "getAlignX": {
-      "type": "function",
-      "name": "getAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for alignX"
-          }
-        ]
-      }
-    },
-    "setAlignX": {
-      "type": "function",
-      "name": "setAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for alignX"
-          }
-        ]
-      }
-    },
-    "resetAlignX": {
-      "type": "function",
-      "name": "resetAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ]
-      }
-    },
-    "getAlignY": {
-      "type": "function",
-      "name": "getAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for alignY"
-          }
-        ]
-      }
-    },
-    "setAlignY": {
-      "type": "function",
-      "name": "setAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for alignY"
-          }
-        ]
-      }
-    },
-    "resetAlignY": {
-      "type": "function",
-      "name": "resetAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ]
-      }
-    },
-    "getPaddingTop": {
-      "type": "function",
-      "name": "getPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingTop</code>.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingTop"
-          }
-        ]
-      }
-    },
-    "setPaddingTop": {
-      "type": "function",
-      "name": "setPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingTop</code>.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingTop"
-          }
-        ]
-      }
-    },
-    "resetPaddingTop": {
-      "type": "function",
-      "name": "resetPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
-          }
-        ]
-      }
-    },
-    "getPaddingRight": {
-      "type": "function",
-      "name": "getPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingRight</code>.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingRight"
-          }
-        ]
-      }
-    },
-    "setPaddingRight": {
-      "type": "function",
-      "name": "setPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingRight</code>.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingRight"
-          }
-        ]
-      }
-    },
-    "resetPaddingRight": {
-      "type": "function",
-      "name": "resetPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
-          }
-        ]
-      }
-    },
-    "getPaddingBottom": {
-      "type": "function",
-      "name": "getPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingBottom</code>.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingBottom"
-          }
-        ]
-      }
-    },
-    "setPaddingBottom": {
-      "type": "function",
-      "name": "setPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingBottom</code>.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingBottom"
-          }
-        ]
-      }
-    },
-    "resetPaddingBottom": {
-      "type": "function",
-      "name": "resetPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
-          }
-        ]
-      }
-    },
-    "getPaddingLeft": {
-      "type": "function",
-      "name": "getPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingLeft</code>.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingLeft"
-          }
-        ]
-      }
-    },
-    "setPaddingLeft": {
-      "type": "function",
-      "name": "setPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingLeft</code>.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingLeft"
-          }
-        ]
-      }
-    },
-    "resetPaddingLeft": {
-      "type": "function",
-      "name": "resetPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ]
-      }
-    },
-    "setPadding": {
-      "type": "function",
-      "name": "setPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>padding</code>.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for padding"
-          }
-        ]
-      }
-    },
-    "resetPadding": {
-      "type": "function",
-      "name": "resetPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>padding</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ]
-      }
-    },
-    "getZIndex": {
-      "type": "function",
-      "name": "getZIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>zIndex</code>.\n\nFor further details take a look at the property definition: {@link #zIndex}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for zIndex"
-          }
-        ]
-      }
-    },
-    "setZIndex": {
-      "type": "function",
-      "name": "setZIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>zIndex</code>.\n\nFor further details take a look at the property definition: {@link #zIndex}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for zIndex"
-          }
-        ]
-      }
-    },
-    "resetZIndex": {
-      "type": "function",
-      "name": "resetZIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>zIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #zIndex}."
-          }
-        ]
-      }
-    },
-    "getDecorator": {
-      "type": "function",
-      "name": "getDecorator",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>decorator</code>.\n\nFor further details take a look at the property definition: {@link #decorator}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Decorator",
-            "desc": "Returns the value for decorator"
-          }
-        ]
-      }
-    },
-    "setDecorator": {
-      "type": "function",
-      "name": "setDecorator",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>decorator</code>.\n\nFor further details take a look at the property definition: {@link #decorator}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Decorator",
-            "paramName": "value",
-            "desc": "Value for decorator"
-          }
-        ]
-      }
-    },
-    "resetDecorator": {
-      "type": "function",
-      "name": "resetDecorator",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>decorator</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #decorator}."
-          }
-        ]
-      }
-    },
-    "getBackgroundColor": {
-      "type": "function",
-      "name": "getBackgroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for backgroundColor"
-          }
-        ]
-      }
-    },
-    "setBackgroundColor": {
-      "type": "function",
-      "name": "setBackgroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for backgroundColor"
-          }
-        ]
-      }
-    },
-    "resetBackgroundColor": {
-      "type": "function",
-      "name": "resetBackgroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
-          }
-        ]
-      }
-    },
-    "getTextColor": {
-      "type": "function",
-      "name": "getTextColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>textColor</code>.\n\nFor further details take a look at the property definition: {@link #textColor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for textColor"
-          }
-        ]
-      }
-    },
-    "setTextColor": {
-      "type": "function",
-      "name": "setTextColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>textColor</code>.\n\nFor further details take a look at the property definition: {@link #textColor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for textColor"
-          }
-        ]
-      }
-    },
-    "resetTextColor": {
-      "type": "function",
-      "name": "resetTextColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>textColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #textColor}."
-          }
-        ]
-      }
-    },
-    "getFont": {
-      "type": "function",
-      "name": "getFont",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>font</code>.\n\nFor further details take a look at the property definition: {@link #font}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Font",
-            "desc": "Returns the value for font"
-          }
-        ]
-      }
-    },
-    "setFont": {
-      "type": "function",
-      "name": "setFont",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>font</code>.\n\nFor further details take a look at the property definition: {@link #font}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Font",
-            "paramName": "value",
-            "desc": "Value for font"
-          }
-        ]
-      }
-    },
-    "resetFont": {
-      "type": "function",
-      "name": "resetFont",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>font</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #font}."
-          }
-        ]
-      }
-    },
-    "getOpacity": {
-      "type": "function",
-      "name": "getOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>opacity</code>.\n\nFor further details take a look at the property definition: {@link #opacity}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for opacity"
-          }
-        ]
-      }
-    },
-    "setOpacity": {
-      "type": "function",
-      "name": "setOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>opacity</code>.\n\nFor further details take a look at the property definition: {@link #opacity}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for opacity"
-          }
-        ]
-      }
-    },
-    "resetOpacity": {
-      "type": "function",
-      "name": "resetOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>opacity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #opacity}."
-          }
-        ]
-      }
-    },
-    "getCursor": {
-      "type": "function",
-      "name": "getCursor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>cursor</code>.\n\nFor further details take a look at the property definition: {@link #cursor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for cursor"
-          }
-        ]
-      }
-    },
-    "setCursor": {
-      "type": "function",
-      "name": "setCursor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>cursor</code>.\n\nFor further details take a look at the property definition: {@link #cursor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for cursor"
-          }
-        ]
-      }
-    },
-    "resetCursor": {
-      "type": "function",
-      "name": "resetCursor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>cursor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cursor}."
-          }
-        ]
-      }
-    },
-    "getToolTip": {
-      "type": "function",
-      "name": "getToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>toolTip</code>.\n\nFor further details take a look at the property definition: {@link #toolTip}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.ui.tooltip.ToolTip",
-            "desc": "Returns the value for toolTip"
-          }
-        ]
-      }
-    },
-    "setToolTip": {
-      "type": "function",
-      "name": "setToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>toolTip</code>.\n\nFor further details take a look at the property definition: {@link #toolTip}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.ui.tooltip.ToolTip",
-            "paramName": "value",
-            "desc": "Value for toolTip"
-          }
-        ]
-      }
-    },
-    "resetToolTip": {
-      "type": "function",
-      "name": "resetToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>toolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTip}."
-          }
-        ]
-      }
-    },
-    "getToolTipText": {
-      "type": "function",
-      "name": "getToolTipText",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>toolTipText</code>.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for toolTipText"
-          }
-        ]
-      }
-    },
-    "setToolTipText": {
-      "type": "function",
-      "name": "setToolTipText",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>toolTipText</code>.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for toolTipText"
-          }
-        ]
-      }
-    },
-    "resetToolTipText": {
-      "type": "function",
-      "name": "resetToolTipText",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>toolTipText</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
-          }
-        ]
-      }
-    },
-    "getToolTipIcon": {
-      "type": "function",
-      "name": "getToolTipIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>toolTipIcon</code>.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for toolTipIcon"
-          }
-        ]
-      }
-    },
-    "setToolTipIcon": {
-      "type": "function",
-      "name": "setToolTipIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>toolTipIcon</code>.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for toolTipIcon"
-          }
-        ]
-      }
-    },
-    "resetToolTipIcon": {
-      "type": "function",
-      "name": "resetToolTipIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>toolTipIcon</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
-          }
-        ]
-      }
-    },
-    "getBlockToolTip": {
-      "type": "function",
-      "name": "getBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for blockToolTip"
-          }
-        ]
-      }
-    },
-    "isBlockToolTip": {
-      "type": "function",
-      "name": "isBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for blockToolTip"
-          }
-        ]
-      }
-    },
-    "setBlockToolTip": {
-      "type": "function",
-      "name": "setBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for blockToolTip"
-          }
-        ]
-      }
-    },
-    "resetBlockToolTip": {
-      "type": "function",
-      "name": "resetBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>blockToolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ]
-      }
-    },
-    "getShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "getShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for showToolTipWhenDisabled"
-          }
-        ]
-      }
-    },
-    "isShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "isShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for showToolTipWhenDisabled"
-          }
-        ]
-      }
-    },
-    "setShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "setShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for showToolTipWhenDisabled"
-          }
-        ]
-      }
-    },
-    "resetShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "resetShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>showToolTipWhenDisabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ]
-      }
-    },
-    "getVisibility": {
-      "type": "function",
-      "name": "getVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for visibility"
-          }
-        ]
-      }
-    },
-    "setVisibility": {
-      "type": "function",
-      "name": "setVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for visibility"
-          }
-        ]
-      }
-    },
-    "resetVisibility": {
-      "type": "function",
-      "name": "resetVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ]
-      }
-    },
-    "getEnabled": {
-      "type": "function",
-      "name": "getEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "isEnabled": {
-      "type": "function",
-      "name": "isEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "setEnabled": {
-      "type": "function",
-      "name": "setEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for enabled"
-          }
-        ]
-      }
-    },
-    "resetEnabled": {
-      "type": "function",
-      "name": "resetEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ]
-      }
-    },
-    "getAnonymous": {
-      "type": "function",
-      "name": "getAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "isAnonymous": {
-      "type": "function",
-      "name": "isAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "setAnonymous": {
-      "type": "function",
-      "name": "setAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for anonymous"
-          }
-        ]
-      }
-    },
-    "resetAnonymous": {
-      "type": "function",
-      "name": "resetAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ]
-      }
-    },
-    "getTabIndex": {
-      "type": "function",
-      "name": "getTabIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>tabIndex</code>.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for tabIndex"
-          }
-        ]
-      }
-    },
-    "setTabIndex": {
-      "type": "function",
-      "name": "setTabIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>tabIndex</code>.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for tabIndex"
-          }
-        ]
-      }
-    },
-    "resetTabIndex": {
-      "type": "function",
-      "name": "resetTabIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>tabIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
-          }
-        ]
-      }
-    },
-    "getFocusable": {
-      "type": "function",
-      "name": "getFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for focusable"
-          }
-        ]
-      }
-    },
-    "isFocusable": {
-      "type": "function",
-      "name": "isFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for focusable"
-          }
-        ]
-      }
-    },
-    "setFocusable": {
-      "type": "function",
-      "name": "setFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for focusable"
-          }
-        ]
-      }
-    },
-    "resetFocusable": {
-      "type": "function",
-      "name": "resetFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>focusable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ]
-      }
-    },
-    "getKeepFocus": {
-      "type": "function",
-      "name": "getKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepFocus"
-          }
-        ]
-      }
-    },
-    "isKeepFocus": {
-      "type": "function",
-      "name": "isKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepFocus"
-          }
-        ]
-      }
-    },
-    "setKeepFocus": {
-      "type": "function",
-      "name": "setKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for keepFocus"
-          }
-        ]
-      }
-    },
-    "resetKeepFocus": {
-      "type": "function",
-      "name": "resetKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>keepFocus</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ]
-      }
-    },
-    "getKeepActive": {
-      "type": "function",
-      "name": "getKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepActive"
-          }
-        ]
-      }
-    },
-    "isKeepActive": {
-      "type": "function",
-      "name": "isKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepActive"
-          }
-        ]
-      }
-    },
-    "setKeepActive": {
-      "type": "function",
-      "name": "setKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for keepActive"
-          }
-        ]
-      }
-    },
-    "resetKeepActive": {
-      "type": "function",
-      "name": "resetKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>keepActive</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ]
-      }
-    },
-    "getDraggable": {
-      "type": "function",
-      "name": "getDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for draggable"
-          }
-        ]
-      }
-    },
-    "isDraggable": {
-      "type": "function",
-      "name": "isDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for draggable"
-          }
-        ]
-      }
-    },
-    "setDraggable": {
-      "type": "function",
-      "name": "setDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for draggable"
-          }
-        ]
-      }
-    },
-    "resetDraggable": {
-      "type": "function",
-      "name": "resetDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>draggable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ]
-      }
-    },
-    "getDroppable": {
-      "type": "function",
-      "name": "getDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for droppable"
-          }
-        ]
-      }
-    },
-    "isDroppable": {
-      "type": "function",
-      "name": "isDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for droppable"
-          }
-        ]
-      }
-    },
-    "setDroppable": {
-      "type": "function",
-      "name": "setDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for droppable"
-          }
-        ]
-      }
-    },
-    "resetDroppable": {
-      "type": "function",
-      "name": "resetDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>droppable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ]
-      }
-    },
-    "getSelectable": {
-      "type": "function",
-      "name": "getSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for selectable"
-          }
-        ]
-      }
-    },
-    "isSelectable": {
-      "type": "function",
-      "name": "isSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for selectable"
-          }
-        ]
-      }
-    },
-    "setSelectable": {
-      "type": "function",
-      "name": "setSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for selectable"
-          }
-        ]
-      }
-    },
-    "resetSelectable": {
-      "type": "function",
-      "name": "resetSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>selectable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ]
-      }
-    },
-    "getContextMenu": {
-      "type": "function",
-      "name": "getContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>contextMenu</code>.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.ui.menu.Menu",
-            "desc": "Returns the value for contextMenu"
-          }
-        ]
-      }
-    },
-    "setContextMenu": {
-      "type": "function",
-      "name": "setContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>contextMenu</code>.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.ui.menu.Menu",
-            "paramName": "value",
-            "desc": "Value for contextMenu"
-          }
-        ]
-      }
-    },
-    "resetContextMenu": {
-      "type": "function",
-      "name": "resetContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>contextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
-          }
-        ]
-      }
-    },
-    "getNativeContextMenu": {
-      "type": "function",
-      "name": "getNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for nativeContextMenu"
-          }
-        ]
-      }
-    },
-    "isNativeContextMenu": {
-      "type": "function",
-      "name": "isNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for nativeContextMenu"
-          }
-        ]
-      }
-    },
-    "setNativeContextMenu": {
-      "type": "function",
-      "name": "setNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for nativeContextMenu"
-          }
-        ]
-      }
-    },
-    "resetNativeContextMenu": {
-      "type": "function",
-      "name": "resetNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>nativeContextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ]
-      }
-    },
-    "getAppearance": {
-      "type": "function",
-      "name": "getAppearance",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>appearance</code>.\n\nFor further details take a look at the property definition: {@link #appearance}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for appearance"
-          }
-        ]
-      }
-    },
-    "setAppearance": {
-      "type": "function",
-      "name": "setAppearance",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>appearance</code>.\n\nFor further details take a look at the property definition: {@link #appearance}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for appearance"
-          }
-        ]
-      }
-    },
-    "resetAppearance": {
-      "type": "function",
-      "name": "resetAppearance",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>appearance</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #appearance}."
-          }
-        ]
-      }
-    },
-    "getContent": {
-      "type": "function",
-      "name": "getContent",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>content</code>.\n\nFor further details take a look at the property definition: {@link #content}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for content"
-          }
-        ]
-      }
-    },
-    "setContent": {
-      "type": "function",
-      "name": "setContent",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>content</code>.\n\nFor further details take a look at the property definition: {@link #content}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for content"
-          }
-        ]
-      }
-    },
-    "resetContent": {
-      "type": "function",
-      "name": "resetContent",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>content</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #content}."
-          }
-        ]
-      }
-    },
-    "getHandlerOptions": {
-      "type": "function",
-      "name": "getHandlerOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>handlerOptions</code>.\n\nFor further details take a look at the property definition: {@link #handlerOptions}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Map",
-            "desc": "Returns the value for handlerOptions"
-          }
-        ]
-      }
-    },
-    "setHandlerOptions": {
-      "type": "function",
-      "name": "setHandlerOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>handlerOptions</code>.\n\nFor further details take a look at the property definition: {@link #handlerOptions}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Map",
-            "paramName": "value",
-            "desc": "Value for handlerOptions"
-          }
-        ]
-      }
-    },
-    "resetHandlerOptions": {
-      "type": "function",
-      "name": "resetHandlerOptions",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.editor.AbstractEditor",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>handlerOptions</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #handlerOptions}."
-          }
-        ]
-      }
-    },
-    "getExpert": {
-      "type": "function",
-      "name": "getExpert",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>expert</code>.\n\nFor further details take a look at the property definition: {@link #expert}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for expert"
-          }
-        ]
-      }
-    },
-    "isExpert": {
-      "type": "function",
-      "name": "isExpert",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>expert</code>.\n\nFor further details take a look at the property definition: {@link #expert}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for expert"
-          }
-        ]
-      }
-    },
-    "setExpert": {
-      "type": "function",
-      "name": "setExpert",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>expert</code>.\n\nFor further details take a look at the property definition: {@link #expert}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for expert"
-          }
-        ]
-      }
-    },
-    "resetExpert": {
-      "type": "function",
-      "name": "resetExpert",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>expert</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #expert}."
-          }
-        ]
-      }
-    },
-    "getSelected": {
-      "type": "function",
-      "name": "getSelected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>selected</code>.\n\nFor further details take a look at the property definition: {@link #selected}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "cv.ui.manager.model.XmlElement",
-            "desc": "Returns the value for selected"
-          }
-        ]
-      }
-    },
-    "setSelected": {
-      "type": "function",
-      "name": "setSelected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>selected</code>.\n\nFor further details take a look at the property definition: {@link #selected}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "cv.ui.manager.model.XmlElement",
-            "paramName": "value",
-            "desc": "Value for selected"
-          }
-        ]
-      }
-    },
-    "resetSelected": {
-      "type": "function",
-      "name": "resetSelected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>selected</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selected}."
-          }
-        ]
-      }
-    },
-    "getClipboard": {
-      "type": "function",
-      "name": "getClipboard",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>clipboard</code>.\n\nFor further details take a look at the property definition: {@link #clipboard}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "cv.ui.manager.model.XmlElement",
-            "desc": "Returns the value for clipboard"
-          }
-        ]
-      }
-    },
-    "setClipboard": {
-      "type": "function",
-      "name": "setClipboard",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>clipboard</code>.\n\nFor further details take a look at the property definition: {@link #clipboard}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "cv.ui.manager.model.XmlElement",
-            "paramName": "value",
-            "desc": "Value for clipboard"
-          }
-        ]
-      }
-    },
-    "resetClipboard": {
-      "type": "function",
-      "name": "resetClipboard",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>clipboard</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #clipboard}."
-          }
-        ]
-      }
-    },
-    "getUnDos": {
-      "type": "function",
-      "name": "getUnDos",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>unDos</code>.\n\nFor further details take a look at the property definition: {@link #unDos}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.data.Array",
-            "desc": "Returns the value for unDos"
-          }
-        ]
-      }
-    },
-    "setUnDos": {
-      "type": "function",
-      "name": "setUnDos",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>unDos</code>.\n\nFor further details take a look at the property definition: {@link #unDos}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.data.Array",
-            "paramName": "value",
-            "desc": "Value for unDos"
-          }
-        ]
-      }
-    },
-    "resetUnDos": {
-      "type": "function",
-      "name": "resetUnDos",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>unDos</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #unDos}."
-          }
-        ]
-      }
-    },
-    "getReDos": {
-      "type": "function",
-      "name": "getReDos",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>reDos</code>.\n\nFor further details take a look at the property definition: {@link #reDos}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.data.Array",
-            "desc": "Returns the value for reDos"
-          }
-        ]
-      }
-    },
-    "setReDos": {
-      "type": "function",
-      "name": "setReDos",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>reDos</code>.\n\nFor further details take a look at the property definition: {@link #reDos}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.data.Array",
-            "paramName": "value",
-            "desc": "Value for reDos"
-          }
-        ]
-      }
-    },
-    "resetReDos": {
-      "type": "function",
-      "name": "resetReDos",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>reDos</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #reDos}."
-          }
-        ]
-      }
-    },
-    "getAutoRefreshPreview": {
-      "type": "function",
-      "name": "getAutoRefreshPreview",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>autoRefreshPreview</code>.\n\nFor further details take a look at the property definition: {@link #autoRefreshPreview}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for autoRefreshPreview"
-          }
-        ]
-      }
-    },
-    "isAutoRefreshPreview": {
-      "type": "function",
-      "name": "isAutoRefreshPreview",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>autoRefreshPreview</code>.\n\nFor further details take a look at the property definition: {@link #autoRefreshPreview}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for autoRefreshPreview"
-          }
-        ]
-      }
-    },
-    "setAutoRefreshPreview": {
-      "type": "function",
-      "name": "setAutoRefreshPreview",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>autoRefreshPreview</code>.\n\nFor further details take a look at the property definition: {@link #autoRefreshPreview}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for autoRefreshPreview"
-          }
-        ]
-      }
-    },
-    "resetAutoRefreshPreview": {
-      "type": "function",
-      "name": "resetAutoRefreshPreview",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>autoRefreshPreview</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #autoRefreshPreview}."
-          }
-        ]
-      }
-    },
-    "getPreviewState": {
-      "type": "function",
-      "name": "getPreviewState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>previewState</code>.\n\nFor further details take a look at the property definition: {@link #previewState}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for previewState"
-          }
-        ]
-      }
-    },
-    "setPreviewState": {
-      "type": "function",
-      "name": "setPreviewState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>previewState</code>.\n\nFor further details take a look at the property definition: {@link #previewState}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for previewState"
-          }
-        ]
-      }
-    },
-    "resetPreviewState": {
-      "type": "function",
-      "name": "resetPreviewState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>previewState</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #previewState}."
-          }
-        ]
-      }
-    },
-    "getShowPreview": {
-      "type": "function",
-      "name": "getShowPreview",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>showPreview</code>.\n\nFor further details take a look at the property definition: {@link #showPreview}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for showPreview"
-          }
-        ]
-      }
-    },
-    "isShowPreview": {
-      "type": "function",
-      "name": "isShowPreview",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>showPreview</code>.\n\nFor further details take a look at the property definition: {@link #showPreview}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for showPreview"
-          }
-        ]
-      }
-    },
-    "setShowPreview": {
-      "type": "function",
-      "name": "setShowPreview",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>showPreview</code>.\n\nFor further details take a look at the property definition: {@link #showPreview}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for showPreview"
-          }
-        ]
-      }
-    },
-    "resetShowPreview": {
-      "type": "function",
-      "name": "resetShowPreview",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>showPreview</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showPreview}."
-          }
-        ]
-      }
-    },
-    "getDragging": {
-      "type": "function",
-      "name": "getDragging",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>dragging</code>.\n\nFor further details take a look at the property definition: {@link #dragging}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for dragging"
-          }
-        ]
-      }
-    },
-    "isDragging": {
-      "type": "function",
-      "name": "isDragging",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>dragging</code>.\n\nFor further details take a look at the property definition: {@link #dragging}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for dragging"
-          }
-        ]
-      }
-    },
-    "setDragging": {
-      "type": "function",
-      "name": "setDragging",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>dragging</code>.\n\nFor further details take a look at the property definition: {@link #dragging}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for dragging"
-          }
-        ]
-      }
-    },
-    "resetDragging": {
-      "type": "function",
-      "name": "resetDragging",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>dragging</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #dragging}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 2434,
@@ -6375,9 +1830,6 @@
         "column": 3,
         "index": 84850
       }
-    },
-    "jsdoc": {}
-  },
-  "events": {},
-  "descendants": []
+    }
+  }
 }

@@ -1,27 +1,44 @@
 {
-  "className": "cv.ui.common.HandleLongpress",
-  "packageName": "cv.ui.common",
-  "name": "HandleLongpress",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 20,
-        "column": 0,
-        "index": 822
-      },
-      "end": {
-        "line": 39,
-        "column": 3,
-        "index": 1504
-      }
-    },
-    "jsdoc": {}
-  },
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/ui/common/HandleLongpress.js",
   "type": "mixin",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 822
+    },
+    "end": {
+      "line": 39,
+      "column": 3,
+      "index": 1504
+    }
+  },
+  "className": "cv.ui.common.HandleLongpress",
+  "jsdoc": {
+    "raw": [
+      " HandleLongpress.js",
+      " *",
+      " * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " "
+    ]
+  },
   "properties": {
     "shortThreshold": {
       "location": {
@@ -36,11 +53,12 @@
           "index": 1078
         }
       },
-      "name": "shortThreshold",
-      "propertyType": "new",
-      "init": -1,
-      "check": "Number",
-      "defaultValue": -1
+      "json": {
+        "check": "Number",
+        "init": -1
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "shortDefault": {
       "location": {
@@ -55,11 +73,12 @@
           "index": 1131
         }
       },
-      "name": "shortDefault",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "sendLongOnRelease": {
       "location": {
@@ -74,7 +93,17 @@
           "index": 1496
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * true: send the long value after the mouse button is released",
+          "     * false: send the long value when the time since the button is pressed is greater than shortThreshold before the button is released",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -82,260 +111,9 @@
           }
         ]
       },
-      "name": "sendLongOnRelease",
-      "propertyType": "new",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     }
   },
-  "members": {
-    "getShortThreshold": {
-      "type": "function",
-      "name": "getShortThreshold",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>shortThreshold</code>.\n\nFor further details take a look at the property definition: {@link #shortThreshold}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for shortThreshold"
-          }
-        ]
-      }
-    },
-    "setShortThreshold": {
-      "type": "function",
-      "name": "setShortThreshold",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>shortThreshold</code>.\n\nFor further details take a look at the property definition: {@link #shortThreshold}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for shortThreshold"
-          }
-        ]
-      }
-    },
-    "resetShortThreshold": {
-      "type": "function",
-      "name": "resetShortThreshold",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>shortThreshold</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shortThreshold}."
-          }
-        ]
-      }
-    },
-    "getShortDefault": {
-      "type": "function",
-      "name": "getShortDefault",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>shortDefault</code>.\n\nFor further details take a look at the property definition: {@link #shortDefault}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for shortDefault"
-          }
-        ]
-      }
-    },
-    "isShortDefault": {
-      "type": "function",
-      "name": "isShortDefault",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>shortDefault</code>.\n\nFor further details take a look at the property definition: {@link #shortDefault}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for shortDefault"
-          }
-        ]
-      }
-    },
-    "setShortDefault": {
-      "type": "function",
-      "name": "setShortDefault",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>shortDefault</code>.\n\nFor further details take a look at the property definition: {@link #shortDefault}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for shortDefault"
-          }
-        ]
-      }
-    },
-    "resetShortDefault": {
-      "type": "function",
-      "name": "resetShortDefault",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>shortDefault</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shortDefault}."
-          }
-        ]
-      }
-    },
-    "getSendLongOnRelease": {
-      "type": "function",
-      "name": "getSendLongOnRelease",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>sendLongOnRelease</code>.\n\nFor further details take a look at the property definition: {@link #sendLongOnRelease}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for sendLongOnRelease"
-          }
-        ]
-      }
-    },
-    "isSendLongOnRelease": {
-      "type": "function",
-      "name": "isSendLongOnRelease",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>sendLongOnRelease</code>.\n\nFor further details take a look at the property definition: {@link #sendLongOnRelease}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for sendLongOnRelease"
-          }
-        ]
-      }
-    },
-    "setSendLongOnRelease": {
-      "type": "function",
-      "name": "setSendLongOnRelease",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>sendLongOnRelease</code>.\n\nFor further details take a look at the property definition: {@link #sendLongOnRelease}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for sendLongOnRelease"
-          }
-        ]
-      }
-    },
-    "resetSendLongOnRelease": {
-      "type": "function",
-      "name": "resetSendLongOnRelease",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>sendLongOnRelease</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #sendLongOnRelease}."
-          }
-        ]
-      }
-    }
-  },
-  "descendants": []
+  "members": {},
+  "statics": {}
 }

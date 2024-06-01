@@ -1,0 +1,53 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "ui",
+    "LayoutTestCase",
+    "members",
+    "__selectBox",
+    "setUp",
+    "form",
+    "virtual",
+    "VirtualSelectBox",
+    "superclass",
+    "prototype",
+    "call",
+    "__model",
+    "__createModelData",
+    "getRoot",
+    "add",
+    "flush",
+    "tearDown",
+    "destroy",
+    "dispose",
+    "__P_421_2",
+    "model",
+    "data",
+    "Array",
+    "i",
+    "push",
+    "testCreation",
+    "assertEquals",
+    "getLength",
+    "getModel",
+    "getChildControl",
+    "getSelection",
+    "getItem"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/form/virtual/VirtualSelectBox.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Hagendorn (chris_schmidt)\n\n************************************************************************ */\nqx.Class.define(\"qx.test.ui.form.virtual.VirtualSelectBox\", {\n  extend: qx.test.ui.LayoutTestCase,\n\n  members: {\n    __selectBox: null,\n\n    setUp() {\n      super.setUp();\n\n      this.__model = this.__createModelData();\n      this.__selectBox = new qx.ui.form.VirtualSelectBox(this.__model);\n      this.getRoot().add(this.__selectBox);\n\n      this.flush();\n    },\n\n    tearDown() {\n      super.tearDown();\n\n      this.__selectBox.destroy();\n      this.__selectBox = null;\n      this.__model.dispose();\n      this.__model = null;\n    },\n\n    __createModelData() {\n      var model = new qx.data.Array();\n\n      for (var i = 0; i < 100; i++) {\n        model.push(\"item \" + (i + 1));\n      }\n\n      return model;\n    },\n\n    testCreation() {\n      this.assertEquals(\n        this.__model.getLength(),\n        this.__selectBox.getModel().getLength(),\n        \"Model length not equals!\"\n      );\n\n      this.assertEquals(\n        this.__model,\n        this.__selectBox.getModel(),\n        \"Model instance not equals!\"\n      );\n\n      this.assertEquals(\n        this.__model,\n        this.__selectBox\n          .getChildControl(\"dropdown\")\n          .getChildControl(\"list\")\n          .getModel(),\n        \"Model instance on list not equals!\"\n      );\n\n      this.assertEquals(\n        1,\n        this.__selectBox.getSelection().getLength(),\n        \"Selection length not equals!\"\n      );\n\n      this.assertEquals(\n        this.__model.getItem(0),\n        this.__selectBox.getSelection().getItem(0),\n        \"Selection instance not equals!\"\n      );\n    }\n  }\n});\n"
+  ],
+  "mappings": "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",
+  "ignoreList": []
+}

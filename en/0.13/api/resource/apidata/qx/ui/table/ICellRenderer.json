@@ -1,49 +1,78 @@
 {
-  "className": "qx.ui.table.ICellRenderer",
-  "packageName": "qx.ui.table",
-  "name": "ICellRenderer",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 529
-      },
-      "end": {
-        "line": 66,
-        "column": 3,
-        "index": 2705
-      }
+  "version": 0.3,
+  "lastModified": 1717235171186,
+  "lastModifiedIso": "2024-06-01T09:46:11.186Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/ICellRenderer.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 508
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A cell renderer for data cells.</p>"
-        }
-      ]
+    "end": {
+      "line": 66,
+      "column": 3,
+      "index": 2640
     }
   },
-  "type": "interface",
+  "className": "qx.ui.table.ICellRenderer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A cell renderer for data cells.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A cell renderer for data cells.</p>"
+      }
+    ]
+  },
   "members": {
     "createDataCellHtml": {
-      "location": {
-        "start": {
-          "line": 62,
-          "column": 4,
-          "index": 2629
-        },
-        "end": {
-          "line": 64,
-          "column": 5,
-          "index": 2695
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the HTML for a data cell.",
+          "     *",
+          "     * The cellInfo map contains the following properties:",
+          "     * <ul>",
+          "     * <li>value (var): the cell's value.</li>",
+          "     * <li>rowData (var): contains the row data for the row, the cell belongs to.",
+          "     *   The kind of this object depends on the table model, see",
+          "     *   {@link qx.ui.table.ITableModel#getRowData}</li>",
+          "     * <li>row (int): the model index of the row the cell belongs to.</li>",
+          "     * <li>col (int): the model index of the column the cell belongs to.</li>",
+          "     * <li>table (qx.ui.table.Table): the table the cell belongs to.</li>",
+          "     * <li>xPos (int): the x position of the cell in the table pane.</li>",
+          "     * <li>selected (boolean): whether the cell is selected.</li>",
+          "     * <li>focusedRow (boolean): whether the cell is in the same row as the",
+          "     *   focused cell.</li>",
+          "     * <li>editable (boolean): whether the cell is editable.</li>",
+          "     * <li>style (string): The CSS styles that should be applied to the outer HTML",
+          "     *   element.</li>",
+          "     * <li>styleLeft (string): The left position of the cell.</li>",
+          "     * <li>styleWidth (string): The cell's width (pixel).</li>",
+          "     * <li>styleHeight (string): The cell's height (pixel).</li>",
+          "     * </ul>",
+          "     *",
+          "     * @param cellInfo {Map} A map containing the information about the cell to",
+          "     *     create.",
+          "     * @param htmlArr {String[]} Target string container. The HTML of the data",
+          "     *     cell should be appended to this array.",
+          "     *",
+          "     * @return {Boolean|undefined}",
+          "     *   A return value of <i>true</i> specifies that no additional cells in",
+          "     *   the row shall be rendered. This may be used, for example, for",
+          "     *   separator rows or for other special rendering purposes. Traditional",
+          "     *   cell renderers had no defined return value, so returned nothing",
+          "     *   (undefined). If this method returns either false or nothing, then",
+          "     *   rendering continues with the next cell in the row, which the normal",
+          "     *   mode of operation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,7 +85,7 @@
             "body": "cellInfo {Map} A map containing the information about the cell to\n     create.",
             "paramName": "cellInfo",
             "description": " A map containing the information about the cell to\n     create.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -71,13 +100,40 @@
             "name": "@return",
             "body": "{Boolean|undefined}\n   A return value of <i>true</i> specifies that no additional cells in\n   the row shall be rendered. This may be used, for example, for\n   separator rows or for other special rendering purposes. Traditional\n   cell renderers had no defined return value, so returned nothing\n   (undefined). If this method returns either false or nothing, then\n   rendering continues with the next cell in the row, which the normal\n   mode of operation.",
             "type": "Boolean|undefined",
-            "description": "\n   A return value of <i>true</i> specifies that no additional cells in\n   the row shall be rendered. This may be used, for example, for\n   separator rows or for other special rendering purposes. Traditional\n   cell renderers had no defined return value, so returned nothing\n   (undefined). If this method returns either false or nothing, then\n   rendering continues with the next cell in the row, which the normal\n   mode of operation."
+            "description": "   A return value of <i>true</i> specifies that no additional cells in\n   the row shall be rendered. This may be used, for example, for\n   separator rows or for other special rendering purposes. Traditional\n   cell renderers had no defined return value, so returned nothing\n   (undefined). If this method returns either false or nothing, then\n   rendering continues with the next cell in the row, which the normal\n   mode of operation."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 2568
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 2632
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "htmlArr",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "Boolean|undefined"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

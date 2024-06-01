@@ -86,6 +86,15 @@
       appearance: {
         refine: true,
         init: "listitem"
+      },
+      /**
+       * Whether the field is read only
+       */
+      readOnly: {
+        check: "Boolean",
+        event: "changeReadOnly",
+        apply: "_applyReadOnly",
+        init: false
       }
     },
     /* eslint-disable @qooxdoo/qx/no-refs-in-members */
@@ -100,11 +109,20 @@
         selected: true,
         dragover: true
       },
+      _applyReadOnly: function _applyReadOnly(value) {
+        if (value) {
+          this.addState("readonly");
+        } else {
+          this.removeState("readonly");
+        }
+      },
       /**
        * Event handler for the pointer over event.
        */
       _onPointerOver: function _onPointerOver() {
-        this.addState("hovered");
+        if (!this.getReadOnly()) {
+          this.addState("hovered");
+        }
       },
       /**
        * Event handler for the pointer out event.
@@ -121,4 +139,4 @@
   qx.ui.form.ListItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ListItem.js.map?dt=1709410160247
+//# sourceMappingURL=ListItem.js.map?dt=1717235410946

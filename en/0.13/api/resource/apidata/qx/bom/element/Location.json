@@ -1,55 +1,61 @@
 {
-  "className": "qx.bom.element.Location",
-  "packageName": "qx.bom.element",
-  "name": "Location",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 48,
-        "column": 0,
-        "index": 1216
-      },
-      "end": {
-        "line": 458,
-        "column": 3,
-        "index": 14668
-      }
+  "version": 0.3,
+  "lastModified": 1717235171646,
+  "lastModifiedIso": "2024-06-01T09:46:11.646Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/Location.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 48,
+      "column": 0,
+      "index": 1169
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Query the location of an arbitrary DOM element in relation to its top\n level body element. Works in all major browsers:</p>\n<ul>\n<li>Mozilla 1.5 + 2.0</li>\n<li>Internet Explorer 6.0 + 7.0 (both standard &amp; quirks mode)</li>\n<li>Opera 9.2</li>\n<li>Safari 3.0 beta</li>\n</ul>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "SVGElement"
-        }
-      ]
+    "end": {
+      "line": 458,
+      "column": 3,
+      "index": 14211
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.Location",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Query the location of an arbitrary DOM element in relation to its top",
+      " * level body element. Works in all major browsers:",
+      " *",
+      " * * Mozilla 1.5 + 2.0",
+      " * * Internet Explorer 6.0 + 7.0 (both standard & quirks mode)",
+      " * * Opera 9.2",
+      " * * Safari 3.0 beta",
+      " *",
+      " * @ignore(SVGElement)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Query the location of an arbitrary DOM element in relation to its top\n level body element. Works in all major browsers:</p>\n<ul>\n<li>Mozilla 1.5 + 2.0</li>\n<li>Internet Explorer 6.0 + 7.0 (both standard &amp; quirks mode)</li>\n<li>Opera 9.2</li>\n<li>Safari 3.0 beta</li>\n</ul>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "SVGElement"
+      }
+    ]
+  },
   "statics": {
     "__style": {
-      "location": {
-        "start": {
-          "line": 57,
-          "column": 4,
-          "index": 1516
-        },
-        "end": {
-          "line": 64,
-          "column": 5,
-          "index": 1686
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Queries a style property for the given element",
+          "     *",
+          "     * @param elem {Element} DOM element to query",
+          "     * @param style {String} Style property",
+          "     * @return {String} Value of given style property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -69,35 +75,58 @@
             "body": "style {String} Style property",
             "paramName": "style",
             "description": " Style property",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} Value of given style property",
-            "type": "String",
-            "description": " Value of given style property"
+            "type": "string",
+            "description": "Value of given style property"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__num": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 73,
+          "line": 57,
           "column": 4,
-          "index": 1962
+          "index": 1460
         },
         "end": {
-          "line": 86,
+          "line": 64,
           "column": 5,
-          "index": 2224
+          "index": 1623
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        },
+        {
+          "name": "style",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__num": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Queries a style property for the given element and parses it to an integer value",
+          "     *",
+          "     * @param elem {Element} DOM element to query",
+          "     * @param style {String} Style property",
+          "     * @return {Integer} Value of given style property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,7 +146,7 @@
             "body": "style {String} Style property",
             "paramName": "style",
             "description": " Style property",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -125,27 +154,50 @@
             "name": "@return",
             "body": "{Integer} Value of given style property",
             "type": "Integer",
-            "description": " Value of given style property"
+            "description": "Value of given style property"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__computeScroll": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 95,
+          "line": 73,
           "column": 4,
-          "index": 2517
+          "index": 1890
         },
         "end": {
-          "line": 108,
+          "line": 86,
           "column": 5,
-          "index": 2823
+          "index": 2139
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        },
+        {
+          "name": "style",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__computeScroll": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the scroll offset of the given element relative to the document",
+          "     * <code>body</code>.",
+          "     *",
+          "     * @param elem {Element} DOM element to query",
+          "     * @return {Map} Map which contains the <code>left</code> and <code>top</code> scroll offsets",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -165,28 +217,47 @@
           {
             "name": "@return",
             "body": "{Map} Map which contains the <code>left</code> and <code>top</code> scroll offsets",
-            "type": "Map",
-            "description": " Map which contains the <code>left</code> and <code>top</code> scroll offsets"
+            "type": "Map<any, any>",
+            "description": "Map which contains the <code>left</code> and <code>top</code> scroll offsets"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__computeBody": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 117,
+          "line": 95,
           "column": 4,
-          "index": 3102
+          "index": 2423
         },
         "end": {
-          "line": 189,
-          "column": 6,
-          "index": 4998
+          "line": 108,
+          "column": 5,
+          "index": 2716
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__computeBody": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the offset of the given element relative to the document",
+          "     * <code>body</code>.",
+          "     *",
+          "     * @param elem {Element} DOM element to query",
+          "     * @return {Map} Map which contains the <code>left</code> and <code>top</code> offsets",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -206,28 +277,40 @@
           {
             "name": "@return",
             "body": "{Map} Map which contains the <code>left</code> and <code>top</code> offsets",
-            "type": "Map",
-            "description": " Map which contains the <code>left</code> and <code>top</code> offsets"
+            "type": "Map<any, any>",
+            "description": "Map which contains the <code>left</code> and <code>top</code> offsets"
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__computeOffset": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 198,
+          "line": 117,
           "column": 4,
-          "index": 5277
+          "index": 2986
         },
         "end": {
-          "line": 208,
-          "column": 5,
-          "index": 5639
+          "line": 189,
+          "column": 6,
+          "index": 4810
         }
       },
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__computeOffset": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the sum of all offsets of the given element node.",
+          "     *",
+          "     * @signature function(elem)",
+          "     * @param elem {Element} DOM element to query",
+          "     * @return {Map} Map which contains the <code>left</code> and <code>top</code> offsets",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -253,28 +336,58 @@
           {
             "name": "@return",
             "body": "{Map} Map which contains the <code>left</code> and <code>top</code> offsets",
-            "type": "Map",
-            "description": " Map which contains the <code>left</code> and <code>top</code> offsets"
+            "type": "Map<any, any>",
+            "description": "Map which contains the <code>left</code> and <code>top</code> offsets"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "get": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 228,
+          "line": 198,
           "column": 4,
-          "index": 6720
+          "index": 5080
         },
         "end": {
-          "line": 320,
+          "line": 208,
           "column": 5,
-          "index": 9944
+          "index": 5432
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "get": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the location of the given element in context of",
+          "     * the document dimensions.",
+          "     *",
+          "     * Supported modes:",
+          "     *",
+          "     * * <code>margin</code>: Calculate from the margin box of the element (bigger than the visual appearance: including margins of given element)",
+          "     * * <code>box</code>: Calculates the offset box of the element (default, uses the same size as visible)",
+          "     * * <code>border</code>: Calculate the border box (useful to align to border edges of two elements).",
+          "     * * <code>scroll</code>: Calculate the scroll box (relevant for absolute positioned content).",
+          "     * * <code>padding</code>: Calculate the padding box (relevant for static/relative positioned content).",
+          "     *",
+          "     * @param elem {Element} DOM element to query",
+          "     * @param mode {String?box} A supported option. See comment above.",
+          "     * @return {Map} Returns a map with <code>left</code>, <code>top</code>,",
+          "     *   <code>right</code> and <code>bottom</code> which contains the distance",
+          "     *   of the element relative to the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -303,28 +416,51 @@
           {
             "name": "@return",
             "body": "{Map} Returns a map with <code>left</code>, <code>top</code>,\n   <code>right</code> and <code>bottom</code> which contains the distance\n   of the element relative to the document.",
-            "type": "Map",
-            "description": " Returns a map with <code>left</code>, <code>top</code>,\n   <code>right</code> and <code>bottom</code> which contains the distance\n   of the element relative to the document."
+            "type": "Map<any, any>",
+            "description": "Returns a map with <code>left</code>, <code>top</code>,\n   <code>right</code> and <code>bottom</code> which contains the distance\n   of the element relative to the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__getBodyLocation": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 327,
+          "line": 228,
           "column": 4,
-          "index": 10169
+          "index": 6493
         },
         "end": {
-          "line": 340,
+          "line": 320,
           "column": 5,
-          "index": 10587
+          "index": 9625
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        },
+        {
+          "name": "mode",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "box"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__getBodyLocation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the location of the body element relative to the document.",
+          "     * @param body {Element} The body element.",
+          "     * @return {Map} map with the keys <code>left</code> and <code>top</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -344,28 +480,50 @@
           {
             "name": "@return",
             "body": "{Map} map with the keys <code>left</code> and <code>top</code>",
-            "type": "Map",
-            "description": " map with the keys <code>left</code> and <code>top</code>"
+            "type": "Map<any, any>",
+            "description": "map with the keys <code>left</code> and <code>top</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "getLeft": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 352,
+          "line": 327,
           "column": 4,
-          "index": 11032
+          "index": 9843
         },
         "end": {
-          "line": 354,
+          "line": 340,
           "column": 5,
-          "index": 11101
+          "index": 10248
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "body",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the location of the given element in context of",
+          "     * the document dimensions. For supported modes please",
+          "     * have a look at the {@link qx.bom.element.Location#get} method.",
+          "     *",
+          "     * @param elem {Element} DOM element to query",
+          "     * @param mode {String} A supported option. See comment above.",
+          "     * @return {Integer} The left distance",
+          "     *   of the element relative to the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -385,7 +543,7 @@
             "body": "mode {String} A supported option. See comment above.",
             "paramName": "mode",
             "description": " A supported option. See comment above.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -393,27 +551,53 @@
             "name": "@return",
             "body": "{Integer} The left distance\n   of the element relative to the document.",
             "type": "Integer",
-            "description": " The left distance\n   of the element relative to the document."
+            "description": "The left distance\n   of the element relative to the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 366,
+          "line": 352,
           "column": 4,
-          "index": 11545
+          "index": 10681
         },
         "end": {
-          "line": 368,
+          "line": 354,
           "column": 5,
-          "index": 11612
+          "index": 10748
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        },
+        {
+          "name": "mode",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getTop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the location of the given element in context of",
+          "     * the document dimensions. For supported modes please",
+          "     * have a look at the {@link qx.bom.element.Location#get} method.",
+          "     *",
+          "     * @param elem {Element} DOM element to query",
+          "     * @param mode {String} A supported option. See comment above.",
+          "     * @return {Integer} The top distance",
+          "     *   of the element relative to the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -433,7 +617,7 @@
             "body": "mode {String} A supported option. See comment above.",
             "paramName": "mode",
             "description": " A supported option. See comment above.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -441,27 +625,53 @@
             "name": "@return",
             "body": "{Integer} The top distance\n   of the element relative to the document.",
             "type": "Integer",
-            "description": " The top distance\n   of the element relative to the document."
+            "description": "The top distance\n   of the element relative to the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 380,
+          "line": 366,
           "column": 4,
-          "index": 12058
+          "index": 11180
         },
         "end": {
-          "line": 382,
+          "line": 368,
           "column": 5,
-          "index": 12129
+          "index": 11245
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        },
+        {
+          "name": "mode",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getRight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the location of the given element in context of",
+          "     * the document dimensions. For supported modes please",
+          "     * have a look at the {@link qx.bom.element.Location#get} method.",
+          "     *",
+          "     * @param elem {Element} DOM element to query",
+          "     * @param mode {String} A supported option. See comment above.",
+          "     * @return {Integer} The right distance",
+          "     *   of the element relative to the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -481,7 +691,7 @@
             "body": "mode {String} A supported option. See comment above.",
             "paramName": "mode",
             "description": " A supported option. See comment above.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -489,27 +699,53 @@
             "name": "@return",
             "body": "{Integer} The right distance\n   of the element relative to the document.",
             "type": "Integer",
-            "description": " The right distance\n   of the element relative to the document."
+            "description": "The right distance\n   of the element relative to the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getBottom": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 394,
+          "line": 380,
           "column": 4,
-          "index": 12576
+          "index": 11679
         },
         "end": {
-          "line": 396,
+          "line": 382,
           "column": 5,
-          "index": 12649
+          "index": 11748
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        },
+        {
+          "name": "mode",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getBottom": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the location of the given element in context of",
+          "     * the document dimensions. For supported modes please",
+          "     * have a look at the {@link qx.bom.element.Location#get} method.",
+          "     *",
+          "     * @param elem {Element} DOM element to query",
+          "     * @param mode {String} A supported option. See comment above.",
+          "     * @return {Integer} The bottom distance",
+          "     *   of the element relative to the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -529,7 +765,7 @@
             "body": "mode {String} A supported option. See comment above.",
             "paramName": "mode",
             "description": " A supported option. See comment above.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -537,27 +773,54 @@
             "name": "@return",
             "body": "{Integer} The bottom distance\n   of the element relative to the document.",
             "type": "Integer",
-            "description": " The bottom distance\n   of the element relative to the document."
+            "description": "The bottom distance\n   of the element relative to the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRelative": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 409,
+          "line": 394,
           "column": 4,
-          "index": 13196
+          "index": 12183
         },
         "end": {
-          "line": 419,
+          "line": 396,
           "column": 5,
-          "index": 13513
+          "index": 12254
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        },
+        {
+          "name": "mode",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getRelative": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the distance between two DOM elements. For supported modes please",
+          "     * have a look at the {@link qx.bom.element.Location#get} method.",
+          "     *",
+          "     * @param elem1 {Element} First element",
+          "     * @param elem2 {Element} Second element",
+          "     * @param mode1 {String?null} Mode for first element",
+          "     * @param mode2 {String?null} Mode for second element",
+          "     * @return {Map} Returns a map with <code>left</code> and <code>top</code>",
+          "     *   which contains the distance of the elements from each other.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -602,28 +865,63 @@
           {
             "name": "@return",
             "body": "{Map} Returns a map with <code>left</code> and <code>top</code>\n   which contains the distance of the elements from each other.",
-            "type": "Map",
-            "description": " Returns a map with <code>left</code> and <code>top</code>\n   which contains the distance of the elements from each other."
+            "type": "Map<any, any>",
+            "description": "Returns a map with <code>left</code> and <code>top</code>\n   which contains the distance of the elements from each other."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPosition": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 428,
+          "line": 409,
           "column": 4,
-          "index": 13827
+          "index": 12788
         },
         "end": {
-          "line": 430,
+          "line": 419,
           "column": 5,
-          "index": 13919
+          "index": 13095
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem1",
+          "type": "Element"
+        },
+        {
+          "name": "elem2",
+          "type": "Element"
+        },
+        {
+          "name": "mode1",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "mode2",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getPosition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the distance between the given element to its offset parent.",
+          "     *",
+          "     * @param elem {Element} DOM element to query",
+          "     * @return {Map} Returns a map with <code>left</code> and <code>top</code>",
+          "     *   which contains the distance of the elements from each other.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -643,28 +941,46 @@
           {
             "name": "@return",
             "body": "{Map} Returns a map with <code>left</code> and <code>top</code>\n   which contains the distance of the elements from each other.",
-            "type": "Map",
-            "description": " Returns a map with <code>left</code> and <code>top</code>\n   which contains the distance of the elements from each other."
+            "type": "Map<any, any>",
+            "description": "Returns a map with <code>left</code> and <code>top</code>\n   which contains the distance of the elements from each other."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getOffsetParent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 438,
+          "line": 428,
           "column": 4,
-          "index": 14126
+          "index": 13400
         },
         "end": {
-          "line": 456,
+          "line": 430,
           "column": 5,
-          "index": 14658
+          "index": 13490
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getOffsetParent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects the offset parent of the given element",
+          "     *",
+          "     * @param element {Element} Element to query for offset parent",
+          "     * @return {Element} Detected offset parent",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -685,13 +1001,36 @@
             "name": "@return",
             "body": "{Element} Detected offset parent",
             "type": "Element",
-            "description": " Detected offset parent"
+            "description": "Detected offset parent"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 438,
+          "column": 4,
+          "index": 13689
+        },
+        "end": {
+          "line": 456,
+          "column": 5,
+          "index": 14203
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

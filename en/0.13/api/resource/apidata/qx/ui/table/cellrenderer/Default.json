@@ -1,98 +1,104 @@
 {
-  "className": "qx.ui.table.cellrenderer.Default",
-  "packageName": "qx.ui.table.cellrenderer",
-  "name": "Default",
-  "superClass": "qx.ui.table.cellrenderer.Abstract",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 529
-      },
-      "end": {
-        "line": 146,
-        "column": 3,
-        "index": 4099
-      }
+  "version": 0.3,
+  "lastModified": 1717235169958,
+  "lastModifiedIso": "2024-06-01T09:46:09.958Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/cellrenderer/Default.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 508
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The default data cell renderer.</p>"
-        }
-      ]
+    "end": {
+      "line": 146,
+      "column": 3,
+      "index": 3954
     }
   },
-  "type": "class",
+  "className": "qx.ui.table.cellrenderer.Default",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The default data cell renderer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The default data cell renderer.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.table.cellrenderer.Abstract",
   "statics": {
     "STYLEFLAG_ALIGN_RIGHT": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 32,
           "column": 4,
-          "index": 840
+          "index": 809
         },
         "end": {
           "line": 32,
           "column": 28,
-          "index": 864
+          "index": 833
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "STYLEFLAG_BOLD": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 33,
           "column": 4,
-          "index": 871
+          "index": 839
         },
         "end": {
           "line": 33,
           "column": 21,
-          "index": 888
+          "index": 856
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "STYLEFLAG_ITALIC": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 34,
           "column": 4,
-          "index": 895
+          "index": 862
         },
         "end": {
           "line": 34,
           "column": 23,
-          "index": 914
+          "index": 881
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "_numberFormat": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 35,
           "column": 4,
-          "index": 921
+          "index": 887
         },
         "end": {
           "line": 35,
           "column": 23,
-          "index": 940
+          "index": 906
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     }
   },
   "properties": {
@@ -101,15 +107,25 @@
         "start": {
           "line": 49,
           "column": 4,
-          "index": 1316
+          "index": 1268
         },
         "end": {
           "line": 52,
           "column": 5,
-          "index": 1381
+          "index": 1330
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the alignment should automatically be set according to the cell value.",
+          "     * If true numbers will be right-aligned.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,28 +133,21 @@
           }
         ]
       },
-      "name": "useAutoAlign",
-      "propertyType": "new",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     }
   },
   "members": {
     "_getStyleFlags": {
-      "location": {
-        "start": {
-          "line": 69,
-          "column": 4,
-          "index": 1878
-        },
-        "end": {
-          "line": 76,
-          "column": 5,
-          "index": 2109
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determines the styles to apply to the cell",
+          "     *",
+          "     * @param cellInfo {Map} cellInfo of the cell",
+          "     *     See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+          "     * @return {Integer} the sum of any of the STYLEFLAGS defined below",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -151,7 +160,7 @@
             "body": "cellInfo {Map} cellInfo of the cell\n     See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
             "paramName": "cellInfo",
             "description": " cellInfo of the cell\n     See {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
@@ -159,69 +168,107 @@
             "name": "@return",
             "body": "{Integer} the sum of any of the STYLEFLAGS defined below",
             "type": "Integer",
-            "description": " the sum of any of the STYLEFLAGS defined below"
+            "description": "the sum of any of the STYLEFLAGS defined below"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1810
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2034
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
     },
     "_getCellClass": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 79,
           "column": 4,
-          "index": 2137
+          "index": 2059
         },
         "end": {
           "line": 102,
           "column": 5,
-          "index": 2811
+          "index": 2710
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
       "appearsIn": [
         "qx.ui.table.cellrenderer.Abstract"
       ]
     },
     "_getContentHtml": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 105,
           "column": 4,
-          "index": 2839
+          "index": 2735
         },
         "end": {
           "line": 107,
           "column": 5,
-          "index": 2938
+          "index": 2832
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "cellInfo"
+        }
+      ],
       "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
       "appearsIn": [
         "qx.ui.table.cellrenderer.Abstract"
       ]
     },
     "_formatValue": {
-      "location": {
-        "start": {
-          "line": 117,
-          "column": 4,
-          "index": 3267
-        },
-        "end": {
-          "line": 144,
-          "column": 5,
-          "index": 4089
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Formats a value.",
+          "     *",
+          "     * @param cellInfo {Map} A map containing the information about the cell to",
+          "     *          create. This map has the same structure as in",
+          "     *          {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
+          "     * @return {String} the formatted value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -234,324 +281,42 @@
             "body": "cellInfo {Map} A map containing the information about the cell to\n          create. This map has the same structure as in\n          {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
             "paramName": "cellInfo",
             "description": " A map containing the information about the cell to\n          create. This map has the same structure as in\n          {@link qx.ui.table.cellrenderer.Abstract#createDataCellHtml}.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the formatted value.",
-            "type": "qx.ui.table.cellrenderer.String",
-            "description": " the formatted value."
+            "type": "string",
+            "description": "the formatted value."
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 117,
+          "column": 4,
+          "index": 3151
+        },
+        "end": {
+          "line": 144,
+          "column": 5,
+          "index": 3946
+        }
+      },
       "type": "function",
-      "access": "protected"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getDefaultCellStyle": {
-      "type": "function",
-      "name": "getDefaultCellStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>defaultCellStyle</code>.\n\nFor further details take a look at the property definition: {@link #defaultCellStyle}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for defaultCellStyle"
-          }
-        ]
-      }
-    },
-    "setDefaultCellStyle": {
-      "type": "function",
-      "name": "setDefaultCellStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>defaultCellStyle</code>.\n\nFor further details take a look at the property definition: {@link #defaultCellStyle}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for defaultCellStyle"
-          }
-        ]
-      }
-    },
-    "resetDefaultCellStyle": {
-      "type": "function",
-      "name": "resetDefaultCellStyle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.cellrenderer.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>defaultCellStyle</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCellStyle}."
-          }
-        ]
-      }
-    },
-    "getUseAutoAlign": {
-      "type": "function",
-      "name": "getUseAutoAlign",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>useAutoAlign</code>.\n\nFor further details take a look at the property definition: {@link #useAutoAlign}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for useAutoAlign"
-          }
-        ]
-      }
-    },
-    "isUseAutoAlign": {
-      "type": "function",
-      "name": "isUseAutoAlign",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>useAutoAlign</code>.\n\nFor further details take a look at the property definition: {@link #useAutoAlign}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for useAutoAlign"
-          }
-        ]
-      }
-    },
-    "setUseAutoAlign": {
-      "type": "function",
-      "name": "setUseAutoAlign",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>useAutoAlign</code>.\n\nFor further details take a look at the property definition: {@link #useAutoAlign}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for useAutoAlign"
-          }
-        ]
-      }
-    },
-    "resetUseAutoAlign": {
-      "type": "function",
-      "name": "resetUseAutoAlign",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>useAutoAlign</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #useAutoAlign}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
-  },
-  "descendants": [
-    "qx.ui.table.cellrenderer.Conditional",
-    "qx.ui.table.cellrenderer.Dynamic",
-    "qx.ui.table.cellrenderer.Password",
-    "qx.ui.table.cellrenderer.Replace",
-    "qx.ui.treevirtual.DefaultDataCellRenderer"
-  ]
+  }
 }

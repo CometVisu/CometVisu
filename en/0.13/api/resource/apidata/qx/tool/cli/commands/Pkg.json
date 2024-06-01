@@ -1,0 +1,83 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171994,
+  "lastModifiedIso": "2024-06-01T09:46:11.994Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Pkg.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 21,
+      "column": 0,
+      "index": 526
+    },
+    "end": {
+      "line": 56,
+      "column": 3,
+      "index": 1306
+    }
+  },
+  "className": "qx.tool.cli.commands.Pkg",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * \"qx pkg\" is an alias for \"qx package\"",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>\"qx pkg\" is an alias for \"qx package\"</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Package",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The yargs command data",
+          "     * @return {{}}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The yargs command data</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{{}}",
+            "type": "{}",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 695
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1298
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "{}"
+      },
+      "appearsIn": [
+        "qx.tool.cli.commands.Package"
+      ]
+    }
+  },
+  "members": {},
+  "properties": {}
+}

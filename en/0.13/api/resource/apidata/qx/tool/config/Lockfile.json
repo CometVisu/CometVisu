@@ -1,0 +1,61 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171650,
+  "lastModifiedIso": "2024-06-01T09:46:11.650Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/config/Lockfile.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 595
+    },
+    "end": {
+      "line": 42,
+      "column": 3,
+      "index": 1012
+    }
+  },
+  "className": "qx.tool.config.Lockfile",
+  "jsdoc": null,
+  "superClass": "qx.tool.config.Abstract",
+  "isSingleton": true,
+  "abstract": false,
+  "statics": {
+    "config": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "index": 713
+        },
+        "end": {
+          "line": 36,
+          "column": 5,
+          "index": 942
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 39,
+        "column": 2,
+        "index": 951
+      },
+      "end": {
+        "line": 41,
+        "column": 3,
+        "index": 1008
+      }
+    }
+  },
+  "members": {},
+  "properties": {}
+}

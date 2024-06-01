@@ -1,55 +1,49 @@
 {
-  "className": "qx.ui.core.queue.Manager",
-  "packageName": "qx.ui.core.queue",
-  "name": "Manager",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 656
-      },
-      "end": {
-        "line": 312,
-        "column": 3,
-        "index": 9291
-      }
+  "version": 0.3,
+  "lastModified": 1717235171670,
+  "lastModifiedIso": "2024-06-01T09:46:11.670Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/queue/Manager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 632
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class performs the auto flush of all layout relevant queues.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.event.handler.UserAction"
-        }
-      ]
+    "end": {
+      "line": 312,
+      "column": 3,
+      "index": 8980
     }
   },
-  "type": "class",
+  "className": "qx.ui.core.queue.Manager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class performs the auto flush of all layout relevant queues.",
+      " *",
+      " * @require(qx.event.handler.UserAction)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class performs the auto flush of all layout relevant queues.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.handler.UserAction"
+      }
+    ]
+  },
   "statics": {
     "__scheduled": {
-      "location": {
-        "start": {
-          "line": 28,
-          "column": 4,
-          "index": 779
-        },
-        "end": {
-          "line": 28,
-          "column": 22,
-          "index": 797
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Whether a flush was scheduled "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,23 +57,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__canceled": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 31,
+          "line": 28,
           "column": 4,
-          "index": 876
+          "index": 752
         },
         "end": {
-          "line": 31,
-          "column": 21,
-          "index": 893
+          "line": 28,
+          "column": 22,
+          "index": 770
         }
       },
+      "appearsIn": []
+    },
+    "__canceled": {
       "jsdoc": {
+        "raw": [
+          "* @type {Boolean} true, if the flush should not be executed "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -93,23 +90,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__jobs": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 34,
+          "line": 31,
           "column": 4,
-          "index": 975
+          "index": 846
         },
         "end": {
-          "line": 34,
-          "column": 14,
-          "index": 985
+          "line": 31,
+          "column": 21,
+          "index": 863
         }
       },
+      "appearsIn": []
+    },
+    "__jobs": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Internal data structure for the current job list "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -123,23 +123,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__retries": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 37,
+          "line": 34,
           "column": 4,
-          "index": 1072
+          "index": 942
         },
         "end": {
-          "line": 37,
-          "column": 16,
-          "index": 1084
+          "line": 34,
+          "column": 14,
+          "index": 952
         }
       },
+      "appearsIn": []
+    },
+    "__retries": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} Counts how often a flush failed due to exceptions "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -153,23 +156,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "MAX_RETRIES": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 40,
+          "line": 37,
           "column": 4,
-          "index": 1153
+          "index": 1036
         },
         "end": {
-          "line": 40,
-          "column": 19,
-          "index": 1168
+          "line": 37,
+          "column": 16,
+          "index": 1048
         }
       },
+      "appearsIn": []
+    },
+    "MAX_RETRIES": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} Maximum number of flush retries "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -183,23 +189,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "scheduleFlush": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 48,
+          "line": 40,
           "column": 4,
-          "index": 1416
+          "index": 1114
         },
         "end": {
-          "line": 66,
-          "column": 5,
-          "index": 1891
+          "line": 40,
+          "column": 19,
+          "index": 1129
         }
       },
+      "appearsIn": []
+    },
+    "scheduleFlush": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Schedule a deferred flush of all queues.",
+          "     *",
+          "     * @param job {String} The job, which should be performed. Valid values are",
+          "     *     <code>layout</code>, <code>decoration</code> and <code>element</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -212,27 +226,41 @@
             "body": "job {String} The job, which should be performed. Valid values are\n     <code>layout</code>, <code>decoration</code> and <code>element</code>.",
             "paramName": "job",
             "description": " The job, which should be performed. Valid values are\n     <code>layout</code>, <code>decoration</code> and <code>element</code>.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "flush": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 73,
+          "line": 48,
           "column": 4,
-          "index": 2058
+          "index": 1369
         },
         "end": {
-          "line": 222,
+          "line": 66,
           "column": 5,
-          "index": 6385
+          "index": 1826
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "job",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "flush": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flush all layout queues in the correct order. This function is called",
+          "     * deferred if {@link #scheduleFlush} is called.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -240,23 +268,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__executeAndRescheduleOnError": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 233,
+          "line": 73,
           "column": 4,
-          "index": 6824
+          "index": 1986
         },
         "end": {
-          "line": 274,
-          "column": 6,
-          "index": 8027
+          "line": 222,
+          "column": 5,
+          "index": 6164
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__executeAndRescheduleOnError": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Executes the callback code. If the callback throws an error the current",
+          "     * flush is cleaned up and rescheduled. The finally code is called after the",
+          "     * callback even if it has thrown an exception.",
+          "     *",
+          "     * @signature function(callback, finallyCode)",
+          "     * @param callback {Function} the callback function",
+          "     * @param finallyCode {Function} function to be called in the finally block",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -275,34 +316,46 @@
             "body": "callback {Function} the callback function",
             "paramName": "callback",
             "description": " the callback function",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "finallyCode {Function} function to be called in the finally block",
             "paramName": "finallyCode",
             "description": " function to be called in the finally block",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__onUserAction": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 286,
+          "line": 233,
           "column": 4,
-          "index": 8538
+          "index": 6592
         },
         "end": {
-          "line": 288,
-          "column": 5,
-          "index": 8605
+          "line": 274,
+          "column": 6,
+          "index": 7754
         }
       },
+      "appearsIn": []
+    },
+    "__onUserAction": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler used on touch devices to prevent the queue from manipulating",
+          "     * the dom during the touch - mouse - ... event sequence. Usually, iOS",
+          "     * devices fire a click event 300ms after the touchend event. So using",
+          "     * 500ms should be a good value to be on the save side. This is necessary",
+          "     * due to the fact that the event chain is stopped if a manipulation in",
+          "     * the DOM is done.",
+          "     *",
+          "     * @param e {qx.event.type.Data} The user action data event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -319,24 +372,29 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 286,
+          "column": 4,
+          "index": 8253
+        },
+        "end": {
+          "line": 288,
+          "column": 5,
+          "index": 8318
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 297,
-        "column": 2,
-        "index": 8808
-      },
-      "end": {
-        "line": 311,
-        "column": 3,
-        "index": 9286
-      }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -1,55 +1,57 @@
 {
-  "className": "qx.locale.MTranslation",
-  "packageName": "qx.locale",
-  "name": "MTranslation",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 696
-      },
-      "end": {
-        "line": 132,
-        "column": 3,
-        "index": 4809
-      }
+  "version": 0.3,
+  "lastModified": 1717235171842,
+  "lastModifiedIso": "2024-06-01T09:46:11.842Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/locale/MTranslation.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 670
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin contains the methods needed to use the translation features\n of qooxdoo.</p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.locale.Manager"
-        }
-      ]
+    "end": {
+      "line": 132,
+      "column": 3,
+      "index": 4678
     }
   },
-  "type": "mixin",
+  "className": "qx.locale.MTranslation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin contains the methods needed to use the translation features",
+      " * of qooxdoo.",
+      " *",
+      " * @ignore(qx.locale.Manager)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin contains the methods needed to use the translation features\n of qooxdoo.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.locale.Manager"
+      }
+    ]
+  },
   "members": {
     "tr": {
-      "location": {
-        "start": {
-          "line": 37,
-          "column": 4,
-          "index": 1104
-        },
-        "end": {
-          "line": 46,
-          "column": 5,
-          "index": 1392
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a message",
+          "     * Mark the message for translation.",
+          "     *",
+          "     * @param messageId {String} message id (may contain format strings)",
+          "     * @param varargs {Object?} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -62,7 +64,7 @@
             "body": "messageId {String} message id (may contain format strings)",
             "paramName": "messageId",
             "description": " message id (may contain format strings)",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -78,27 +80,56 @@
             "name": "@return",
             "body": "{String|LocalizedString} The translated message or localized string",
             "type": "String|LocalizedString",
-            "description": " The translated message or localized string"
+            "description": "The translated message or localized string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "trn": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 60,
+          "line": 37,
           "column": 4,
-          "index": 2079
+          "index": 1068
         },
         "end": {
-          "line": 69,
+          "line": 46,
           "column": 5,
-          "index": 2401
+          "index": 1347
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "messageId",
+          "type": "string"
+        },
+        {
+          "name": "varargs",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": []
+    },
+    "trn": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a plural message",
+          "     * Mark the messages for translation.",
+          "     *",
+          "     * Depending on the third argument the plural or the singular form is chosen.",
+          "     *",
+          "     * @param singularMessageId {String} message id of the singular form (may contain format strings)",
+          "     * @param pluralMessageId {String} message id of the plural form (may contain format strings)",
+          "     * @param count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
+          "     * @param varargs {Object?} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -111,14 +142,14 @@
             "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
             "paramName": "singularMessageId",
             "description": " message id of the singular form (may contain format strings)",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
             "paramName": "pluralMessageId",
             "description": " message id of the plural form (may contain format strings)",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -141,27 +172,61 @@
             "name": "@return",
             "body": "{String|LocalizedString} The translated message or localized string",
             "type": "String|LocalizedString",
-            "description": " The translated message or localized string"
+            "description": "The translated message or localized string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "trc": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 80,
+          "line": 60,
           "column": 4,
-          "index": 2881
+          "index": 2020
         },
         "end": {
-          "line": 89,
+          "line": 69,
           "column": 5,
-          "index": 3177
+          "index": 2333
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "singularMessageId",
+          "type": "string"
+        },
+        {
+          "name": "pluralMessageId",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "type": "Integer"
+        },
+        {
+          "name": "varargs",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": []
+    },
+    "trc": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a message with translation hint",
+          "     * Mark the messages for translation.",
+          "     *",
+          "     * @param hint {String} hint for the translator of the message. Will be included in the .po file.",
+          "     * @param messageId {String} message id (may contain format strings)",
+          "     * @param varargs {Object?} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -174,14 +239,14 @@
             "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
             "paramName": "hint",
             "description": " hint for the translator of the message. Will be included in the .po file.",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "messageId {String} message id (may contain format strings)",
             "paramName": "messageId",
             "description": " message id (may contain format strings)",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -197,27 +262,61 @@
             "name": "@return",
             "body": "{String|LocalizedString} The translated message or localized string",
             "type": "String|LocalizedString",
-            "description": " The translated message or localized string"
+            "description": "The translated message or localized string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "trnc": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 104,
+          "line": 80,
           "column": 4,
-          "index": 3989
+          "index": 2802
         },
         "end": {
-          "line": 113,
+          "line": 89,
           "column": 5,
-          "index": 4319
+          "index": 3089
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "hint",
+          "type": "string"
+        },
+        {
+          "name": "messageId",
+          "type": "string"
+        },
+        {
+          "name": "varargs",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": []
+    },
+    "trnc": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translate a plural message with translation hint",
+          "     * Mark the messages for translation.",
+          "     *",
+          "     * Depending on the third argument the plural or the singular form is chosen.",
+          "     *",
+          "     * @param hint {String} hint for the translator of the message. Will be included in the .po file.",
+          "     * @param singularMessageId {String} message id of the singular form (may contain format strings)",
+          "     * @param pluralMessageId {String} message id of the plural form (may contain format strings)",
+          "     * @param count {Integer} if greater than 1 the plural form otherwise the singular form is returned.",
+          "     * @param varargs {Object?} variable number of arguments applied to the format string",
+          "     * @return {String|LocalizedString} The translated message or localized string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -230,21 +329,21 @@
             "body": "hint {String} hint for the translator of the message. Will be included in the .po file.",
             "paramName": "hint",
             "description": " hint for the translator of the message. Will be included in the .po file.",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "singularMessageId {String} message id of the singular form (may contain format strings)",
             "paramName": "singularMessageId",
             "description": " message id of the singular form (may contain format strings)",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "pluralMessageId {String} message id of the plural form (may contain format strings)",
             "paramName": "pluralMessageId",
             "description": " message id of the plural form (may contain format strings)",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -267,27 +366,62 @@
             "name": "@return",
             "body": "{String|LocalizedString} The translated message or localized string",
             "type": "String|LocalizedString",
-            "description": " The translated message or localized string"
+            "description": "The translated message or localized string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "marktr": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 121,
+          "line": 104,
           "column": 4,
-          "index": 4512
+          "index": 3886
         },
         "end": {
-          "line": 130,
+          "line": 113,
           "column": 5,
-          "index": 4799
+          "index": 4207
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "hint",
+          "type": "string"
+        },
+        {
+          "name": "singularMessageId",
+          "type": "string"
+        },
+        {
+          "name": "pluralMessageId",
+          "type": "string"
+        },
+        {
+          "name": "count",
+          "type": "Integer"
+        },
+        {
+          "name": "varargs",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String|LocalizedString"
+      },
+      "appearsIn": []
+    },
+    "marktr": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mark the message for translation but return the original message.",
+          "     *",
+          "     * @param messageId {String} the message ID",
+          "     * @return {String} messageId",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -300,21 +434,44 @@
             "body": "messageId {String} the message ID",
             "paramName": "messageId",
             "description": " the message ID",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} messageId",
-            "type": "qx.locale.String",
-            "description": " messageId"
+            "type": "string",
+            "description": "messageId"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 4392
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 4670
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "messageId",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

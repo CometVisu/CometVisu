@@ -1,0 +1,859 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171746,
+  "lastModifiedIso": "2024-06-01T09:46:11.746Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/MetaDatabase.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 4,
+      "column": 0,
+      "index": 58
+    },
+    "end": {
+      "line": 429,
+      "column": 3,
+      "index": 12703
+    }
+  },
+  "className": "qx.tool.compiler.MetaDatabase",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 7,
+        "column": 2,
+        "index": 138
+      },
+      "end": {
+        "line": 14,
+        "column": 3,
+        "index": 317
+      }
+    }
+  },
+  "properties": {
+    "rootDir": {
+      "location": {
+        "start": {
+          "line": 18,
+          "column": 4,
+          "index": 406
+        },
+        "end": {
+          "line": 21,
+          "column": 5,
+          "index": 473
+        }
+      },
+      "json": {
+        "init": "compiled/meta",
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Where the meta files for individual classes are stored "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Where the meta files for individual classes are stored</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__metaByClassname": {
+      "jsdoc": {
+        "raw": [
+          "* @type{Map<String,qx.tool.compiler.MetaExtraction>} list of meta indexed by classname "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map<String,qx.tool.compiler.MetaExtraction>} list of meta indexed by classname"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4,
+          "index": 593
+        },
+        "end": {
+          "line": 26,
+          "column": 27,
+          "index": 616
+        }
+      },
+      "appearsIn": []
+    },
+    "__dirtyClasses": {
+      "jsdoc": {
+        "raw": [
+          "* @type{Map<String,Boolean} list of classes which need to have their second pass "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map<String,Boolean} list of classes which need to have their second pass"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 713
+        },
+        "end": {
+          "line": 29,
+          "column": 24,
+          "index": 733
+        }
+      },
+      "appearsIn": []
+    },
+    "__database": {
+      "jsdoc": {
+        "raw": [
+          "* The database "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The database</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 764
+        },
+        "end": {
+          "line": 32,
+          "column": 20,
+          "index": 780
+        }
+      },
+      "appearsIn": []
+    },
+    "save": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Saves the database",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Saves the database</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 829
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1101
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getDatabase": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1108
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1159
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "load": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads the database and all of the meta data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads the database and all of the meta data</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1233
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2197
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "resolveType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Implementation of `qx.tool.compiler.jsdoc.ITypeResolver`",
+          "     *",
+          "     * @param {*} currentClassMeta",
+          "     * @param {String} type",
+          "     * @returns {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Implementation of <code>qx.tool.compiler.jsdoc.ITypeResolver</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} currentClassMeta",
+            "paramName": "currentClassMeta",
+            "description": "",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{String} type",
+            "paramName": "type",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2379
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 3644
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "currentClassMeta",
+          "type": "*"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "addFile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a file to the database",
+          "     *",
+          "     * @param {String} filename",
+          "     * @param {Boolean} force",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a file to the database</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} filename",
+            "paramName": "filename",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{Boolean} force",
+            "paramName": "force",
+            "description": "",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3771
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 4400
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        },
+        {
+          "name": "force",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getClassnames": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of all class names",
+          "     *",
+          "     * @return {String[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of all class names</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]}",
+            "type": "String[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 4497
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 4570
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getMetaData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the meta data for a class",
+          "     *",
+          "     * @param {String} className",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the meta data for a class</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} className",
+            "paramName": "className",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 167,
+          "column": 4,
+          "index": 4690
+        },
+        "end": {
+          "line": 169,
+          "column": 5,
+          "index": 4791
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "className",
+          "type": "string"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "reparseAll": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Once all meta data has been loaded, this method traverses the database",
+          "     * to add information that can only be added once all classes are known,",
+          "     * eg which methods override other methods and where they were overridden from",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Once all meta data has been loaded, this method traverses the database\n to add information that can only be added once all classes are known,\n eg which methods override other methods and where they were overridden from</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 5052
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 6189
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__createDerivedClassLookup": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 214,
+          "column": 4,
+          "index": 6196
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 6908
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__findSuperMethod": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds info about a method",
+          "     *",
+          "     * @param {*} metaData starting point",
+          "     * @param {String} methodName name of the method",
+          "     * @param {Boolean} firstPass",
+          "     * @returns {*} meta data values to add to the method",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds info about a method</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} metaData starting point",
+            "paramName": "metaData",
+            "description": "starting point",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{String} methodName name of the method",
+            "paramName": "methodName",
+            "description": "name of the method",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{Boolean} firstPass",
+            "paramName": "firstPass",
+            "description": "",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*} meta data values to add to the method",
+            "type": "*",
+            "description": "meta data values to add to the method"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 247,
+          "column": 4,
+          "index": 7158
+        },
+        "end": {
+          "line": 282,
+          "column": 5,
+          "index": 8143
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "metaData",
+          "type": "*"
+        },
+        {
+          "name": "methodName",
+          "type": "string"
+        },
+        {
+          "name": "firstPass",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": []
+    },
+    "__findAppearances": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param {*} metaData class metadata",
+          "     * @param {string} entryKind name of the entry type",
+          "     * @param {string} entryName name of the entry",
+          "     * @returns {string[]} list of classes where the entry appears",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} metaData class metadata",
+            "paramName": "metaData",
+            "description": "class metadata",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{string} entryKind name of the entry type",
+            "paramName": "entryKind",
+            "description": "name of the entry type",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{string} entryName name of the entry",
+            "paramName": "entryName",
+            "description": "name of the entry",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string[]} list of classes where the entry appears",
+            "type": "string[]",
+            "description": "list of classes where the entry appears"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4,
+          "index": 8382
+        },
+        "end": {
+          "line": 314,
+          "column": 5,
+          "index": 9121
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "metaData",
+          "type": "*"
+        },
+        {
+          "name": "entryKind",
+          "type": "string"
+        },
+        {
+          "name": "entryName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string[]"
+      },
+      "appearsIn": []
+    },
+    "__fixupMembers": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Discovers data about the members in the hierarchy, eg whether overridden etc",
+          "     *",
+          "     * @param {*} metaData",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Discovers data about the members in the hierarchy, eg whether overridden etc</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} metaData",
+            "paramName": "metaData",
+            "description": "",
+            "type": "*"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 321,
+          "column": 4,
+          "index": 9262
+        },
+        "end": {
+          "line": 349,
+          "column": 5,
+          "index": 10209
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "metaData",
+          "type": "*"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__fixupEntries": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects the superlike (class/mixin/interface) appearances and includes the",
+          "     * mixin entries into the class metadata",
+          "     * @param {*} metaData",
+          "     * @param {string} kind",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects the superlike (class/mixin/interface) appearances and includes the\n mixin entries into the class metadata</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} metaData",
+            "paramName": "metaData",
+            "description": "",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{string} kind",
+            "paramName": "kind",
+            "description": "",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 357,
+          "column": 4,
+          "index": 10414
+        },
+        "end": {
+          "line": 373,
+          "column": 5,
+          "index": 11096
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "metaData",
+          "type": "*"
+        },
+        {
+          "name": "kind",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getHierarchyFlat": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets a flattened type hierarchy for a class",
+          "     * @param {string|object} metaOrClassName - the classname or the meta data of the class to get the hierarchy for",
+          "     * @returns the type hierarchy",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a flattened type hierarchy for a class</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string|object} metaOrClassName - the classname or the meta data of the class to get the hierarchy for",
+            "paramName": "metaOrClassName",
+            "description": "- the classname or the meta data of the class to get the hierarchy for",
+            "type": [
+              "string",
+              "object"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "the type hierarchy"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 381,
+          "column": 4,
+          "index": 11329
+        },
+        "end": {
+          "line": 427,
+          "column": 5,
+          "index": 12695
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "metaOrClassName",
+          "type": [
+            "string",
+            "object"
+          ]
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

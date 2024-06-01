@@ -1,39 +1,54 @@
 {
-  "className": "cv.Config",
-  "packageName": "cv",
-  "name": "Config",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 895
-      },
-      "end": {
-        "line": 505,
-        "column": 3,
-        "index": 13866
-      }
+  "version": 0.3,
+  "lastModified": 1717235105594,
+  "lastModifiedIso": "2024-06-01T09:45:05.594Z",
+  "classFilename": "../../source/class/cv/Config.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 895
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Main settings that an be accessed from anywhere inside the Application</p>"
-        }
-      ]
+    "end": {
+      "line": 505,
+      "column": 3,
+      "index": 13866
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.Config",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Main settings that an be accessed from anywhere inside the Application",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Main settings that an be accessed from anywhere inside the Application</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "Maturity": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Define ENUM of maturity levels for features, so that e.g. the editor can",
+          "     * ignore some widgets when they are not supported yet",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Define ENUM of maturity levels for features, so that e.g. the editor can\n ignore some widgets when they are not supported yet</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 31,
@@ -46,31 +61,16 @@
           "index": 1173
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Define ENUM of maturity levels for features, so that e.g. the editor can\n ignore some widgets when they are not supported yet</p>"
-          }
-        ]
-      },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "treePath": {
-      "location": {
-        "start": {
-          "line": 40,
-          "column": 4,
-          "index": 1247
-        },
-        "end": {
-          "line": 40,
-          "column": 16,
-          "index": 1259
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The current path tree",
+          "     * @type {String}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -84,23 +84,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "currentPageId": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 46,
+          "line": 40,
           "column": 4,
-          "index": 1336
+          "index": 1247
         },
         "end": {
-          "line": 46,
-          "column": 23,
-          "index": 1355
+          "line": 40,
+          "column": 16,
+          "index": 1259
         }
       },
+      "appearsIn": []
+    },
+    "currentPageId": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Path to the current page",
+          "     * @type {String}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -114,23 +120,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "libraryCheck": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 51,
+          "line": 46,
           "column": 4,
-          "index": 1401
+          "index": 1336
         },
         "end": {
-          "line": 51,
-          "column": 22,
-          "index": 1419
+          "line": 46,
+          "column": 23,
+          "index": 1355
         }
       },
+      "appearsIn": []
+    },
+    "libraryCheck": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -144,23 +155,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "maxMobileScreenWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 56,
+          "line": 51,
           "column": 4,
-          "index": 1511
+          "index": 1401
         },
         "end": {
-          "line": 56,
-          "column": 29,
-          "index": 1536
+          "line": 51,
+          "column": 22,
+          "index": 1419
         }
       },
+      "appearsIn": []
+    },
+    "maxMobileScreenWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Threshold where the mobile.css is loaded",
+          "     * @type {Number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -174,23 +191,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "maxScreenWidthColspanS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 61,
+          "line": 56,
           "column": 4,
-          "index": 1621
+          "index": 1511
         },
         "end": {
-          "line": 61,
-          "column": 31,
-          "index": 1648
+          "line": 56,
+          "column": 29,
+          "index": 1536
         }
       },
+      "appearsIn": []
+    },
+    "maxScreenWidthColspanS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Threshold where colspan-s is used",
+          "     * @type {Number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -204,23 +227,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "maxScreenWidthColspanM": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 66,
+          "line": 61,
           "column": 4,
-          "index": 1733
+          "index": 1621
         },
         "end": {
-          "line": 66,
+          "line": 61,
           "column": 31,
-          "index": 1760
+          "index": 1648
         }
       },
+      "appearsIn": []
+    },
+    "maxScreenWidthColspanM": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * threshold where colspan-m is used",
+          "     * @type {Number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -234,23 +263,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "scrollSpeed": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 71,
+          "line": 66,
           "column": 4,
-          "index": 1860
+          "index": 1733
         },
         "end": {
-          "line": 71,
-          "column": 20,
-          "index": 1876
+          "line": 66,
+          "column": 31,
+          "index": 1760
         }
       },
+      "appearsIn": []
+    },
+    "scrollSpeed": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Default scrolling speed for page changes (in ms)",
+          "     * @type {Number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -264,23 +299,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "defaultColumns": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 77,
+          "line": 71,
           "column": 4,
-          "index": 1975
+          "index": 1860
         },
         "end": {
-          "line": 77,
-          "column": 22,
-          "index": 1993
+          "line": 71,
+          "column": 20,
+          "index": 1876
         }
       },
+      "appearsIn": []
+    },
+    "defaultColumns": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Default number of colums the layout should use",
+          "     * @type {Number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -294,23 +335,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "minColumnWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 77,
           "column": 4,
-          "index": 2065
+          "index": 1975
         },
         "end": {
-          "line": 82,
-          "column": 23,
-          "index": 2084
+          "line": 77,
+          "column": 22,
+          "index": 1993
         }
       },
+      "appearsIn": []
+    },
+    "minColumnWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Minimum column width",
+          "     * @type {Number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -324,23 +371,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "enableAddressQueue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 89,
+          "line": 82,
           "column": 4,
-          "index": 2322
+          "index": 2065
         },
         "end": {
-          "line": 89,
-          "column": 29,
-          "index": 2347
+          "line": 82,
+          "column": 23,
+          "index": 2084
         }
       },
+      "appearsIn": []
+    },
+    "enableAddressQueue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * If true, the client only loads the states for the widgets that are part of the start page at first",
+          "     * read request (should increase the performance when huge config files are used)",
+          "     * @type {Boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -354,23 +408,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "backend": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 95,
+          "line": 89,
           "column": 4,
-          "index": 2461
+          "index": 2322
         },
         "end": {
-          "line": 95,
-          "column": 17,
-          "index": 2474
+          "line": 89,
+          "column": 29,
+          "index": 2347
         }
       },
+      "appearsIn": []
+    },
+    "backend": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Type of the used backend (*default*, *openhab* or *openhab2*)",
+          "     * @type {String}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -384,23 +444,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "backendLoginUrl": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 100,
+          "line": 95,
           "column": 4,
-          "index": 2552
+          "index": 2461
         },
         "end": {
-          "line": 100,
-          "column": 25,
-          "index": 2573
+          "line": 95,
+          "column": 17,
+          "index": 2474
         }
       },
+      "appearsIn": []
+    },
+    "backendLoginUrl": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initial URL to the backend",
+          "     * @type {String}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -414,23 +480,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "configSuffix": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 104,
+          "line": 100,
           "column": 4,
-          "index": 2617
+          "index": 2552
         },
         "end": {
-          "line": 104,
-          "column": 22,
-          "index": 2635
+          "line": 100,
+          "column": 25,
+          "index": 2573
         }
       },
+      "appearsIn": []
+    },
+    "configSuffix": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {String}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -444,23 +515,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "clientDesign": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 109,
+          "line": 104,
           "column": 4,
-          "index": 2712
+          "index": 2617
         },
         "end": {
-          "line": 109,
-          "column": 20,
-          "index": 2728
+          "line": 104,
+          "column": 22,
+          "index": 2635
         }
       },
+      "appearsIn": []
+    },
+    "clientDesign": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The design currently used",
+          "     * @type {String}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -474,23 +551,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "clientID": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 114,
+          "line": 109,
           "column": 4,
-          "index": 2826
+          "index": 2712
         },
         "end": {
-          "line": 114,
-          "column": 18,
-          "index": 2840
+          "line": 109,
+          "column": 20,
+          "index": 2728
         }
       },
+      "appearsIn": []
+    },
+    "clientID": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The (optional) ID of this client instance",
+          "     * @type {String|null}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -504,23 +587,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "use_maturity": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 119,
+          "line": 114,
           "column": 4,
-          "index": 2903
+          "index": 2826
         },
         "end": {
-          "line": 119,
-          "column": 23,
-          "index": 2922
+          "line": 114,
+          "column": 18,
+          "index": 2840
         }
       },
+      "appearsIn": []
+    },
+    "use_maturity": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Maturity level",
+          "     * @type {var}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -534,10 +623,36 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 2903
+        },
+        "end": {
+          "line": 119,
+          "column": 23,
+          "index": 2922
+        }
+      },
+      "appearsIn": []
     },
     "pluginsToLoad": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Default plugins to load, that are not controlled by the config (e.g. some backends can load own plugins)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default plugins to load, that are not controlled by the config (e.g. some backends can load own plugins)</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 124,
@@ -550,31 +665,16 @@
           "index": 3074
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Default plugins to load, that are not controlled by the config (e.g. some backends can load own plugins)</p>"
-          }
-        ]
-      },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "loadManager": {
-      "location": {
-        "start": {
-          "line": 130,
-          "column": 4,
-          "index": 3164
-        },
-        "end": {
-          "line": 130,
-          "column": 22,
-          "index": 3182
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load the manager directly, no config",
+          "     * @type {boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -588,23 +688,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "managerOptions": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 136,
+          "line": 130,
           "column": 4,
-          "index": 3269
+          "index": 3164
         },
         "end": {
-          "line": 136,
+          "line": 130,
           "column": 22,
-          "index": 3287
+          "index": 3182
         }
       },
+      "appearsIn": []
+    },
+    "managerOptions": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Optional settings for manager loading",
+          "     * @type {Map}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -618,10 +724,36 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 136,
+          "column": 4,
+          "index": 3269
+        },
+        "end": {
+          "line": 136,
+          "column": 22,
+          "index": 3287
+        }
+      },
+      "appearsIn": []
     },
     "server": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Optional settings for backend defined by server",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Optional settings for backend defined by server</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 141,
@@ -634,18 +766,24 @@
           "index": 3375
         }
       },
+      "appearsIn": []
+    },
+    "configSettings": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * All configuration and settings from the current configuration",
+          "     * (Note: all settings that need to be cached must be put in here)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Optional settings for backend defined by server</p>"
+            "body": "<p>All configuration and settings from the current configuration\n (Note: all settings that need to be cached must be put in here)</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "configSettings": {
+      "access": "public",
       "location": {
         "start": {
           "line": 147,
@@ -658,18 +796,23 @@
           "index": 4141
         }
       },
+      "appearsIn": []
+    },
+    "rememberLastPage": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Store last visited page in LocalStorage",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>All configuration and settings from the current configuration\n (Note: all settings that need to be cached must be put in here)</p>"
+            "body": "<p>Store last visited page in LocalStorage</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "rememberLastPage": {
+      "access": "public",
       "location": {
         "start": {
           "line": 176,
@@ -682,31 +825,17 @@
           "index": 4234
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Store last visited page in LocalStorage</p>"
-          }
-        ]
-      },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "lazyLoading": {
-      "location": {
-        "start": {
-          "line": 183,
-          "column": 4,
-          "index": 4399
-        },
-        "end": {
-          "line": 183,
-          "column": 22,
-          "index": 4417
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * If enabled the widget instances are created on demand. Note: this must only be used when",
+          "     * cache is valid!",
+          "     * @type {Boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -720,10 +849,36 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 183,
+          "column": 4,
+          "index": 4399
+        },
+        "end": {
+          "line": 183,
+          "column": 22,
+          "index": 4417
+        }
+      },
+      "appearsIn": []
     },
     "designStructureMap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Defines which structure is supported by which designs",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Defines which structure is supported by which designs</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 188,
@@ -736,18 +891,23 @@
           "index": 4789
         }
       },
+      "appearsIn": []
+    },
+    "loadedStructure": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Currently loaded structure",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Defines which structure is supported by which designs</p>"
+            "body": "<p>Currently loaded structure</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "loadedStructure": {
+      "access": "public",
       "location": {
         "start": {
           "line": 207,
@@ -760,18 +920,23 @@
           "index": 4865
         }
       },
+      "appearsIn": []
+    },
+    "sentryEnabled": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wether the error reporting with sentry is enabled or not",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Currently loaded structure</p>"
+            "body": "<p>Wether the error reporting with sentry is enabled or not</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "sentryEnabled": {
+      "access": "public",
       "location": {
         "start": {
           "line": 212,
@@ -784,18 +949,23 @@
           "index": 4972
         }
       },
+      "appearsIn": []
+    },
+    "reporting": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * If enabled the user interaction gets logged",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Wether the error reporting with sentry is enabled or not</p>"
+            "body": "<p>If enabled the user interaction gets logged</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "reporting": {
+      "access": "public",
       "location": {
         "start": {
           "line": 217,
@@ -808,18 +978,23 @@
           "index": 5062
         }
       },
+      "appearsIn": []
+    },
+    "enableLogging": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set console logging",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>If enabled the user interaction gets logged</p>"
+            "body": "<p>Set console logging</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "enableLogging": {
+      "access": "public",
       "location": {
         "start": {
           "line": 222,
@@ -832,18 +1007,23 @@
           "index": 5131
         }
       },
+      "appearsIn": []
+    },
+    "configServer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The server that responded to the config request",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Set console logging</p>"
+            "body": "<p>The server that responded to the config request</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "configServer": {
+      "access": "public",
       "location": {
         "start": {
           "line": 227,
@@ -856,18 +1036,23 @@
           "index": 5227
         }
       },
+      "appearsIn": []
+    },
+    "useServiceWorker": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * If the CometVisu can use service workers",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>The server that responded to the config request</p>"
+            "body": "<p>If the CometVisu can use service workers</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "useServiceWorker": {
+      "access": "public",
       "location": {
         "start": {
           "line": 232,
@@ -880,18 +1065,11 @@
           "index": 5321
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>If the CometVisu can use service workers</p>"
-          }
-        ]
-      },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "enableServiceWorkerCache": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 234,
@@ -904,10 +1082,11 @@
           "index": 5358
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "defaultManifest": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 236,
@@ -920,23 +1099,17 @@
           "index": 7059
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "getStructure": {
-      "location": {
-        "start": {
-          "line": 302,
-          "column": 4,
-          "index": 7234
-        },
-        "end": {
-          "line": 315,
-          "column": 5,
-          "index": 7674
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the structure that is related to this design",
+          "     * @param design {String?} name of the design",
+          "     * @return {String} name of the structure",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -957,15 +1130,54 @@
           {
             "name": "@return",
             "body": "{String} name of the structure",
-            "type": "String",
-            "description": " name of the structure"
+            "type": "string",
+            "description": "name of the structure"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 7234
+        },
+        "end": {
+          "line": 315,
+          "column": 5,
+          "index": 7674
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "design",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     },
     "guessIfProxied": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method tries to guess if the CometVisu is running on a proxied webserver.",
+          "     * (by comparing if the visu_config.xml-File has been delivered from another server than the",
+          "     * loging response). As this is just an assumption, you should not treat this result as reliable.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method tries to guess if the CometVisu is running on a proxied webserver.\n (by comparing if the visu_config.xml-File has been delivered from another server than the\n loging response). As this is just an assumption, you should not treat this result as reliable.</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 322,
@@ -978,18 +1190,13 @@
           "index": 8242
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>This method tries to guess if the CometVisu is running on a proxied webserver.\n (by comparing if the visu_config.xml-File has been delivered from another server than the\n loging response). As this is just an assumption, you should not treat this result as reliable.</p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "addMapping": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 329,
@@ -1003,9 +1210,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "mapping"
+        }
+      ],
+      "appearsIn": []
     },
     "getMapping": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 333,
@@ -1019,9 +1236,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
     },
     "hasMapping": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 337,
@@ -1035,9 +1259,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
     },
     "clearMappings": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 341,
@@ -1051,9 +1282,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "addStyling": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 345,
@@ -1067,9 +1301,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "styling"
+        }
+      ],
+      "appearsIn": []
     },
     "getStyling": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 349,
@@ -1083,9 +1327,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
     },
     "hasStyling": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 353,
@@ -1099,9 +1350,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
     },
     "getDesign": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 357,
@@ -1115,22 +1373,10 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 362,
-        "column": 2,
-        "index": 8996
-      },
-      "end": {
-        "line": 504,
-        "column": 3,
-        "index": 13862
-      }
-    }
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

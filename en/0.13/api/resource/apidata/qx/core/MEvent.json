@@ -1,59 +1,55 @@
 {
-  "className": "qx.core.MEvent",
-  "packageName": "qx.core",
-  "name": "MEvent",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 737
-      },
-      "end": {
-        "line": 410,
-        "column": 3,
-        "index": 14986
-      }
+  "version": 0.3,
+  "lastModified": 1717235171754,
+  "lastModifiedIso": "2024-06-01T09:46:11.754Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/MEvent.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 712
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin offers basic event handling capabilities. It includes the\n commonly known methods for managing event listeners and firing events.</p>"
-        }
-      ],
-      "@use": [
-        {
-          "name": "@use",
-          "body": "qx.event.dispatch.Direct"
-        },
-        {
-          "name": "@use",
-          "body": "qx.event.handler.Object"
-        }
-      ]
+    "end": {
+      "line": 410,
+      "column": 3,
+      "index": 14577
     }
   },
-  "type": "mixin",
+  "className": "qx.core.MEvent",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin offers basic event handling capabilities. It includes the",
+      " * commonly known methods for managing event listeners and firing events.",
+      " *",
+      " * @use(qx.event.dispatch.Direct)",
+      " * @use(qx.event.handler.Object)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin offers basic event handling capabilities. It includes the\n commonly known methods for managing event listeners and firing events.</p>"
+      }
+    ],
+    "@use": [
+      {
+        "name": "@use",
+        "body": "qx.event.dispatch.Direct"
+      },
+      {
+        "name": "@use",
+        "body": "qx.event.handler.Object"
+      }
+    ]
+  },
   "members": {
     "__Registration": {
-      "location": {
-        "start": {
-          "line": 29,
-          "column": 4,
-          "index": 866
-        },
-        "end": {
-          "line": 29,
-          "column": 41,
-          "index": 903
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Class} Pointer to the regular event registration class "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -67,23 +63,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "addListener": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 47,
+          "line": 29,
           "column": 4,
-          "index": 1835
+          "index": 838
         },
         "end": {
-          "line": 59,
-          "column": 5,
-          "index": 2100
+          "line": 29,
+          "column": 41,
+          "index": 875
         }
       },
+      "appearsIn": []
+    },
+    "addListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add event listener to this object.",
+          "     *",
+          "     * @param type {String} name of the event type",
+          "     * @param listener {Function} event callback function",
+          "     * @param self {Object ? null} Reference to the 'this' variable inside",
+          "     *         the event listener. When not given, the corresponding dispatcher",
+          "     *         usually falls back to a default, which is the target",
+          "     *         by convention. Note this is not a strict requirement, i.e.",
+          "     *         custom dispatchers can follow a different strategy.",
+          "     * @param capture {Boolean ? false} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event. The default is",
+          "     *         to attach the event handler to the bubbling phase.",
+          "     * @return {String} An opaque id, which can be used to remove the event listener",
+          "     *         using the {@link #removeListenerById} method.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -96,14 +110,14 @@
             "body": "type {String} name of the event type",
             "paramName": "type",
             "description": " name of the event type",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "listener {Function} event callback function",
             "paramName": "listener",
             "description": " event callback function",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -128,28 +142,69 @@
           {
             "name": "@return",
             "body": "{String} An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method.",
-            "type": "String",
-            "description": " An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
+            "type": "string",
+            "description": "An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addListenerOnce": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 74,
+          "line": 47,
           "column": 4,
-          "index": 2854
+          "index": 1789
         },
         "end": {
-          "line": 93,
+          "line": 59,
           "column": 5,
-          "index": 3629
+          "index": 2042
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "listener",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "capture",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "addListenerOnce": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add event listener to this object, which is only called once. After the",
+          "     * listener is called the event listener gets removed.",
+          "     *",
+          "     * @param type {String} name of the event type",
+          "     * @param listener {Function} event callback function",
+          "     * @param context {Object ? window} reference to the 'this' variable inside the callback",
+          "     * @param capture {Boolean ? false} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event. The default is",
+          "     *         to attach the event handler to the bubbling phase.",
+          "     * @return {String} An opaque id, which can be used to remove the event listener",
+          "     *         using the {@link #removeListenerById} method.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -162,14 +217,14 @@
             "body": "type {String} name of the event type",
             "paramName": "type",
             "description": " name of the event type",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "listener {Function} event callback function",
             "paramName": "listener",
             "description": " event callback function",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -194,28 +249,66 @@
           {
             "name": "@return",
             "body": "{String} An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method.",
-            "type": "String",
-            "description": " An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
+            "type": "string",
+            "description": "An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeListener": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 105,
+          "line": 74,
           "column": 4,
-          "index": 4117
+          "index": 2781
         },
         "end": {
-          "line": 125,
+          "line": 93,
           "column": 5,
-          "index": 4755
+          "index": 3537
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "listener",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "window"
+        },
+        {
+          "name": "capture",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "removeListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove event listener from this object",
+          "     *",
+          "     * @param type {String} name of the event type",
+          "     * @param listener {Function} event callback function",
+          "     * @param self {Object ? null} reference to the 'this' variable inside the callback",
+          "     * @param capture {Boolean} Whether to remove the event listener of",
+          "     *   the bubbling or of the capturing phase.",
+          "     * @return {Boolean} Whether the event was removed successfully (has existed)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -228,14 +321,14 @@
             "body": "type {String} name of the event type",
             "paramName": "type",
             "description": " name of the event type",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "listener {Function} event callback function",
             "paramName": "listener",
             "description": " event callback function",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -251,35 +344,68 @@
             "body": "capture {Boolean} Whether to remove the event listener of\n   the bubbling or of the capturing phase.",
             "paramName": "capture",
             "description": " Whether to remove the event listener of\n   the bubbling or of the capturing phase.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether the event was removed successfully (has existed)",
-            "type": "Boolean",
-            "description": " Whether the event was removed successfully (has existed)"
+            "type": "boolean",
+            "description": "Whether the event was removed successfully (has existed)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeListenerById": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 134,
+          "line": 105,
           "column": 4,
-          "index": 5045
+          "index": 4013
         },
         "end": {
-          "line": 140,
+          "line": 125,
           "column": 5,
-          "index": 5205
+          "index": 4631
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "listener",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "capture",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeListenerById": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes an event listener from an event target by an id returned by",
+          "     * {@link #addListener}",
+          "     *",
+          "     * @param id {String} The id returned by {@link #addListener}",
+          "     * @return {Boolean} Whether the event was removed successfully (has existed)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -292,35 +418,55 @@
             "body": "id {String} The id returned by {@link #addListener}",
             "paramName": "id",
             "description": " The id returned by {@link #addListener}",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether the event was removed successfully (has existed)",
-            "type": "Boolean",
-            "description": " Whether the event was removed successfully (has existed)"
+            "type": "boolean",
+            "description": "Whether the event was removed successfully (has existed)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasListener": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 150,
+          "line": 134,
           "column": 4,
-          "index": 5570
+          "index": 4912
         },
         "end": {
-          "line": 152,
+          "line": 140,
           "column": 5,
-          "index": 5673
+          "index": 5066
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "hasListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if there are one or more listeners for an event type.",
+          "     *",
+          "     * @param type {String} name of the event type",
+          "     * @param capture {Boolean ? false} Whether to check for listeners of",
+          "     *         the bubbling or of the capturing phase.",
+          "     * @return {Boolean} Whether the object has a listener of the given type.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -333,7 +479,7 @@
             "body": "type {String} name of the event type",
             "paramName": "type",
             "description": " name of the event type",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -349,28 +495,53 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the object has a listener of the given type.",
-            "type": "Boolean",
-            "description": " Whether the object has a listener of the given type."
+            "type": "boolean",
+            "description": "Whether the object has a listener of the given type."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "dispatchEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 161,
+          "line": 150,
           "column": 4,
-          "index": 5942
+          "index": 5421
         },
         "end": {
-          "line": 167,
+          "line": 152,
           "column": 5,
-          "index": 6093
+          "index": 5522
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "capture",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "dispatchEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatch an event on this object",
+          "     *",
+          "     * @param evt {qx.event.type.Event} event to dispatch",
+          "     * @return {Boolean} Whether the event default was prevented or not.",
+          "     *     Returns true, when the event was NOT prevented.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -390,28 +561,41 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
-            "type": "Boolean",
-            "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+            "type": "boolean",
+            "description": "Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__pendingEvents": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 170,
+          "line": 161,
           "column": 4,
-          "index": 6192
+          "index": 5782
         },
         "end": {
-          "line": 170,
-          "column": 25,
-          "index": 6213
+          "line": 167,
+          "column": 5,
+          "index": 5927
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__pendingEvents": {
       "jsdoc": {
+        "raw": [
+          "* @type{Object<String,qx.Promise>} list of pending events, indexed by hash code "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -425,23 +609,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__promiseWaitForPendingEvents": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 173,
+          "line": 170,
           "column": 4,
-          "index": 6328
+          "index": 6023
         },
         "end": {
-          "line": 173,
-          "column": 39,
-          "index": 6363
+          "line": 170,
+          "column": 25,
+          "index": 6044
         }
       },
+      "appearsIn": []
+    },
+    "__promiseWaitForPendingEvents": {
       "jsdoc": {
+        "raw": [
+          "* @type{qx.Promise} promise that callers are waiting on, ready for when all events are finished "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -455,23 +642,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__trackPendingEvent": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 181,
+          "line": 173,
           "column": 4,
-          "index": 6592
+          "index": 6156
         },
         "end": {
-          "line": 219,
-          "column": 5,
-          "index": 7991
+          "line": 173,
+          "column": 39,
+          "index": 6191
         }
       },
+      "appearsIn": []
+    },
+    "__trackPendingEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper method to track promises returned from event handlers",
+          "     *",
+          "     * @param {var} result the result from the event handler",
+          "     * @returns {qx.Promise|var} the value to return",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -492,27 +687,42 @@
             "name": "@return",
             "body": "{qx.Promise|var} the value to return",
             "type": "qx.Promise|var",
-            "description": " the value to return"
+            "description": "the value to return"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "waitForPendingEvents": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 224,
+          "line": 181,
           "column": 4,
-          "index": 8070
+          "index": 6412
         },
         "end": {
-          "line": 235,
+          "line": 219,
           "column": 5,
-          "index": 8448
+          "index": 7773
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "result",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise|var"
+      },
+      "appearsIn": []
+    },
+    "waitForPendingEvents": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Waits for all pending events to be resolved",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -520,24 +730,37 @@
           }
         ]
       },
-      "type": "function",
-      "async": true,
-      "access": "public"
-    },
-    "fireEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 247,
+          "line": 224,
           "column": 4,
-          "index": 8904
+          "index": 7847
         },
         "end": {
-          "line": 255,
+          "line": 235,
           "column": 5,
-          "index": 9123
+          "index": 8214
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "fireEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and dispatches an event on this object.",
+          "     *",
+          "     * @param type {String} Event type to fire",
+          "     * @param clazz {Class?qx.event.type.Event} The event class",
+          "     * @param args {Array?null} Arguments, which will be passed to",
+          "     *       the event's init method.",
+          "     * @return {Boolean|qx.Promise} whether the event default was prevented or not.",
+          "     *     Returns true, when the event was NOT prevented.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -550,7 +773,7 @@
             "body": "type {String} Event type to fire",
             "paramName": "type",
             "description": " Event type to fire",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -576,27 +799,62 @@
             "name": "@return",
             "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean|qx.Promise",
-            "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+            "description": "whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fireEventAsync": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 268,
+          "line": 247,
           "column": 4,
-          "index": 9645
+          "index": 8658
         },
         "end": {
-          "line": 283,
+          "line": 255,
           "column": 5,
-          "index": 10095
+          "index": 8869
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "clazz",
+          "type": "Class",
+          "optional": true,
+          "defaultValue": "qx.event.type.Event"
+        },
+        {
+          "name": "args",
+          "type": "Array",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "Boolean|qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "fireEventAsync": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and dispatches an event on this object; equivalent to fireEvent, except that it",
+          "     * always returns a promise",
+          "     *",
+          "     * @param type {String} Event type to fire",
+          "     * @param clazz {Class?qx.event.type.Event} The event class",
+          "     * @param args {Array?null} Arguments, which will be passed to",
+          "     *       the event's init method.",
+          "     * @return {qx.Promise} a promise aggregated from the event handlers;",
+          "     *  if the default was prevented, the promise is rejected",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -609,7 +867,7 @@
             "body": "type {String} Event type to fire",
             "paramName": "type",
             "description": " Event type to fire",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -635,27 +893,63 @@
             "name": "@return",
             "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
             "type": "qx.Promise",
-            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+            "description": "a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fireNonBubblingEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 297,
+          "line": 268,
           "column": 4,
-          "index": 10676
+          "index": 9378
         },
         "end": {
-          "line": 305,
+          "line": 283,
           "column": 5,
-          "index": 10917
+          "index": 9813
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "clazz",
+          "type": "Class",
+          "optional": true,
+          "defaultValue": "qx.event.type.Event"
+        },
+        {
+          "name": "args",
+          "type": "Array",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "fireNonBubblingEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an event object and dispatch it on this object.",
+          "     * The event dispatched with this method does never bubble! Use only if you",
+          "     * are sure that bubbling is not required.",
+          "     *",
+          "     * @param type {String} Event type to fire",
+          "     * @param clazz {Class?qx.event.type.Event} The event class",
+          "     * @param args {Array?null} Arguments, which will be passed to",
+          "     *       the event's init method.",
+          "     * @return {Boolean} Whether the event default was prevented or not.",
+          "     *     Returns true, when the event was NOT prevented.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -668,7 +962,7 @@
             "body": "type {String} Event type to fire",
             "paramName": "type",
             "description": " Event type to fire",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -693,28 +987,66 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
-            "type": "Boolean",
-            "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+            "type": "boolean",
+            "description": "Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fireNonBubblingEventAsync": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 321,
+          "line": 297,
           "column": 4,
-          "index": 11595
+          "index": 10380
         },
         "end": {
-          "line": 336,
+          "line": 305,
           "column": 5,
-          "index": 12078
+          "index": 10613
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "clazz",
+          "type": "Class",
+          "optional": true,
+          "defaultValue": "qx.event.type.Event"
+        },
+        {
+          "name": "args",
+          "type": "Array",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "fireNonBubblingEventAsync": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create an event object and dispatch it on this object; equivalent to fireNonBubblingEvent,",
+          "     * except that it always returns a promise.",
+          "     *",
+          "     * The event dispatched with this method does never bubble! Use only if you",
+          "     * are sure that bubbling is not required.",
+          "     *",
+          "     * @param type {String} Event type to fire",
+          "     * @param clazz {Class?qx.event.type.Event} The event class",
+          "     * @param args {Array?null} Arguments, which will be passed to",
+          "     *       the event's init method.",
+          "     * @return {qx.Promise} a promise aggregated from the event handlers;",
+          "     *  if the default was prevented, the promise is rejected",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -727,7 +1059,7 @@
             "body": "type {String} Event type to fire",
             "paramName": "type",
             "description": " Event type to fire",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -753,27 +1085,66 @@
             "name": "@return",
             "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
             "type": "qx.Promise",
-            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+            "description": "a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fireDataEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 353,
+          "line": 321,
           "column": 4,
-          "index": 12973
+          "index": 11275
         },
         "end": {
-          "line": 368,
+          "line": 336,
           "column": 5,
-          "index": 13376
+          "index": 11743
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "clazz",
+          "type": "Class",
+          "optional": true,
+          "defaultValue": "qx.event.type.Event"
+        },
+        {
+          "name": "args",
+          "type": "Array",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "fireDataEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and dispatches an non-bubbling data event on this object.",
+          "     *",
+          "     * @param type {String} Event type to fire",
+          "     * @param data {var} User defined data attached to the event object",
+          "     * @param oldData {var?null} The event's old data (optional)",
+          "     * @param cancelable {Boolean?false} Whether or not an event can have its default",
+          "     *     action prevented. The default action can either be the browser's",
+          "     *     default action of a native event (e.g. open the context menu on a",
+          "     *     right click) or the default action of a qooxdoo class (e.g. close",
+          "     *     the window widget). The default action can be prevented by calling",
+          "     *     {@link qx.event.type.Event#preventDefault}",
+          "     * @return {Boolean|qx.Promise} whether the event default was prevented or not.",
+          "     *     Returns true, when the event was NOT prevented.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -786,7 +1157,7 @@
             "body": "type {String} Event type to fire",
             "paramName": "type",
             "description": " Event type to fire",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -819,27 +1190,71 @@
             "name": "@return",
             "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean|qx.Promise",
-            "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+            "description": "whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fireDataEventAsync": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 386,
+          "line": 353,
           "column": 4,
-          "index": 14338
+          "index": 12621
         },
         "end": {
-          "line": 408,
+          "line": 368,
           "column": 5,
-          "index": 14976
+          "index": 13009
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "var"
+        },
+        {
+          "name": "oldData",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "cancelable",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "Boolean|qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "fireDataEventAsync": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and dispatches an non-bubbling data event on this object; equivalent to",
+          "     * fireEvent, except that it always returns a promise.",
+          "     *",
+          "     * @param type {String} Event type to fire",
+          "     * @param data {var} User defined data attached to the event object",
+          "     * @param oldData {var?null} The event's old data (optional)",
+          "     * @param cancelable {Boolean?false} Whether or not an event can have its default",
+          "     *     action prevented. The default action can either be the browser's",
+          "     *     default action of a native event (e.g. open the context menu on a",
+          "     *     right click) or the default action of a qooxdoo class (e.g. close",
+          "     *     the window widget). The default action can be prevented by calling",
+          "     *     {@link qx.event.type.Event#preventDefault}",
+          "     * @return {qx.Promise} a promise aggregated from the event handlers;",
+          "     *  if the default was prevented, the promise is rejected",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -852,7 +1267,7 @@
             "body": "type {String} Event type to fire",
             "paramName": "type",
             "description": " Event type to fire",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -885,13 +1300,52 @@
             "name": "@return",
             "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
             "type": "qx.Promise",
-            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
+            "description": "a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 4,
+          "index": 13953
+        },
+        "end": {
+          "line": 408,
+          "column": 5,
+          "index": 14569
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "var"
+        },
+        {
+          "name": "oldData",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "cancelable",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Promise"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

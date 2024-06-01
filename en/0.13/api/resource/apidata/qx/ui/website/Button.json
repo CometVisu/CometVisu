@@ -1,55 +1,84 @@
 {
-  "className": "qx.ui.website.Button",
-  "packageName": "qx.ui.website",
-  "name": "Button",
-  "superClass": "qx.ui.website.Widget",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 49,
-        "column": 0,
-        "index": 1256
-      },
-      "end": {
-        "line": 169,
-        "column": 3,
-        "index": 4132
-      }
+  "version": 0.3,
+  "lastModified": 1717235169474,
+  "lastModifiedIso": "2024-06-01T09:46:09.474Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/website/Button.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 49,
+      "column": 0,
+      "index": 1208
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This is a simple button widget which takes care of setting the label\n and icon of a button.\n </p>\n<h2>Markup</h2>\n<p>The Button can contain a <code>span</code> element for the label and/or\n an <code>img</code> element for the icon.\n </p>\n<h2>CSS Classes</h2>\n<table>\n   <thead>\n     <tr>\n       <td>Class Name</td>\n       <td>Applied to</td>\n       <td>Description</td>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td><code>qx-button</code></td>\n       <td>Container element</td>\n       <td>Identifies the Button widget</td>\n     </tr>\n   </tbody>\n </table>\n<h2 class=\"widget-markup\">Generated DOM Structure</h2>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Widget"
-        }
-      ]
+    "end": {
+      "line": 169,
+      "column": 3,
+      "index": 3964
     }
   },
-  "type": "class",
+  "className": "qx.ui.website.Button",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is a simple button widget which takes care of setting the label",
+      " * and icon of a button.",
+      " *",
+      " * <h2>Markup</h2>",
+      " * The Button can contain a <code>span</code> element for the label and/or",
+      " * an <code>img</code> element for the icon.",
+      " *",
+      " * <h2>CSS Classes</h2>",
+      " * <table>",
+      " *   <thead>",
+      " *     <tr>",
+      " *       <td>Class Name</td>",
+      " *       <td>Applied to</td>",
+      " *       <td>Description</td>",
+      " *     </tr>",
+      " *   </thead>",
+      " *   <tbody>",
+      " *     <tr>",
+      " *       <td><code>qx-button</code></td>",
+      " *       <td>Container element</td>",
+      " *       <td>Identifies the Button widget</td>",
+      " *     </tr>",
+      " *   </tbody>",
+      " * </table>",
+      " *",
+      " * <h2 class=\"widget-markup\">Generated DOM Structure</h2>",
+      " *",
+      " * @group (Widget)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is a simple button widget which takes care of setting the label\n and icon of a button.\n </p>\n<h2>Markup</h2>\n<p>The Button can contain a <code>span</code> element for the label and/or\n an <code>img</code> element for the icon.\n </p>\n<h2>CSS Classes</h2>\n<table>\n   <thead>\n     <tr>\n       <td>Class Name</td>\n       <td>Applied to</td>\n       <td>Description</td>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td><code>qx-button</code></td>\n       <td>Container element</td>\n       <td>Identifies the Button widget</td>\n     </tr>\n   </tbody>\n </table>\n<h2 class=\"widget-markup\">Generated DOM Structure</h2>"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Widget"
+      }
+    ]
+  },
+  "superClass": "qx.ui.website.Widget",
   "statics": {
     "button": {
-      "location": {
-        "start": {
-          "line": 63,
-          "column": 4,
-          "index": 1713
-        },
-        "end": {
-          "line": 74,
-          "column": 5,
-          "index": 1981
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method for the button widget which converts a standard",
+          "     * collection into a collection of buttons.",
+          "     *",
+          "     * @param label {String?} The label of the button.",
+          "     * @param icon {String?} The url for the button icon.",
+          "     * @return {qx.ui.website.Button} A collection of buttons.",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -79,7 +108,7 @@
             "name": "@return",
             "body": "{qx.ui.website.Button} A collection of buttons.",
             "type": "qx.ui.website.Button",
-            "description": " A collection of buttons."
+            "description": "A collection of buttons."
           }
         ],
         "@attach": [
@@ -89,60 +118,98 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1651
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 1908
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "label",
+          "type": "String",
+          "optional": true
+        },
+        {
+          "name": "icon",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.website.Button"
+      },
+      "appearsIn": []
     }
   },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "selector"
+      },
+      {
+        "name": "context"
+      }
+    ],
     "location": {
       "start": {
         "line": 77,
         "column": 2,
-        "index": 1993
+        "index": 1917
       },
       "end": {
         "line": 79,
         "column": 3,
-        "index": 2059
+        "index": 1981
       }
     }
   },
   "members": {
     "init": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 83,
           "column": 4,
-          "index": 2101
+          "index": 2019
         },
         "end": {
           "line": 97,
           "column": 5,
-          "index": 2430
+          "index": 2334
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.ui.website.Widget",
       "appearsIn": [
         "qx.ui.website.Widget"
       ]
     },
     "setLabel": {
-      "location": {
-        "start": {
-          "line": 105,
-          "column": 4,
-          "index": 2595
-        },
-        "end": {
-          "line": 108,
-          "column": 5,
-          "index": 2687
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the button's label text",
+          "     *",
+          "     * @param value {String} label text",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -155,7 +222,7 @@
             "body": "value {String} label text",
             "paramName": "value",
             "description": " label text",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -163,27 +230,44 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLabel": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 115,
+          "line": 105,
           "column": 4,
-          "index": 2798
+          "index": 2491
         },
         "end": {
-          "line": 117,
+          "line": 108,
           "column": 5,
-          "index": 2867
+          "index": 2580
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "getLabel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the button's label text",
+          "     *",
+          "     * @return {String} label text",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -194,28 +278,41 @@
           {
             "name": "@return",
             "body": "{String} label text",
-            "type": "String",
-            "description": " label text"
+            "type": "string",
+            "description": "label text"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setIcon": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 125,
+          "line": 115,
           "column": 4,
-          "index": 3051
+          "index": 2684
         },
         "end": {
-          "line": 131,
+          "line": 117,
           "column": 5,
-          "index": 3230
+          "index": 2751
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setIcon": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the source of the button's icon",
+          "     *",
+          "     * @param src {String} source URI for the icon",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -228,7 +325,7 @@
             "body": "src {String} source URI for the icon",
             "paramName": "src",
             "description": " source URI for the icon",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -236,27 +333,44 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getIcon": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 138,
+          "line": 125,
           "column": 4,
-          "index": 3355
+          "index": 2927
         },
         "end": {
-          "line": 140,
+          "line": 131,
           "column": 5,
-          "index": 3432
+          "index": 3100
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "src",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "getIcon": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the URI of the button's icon",
+          "     *",
+          "     * @return {String|null} Icon image URI",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -268,27 +382,40 @@
             "name": "@return",
             "body": "{String|null} Icon image URI",
             "type": "String|null",
-            "description": " Icon image URI"
+            "description": "Icon image URI"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setMenu": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 148,
+          "line": 138,
           "column": 4,
-          "index": 3655
+          "index": 3218
         },
         "end": {
-          "line": 163,
+          "line": 140,
           "column": 5,
-          "index": 4046
+          "index": 3293
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "setMenu": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the menu to be shown when the button is clicked or tapped",
+          "     *",
+          "     * @param menu {qxWeb} menu element wrapped in a collection",
+          "     * @return {qxWeb} The collection for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -309,27 +436,35 @@
             "name": "@return",
             "body": "{qxWeb} The collection for chaining",
             "type": "qxWeb",
-            "description": " The collection for chaining"
+            "description": "The collection for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 166,
-        "column": 2,
-        "index": 4058
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 3508
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 3884
+        }
       },
-      "end": {
-        "line": 168,
-        "column": 3,
-        "index": 4127
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "menu",
+          "type": "qxWeb"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

@@ -1,49 +1,50 @@
 {
-  "className": "cv.util.Function",
-  "packageName": "cv.util",
-  "name": "Function",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 886
-      },
-      "end": {
-        "line": 79,
-        "column": 3,
-        "index": 2762
-      }
+  "version": 0.3,
+  "lastModified": 1717235105618,
+  "lastModifiedIso": "2024-06-01T09:45:05.618Z",
+  "classFilename": "../../source/class/cv/util/Function.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 886
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Utility module to give some support to work with functions.</p>"
-        }
-      ]
+    "end": {
+      "line": 79,
+      "column": 3,
+      "index": 2762
     }
   },
-  "type": "class",
+  "className": "cv.util.Function",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Utility module to give some support to work with functions.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Utility module to give some support to work with functions.</p>"
+      }
+    ]
+  },
   "statics": {
     "throttle": {
-      "location": {
-        "start": {
-          "line": 35,
-          "column": 4,
-          "index": 1617
-        },
-        "end": {
-          "line": 77,
-          "column": 5,
-          "index": 2754
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Like qx.util.Function.throttle with additional support to abort the throttling.",
+          "     * @param callback {function} the callback which should be executed in the given interval",
+          "     * @param interval {number} Interval in milliseconds",
+          "     * @param options {object} the keys are <code>leading</code> and <code>trailing</code> to control the",
+          "     * executing of the callback precisely. Default values are <code>true</code> for both options.",
+          "     * @param context",
+          "     * @return {object} with 2 keys <code>call</code> a wrapper function which <em>shields</em> the given callback function",
+          "     * <code>abort</code> abort throttling and skip the trailing value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,7 +57,7 @@
             "body": "callback {function} the callback which should be executed in the given interval",
             "paramName": "callback",
             "description": " the callback which should be executed in the given interval",
-            "type": "function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -70,7 +71,7 @@
             "body": "options {object} the keys are <code>leading</code> and <code>trailing</code> to control the\n executing of the callback precisely. Default values are <code>true</code> for both options.",
             "paramName": "options",
             "description": " the keys are <code>leading</code> and <code>trailing</code> to control the\n executing of the callback precisely. Default values are <code>true</code> for both options.",
-            "type": "object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -83,14 +84,48 @@
           {
             "name": "@return",
             "body": "{object} with 2 keys <code>call</code> a wrapper function which <em>shields</em> the given callback function\n <code>abort</code> abort throttling and skip the trailing value",
-            "type": "object",
-            "description": " with 2 keys <code>call</code> a wrapper function which <em>shields</em> the given callback function\n <code>abort</code> abort throttling and skip the trailing value"
+            "type": "Record<any, any>",
+            "description": "with 2 keys <code>call</code> a wrapper function which <em>shields</em> the given callback function\n <code>abort</code> abort throttling and skip the trailing value"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1617
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2754
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "interval",
+          "type": "number"
+        },
+        {
+          "name": "options",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "context"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

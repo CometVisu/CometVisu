@@ -1,49 +1,48 @@
 {
-  "className": "qx.ui.core.scroll.MScrollBarFactory",
-  "packageName": "qx.ui.core.scroll",
-  "name": "MScrollBarFactory",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 679
-      },
-      "end": {
-        "line": 42,
-        "column": 3,
-        "index": 1317
-      }
+  "version": 0.3,
+  "lastModified": 1717235171830,
+  "lastModifiedIso": "2024-06-01T09:46:11.830Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/scroll/MScrollBarFactory.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 655
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Include this widget if you want to create scrollbars depending on the global\n \"qx.nativeScrollBars\" setting.</p>"
-        }
-      ]
+    "end": {
+      "line": 42,
+      "column": 3,
+      "index": 1276
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.core.scroll.MScrollBarFactory",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Include this widget if you want to create scrollbars depending on the global",
+      " * \"qx.nativeScrollBars\" setting.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Include this widget if you want to create scrollbars depending on the global\n \"qx.nativeScrollBars\" setting.</p>"
+      }
+    ]
+  },
   "members": {
     "_createScrollBar": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 1053
-        },
-        "end": {
-          "line": 40,
-          "column": 5,
-          "index": 1307
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a new scrollbar. This can either be a styled qooxdoo scrollbar",
+          "     * or a native browser scrollbar.",
+          "     *",
+          "     * @param orientation {String?\"horizontal\"} The initial scroll bar orientation",
+          "     * @return {qx.ui.core.scroll.IScrollBar} The scrollbar instance",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,13 +65,38 @@
             "name": "@return",
             "body": "{qx.ui.core.scroll.IScrollBar} The scrollbar instance",
             "type": "qx.ui.core.scroll.IScrollBar",
-            "description": " The scrollbar instance"
+            "description": "The scrollbar instance"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1020
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1268
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "orientation",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "\"horizontal\""
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.scroll.IScrollBar"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

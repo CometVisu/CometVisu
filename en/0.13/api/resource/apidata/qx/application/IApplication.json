@@ -1,49 +1,44 @@
 {
-  "className": "qx.application.IApplication",
-  "packageName": "qx.application",
-  "name": "IApplication",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 579
-      },
-      "end": {
-        "line": 53,
-        "column": 3,
-        "index": 1476
-      }
+  "version": 0.3,
+  "lastModified": 1717235171174,
+  "lastModifiedIso": "2024-06-01T09:46:11.174Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/application/IApplication.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 558
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This interface defines what an application class has to implement.</p>"
-        }
-      ]
+    "end": {
+      "line": 53,
+      "column": 3,
+      "index": 1424
     }
   },
-  "type": "interface",
+  "className": "qx.application.IApplication",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This interface defines what an application class has to implement.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This interface defines what an application class has to implement.</p>"
+      }
+    ]
+  },
   "members": {
     "main": {
-      "location": {
-        "start": {
-          "line": 28,
-          "column": 4,
-          "index": 752
-        },
-        "end": {
-          "line": 28,
-          "column": 13,
-          "index": 761
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when the application relevant classes are loaded and ready.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +46,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "finalize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 35,
+          "line": 28,
           "column": 4,
-          "index": 926
+          "index": 725
         },
         "end": {
-          "line": 35,
-          "column": 17,
-          "index": 939
+          "line": 28,
+          "column": 13,
+          "index": 734
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "finalize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when the application's main method was executed to handle",
+          "     * \"final\" tasks like rendering or retrieving data.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -75,23 +79,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "close": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 45,
+          "line": 35,
           "column": 4,
-          "index": 1305
+          "index": 892
         },
         "end": {
-          "line": 45,
-          "column": 14,
-          "index": 1315
+          "line": 35,
+          "column": 17,
+          "index": 905
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "close": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called in the document.beforeunload event of the browser. If the method",
+          "     * returns a string value, the user will be asked by the browser, whether",
+          "     * he really wants to leave the page. The return string will be displayed in",
+          "     * the message box.",
+          "     *",
+          "     * @return {String?null} message text on unloading the page",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -103,27 +119,38 @@
             "name": "@return",
             "body": "{String?null} message text on unloading the page",
             "type": "String?null",
-            "description": " message text on unloading the page"
+            "description": "message text on unloading the page"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "terminate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 51,
+          "line": 45,
           "column": 4,
-          "index": 1452
+          "index": 1261
         },
         "end": {
-          "line": 51,
-          "column": 18,
-          "index": 1466
+          "line": 45,
+          "column": 14,
+          "index": 1271
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String?null"
+      },
+      "appearsIn": []
+    },
+    "terminate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method contains the last code which is run inside the page and may contain cleanup code.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -131,9 +158,24 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1402
+        },
+        "end": {
+          "line": 51,
+          "column": 18,
+          "index": 1416
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

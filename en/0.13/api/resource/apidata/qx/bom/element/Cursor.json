@@ -1,49 +1,41 @@
 {
-  "className": "qx.bom.element.Cursor",
-  "packageName": "qx.bom.element",
-  "name": "Cursor",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 580
-      },
-      "end": {
-        "line": 88,
-        "column": 3,
-        "index": 2685
-      }
+  "version": 0.3,
+  "lastModified": 1717235169826,
+  "lastModifiedIso": "2024-06-01T09:46:09.826Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/Cursor.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 559
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Contains methods to control and query the element's cursor property</p>"
-        }
-      ]
+    "end": {
+      "line": 88,
+      "column": 3,
+      "index": 2598
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.Cursor",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Contains methods to control and query the element's cursor property",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Contains methods to control and query the element's cursor property</p>"
+      }
+    ]
+  },
   "statics": {
     "__map": {
-      "location": {
-        "start": {
-          "line": 31,
-          "column": 4,
-          "index": 913
-        },
-        "end": {
-          "line": 31,
-          "column": 13,
-          "index": 922
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* Internal helper structure to map cursor values to supported ones "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +43,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "compile": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 39,
+          "line": 31,
           "column": 4,
-          "index": 1110
+          "index": 883
         },
         "end": {
-          "line": 41,
-          "column": 5,
-          "index": 1198
+          "line": 31,
+          "column": 13,
+          "index": 892
         }
       },
+      "appearsIn": []
+    },
+    "compile": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compiles the given cursor into a CSS compatible string.",
+          "     *",
+          "     * @param cursor {String} Valid CSS cursor name",
+          "     * @return {String} CSS string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -80,35 +80,56 @@
             "body": "cursor {String} Valid CSS cursor name",
             "paramName": "cursor",
             "description": " Valid CSS cursor name",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} CSS string",
-            "type": "String",
-            "description": " CSS string"
+            "type": "string",
+            "description": "CSS string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "get": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 39,
           "column": 4,
-          "index": 1661
+          "index": 1072
         },
         "end": {
-          "line": 54,
+          "line": 41,
           "column": 5,
-          "index": 1760
+          "index": 1158
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "cursor",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "get": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the computed cursor style for the given element.",
+          "     *",
+          "     * @param element {Element} The element to query",
+          "     * @param mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},",
+          "     *   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.",
+          "     *   The computed mode is the default one.",
+          "     * @return {String} Computed cursor value of the given element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -128,35 +149,57 @@
             "body": "mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\n   The computed mode is the default one.",
             "paramName": "mode",
             "description": " Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\n   The computed mode is the default one.",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} Computed cursor value of the given element.",
-            "type": "String",
-            "description": " Computed cursor value of the given element."
+            "type": "string",
+            "description": "Computed cursor value of the given element."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "set": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 52,
           "column": 4,
-          "index": 1960
+          "index": 1610
         },
         "end": {
-          "line": 64,
+          "line": 54,
           "column": 5,
-          "index": 2046
+          "index": 1707
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "mode",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "set": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies a new cursor style to the given element",
+          "     *",
+          "     * @param element {Element} The element to modify",
+          "     * @param value {String} New cursor value to set",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -176,27 +219,45 @@
             "body": "value {String} New cursor value to set",
             "paramName": "value",
             "description": " New cursor value to set",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "reset": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 71,
+          "line": 62,
           "column": 4,
-          "index": 2198
+          "index": 1899
         },
         "end": {
-          "line": 73,
+          "line": 64,
           "column": 5,
-          "index": 2255
+          "index": 1983
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "reset": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the local cursor style applied to the element",
+          "     *",
+          "     * @param element {Element} The element to modify",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -213,23 +274,29 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 76,
-        "column": 2,
-        "index": 2267
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2128
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2183
+        }
       },
-      "end": {
-        "line": 87,
-        "column": 3,
-        "index": 2680
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

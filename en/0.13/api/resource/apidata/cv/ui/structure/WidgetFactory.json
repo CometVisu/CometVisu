@@ -1,32 +1,50 @@
 {
-  "className": "cv.ui.structure.WidgetFactory",
-  "packageName": "cv.ui.structure",
-  "name": "WidgetFactory",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 20,
-        "column": 0,
-        "index": 820
-      },
-      "end": {
-        "line": 87,
-        "column": 3,
-        "index": 2760
-      }
-    },
-    "jsdoc": {}
-  },
+  "version": 0.3,
+  "lastModified": 1717235105610,
+  "lastModifiedIso": "2024-06-01T09:45:05.610Z",
+  "classFilename": "../../source/class/cv/ui/structure/WidgetFactory.js",
   "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 820
+    },
+    "end": {
+      "line": 87,
+      "column": 3,
+      "index": 2760
+    }
+  },
+  "className": "cv.ui.structure.WidgetFactory",
+  "jsdoc": {
+    "raw": [
+      " WidgetFactory.js",
+      " *",
+      " * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " "
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "c": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 29,
@@ -39,10 +57,23 @@
           "index": 1047
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "__typeMapping": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Map $$type to Classname",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Map $$type to Classname</p>"
+          }
+        ]
+      },
+      "access": "private",
       "location": {
         "start": {
           "line": 33,
@@ -55,18 +86,11 @@
           "index": 1117
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Map $$type to Classname</p>"
-          }
-        ]
-      },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "registry": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 34,
@@ -79,10 +103,11 @@
           "index": 1135
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "registerClass": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 36,
@@ -96,9 +121,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "clazz"
+        }
+      ],
+      "appearsIn": []
     },
     "createInstance": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 40,
@@ -112,9 +147,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
     },
     "getInstanceById": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 61,
@@ -128,9 +173,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "skipCreation"
+        }
+      ],
+      "appearsIn": []
     },
     "getInstanceByElement": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 72,
@@ -144,9 +199,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
     },
     "clear": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 83,
@@ -160,8 +222,10 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

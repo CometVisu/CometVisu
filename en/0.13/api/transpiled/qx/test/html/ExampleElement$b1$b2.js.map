@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "html",
+    "Element",
+    "construct",
+    "constructor",
+    "call",
+    "setAttribute",
+    "add",
+    "getQxObject",
+    "members",
+    "_createQxObjectImpl",
+    "id",
+    "_qx$core$MObjectId",
+    "object",
+    "core",
+    "MObjectId",
+    "handleObjects",
+    "apply",
+    "test",
+    "ExampleElement$b1$b2",
+    "concat",
+    "Array",
+    "prototype",
+    "slice",
+    "arguments",
+    "undefined",
+    "Jsx",
+    "createElement"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/html/ExampleElement$b1$b2.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qx.test.html.ExampleElement$b1$b2\", {\n  extend: qx.html.Element,\n  construct() {\n    super();\n    this.setAttribute(\"id\", \"elem-b2\");\n    this.add(this.getQxObject(\"b3\"));\n  },\n  members: {\n    _createQxObjectImpl(id) {\n      switch (id) {\n        case \"b3\": {\n          return <div id=\"elem-b3\">Group B end</div>;\n        }\n      }\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,mCAAmC,EAAE;IACnDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,OAAO;IACvBC,SAAS,WAAAA,UAAA,EAAG;MACVT,EAAA,CAAAO,IAAA,CAAAC,OAAA,CAAAE,WAAA,CAAAC,IAAA;MACA,IAAI,CAACC,YAAY,CAAC,IAAI,EAAE,SAAS,CAAC;MAClC,IAAI,CAACC,GAAG,CAAC,IAAI,CAACC,WAAW,CAAC,IAAI,CAAC,CAAC;IAClC,CAAC;IACDC,OAAO,EAAE;MACPC,mBAAmB,WAAAA,oBAACC,EAAE,EAAE;QAR5B;UAAA,IAAAC,kBAAA;UACY,IAAIC,MAAM,GAAG,CAAAD,kBAAA,GAAAlB,EAAE,CAACoB,IAAI,CAACC,SAAS,EAACC,aAAa,CAAAC,KAAA,CAAAL,kBAAA,GAAClB,EAAE,CAACwB,IAAI,CAACjB,IAAI,CAACkB,oBAAoB,EAAE,IAAI,EAAAC,MAAA,CAAAC,KAAA,CAAAC,SAAA,CAAAC,KAAA,CAAAlB,IAAA,CAAKmB,SAAS,GAAC;UACnG,IAAIX,MAAM,KAAKY,SAAS,EAAE;YACxB,OAAOZ,MAAM;UACf;QACF;QAIJ,QAAQF,EAAE;UACR,KAAK,IAAI;YAAE;cACT,OAAOjB,EAAA,CAAAO,IAAA,CAAAyB,GAAA,CAAAC,aAAA;gBAAKhB,EAAE,EAAC;cAAS,GAAC,aAAgB,CAAC;YAC5C;QACF;MACF;IACF;EACF,CAAC,CAAC;EAhBFjB,EAAE,CAACwB,IAAI,CAACjB,IAAI,CAACkB,oBAAoB,CAACtB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

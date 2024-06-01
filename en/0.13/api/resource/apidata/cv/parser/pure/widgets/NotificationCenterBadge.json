@@ -1,64 +1,66 @@
 {
-  "className": "cv.parser.pure.widgets.NotificationCenterBadge",
-  "packageName": "cv.parser.pure.widgets",
-  "name": "NotificationCenterBadge",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 985
-      },
-      "end": {
-        "line": 71,
-        "column": 3,
-        "index": 2158
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/parser/pure/widgets/NotificationCenterBadge.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 985
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Shows the current number of messages in {@link cv.ui.NotificationCenter} and opens it on click.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 0.11.0</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "0.11.0"
-        }
-      ]
+    "end": {
+      "line": 71,
+      "column": 3,
+      "index": 2158
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.parser.pure.widgets.NotificationCenterBadge",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Shows the current number of messages in {@link cv.ui.NotificationCenter} and opens it on click.",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.11.0",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Shows the current number of messages in {@link cv.ui.NotificationCenter} and opens it on click.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.11.0"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "parse": {
-      "location": {
-        "start": {
-          "line": 44,
-          "column": 4,
-          "index": 1566
-        },
-        "end": {
-          "line": 53,
-          "column": 5,
-          "index": 1795
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -78,28 +80,61 @@
             "body": "path {String} internal path of the widget",
             "paramName": "path",
             "description": " internal path of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "flavour {String} Flavour of the widget",
             "paramName": "flavour",
             "description": " Flavour of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "pageType {String} Page type (2d, 3d, ...)",
             "paramName": "pageType",
             "description": " Page type (2d, 3d, ...)",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1566
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1795
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     },
     "getAttributeToPropertyMappings": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 55,
@@ -113,22 +148,10 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 67,
-        "column": 2,
-        "index": 2027
-      },
-      "end": {
-        "line": 70,
-        "column": 3,
-        "index": 2154
-      }
-    }
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

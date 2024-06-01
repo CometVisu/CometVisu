@@ -1,49 +1,86 @@
 {
-  "className": "qx.ui.decoration.MBackgroundImage",
-  "packageName": "qx.ui.decoration",
-  "name": "MBackgroundImage",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 50,
-        "column": 0,
-        "index": 1662
-      },
-      "end": {
-        "line": 241,
-        "column": 3,
-        "index": 7217
-      }
+  "version": 0.3,
+  "lastModified": 1717235171698,
+  "lastModifiedIso": "2024-06-01T09:46:11.698Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/decoration/MBackgroundImage.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 50,
+      "column": 0,
+      "index": 1613
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Mixin for supporting the background images on decorators.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n It is possible to define multiple background images by setting an\n array containing the needed values as the property value.\n In case multiple values are specified, the values of the properties\n are repeated until all match in length.\n An example:\n </p>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       backgroundImage: ['foo1.png', 'foo2.png', 'bar1.png', 'bar2.png'],\n       backgroundRepeat: 'no-repeat',\n       backgroundPositionX: ['left', 'right', 'center'],\n       backgroundPositionY: ['center', 'top']\n     }\n   }\n </pre>\n<p>which is the same as:\n </p>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       backgroundImage: ['foo1.png', 'foo2.png', 'bar1.png', 'bar2.png'],\n       backgroundRepeat: ['no-repeat', 'no-repeat', 'no-repeat', 'no-repeat'],\n       backgroundPositionX: ['left', 'right', 'center', 'left'],\n       backgroundPositionY: ['center', 'top', 'center', 'top']\n     }\n   }\n </pre>"
-        }
-      ]
+    "end": {
+      "line": 241,
+      "column": 3,
+      "index": 6977
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.decoration.MBackgroundImage",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin for supporting the background images on decorators.",
+      " * This mixin is usually used by {@link qx.ui.decoration.Decorator}.",
+      " *",
+      " * It is possible to define multiple background images by setting an",
+      " * array containing the needed values as the property value.",
+      " * In case multiple values are specified, the values of the properties",
+      " * are repeated until all match in length.",
+      " *",
+      " * An example:",
+      " * <pre class=\"javascript\">",
+      " *   'my-decorator': {",
+      " *     style: {",
+      " *       backgroundImage: ['foo1.png', 'foo2.png', 'bar1.png', 'bar2.png'],",
+      " *       backgroundRepeat: 'no-repeat',",
+      " *       backgroundPositionX: ['left', 'right', 'center'],",
+      " *       backgroundPositionY: ['center', 'top']",
+      " *     }",
+      " *   }",
+      " * </pre>",
+      " * which is the same as:",
+      " * <pre class=\"javascript\">",
+      " *   'my-decorator': {",
+      " *     style: {",
+      " *       backgroundImage: ['foo1.png', 'foo2.png', 'bar1.png', 'bar2.png'],",
+      " *       backgroundRepeat: ['no-repeat', 'no-repeat', 'no-repeat', 'no-repeat'],",
+      " *       backgroundPositionX: ['left', 'right', 'center', 'left'],",
+      " *       backgroundPositionY: ['center', 'top', 'center', 'top']",
+      " *     }",
+      " *   }",
+      " * </pre>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin for supporting the background images on decorators.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n It is possible to define multiple background images by setting an\n array containing the needed values as the property value.\n In case multiple values are specified, the values of the properties\n are repeated until all match in length.\n An example:\n </p>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       backgroundImage: ['foo1.png', 'foo2.png', 'bar1.png', 'bar2.png'],\n       backgroundRepeat: 'no-repeat',\n       backgroundPositionX: ['left', 'right', 'center'],\n       backgroundPositionY: ['center', 'top']\n     }\n   }\n </pre>\n<p>which is the same as:\n </p>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       backgroundImage: ['foo1.png', 'foo2.png', 'bar1.png', 'bar2.png'],\n       backgroundRepeat: ['no-repeat', 'no-repeat', 'no-repeat', 'no-repeat'],\n       backgroundPositionX: ['left', 'right', 'center', 'left'],\n       backgroundPositionY: ['center', 'top', 'center', 'top']\n     }\n   }\n </pre>"
+      }
+    ]
+  },
   "properties": {
     "backgroundImage": {
       "location": {
         "start": {
           "line": 53,
           "column": 4,
-          "index": 1783
+          "index": 1731
         },
         "end": {
           "line": 56,
           "column": 5,
-          "index": 1869
+          "index": 1814
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBackgroundImage"
+      },
       "jsdoc": {
+        "raw": [
+          "* The URL of the background image "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,26 +88,29 @@
           }
         ]
       },
-      "name": "backgroundImage",
-      "propertyType": "new",
-      "apply": "_applyBackgroundImage",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "backgroundRepeat": {
       "location": {
         "start": {
           "line": 59,
           "column": 4,
-          "index": 1934
+          "index": 1876
         },
         "end": {
           "line": 62,
           "column": 5,
-          "index": 2021
+          "index": 1960
         }
       },
+      "json": {
+        "init": "repeat",
+        "apply": "_applyBackgroundImage"
+      },
       "jsdoc": {
+        "raw": [
+          "* How the background image should be repeated "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -78,26 +118,36 @@
           }
         ]
       },
-      "name": "backgroundRepeat",
-      "propertyType": "new",
-      "apply": "_applyBackgroundImage",
-      "init": "repeat",
-      "defaultValue": "repeat"
+      "appearsIn": []
     },
     "backgroundPositionX": {
       "location": {
         "start": {
           "line": 72,
           "column": 4,
-          "index": 2353
+          "index": 2282
         },
         "end": {
           "line": 75,
           "column": 5,
-          "index": 2446
+          "index": 2372
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBackgroundPosition"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Either a string or a number, which defines the horizontal position",
+          "     * of the background image.",
+          "     *",
+          "     * If the value is an integer it is interpreted as a pixel value, otherwise",
+          "     * the value is taken to be a CSS value. For CSS, the values are \"center\",",
+          "     * \"left\" and \"right\".",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -105,26 +155,36 @@
           }
         ]
       },
-      "name": "backgroundPositionX",
-      "propertyType": "new",
-      "apply": "_applyBackgroundPosition",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "backgroundPositionY": {
       "location": {
         "start": {
           "line": 85,
           "column": 4,
-          "index": 2776
+          "index": 2692
         },
         "end": {
           "line": 88,
           "column": 5,
-          "index": 2869
+          "index": 2782
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBackgroundPosition"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Either a string or a number, which defines the vertical position",
+          "     * of the background image.",
+          "     *",
+          "     * If the value is an integer it is interpreted as a pixel value, otherwise",
+          "     * the value is taken to be a CSS value. For CSS, the values are \"top\",",
+          "     * \"center\" and \"bottom\".",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -132,26 +192,31 @@
           }
         ]
       },
-      "name": "backgroundPositionY",
-      "propertyType": "new",
-      "apply": "_applyBackgroundPosition",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "backgroundOrigin": {
       "location": {
         "start": {
           "line": 93,
           "column": 4,
-          "index": 2956
+          "index": 2864
         },
         "end": {
           "line": 96,
           "column": 5,
-          "index": 3043
+          "index": 2948
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBackgroundImage"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Specifies where the background image is positioned.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -159,26 +224,33 @@
           }
         ]
       },
-      "name": "backgroundOrigin",
-      "propertyType": "new",
-      "apply": "_applyBackgroundImage",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "backgroundPosition": {
       "location": {
         "start": {
           "line": 101,
           "column": 4,
-          "index": 3127
+          "index": 3027
         },
         "end": {
           "line": 103,
           "column": 5,
-          "index": 3216
+          "index": 3114
         }
       },
+      "json": {
+        "group": [
+          "backgroundPositionY",
+          "backgroundPositionX"
+        ]
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Property group to define the background position",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -186,27 +258,33 @@
           }
         ]
       },
-      "name": "backgroundPosition",
-      "propertyType": "new",
-      "group": [
-        "backgroundPositionY",
-        "backgroundPositionX"
-      ]
+      "appearsIn": []
     },
     "orderGradientsFront": {
       "location": {
         "start": {
           "line": 110,
           "column": 4,
-          "index": 3452
+          "index": 3343
         },
         "end": {
           "line": 113,
           "column": 5,
-          "index": 3525
+          "index": 3413
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to order gradients before Image-URL-based background declarations",
+          "     * if both qx.ui.decoration.MBackgroundImage and",
+          "     * qx.ui.decoration.MLinearBackgroundGradient decorations are used.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -214,28 +292,18 @@
           }
         ]
       },
-      "name": "orderGradientsFront",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     }
   },
   "members": {
     "_styleBackgroundImage": {
-      "location": {
-        "start": {
-          "line": 121,
-          "column": 4,
-          "index": 3671
-        },
-        "end": {
-          "line": 209,
-          "column": 5,
-          "index": 6320
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds the background-image styles to the given map",
+          "     * @param styles {Map} CSS style map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -248,518 +316,78 @@
             "body": "styles {Map} CSS style map",
             "paramName": "styles",
             "description": " CSS style map",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3551
+        },
+        "end": {
+          "line": 209,
+          "column": 5,
+          "index": 6112
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyBackgroundImage": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 212,
           "column": 4,
-          "index": 6352
+          "index": 6141
         },
         "end": {
           "line": 220,
           "column": 5,
-          "index": 6621
+          "index": 6402
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "backgroundImage",
-        "backgroundRepeat",
-        "backgroundOrigin"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "_applyBackgroundPosition": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 223,
           "column": 4,
-          "index": 6653
+          "index": 6431
         },
         "end": {
           "line": 239,
           "column": 5,
-          "index": 7207
+          "index": 6969
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "backgroundPositionX",
-        "backgroundPositionY"
-      ]
-    },
-    "getBackgroundImage": {
-      "type": "function",
-      "name": "getBackgroundImage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundImage</code>.\n\nFor further details take a look at the property definition: {@link #backgroundImage}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backgroundImage"
-          }
-        ]
-      }
-    },
-    "setBackgroundImage": {
-      "type": "function",
-      "name": "setBackgroundImage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundImage</code>.\n\nFor further details take a look at the property definition: {@link #backgroundImage}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundImage"
-          }
-        ]
-      }
-    },
-    "resetBackgroundImage": {
-      "type": "function",
-      "name": "resetBackgroundImage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundImage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundImage}."
-          }
-        ]
-      }
-    },
-    "getBackgroundRepeat": {
-      "type": "function",
-      "name": "getBackgroundRepeat",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundRepeat</code>.\n\nFor further details take a look at the property definition: {@link #backgroundRepeat}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backgroundRepeat"
-          }
-        ]
-      }
-    },
-    "setBackgroundRepeat": {
-      "type": "function",
-      "name": "setBackgroundRepeat",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundRepeat</code>.\n\nFor further details take a look at the property definition: {@link #backgroundRepeat}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundRepeat"
-          }
-        ]
-      }
-    },
-    "resetBackgroundRepeat": {
-      "type": "function",
-      "name": "resetBackgroundRepeat",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundRepeat</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundRepeat}."
-          }
-        ]
-      }
-    },
-    "getBackgroundPositionX": {
-      "type": "function",
-      "name": "getBackgroundPositionX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundPositionX</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backgroundPositionX"
-          }
-        ]
-      }
-    },
-    "setBackgroundPositionX": {
-      "type": "function",
-      "name": "setBackgroundPositionX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundPositionX</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundPositionX"
-          }
-        ]
-      }
-    },
-    "resetBackgroundPositionX": {
-      "type": "function",
-      "name": "resetBackgroundPositionX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundPositionX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPositionX}."
-          }
-        ]
-      }
-    },
-    "getBackgroundPositionY": {
-      "type": "function",
-      "name": "getBackgroundPositionY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundPositionY</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backgroundPositionY"
-          }
-        ]
-      }
-    },
-    "setBackgroundPositionY": {
-      "type": "function",
-      "name": "setBackgroundPositionY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundPositionY</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPositionY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundPositionY"
-          }
-        ]
-      }
-    },
-    "resetBackgroundPositionY": {
-      "type": "function",
-      "name": "resetBackgroundPositionY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundPositionY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPositionY}."
-          }
-        ]
-      }
-    },
-    "getBackgroundOrigin": {
-      "type": "function",
-      "name": "getBackgroundOrigin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundOrigin</code>.\n\nFor further details take a look at the property definition: {@link #backgroundOrigin}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backgroundOrigin"
-          }
-        ]
-      }
-    },
-    "setBackgroundOrigin": {
-      "type": "function",
-      "name": "setBackgroundOrigin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundOrigin</code>.\n\nFor further details take a look at the property definition: {@link #backgroundOrigin}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundOrigin"
-          }
-        ]
-      }
-    },
-    "resetBackgroundOrigin": {
-      "type": "function",
-      "name": "resetBackgroundOrigin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundOrigin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundOrigin}."
-          }
-        ]
-      }
-    },
-    "setBackgroundPosition": {
-      "type": "function",
-      "name": "setBackgroundPosition",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundPosition</code>.\n\nFor further details take a look at the property definition: {@link #backgroundPosition}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backgroundPosition"
-          }
-        ]
-      }
-    },
-    "resetBackgroundPosition": {
-      "type": "function",
-      "name": "resetBackgroundPosition",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundPosition</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundPosition}."
-          }
-        ]
-      }
-    },
-    "getOrderGradientsFront": {
-      "type": "function",
-      "name": "getOrderGradientsFront",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>orderGradientsFront</code>.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for orderGradientsFront"
-          }
-        ]
-      }
-    },
-    "isOrderGradientsFront": {
-      "type": "function",
-      "name": "isOrderGradientsFront",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>orderGradientsFront</code>.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for orderGradientsFront"
-          }
-        ]
-      }
-    },
-    "setOrderGradientsFront": {
-      "type": "function",
-      "name": "setOrderGradientsFront",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>orderGradientsFront</code>.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for orderGradientsFront"
-          }
-        ]
-      }
-    },
-    "resetOrderGradientsFront": {
-      "type": "function",
-      "name": "resetOrderGradientsFront",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>orderGradientsFront</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #orderGradientsFront}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

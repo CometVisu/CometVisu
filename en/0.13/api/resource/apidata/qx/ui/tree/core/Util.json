@@ -1,49 +1,48 @@
 {
-  "className": "qx.ui.tree.core.Util",
-  "packageName": "qx.ui.tree.core",
-  "name": "Util",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 593
-      },
-      "end": {
-        "line": 76,
-        "column": 3,
-        "index": 2400
-      }
+  "version": 0.3,
+  "lastModified": 1717235172646,
+  "lastModifiedIso": "2024-06-01T09:46:12.646Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/tree/core/Util.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 572
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This utility class implements some methods for the <code>VirtualTree</code>.</p>"
-        }
-      ]
+    "end": {
+      "line": 76,
+      "column": 3,
+      "index": 2325
     }
   },
-  "type": "class",
+  "className": "qx.ui.tree.core.Util",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This utility class implements some methods for the <code>VirtualTree</code>.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This utility class implements some methods for the <code>VirtualTree</code>.</p>"
+      }
+    ]
+  },
   "statics": {
     "isNode": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 991
-        },
-        "end": {
-          "line": 37,
-          "column": 5,
-          "index": 1180
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns if the passed item is a node or a leaf.",
+          "     *",
+          "     * @param node {qx.core.Object} Node to check.",
+          "     * @param childProperty {String} The property name to find the children.",
+          "     * @return {Boolean} <code>True</code> when the passed item is a node,",
+          "     *   </code>false</code> when it is a leaf.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,35 +62,61 @@
             "body": "childProperty {String} The property name to find the children.",
             "paramName": "childProperty",
             "description": " The property name to find the children.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} <code>True</code> when the passed item is a node,\n   </code>false</code> when it is a leaf.",
-            "type": "Boolean",
-            "description": " <code>True</code> when the passed item is a node,\n   </code>false</code> when it is a leaf."
+            "type": "boolean",
+            "description": "<code>True</code> when the passed item is a node,\n   </code>false</code> when it is a leaf."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasChildren": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 32,
           "column": 4,
-          "index": 1751
+          "index": 960
         },
         "end": {
-          "line": 74,
+          "line": 37,
           "column": 5,
-          "index": 2390
+          "index": 1144
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "childProperty",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "hasChildren": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the node has visible children or not.",
+          "     *",
+          "     * @param node {qx.core.Object} Node to check.",
+          "     * @param childProperty {String} The property name to find the children.",
+          "     * @param ignoreLeafs {Boolean?} Indicates whether leafs are ignored. This means when it is set to",
+          "     *    <code>true</code> a node which contains only leafs has no children. The default value is <code>false</code>.",
+          "     * @return {Boolean} <code>True</code> when the node has visible children,",
+          "     *   <code>false</code> otherwise.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -111,7 +136,7 @@
             "body": "childProperty {String} The property name to find the children.",
             "paramName": "childProperty",
             "description": " The property name to find the children.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -126,14 +151,46 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>True</code> when the node has visible children,\n   <code>false</code> otherwise.",
-            "type": "Boolean",
-            "description": " <code>True</code> when the node has visible children,\n   <code>false</code> otherwise."
+            "type": "boolean",
+            "description": "<code>True</code> when the node has visible children,\n   <code>false</code> otherwise."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1703
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 2317
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "childProperty",
+          "type": "string"
+        },
+        {
+          "name": "ignoreLeafs",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

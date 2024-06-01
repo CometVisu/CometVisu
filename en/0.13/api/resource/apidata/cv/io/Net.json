@@ -1,0 +1,99 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/io/Net.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 821
+    },
+    "end": {
+      "line": 65,
+      "column": 3,
+      "index": 2142
+    }
+  },
+  "className": "cv.io.Net",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "fetch": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Very basic window.fetch replacement that does not support the `init` parameter and therefore only supports",
+          "     * GET requests. Uses `qx.io.request.Xhr` internally which supports the XHR calls being recorded / replayed",
+          "     * by CometVisus own recording feature. window.fetch calls are not supported by the recording feature and get lost.",
+          "     *",
+          "     * @param url {string}",
+          "     * @return {Promise<unknown>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Very basic window.fetch replacement that does not support the <code>init</code> parameter and therefore only supports\n GET requests. Uses <code>qx.io.request.Xhr</code> internally which supports the XHR calls being recorded / replayed\n by CometVisus own recording feature. window.fetch calls are not supported by the recording feature and get lost.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "url {string}",
+            "paramName": "url",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<unknown>}",
+            "type": "Promise<unknown>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1440
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 2134
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<unknown>"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

@@ -1,0 +1,158 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172386,
+  "lastModifiedIso": "2024-06-01T09:46:12.386Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/SourceTarget.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 787
+    },
+    "end": {
+      "line": 57,
+      "column": 3,
+      "index": 1416
+    }
+  },
+  "className": "qx.tool.compiler.targets.SourceTarget",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Compiles a target where source files and resources are loaded in place",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Compiles a target where source files and resources are loaded in place</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.targets.Target",
+  "properties": {
+    "copyResources": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 977
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 1040
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to copy resources in source builds.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to copy resources in source builds.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_writeApplication": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1096
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1297
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.targets.Target",
+      "appearsIn": [
+        "qx.tool.compiler.targets.Target"
+      ]
+    },
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1336
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1408
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.targets.Target",
+      "appearsIn": [
+        "qx.tool.compiler.targets.Target",
+        "qx.core.Object",
+        "qx.data.MBinding",
+        "qx.core.MLogging",
+        "qx.core.MEvent",
+        "qx.core.MProperty",
+        "qx.core.MObjectId",
+        "qx.core.MAssert"
+      ]
+    }
+  },
+  "statics": {}
+}

@@ -1,79 +1,82 @@
 {
-  "className": "qx.ui.progressive.model.Default",
-  "packageName": "qx.ui.progressive.model",
-  "name": "Default",
-  "superClass": "qx.ui.progressive.model.Abstract",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 511
-      },
-      "end": {
-        "line": 89,
-        "column": 3,
-        "index": 2321
-      }
+  "version": 0.3,
+  "lastModified": 1717235169954,
+  "lastModifiedIso": "2024-06-01T09:46:09.954Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/progressive/model/Default.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 490
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Data Model for Progressive renderer.</p>"
-        }
-      ]
+    "end": {
+      "line": 89,
+      "column": 3,
+      "index": 2233
     }
   },
-  "type": "class",
+  "className": "qx.ui.progressive.model.Default",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Data Model for Progressive renderer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Data Model for Progressive renderer.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.progressive.model.Abstract",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 25,
         "column": 2,
-        "index": 614
+        "index": 590
       },
       "end": {
         "line": 29,
         "column": 3,
-        "index": 675
+        "index": 647
       }
     }
   },
   "members": {
     "__elements": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 32,
           "column": 4,
-          "index": 698
+          "index": 667
         },
         "end": {
           "line": 32,
           "column": 20,
-          "index": 714
+          "index": 683
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "addElements": {
-      "location": {
-        "start": {
-          "line": 42,
-          "column": 4,
-          "index": 1017
-        },
-        "end": {
-          "line": 48,
-          "column": 5,
-          "index": 1274
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add elements to be progressively rendered.  Each element must be an",
+          "     * object which contains at least two members: renderer (the renderer",
+          "     * name) and data.",
+          "     *",
+          "     * @param elems {Array}",
+          "     *   An array of elements to be added to the element queue",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -86,27 +89,44 @@
             "body": "elems {Array}\n   An array of elements to be added to the element queue",
             "paramName": "elems",
             "description": "\n   An array of elements to be added to the element queue",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addElement": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 58,
+          "line": 42,
           "column": 4,
-          "index": 1571
+          "index": 976
         },
         "end": {
-          "line": 64,
+          "line": 48,
           "column": 5,
-          "index": 1805
+          "index": 1227
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elems",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a single element to be progressively rendered.  The element must",
+          "     * be an object which contains at least two members: renderer (the",
+          "     * renderer name) and data.",
+          "     *",
+          "     * @param elem {var}",
+          "     *   An element to be added to the element queue",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -123,204 +143,97 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1514
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1742
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "elem",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
     },
     "getElementCount": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 67,
           "column": 4,
-          "index": 1833
+          "index": 1767
         },
         "end": {
           "line": 69,
           "column": 5,
-          "index": 1897
+          "index": 1829
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.ui.progressive.model.Abstract",
       "appearsIn": [
         "qx.ui.progressive.model.Abstract"
       ]
     },
     "getNextElement": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 72,
           "column": 4,
-          "index": 1925
+          "index": 1854
         },
         "end": {
           "line": 83,
           "column": 5,
-          "index": 2258
+          "index": 2176
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.ui.progressive.model.Abstract",
       "appearsIn": [
         "qx.ui.progressive.model.Abstract"
       ]
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.progressive.model.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.progressive.model.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.progressive.model.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.progressive.model.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.progressive.model.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.progressive.model.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 86,
         "column": 2,
-        "index": 2270
+        "index": 2185
       },
       "end": {
         "line": 88,
         "column": 3,
-        "index": 2316
+        "index": 2229
       }
     }
   },
-  "events": {},
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

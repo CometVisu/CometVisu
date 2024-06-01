@@ -1,35 +1,39 @@
 {
-  "className": "cv.ui.manager.control.MFileEventHandler",
-  "packageName": "cv.ui.manager.control",
-  "name": "MFileEventHandler",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 1005
-      },
-      "end": {
-        "line": 56,
-        "column": 3,
-        "index": 1884
-      }
+  "version": 0.3,
+  "lastModified": 1717235105606,
+  "lastModifiedIso": "2024-06-01T09:45:05.606Z",
+  "classFilename": "../../source/class/cv/ui/manager/control/MFileEventHandler.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 1005
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Mixin for all classes that have to handle event on the 'cv.manager.file' topic.\n Those classes need to implement the cv.ui.manager.control.IFileEventHandler interface.</p>"
-        }
-      ]
+    "end": {
+      "line": 56,
+      "column": 3,
+      "index": 1884
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.manager.control.MFileEventHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin for all classes that have to handle event on the 'cv.manager.file' topic.",
+      " * Those classes need to implement the cv.ui.manager.control.IFileEventHandler interface.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin for all classes that have to handle event on the 'cv.manager.file' topic.\n Those classes need to implement the cv.ui.manager.control.IFileEventHandler interface.</p>"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 30,
@@ -41,11 +45,12 @@
         "column": 3,
         "index": 1477
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "_disableFileEvents": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 45,
@@ -58,11 +63,12 @@
           "index": 1644
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 53,
@@ -74,8 +80,8 @@
         "column": 3,
         "index": 1880
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

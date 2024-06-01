@@ -1,0 +1,98 @@
+(function () {
+  var $$dbClassInfo = {
+    "dependsOn": {
+      "qx.Class": {
+        "usage": "dynamic",
+        "require": true
+      },
+      "qx.test.ui.LayoutTestCase": {
+        "require": true
+      },
+      "qx.dev.unit.MMock": {
+        "require": true
+      },
+      "qx.ui.form.ComboBox": {},
+      "qx.ui.form.ListItem": {}
+    }
+  };
+  qx.Bootstrap.executePendingDefers($$dbClassInfo);
+  /* ************************************************************************
+  
+     qooxdoo - the new era of web development
+  
+     http://qooxdoo.org
+  
+     Copyright:
+       2004-2008 1&1 Internet AG, Germany, http://www.1und1.de
+  
+     License:
+       MIT: https://opensource.org/licenses/MIT
+       See the LICENSE file in the project's top-level directory for details.
+  
+     Authors:
+       * Christian Hagendorn (chris_schmidt)
+  
+  ************************************************************************ */
+  qx.Class.define("qx.test.ui.form.ComboBox", {
+    extend: qx.test.ui.LayoutTestCase,
+    include: qx.dev.unit.MMock,
+    members: {
+      testWithSetValueWithArbitraryValue: function testWithSetValueWithArbitraryValue() {
+        var combobox = this.__P_394_0("arbitrary value");
+        this.getRoot().add(combobox);
+        this.flush();
+        this.assertIdentical("arbitrary value", combobox.getValue(), "Wrong result from getValue()");
+        combobox.open();
+        this.flush();
+        this.assertIdentical(0, combobox.getChildrenContainer().getSelection().length, "The pop-up list has an item selected!");
+        this.getRoot().removeAll();
+        combobox.dispose();
+        this.flush();
+      },
+      testWithSetValueWith: function testWithSetValueWith() {
+        var combobox = this.__P_394_0("Item 0");
+        this.getRoot().add(combobox);
+        this.flush();
+        this.assertIdentical("Item 0", combobox.getValue(), "Wrong result from getValue()");
+        combobox.open();
+        this.flush();
+        var list = combobox.getChildrenContainer();
+        var item = list.findItem("Item 0");
+        this.assertIdentical(item, list.getSelection()[0], "The wrong item selected in pop-up list!");
+
+        // check if the combobox is case sensitive, [BUG #3024]
+        combobox.setValue("item 2");
+        this.assertEquals("item 2", combobox.getValue());
+        this.assertEquals(0, list.getSelection().length);
+        this.getRoot().removeAll();
+        combobox.dispose();
+        this.flush();
+      },
+      testWithoutSetValue: function testWithoutSetValue() {
+        var combobox = this.__P_394_0();
+        this.getRoot().add(combobox);
+        this.flush();
+        this.assertIdentical(null, combobox.getValue(), "Wrong result from getValue()");
+        combobox.open();
+        this.flush();
+        this.assertIdentical(0, combobox.getChildrenContainer().getSelection().length, "The pop-up list has an item selected!");
+        this.getRoot().removeAll();
+        combobox.dispose();
+        this.flush();
+      },
+      __P_394_0: function __P_394_0(initValue) {
+        var comboBox = new qx.ui.form.ComboBox();
+        if (initValue) {
+          comboBox.setValue(initValue);
+        }
+        for (var i = 0; i < 10; i++) {
+          comboBox.add(new qx.ui.form.ListItem("Item " + i));
+        }
+        return comboBox;
+      }
+    }
+  });
+  qx.test.ui.form.ComboBox.$$dbClassInfo = $$dbClassInfo;
+})();
+
+//# sourceMappingURL=ComboBox.js.map?dt=1717235393785

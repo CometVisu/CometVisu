@@ -1,49 +1,59 @@
 {
-  "className": "qx.ui.virtual.core.CellEvent",
-  "packageName": "qx.ui.virtual.core",
-  "name": "CellEvent",
-  "superClass": "qx.event.type.Pointer",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 649
-      },
-      "end": {
-        "line": 58,
-        "column": 3,
-        "index": 1498
-      }
+  "version": 0.3,
+  "lastModified": 1717235169534,
+  "lastModifiedIso": "2024-06-01T09:46:09.534Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/core/CellEvent.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 626
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A cell event instance contains all data for pointer events related to cells in\n a pane.</p>"
-        }
-      ]
+    "end": {
+      "line": 58,
+      "column": 3,
+      "index": 1441
     }
   },
-  "type": "class",
+  "className": "qx.ui.virtual.core.CellEvent",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A cell event instance contains all data for pointer events related to cells in",
+      " * a pane.",
+      " *"
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A cell event instance contains all data for pointer events related to cells in\n a pane.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.Pointer",
   "properties": {
     "row": {
       "location": {
         "start": {
           "line": 29,
           "column": 4,
-          "index": 804
+          "index": 776
         },
         "end": {
           "line": 32,
           "column": 5,
-          "index": 864
+          "index": 833
         }
       },
+      "json": {
+        "check": "Integer",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* The table row of the event target. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,26 +61,29 @@
           }
         ]
       },
-      "name": "row",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Integer"
+      "appearsIn": []
     },
     "column": {
       "location": {
         "start": {
           "line": 35,
           "column": 4,
-          "index": 923
+          "index": 889
         },
         "end": {
           "line": 38,
           "column": 5,
-          "index": 986
+          "index": 949
         }
       },
+      "json": {
+        "check": "Integer",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* The table column of the event target. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -78,60 +91,22 @@
           }
         ]
       },
-      "name": "column",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Integer"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "init": {
-      "location": {
-        "start": {
-          "line": 50,
-          "column": 4,
-          "index": 1336
-        },
-        "end": {
-          "line": 56,
-          "column": 5,
-          "index": 1488
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize the event.",
+          "     *",
+          "     * @param scroller {qx.ui.table.pane.Scroller} The tables pane scroller.",
+          "     * @param me {qx.event.type.Pointer} The original pointer event.",
+          "     * @param row {Integer?null} The cell's row index.",
+          "     * @param column {Integer?null} The cell's column index.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -173,284 +148,48 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1287
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1433
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "scroller",
+          "type": "qx.ui.table.pane.Scroller"
+        },
+        {
+          "name": "me",
+          "type": "qx.event.type.Pointer"
+        },
+        {
+          "name": "row",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "column",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
       "overriddenFrom": "qx.event.type.Native",
       "appearsIn": [
         "qx.event.type.Native",
         "qx.event.type.Event"
       ]
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getRow": {
-      "type": "function",
-      "name": "getRow",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>row</code>.\n\nFor further details take a look at the property definition: {@link #row}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for row"
-          }
-        ]
-      }
-    },
-    "setRow": {
-      "type": "function",
-      "name": "setRow",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>row</code>.\n\nFor further details take a look at the property definition: {@link #row}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for row"
-          }
-        ]
-      }
-    },
-    "resetRow": {
-      "type": "function",
-      "name": "resetRow",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>row</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #row}."
-          }
-        ]
-      }
-    },
-    "getColumn": {
-      "type": "function",
-      "name": "getColumn",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>column</code>.\n\nFor further details take a look at the property definition: {@link #column}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for column"
-          }
-        ]
-      }
-    },
-    "setColumn": {
-      "type": "function",
-      "name": "setColumn",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>column</code>.\n\nFor further details take a look at the property definition: {@link #column}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for column"
-          }
-        ]
-      }
-    },
-    "resetColumn": {
-      "type": "function",
-      "name": "resetColumn",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>column</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #column}."
-          }
-        ]
-      }
     }
   },
-  "descendants": []
+  "statics": {}
 }

@@ -1,57 +1,57 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235172574,
+  "lastModifiedIso": "2024-06-01T09:46:12.574Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/TouchCore.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 713
+    },
+    "end": {
+      "line": 491,
+      "column": 3,
+      "index": 14683
+    }
+  },
   "className": "qx.event.handler.TouchCore",
-  "packageName": "qx.event.handler",
-  "name": "TouchCore",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Listens for native touch events and fires composite events like \"tap\" and",
+      " * \"swipe\"",
+      " *",
+      " * @ignore(qx.event.*)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Listens for native touch events and fires composite events like \"tap\" and\n \"swipe\"</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.event.*"
+      }
+    ]
+  },
   "superClass": "Object",
   "interfaces": [
     "qx.core.IDisposable"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 740
-      },
-      "end": {
-        "line": 491,
-        "column": 3,
-        "index": 15173
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Listens for native touch events and fires composite events like \"tap\" and\n \"swipe\"</p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.event.*"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "statics": {
     "TAP_MAX_DISTANCE": {
-      "location": {
-        "start": {
-          "line": 37,
-          "column": 4,
-          "index": 1076
-        },
-        "end": {
-          "line": 37,
-          "column": 79,
-          "index": 1151
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} The maximum distance of a tap. Only if the x or y distance of",
+          "     *      the performed tap is less or equal the value of this constant, a tap",
+          "     *      event is fired.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -65,23 +65,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SWIPE_DIRECTION": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 40,
+          "line": 37,
           "column": 4,
-          "index": 1230
+          "index": 1040
         },
         "end": {
-          "line": 43,
-          "column": 5,
-          "index": 1309
+          "line": 37,
+          "column": 79,
+          "index": 1115
         }
       },
+      "appearsIn": []
+    },
+    "SWIPE_DIRECTION": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} The direction of a swipe relative to the axis "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -95,23 +98,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SWIPE_MIN_DISTANCE": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 40,
           "column": 4,
-          "index": 1537
+          "index": 1191
         },
         "end": {
-          "line": 50,
-          "column": 63,
-          "index": 1621
+          "line": 43,
+          "column": 5,
+          "index": 1267
         }
       },
+      "appearsIn": []
+    },
+    "SWIPE_MIN_DISTANCE": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} The minimum distance of a swipe. Only if the x or y distance",
+          "     *      of the performed swipe is greater as or equal the value of this",
+          "     *      constant, a swipe event is fired.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -125,23 +134,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SWIPE_MIN_VELOCITY": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 56,
+          "line": 49,
           "column": 4,
-          "index": 1842
+          "index": 1489
         },
         "end": {
-          "line": 56,
-          "column": 25,
-          "index": 1863
+          "line": 50,
+          "column": 63,
+          "index": 1572
         }
       },
+      "appearsIn": []
+    },
+    "SWIPE_MIN_VELOCITY": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} The minimum velocity of a swipe. Only if the velocity of the",
+          "     *      performed swipe is greater as or equal the value of this constant, a",
+          "     *      swipe event is fired.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -155,23 +170,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "LONGTAP_TIME": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 61,
+          "line": 56,
           "column": 4,
-          "index": 1971
+          "index": 1787
         },
         "end": {
-          "line": 61,
-          "column": 71,
-          "index": 2038
+          "line": 56,
+          "column": 25,
+          "index": 1808
         }
       },
+      "appearsIn": []
+    },
+    "LONGTAP_TIME": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Integer} The time delta in milliseconds to fire a long tap event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -185,223 +205,223 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1911
+        },
+        "end": {
+          "line": 61,
+          "column": 71,
+          "index": 1978
+        }
+      },
+      "appearsIn": []
     }
   },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "target"
+      },
+      {
+        "name": "emitter"
+      }
+    ],
     "location": {
       "start": {
         "line": 70,
         "column": 2,
-        "index": 2240
+        "index": 2171
       },
       "end": {
         "line": 77,
         "column": 3,
-        "index": 2431
+        "index": 2355
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Create a new instance</p>"
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "target {Element} element on which to listen for native touch events",
-          "paramName": "target",
-          "description": " element on which to listen for native touch events",
-          "type": "qx.event.handler.Element"
-        },
-        {
-          "name": "@param",
-          "body": "emitter {qx.event.Emitter} Event emitter object",
-          "paramName": "emitter",
-          "description": " Event emitter object",
-          "type": "qx.event.Emitter"
-        }
-      ]
     }
   },
   "members": {
     "__target": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 80,
           "column": 4,
-          "index": 2454
+          "index": 2375
         },
         "end": {
           "line": 80,
           "column": 18,
-          "index": 2468
+          "index": 2389
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__emitter": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 81,
           "column": 4,
-          "index": 2475
+          "index": 2395
         },
         "end": {
           "line": 81,
           "column": 19,
-          "index": 2490
+          "index": 2410
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__onTouchEventWrapper": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 82,
           "column": 4,
-          "index": 2497
+          "index": 2416
         },
         "end": {
           "line": 82,
           "column": 31,
-          "index": 2524
+          "index": 2443
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__originalTarget": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 84,
           "column": 4,
-          "index": 2533
+          "index": 2450
         },
         "end": {
           "line": 84,
           "column": 26,
-          "index": 2555
+          "index": 2472
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__touchStartPosition": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 86,
           "column": 4,
-          "index": 2564
+          "index": 2479
         },
         "end": {
           "line": 86,
           "column": 30,
-          "index": 2590
+          "index": 2505
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__startTime": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 87,
           "column": 4,
-          "index": 2597
+          "index": 2511
         },
         "end": {
           "line": 87,
           "column": 21,
-          "index": 2614
+          "index": 2528
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__beginScalingDistance": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 89,
           "column": 4,
-          "index": 2623
+          "index": 2535
         },
         "end": {
           "line": 89,
           "column": 32,
-          "index": 2651
+          "index": 2563
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__beginRotation": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 90,
           "column": 4,
-          "index": 2658
+          "index": 2569
         },
         "end": {
           "line": 90,
           "column": 25,
-          "index": 2679
+          "index": 2590
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__pointers": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 92,
           "column": 4,
-          "index": 2688
+          "index": 2597
         },
         "end": {
           "line": 92,
           "column": 20,
-          "index": 2704
+          "index": 2613
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__touchEventNames": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 94,
           "column": 4,
-          "index": 2713
+          "index": 2620
         },
         "end": {
           "line": 94,
           "column": 27,
-          "index": 2736
+          "index": 2643
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_initTouchObserver": {
-      "location": {
-        "start": {
-          "line": 105,
-          "column": 4,
-          "index": 3018
-        },
-        "end": {
-          "line": 150,
-          "column": 5,
-          "index": 4158
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes the native touch event listeners.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -409,23 +429,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_stopTouchObserver": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 161,
+          "line": 105,
           "column": 4,
-          "index": 4440
+          "index": 2914
         },
         "end": {
-          "line": 169,
+          "line": 150,
           "column": 5,
-          "index": 4701
+          "index": 4009
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_stopTouchObserver": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Disconnects the native touch event listeners.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -433,23 +460,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onTouchEvent": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 182,
+          "line": 161,
           "column": 4,
-          "index": 5053
+          "index": 4280
         },
         "end": {
-          "line": 184,
+          "line": 169,
           "column": 5,
-          "index": 5133
+          "index": 4533
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onTouchEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for native touch events.",
+          "     *",
+          "     * @param domEvent {Event} The touch event from the browser.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -466,23 +502,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getScalingDistance": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 192,
+          "line": 182,
           "column": 4,
-          "index": 5399
+          "index": 4872
         },
         "end": {
-          "line": 197,
+          "line": 184,
           "column": 5,
-          "index": 5582
+          "index": 4950
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getScalingDistance": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculates the scaling distance between two touches.",
+          "     * @param touch0 {Event} The touch event from the browser.",
+          "     * @param touch1 {Event} The touch event from the browser.",
+          "     * @return {Number} the calculated distance.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -509,28 +560,50 @@
           {
             "name": "@return",
             "body": "{Number} the calculated distance.",
-            "type": "Number",
-            "description": " the calculated distance."
+            "type": "number",
+            "description": "the calculated distance."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getRotationAngle": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 205,
+          "line": 192,
           "column": 4,
-          "index": 5840
+          "index": 5208
         },
         "end": {
-          "line": 209,
+          "line": 197,
           "column": 5,
-          "index": 6020
+          "index": 5386
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "touch0",
+          "type": "Event"
+        },
+        {
+          "name": "touch1",
+          "type": "Event"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "_getRotationAngle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculates the rotation between two touches.",
+          "     * @param touch0 {Event} The touch event from the browser.",
+          "     * @param touch1 {Event} The touch event from the browser.",
+          "     * @return {Number} the calculated rotation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -557,28 +630,50 @@
           {
             "name": "@return",
             "body": "{Number} the calculated rotation.",
-            "type": "Number",
-            "description": " the calculated rotation."
+            "type": "number",
+            "description": "the calculated rotation."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_calcTouchesDelta": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 217,
+          "line": 205,
           "column": 4,
-          "index": 6448
+          "index": 5636
         },
         "end": {
-          "line": 223,
+          "line": 209,
           "column": 5,
-          "index": 6647
+          "index": 5812
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "touch0",
+          "type": "Event"
+        },
+        {
+          "name": "touch1",
+          "type": "Event"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "_calcTouchesDelta": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculates the delta of the touch position relative to its position when <code>touchstart/code> event occurred.",
+          "     * @param touches {Array} an array with the current active touches, provided by <code>touchmove/code> event.",
+          "     * @return {Array} an array containing objects with the calculated delta as <code>x</code>,",
+          "     * <code>y</code> and the identifier of the corresponding touch.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -591,35 +686,52 @@
             "body": "touches {Array} an array with the current active touches, provided by <code>touchmove/code> event.",
             "paramName": "touches",
             "description": " an array with the current active touches, provided by <code>touchmove/code> event.",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} an array containing objects with the calculated delta as <code>x</code>,\n <code>y</code> and the identifier of the corresponding touch.",
-            "type": "Array",
-            "description": " an array containing objects with the calculated delta as <code>x</code>,\n <code>y</code> and the identifier of the corresponding touch."
+            "type": "Array<any>",
+            "description": "an array containing objects with the calculated delta as <code>x</code>,\n <code>y</code> and the identifier of the corresponding touch."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_calcSingleTouchDelta": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 230,
+          "line": 217,
           "column": 4,
-          "index": 7092
+          "index": 6232
         },
         "end": {
-          "line": 253,
+          "line": 223,
           "column": 5,
-          "index": 7821
+          "index": 6425
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "touches",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_calcSingleTouchDelta": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculates the delta of one single touch position relative to its position when <code>touchstart/code> event occurred.",
+          "     * @param touch {Event} the current active touch, provided by <code>touchmove/code> event.",
+          "     * @return {Map} a map containing deltaX as <code>x</code>, deltaY as <code>y</code>, the direction of the movement as <code>axis</code> and the touch identifier as <code>identifier</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -639,28 +751,46 @@
           {
             "name": "@return",
             "body": "{Map} a map containing deltaX as <code>x</code>, deltaY as <code>y</code>, the direction of the movement as <code>axis</code> and the touch identifier as <code>identifier</code>.",
-            "type": "Map",
-            "description": " a map containing deltaX as <code>x</code>, deltaY as <code>y</code>, the direction of the movement as <code>axis</code> and the touch identifier as <code>identifier</code>."
+            "type": "Map<any, any>",
+            "description": "a map containing deltaX as <code>x</code>, deltaY as <code>y</code>, the direction of the movement as <code>axis</code> and the touch identifier as <code>identifier</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_commonTouchEventHandler": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 261,
+          "line": 230,
           "column": 4,
-          "index": 7988
+          "index": 6863
         },
         "end": {
-          "line": 342,
+          "line": 253,
           "column": 5,
-          "index": 10600
+          "index": 7569
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "touch",
+          "type": "Event"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_commonTouchEventHandler": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called by an event handler.",
+          "     *",
+          "     * @param domEvent {Event} DOM event",
+          "     * @param type {String ? null} type of the event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -686,23 +816,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_detectTouchesByPointer": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 351,
+          "line": 261,
           "column": 4,
-          "index": 10925
+          "index": 7728
         },
         "end": {
-          "line": 365,
+          "line": 342,
           "column": 5,
-          "index": 11364
+          "index": 10259
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_detectTouchesByPointer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an array with all current used touches out of multiple serial pointer events.",
+          "     * Needed because pointerEvents do not provide a touch list.",
+          "     * @param domEvent {Event} DOM event",
+          "     * @param type {String ? null} type of the event",
+          "     * @return {Array} touch list array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -731,28 +883,51 @@
           {
             "name": "@return",
             "body": "{Array} touch list array.",
-            "type": "Array",
-            "description": " touch list array."
+            "type": "Array<any>",
+            "description": "touch list array."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_mapPointerEvent": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 372,
+          "line": 351,
           "column": 4,
-          "index": 11566
+          "index": 10575
         },
         "end": {
-          "line": 386,
+          "line": 365,
           "column": 5,
-          "index": 11999
+          "index": 11000
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_mapPointerEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Maps a pointer event type to the corresponding touch event type.",
+          "     * @param type {String} the event type to parse.",
+          "     * @return {String} the parsed event name.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -765,35 +940,53 @@
             "body": "type {String} the event type to parse.",
             "paramName": "type",
             "description": " the event type to parse.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the parsed event name.",
-            "type": "String",
-            "description": " the parsed event name."
+            "type": "string",
+            "description": "the parsed event name."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getTarget": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 394,
+          "line": 372,
           "column": 4,
-          "index": 12155
+          "index": 11195
         },
         "end": {
-          "line": 419,
+          "line": 386,
           "column": 5,
-          "index": 13067
+          "index": 11614
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_getTarget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the target of the event.",
+          "     *",
+          "     * @param domEvent {Event} DOM event",
+          "     * @return {Element} Event target",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -814,27 +1007,46 @@
             "name": "@return",
             "body": "{Element} Event target",
             "type": "qx.event.handler.Element",
-            "description": " Event target"
+            "description": "Event target"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__evaluateTarget": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 428,
+          "line": 394,
           "column": 4,
-          "index": 13417
+          "index": 11762
         },
         "end": {
-          "line": 455,
+          "line": 419,
           "column": 5,
-          "index": 14312
+          "index": 12649
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.handler.Element"
+      },
+      "appearsIn": []
+    },
+    "__evaluateTarget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method fixes \"pointer-events:none\" for Internet Explorer 10.",
+          "     * Checks which elements are placed to position x/y and traverses the array",
+          "     * till one element has no \"pointer-events:none\" inside its style attribute.",
+          "     * @param domEvent {Event} DOM event",
+          "     * @return {Element|null} Event target",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -855,27 +1067,46 @@
             "name": "@return",
             "body": "{Element|null} Event target",
             "type": "Element|null",
-            "description": " Event target"
+            "description": "Event target"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "_fireEvent": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 464,
+          "line": 428,
           "column": 4,
-          "index": 14548
+          "index": 12990
         },
         "end": {
-          "line": 474,
+          "line": 455,
           "column": 5,
-          "index": 14825
+          "index": 13858
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        }
+      ],
+      "returnType": {
+        "type": "Element|null"
+      },
+      "appearsIn": []
+    },
+    "_fireEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fire a touch event with the given parameters",
+          "     *",
+          "     * @param domEvent {Event} DOM event",
+          "     * @param type {String ? null} type of the event",
+          "     * @param target {Element ? null} event target",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -910,23 +1141,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "dispose": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 479,
+          "line": 464,
           "column": 4,
-          "index": 14880
+          "index": 14085
         },
         "end": {
-          "line": 489,
+          "line": 474,
           "column": 5,
-          "index": 15163
+          "index": 14352
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "target",
+          "type": "Element",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "dispose": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispose this object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -934,15 +1189,25 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.core.IDisposable",
+      "location": {
+        "start": {
+          "line": 479,
+          "column": 4,
+          "index": 14402
+        },
+        "end": {
+          "line": 489,
+          "column": 5,
+          "index": 14675
+        }
+      },
+      "type": "function",
+      "params": [],
       "appearsIn": [
         "qx.core.IDisposable"
       ]
     }
   },
-  "descendants": [
-    "qx.event.handler.Touch"
-  ]
+  "properties": {}
 }

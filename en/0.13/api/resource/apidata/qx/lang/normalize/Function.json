@@ -1,55 +1,39 @@
 {
-  "className": "qx.lang.normalize.Function",
-  "packageName": "qx.lang.normalize",
-  "name": "Function",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 69,
-        "column": 0,
-        "index": 2612
-      },
-      "end": {
-        "line": 192,
-        "column": 3,
-        "index": 8329
-      }
+  "version": 0.3,
+  "lastModified": 1717235171026,
+  "lastModifiedIso": "2024-06-01T09:46:11.026Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/normalize/Function.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 69,
+      "column": 0,
+      "index": 2544
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is responsible for the normalization of the native 'Function' object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Polyfill"
-        }
-      ]
+    "end": {
+      "line": 192,
+      "column": 3,
+      "index": 8138
     }
   },
-  "type": "class",
+  "className": "qx.lang.normalize.Function",
+  "jsdoc": {
+    "raw": [
+      " eslint-disable no-extend-native "
+    ]
+  },
   "statics": {
     "bind": {
-      "location": {
-        "start": {
-          "line": 78,
-          "column": 4,
-          "index": 3020
-        },
-        "end": {
-          "line": 184,
-          "column": 5,
-          "index": 8172
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Function/bind\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.3.4.5\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @param that {var?} Context for the bound function",
+          "     * @return {Function} The bound function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -70,28 +54,38 @@
           {
             "name": "@return",
             "body": "{Function} The bound function",
-            "type": "qx.lang.normalize.Function",
-            "description": " The bound function"
+            "type": "((...args: any[]) => any)",
+            "description": "The bound function"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 187,
-        "column": 2,
-        "index": 8184
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2943
+        },
+        "end": {
+          "line": 184,
+          "column": 5,
+          "index": 7989
+        }
       },
-      "end": {
-        "line": 191,
-        "column": 3,
-        "index": 8324
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "that",
+          "type": "var",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

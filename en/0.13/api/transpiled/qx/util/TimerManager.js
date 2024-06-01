@@ -89,15 +89,15 @@
     type: "singleton",
     statics: {
       /** Time-ordered queue of timers */
-      __P_520_0: [],
+      __P_739_0: [],
       /** Saved data for each timer */
-      __P_520_1: {},
+      __P_739_1: {},
       /** Next timer id value is determined by incrementing this */
-      __P_520_2: 0
+      __P_739_2: 0
     },
     members: {
       /** Whether we're currently listening on the interval timer event */
-      __P_520_3: false,
+      __P_739_3: false,
       /**
        * Start a new timer
        *
@@ -143,7 +143,7 @@
 
         // Save the callback, user data, and requested recurrency time as well
         // as the current expiry time
-        qx.util.TimerManager.__P_520_1[++qx.util.TimerManager.__P_520_2] = {
+        qx.util.TimerManager.__P_739_1[++qx.util.TimerManager.__P_739_2] = {
           callback: callback,
           userData: userData || null,
           expireAt: expireAt,
@@ -152,10 +152,10 @@
         };
 
         // Insert this new timer on the time-ordered timer queue
-        this.__P_520_4(expireAt, qx.util.TimerManager.__P_520_2);
+        this.__P_739_4(expireAt, qx.util.TimerManager.__P_739_2);
 
         // Give 'em the timer id
-        return qx.util.TimerManager.__P_520_2;
+        return qx.util.TimerManager.__P_739_2;
       },
       /**
        * Stop a running timer
@@ -165,7 +165,7 @@
        */
       stop: function stop(timerId) {
         // Find this timer id in the time-ordered list
-        var timerQueue = qx.util.TimerManager.__P_520_0;
+        var timerQueue = qx.util.TimerManager.__P_739_0;
         var length = timerQueue.length;
         for (var i = 0; i < length; i++) {
           // Is this the one we're looking for?
@@ -179,13 +179,13 @@
         }
 
         // Ensure it's gone from the timer data map as well
-        delete qx.util.TimerManager.__P_520_1[timerId];
+        delete qx.util.TimerManager.__P_739_1[timerId];
 
         // If there are no more timers pending...
-        if (timerQueue.length == 0 && this.__P_520_3) {
+        if (timerQueue.length == 0 && this.__P_739_3) {
           // ... then stop listening for the periodic timer
-          qx.event.Idle.getInstance().removeListener("interval", this.__P_520_5, this);
-          this.__P_520_3 = false;
+          qx.event.Idle.getInstance().removeListener("interval", this.__P_739_5, this);
+          this.__P_739_3 = false;
         }
       },
       /**
@@ -198,13 +198,13 @@
        *   Id of the timer to be time-ordered
        *
        */
-      __P_520_4: function __P_520_4(expireAt, timerId) {
+      __P_739_4: function __P_739_4(expireAt, timerId) {
         // The timer queue is time-ordered so that processing timers need not
         // search the queue; rather, it can simply look at the first element
         // and if not yet ready to fire, be done.  Search the queue for the
         // appropriate place to insert this timer.
-        var timerQueue = qx.util.TimerManager.__P_520_0;
-        var timerData = qx.util.TimerManager.__P_520_1;
+        var timerQueue = qx.util.TimerManager.__P_739_0;
+        var timerData = qx.util.TimerManager.__P_739_1;
         var length = timerQueue.length;
         for (var i = 0; i < length; i++) {
           // Have we reached a later time?
@@ -224,10 +224,10 @@
         }
 
         // If this is the first element on the queue...
-        if (!this.__P_520_3) {
+        if (!this.__P_739_3) {
           // ... then start listening for the periodic timer.
-          qx.event.Idle.getInstance().addListener("interval", this.__P_520_5, this);
-          this.__P_520_3 = true;
+          qx.event.Idle.getInstance().addListener("interval", this.__P_739_5, this);
+          this.__P_739_3 = true;
         }
       },
       /**
@@ -237,13 +237,13 @@
        * the callback function.
        *
        */
-      __P_520_5: function __P_520_5() {
+      __P_739_5: function __P_739_5() {
         // Get the current time
         var timeNow = new Date().getTime();
 
         // While there are timer elements that need processing...
-        var timerQueue = qx.util.TimerManager.__P_520_0;
-        var timerData = qx.util.TimerManager.__P_520_1;
+        var timerQueue = qx.util.TimerManager.__P_739_0;
+        var timerData = qx.util.TimerManager.__P_739_1;
 
         // Is it time to process the first timer element yet?
         while (timerQueue.length > 0 && timerData[timerQueue[0]].expireAt <= timeNow) {
@@ -261,7 +261,7 @@
             expiredTimerData.expireAt = now + expiredTimerData.recurTime;
 
             // Insert this timer back on the time-ordered timer queue
-            this.__P_520_4(expiredTimerData.expireAt, expiredTimerId);
+            this.__P_739_4(expiredTimerData.expireAt, expiredTimerId);
           } else {
             // If it's not a recurrent timer, we can purge its data too.
             delete timerData[expiredTimerId];
@@ -269,10 +269,10 @@
         }
 
         // If there are no more timers pending...
-        if (timerQueue.length == 0 && this.__P_520_3) {
+        if (timerQueue.length == 0 && this.__P_739_3) {
           // ... then stop listening for the periodic timer
-          qx.event.Idle.getInstance().removeListener("interval", this.__P_520_5, this);
-          this.__P_520_3 = false;
+          qx.event.Idle.getInstance().removeListener("interval", this.__P_739_5, this);
+          this.__P_739_3 = false;
         }
       }
     }
@@ -280,4 +280,4 @@
   qx.util.TimerManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TimerManager.js.map?dt=1709410169334
+//# sourceMappingURL=TimerManager.js.map?dt=1717235420602

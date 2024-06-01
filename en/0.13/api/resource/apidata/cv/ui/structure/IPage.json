@@ -1,46 +1,35 @@
 {
-  "className": "cv.ui.structure.IPage",
-  "packageName": "cv.ui.structure",
-  "name": "IPage",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 30,
-        "column": 0,
-        "index": 935
-      },
-      "end": {
-        "line": 64,
-        "column": 3,
-        "index": 1629
-      }
+  "version": 0.3,
+  "lastModified": 1717235105610,
+  "lastModifiedIso": "2024-06-01T09:45:05.610Z",
+  "classFilename": "../../source/class/cv/ui/structure/IPage.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 935
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Interface that all structure page widgets must implement</p><div class=\"authors\"><label>Author:</label> tobiasb</div><div class=\"since\"><label>Since:</label> 2017</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "tobiasb"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2017"
-        }
-      ]
+    "end": {
+      "line": 64,
+      "column": 3,
+      "index": 1629
     }
   },
-  "type": "interface",
+  "className": "cv.ui.structure.IPage",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Interface that all structure page widgets must implement",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Interface that all structure page widgets must implement</p>"
+      }
+    ]
+  },
   "properties": {
     "path": {
       "location": {
@@ -55,7 +44,14 @@
           "index": 1226
         }
       },
+      "json": {},
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The internal path to the widget",
+          "     * @type {String}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -69,8 +65,7 @@
           }
         ]
       },
-      "name": "path",
-      "propertyType": "new"
+      "appearsIn": []
     },
     "pageType": {
       "location": {
@@ -85,7 +80,14 @@
           "index": 1319
         }
       },
+      "json": {},
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The page type (text, 2d, 3d)",
+          "     * @type {String}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -99,8 +101,7 @@
           }
         ]
       },
-      "name": "pageType",
-      "propertyType": "new"
+      "appearsIn": []
     },
     "backdropAlign": {
       "location": {
@@ -115,8 +116,9 @@
           "index": 1342
         }
       },
-      "name": "backdropAlign",
-      "propertyType": "new"
+      "json": {},
+      "jsdoc": null,
+      "appearsIn": []
     },
     "backdropType": {
       "location": {
@@ -131,25 +133,20 @@
           "index": 1364
         }
       },
-      "name": "backdropType",
-      "propertyType": "new"
+      "json": {},
+      "jsdoc": null,
+      "appearsIn": []
     }
   },
   "members": {
     "getDomElement": {
-      "location": {
-        "start": {
-          "line": 62,
-          "column": 4,
-          "index": 1603
-        },
-        "end": {
-          "line": 62,
-          "column": 22,
-          "index": 1621
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the widgets DOM element",
+          "     * @return {Element}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -165,273 +162,26 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPath": {
-      "type": "function",
-      "name": "getPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
       "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>path</code>.\n\nFor further details take a look at the property definition: {@link #path}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for path"
-          }
-        ]
-      }
-    },
-    "setPath": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1603
+        },
+        "end": {
+          "line": 62,
+          "column": 22,
+          "index": 1621
+        }
+      },
       "type": "function",
-      "name": "setPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>path</code>.\n\nFor further details take a look at the property definition: {@link #path}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for path"
-          }
-        ]
-      }
-    },
-    "resetPath": {
-      "type": "function",
-      "name": "resetPath",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>path</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #path}."
-          }
-        ]
-      }
-    },
-    "getPageType": {
-      "type": "function",
-      "name": "getPageType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>pageType</code>.\n\nFor further details take a look at the property definition: {@link #pageType}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for pageType"
-          }
-        ]
-      }
-    },
-    "setPageType": {
-      "type": "function",
-      "name": "setPageType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>pageType</code>.\n\nFor further details take a look at the property definition: {@link #pageType}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for pageType"
-          }
-        ]
-      }
-    },
-    "resetPageType": {
-      "type": "function",
-      "name": "resetPageType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>pageType</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #pageType}."
-          }
-        ]
-      }
-    },
-    "getBackdropAlign": {
-      "type": "function",
-      "name": "getBackdropAlign",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backdropAlign</code>.\n\nFor further details take a look at the property definition: {@link #backdropAlign}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backdropAlign"
-          }
-        ]
-      }
-    },
-    "setBackdropAlign": {
-      "type": "function",
-      "name": "setBackdropAlign",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backdropAlign</code>.\n\nFor further details take a look at the property definition: {@link #backdropAlign}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backdropAlign"
-          }
-        ]
-      }
-    },
-    "resetBackdropAlign": {
-      "type": "function",
-      "name": "resetBackdropAlign",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backdropAlign</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backdropAlign}."
-          }
-        ]
-      }
-    },
-    "getBackdropType": {
-      "type": "function",
-      "name": "getBackdropType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backdropType</code>.\n\nFor further details take a look at the property definition: {@link #backdropType}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for backdropType"
-          }
-        ]
-      }
-    },
-    "setBackdropType": {
-      "type": "function",
-      "name": "setBackdropType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backdropType</code>.\n\nFor further details take a look at the property definition: {@link #backdropType}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for backdropType"
-          }
-        ]
-      }
-    },
-    "resetBackdropType": {
-      "type": "function",
-      "name": "resetBackdropType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backdropType</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backdropType}."
-          }
-        ]
-      }
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

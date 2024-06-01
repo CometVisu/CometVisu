@@ -1,49 +1,49 @@
 {
-  "className": "qx.module.Cookie",
-  "packageName": "qx.module",
-  "name": "Cookie",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 532
-      },
-      "end": {
-        "line": 66,
-        "column": 3,
-        "index": 2049
-      }
+  "version": 0.3,
+  "lastModified": 1717235169798,
+  "lastModifiedIso": "2024-06-01T09:46:09.798Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Cookie.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 511
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Cookie handling module</p>"
-        }
-      ]
+    "end": {
+      "line": 66,
+      "column": 3,
+      "index": 1984
     }
   },
-  "type": "class",
+  "className": "qx.module.Cookie",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Cookie handling module",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Cookie handling module</p>"
+      }
+    ]
+  },
   "statics": {
     "get": {
-      "location": {
-        "start": {
-          "line": 33,
-          "column": 4,
-          "index": 948
-        },
-        "end": {
-          "line": 33,
-          "column": 26,
-          "index": 970
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the string value of a cookie.",
+          "     *",
+          "     * @attachStatic {qxWeb, cookie.get}",
+          "     * @param key {String} The key for the saved string value.",
+          "     * @return {String|null} Returns the saved string value if the cookie",
+          "     *    contains a value for the key, otherwise <code>null</code>",
+          "     * @signature function(key)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -62,7 +62,7 @@
             "body": "key {String} The key for the saved string value.",
             "paramName": "key",
             "description": " The key for the saved string value.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -70,7 +70,7 @@
             "name": "@return",
             "body": "{String|null} Returns the saved string value if the cookie\n    contains a value for the key, otherwise <code>null</code>",
             "type": "String|null",
-            "description": " Returns the saved string value if the cookie\n    contains a value for the key, otherwise <code>null</code>"
+            "description": "Returns the saved string value if the cookie\n    contains a value for the key, otherwise <code>null</code>"
           }
         ],
         "@signature": [
@@ -80,23 +80,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "set": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 33,
           "column": 4,
-          "index": 1604
+          "index": 916
         },
         "end": {
-          "line": 49,
+          "line": 33,
           "column": 26,
-          "index": 1626
+          "index": 938
         }
       },
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "set": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the string value of a cookie.",
+          "     *",
+          "     * @attachStatic {qxWeb, cookie.set}",
+          "     * @param key {String} The key for the string value.",
+          "     * @param value {String} The string value.",
+          "     * @param expires {Number?null} Expires directive value in days starting from now,",
+          "     *    or <code>null</code> if the cookie should be deleted when the browser",
+          "     *    is closed.",
+          "     * @param path {String?null} Path value.",
+          "     * @param domain {String?null} Domain value.",
+          "     * @param secure {Boolean?null} Secure flag.",
+          "     * @signature function(key, value, expires, path, domain, secure)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -115,14 +134,14 @@
             "body": "key {String} The key for the string value.",
             "paramName": "key",
             "description": " The key for the string value.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "value {String} The string value.",
             "paramName": "value",
             "description": " The string value.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -168,23 +187,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "del": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 60,
+          "line": 49,
           "column": 4,
-          "index": 1950
+          "index": 1556
         },
         "end": {
-          "line": 60,
+          "line": 49,
           "column": 26,
-          "index": 1972
+          "index": 1578
         }
       },
+      "appearsIn": []
+    },
+    "del": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deletes the string value of a cookie.",
+          "     *",
+          "     * @attachStatic {qxWeb, cookie.del}",
+          "     * @param key {String} The key for the string value.",
+          "     * @param path {String?null} Path value.",
+          "     * @param domain {String?null} Domain value.",
+          "     * @signature function(key, path, domain)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -203,7 +233,7 @@
             "body": "key {String} The key for the string value.",
             "paramName": "key",
             "description": " The key for the string value.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -231,23 +261,22 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 63,
-        "column": 2,
-        "index": 1984
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1891
+        },
+        "end": {
+          "line": 60,
+          "column": 26,
+          "index": 1913
+        }
       },
-      "end": {
-        "line": 65,
-        "column": 3,
-        "index": 2044
-      }
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

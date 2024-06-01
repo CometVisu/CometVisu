@@ -1,49 +1,50 @@
 {
-  "className": "qx.util.StringSplit",
-  "packageName": "qx.util",
-  "name": "StringSplit",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 40,
-        "column": 0,
-        "index": 1073
-      },
-      "end": {
-        "line": 137,
-        "column": 3,
-        "index": 4592
-      }
+  "version": 0.3,
+  "lastModified": 1717235172430,
+  "lastModifiedIso": "2024-06-01T09:46:12.430Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/StringSplit.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 40,
+      "column": 0,
+      "index": 1034
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Implements an ECMA-compliant, uniform cross-browser split method</p>"
-        }
-      ]
+    "end": {
+      "line": 137,
+      "column": 3,
+      "index": 4456
     }
   },
-  "type": "class",
+  "className": "qx.util.StringSplit",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Implements an ECMA-compliant, uniform cross-browser split method",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Implements an ECMA-compliant, uniform cross-browser split method</p>"
+      }
+    ]
+  },
   "statics": {
     "split": {
-      "location": {
-        "start": {
-          "line": 52,
-          "column": 4,
-          "index": 1684
-        },
-        "end": {
-          "line": 135,
-          "column": 5,
-          "index": 4582
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * ECMA-compliant, uniform cross-browser split method",
+          "     *",
+          "     * @param str {String} Incoming string to split",
+          "     * @param separator {RegExp} Specifies the character to use for separating the string.",
+          "     *   The separator is treated as a string or a  regular expression. If separator is",
+          "     *   omitted, the array returned contains one element consisting of the entire string.",
+          "     * @param limit {Integer?} Integer specifying a limit on the number of splits to be found.",
+          "     * @return {String[]} split string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,7 +57,7 @@
             "body": "str {String} Incoming string to split",
             "paramName": "str",
             "description": " Incoming string to split",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -79,13 +80,45 @@
             "name": "@return",
             "body": "{String[]} split string",
             "type": "String[]",
-            "description": " split string"
+            "description": "split string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1633
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 4448
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        },
+        {
+          "name": "separator",
+          "type": "RegExp"
+        },
+        {
+          "name": "limit",
+          "type": "Integer",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

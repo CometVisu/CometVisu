@@ -1,49 +1,55 @@
 {
-  "className": "qx.data.store.IStoreDelegate",
-  "packageName": "qx.data.store",
-  "name": "IStoreDelegate",
-  "superClass": "qx.data.marshal.IMarshalerDelegate",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 30,
-        "column": 0,
-        "index": 1023
-      },
-      "end": {
-        "line": 51,
-        "column": 3,
-        "index": 1666
-      }
+  "version": 0.3,
+  "lastModified": 1717235171454,
+  "lastModifiedIso": "2024-06-01T09:46:11.454Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/store/IStoreDelegate.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 994
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Objects, which are used as delegates for a data binding store may\n implement any of the methods described in this interface. The delegate does\n not need implement all of the methods of this interface. If a method is not\n implemented the store provides a default implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n really implemented.</p>"
-        }
-      ]
+    "end": {
+      "line": 51,
+      "column": 3,
+      "index": 1616
     }
   },
-  "type": "interface",
+  "className": "qx.data.store.IStoreDelegate",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Objects, which are used as delegates for a data binding store may",
+      " * implement any of the methods described in this interface. The delegate does",
+      " * not need implement all of the methods of this interface. If a method is not",
+      " * implemented the store provides a default implementation.",
+      " *",
+      " * Note: This interface is meant to document the delegate but should not be",
+      " * listed in the <code>implement</code> key of a class unless all methods are",
+      " * really implemented.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Objects, which are used as delegates for a data binding store may\n implement any of the methods described in this interface. The delegate does\n not need implement all of the methods of this interface. If a method is not\n implemented the store provides a default implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n really implemented.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.data.marshal.IMarshalerDelegate",
   "members": {
     "manipulateData": {
-      "location": {
-        "start": {
-          "line": 41,
-          "column": 4,
-          "index": 1381
-        },
-        "end": {
-          "line": 41,
-          "column": 27,
-          "index": 1404
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method manipulates the data from the request and returns the",
+          "     * manipulated data.",
+          "     *",
+          "     * @param data {Object} The data received by the request.",
+          "     * @return {Object} The manipulated data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,35 +62,53 @@
             "body": "data {Object} The data received by the request.",
             "paramName": "data",
             "description": " The data received by the request.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} The manipulated data.",
-            "type": "Object",
-            "description": " The manipulated data."
+            "type": "Record<any, any>",
+            "description": "The manipulated data."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "configureRequest": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 41,
           "column": 4,
-          "index": 1628
+          "index": 1341
         },
         "end": {
-          "line": 49,
-          "column": 32,
-          "index": 1656
+          "line": 41,
+          "column": 27,
+          "index": 1364
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "configureRequest": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method can change the settings on the used request by the store.",
+          "     *",
+          "     * @param request {var} The created request, depending on the implementation",
+          "     *   of the data store.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -101,390 +125,29 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "ignore": {
-      "type": "function",
-      "name": "ignore",
-      "abstract": true,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.data.marshal.IMarshalerDelegate",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Gives the possibility to ignore parts of the marshaled data and store the\n original data.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "properties {String} A sorted order of propertynames\n   separated by \".",
-            "paramName": "properties",
-            "description": " A sorted order of propertynames\n   separated by \".",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "parentProperty {String|null} If there is a named parent property, the\n   name is given here. This might be null in case of the root data.",
-            "paramName": "parentProperty",
-            "description": " If there is a named parent property, the\n   name is given here. This might be null in case of the root data.",
-            "type": [
-              "String",
-              "null"
-            ]
-          },
-          {
-            "name": "@param",
-            "body": "depth {Number} The depth level of the data.",
-            "paramName": "depth",
-            "description": " The depth level of the data.",
-            "type": "Number"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} <code>true</code> if the set should be ignored",
-            "type": "Boolean",
-            "description": " <code>true</code> if the set should be ignored"
-          }
-        ]
-      }
-    },
-    "getPropertyMapping": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1580
+        },
+        "end": {
+          "line": 49,
+          "column": 32,
+          "index": 1608
+        }
+      },
       "type": "function",
-      "name": "getPropertyMapping",
-      "abstract": true,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.marshal.IMarshalerDelegate",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Gives the possibility to change the names given in the data to convert\n to something different.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "property {String} The name of the property from the data source.",
-            "paramName": "property",
-            "description": " The name of the property from the data source.",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "properties {String} A sorted order of propertynames\n   separated by \".",
-            "paramName": "properties",
-            "description": " A sorted order of propertynames\n   separated by \".",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} The new property name which should be used for that property in\n   the model.",
-            "type": "String",
-            "description": " The new property name which should be used for that property in\n   the model."
-          }
-        ]
-      }
-    },
-    "getModelClass": {
-      "type": "function",
-      "name": "getModelClass",
-      "abstract": true,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.marshal.IMarshalerDelegate",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Determines the user defined class for the given properties string.\n This class could contain additional methods but needs to have the\n properties with the given names. Also every property needs to have a\n change event.\n If this method is implemented, you have to add the superclass and mixins\n yourself to the returned class. This means that the methods\n {@link #getModelSuperClass} and {@link #getModelMixins} will not be\n called for the corresponding class.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "properties {String} A sorted order of propertynames\n   separated by \".",
-            "paramName": "properties",
-            "description": " A sorted order of propertynames\n   separated by \".",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "object {Map} The object for which an class is needed.",
-            "paramName": "object",
-            "description": " The object for which an class is needed.",
-            "type": "Map"
-          },
-          {
-            "name": "@param",
-            "body": "parentProperty {String|null} If there is a named parent property, the\n   name is given here. This might be null in case of the root data.",
-            "paramName": "parentProperty",
-            "description": " If there is a named parent property, the\n   name is given here. This might be null in case of the root data.",
-            "type": [
-              "String",
-              "null"
-            ]
-          },
-          {
-            "name": "@param",
-            "body": "depth {Number} The depth level of the data.",
-            "paramName": "depth",
-            "description": " The depth level of the data.",
-            "type": "Number"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Class|null} Returns the class containing the properties\n   corresponding to the given hash of the properties. If <code>null</code>\n   will be returned, the marshaler will create a class.",
-            "type": "Class|null",
-            "description": " Returns the class containing the properties\n   corresponding to the given hash of the properties. If <code>null</code>\n   will be returned, the marshaler will create a class."
-          }
-        ]
-      }
-    },
-    "getModelSuperClass": {
-      "type": "function",
-      "name": "getModelSuperClass",
-      "abstract": true,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.marshal.IMarshalerDelegate",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns the class which the created model class uses as superclass.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "properties {String} A sorted order of propertynames\n   separated by \".",
-            "paramName": "properties",
-            "description": " A sorted order of propertynames\n   separated by \".",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "parentProperty {String|null} If there is a named parent property, the\n   name is given here. This might be null in case of the root data.",
-            "paramName": "parentProperty",
-            "description": " If there is a named parent property, the\n   name is given here. This might be null in case of the root data.",
-            "type": [
-              "String",
-              "null"
-            ]
-          },
-          {
-            "name": "@param",
-            "body": "depth {Number} The depth level of the data.",
-            "paramName": "depth",
-            "description": " The depth level of the data.",
-            "type": "Number"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Class|null} Returns the class which should be used as superclass\n   corresponding to the given hash of the properties. If <code>null</code>\n   will be returned, {@link qx.core.Object} will be used as superclass.",
-            "type": "Class|null",
-            "description": " Returns the class which should be used as superclass\n   corresponding to the given hash of the properties. If <code>null</code>\n   will be returned, {@link qx.core.Object} will be used as superclass."
-          }
-        ]
-      }
-    },
-    "getModelMixins": {
-      "type": "function",
-      "name": "getModelMixins",
-      "abstract": true,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.marshal.IMarshalerDelegate",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns the mixins which should be included to the class, created by the\n marshaler and identified by the given properties string.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "properties {String} A sorted order of propertynames\n   separated by \".",
-            "paramName": "properties",
-            "description": " A sorted order of propertynames\n   separated by \".",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "parentProperty {String|null} If there is a named parent property, the\n   name is given here. This might be null in case of the root data.",
-            "paramName": "parentProperty",
-            "description": " If there is a named parent property, the\n   name is given here. This might be null in case of the root data.",
-            "type": [
-              "String",
-              "null"
-            ]
-          },
-          {
-            "name": "@param",
-            "body": "depth {Number} The depth level of the data.",
-            "paramName": "depth",
-            "description": " The depth level of the data.",
-            "type": "Number"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Array|Mixin|null} Returns an array of mixins or a single mixin which\n   will be included into the given class identified by the properties\n   given in the parameter. If <code>null</code> will be returned, no mixin\n   will be included.",
-            "type": "Array|Mixin|null",
-            "description": " Returns an array of mixins or a single mixin which\n   will be included into the given class identified by the properties\n   given in the parameter. If <code>null</code> will be returned, no mixin\n   will be included."
-          }
-        ]
-      }
-    },
-    "getValidationRule": {
-      "type": "function",
-      "name": "getValidationRule",
-      "abstract": true,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.marshal.IMarshalerDelegate",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns the validation rules which should be added to the created class\n for the given property. This method will be called for every property.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "properties {String} A sorted order of propertynames\n   separated by \".",
-            "paramName": "properties",
-            "description": " A sorted order of propertynames\n   separated by \".",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "propertyName {String} The name of the current property.",
-            "paramName": "propertyName",
-            "description": " The name of the current property.",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Function|null} If you want to have a validation rule for the\n   current property, you should return a validation function which will\n   be included into the property definition as validator.\n   {@link qx.core.Property} for more details.",
-            "type": "Function|null",
-            "description": " If you want to have a validation rule for the\n   current property, you should return a validation function which will\n   be included into the property definition as validator.\n   {@link qx.core.Property} for more details."
-          }
-        ]
-      }
-    },
-    "getArrayClass": {
-      "type": "function",
-      "name": "getArrayClass",
-      "abstract": true,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.marshal.IMarshalerDelegate",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns the array class which should be used by the marshaler. The passed\n parameters can be used to determine the array class. The return array class\n must implement the {@link qx.data.IListData} interface.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "parentProperty {String|null} If there is a named parent property, the\n   name is given here. This might be null in case of the root data.",
-            "paramName": "parentProperty",
-            "description": " If there is a named parent property, the\n   name is given here. This might be null in case of the root data.",
-            "type": [
-              "String",
-              "null"
-            ]
-          },
-          {
-            "name": "@param",
-            "body": "depth {Number} The depth level of the data.",
-            "paramName": "depth",
-            "description": " The depth level of the data.",
-            "type": "Number"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Class|null} Returns the class which should be used as array class.\n   If <code>null</code> will be returned, {@link qx.data.Array} will be used as array class.",
-            "type": "Class|null",
-            "description": " Returns the class which should be used as array class.\n   If <code>null</code> will be returned, {@link qx.data.Array} will be used as array class."
-          }
-        ]
-      }
-    },
-    "getJsonHash": {
-      "type": "function",
-      "name": "getJsonHash",
-      "abstract": true,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.marshal.IMarshalerDelegate",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Converts a given object into a hash which will be used to identify the\n classes under the namespace <code>qx.data.model</code>.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "data {Object} The JavaScript object from which the hash is\n   required.",
-            "paramName": "data",
-            "description": " The JavaScript object from which the hash is\n   required.",
-            "type": "Object"
-          },
-          {
-            "name": "@param",
-            "body": "includeBubbleEvents {Boolean?false} Whether the model should\n   support the bubbling of change events or not.",
-            "paramName": "includeBubbleEvents",
-            "description": " Whether the model should\n   support the bubbling of change events or not.",
-            "optional": true,
-            "defaultValue": "false",
-            "type": "Boolean"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} The hash representation of the given JavaScript object.",
-            "type": "String",
-            "description": " The hash representation of the given JavaScript object."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "request",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "abstract": true,
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

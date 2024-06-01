@@ -100,7 +100,7 @@
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
       this._setLayout(new qx.ui.layout.Grow());
-      this.addListener("changeSelection", this.__P_309_0, this);
+      this.addListener("changeSelection", this.__P_527_0, this);
     },
     /*
     *****************************************************************************
@@ -179,7 +179,7 @@
        *
        * @param e {qx.event.type.Data} Data event.
        */
-      __P_309_0: function __P_309_0(e) {
+      __P_527_0: function __P_527_0(e) {
         var old = e.getOldData()[0];
         var value = e.getData()[0];
         if (old) {
@@ -250,4 +250,4 @@
   qx.ui.container.Stack.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Stack.js.map?dt=1709410157646
+//# sourceMappingURL=Stack.js.map?dt=1717235408140

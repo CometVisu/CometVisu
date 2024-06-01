@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "mobile",
+    "MobileTestCase",
+    "members",
+    "testValue",
+    "checkBox",
+    "ui",
+    "form",
+    "CheckBox",
+    "getRoot",
+    "add",
+    "assertEquals",
+    "getValue",
+    "qxWeb",
+    "getContainerElement",
+    "hasClass",
+    "setValue",
+    "destroy",
+    "testEnabled",
+    "setEnabled",
+    "getEnabled",
+    "bom",
+    "element",
+    "has"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/mobile/form/CheckBox.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.mobile.form.CheckBox\", {\n  extend: qx.test.mobile.MobileTestCase,\n\n  members: {\n    testValue() {\n      var checkBox = new qx.ui.mobile.form.CheckBox(false);\n      this.getRoot().add(checkBox);\n\n      this.assertEquals(false, checkBox.getValue());\n      this.assertEquals(\n        false,\n        qxWeb(checkBox.getContainerElement()).hasClass(\"checked\")\n      );\n\n      checkBox.setValue(true);\n      this.assertEquals(true, checkBox.getValue());\n      this.assertEquals(\n        true,\n        qxWeb(checkBox.getContainerElement()).hasClass(\"checked\")\n      );\n\n      checkBox.destroy();\n    },\n    testEnabled() {\n      var checkBox = new qx.ui.mobile.form.CheckBox();\n      this.getRoot().add(checkBox);\n      checkBox.setEnabled(false);\n      this.assertEquals(false, checkBox.getEnabled());\n      this.assertEquals(\n        true,\n        qx.bom.element.Class.has(checkBox.getContainerElement(), \"disabled\")\n      );\n\n      checkBox.destroy();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,8BAA8B,EAAE;IAC9CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM,CAACC,cAAc;IAErCC,OAAO,EAAE;MACPC,SAAS,WAAAA,UAAA,EAAG;QACV,IAAIC,QAAQ,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACC,QAAQ,CAAC,KAAK,CAAC;QACpD,IAAI,CAACC,OAAO,CAAC,CAAC,CAACC,GAAG,CAACL,QAAQ,CAAC;QAE5B,IAAI,CAACM,YAAY,CAAC,KAAK,EAAEN,QAAQ,CAACO,QAAQ,CAAC,CAAC,CAAC;QAC7C,IAAI,CAACD,YAAY,CACf,KAAK,EACLE,KAAK,CAACR,QAAQ,CAACS,mBAAmB,CAAC,CAAC,CAAC,CAACC,QAAQ,CAAC,SAAS,CAC1D,CAAC;QAEDV,QAAQ,CAACW,QAAQ,CAAC,IAAI,CAAC;QACvB,IAAI,CAACL,YAAY,CAAC,IAAI,EAAEN,QAAQ,CAACO,QAAQ,CAAC,CAAC,CAAC;QAC5C,IAAI,CAACD,YAAY,CACf,IAAI,EACJE,KAAK,CAACR,QAAQ,CAACS,mBAAmB,CAAC,CAAC,CAAC,CAACC,QAAQ,CAAC,SAAS,CAC1D,CAAC;QAEDV,QAAQ,CAACY,OAAO,CAAC,CAAC;MACpB,CAAC;MACDC,WAAW,WAAAA,YAAA,EAAG;QACZ,IAAIb,QAAQ,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACC,QAAQ,CAAC,CAAC;QAC/C,IAAI,CAACC,OAAO,CAAC,CAAC,CAACC,GAAG,CAACL,QAAQ,CAAC;QAC5BA,QAAQ,CAACc,UAAU,CAAC,KAAK,CAAC;QAC1B,IAAI,CAACR,YAAY,CAAC,KAAK,EAAEN,QAAQ,CAACe,UAAU,CAAC,CAAC,CAAC;QAC/C,IAAI,CAACT,YAAY,CACf,IAAI,EACJlB,EAAE,CAAC4B,GAAG,CAACC,OAAO,CAACzB,KAAK,CAAC0B,GAAG,CAAClB,QAAQ,CAACS,mBAAmB,CAAC,CAAC,EAAE,UAAU,CACrE,CAAC;QAEDT,QAAQ,CAACY,OAAO,CAAC,CAAC;MACpB;IACF;EACF,CAAC,CAAC;EAtDFxB,EAAE,CAACO,IAAI,CAACC,MAAM,CAACM,IAAI,CAACC,QAAQ,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

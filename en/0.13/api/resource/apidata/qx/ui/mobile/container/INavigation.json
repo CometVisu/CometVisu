@@ -1,49 +1,45 @@
 {
-  "className": "qx.ui.mobile.container.INavigation",
-  "packageName": "qx.ui.mobile.container",
-  "name": "INavigation",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 590
-      },
-      "end": {
-        "line": 45,
-        "column": 3,
-        "index": 1329
-      }
+  "version": 0.3,
+  "lastModified": 1717235171298,
+  "lastModifiedIso": "2024-06-01T09:46:11.298Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/container/INavigation.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 569
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>All widgets that are added to the navigation container should implement this interface.</p>"
-        }
-      ]
+    "end": {
+      "line": 45,
+      "column": 3,
+      "index": 1285
     }
   },
-  "type": "interface",
+  "className": "qx.ui.mobile.container.INavigation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * All widgets that are added to the navigation container should implement this interface.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>All widgets that are added to the navigation container should implement this interface.</p>"
+      }
+    ]
+  },
   "members": {
     "getTitleWidget": {
-      "location": {
-        "start": {
-          "line": 29,
-          "column": 4,
-          "index": 851
-        },
-        "end": {
-          "line": 29,
-          "column": 23,
-          "index": 870
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the title widget that is merged into the navigation bar.",
+          "     *",
+          "     * @return {qx.ui.mobile.navigationbar.Title} The title of the navigation bar",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -55,27 +51,39 @@
             "name": "@return",
             "body": "{qx.ui.mobile.navigationbar.Title} The title of the navigation bar",
             "type": "qx.ui.mobile.navigationbar.Title",
-            "description": " The title of the navigation bar"
+            "description": "The title of the navigation bar"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLeftContainer": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 36,
+          "line": 29,
           "column": 4,
-          "index": 1072
+          "index": 823
         },
         "end": {
-          "line": 36,
-          "column": 25,
-          "index": 1093
+          "line": 29,
+          "column": 23,
+          "index": 842
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.navigationbar.Title"
+      },
+      "appearsIn": []
+    },
+    "getLeftContainer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the left container that is merged into the navigation bar.",
+          "     *",
+          "     * @return {qx.ui.mobile.container.Composite} The left container of the navigation bar",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,27 +95,39 @@
             "name": "@return",
             "body": "{qx.ui.mobile.container.Composite} The left container of the navigation bar",
             "type": "qx.ui.mobile.container.Composite",
-            "description": " The left container of the navigation bar"
+            "description": "The left container of the navigation bar"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRightContainer": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 43,
+          "line": 36,
           "column": 4,
-          "index": 1297
+          "index": 1037
         },
         "end": {
-          "line": 43,
-          "column": 26,
-          "index": 1319
+          "line": 36,
+          "column": 25,
+          "index": 1058
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Composite"
+      },
+      "appearsIn": []
+    },
+    "getRightContainer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the right container that is merged into the navigation bar.",
+          "     *",
+          "     * @return {qx.ui.mobile.container.Composite} The right container of the navigation bar",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -119,13 +139,31 @@
             "name": "@return",
             "body": "{qx.ui.mobile.container.Composite} The right container of the navigation bar",
             "type": "qx.ui.mobile.container.Composite",
-            "description": " The right container of the navigation bar"
+            "description": "The right container of the navigation bar"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1255
+        },
+        "end": {
+          "line": 43,
+          "column": 26,
+          "index": 1277
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Composite"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

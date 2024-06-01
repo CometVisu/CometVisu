@@ -1,49 +1,54 @@
 {
-  "className": "qx.ui.tree.core.IVirtualTreeDelegate",
-  "packageName": "qx.ui.tree.core",
-  "name": "IVirtualTreeDelegate",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 30,
-        "column": 0,
-        "index": 1041
-      },
-      "end": {
-        "line": 92,
-        "column": 3,
-        "index": 3161
-      }
+  "version": 0.3,
+  "lastModified": 1717235171458,
+  "lastModifiedIso": "2024-06-01T09:46:11.458Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/tree/core/IVirtualTreeDelegate.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 1012
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Objects which are used as delegates for the <code>qx.ui.tree.VirtualTree</code> may\n implement any of the methods described in this interface. The delegate does\n not need to implement all the methods of this interface. If a method is not\n implemented the <code>qx.ui.tree.VirtualTree</code> provides a default\n implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n actually implemented.</p>"
-        }
-      ]
+    "end": {
+      "line": 92,
+      "column": 3,
+      "index": 3070
     }
   },
-  "type": "interface",
+  "className": "qx.ui.tree.core.IVirtualTreeDelegate",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Objects which are used as delegates for the <code>qx.ui.tree.VirtualTree</code> may",
+      " * implement any of the methods described in this interface. The delegate does",
+      " * not need to implement all the methods of this interface. If a method is not",
+      " * implemented the <code>qx.ui.tree.VirtualTree</code> provides a default",
+      " * implementation.",
+      " *",
+      " * Note: This interface is meant to document the delegate but should not be",
+      " * listed in the <code>implement</code> key of a class unless all methods are",
+      " * actually implemented.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Objects which are used as delegates for the <code>qx.ui.tree.VirtualTree</code> may\n implement any of the methods described in this interface. The delegate does\n not need to implement all the methods of this interface. If a method is not\n implemented the <code>qx.ui.tree.VirtualTree</code> provides a default\n implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n actually implemented.</p>"
+      }
+    ]
+  },
   "members": {
     "configureItem": {
-      "location": {
-        "start": {
-          "line": 38,
-          "column": 4,
-          "index": 1338
-        },
-        "end": {
-          "line": 38,
-          "column": 26,
-          "index": 1360
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gives the user the opportunity to set individual styles and properties",
+          "     * on the widget cells created by the controller.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Item to modify.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,23 +65,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 47,
+          "line": 38,
           "column": 4,
-          "index": 1632
+          "index": 1301
         },
         "end": {
-          "line": 47,
-          "column": 19,
-          "index": 1647
+          "line": 38,
+          "column": 26,
+          "index": 1323
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a widget cell which will be used for rendering. Be sure to",
+          "     * implement the {@link #bindItem} function as well to get the needed",
+          "     * properties bound.",
+          "     *",
+          "     * @return {qx.ui.core.Widget} A new created item cell.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -88,27 +109,47 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget} A new created item cell.",
             "type": "qx.ui.core.Widget",
-            "description": " A new created item cell."
+            "description": "A new created item cell."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "bindItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 47,
           "column": 4,
-          "index": 2172
+          "index": 1586
         },
         "end": {
-          "line": 62,
-          "column": 37,
-          "index": 2205
+          "line": 47,
+          "column": 19,
+          "index": 1601
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "bindItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets up the binding for the given widget cell and index.",
+          "     *",
+          "     * For every property you want to bind, use",
+          "     * {@link MWidgetController#bindProperty} like this:",
+          "     * <code>",
+          "     * controller.bindProperty(null, \"value\", options, item, id);",
+          "     * </code>",
+          "     *",
+          "     * @param controller {qx.ui.list.core.MWidgetController} The currently used controller.",
+          "     * @param item {qx.ui.core.Widget} The created and used item.",
+          "     * @param id {Integer} The id for the binding.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -139,23 +180,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "onPool": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 69,
+          "line": 62,
           "column": 4,
-          "index": 2366
+          "index": 2111
         },
         "end": {
-          "line": 69,
-          "column": 19,
-          "index": 2381
+          "line": 62,
+          "column": 37,
+          "index": 2144
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "controller",
+          "type": "qx.ui.list.core.MWidgetController"
+        },
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "id",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onPool": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gives the user the opportunity to reset properties or states.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Item to modify.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -172,23 +235,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "filter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 78,
+          "line": 69,
           "column": 4,
-          "index": 2682
+          "index": 2298
         },
         "end": {
-          "line": 78,
+          "line": 69,
           "column": 19,
-          "index": 2697
+          "index": 2313
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "filter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Filter checks the current data and returns a boolean if the data should",
+          "     * appear in the filtered data set or not.",
+          "     *",
+          "     * @param data {var} The data which will be checked.",
+          "     * @return {Boolean} True, if the data passes the filter, false otherwise.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -208,28 +287,50 @@
           {
             "name": "@return",
             "body": "{Boolean} True, if the data passes the filter, false otherwise.",
-            "type": "Boolean",
-            "description": " True, if the data passes the filter, false otherwise."
+            "type": "boolean",
+            "description": "True, if the data passes the filter, false otherwise."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "sorter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 90,
+          "line": 78,
           "column": 4,
-          "index": 3136
+          "index": 2605
         },
         "end": {
-          "line": 90,
+          "line": 78,
           "column": 19,
-          "index": 3151
+          "index": 2620
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "sorter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gives the user the opportunity to sort the children items from a node.",
+          "     * The sorting method should return a negative value if a < b, zero",
+          "     * if a = b, or a positive value if a > b.",
+          "     *",
+          "     * @param a {var} value to compare.",
+          "     * @param b {var} value to compare.",
+          "     * @return {Integer} should return a negative value if a < b, zero",
+          "     *   if a = b, or a positive value if a > b.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -257,13 +358,40 @@
             "name": "@return",
             "body": "{Integer} should return a negative value if a < b, zero\n   if a = b, or a positive value if a > b.",
             "type": "Integer",
-            "description": " should return a negative value if a < b, zero\n   if a = b, or a positive value if a > b."
+            "description": "should return a negative value if a < b, zero\n   if a = b, or a positive value if a > b."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 3047
+        },
+        "end": {
+          "line": 90,
+          "column": 19,
+          "index": 3062
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "a",
+          "type": "var"
+        },
+        {
+          "name": "b",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

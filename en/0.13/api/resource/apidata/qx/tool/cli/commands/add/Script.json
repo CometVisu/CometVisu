@@ -1,0 +1,83 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172182,
+  "lastModifiedIso": "2024-06-01T09:46:12.182Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/add/Script.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 768
+    },
+    "end": {
+      "line": 148,
+      "column": 3,
+      "index": 4369
+    }
+  },
+  "className": "qx.tool.cli.commands.add.Script",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Add a new script file to the current project, to be loaded by the qooxdoo boot loader",
+      " *",
+      " * Syntax: `qx add script path/to/script.js`",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Add a new script file to the current project, to be loaded by the qooxdoo boot loader\n Syntax: <code>qx add script path/to/script.js</code></p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Command",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 878
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1708
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1732
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 4361
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    }
+  },
+  "properties": {}
+}

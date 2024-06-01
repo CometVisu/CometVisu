@@ -64,12 +64,12 @@
     */
     construct: function construct() {
       qx.ui.mobile.container.Composite.constructor.call(this, new qx.ui.mobile.layout.VBox());
-      this.__P_395_0 = this._createNavigationBar();
-      if (this.__P_395_0) {
-        this._add(this.__P_395_0);
+      this.__P_614_0 = this._createNavigationBar();
+      if (this.__P_614_0) {
+        this._add(this.__P_614_0);
       }
-      this.__P_395_1 = this._createContent();
-      this._add(this.__P_395_1, {
+      this.__P_614_1 = this._createContent();
+      this._add(this.__P_614_1, {
         flex: 1
       });
     },
@@ -101,9 +101,9 @@
     */
 
     members: {
-      __P_395_0: null,
-      __P_395_1: null,
-      __P_395_2: null,
+      __P_614_0: null,
+      __P_614_1: null,
+      __P_614_2: null,
       // overridden
       add: function add(widget) {
         this.getContent().add(widget);
@@ -118,14 +118,14 @@
        * @return {qx.ui.mobile.container.Composite} The content container
        */
       getContent: function getContent() {
-        return this.__P_395_1;
+        return this.__P_614_1;
       },
       /**
        * Returns the assigned card layout.
        * @return {qx.ui.mobile.layout.Card} assigned Card Layout.
        */
       getLayout: function getLayout() {
-        return this.__P_395_2;
+        return this.__P_614_2;
       },
       /**
        * Returns the navigation bar.
@@ -133,7 +133,7 @@
        * @return {qx.ui.mobile.navigationbar.NavigationBar} The navigation bar.
        */
       getNavigationBar: function getNavigationBar() {
-        return this.__P_395_0;
+        return this.__P_614_0;
       },
       /**
        * Creates the content container.
@@ -141,11 +141,11 @@
        * @return {qx.ui.mobile.container.Composite} The created content container
        */
       _createContent: function _createContent() {
-        this.__P_395_2 = new qx.ui.mobile.layout.Card();
-        this.__P_395_2.addListener("updateLayout", this._onUpdateLayout, this);
-        this.__P_395_2.addListener("animationStart", this._onAnimationStart, this);
-        this.__P_395_2.addListener("animationEnd", this._onAnimationEnd, this);
-        return new qx.ui.mobile.container.Composite(this.__P_395_2);
+        this.__P_614_2 = new qx.ui.mobile.layout.Card();
+        this.__P_614_2.addListener("updateLayout", this._onUpdateLayout, this);
+        this.__P_614_2.addListener("animationStart", this._onAnimationStart, this);
+        this.__P_614_2.addListener("animationEnd", this._onAnimationEnd, this);
+        return new qx.ui.mobile.container.Composite(this.__P_614_2);
       },
       /**
        * Handler for the "animationStart" event on the layout.
@@ -218,11 +218,11 @@
     destruct: function destruct() {
       this.getLayout().removeListener("animationStart", this._onAnimationStart, this);
       this.getLayout().removeListener("animationEnd", this._onAnimationEnd, this);
-      this._disposeObjects("__P_395_0", "__P_395_1", "__P_395_2");
-      this.__P_395_0 = this.__P_395_1 = this.__P_395_2 = null;
+      this._disposeObjects("__P_614_0", "__P_614_1", "__P_614_2");
+      this.__P_614_0 = this.__P_614_1 = this.__P_614_2 = null;
     }
   });
   qx.ui.mobile.container.Navigation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Navigation.js.map?dt=1709410162534
+//# sourceMappingURL=Navigation.js.map?dt=1717235413346

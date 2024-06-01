@@ -1,56 +1,44 @@
 {
-  "className": "qx.theme.modern.Decoration",
-  "packageName": "qx.theme.modern",
-  "name": "Decoration",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 34,
-        "column": 0,
-        "index": 943
-      },
-      "end": {
-        "line": 980,
-        "column": 3,
-        "index": 22930
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The modern decoration theme.</p>"
-        }
-      ],
-      "@asset": [
-        {
-          "name": "@asset",
-          "body": "qx/decoration/Modern/toolbar/toolbar-part.gif"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235169918,
+  "lastModifiedIso": "2024-06-01T09:46:09.918Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/modern/Decoration.js",
   "type": "theme",
-  "aliases": {
-    "location": {
-      "start": {
-        "line": 35,
-        "column": 2,
-        "index": 994
-      },
-      "end": {
-        "line": 37,
-        "column": 3,
-        "index": 1049
-      }
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 910
     },
-    "aliasMap": {
-      "decoration": "qx/decoration/Modern"
+    "end": {
+      "line": 980,
+      "column": 3,
+      "index": 21951
     }
   },
-  "descendants": []
+  "className": "qx.theme.modern.Decoration",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The modern decoration theme.",
+      " *",
+      " * @asset(qx/decoration/Modern/toolbar/toolbar-part.gif)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The modern decoration theme.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/decoration/Modern/toolbar/toolbar-part.gif"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

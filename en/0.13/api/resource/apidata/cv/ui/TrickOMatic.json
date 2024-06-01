@@ -1,51 +1,54 @@
 {
-  "className": "cv.ui.TrickOMatic",
-  "packageName": "cv.ui",
-  "name": "TrickOMatic",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 868
-      },
-      "end": {
-        "line": 196,
-        "column": 3,
-        "index": 6610
-      }
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/ui/TrickOMatic.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 868
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<div class=\"authors\"><label>Author:</label> Christian Mayer</div><div class=\"since\"><label>Since:</label> 2010</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Christian Mayer"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2010"
-        }
-      ]
+    "end": {
+      "line": 196,
+      "column": 3,
+      "index": 6610
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.ui.TrickOMatic",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @author Christian Mayer",
+      " * @since 2010",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Christian Mayer"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2010"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "id": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 33,
@@ -58,10 +61,11 @@
           "index": 1084
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "run": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 35,
@@ -75,9 +79,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "updateActive": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 188,
@@ -91,8 +98,17 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "pipe_group"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

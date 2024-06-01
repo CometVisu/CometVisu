@@ -1,7 +1,35 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/ui/ToastManager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 868
+    },
+    "end": {
+      "line": 151,
+      "column": 3,
+      "index": 4615
+    }
+  },
   "className": "cv.ui.ToastManager",
-  "packageName": "cv.ui",
-  "name": "ToastManager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Handles toast positioning in the gui.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Handles toast positioning in the gui.</p>"
+      }
+    ]
+  },
   "superClass": "qx.core.Object",
   "interfaces": [
     "cv.core.notifications.IHandler"
@@ -9,34 +37,11 @@
   "mixins": [
     "cv.ui.MHandleMessage"
   ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 868
-      },
-      "end": {
-        "line": 151,
-        "column": 3,
-        "index": 4615
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Handles toast positioning in the gui.</p>"
-        }
-      ]
-    }
-  },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": false,
   "isSingleton": true,
+  "abstract": false,
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 34,
@@ -48,8 +53,7 @@
         "column": 3,
         "index": 2282
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "messageDuration": {
@@ -65,7 +69,16 @@
           "index": 2577
         }
       },
+      "json": {
+        "check": "Number",
+        "init": 5000
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Default time in MS a toast message is visible",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -73,138 +86,220 @@
           }
         ]
       },
-      "name": "messageDuration",
-      "propertyType": "new",
-      "init": 5000,
-      "check": "Number",
-      "defaultValue": 5000
+      "appearsIn": []
     },
     "maxEntries": {
-      "type": "property",
-      "name": "maxEntries",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage",
-      "event": "_applyMaxEntries",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1582
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1672
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 50,
+        "event": "_applyMaxEntries"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Maximum allowed messages",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Maximum allowed messages</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "counter": {
-      "type": "property",
-      "name": "counter",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage",
-      "event": "changedCounter",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1729
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1813
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "event": "changedCounter"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Current amount of messages",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Current amount of messages</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "globalSeverity": {
-      "type": "property",
-      "name": "globalSeverity",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage",
-      "event": "changedGlobalSeverity",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1876
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 2008
+        }
+      },
+      "json": {
+        "check": [
+          "low",
+          "normal",
+          "high",
+          "urgent"
+        ],
+        "init": "normal",
+        "event": "changedGlobalSeverity"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Highest severity of the messages",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Highest severity of the messages</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "rootElementId": {
-      "type": "property",
-      "name": "rootElementId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2113
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2179
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * ID of the root element of this message handler (HTML attribute 'id' value)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>ID of the root element of this message handler (HTML attribute 'id' value)</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "messageElementId": {
-      "type": "property",
-      "name": "messageElementId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2338
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2407
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pattern id the message elements IDs (suffix without is,",
+          "     * e.g. messages get mes_1, mes_2, ... mes_ is the messageElementId)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Pattern id the message elements IDs (suffix without is,\n e.g. messages get mes<em>1, mes</em>2, … mes_ is the messageElementId)</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "delegate": {
-      "type": "property",
-      "name": "delegate",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "location": {
+        "start": {
+          "line": 91,
+          "column": 4,
+          "index": 2414
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2475
+        }
+      },
+      "json": {
+        "check": "Object",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     }
   },
   "members": {
     "__domElement": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 90,
@@ -217,10 +312,11 @@
           "index": 2755
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__timer": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 91,
@@ -233,10 +329,11 @@
           "index": 2774
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__opened": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 92,
@@ -249,10 +346,23 @@
           "index": 2795
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_init": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach to dom element and style it",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Attach to dom element and style it</p>"
+          }
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 97,
@@ -265,18 +375,13 @@
           "index": 4047
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Attach to dom element and style it</p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_performAction": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 127,
@@ -290,17 +395,204 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "message"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_messages": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2635
+        },
+        "end": {
+          "line": 103,
+          "column": 19,
+          "index": 2650
+        }
+      },
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
+    },
+    "_severities": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2656
+        },
+        "end": {
+          "line": 104,
+          "column": 21,
+          "index": 2673
+        }
+      },
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
+    },
+    "_idCounter": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2679
+        },
+        "end": {
+          "line": 105,
+          "column": 17,
+          "index": 2692
+        }
+      },
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
+    },
+    "getIdCounter": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2699
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2751
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
+    },
+    "getSeverities": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 2758
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 2812
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
+    },
+    "_updateHighestSeverity": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 2819
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3306
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
+    },
+    "getSeverityColor": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3313
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 3526
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "severity"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
+    },
+    "_applyMaxEntries": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 142,
+          "column": 4,
+          "index": 3555
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 3752
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "handleMessage": {
-      "type": "function",
-      "name": "handleMessage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.core.notifications.IHandler",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle messages from {@link cv.core.notifications.Router}",
+          "     * @param message {Map}",
+          "     * @param config {Map?} optional configuration of this message for the handler",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -310,7 +602,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "message {Map}"
+            "body": "message {Map}",
+            "paramName": "message",
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -321,63 +615,49 @@
             "type": "Map"
           }
         ]
-      }
-    },
-    "getIdCounter": {
-      "type": "function",
-      "name": "getIdCounter",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      },
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
-    },
-    "getSeverities": {
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 3951
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 6435
+        }
+      },
       "type": "function",
-      "name": "getSeverities",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
-    },
-    "_updateHighestSeverity": {
-      "type": "function",
-      "name": "_updateHighestSeverity",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "cv.ui.MHandleMessage"
-    },
-    "getSeverityColor": {
-      "type": "function",
-      "name": "getSeverityColor",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
-    },
-    "_applyMaxEntries": {
-      "type": "function",
-      "name": "_applyMaxEntries",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "cv.ui.MHandleMessage",
-      "jsdoc": {}
+      "params": [
+        {
+          "name": "message",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "config",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.MHandleMessage",
+        "cv.core.notifications.IHandler"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "getMessageIdFromEvent": {
-      "type": "function",
-      "name": "getMessageIdFromEvent",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds the message the tap event has been triggered on an returns",
+          "     * an array [messageId, action], where action can be one of \"delete\", \"action\".",
+          "     *",
+          "     * @param ev {Event}",
+          "     * @return {Array} [messageId, action]",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -387,46 +667,109 @@
         "@param": [
           {
             "name": "@param",
-            "body": "ev {Event}"
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} [messageId, action]",
-            "type": "Array",
-            "description": " [messageId, action]"
+            "type": "Array<any>",
+            "description": "[messageId, action]"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4,
+          "index": 6689
+        },
+        "end": {
+          "line": 251,
+          "column": 5,
+          "index": 7544
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "_onListTap": {
-      "type": "function",
-      "name": "_onListTap",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4,
+          "index": 7551
+        },
+        "end": {
+          "line": 262,
+          "column": 5,
+          "index": 7817
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "_getTooltip": {
-      "type": "function",
-      "name": "_getTooltip",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4,
+          "index": 7824
+        },
+        "end": {
+          "line": 274,
+          "column": 5,
+          "index": 8147
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "clear": {
-      "type": "function",
-      "name": "clear",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delete all messages.",
+          "     *",
+          "     * @param force {Boolean} if false: only delete \"deletable\" messages, if true: delete all messages",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -439,38 +782,92 @@
             "body": "force {Boolean} if false: only delete \"deletable\" messages, if true: delete all messages",
             "paramName": "force",
             "description": " if false: only delete \"deletable\" messages, if true: delete all messages",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 281,
+          "column": 4,
+          "index": 8308
+        },
+        "end": {
+          "line": 293,
+          "column": 5,
+          "index": 8689
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "force",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "getMessage": {
-      "type": "function",
-      "name": "getMessage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "location": {
+        "start": {
+          "line": 295,
+          "column": 4,
+          "index": 8696
+        },
+        "end": {
+          "line": 297,
+          "column": 5,
+          "index": 8765
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "getMessages": {
-      "type": "function",
-      "name": "getMessages",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
+      "location": {
+        "start": {
+          "line": 299,
+          "column": 4,
+          "index": 8772
+        },
+        "end": {
+          "line": 301,
+          "column": 5,
+          "index": 8822
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "deleteMessage": {
-      "type": "function",
-      "name": "deleteMessage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delete a message by index",
+          "     * @param index {Number}",
+          "     * @param ev {Event}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -480,626 +877,80 @@
         "@param": [
           {
             "name": "@param",
-            "body": "index {Number}"
+            "body": "index {Number}",
+            "paramName": "index",
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "ev {Event}"
+            "body": "ev {Event}",
+            "paramName": "ev",
+            "type": "Event"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4,
+          "index": 8932
+        },
+        "end": {
+          "line": 324,
+          "column": 5,
+          "index": 9411
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "number"
+        },
+        {
+          "name": "ev",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     },
     "performAction": {
-      "type": "function",
-      "name": "performAction",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "public",
-      "overriddenFrom": "cv.ui.MHandleMessage"
-    },
-    "getMaxEntries": {
+      "location": {
+        "start": {
+          "line": 326,
+          "column": 4,
+          "index": 9418
+        },
+        "end": {
+          "line": 353,
+          "column": 5,
+          "index": 10373
+        }
+      },
       "type": "function",
-      "name": "getMaxEntries",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxEntries</code>.\n\nFor further details take a look at the property definition: {@link #maxEntries}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for maxEntries"
-          }
-        ]
-      }
-    },
-    "setMaxEntries": {
-      "type": "function",
-      "name": "setMaxEntries",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxEntries</code>.\n\nFor further details take a look at the property definition: {@link #maxEntries}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for maxEntries"
-          }
-        ]
-      }
-    },
-    "resetMaxEntries": {
-      "type": "function",
-      "name": "resetMaxEntries",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxEntries</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxEntries}."
-          }
-        ]
-      }
-    },
-    "getCounter": {
-      "type": "function",
-      "name": "getCounter",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>counter</code>.\n\nFor further details take a look at the property definition: {@link #counter}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for counter"
-          }
-        ]
-      }
-    },
-    "setCounter": {
-      "type": "function",
-      "name": "setCounter",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>counter</code>.\n\nFor further details take a look at the property definition: {@link #counter}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for counter"
-          }
-        ]
-      }
-    },
-    "resetCounter": {
-      "type": "function",
-      "name": "resetCounter",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>counter</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #counter}."
-          }
-        ]
-      }
-    },
-    "getGlobalSeverity": {
-      "type": "function",
-      "name": "getGlobalSeverity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>globalSeverity</code>.\n\nFor further details take a look at the property definition: {@link #globalSeverity}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for globalSeverity"
-          }
-        ]
-      }
-    },
-    "setGlobalSeverity": {
-      "type": "function",
-      "name": "setGlobalSeverity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>globalSeverity</code>.\n\nFor further details take a look at the property definition: {@link #globalSeverity}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for globalSeverity"
-          }
-        ]
-      }
-    },
-    "resetGlobalSeverity": {
-      "type": "function",
-      "name": "resetGlobalSeverity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>globalSeverity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #globalSeverity}."
-          }
-        ]
-      }
-    },
-    "getRootElementId": {
-      "type": "function",
-      "name": "getRootElementId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>rootElementId</code>.\n\nFor further details take a look at the property definition: {@link #rootElementId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for rootElementId"
-          }
-        ]
-      }
-    },
-    "setRootElementId": {
-      "type": "function",
-      "name": "setRootElementId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>rootElementId</code>.\n\nFor further details take a look at the property definition: {@link #rootElementId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for rootElementId"
-          }
-        ]
-      }
-    },
-    "resetRootElementId": {
-      "type": "function",
-      "name": "resetRootElementId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>rootElementId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rootElementId}."
-          }
-        ]
-      }
-    },
-    "getMessageElementId": {
-      "type": "function",
-      "name": "getMessageElementId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>messageElementId</code>.\n\nFor further details take a look at the property definition: {@link #messageElementId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for messageElementId"
-          }
-        ]
-      }
-    },
-    "setMessageElementId": {
-      "type": "function",
-      "name": "setMessageElementId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>messageElementId</code>.\n\nFor further details take a look at the property definition: {@link #messageElementId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for messageElementId"
-          }
-        ]
-      }
-    },
-    "resetMessageElementId": {
-      "type": "function",
-      "name": "resetMessageElementId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>messageElementId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #messageElementId}."
-          }
-        ]
-      }
-    },
-    "getDelegate": {
-      "type": "function",
-      "name": "getDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Object",
-            "desc": "Returns the value for delegate"
-          }
-        ]
-      }
-    },
-    "setDelegate": {
-      "type": "function",
-      "name": "setDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Object",
-            "paramName": "value",
-            "desc": "Value for delegate"
-          }
-        ]
-      }
-    },
-    "resetDelegate": {
-      "type": "function",
-      "name": "resetDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>delegate</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getMessageDuration": {
-      "type": "function",
-      "name": "getMessageDuration",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>messageDuration</code>.\n\nFor further details take a look at the property definition: {@link #messageDuration}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for messageDuration"
-          }
-        ]
-      }
-    },
-    "setMessageDuration": {
-      "type": "function",
-      "name": "setMessageDuration",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>messageDuration</code>.\n\nFor further details take a look at the property definition: {@link #messageDuration}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for messageDuration"
-          }
-        ]
-      }
-    },
-    "resetMessageDuration": {
-      "type": "function",
-      "name": "resetMessageDuration",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>messageDuration</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #messageDuration}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "messageId"
+        },
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.MHandleMessage"
+      ],
+      "mixin": "cv.ui.MHandleMessage"
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 141,
@@ -1111,8 +962,7 @@
         "column": 3,
         "index": 4611
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {}
 }

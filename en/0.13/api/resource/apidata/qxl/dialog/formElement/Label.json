@@ -1,0 +1,82 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/formElement/Label.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 567
+    },
+    "end": {
+      "line": 37,
+      "column": 3,
+      "index": 995
+    }
+  },
+  "className": "qxl.dialog.formElement.Label",
+  "jsdoc": {
+    "raw": [
+      " ************************************************************************",
+      "",
+      "   qooxdoo dialog library",
+      "   https://github.com/qooxdoo/qxl.dialog",
+      "",
+      "   Copyright:",
+      "     2020 Christian Boulanger, Derrell Lipman",
+      "",
+      "   License:",
+      "     LGPL: http://www.gnu.org/licenses/lgpl.html",
+      "     EPL: http://www.eclipse.org/org/documents/epl-v10.php",
+      "     See the LICENSE file in the project's top-level directory for details.",
+      "",
+      "   Authors:",
+      "     *  Christian Boulanger (cboulanger)",
+      "     *  Derrell Lipman (derrell)",
+      "",
+      "************************************************************************ "
+    ]
+  },
+  "statics": {
+    "register": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 22,
+          "column": 4,
+          "index": 634
+        },
+        "end": {
+          "line": 27,
+          "column": 5,
+          "index": 758
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_registration": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 765
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 985
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

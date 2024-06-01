@@ -1,67 +1,77 @@
 {
-  "className": "qx.ui.core.ISingleSelection",
-  "packageName": "qx.ui.core",
-  "name": "ISingleSelection",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 653
-      },
-      "end": {
-        "line": 103,
-        "column": 3,
-        "index": 2801
-      }
+  "version": 0.3,
+  "lastModified": 1717235171450,
+  "lastModifiedIso": "2024-06-01T09:46:11.450Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/ISingleSelection.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 630
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Each object, which should support single selection have to\n implement this interface.</p>"
-        }
-      ]
+    "end": {
+      "line": 103,
+      "column": 3,
+      "index": 2699
     }
   },
-  "type": "interface",
+  "className": "qx.ui.core.ISingleSelection",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Each object, which should support single selection have to",
+      " * implement this interface.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Each object, which should support single selection have to\n implement this interface.</p>"
+      }
+    ]
+  },
   "events": {
     "changeSelection": {
-      "type": "event",
-      "name": "changeSelection",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": null,
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fires after the selection was modified "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fires after the selection was modified</p>"
           }
         ]
+      },
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 932
+        },
+        "end": {
+          "line": 33,
+          "column": 41,
+          "index": 969
+        }
       }
     }
   },
   "members": {
     "getSelection": {
-      "location": {
-        "start": {
-          "line": 51,
-          "column": 4,
-          "index": 1499
-        },
-        "end": {
-          "line": 53,
-          "column": 5,
-          "index": 1542
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of currently selected items.",
+          "     *",
+          "     * Note: The result is only a set of selected items, so the order can",
+          "     * differ from the sequence in which the items were added.",
+          "     *",
+          "     * @return {qx.ui.core.Widget[]} List of items.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -73,27 +83,40 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget[]} List of items.",
             "type": "qx.ui.core.Widget[]",
-            "description": " List of items."
+            "description": "List of items."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 61,
+          "line": 51,
           "column": 4,
-          "index": 1754
+          "index": 1449
         },
         "end": {
-          "line": 63,
+          "line": 53,
           "column": 5,
-          "index": 1819
+          "index": 1490
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": []
+    },
+    "setSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces current selection with the given items.",
+          "     *",
+          "     * @param items {qx.ui.core.Widget[]} Items to select.",
+          "     * @throws {Error} if the item is not a child element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -118,23 +141,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 68,
+          "line": 61,
           "column": 4,
-          "index": 1890
+          "index": 1694
         },
         "end": {
-          "line": 70,
+          "line": 63,
           "column": 5,
-          "index": 1935
+          "index": 1757
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "items",
+          "type": "qx.ui.core.Widget[]"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the whole selection at once.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -142,23 +177,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isSelected": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 79,
+          "line": 68,
           "column": 4,
-          "index": 2214
+          "index": 1823
         },
         "end": {
-          "line": 81,
+          "line": 70,
           "column": 5,
-          "index": 2276
+          "index": 1866
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isSelected": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the given item is currently selected.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Any valid selectable item",
+          "     * @return {Boolean} Whether the item is selected.",
+          "     * @throws {Error} if the item is not a child element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -178,8 +224,8 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the item is selected.",
-            "type": "Boolean",
-            "description": " Whether the item is selected."
+            "type": "boolean",
+            "description": "Whether the item is selected."
           }
         ],
         "@throws": [
@@ -191,23 +237,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isSelectionEmpty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 88,
+          "line": 79,
           "column": 4,
-          "index": 2409
+          "index": 2136
         },
         "end": {
-          "line": 90,
+          "line": 81,
           "column": 5,
-          "index": 2456
+          "index": 2196
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isSelectionEmpty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the selection is empty.",
+          "     *",
+          "     * @return {Boolean} Whether the selection is empty.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -218,28 +281,42 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the selection is empty.",
-            "type": "Boolean",
-            "description": " Whether the selection is empty."
+            "type": "boolean",
+            "description": "Whether the selection is empty."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSelectables": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 99,
+          "line": 88,
           "column": 4,
-          "index": 2726
+          "index": 2322
         },
         "end": {
-          "line": 101,
+          "line": 90,
           "column": 5,
-          "index": 2791
+          "index": 2367
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSelectables": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all elements which are selectable.",
+          "     *",
+          "     * @param all {Boolean} true for all selectables, false for the",
+          "     *   selectables the user can interactively select",
+          "     * @return {qx.ui.core.Widget[]} The contained items.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -252,7 +329,7 @@
             "body": "all {Boolean} true for all selectables, false for the\n   selectables the user can interactively select",
             "paramName": "all",
             "description": " true for all selectables, false for the\n   selectables the user can interactively select",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
@@ -260,15 +337,36 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget[]} The contained items.",
             "type": "qx.ui.core.Widget[]",
-            "description": " The contained items."
+            "description": "The contained items."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2628
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2691
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "all",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": [
-    "qx.ui.core.IMultiSelection"
-  ]
+  "statics": {},
+  "properties": {}
 }

@@ -233,20 +233,20 @@
     */
 
     members: {
-      __P_366_0: null,
-      __P_366_1: null,
-      __P_366_2: null,
-      __P_366_3: null,
-      __P_366_4: null,
-      __P_366_5: null,
-      __P_366_6: null,
-      __P_366_7: null,
-      __P_366_8: null,
+      __P_585_0: null,
+      __P_585_1: null,
+      __P_585_2: null,
+      __P_585_3: null,
+      __P_585_4: null,
+      __P_585_5: null,
+      __P_585_6: null,
+      __P_585_7: null,
+      __P_585_8: null,
       // event delay stuff during drag
-      __P_366_9: null,
-      __P_366_10: null,
-      __P_366_11: null,
-      __P_366_12: null,
+      __P_585_9: null,
+      __P_585_10: null,
+      __P_585_11: null,
+      __P_585_12: null,
       // overridden
       /**
        * @lint ignoreReferenceField(_forwardStates)
@@ -360,10 +360,10 @@
       _onPointerDown: function _onPointerDown(e) {
         // this can happen if the user releases the button while dragging outside
         // of the browser viewport
-        if (this.__P_366_3) {
+        if (this.__P_585_3) {
           return;
         }
-        var isHorizontal = this.__P_366_13;
+        var isHorizontal = this.__P_585_13;
         var knob = this.getChildControl("knob");
         var locationProperty = isHorizontal ? "left" : "top";
         var cursorLocation = isHorizontal ? e.getDocumentLeft() : e.getDocumentTop();
@@ -376,45 +376,45 @@
           var decoratorPadding = decorator ? decorator.getInsets().top : 0;
           var padding = (this.getPaddingTop() || 0) + decoratorPadding;
         }
-        var sliderLocation = this.__P_366_0 = qx.bom.element.Location.get(this.getContentElement().getDomElement())[locationProperty];
+        var sliderLocation = this.__P_585_0 = qx.bom.element.Location.get(this.getContentElement().getDomElement())[locationProperty];
         sliderLocation += padding;
-        var knobLocation = this.__P_366_1 = qx.bom.element.Location.get(knob.getContentElement().getDomElement())[locationProperty];
+        var knobLocation = this.__P_585_1 = qx.bom.element.Location.get(knob.getContentElement().getDomElement())[locationProperty];
         if (e.getTarget() === knob) {
           // Switch into drag mode
-          this.__P_366_3 = true;
-          if (!this.__P_366_9) {
+          this.__P_585_3 = true;
+          if (!this.__P_585_9) {
             // create a timer to fire delayed dragging events if dragging stops.
-            this.__P_366_9 = new qx.event.Timer(100);
-            this.__P_366_9.addListener("interval", this._fireValue, this);
+            this.__P_585_9 = new qx.event.Timer(100);
+            this.__P_585_9.addListener("interval", this._fireValue, this);
           }
-          this.__P_366_9.start();
+          this.__P_585_9.start();
           // Compute dragOffset (includes both: inner position of the widget and
           // cursor position on knob)
-          this.__P_366_4 = cursorLocation + sliderLocation - knobLocation;
+          this.__P_585_4 = cursorLocation + sliderLocation - knobLocation;
 
           // add state
           knob.addState("pressed");
         } else {
           // Switch into tracking mode
-          this.__P_366_5 = true;
+          this.__P_585_5 = true;
 
           // Detect tracking direction
-          this.__P_366_6 = cursorLocation <= knobLocation ? -1 : 1;
+          this.__P_585_6 = cursorLocation <= knobLocation ? -1 : 1;
 
           // Compute end value
-          this.__P_366_14(e);
+          this.__P_585_14(e);
 
           // Directly call interval method once
           this._onInterval();
 
           // Initialize timer (when needed)
-          if (!this.__P_366_8) {
-            this.__P_366_8 = new qx.event.Timer(100);
-            this.__P_366_8.addListener("interval", this._onInterval, this);
+          if (!this.__P_585_8) {
+            this.__P_585_8 = new qx.event.Timer(100);
+            this.__P_585_8.addListener("interval", this._onInterval, this);
           }
 
           // Start timer
-          this.__P_366_8.start();
+          this.__P_585_8.start();
         }
 
         // Register move listener
@@ -433,18 +433,18 @@
        * @param e {qx.event.type.Pointer} Incoming event object
        */
       _onPointerUp: function _onPointerUp(e) {
-        if (this.__P_366_3) {
+        if (this.__P_585_3) {
           // Release capture mode
           this.releaseCapture();
 
           // Cleanup status flags
-          delete this.__P_366_3;
+          delete this.__P_585_3;
 
           // as we come out of drag mode, make
           // sure content gets synced
-          this.__P_366_9.stop();
+          this.__P_585_9.stop();
           this._fireValue();
-          delete this.__P_366_4;
+          delete this.__P_585_4;
 
           // remove state
           this.getChildControl("knob").removeState("pressed");
@@ -455,30 +455,30 @@
             var deltaSlider;
             var deltaPosition;
             var positionSlider;
-            if (this.__P_366_13) {
-              deltaSlider = e.getDocumentLeft() - (this._valueToPosition(this.getValue()) + this.__P_366_0);
+            if (this.__P_585_13) {
+              deltaSlider = e.getDocumentLeft() - (this._valueToPosition(this.getValue()) + this.__P_585_0);
               positionSlider = qx.bom.element.Location.get(this.getContentElement().getDomElement())["top"];
               deltaPosition = e.getDocumentTop() - (positionSlider + this.getChildControl("knob").getBounds().top);
             } else {
-              deltaSlider = e.getDocumentTop() - (this._valueToPosition(this.getValue()) + this.__P_366_0);
+              deltaSlider = e.getDocumentTop() - (this._valueToPosition(this.getValue()) + this.__P_585_0);
               positionSlider = qx.bom.element.Location.get(this.getContentElement().getDomElement())["left"];
               deltaPosition = e.getDocumentLeft() - (positionSlider + this.getChildControl("knob").getBounds().left);
             }
-            if (deltaPosition < 0 || deltaPosition > this.__P_366_2 || deltaSlider < 0 || deltaSlider > this.__P_366_2) {
+            if (deltaPosition < 0 || deltaPosition > this.__P_585_2 || deltaSlider < 0 || deltaSlider > this.__P_585_2) {
               this.getChildControl("knob").removeState("hovered");
             }
           }
-        } else if (this.__P_366_5) {
+        } else if (this.__P_585_5) {
           // Stop timer interval
-          this.__P_366_8.stop();
+          this.__P_585_8.stop();
 
           // Release capture mode
           this.releaseCapture();
 
           // Cleanup status flags
-          delete this.__P_366_5;
-          delete this.__P_366_6;
-          delete this.__P_366_7;
+          delete this.__P_585_5;
+          delete this.__P_585_6;
+          delete this.__P_585_7;
         }
 
         // Remove move listener again
@@ -495,13 +495,13 @@
        * @param e {qx.event.type.Pointer} Incoming event object
        */
       _onPointerMove: function _onPointerMove(e) {
-        if (this.__P_366_3) {
-          var dragStop = this.__P_366_13 ? e.getDocumentLeft() : e.getDocumentTop();
-          var position = dragStop - this.__P_366_4;
+        if (this.__P_585_3) {
+          var dragStop = this.__P_585_13 ? e.getDocumentLeft() : e.getDocumentTop();
+          var position = dragStop - this.__P_585_4;
           this.slideTo(this._positionToValue(position));
-        } else if (this.__P_366_5) {
+        } else if (this.__P_585_5) {
           // Update tracking end on pointermove
-          this.__P_366_14(e);
+          this.__P_585_14(e);
         }
 
         // Stop event
@@ -515,7 +515,7 @@
        */
       _onInterval: function _onInterval(e) {
         // Compute new value
-        var value = this.getValue() + this.__P_366_6 * this.getPageStep();
+        var value = this.getValue() + this.__P_585_6 * this.getPageStep();
 
         // Limit value
         if (value < this.getMinimum()) {
@@ -525,9 +525,9 @@
         }
 
         // Stop at tracking position (where the pointer is pressed down)
-        var slideBack = this.__P_366_6 == -1;
-        if (slideBack && value <= this.__P_366_7 || !slideBack && value >= this.__P_366_7) {
-          value = this.__P_366_7;
+        var slideBack = this.__P_585_6 == -1;
+        if (slideBack && value <= this.__P_585_7 || !slideBack && value >= this.__P_585_7) {
+          value = this.__P_585_7;
         }
 
         // Finally slide to the desired position
@@ -542,14 +542,14 @@
         // Update sliding space
         var availSize = this.getInnerSize();
         var knobSize = this.getChildControl("knob").getBounds();
-        var sizeProperty = this.__P_366_13 ? "width" : "height";
+        var sizeProperty = this.__P_585_13 ? "width" : "height";
 
         // Sync knob size
         this._updateKnobSize();
 
         // Store knob size
-        this.__P_366_15 = availSize[sizeProperty] - knobSize[sizeProperty];
-        this.__P_366_2 = knobSize[sizeProperty];
+        this.__P_585_15 = availSize[sizeProperty] - knobSize[sizeProperty];
+        this.__P_585_2 = knobSize[sizeProperty];
 
         // Update knob position (sliding space must be updated first)
         this._updateKnobPosition();
@@ -561,24 +561,24 @@
       */
 
       /** @type {Boolean} Whether the slider is laid out horizontally */
-      __P_366_13: false,
+      __P_585_13: false,
       /**
        * @type {Integer} Available space for knob to slide on, computed on resize of
        * the widget
        */
-      __P_366_15: 0,
+      __P_585_15: 0,
       /**
        * Computes the value where the tracking should end depending on
        * the current pointer position.
        *
        * @param e {qx.event.type.Pointer} Incoming pointer event
        */
-      __P_366_14: function __P_366_14(e) {
-        var isHorizontal = this.__P_366_13;
+      __P_585_14: function __P_585_14(e) {
+        var isHorizontal = this.__P_585_13;
         var cursorLocation = isHorizontal ? e.getDocumentLeft() : e.getDocumentTop();
-        var sliderLocation = this.__P_366_0;
-        var knobLocation = this.__P_366_1;
-        var knobSize = this.__P_366_2;
+        var sliderLocation = this.__P_585_0;
+        var knobLocation = this.__P_585_1;
+        var knobSize = this.__P_585_2;
 
         // Compute relative position
         var position = cursorLocation - sliderLocation;
@@ -597,7 +597,7 @@
         } else {
           var old = this.getValue();
           var step = this.getPageStep();
-          var method = this.__P_366_6 < 0 ? "floor" : "ceil";
+          var method = this.__P_585_6 < 0 ? "floor" : "ceil";
 
           // Fix to page step
           value = old + Math[method]((value - old) / step) * step;
@@ -605,8 +605,8 @@
 
         // Store value when undefined, otherwise only when it follows the
         // current direction e.g. goes up or down
-        if (this.__P_366_7 == null || this.__P_366_6 == -1 && value <= this.__P_366_7 || this.__P_366_6 == 1 && value >= this.__P_366_7) {
-          this.__P_366_7 = value;
+        if (this.__P_585_7 == null || this.__P_585_6 == -1 && value <= this.__P_585_7 || this.__P_585_6 == 1 && value >= this.__P_585_7) {
+          this.__P_585_7 = value;
         }
       },
       /**
@@ -619,7 +619,7 @@
        */
       _positionToValue: function _positionToValue(position) {
         // Reading available space
-        var avail = this.__P_366_15;
+        var avail = this.__P_585_15;
 
         // Protect undefined value (before initial resize) and division by zero
         if (avail == null || avail == 0) {
@@ -649,7 +649,7 @@
        */
       _valueToPosition: function _valueToPosition(value) {
         // Reading available space
-        var avail = this.__P_366_15;
+        var avail = this.__P_585_15;
         if (avail == null) {
           return 0;
         }
@@ -697,7 +697,7 @@
         var dec = this.getDecorator();
         dec = qx.theme.manager.Decoration.getInstance().resolve(dec);
         var content = knob.getContentElement();
-        if (this.__P_366_13) {
+        if (this.__P_585_13) {
           if (dec && dec.getPadding()) {
             position += dec.getPadding().left;
           }
@@ -730,7 +730,7 @@
         }
 
         // Read size property
-        if (this.__P_366_13) {
+        if (this.__P_585_13) {
           this.getChildControl("knob").setWidth(Math.round(knobFactor * avail.width));
         } else {
           this.getChildControl("knob").setHeight(Math.round(knobFactor * avail.height));
@@ -806,7 +806,7 @@
       slideTo: function slideTo(value, duration) {
         this.stopSlideAnimation();
         if (duration) {
-          this.__P_366_16(value, duration);
+          this.__P_585_16(value, duration);
         } else {
           this.updatePosition(value);
         }
@@ -816,16 +816,16 @@
        * @param value {Number} The new position.
        */
       updatePosition: function updatePosition(value) {
-        this.setValue(this.__P_366_17(value));
+        this.setValue(this.__P_585_17(value));
       },
       /**
        * In case a slide animation is currently running, it will be stopped.
        * If not, the method does nothing.
        */
       stopSlideAnimation: function stopSlideAnimation() {
-        if (this.__P_366_12) {
-          this.__P_366_12.cancelSequence();
-          this.__P_366_12 = null;
+        if (this.__P_585_12) {
+          this.__P_585_12.cancelSequence();
+          this.__P_585_12 = null;
         }
       },
       /**
@@ -834,7 +834,7 @@
        * @param value {Number} The value to normalize.
        * @return {Number} The normalized value.
        */
-      __P_366_17: function __P_366_17(value) {
+      __P_585_17: function __P_585_17(value) {
         // Bring into allowed range or fix to single step grid
         if (value < this.getMinimum()) {
           value = this.getMinimum();
@@ -850,19 +850,19 @@
        * @param to {Number} The target value.
        * @param duration {Number} The time in milliseconds the slide to should take.
        */
-      __P_366_16: function __P_366_16(to, duration) {
-        to = this.__P_366_17(to);
+      __P_585_16: function __P_585_16(to, duration) {
+        to = this.__P_585_17(to);
         var from = this.getValue();
-        this.__P_366_12 = new qx.bom.AnimationFrame();
-        this.__P_366_12.on("frame", function (timePassed) {
+        this.__P_585_12 = new qx.bom.AnimationFrame();
+        this.__P_585_12.on("frame", function (timePassed) {
           this.setValue(parseInt(timePassed / duration * (to - from) + from));
         }, this);
-        this.__P_366_12.on("end", function () {
+        this.__P_585_12.on("end", function () {
           this.setValue(to);
-          this.__P_366_12 = null;
+          this.__P_585_12 = null;
           this.fireEvent("slideAnimationEnd");
         }, this);
-        this.__P_366_12.startSequence(duration);
+        this.__P_585_12.startSequence(duration);
       },
       /*
       ---------------------------------------------------------------------------
@@ -876,10 +876,10 @@
         var knob = this.getChildControl("knob");
 
         // Update private flag for faster access
-        this.__P_366_13 = value === "horizontal";
+        this.__P_585_13 = value === "horizontal";
 
         // Toggle states and knob layout
-        if (this.__P_366_13) {
+        if (this.__P_585_13) {
           this.removeState("vertical");
           knob.removeState("vertical");
           this.addState("horizontal");
@@ -909,7 +909,7 @@
         if (value != null) {
           this._updateKnobSize();
         } else {
-          if (this.__P_366_13) {
+          if (this.__P_585_13) {
             this.getChildControl("knob").resetWidth();
           } else {
             this.getChildControl("knob").resetHeight();
@@ -922,8 +922,8 @@
           // ARIA attrs
           this.getContentElement().setAttribute("aria-valuenow", value);
           this._updateKnobPosition();
-          if (this.__P_366_3) {
-            this.__P_366_11 = [value, old];
+          if (this.__P_585_3) {
+            this.__P_585_11 = [value, old];
           } else {
             this.fireEvent("changeValue", qx.event.type.Data, [value, old]);
           }
@@ -935,11 +935,11 @@
        * Helper for applyValue which fires the changeValue event.
        */
       _fireValue: function _fireValue() {
-        if (!this.__P_366_11) {
+        if (!this.__P_585_11) {
           return;
         }
-        var tmp = this.__P_366_11;
-        this.__P_366_11 = null;
+        var tmp = this.__P_585_11;
+        this.__P_585_11 = null;
         this.fireEvent("changeValue", qx.event.type.Data, tmp);
       },
       // property apply
@@ -965,4 +965,4 @@
   qx.ui.form.Slider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Slider.js.map?dt=1709410160627
+//# sourceMappingURL=Slider.js.map?dt=1717235411322

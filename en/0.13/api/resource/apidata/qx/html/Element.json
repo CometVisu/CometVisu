@@ -1,106 +1,91 @@
 {
-  "className": "qx.html.Element",
-  "packageName": "qx.html",
-  "name": "Element",
-  "superClass": "qx.html.Node",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 43,
-        "column": 0,
-        "index": 1428
-      },
-      "end": {
-        "line": 2019,
-        "column": 3,
-        "index": 59909
-      }
+  "version": 0.3,
+  "lastModified": 1717235170346,
+  "lastModifiedIso": "2024-06-01T09:46:10.346Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/html/Element.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 45,
+      "column": 0,
+      "index": 1538
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>High-performance, high-level DOM element creation and management.\n Includes support for HTML and style attributes. Elements also have\n got a powerful children and visibility management.\n Processes DOM insertion and modification with advanced logic\n to reduce the real transactions.\n From the view of the parent you can use the following children management\n methods:\n {@link #getChildren}, {@link #indexOf}, {@link #hasChild}, {@link #add},\n {@link #addAt}, {@link #remove}, {@link #removeAt}, {@link #removeAll}\n Each child itself also has got some powerful methods to control its\n position:\n {@link #getParent}, {@link #free},\n {@link #insertInto}, {@link #insertBefore}, {@link #insertAfter},\n {@link #moveTo}, {@link #moveBefore}, {@link #moveAfter},\n NOTE: Instances of this class must be disposed of after use</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Animation"
-        }
-      ]
+    "end": {
+      "line": 2076,
+      "column": 3,
+      "index": 60632
     }
   },
-  "type": "class",
+  "className": "qx.html.Element",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * High-performance, high-level DOM element creation and management.",
+      " *",
+      " * Includes support for HTML and style attributes. Elements also have",
+      " * got a powerful children and visibility management.",
+      " *",
+      " * Processes DOM insertion and modification with advanced logic",
+      " * to reduce the real transactions.",
+      " *",
+      " * From the view of the parent you can use the following children management",
+      " * methods:",
+      " * {@link #getChildren}, {@link #indexOf}, {@link #hasChild}, {@link #add},",
+      " * {@link #addAt}, {@link #remove}, {@link #removeAt}, {@link #removeAll}",
+      " *",
+      " * Each child itself also has got some powerful methods to control its",
+      " * position:",
+      " * {@link #getParent}, {@link #free},",
+      " * {@link #insertInto}, {@link #insertBefore}, {@link #insertAfter},",
+      " * {@link #moveTo}, {@link #moveBefore}, {@link #moveAfter},",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " * NOTE:: This class used to require `qx.module.Animation` but that brings in a huge",
+      " * list of dependencies, so the require has been moved to the `qx.application.AbstractGui`",
+      " * class",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>High-performance, high-level DOM element creation and management.\n Includes support for HTML and style attributes. Elements also have\n got a powerful children and visibility management.\n Processes DOM insertion and modification with advanced logic\n to reduce the real transactions.\n From the view of the parent you can use the following children management\n methods:\n {@link #getChildren}, {@link #indexOf}, {@link #hasChild}, {@link #add},\n {@link #addAt}, {@link #remove}, {@link #removeAt}, {@link #removeAll}\n Each child itself also has got some powerful methods to control its\n position:\n {@link #getParent}, {@link #free},\n {@link #insertInto}, {@link #insertBefore}, {@link #insertAfter},\n {@link #moveTo}, {@link #moveBefore}, {@link #moveAfter},\n NOTE: Instances of this class must be disposed of after use\n NOTE:: This class used to require <code>qx.module.Animation</code> but that brings in a huge\n list of dependencies, so the require has been moved to the <code>qx.application.AbstractGui</code>\n class</p>"
+      }
+    ]
+  },
+  "superClass": "qx.html.Node",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "tagName"
+      },
+      {
+        "name": "styles"
+      },
+      {
+        "name": "attributes"
+      }
+    ],
     "location": {
       "start": {
-        "line": 61,
+        "line": 63,
         "column": 2,
-        "index": 2107
+        "index": 2199
       },
       "end": {
-        "line": 89,
+        "line": 91,
         "column": 3,
-        "index": 2806
+        "index": 2875
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Creates a new Element</p>"
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "tagName {String?\"div\"} Tag name of the element to create",
-          "paramName": "tagName",
-          "description": " Tag name of the element to create",
-          "optional": true,
-          "defaultValue": "\"div\"",
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "styles {Map?null} optional map of CSS styles, where the key is the name\n    of the style and the value is the value to use.",
-          "paramName": "styles",
-          "description": " optional map of CSS styles, where the key is the name\n    of the style and the value is the value to use.",
-          "optional": true,
-          "defaultValue": "null",
-          "type": "Map"
-        },
-        {
-          "name": "@param",
-          "body": "attributes {Map?null} optional map of element attributes, where the\n    key is the name of the attribute and the value is the value to use.",
-          "paramName": "attributes",
-          "description": " optional map of element attributes, where the\n    key is the name of the attribute and the value is the value to use.",
-          "optional": true,
-          "defaultValue": "null",
-          "type": "Map"
-        }
-      ]
     }
   },
   "statics": {
     "DEBUG": {
-      "location": {
-        "start": {
-          "line": 105,
-          "column": 4,
-          "index": 3277
-        },
-        "end": {
-          "line": 105,
-          "column": 16,
-          "index": 3289
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Boolean} If debugging should be enabled "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -114,23 +99,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "_hasRoots": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 108,
+          "line": 107,
           "column": 4,
-          "index": 3342
+          "index": 3330
         },
         "end": {
-          "line": 108,
+          "line": 107,
           "column": 16,
-          "index": 3354
+          "index": 3342
         }
       },
+      "appearsIn": []
+    },
+    "_hasRoots": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} number of roots "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -144,23 +132,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_defaultRoot": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 111,
+          "line": 110,
           "column": 4,
-          "index": 3415
+          "index": 3392
         },
         "end": {
-          "line": 111,
-          "column": 22,
-          "index": 3433
+          "line": 110,
+          "column": 16,
+          "index": 3404
         }
       },
+      "appearsIn": []
+    },
+    "_defaultRoot": {
       "jsdoc": {
+        "raw": [
+          "* @type {Element} the default root to use "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -174,23 +165,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_modified": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 114,
+          "line": 113,
           "column": 4,
-          "index": 3540
+          "index": 3462
         },
         "end": {
-          "line": 114,
-          "column": 17,
-          "index": 3553
+          "line": 113,
+          "column": 22,
+          "index": 3480
         }
       },
+      "appearsIn": []
+    },
+    "_modified": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Contains the modified {@link qx.html.Element}s. The key is the hash code. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -204,23 +198,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_visibility": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 117,
+          "line": 116,
           "column": 4,
-          "index": 3704
+          "index": 3584
         },
         "end": {
-          "line": 117,
-          "column": 19,
-          "index": 3719
+          "line": 116,
+          "column": 17,
+          "index": 3597
         }
       },
+      "appearsIn": []
+    },
+    "_visibility": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Contains the {@link qx.html.Element}s which should get hidden or visible at the next flush. The key is the hash code. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -234,23 +231,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_scroll": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 120,
+          "line": 119,
           "column": 4,
-          "index": 3830
+          "index": 3745
         },
         "end": {
-          "line": 120,
-          "column": 15,
-          "index": 3841
+          "line": 119,
+          "column": 19,
+          "index": 3760
         }
       },
+      "appearsIn": []
+    },
+    "_scroll": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Contains the {@link qx.html.Element}s which should scrolled at the next flush "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -264,23 +264,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_actions": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 123,
+          "line": 122,
           "column": 4,
-          "index": 3978
+          "index": 3868
         },
         "end": {
-          "line": 123,
-          "column": 16,
-          "index": 3990
+          "line": 122,
+          "column": 15,
+          "index": 3879
         }
       },
+      "appearsIn": []
+    },
+    "_actions": {
       "jsdoc": {
+        "raw": [
+          "* @type {Array} List of post actions for elements. The key is the action name. The value the {@link qx.html.Element}. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -294,23 +297,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "__selection": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 126,
+          "line": 125,
           "column": 4,
-          "index": 4048
+          "index": 4013
         },
         "end": {
-          "line": 126,
-          "column": 19,
-          "index": 4063
+          "line": 125,
+          "column": 16,
+          "index": 4025
         }
       },
+      "appearsIn": []
+    },
+    "__selection": {
       "jsdoc": {
+        "raw": [
+          "*  @type {Map} List of all selections. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -324,71 +330,65 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 4080
+        },
+        "end": {
+          "line": 128,
+          "column": 19,
+          "index": 4095
+        }
+      },
+      "appearsIn": []
     },
     "__focusHandler": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 128,
+          "line": 130,
           "column": 4,
-          "index": 4072
+          "index": 4102
         },
         "end": {
-          "line": 128,
+          "line": 130,
           "column": 24,
-          "index": 4092
+          "index": 4122
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__mouseCapture": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 130,
+          "line": 132,
           "column": 4,
-          "index": 4101
+          "index": 4129
         },
         "end": {
-          "line": 130,
+          "line": 132,
           "column": 24,
-          "index": 4121
+          "index": 4149
         }
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__SELF_CLOSING_TAGS": {
-      "location": {
-        "start": {
-          "line": 132,
-          "column": 4,
-          "index": 4130
-        },
-        "end": {
-          "line": 132,
-          "column": 29,
-          "index": 4155
-        }
-      },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_scheduleFlush": {
-      "location": {
-        "start": {
-          "line": 146,
-          "column": 4,
-          "index": 4642
-        },
-        "end": {
-          "line": 148,
-          "column": 5,
-          "index": 4720
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Schedule a deferred element queue flush. If the widget subsystem is used",
+          "     * this method gets overwritten by {@link qx.ui.core.queue.Manager}.",
+          "     *",
+          "     * @param job {String} The job descriptor. Should always be <code>\"element\"</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -401,27 +401,39 @@
             "body": "job {String} The job descriptor. Should always be <code>\"element\"</code>.",
             "paramName": "job",
             "description": " The job descriptor. Should always be <code>\"element\"</code>.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "flush": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 153,
+          "line": 146,
           "column": 4,
-          "index": 4786
+          "index": 4622
         },
         "end": {
-          "line": 358,
+          "line": 148,
           "column": 5,
-          "index": 11119
+          "index": 4698
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "job",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "flush": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flush the global modified list",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -429,23 +441,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__getFocusHandler": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 365,
+          "line": 153,
           "column": 4,
-          "index": 11243
+          "index": 4759
         },
         "end": {
-          "line": 377,
+          "line": 358,
           "column": 5,
-          "index": 11716
+          "index": 10887
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__getFocusHandler": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the focus handler",
+          "     *",
+          "     * @return {qx.event.handler.Focus} The focus handler",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -457,27 +478,39 @@
             "name": "@return",
             "body": "{qx.event.handler.Focus} The focus handler",
             "type": "qx.event.handler.Focus",
-            "description": " The focus handler"
+            "description": "The focus handler"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getCaptureElement": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 384,
+          "line": 365,
           "column": 4,
-          "index": 11845
+          "index": 11004
         },
         "end": {
-          "line": 398,
+          "line": 377,
           "column": 5,
-          "index": 12379
+          "index": 11465
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.event.handler.Focus"
+      },
+      "appearsIn": []
+    },
+    "__getCaptureElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the mouse capture element",
+          "     *",
+          "     * @return {Element} The mouse capture DOM element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -489,27 +522,40 @@
             "name": "@return",
             "body": "{Element} The mouse capture DOM element",
             "type": "qx.html.Element",
-            "description": " The mouse capture DOM element"
+            "description": "The mouse capture DOM element"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__willBecomeInvisible": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 406,
+          "line": 384,
           "column": 4,
-          "index": 12619
+          "index": 11587
         },
         "end": {
-          "line": 409,
+          "line": 398,
           "column": 5,
-          "index": 12767
+          "index": 12107
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "__willBecomeInvisible": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given DOM element will become invisible after the flush",
+          "     *",
+          "     * @param domElement {Element} The DOM element to check",
+          "     * @return {Boolean} Whether the element will become invisible",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -529,28 +575,47 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the element will become invisible",
-            "type": "Boolean",
-            "description": " Whether the element will become invisible"
+            "type": "boolean",
+            "description": "Whether the element will become invisible"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "fromDomElement": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 418,
+          "line": 406,
           "column": 4,
-          "index": 13030
+          "index": 12339
         },
         "end": {
-          "line": 420,
+          "line": 409,
           "column": 5,
-          "index": 13117
+          "index": 12484
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "domElement",
+          "type": "qx.html.Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "fromDomElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds the Widget for a given DOM element",
+          "     *",
+          "     * @param domElement {Node} the DOM element",
+          "     * @return {qx.ui.core.Widget} the Widget that created the DOM element",
+          "     * @deprecated {6.1} see qx.html.Node.fromDomNode",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -560,10 +625,10 @@
         "@param": [
           {
             "name": "@param",
-            "body": "domElement {DOM} the DOM element",
+            "body": "domElement {Node} the DOM element",
             "paramName": "domElement",
             "description": " the DOM element",
-            "type": "DOM"
+            "type": "qx.html.Node"
           }
         ],
         "@return": [
@@ -571,7 +636,7 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget} the Widget that created the DOM element",
             "type": "qx.ui.core.Widget",
-            "description": " the Widget that created the DOM element"
+            "description": "the Widget that created the DOM element"
           }
         ],
         "@deprecated": [
@@ -581,23 +646,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setDefaultRoot": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 427,
+          "line": 418,
           "column": 4,
-          "index": 13241
+          "index": 12739
         },
         "end": {
-          "line": 437,
+          "line": 420,
           "column": 5,
-          "index": 13570
+          "index": 12824
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "domElement",
+          "type": "qx.html.Node"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "setDefaultRoot": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the default Root element",
+          "     *",
+          "     * @param root {Element} the new default root",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -614,23 +696,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDefaultRoot": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 444,
+          "line": 427,
           "column": 4,
-          "index": 13681
+          "index": 12941
         },
         "end": {
-          "line": 446,
+          "line": 437,
           "column": 5,
-          "index": 13739
+          "index": 13260
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "root",
+          "type": "qx.html.Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getDefaultRoot": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the default root",
+          "     *",
+          "     * @return {Element} the default root",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -642,12 +738,29 @@
             "name": "@return",
             "body": "{Element} the default root",
             "type": "qx.html.Element",
-            "description": " the default root"
+            "description": "the default root"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 444,
+          "column": 4,
+          "index": 13364
+        },
+        "end": {
+          "line": 446,
+          "column": 5,
+          "index": 13420
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
     }
   },
   "properties": {
@@ -656,15 +769,34 @@
         "start": {
           "line": 468,
           "column": 4,
-          "index": 14607
+          "index": 14266
         },
         "end": {
           "line": 473,
           "column": 5,
-          "index": 14722
+          "index": 14376
         }
       },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "apply": "_applyCssClass"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type{String} The primary CSS class for this element",
+          "     *",
+          "     * The implementation will add and remove this class from the list of classes,",
+          "     * this property is provided as a means to easily set the primary class.  Because",
+          "     * SCSS supports inheritance, it's more useful to be able to allow the SCSS",
+          "     * definition to control the inheritance hierarchy of classes.",
+          "     *",
+          "     * For example, a dialog could be implemented in code as a Dialog class derived from",
+          "     * a Window class, but the presentation may be so different that the theme author",
+          "     * would choose to not use inheritance at all.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -678,61 +810,49 @@
           }
         ]
       },
-      "name": "cssClass",
-      "propertyType": "new",
-      "apply": "_applyCssClass",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
+    "isCustomElement": {
+      "location": {
+        "start": {
+          "line": 479,
+          "column": 4,
+          "index": 14535
+        },
+        "end": {
+          "line": 483,
+          "column": 5,
+          "index": 14639
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean",
+        "apply": "_applyIsCustomElement"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Used by the {@link qx.html.Slot}-related mechanisms to determine if an",
+          "     * element is the top-level of a custom tag function.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>The owning object</p>"
+            "body": "<p>Used by the {@link qx.html.Slot}-related mechanisms to determine if an\n element is the top-level of a custom tag function.</p>"
           }
         ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      },
+      "appearsIn": []
     }
   },
   "members": {
     "__root": {
-      "location": {
-        "start": {
-          "line": 490,
-          "column": 4,
-          "index": 15237
-        },
-        "end": {
-          "line": 490,
-          "column": 17,
-          "index": 15250
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Marker for always visible root nodes (often the body node) "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -746,185 +866,201 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 500,
+          "column": 4,
+          "index": 15137
+        },
+        "end": {
+          "line": 500,
+          "column": 17,
+          "index": 15150
+        }
+      },
+      "appearsIn": []
     },
     "__lazyScrollIntoViewX": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 492,
+          "line": 502,
           "column": 4,
-          "index": 15259
+          "index": 15157
         },
         "end": {
-          "line": 492,
+          "line": 502,
           "column": 31,
-          "index": 15286
+          "index": 15184
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__lazyScrollIntoViewY": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 493,
+          "line": 503,
           "column": 4,
-          "index": 15293
+          "index": 15190
         },
         "end": {
-          "line": 493,
+          "line": 503,
           "column": 31,
-          "index": 15320
+          "index": 15217
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__lazyScrollX": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 495,
+          "line": 505,
           "column": 4,
-          "index": 15329
+          "index": 15224
         },
         "end": {
-          "line": 495,
+          "line": 505,
           "column": 23,
-          "index": 15348
+          "index": 15243
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__lazyScrollY": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 496,
+          "line": 506,
           "column": 4,
-          "index": 15355
+          "index": 15249
         },
         "end": {
-          "line": 496,
+          "line": 506,
           "column": 23,
-          "index": 15374
+          "index": 15268
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__styleJobs": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 498,
+          "line": 508,
           "column": 4,
-          "index": 15383
+          "index": 15275
         },
         "end": {
-          "line": 498,
+          "line": 508,
           "column": 21,
-          "index": 15400
+          "index": 15292
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__attribJobs": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 499,
+          "line": 509,
           "column": 4,
-          "index": 15407
-        },
-        "end": {
-          "line": 499,
-          "column": 22,
-          "index": 15425
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "__styleValues": {
-      "location": {
-        "start": {
-          "line": 501,
-          "column": 4,
-          "index": 15434
-        },
-        "end": {
-          "line": 501,
-          "column": 23,
-          "index": 15453
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "__attribValues": {
-      "location": {
-        "start": {
-          "line": 502,
-          "column": 4,
-          "index": 15460
-        },
-        "end": {
-          "line": 502,
-          "column": 24,
-          "index": 15480
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "_createDomElement": {
-      "location": {
-        "start": {
-          "line": 507,
-          "column": 4,
-          "index": 15524
+          "index": 15298
         },
         "end": {
           "line": 509,
-          "column": 5,
-          "index": 15605
+          "column": 22,
+          "index": 15316
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ],
-        "@Override": [
-          {
-            "name": "@Override",
-            "body": ""
-          }
-        ]
-      },
-      "type": "function",
-      "access": "protected",
-      "overriddenFrom": "qx.html.Node",
-      "appearsIn": [
-        "qx.html.Node"
-      ]
+      "appearsIn": []
     },
-    "serialize": {
+    "__styleValues": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 514,
+          "line": 511,
           "column": 4,
-          "index": 15649
+          "index": 15323
         },
         "end": {
-          "line": 520,
-          "column": 5,
-          "index": 15844
+          "line": 511,
+          "column": 23,
+          "index": 15342
         }
       },
+      "appearsIn": []
+    },
+    "__attribValues": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 512,
+          "column": 4,
+          "index": 15348
+        },
+        "end": {
+          "line": 512,
+          "column": 24,
+          "index": 15368
+        }
+      },
+      "appearsIn": []
+    },
+    "__slots": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This is a {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map | Map},",
+          "     * not a POJO",
+          "     * @type {Map<string, qx.html.Slot>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This is a {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map | Map},\n not a POJO</p>"
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map<string, qx.html.Slot>}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 519,
+          "column": 4,
+          "index": 15567
+        },
+        "end": {
+          "line": 519,
+          "column": 17,
+          "index": 15580
+        }
+      },
+      "appearsIn": []
+    },
+    "_createDomElement": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -938,27 +1074,33 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 524,
+          "column": 4,
+          "index": 15619
+        },
+        "end": {
+          "line": 526,
+          "column": 5,
+          "index": 15698
+        }
+      },
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.html.Node",
       "appearsIn": [
         "qx.html.Node"
       ]
     },
     "_serializeImpl": {
-      "location": {
-        "start": {
-          "line": 525,
-          "column": 4,
-          "index": 15888
-        },
-        "end": {
-          "line": 582,
-          "column": 5,
-          "index": 17614
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -972,27 +1114,41 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
+      "location": {
+        "start": {
+          "line": 531,
+          "column": 4,
+          "index": 15737
+        },
+        "end": {
+          "line": 592,
+          "column": 5,
+          "index": 17532
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "serializer"
+        }
+      ],
       "overriddenFrom": "qx.html.Node",
       "appearsIn": [
         "qx.html.Node"
       ]
     },
     "connectWidget": {
-      "location": {
-        "start": {
-          "line": 591,
-          "column": 4,
-          "index": 17919
-        },
-        "end": {
-          "line": 593,
-          "column": 5,
-          "index": 17991
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Connects a widget to this element, and to the DOM element in this Element.  They",
+          "     * remain associated until disposed or disconnectWidget is called",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} the widget to associate",
+          "     * @deprecated {6.1} see connectObject",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1015,23 +1171,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "disconnectWidget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 602,
+          "line": 601,
           "column": 4,
-          "index": 18294
+          "index": 17828
         },
         "end": {
-          "line": 604,
+          "line": 603,
           "column": 5,
-          "index": 18372
+          "index": 17898
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "disconnectWidget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Disconnects a widget from this element and the DOM element.  The DOM element remains",
+          "     * untouched, except that it can no longer be used to find the Widget.",
+          "     *",
+          "     * @param qxObject {qx.core.Object} the Widget",
+          "     * @deprecated {6.1} see disconnectObject",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1054,23 +1226,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_addChildImpl": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 609,
+          "line": 612,
           "column": 4,
-          "index": 18416
+          "index": 18192
         },
         "end": {
-          "line": 612,
+          "line": 614,
           "column": 5,
-          "index": 18522
+          "index": 18268
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_addChildImpl": {
       "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1084,27 +1267,37 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
+      "location": {
+        "start": {
+          "line": 619,
+          "column": 4,
+          "index": 18307
+        },
+        "end": {
+          "line": 628,
+          "column": 5,
+          "index": 18601
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        }
+      ],
       "overriddenFrom": "qx.html.Node",
       "appearsIn": [
         "qx.html.Node"
       ]
     },
     "_removeChildImpl": {
-      "location": {
-        "start": {
-          "line": 617,
-          "column": 4,
-          "index": 18566
-        },
-        "end": {
-          "line": 620,
-          "column": 5,
-          "index": 18678
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1118,86 +1311,419 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
+      "location": {
+        "start": {
+          "line": 633,
+          "column": 4,
+          "index": 18640
+        },
+        "end": {
+          "line": 640,
+          "column": 5,
+          "index": 18870
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        }
+      ],
       "overriddenFrom": "qx.html.Node",
       "appearsIn": [
         "qx.html.Node"
       ]
     },
-    "getQxObject": {
-      "location": {
-        "start": {
-          "line": 625,
-          "column": 4,
-          "index": 18722
-        },
-        "end": {
-          "line": 631,
-          "column": 5,
-          "index": 18913
-        }
-      },
+    "_getApplicableQxObjectId": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Works out the object ID to use on an actual DOM node",
+          "     *",
+          "     * @returns {String}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": ""
+            "body": "<p>Works out the object ID to use on an actual DOM node</p>"
           }
         ],
-        "@Override": [
+        "@return": [
           {
-            "name": "@Override",
-            "body": ""
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "appearsIn": [
-        "qx.core.Object",
-        "qx.core.MObjectId"
-      ]
-    },
-    "importQxObjectIds": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 648,
+          "line": 647,
           "column": 4,
-          "index": 19553
+          "index": 18985
         },
         "end": {
-          "line": 724,
+          "line": 657,
           "column": 5,
-          "index": 22285
+          "index": 19362
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getSlots": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Retrieve the slots this element contains.",
+          "     * The Map returned is a copy of the internal Map, as such modifications to",
+          "     * it will not effect the element.",
+          "     * @returns {Map<string, qx.html.Slot>} A `Map` of slots, keyed by slot name. The default slot, if it exists, is keyed as `qx.html.Slot.DEFAULT`",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>When a tree of virtual dom is loaded via JSX code, the paths in the <code>data-qx-object-id</code>\n attribute are relative to the JSX, and these attribuite values need to be loaded into the\n <code>qxObjectId</code> property - while resolving the parent parts of the path.\n EG\n  <div data-qx-object-id=\"root\">\n    <div>\n      <div data-qx-object-id=\"root/child\">\n The root DIV has to take on the qxObjectId of \"root\", and the third DIV has to have the\n ID \"child\" and be owned by the first DIV.\n This function imports and resolves those IDs</p>"
+            "body": "<p>Retrieve the slots this element contains.\n The Map returned is a copy of the internal Map, as such modifications to\n it will not effect the element.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map<string, qx.html.Slot>} A <code>Map</code> of slots, keyed by slot name. The default slot, if it exists, is keyed as <code>qx.html.Slot.DEFAULT</code>",
+            "type": "Map<string, qx.html.Slot>",
+            "description": "A <code>Map</code> of slots, keyed by slot name. The default slot, if it exists, is keyed as <code>qx.html.Slot.DEFAULT</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_copyData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 740,
+          "line": 671,
           "column": 4,
-          "index": 22880
+          "index": 19893
         },
         "end": {
-          "line": 807,
+          "line": 676,
           "column": 5,
-          "index": 25044
+          "index": 20016
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<string, qx.html.Slot>"
+      },
+      "appearsIn": []
+    },
+    "hasSlots": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the element has slot(s) matching the given projection.",
+          "     *",
+          "     * @param projection {true | String?} `true` to check for the default slot, a string to check for a slot with the given name, or `null|undefined` to check for any slot(s)",
+          "     * @return {Boolean} Indicates whether the projected slot exists, or if any slots exist if no projection was specified",
+          "     * @example",
+          "     * ```js",
+          "     * myNode.hasSlots();             // `true` if there are any slots                 `false` if there are none",
+          "     * myNode.hasSlots(true);         // `true` if there is a default (unnamed) slot   `false` if there is not",
+          "     * myNode.hasSlots(\"mySlotName\"); // `true` if there is a slot named `mySlotName`  `false` if there is not",
+          "     * ```",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns whether the element has slot(s) matching the given projection.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "projection {true | String?} <code>true</code> to check for the default slot, a string to check for a slot with the given name, or <code>null|undefined</code> to check for any slot(s)",
+            "paramName": "projection",
+            "description": " <code>true</code> to check for the default slot, a string to check for a slot with the given name, or <code>null|undefined</code> to check for any slot(s)",
+            "optional": true,
+            "type": [
+              "true",
+              "String"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Indicates whether the projected slot exists, or if any slots exist if no projection was specified",
+            "type": "boolean",
+            "description": "Indicates whether the projected slot exists, or if any slots exist if no projection was specified"
+          }
+        ],
+        "@example": [
+          {
+            "name": "@example",
+            "body": "<code></code><code>js\n myNode.hasSlots();\n myNode.hasSlots(true);\n myNode.hasSlots(\"mySlotName\");\n </code><code></code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 690,
+          "column": 4,
+          "index": 20797
+        },
+        "end": {
+          "line": 708,
+          "column": 5,
+          "index": 21340
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "projection",
+          "type": [
+            "true",
+            "String"
+          ],
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__injectionSlotCheck": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Provides devtime debugging assistance for invalid slot usage.",
+          "     * @return {Boolean} `false` if no such slot, `true` otherwise",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Provides devtime debugging assistance for invalid slot usage.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} <code>false</code> if no such slot, <code>true</code> otherwise",
+            "type": "boolean",
+            "description": "<code>false</code> if no such slot, <code>true</code> otherwise"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 714,
+          "column": 4,
+          "index": 21499
+        },
+        "end": {
+          "line": 729,
+          "column": 5,
+          "index": 22049
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "slotName"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "inject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Inject a child into a slot descendant of this element.",
+          "     *",
+          "     * @param childNode {qx.html.Element} element to insert. Use a fragment to inject many elements.",
+          "     * @param slotNameOverride {String?} name of the slot to inject into. If not provided, the slot name will be read from the `slot` attribute of `childNode`. This may be useful when injecting fragments.",
+          "     * @return {this} this object (for chaining support)",
+          "     *",
+          "     * @example",
+          "     * ```js",
+          "     * myElem.inject(<p>Hello World</p>);                   // inject one child to the default slot",
+          "     * myElem.inject(<p slot=\"mySlotName\">Hello World</p>); // inject one child to the slot named \"mySlotName\" (declarative syntax)",
+          "     * myElem.inject(<p>Hello World</p>, \"mySlotName\");     // inject one child to the slot named \"mySlotName\" (functional syntax)",
+          "     * myElem.inject((",
+          "     *   <>",
+          "     *     <p>Hello World</p>",
+          "     *     <p>Hello Qooxdoo</p>",
+          "     *   </>",
+          "     * ), \"mySlotName\");                                    // inject a fragment of children to the slot named \"mySlotName\"",
+          "     *",
+          "     * ```",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Inject a child into a slot descendant of this element.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "childNode {qx.html.Element} element to insert. Use a fragment to inject many elements.",
+            "paramName": "childNode",
+            "description": " element to insert. Use a fragment to inject many elements.",
+            "type": "qx.html.Element"
+          },
+          {
+            "name": "@param",
+            "body": "slotNameOverride {String?} name of the slot to inject into. If not provided, the slot name will be read from the <code>slot</code> attribute of <code>childNode</code>. This may be useful when injecting fragments.",
+            "paramName": "slotNameOverride",
+            "description": " name of the slot to inject into. If not provided, the slot name will be read from the <code>slot</code> attribute of <code>childNode</code>. This may be useful when injecting fragments.",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{this} this object (for chaining support)",
+            "type": "this",
+            "description": "this object (for chaining support)"
+          }
+        ],
+        "@example": [
+          {
+            "name": "@example",
+            "body": "<code></code><code>js\n myElem.inject(<p>Hello World</p>);\n myElem.inject(<p slot=\"mySlotName\">Hello World</p>);\n myElem.inject(<p>Hello World</p>, \"mySlotName\");\n myElem.inject((\n   <>\n     <p>Hello World</p>\n     <p>Hello Qooxdoo</p>\n   </>\n ), \"mySlotName\");\n </code><code></code>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 752,
+          "column": 4,
+          "index": 23155
+        },
+        "end": {
+          "line": 766,
+          "column": 5,
+          "index": 23494
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "childNode",
+          "type": "qx.html.Element"
+        },
+        {
+          "name": "slotNameOverride",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "this"
+      },
+      "appearsIn": []
+    },
+    "__slotScan": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 768,
+          "column": 4,
+          "index": 23501
+        },
+        "end": {
+          "line": 785,
+          "column": 5,
+          "index": 24009
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_slotScanAdd": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 787,
+          "column": 4,
+          "index": 24016
+        },
+        "end": {
+          "line": 791,
+          "column": 5,
+          "index": 24154
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_slotScanRemove": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 793,
+          "column": 4,
+          "index": 24161
+        },
+        "end": {
+          "line": 797,
+          "column": 5,
+          "index": 24295
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_copyData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Copies data between the internal representation and the DOM. This",
+          "     * simply copies all the data and only works well directly after",
+          "     * element creation. After this the data must be synced using {@link #_syncData}",
+          "     *",
+          "     * @param fromMarkup {Boolean} Whether the copy should respect styles",
+          "     *   given from markup",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1210,31 +1736,48 @@
             "body": "fromMarkup {Boolean} Whether the copy should respect styles\n   given from markup",
             "paramName": "fromMarkup",
             "description": " Whether the copy should respect styles\n   given from markup",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
       "access": "protected",
+      "location": {
+        "start": {
+          "line": 813,
+          "column": 4,
+          "index": 24874
+        },
+        "end": {
+          "line": 882,
+          "column": 5,
+          "index": 27051
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fromMarkup",
+          "type": "boolean"
+        },
+        {
+          "name": "propertiesFromDom"
+        }
+      ],
       "overriddenFrom": "qx.html.Node",
       "appearsIn": [
         "qx.html.Node"
       ]
     },
     "_syncData": {
-      "location": {
-        "start": {
-          "line": 815,
-          "column": 4,
-          "index": 25284
-        },
-        "end": {
-          "line": 857,
-          "column": 5,
-          "index": 26284
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Synchronizes data between the internal representation and the DOM. This",
+          "     * is the counterpart of {@link #_copyData} and is used for further updates",
+          "     * after the element has been created.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1242,27 +1785,35 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
+      "location": {
+        "start": {
+          "line": 890,
+          "column": 4,
+          "index": 27283
+        },
+        "end": {
+          "line": 932,
+          "column": 5,
+          "index": 28241
+        }
+      },
+      "type": "function",
+      "params": [],
       "overriddenFrom": "qx.html.Node",
       "appearsIn": [
         "qx.html.Node"
       ]
     },
     "setRoot": {
-      "location": {
-        "start": {
-          "line": 870,
-          "column": 4,
-          "index": 26677
-        },
-        "end": {
-          "line": 877,
-          "column": 5,
-          "index": 26888
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the element's root flag, which indicates",
+          "     * whether the element should be a root element or not.",
+          "     * @param root {Boolean} The root flag.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1275,27 +1826,39 @@
             "body": "root {Boolean} The root flag.",
             "paramName": "root",
             "description": " The root flag.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isRoot": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 882,
+          "line": 945,
           "column": 4,
-          "index": 26932
+          "index": 28621
         },
         "end": {
-          "line": 884,
+          "line": 952,
           "column": 5,
-          "index": 26976
+          "index": 28825
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "root",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isRoot": {
       "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1309,27 +1872,38 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 957,
+          "column": 4,
+          "index": 28864
+        },
+        "end": {
+          "line": 959,
+          "column": 5,
+          "index": 28906
+        }
+      },
+      "type": "function",
+      "params": [],
       "overriddenFrom": "qx.html.Node",
       "appearsIn": [
         "qx.html.Node"
       ]
     },
     "useMarkup": {
-      "location": {
-        "start": {
-          "line": 894,
-          "column": 4,
-          "index": 27324
-        },
-        "end": {
-          "line": 915,
-          "column": 5,
-          "index": 28065
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Uses existing markup for this element. This is mainly used",
+          "     * to insert pre-built markup blocks into the element hierarchy.",
+          "     *",
+          "     * @param html {String} HTML markup with one root element",
+          "     *   which is used as the main element for this instance.",
+          "     * @return {Element} The created DOM element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1342,7 +1916,7 @@
             "body": "html {String} HTML markup with one root element\n   which is used as the main element for this instance.",
             "paramName": "html",
             "description": " HTML markup with one root element\n   which is used as the main element for this instance.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -1350,66 +1924,44 @@
             "name": "@return",
             "body": "{Element} The created DOM element",
             "type": "qx.html.Element",
-            "description": " The created DOM element"
+            "description": "The created DOM element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "useElement": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 924,
+          "line": 969,
           "column": 4,
-          "index": 28335
+          "index": 29244
         },
         "end": {
-          "line": 926,
+          "line": 990,
           "column": 5,
-          "index": 28387
+          "index": 29961
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Uses an existing element instead of creating one. This may be interesting\n when the DOM element is directly needed to add content etc.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "elem {Element} Element to reuse",
-            "paramName": "elem",
-            "description": " Element to reuse",
-            "type": "qx.html.Element"
-          }
-        ],
-        "@deprecated": [
-          {
-            "name": "@deprecated",
-            "body": "{6.1} see useNode"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "html",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
     },
     "isFocusable": {
-      "location": {
-        "start": {
-          "line": 933,
-          "column": 4,
-          "index": 28564
-        },
-        "end": {
-          "line": 945,
-          "column": 5,
-          "index": 28877
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the element is focusable (or will be when created)",
+          "     *",
+          "     * @return {Boolean} <code>true</code> when the element is focusable.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1420,28 +1972,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when the element is focusable.",
-            "type": "Boolean",
-            "description": " <code>true</code> when the element is focusable."
+            "type": "boolean",
+            "description": "<code>true</code> when the element is focusable."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setSelectable": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 954,
+          "line": 997,
           "column": 4,
-          "index": 29193
+          "index": 30131
         },
         "end": {
-          "line": 963,
+          "line": 1009,
           "column": 5,
-          "index": 29521
+          "index": 30432
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setSelectable": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set whether the element is selectable. It uses the qooxdoo attribute",
+          "     * qxSelectable with the values 'on' or 'off'.",
+          "     * In webkit, a special css property will be used (-webkit-user-select).",
+          "     *",
+          "     * @param value {Boolean} True, if the element should be selectable.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1454,27 +2020,43 @@
             "body": "value {Boolean} True, if the element should be selectable.",
             "paramName": "value",
             "description": " True, if the element should be selectable.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isNativelyFocusable": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 972,
+          "line": 1018,
           "column": 4,
-          "index": 29761
+          "index": 30739
         },
         "end": {
-          "line": 974,
+          "line": 1027,
           "column": 5,
-          "index": 29866
+          "index": 31058
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isNativelyFocusable": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the element is natively focusable (or will be when created)",
+          "     *",
+          "     * This ignores the configured tabIndex.",
+          "     *",
+          "     * @return {Boolean} <code>true</code> when the element is focusable.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1485,28 +2067,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when the element is focusable.",
-            "type": "Boolean",
-            "description": " <code>true</code> when the element is focusable."
+            "type": "boolean",
+            "description": "<code>true</code> when the element is focusable."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fadeIn": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 987,
+          "line": 1036,
           "column": 4,
-          "index": 30284
+          "index": 31289
         },
         "end": {
-          "line": 1009,
+          "line": 1038,
           "column": 5,
-          "index": 30822
+          "index": 31392
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "fadeIn": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fades in the element.",
+          "     * @param duration {Number} Time in ms.",
+          "     * @return {qx.bom.element.AnimationHandle} The animation handle to react for",
+          "     *   the fade animation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1519,7 +2114,7 @@
             "body": "duration {Number} Time in ms.",
             "paramName": "duration",
             "description": " Time in ms.",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
@@ -1527,27 +2122,45 @@
             "name": "@return",
             "body": "{qx.bom.element.AnimationHandle} The animation handle to react for\n   the fade animation.",
             "type": "qx.bom.element.AnimationHandle",
-            "description": " The animation handle to react for\n   the fade animation."
+            "description": "The animation handle to react for\n   the fade animation."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fadeOut": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1017,
+          "line": 1051,
           "column": 4,
-          "index": 31038
+          "index": 31797
         },
         "end": {
-          "line": 1035,
+          "line": 1073,
           "column": 5,
-          "index": 31445
+          "index": 32313
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "duration",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.element.AnimationHandle"
+      },
+      "appearsIn": []
+    },
+    "fadeOut": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fades out the element.",
+          "     * @param duration {Number} Time in ms.",
+          "     * @return {qx.bom.element.AnimationHandle} The animation handle to react for",
+          "     *   the fade animation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1560,7 +2173,7 @@
             "body": "duration {Number} Time in ms.",
             "paramName": "duration",
             "description": " Time in ms.",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
@@ -1568,27 +2181,42 @@
             "name": "@return",
             "body": "{qx.bom.element.AnimationHandle} The animation handle to react for\n   the fade animation.",
             "type": "qx.bom.element.AnimationHandle",
-            "description": " The animation handle to react for\n   the fade animation."
+            "description": "The animation handle to react for\n   the fade animation."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_applyVisible": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1046,
+          "line": 1081,
           "column": 4,
-          "index": 31695
+          "index": 32521
         },
         "end": {
-          "line": 1064,
+          "line": 1099,
           "column": 5,
-          "index": 32309
+          "index": 32910
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "duration",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.element.AnimationHandle"
+      },
+      "appearsIn": []
+    },
+    "_applyVisible": {
       "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1602,27 +2230,44 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
+      "location": {
+        "start": {
+          "line": 1110,
+          "column": 4,
+          "index": 33149
+        },
+        "end": {
+          "line": 1128,
+          "column": 5,
+          "index": 33745
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
       "overriddenFrom": "qx.html.Node",
       "appearsIn": [
         "qx.html.Node"
       ]
     },
     "show": {
-      "location": {
-        "start": {
-          "line": 1073,
-          "column": 4,
-          "index": 32630
-        },
-        "end": {
-          "line": 1076,
-          "column": 5,
-          "index": 32695
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Marks the element as visible which means that a previously applied",
+          "     * CSS style of display=none gets removed and the element will inserted",
+          "     * into the DOM, when this had not already happened before.",
+          "     *",
+          "     * @return {qx.html.Element} this object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1634,27 +2279,40 @@
             "name": "@return",
             "body": "{qx.html.Element} this object (for chaining support)",
             "type": "qx.html.Element",
-            "description": " this object (for chaining support)"
+            "description": "this object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hide": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1084,
+          "line": 1137,
           "column": 4,
-          "index": 32958
+          "index": 34057
         },
         "end": {
-          "line": 1087,
+          "line": 1140,
           "column": 5,
-          "index": 33024
+          "index": 34119
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "hide": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Marks the element as hidden which means it will kept in DOM (if it",
+          "     * is already there, but configured hidden using a CSS style of display=none).",
+          "     *",
+          "     * @return {qx.html.Element} this object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1666,27 +2324,49 @@
             "name": "@return",
             "body": "{qx.html.Element} this object (for chaining support)",
             "type": "qx.html.Element",
-            "description": " this object (for chaining support)"
+            "description": "this object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "scrollChildIntoViewX": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1110,
+          "line": 1148,
           "column": 4,
-          "index": 33983
+          "index": 34374
         },
         "end": {
-          "line": 1133,
+          "line": 1151,
           "column": 5,
-          "index": 34607
+          "index": 34437
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "scrollChildIntoViewX": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the given child element into view. Only scrolls children.",
+          "     * Do not influence elements on top of this element.",
+          "     *",
+          "     * If the element is currently invisible it gets scrolled automatically",
+          "     * at the next time it is visible again (queued).",
+          "     *",
+          "     * @param elem {qx.html.Element} The element to scroll into the viewport.",
+          "     * @param align {String?null} Alignment of the element. Allowed values:",
+          "     *   <code>left</code> or <code>right</code>. Could also be null.",
+          "     *   Without a given alignment the method tries to scroll the widget",
+          "     *   with the minimum effort needed.",
+          "     * @param direct {Boolean?true} Whether the execution should be made",
+          "     *   directly when possible",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1721,23 +2401,59 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "scrollChildIntoViewY": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1150,
+          "line": 1174,
           "column": 4,
-          "index": 35364
+          "index": 35373
         },
         "end": {
-          "line": 1173,
+          "line": 1197,
           "column": 5,
-          "index": 35988
+          "index": 35974
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "qx.html.Element"
+        },
+        {
+          "name": "align",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "direct",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "appearsIn": []
+    },
+    "scrollChildIntoViewY": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the given child element into view. Only scrolls children.",
+          "     * Do not influence elements on top of this element.",
+          "     *",
+          "     * If the element is currently invisible it gets scrolled automatically",
+          "     * at the next time it is visible again (queued).",
+          "     *",
+          "     * @param elem {qx.html.Element} The element to scroll into the viewport.",
+          "     * @param align {String?null} Alignment of the element. Allowed values:",
+          "     *   <code>top</code> or <code>bottom</code>. Could also be null.",
+          "     *   Without a given alignment the method tries to scroll the widget",
+          "     *   with the minimum effort needed.",
+          "     * @param direct {Boolean?true} Whether the execution should be made",
+          "     *   directly when possible",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1772,23 +2488,51 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "scrollToX": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1182,
+          "line": 1214,
           "column": 4,
-          "index": 36244
+          "index": 36714
         },
         "end": {
-          "line": 1194,
+          "line": 1237,
           "column": 5,
-          "index": 36648
+          "index": 37315
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "elem",
+          "type": "qx.html.Element"
+        },
+        {
+          "name": "align",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "direct",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "appearsIn": []
+    },
+    "scrollToX": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the element to the given left position.",
+          "     *",
+          "     * @param x {Integer} Horizontal scroll position",
+          "     * @param lazy {Boolean?false} Whether the scrolling should be performed",
+          "     *    during element flush.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1814,23 +2558,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getScrollX": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1201,
+          "line": 1246,
           "column": 4,
-          "index": 36780
+          "index": 37562
         },
         "end": {
-          "line": 1208,
+          "line": 1258,
           "column": 5,
-          "index": 36942
+          "index": 37954
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "x",
+          "type": "Integer"
+        },
+        {
+          "name": "lazy",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getScrollX": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the horizontal scroll position.",
+          "     *",
+          "     * @return {Integer} Horizontal scroll position",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1842,27 +2606,41 @@
             "name": "@return",
             "body": "{Integer} Horizontal scroll position",
             "type": "Integer",
-            "description": " Horizontal scroll position"
+            "description": "Horizontal scroll position"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "scrollToY": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1217,
+          "line": 1265,
           "column": 4,
-          "index": 37195
+          "index": 38079
         },
         "end": {
-          "line": 1229,
+          "line": 1272,
           "column": 5,
-          "index": 37598
+          "index": 38234
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "scrollToY": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the element to the given top position.",
+          "     *",
+          "     * @param y {Integer} Vertical scroll position",
+          "     * @param lazy {Boolean?false} Whether the scrolling should be performed",
+          "     *    during element flush.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1888,23 +2666,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getScrollY": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1236,
+          "line": 1281,
           "column": 4,
-          "index": 37726
+          "index": 38478
         },
         "end": {
-          "line": 1243,
+          "line": 1293,
           "column": 5,
-          "index": 37887
+          "index": 38869
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "y",
+          "type": "Integer"
+        },
+        {
+          "name": "lazy",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getScrollY": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical scroll position.",
+          "     *",
+          "     * @return {Integer} Vertical scroll position",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1916,27 +2714,37 @@
             "name": "@return",
             "body": "{Integer} Vertical scroll position",
             "type": "Integer",
-            "description": " Vertical scroll position"
+            "description": "Vertical scroll position"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "disableScrolling": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1248,
+          "line": 1300,
           "column": 4,
-          "index": 37956
+          "index": 38990
         },
         "end": {
-          "line": 1253,
+          "line": 1307,
           "column": 5,
-          "index": 38124
+          "index": 39144
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "disableScrolling": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Disables browser-native scrolling",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1944,23 +2752,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "enableScrolling": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1258,
+          "line": 1312,
           "column": 4,
-          "index": 38195
+          "index": 39208
         },
         "end": {
-          "line": 1260,
+          "line": 1317,
           "column": 5,
-          "index": 38282
+          "index": 39371
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "enableScrolling": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Re-enables browser-native scrolling",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1968,39 +2783,49 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1322,
+          "column": 4,
+          "index": 39437
+        },
+        "end": {
+          "line": 1324,
+          "column": 5,
+          "index": 39522
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "__inScroll": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 1262,
+          "line": 1326,
           "column": 4,
-          "index": 38291
+          "index": 39529
         },
         "end": {
-          "line": 1262,
+          "line": 1326,
           "column": 20,
-          "index": 38307
+          "index": 39545
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__onScroll": {
-      "location": {
-        "start": {
-          "line": 1269,
-          "column": 4,
-          "index": 38432
-        },
-        "end": {
-          "line": 1276,
-          "column": 5,
-          "index": 38637
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the scroll-event",
+          "     *",
+          "     * @param e {qx.event.type.Native} scroll-event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2017,23 +2842,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "setText": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1290,
+          "line": 1333,
           "column": 4,
-          "index": 39085
+          "index": 39663
         },
         "end": {
-          "line": 1305,
+          "line": 1340,
           "column": 5,
-          "index": 39574
+          "index": 39861
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Native"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setText": {
       "jsdoc": {
+        "raw": [
+          "",
+          "     * Sets the text value of this element; it will delete children first, except",
+          "     * for the first node which (if it is a Text node) will have it's value updated",
+          "     *",
+          "     * @param value {String} the text to set",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2046,27 +2886,41 @@
             "body": "value {String} the text to set",
             "paramName": "value",
             "description": " the text to set",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getText": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1312,
+          "line": 1354,
           "column": 4,
-          "index": 39714
+          "index": 40295
         },
         "end": {
-          "line": 1320,
+          "line": 1369,
           "column": 5,
-          "index": 39930
+          "index": 40769
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getText": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the text value, accumulated from all child nodes",
+          "     *",
+          "     * @return {String} the text value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2077,28 +2931,43 @@
           {
             "name": "@return",
             "body": "{String} the text value",
-            "type": "String",
-            "description": " the text value"
+            "type": "string",
+            "description": "the text value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTextSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1330,
+          "line": 1376,
           "column": 4,
-          "index": 40147
+          "index": 40902
         },
         "end": {
-          "line": 1337,
+          "line": 1384,
           "column": 5,
-          "index": 40295
+          "index": 41110
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getTextSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the selection of the element.",
+          "     *",
+          "     * If the underlaying DOM element is not yet created, this methods returns",
+          "     * a null value.",
+          "     *",
+          "     * @return {String|null}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2114,23 +2983,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTextSelectionLength": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1347,
+          "line": 1394,
           "column": 4,
-          "index": 40523
+          "index": 41317
         },
         "end": {
-          "line": 1354,
+          "line": 1401,
           "column": 5,
-          "index": 40683
+          "index": 41458
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getTextSelectionLength": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the length of selection of the element.",
+          "     *",
+          "     * If the underlaying DOM element is not yet created, this methods returns",
+          "     * a null value.",
+          "     *",
+          "     * @return {Integer|null}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2146,23 +3030,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTextSelectionStart": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1364,
+          "line": 1411,
           "column": 4,
-          "index": 40914
+          "index": 41676
         },
         "end": {
-          "line": 1371,
+          "line": 1418,
           "column": 5,
-          "index": 41072
+          "index": 41829
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer|null"
+      },
+      "appearsIn": []
+    },
+    "getTextSelectionStart": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the start of the selection of the element.",
+          "     *",
+          "     * If the underlaying DOM element is not yet created, this methods returns",
+          "     * a null value.",
+          "     *",
+          "     * @return {Integer|null}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2178,23 +3077,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTextSelectionEnd": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1381,
+          "line": 1428,
           "column": 4,
-          "index": 41301
+          "index": 42050
         },
         "end": {
-          "line": 1388,
+          "line": 1435,
           "column": 5,
-          "index": 41455
+          "index": 42201
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer|null"
+      },
+      "appearsIn": []
+    },
+    "getTextSelectionEnd": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the end of the selection of the element.",
+          "     *",
+          "     * If the underlaying DOM element is not yet created, this methods returns",
+          "     * a null value.",
+          "     *",
+          "     * @return {Integer|null}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2210,23 +3124,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setTextSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1399,
+          "line": 1445,
           "column": 4,
-          "index": 41845
+          "index": 42420
         },
         "end": {
-          "line": 1414,
+          "line": 1452,
           "column": 5,
-          "index": 42256
+          "index": 42567
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer|null"
+      },
+      "appearsIn": []
+    },
+    "setTextSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the selection of the element with the given start and end value.",
+          "     * If no end value is passed the selection will extend to the end.",
+          "     *",
+          "     * This method only works if the underlying DOM element is already created.",
+          "     *",
+          "     * @param start {Integer} start of the selection (zero based)",
+          "     * @param end {Integer} end of the selection",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2250,23 +3180,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clearTextSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1422,
+          "line": 1463,
           "column": 4,
-          "index": 42425
+          "index": 42946
         },
         "end": {
-          "line": 1428,
+          "line": 1478,
           "column": 5,
-          "index": 42610
+          "index": 43342
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "start",
+          "type": "Integer"
+        },
+        {
+          "name": "end",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clearTextSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the selection of the element.",
+          "     *",
+          "     * This method only works if the underlying DOM element is already created.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2274,23 +3223,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__performAction": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1447,
+          "line": 1486,
           "column": 4,
-          "index": 43301
+          "index": 43503
         },
         "end": {
-          "line": 1463,
+          "line": 1492,
           "column": 5,
-          "index": 43763
+          "index": 43682
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__performAction": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the action to process as argument and queues this action if the",
+          "     * underlying DOM element is not yet created.",
+          "     *",
+          "     * Note that \"actions\" are functions in `qx.bom.Element` and only apply to",
+          "     * environments with a user interface.  This will throw an error if the user",
+          "     * interface is headless",
+          "     *",
+          "     * @param action {String} action to queue",
+          "     * @param args {Array} optional list of arguments for the action",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2303,34 +3267,55 @@
             "body": "action {String} action to queue",
             "paramName": "action",
             "description": " action to queue",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "args {Array} optional list of arguments for the action",
             "paramName": "args",
             "description": " optional list of arguments for the action",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "focus": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1473,
+          "line": 1511,
           "column": 4,
-          "index": 44025
+          "index": 44354
         },
         "end": {
-          "line": 1477,
+          "line": 1527,
           "column": 5,
-          "index": 44144
+          "index": 44800
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "action",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "focus": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Focus this element.",
+          "     *",
+          "     * If the underlaying DOM element is not yet created, the",
+          "     * focus is queued for processing after the element creation.",
+          "     *",
+          "     * Silently does nothing when in a headless environment",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2338,23 +3323,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "blur": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1485,
+          "line": 1537,
           "column": 4,
-          "index": 44320
+          "index": 45052
         },
         "end": {
-          "line": 1489,
+          "line": 1541,
           "column": 5,
-          "index": 44437
+          "index": 45167
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "blur": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mark this element to get blurred on the next flush of the queue",
+          "     *",
+          "     * Silently does nothing when in a headless environment",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2362,23 +3357,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "activate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1497,
+          "line": 1549,
           "column": 4,
-          "index": 44615
+          "index": 45335
         },
         "end": {
-          "line": 1501,
+          "line": 1553,
           "column": 5,
-          "index": 44740
+          "index": 45448
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "activate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mark this element to get activated on the next flush of the queue",
+          "     *",
+          "     * Silently does nothing when in a headless environment",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2386,23 +3391,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "deactivate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1509,
+          "line": 1561,
           "column": 4,
-          "index": 44920
+          "index": 45618
         },
         "end": {
-          "line": 1513,
+          "line": 1565,
           "column": 5,
-          "index": 45049
+          "index": 45739
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "deactivate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mark this element to get deactivated on the next flush of the queue",
+          "     *",
+          "     * Silently does nothing when in a headless environment",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2410,23 +3425,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "capture": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1524,
+          "line": 1573,
           "column": 4,
-          "index": 45395
+          "index": 45911
         },
         "end": {
-          "line": 1528,
+          "line": 1577,
           "column": 5,
-          "index": 45564
+          "index": 46036
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "capture": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Captures all mouse events to this element",
+          "     *",
+          "     * Silently does nothing when in a headless environment",
+          "     *",
+          "     * @param containerCapture {Boolean?true} If true all events originating in",
+          "     *   the container are captured. If false events originating in the container",
+          "     *   are not captured.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2445,23 +3473,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "releaseCapture": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1535,
+          "line": 1588,
           "column": 4,
-          "index": 45728
+          "index": 46371
         },
         "end": {
-          "line": 1539,
+          "line": 1592,
           "column": 5,
-          "index": 45865
+          "index": 46536
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "containerCapture",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "appearsIn": []
+    },
+    "releaseCapture": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Releases this element from a previous {@link #capture} call",
+          "     *",
+          "     * Silently does nothing when in a headless environment",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2469,23 +3513,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setStyle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1556,
+          "line": 1599,
           "column": 4,
-          "index": 46420
+          "index": 46693
         },
         "end": {
-          "line": 1596,
+          "line": 1603,
           "column": 5,
-          "index": 47527
+          "index": 46826
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "setStyle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set up the given style attribute",
+          "     *",
+          "     * @param key {String} the name of the style attribute",
+          "     * @param value {var} the value",
+          "     * @param direct {Boolean?false} Whether the value should be applied",
+          "     *    directly (without queuing)",
+          "     * @return {qx.html.Element} this object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2498,7 +3555,7 @@
             "body": "key {String} the name of the style attribute",
             "paramName": "key",
             "description": " the name of the style attribute",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -2522,27 +3579,58 @@
             "name": "@return",
             "body": "{qx.html.Element} this object (for chaining support)",
             "type": "qx.html.Element",
-            "description": " this object (for chaining support)"
+            "description": "this object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_applyStyle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1607,
+          "line": 1620,
           "column": 4,
-          "index": 47901
+          "index": 47364
         },
         "end": {
-          "line": 1609,
+          "line": 1660,
           "column": 5,
-          "index": 47961
+          "index": 48431
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "direct",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "_applyStyle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called by setStyle when a value of a style changes; this is intended to be",
+          "     * overridden to allow the element to update properties etc according to the",
+          "     * style",
+          "     *",
+          "     * @param key {String} the style value",
+          "     * @param value {String?} the value to set",
+          "     * @param oldValue {String?} The previous value (not from DOM)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2555,7 +3643,7 @@
             "body": "key {String} the style value",
             "paramName": "key",
             "description": " the style value",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -2575,23 +3663,51 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "setStyles": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 1620,
+          "line": 1671,
           "column": 4,
-          "index": 48359
+          "index": 48794
         },
         "end": {
-          "line": 1679,
+          "line": 1673,
           "column": 5,
-          "index": 49955
+          "index": 48852
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "optional": true
+        },
+        {
+          "name": "oldValue",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "setStyles": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convenience method to modify a set of styles at once.",
+          "     *",
+          "     * @param map {Map} a map where the key is the name of the property",
+          "     *    and the value is the value to use.",
+          "     * @param direct {Boolean?false} Whether the values should be applied",
+          "     *    directly (without queuing)",
+          "     * @return {qx.html.Element} this object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2604,7 +3720,7 @@
             "body": "map {Map} a map where the key is the name of the property\n    and the value is the value to use.",
             "paramName": "map",
             "description": " a map where the key is the name of the property\n    and the value is the value to use.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -2621,27 +3737,53 @@
             "name": "@return",
             "body": "{qx.html.Element} this object (for chaining support)",
             "type": "qx.html.Element",
-            "description": " this object (for chaining support)"
+            "description": "this object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeStyle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1689,
+          "line": 1683,
           "column": 4,
-          "index": 50273
+          "index": 49239
         },
         "end": {
-          "line": 1692,
+          "line": 1739,
           "column": 5,
-          "index": 50367
+          "index": 50773
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "map",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "direct",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "removeStyle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the given style attribute",
+          "     *",
+          "     * @param key {String} the name of the style attribute",
+          "     * @param direct {Boolean?false} Whether the value should be removed",
+          "     *    directly (without queuing)",
+          "     * @return {qx.html.Element} this object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2654,7 +3796,7 @@
             "body": "key {String} the name of the style attribute",
             "paramName": "key",
             "description": " the name of the style attribute",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -2671,27 +3813,51 @@
             "name": "@return",
             "body": "{qx.html.Element} this object (for chaining support)",
             "type": "qx.html.Element",
-            "description": " this object (for chaining support)"
+            "description": "this object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getStyle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1700,
+          "line": 1749,
           "column": 4,
-          "index": 50565
+          "index": 51081
         },
         "end": {
-          "line": 1702,
+          "line": 1752,
           "column": 5,
-          "index": 50654
+          "index": 51172
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "direct",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "getStyle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the value of the given style attribute.",
+          "     *",
+          "     * @param key {String} name of the style attribute",
+          "     * @return {var} the value of the style attribute",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2704,7 +3870,7 @@
             "body": "key {String} name of the style attribute",
             "paramName": "key",
             "description": " name of the style attribute",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -2712,27 +3878,44 @@
             "name": "@return",
             "body": "{var} the value of the style attribute",
             "type": "var",
-            "description": " the value of the style attribute"
+            "description": "the value of the style attribute"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAllStyles": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1709,
+          "line": 1760,
           "column": 4,
-          "index": 50836
+          "index": 51362
         },
         "end": {
-          "line": 1711,
+          "line": 1762,
           "column": 5,
-          "index": 50901
+          "index": 51449
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "getAllStyles": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map of all styles. Do not modify the result map!",
+          "     *",
+          "     * @return {Map} All styles or <code>null</code> when none are configured.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2743,61 +3926,91 @@
           {
             "name": "@return",
             "body": "{Map} All styles or <code>null</code> when none are configured.",
-            "type": "Map",
-            "description": " All styles or <code>null</code> when none are configured."
+            "type": "Map<any, any>",
+            "description": "All styles or <code>null</code> when none are configured."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1769,
+          "column": 4,
+          "index": 51624
+        },
+        "end": {
+          "line": 1771,
+          "column": 5,
+          "index": 51687
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
     },
     "__breakClasses": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "    ---------------------------------------------------------------------------",
+          "      CSS CLASS SUPPORT",
+          "    ---------------------------------------------------------------------------",
+          "    "
+        ]
+      },
+      "access": "private",
       "location": {
         "start": {
-          "line": 1718,
+          "line": 1778,
           "column": 4,
-          "index": 51113
+          "index": 51892
         },
         "end": {
-          "line": 1726,
+          "line": 1786,
           "column": 5,
-          "index": 51343
+          "index": 52114
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "__combineClasses": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 1728,
+          "line": 1788,
           "column": 4,
-          "index": 51352
+          "index": 52121
         },
         "end": {
-          "line": 1737,
+          "line": 1797,
           "column": 5,
-          "index": 51670
+          "index": 52430
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "map"
+        }
+      ],
+      "appearsIn": []
     },
     "addClass": {
-      "location": {
-        "start": {
-          "line": 1745,
-          "column": 4,
-          "index": 51843
-        },
-        "end": {
-          "line": 1758,
-          "column": 5,
-          "index": 52288
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a css class to the element.",
+          "     *",
+          "     * @param name {String} Name of the CSS class.",
+          "     * @return {Element} this, for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2810,7 +4023,7 @@
             "body": "name {String} Name of the CSS class.",
             "paramName": "name",
             "description": " Name of the CSS class.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -2818,27 +4031,45 @@
             "name": "@return",
             "body": "{Element} this, for chaining",
             "type": "qx.html.Element",
-            "description": " this, for chaining"
+            "description": "this, for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeClass": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1766,
+          "line": 1805,
           "column": 4,
-          "index": 52474
+          "index": 52595
         },
         "end": {
-          "line": 1780,
+          "line": 1818,
           "column": 5,
-          "index": 52924
+          "index": 53027
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "removeClass": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a CSS class from the current element.",
+          "     *",
+          "     * @param name {String} Name of the CSS class.",
+          "     * @return {Element} this, for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2851,7 +4082,7 @@
             "body": "name {String} Name of the CSS class.",
             "paramName": "name",
             "description": " Name of the CSS class.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -2859,27 +4090,42 @@
             "name": "@return",
             "body": "{Element} this, for chaining",
             "type": "qx.html.Element",
-            "description": " this, for chaining"
+            "description": "this, for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeAllClasses": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1785,
+          "line": 1826,
           "column": 4,
-          "index": 53009
+          "index": 53205
         },
         "end": {
-          "line": 1788,
+          "line": 1840,
           "column": 5,
-          "index": 53106
+          "index": 53641
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "removeAllClasses": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes all CSS classed from the current element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2887,23 +4133,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_applyCssClass": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1793,
+          "line": 1845,
           "column": 4,
-          "index": 53167
+          "index": 53721
         },
         "end": {
-          "line": 1802,
+          "line": 1848,
           "column": 5,
-          "index": 53542
+          "index": 53815
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_applyCssClass": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply method for cssClass",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2911,26 +4164,78 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
-      "applyFor": [
-        "cssClass"
-      ]
-    },
-    "getDimensions": {
       "location": {
         "start": {
-          "line": 1828,
+          "line": 1853,
           "column": 4,
-          "index": 54791
+          "index": 53871
         },
         "end": {
-          "line": 1848,
+          "line": 1862,
           "column": 5,
-          "index": 55339
+          "index": 54237
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyIsCustomElement": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1864,
+          "column": 4,
+          "index": 54244
+        },
+        "end": {
+          "line": 1878,
+          "column": 5,
+          "index": 54769
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getDimensions": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the size and position of this element; this is just a helper method that wraps",
+          "     * the calls to qx.bom.*",
+          "     *",
+          "     * Supported modes:",
+          "     *",
+          "     * * <code>margin</code>: Calculate from the margin box of the element (bigger than the visual appearance: including margins of given element)",
+          "     * * <code>box</code>: Calculates the offset box of the element (default, uses the same size as visible)",
+          "     * * <code>border</code>: Calculate the border box (useful to align to border edges of two elements).",
+          "     * * <code>scroll</code>: Calculate the scroll box (relevant for absolute positioned content).",
+          "     * * <code>padding</code>: Calculate the padding box (relevant for static/relative positioned content).",
+          "     *",
+          "     * @param mode {String} the type of size required, see above",
+          "     * @return {Object} a map, containing:",
+          "     *  left, right, top, bottom - document co-ords",
+          "     *  content - Object, containing:",
+          "     *    width, height: maximum permissible content size",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2943,35 +4248,50 @@
             "body": "mode {String} the type of size required, see above",
             "paramName": "mode",
             "description": " the type of size required, see above",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} a map, containing:\n  left, right, top, bottom - document co-ords\n  content - Object, containing:\n    width, height: maximum permissible content size",
-            "type": "Object",
-            "description": " a map, containing:\n  left, right, top, bottom - document co-ords\n  content - Object, containing:\n    width, height: maximum permissible content size"
+            "type": "Record<any, any>",
+            "description": "a map, containing:\n  left, right, top, bottom - document co-ords\n  content - Object, containing:\n    width, height: maximum permissible content size"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "canBeSeen": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1853,
+          "line": 1904,
           "column": 4,
-          "index": 55414
+          "index": 55992
         },
         "end": {
-          "line": 1866,
+          "line": 1924,
           "column": 5,
-          "index": 55744
+          "index": 56520
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "mode",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "canBeSeen": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the DOM Node is visible",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2979,23 +4299,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setAttribute": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1883,
+          "line": 1929,
           "column": 4,
-          "index": 56291
+          "index": 56590
         },
         "end": {
-          "line": 1926,
+          "line": 1942,
           "column": 5,
-          "index": 57440
+          "index": 56907
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "setAttribute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set up the given attribute",
+          "     *",
+          "     * @param key {String} the name of the attribute",
+          "     * @param value {var} the value",
+          "     * @param direct {Boolean?false} Whether the value should be applied",
+          "     *    directly (without queuing)",
+          "     * @return {qx.html.Element} this object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -3008,7 +4341,7 @@
             "body": "key {String} the name of the attribute",
             "paramName": "key",
             "description": " the name of the attribute",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -3032,27 +4365,58 @@
             "name": "@return",
             "body": "{qx.html.Element} this object (for chaining support)",
             "type": "qx.html.Element",
-            "description": " this object (for chaining support)"
+            "description": "this object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setAttributes": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1937,
+          "line": 1959,
           "column": 4,
-          "index": 57842
+          "index": 57437
         },
         "end": {
-          "line": 1943,
+          "line": 2002,
           "column": 5,
-          "index": 57989
+          "index": 58588
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "direct",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "setAttributes": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convenience method to modify a set of attributes at once.",
+          "     *",
+          "     * @param map {Map} a map where the key is the name of the property",
+          "     *    and the value is the value to use.",
+          "     * @param direct {Boolean?false} Whether the values should be applied",
+          "     *    directly (without queuing)",
+          "     * @return {qx.html.Element} this object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -3065,7 +4429,7 @@
             "body": "map {Map} a map where the key is the name of the property\n    and the value is the value to use.",
             "paramName": "map",
             "description": " a map where the key is the name of the property\n    and the value is the value to use.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -3082,27 +4446,53 @@
             "name": "@return",
             "body": "{qx.html.Element} this object (for chaining support)",
             "type": "qx.html.Element",
-            "description": " this object (for chaining support)"
+            "description": "this object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeAttribute": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1953,
+          "line": 2013,
           "column": 4,
-          "index": 58295
+          "index": 58979
         },
         "end": {
-          "line": 1955,
+          "line": 2019,
           "column": 5,
-          "index": 58384
+          "index": 59120
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "map",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "direct",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "removeAttribute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the given attribute",
+          "     *",
+          "     * @param key {String} the name of the attribute",
+          "     * @param direct {Boolean?false} Whether the value should be removed",
+          "     *    directly (without queuing)",
+          "     * @return {qx.html.Element} this object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -3115,7 +4505,7 @@
             "body": "key {String} the name of the attribute",
             "paramName": "key",
             "description": " the name of the attribute",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -3132,27 +4522,51 @@
             "name": "@return",
             "body": "{qx.html.Element} this object (for chaining support)",
             "type": "qx.html.Element",
-            "description": " this object (for chaining support)"
+            "description": "this object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAttribute": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1963,
+          "line": 2029,
           "column": 4,
-          "index": 58564
+          "index": 59416
         },
         "end": {
-          "line": 1965,
+          "line": 2031,
           "column": 5,
-          "index": 58659
+          "index": 59503
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "direct",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Element"
+      },
+      "appearsIn": []
+    },
+    "getAttribute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the value of the given attribute.",
+          "     *",
+          "     * @param key {String} name of the attribute",
+          "     * @return {var} the value of the attribute",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -3165,7 +4579,7 @@
             "body": "key {String} name of the attribute",
             "paramName": "key",
             "description": " name of the attribute",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -3173,348 +4587,50 @@
             "name": "@return",
             "body": "{var} the value of the attribute",
             "type": "var",
-            "description": " the value of the attribute"
+            "description": "the value of the attribute"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 2039,
+          "column": 4,
+          "index": 59675
+        },
+        "end": {
+          "line": 2041,
+          "column": 5,
+          "index": 59768
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getVisible": {
-      "type": "function",
-      "name": "getVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for visible"
-          }
-        ]
-      }
-    },
-    "isVisible": {
-      "type": "function",
-      "name": "isVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for visible"
-          }
-        ]
-      }
-    },
-    "setVisible": {
-      "type": "function",
-      "name": "setVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for visible"
-          }
-        ]
-      }
-    },
-    "resetVisible": {
-      "type": "function",
-      "name": "resetVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ]
-      }
-    },
-    "getCssClass": {
-      "type": "function",
-      "name": "getCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>cssClass</code>.\n\nFor further details take a look at the property definition: {@link #cssClass}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for cssClass"
-          }
-        ]
-      }
-    },
-    "setCssClass": {
-      "type": "function",
-      "name": "setCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>cssClass</code>.\n\nFor further details take a look at the property definition: {@link #cssClass}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for cssClass"
-          }
-        ]
-      }
-    },
-    "resetCssClass": {
-      "type": "function",
-      "name": "resetCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>cssClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cssClass}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 1974,
-        "column": 2,
-        "index": 58863
-      },
-      "end": {
-        "line": 1995,
-        "column": 3,
-        "index": 59315
-      }
-    },
-    "jsdoc": {}
-  },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
-        "line": 2003,
+        "line": 2060,
         "column": 2,
-        "index": 59513
+        "index": 60252
       },
       "end": {
-        "line": 2018,
+        "line": 2075,
         "column": 3,
-        "index": 59904
+        "index": 60628
       }
-    },
-    "jsdoc": {}
-  },
-  "descendants": [
-    "qx.html.Blocker",
-    "qx.html.Canvas",
-    "qx.html.Iframe",
-    "qx.html.Image",
-    "qx.html.Input",
-    "qx.html.Label",
-    "qx.html.Root",
-    "qx.ui.splitpane.Blocker",
-    "cv.svg.Element",
-    "com.zenesis.qx.upload.InputElement"
-  ]
+    }
+  }
 }

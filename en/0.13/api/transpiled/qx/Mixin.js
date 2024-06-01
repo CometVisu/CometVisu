@@ -148,6 +148,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           if (config.events) {
             mixin.$$events = config.events;
           }
+          if (config.objects) {
+            mixin.$$objects = config.objects;
+          }
           if (config.destruct) {
             mixin.$$destructor = config.destruct;
             qx.Bootstrap.setDisplayName(config.destruct, name, "destruct");
@@ -385,7 +388,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           // Map
           destruct: "function",
           // Function
-          construct: "function" // Function
+          construct: "function",
+          // Function
+          objects: "object" // Map
         },
         "default": null
       }),
@@ -441,4 +446,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.Mixin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mixin.js.map?dt=1709410142463
+//# sourceMappingURL=Mixin.js.map?dt=1717235370582

@@ -1,55 +1,59 @@
 {
-  "className": "qx.dev.unit.Sinon",
-  "packageName": "qx.dev.unit",
-  "name": "Sinon",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 52,
-        "column": 0,
-        "index": 1317
-      },
-      "end": {
-        "line": 65,
-        "column": 5,
-        "index": 1575
-      }
+  "version": 0.3,
+  "lastModified": 1717235172366,
+  "lastModifiedIso": "2024-06-01T09:46:12.366Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/unit/Sinon.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 52,
+      "column": 0,
+      "index": 1266
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Exposes Sinon.JS to qooxdoo.\n This class exposes Sinon.JS (http://sinonjs.org/) and is not to be used\n directly. Instead, you should include qx.dev.unit.MMock in your TestCase\n and use the wrappers provided.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 65,
+      "column": 5,
+      "index": 1511
     }
   },
-  "type": "class",
+  "className": "qx.dev.unit.Sinon",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Exposes Sinon.JS to qooxdoo.",
+      " *",
+      " * This class exposes Sinon.JS (http://sinonjs.org/) and is not to be used",
+      " * directly. Instead, you should include qx.dev.unit.MMock in your TestCase",
+      " * and use the wrappers provided.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Exposes Sinon.JS to qooxdoo.\n This class exposes Sinon.JS (http://sinonjs.org/) and is not to be used\n directly. Instead, you should include qx.dev.unit.MMock in your TestCase\n and use the wrappers provided.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "statics": {
     "getSinon": {
-      "location": {
-        "start": {
-          "line": 63,
-          "column": 6,
-          "index": 1547
-        },
-        "end": {
-          "line": 63,
-          "column": 20,
-          "index": 1561
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "       * Get the Sinon.JS object.",
+          "       *",
+          "       * @signature function()",
+          "       * @return {Object} The Sinon.JS object",
+          "       *",
+          "       "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,14 +70,30 @@
           {
             "name": "@return",
             "body": "{Object} The Sinon.JS object",
-            "type": "Object",
-            "description": " The Sinon.JS object"
+            "type": "Record<any, any>",
+            "description": "The Sinon.JS object"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 6,
+          "index": 1485
+        },
+        "end": {
+          "line": 63,
+          "column": 20,
+          "index": 1499
+        }
+      },
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

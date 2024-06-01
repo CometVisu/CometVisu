@@ -1,0 +1,262 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235168730,
+  "lastModifiedIso": "2024-06-01T09:46:08.730Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/api/AbstractApi.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 814
+    },
+    "end": {
+      "line": 99,
+      "column": 3,
+      "index": 2658
+    }
+  },
+  "className": "qx.tool.cli.api.AbstractApi",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for the compiler API classes",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for the compiler API classes</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "properties": {
+    "rootDir": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 910
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 971
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "configuration": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1025
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1062
+        }
+      },
+      "json": {
+        "init": {}
+      },
+      "jsdoc": {
+        "raw": [
+          "* Configuration data for the compiler "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Configuration data for the compiler</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "load": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads the configuration",
+          "     *",
+          "     * @return {Map} configuration data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads the configuration</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} configuration data",
+            "type": "Map<any, any>",
+            "description": "configuration data"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1180
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1238
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "initialize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called by the compiler API during initialisation - this is an ideal",
+          "     * place to install additional commands, because a command has not yet",
+          "     * been selected",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called by the compiler API during initialisation - this is an ideal\n place to install additional commands, because a command has not yet\n been selected</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1432
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1475
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "require": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * helper to load an npm module. Check if it can be loaded before",
+          "     * If not install the module with 'npm install --no-save --no-package-lock' to the current library",
+          "     *",
+          "     * @param module {String} module to check",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>helper to load an npm module. Check if it can be loaded before\n If not install the module with 'npm install --no-save --no-package-lock' to the current library</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "module {String} module to check",
+            "paramName": "module",
+            "description": " module to check",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1731
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 2047
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "module",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "loadNpmModule": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * install an npm module with 'npm install --no-save --no-package-lock' to the current library",
+          "     *",
+          "     * @param module {String} module to load",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>install an npm module with 'npm install --no-save --no-package-lock' to the current library</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "module {String} module to load",
+            "paramName": "module",
+            "description": " module to load",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2227
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2650
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "module",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

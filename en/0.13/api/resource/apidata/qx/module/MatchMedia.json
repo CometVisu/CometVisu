@@ -1,49 +1,48 @@
 {
-  "className": "qx.module.MatchMedia",
-  "packageName": "qx.module",
-  "name": "MatchMedia",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 722
-      },
-      "end": {
-        "line": 140,
-        "column": 3,
-        "index": 3990
-      }
+  "version": 0.3,
+  "lastModified": 1717235171694,
+  "lastModifiedIso": "2024-06-01T09:46:11.694Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/MatchMedia.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 699
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Module for mediaqueries evaluation. The module is a wrapper for media.match.js,\n that implements a polyfill for window.matchMedia when it's not supported natively.</p>"
-        }
-      ]
+    "end": {
+      "line": 140,
+      "column": 3,
+      "index": 3851
     }
   },
-  "type": "class",
+  "className": "qx.module.MatchMedia",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Module for mediaqueries evaluation. The module is a wrapper for media.match.js,",
+      " * that implements a polyfill for window.matchMedia when it's not supported natively.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Module for mediaqueries evaluation. The module is a wrapper for media.match.js,\n that implements a polyfill for window.matchMedia when it's not supported natively.</p>"
+      }
+    ]
+  },
   "statics": {
     "matchMedia": {
-      "location": {
-        "start": {
-          "line": 33,
-          "column": 4,
-          "index": 1014
-        },
-        "end": {
-          "line": 35,
-          "column": 5,
-          "index": 1084
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Evaluates the specified mediaquery list",
+          "     *",
+          "     * @param query {String} the media query to evaluate",
+          "     * @return {qx.bom.MediaQuery}  The media query",
+          "     * @attachStatic {qxWeb, matchMedia}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,7 +55,7 @@
             "body": "query {String} the media query to evaluate",
             "paramName": "query",
             "description": " the media query to evaluate",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -64,7 +63,7 @@
             "name": "@return",
             "body": "{qx.bom.MediaQuery}  The media query",
             "type": "qx.bom.MediaQuery",
-            "description": "  The media query"
+            "description": " The media query"
           }
         ],
         "@attachStatic": [
@@ -74,23 +73,50 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addSizeClasses": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 33,
           "column": 4,
-          "index": 1641
+          "index": 982
         },
         "end": {
-          "line": 93,
+          "line": 35,
           "column": 5,
-          "index": 2785
+          "index": 1050
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "query",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.MediaQuery"
+      },
+      "appearsIn": []
+    },
+    "addSizeClasses": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds screen size classes (e.g. small-only or medium-up) by pre-defined media queries using em.",
+          "     * The range goes from small to medium, large and xlarge up to xxlarge:",
+          "     *",
+          "     * small: 0em - 40em",
+          "     * medium: 40.063em - 64em",
+          "     * large: 64.063em - 90em",
+          "     * xlarge: 90.063em - 120em",
+          "     * xxlarge: > 120.063em",
+          "     *",
+          "     * The suffix of the class name indicates either that the current screen",
+          "     * is larger than this size (*-up) or in that range (*-only).",
+          "     *",
+          "     * @attachStatic {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,23 +130,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__applyClass": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 101,
+          "line": 52,
           "column": 4,
-          "index": 3030
+          "index": 1590
         },
         "end": {
-          "line": 107,
+          "line": 93,
           "column": 5,
-          "index": 3200
+          "index": 2693
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__applyClass": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds or removes a class depending on matching a given media query",
+          "     *",
+          "     * @param query {String} the media query to evaluate",
+          "     * @param className {String} css class name that gets bind to an element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -133,36 +169,58 @@
             "body": "query {String} the media query to evaluate",
             "paramName": "query",
             "description": " the media query to evaluate",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "className {String} css class name that gets bind to an element",
             "paramName": "className",
             "description": " css class name that gets bind to an element",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2930
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3094
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "query",
+          "type": "string"
+        },
+        {
+          "name": "className",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "members": {
     "mediaQueryToClass": {
-      "location": {
-        "start": {
-          "line": 120,
-          "column": 4,
-          "index": 3554
-        },
-        "end": {
-          "line": 134,
-          "column": 5,
-          "index": 3923
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listens for media query updates and applies/removes the css class.",
+          "     *",
+          "     * @param queryString {String} the media query to evaluate",
+          "     * @param className {String} css class name that gets bind to an element",
+          "     *",
+          "     * @attach {qxWeb}",
+          "     * @return {qxWeb} Self instance for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -175,14 +233,14 @@
             "body": "queryString {String} the media query to evaluate",
             "paramName": "queryString",
             "description": " the media query to evaluate",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "className {String} css class name that gets bind to an element",
             "paramName": "className",
             "description": " css class name that gets bind to an element",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@attach": [
@@ -196,27 +254,39 @@
             "name": "@return",
             "body": "{qxWeb} Self instance for chaining",
             "type": "qxWeb",
-            "description": " Self instance for chaining"
+            "description": "Self instance for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 137,
-        "column": 2,
-        "index": 3935
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3435
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3790
+        }
       },
-      "end": {
-        "line": 139,
-        "column": 3,
-        "index": 3985
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "queryString",
+          "type": "string"
+        },
+        {
+          "name": "className",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

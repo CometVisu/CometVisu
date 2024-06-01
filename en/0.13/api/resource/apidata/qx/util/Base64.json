@@ -1,49 +1,41 @@
 {
-  "className": "qx.util.Base64",
-  "packageName": "qx.util",
-  "name": "Base64",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 562
-      },
-      "end": {
-        "line": 317,
-        "column": 3,
-        "index": 8588
-      }
+  "version": 0.3,
+  "lastModified": 1717235169262,
+  "lastModifiedIso": "2024-06-01T09:46:09.262Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/Base64.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 540
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Base64 encoder</p>"
-        }
-      ]
+    "end": {
+      "line": 317,
+      "column": 3,
+      "index": 8272
     }
   },
-  "type": "class",
+  "className": "qx.util.Base64",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base64 encoder",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base64 encoder</p>"
+      }
+    ]
+  },
   "statics": {
     "__base64Chars": {
-      "location": {
-        "start": {
-          "line": 26,
-          "column": 4,
-          "index": 676
-        },
-        "end": {
-          "line": 91,
-          "column": 5,
-          "index": 1466
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* Characters allowed in a Base 64 encoded string "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +43,36 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "encode": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 104,
+          "line": 26,
           "column": 4,
-          "index": 1918
+          "index": 651
         },
         "end": {
-          "line": 160,
+          "line": 91,
           "column": 5,
-          "index": 3584
+          "index": 1376
         }
       },
+      "appearsIn": []
+    },
+    "encode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Encode a string using base64 encoding (http://en.wikipedia.org/wiki/Base64).",
+          "     *",
+          "     * @param input {String} the input string to encode",
+          "     *",
+          "     * @param is8bit {Boolean?} Whether the character set is 8-bit, not",
+          "     *   multi-byte.  If this parameter is not provided, the character set is",
+          "     *   determined from the 'document' object.",
+          "     *",
+          "     * @return {String} The base64 encoded input string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -80,7 +85,7 @@
             "body": "input {String} the input string to encode",
             "paramName": "input",
             "description": " the input string to encode",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -95,28 +100,52 @@
           {
             "name": "@return",
             "body": "{String} The base64 encoded input string.",
-            "type": "String",
-            "description": " The base64 encoded input string."
+            "type": "string",
+            "description": "The base64 encoded input string."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__translateUTF8": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 169,
+          "line": 104,
           "column": 4,
-          "index": 3964
+          "index": 1815
         },
         "end": {
-          "line": 198,
+          "line": 160,
           "column": 5,
-          "index": 4859
+          "index": 3425
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "input",
+          "type": "string"
+        },
+        {
+          "name": "is8bit",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__translateUTF8": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds to output array the UTF-8 bytes needed to represent the character (http://en.wikipedia.org/wiki/UTF8)",
+          "     *",
+          "     * @param characterCode {Integer} the code of the character",
+          "     * @param output {Array} the array of bytes to be filled",
+          "     * @param is8bit {Boolean} specifies whether we should not treat the array as a multi byte string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -136,34 +165,59 @@
             "body": "output {Array} the array of bytes to be filled",
             "paramName": "output",
             "description": " the array of bytes to be filled",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
             "body": "is8bit {Boolean} specifies whether we should not treat the array as a multi byte string",
             "paramName": "is8bit",
             "description": " specifies whether we should not treat the array as a multi byte string",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getUTF8StringFromBytes": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 208,
+          "line": 169,
           "column": 4,
-          "index": 5262
+          "index": 3796
         },
         "end": {
-          "line": 260,
+          "line": 198,
           "column": 5,
-          "index": 6771
+          "index": 4662
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "characterCode",
+          "type": "Integer"
+        },
+        {
+          "name": "output",
+          "type": "Array<any>"
+        },
+        {
+          "name": "is8bit",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getUTF8StringFromBytes": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a String from an array of bytes, with special treatment",
+          "     * if the bytes are UTF-8 bytes (http://en.wikipedia.org/wiki/UTF8)",
+          "     *",
+          "     * @param bytes {Array} the byte array [8it integers]",
+          "     * @param is8bit {Boolean} specifies whether we should not treat the array as a multi byte string",
+          "     * @return {String} the string backed by the byte array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -176,42 +230,69 @@
             "body": "bytes {Array} the byte array [8it integers]",
             "paramName": "bytes",
             "description": " the byte array [8it integers]",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
             "body": "is8bit {Boolean} specifies whether we should not treat the array as a multi byte string",
             "paramName": "is8bit",
             "description": " specifies whether we should not treat the array as a multi byte string",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the string backed by the byte array",
-            "type": "String",
-            "description": " the string backed by the byte array"
+            "type": "string",
+            "description": "the string backed by the byte array"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "decode": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 273,
+          "line": 208,
           "column": 4,
-          "index": 7201
+          "index": 5055
         },
         "end": {
-          "line": 315,
+          "line": 260,
           "column": 5,
-          "index": 8578
+          "index": 6512
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "bytes",
+          "type": "Array<any>"
+        },
+        {
+          "name": "is8bit",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "decode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Decode a base64 string (http://en.wikipedia.org/wiki/Base64).",
+          "     *",
+          "     * @param input {String} the input string to decode",
+          "     *",
+          "     * @param is8bit {Boolean?} Whether the character set is 8-bit, not",
+          "     *   multi-byte.  If this parameter is not provided, the character set is",
+          "     *   determined from the 'document' object.",
+          "     *",
+          "     * @return {String} The decoded input string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -224,7 +305,7 @@
             "body": "input {String} the input string to decode",
             "paramName": "input",
             "description": " the input string to decode",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -239,14 +320,42 @@
           {
             "name": "@return",
             "body": "{String} The decoded input string.",
-            "type": "String",
-            "description": " The decoded input string."
+            "type": "string",
+            "description": "The decoded input string."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 273,
+          "column": 4,
+          "index": 6929
+        },
+        "end": {
+          "line": 315,
+          "column": 5,
+          "index": 8264
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "input",
+          "type": "string"
+        },
+        {
+          "name": "is8bit",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

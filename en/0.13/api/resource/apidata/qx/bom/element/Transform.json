@@ -1,49 +1,46 @@
 {
-  "className": "qx.bom.element.Transform",
-  "packageName": "qx.bom.element",
-  "name": "Transform",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 785
-      },
-      "end": {
-        "line": 353,
-        "column": 3,
-        "index": 12156
-      }
+  "version": 0.3,
+  "lastModified": 1717235172582,
+  "lastModifiedIso": "2024-06-01T09:46:12.582Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/Transform.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 759
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is responsible for applying CSS3 transforms to plain DOM elements.\n The implementation is mostly a cross browser wrapper for applying the\n transforms.\n The API is keep to the spec as close as possible.\n http://www.w3.org/TR/css3-3d-transforms/</p>"
-        }
-      ]
+    "end": {
+      "line": 353,
+      "column": 3,
+      "index": 11804
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.Transform",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is responsible for applying CSS3 transforms to plain DOM elements.",
+      " * The implementation is mostly a cross browser wrapper for applying the",
+      " * transforms.",
+      " * The API is keep to the spec as close as possible.",
+      " *",
+      " * http://www.w3.org/TR/css3-3d-transforms/",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is responsible for applying CSS3 transforms to plain DOM elements.\n The implementation is mostly a cross browser wrapper for applying the\n transforms.\n The API is keep to the spec as close as possible.\n http://www.w3.org/TR/css3-3d-transforms/</p>"
+      }
+    ]
+  },
   "statics": {
     "__cssKeys": {
-      "location": {
-        "start": {
-          "line": 30,
-          "column": 4,
-          "index": 900
-        },
-        "end": {
-          "line": 30,
-          "column": 55,
-          "index": 951
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* Internal storage of the CSS names "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +48,44 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "transform": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 51,
+          "line": 30,
           "column": 4,
-          "index": 2104
+          "index": 871
         },
         "end": {
-          "line": 57,
-          "column": 5,
-          "index": 2332
+          "line": 30,
+          "column": 55,
+          "index": 922
         }
       },
+      "appearsIn": []
+    },
+    "transform": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method to apply multiple transforms at once to the given element. It",
+          "     * takes a map containing the transforms you want to apply plus the values",
+          "     * e.g.<code>{scale: 2, rotate: \"5deg\"}</code>.",
+          "     * The values can be either singular, which means a single value will",
+          "     * be added to the CSS. If you give an array, the values will be split up",
+          "     * and each array entry will be used for the X, Y or Z dimension in that",
+          "     * order e.g. <code>{scale: [2, 0.5]}</code> will result in a element",
+          "     * double the size in X direction and half the size in Y direction.",
+          "     * The values can be either singular, which means a single value will",
+          "     * be added to the CSS. If you give an array, the values will be join to",
+          "     * a string.",
+          "     * 3d suffixed properties will be taken for translate and scale if they are",
+          "     * available and an array with three values is given.",
+          "     * Make sure your browser supports all transformations you apply.",
+          "     *",
+          "     * @param el {Element} The element to apply the transformation.",
+          "     * @param transforms {Map} The map containing the transforms and value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,27 +105,46 @@
             "body": "transforms {Map} The map containing the transforms and value.",
             "paramName": "transforms",
             "description": " The map containing the transforms and value.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "translate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 65,
+          "line": 51,
           "column": 4,
-          "index": 2645
+          "index": 2054
         },
         "end": {
-          "line": 67,
+          "line": 57,
           "column": 5,
-          "index": 2723
+          "index": 2276
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "transforms",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "translate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translates the given element by the given value. For further details, take",
+          "     * a look at the {@link #transform} method.",
+          "     * @param el {Element} The element to apply the transformation.",
+          "     * @param value {String|Array} The value to translate e.g. <code>\"10px\"</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -134,23 +171,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "scale": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 65,
           "column": 4,
-          "index": 3003
+          "index": 2581
         },
         "end": {
-          "line": 77,
+          "line": 67,
           "column": 5,
-          "index": 3073
+          "index": 2657
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "Array"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "scale": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scales the given element by the given value. For further details, take",
+          "     * a look at the {@link #transform} method.",
+          "     * @param el {Element} The element to apply the transformation.",
+          "     * @param value {Number|Array} The value to scale.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -177,23 +236,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "rotate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 85,
+          "line": 75,
           "column": 4,
-          "index": 3381
+          "index": 2929
         },
         "end": {
-          "line": 87,
+          "line": 77,
           "column": 5,
-          "index": 3453
+          "index": 2997
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": [
+            "Number",
+            "Array"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "rotate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Rotates the given element by the given value. For further details, take",
+          "     * a look at the {@link #transform} method.",
+          "     * @param el {Element} The element to apply the transformation.",
+          "     * @param value {String|Array} The value to rotate e.g. <code>\"90deg\"</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -220,23 +301,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "skew": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 95,
+          "line": 85,
           "column": 4,
-          "index": 3757
+          "index": 3297
         },
         "end": {
-          "line": 97,
+          "line": 87,
           "column": 5,
-          "index": 3825
+          "index": 3367
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "Array"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "skew": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Skews the given element by the given value. For further details, take",
+          "     * a look at the {@link #transform} method.",
+          "     * @param el {Element} The element to apply the transformation.",
+          "     * @param value {String|Array} The value to skew e.g. <code>\"90deg\"</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -263,23 +366,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCss": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 106,
+          "line": 95,
           "column": 4,
-          "index": 4119
+          "index": 3663
         },
         "end": {
-          "line": 113,
+          "line": 97,
           "column": 5,
-          "index": 4392
+          "index": 3729
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "Array"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "getCss": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the given map to a string which could be added to a css",
+          "     * stylesheet.",
+          "     * @param transforms {Map} The transforms map. For a detailed description,",
+          "     * take a look at the {@link #transform} method.",
+          "     * @return {String} The CSS value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -292,35 +418,55 @@
             "body": "transforms {Map} The transforms map. For a detailed description,\n take a look at the {@link #transform} method.",
             "paramName": "transforms",
             "description": " The transforms map. For a detailed description,\n take a look at the {@link #transform} method.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The CSS value.",
-            "type": "String",
-            "description": " The CSS value."
+            "type": "string",
+            "description": "The CSS value."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setOrigin": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 123,
+          "line": 106,
           "column": 4,
-          "index": 4750
+          "index": 4014
         },
         "end": {
-          "line": 127,
+          "line": 113,
           "column": 5,
-          "index": 4878
+          "index": 4280
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "transforms",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setOrigin": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the transform-origin property of the given element.",
+          "     *",
+          "     * Spec: http://www.w3.org/TR/css3-3d-transforms/#transform-origin-property",
+          "     * @param el {Element} The dom element to set the property.",
+          "     * @param value {String} CSS position values like <code>50% 50%</code> or",
+          "     *   <code>left top</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -340,27 +486,47 @@
             "body": "value {String} CSS position values like <code>50% 50%</code> or\n   <code>left top</code>.",
             "paramName": "value",
             "description": " CSS position values like <code>50% 50%</code> or\n   <code>left top</code>.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getOrigin": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 136,
+          "line": 123,
           "column": 4,
-          "index": 5197
+          "index": 4628
         },
         "end": {
-          "line": 141,
+          "line": 127,
           "column": 5,
-          "index": 5335
+          "index": 4752
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getOrigin": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the transform-origin property of the given element.",
+          "     *",
+          "     * Spec: http://www.w3.org/TR/css3-3d-transforms/#transform-origin-property",
+          "     * @param el {Element} The dom element to read the property.",
+          "     * @return {String} The set property, e.g. <code>50% 50%</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -380,28 +546,47 @@
           {
             "name": "@return",
             "body": "{String} The set property, e.g. <code>50% 50%</code>",
-            "type": "String",
-            "description": " The set property, e.g. <code>50% 50%</code>"
+            "type": "string",
+            "description": "The set property, e.g. <code>50% 50%</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setStyle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 150,
+          "line": 136,
           "column": 4,
-          "index": 5663
+          "index": 5062
         },
         "end": {
-          "line": 154,
+          "line": 141,
           "column": 5,
-          "index": 5789
+          "index": 5195
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setStyle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the transform-style property of the given element.",
+          "     *",
+          "     * Spec: http://www.w3.org/TR/css3-3d-transforms/#transform-style-property",
+          "     * @param el {Element} The dom element to set the property.",
+          "     * @param value {String} Either <code>flat</code> or <code>preserve-3d</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -421,27 +606,48 @@
             "body": "value {String} Either <code>flat</code> or <code>preserve-3d</code>.",
             "paramName": "value",
             "description": " Either <code>flat</code> or <code>preserve-3d</code>.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getStyle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 164,
+          "line": 150,
           "column": 4,
-          "index": 6144
+          "index": 5514
         },
         "end": {
-          "line": 169,
+          "line": 154,
           "column": 5,
-          "index": 6280
+          "index": 5636
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getStyle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the transform-style property of the given element.",
+          "     *",
+          "     * Spec: http://www.w3.org/TR/css3-3d-transforms/#transform-style-property",
+          "     * @param el {Element} The dom element to read the property.",
+          "     * @return {String} The set property, either <code>flat</code> or",
+          "     *   <code>preserve-3d</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -461,28 +667,48 @@
           {
             "name": "@return",
             "body": "{String} The set property, either <code>flat</code> or\n   <code>preserve-3d</code>.",
-            "type": "String",
-            "description": " The set property, either <code>flat</code> or\n   <code>preserve-3d</code>."
+            "type": "string",
+            "description": "The set property, either <code>flat</code> or\n   <code>preserve-3d</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setPerspective": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 179,
+          "line": 164,
           "column": 4,
-          "index": 6631
+          "index": 5981
         },
         "end": {
-          "line": 183,
+          "line": 169,
           "column": 5,
-          "index": 6776
+          "index": 6112
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setPerspective": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the perspective property of the given element.",
+          "     *",
+          "     * Spec: http://www.w3.org/TR/css3-3d-transforms/#perspective-property",
+          "     * @param el {Element} The dom element to set the property.",
+          "     * @param value {Number} The perspective layer. Numbers between 100",
+          "     *   and 5000 give the best results.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -502,27 +728,47 @@
             "body": "value {Number} The perspective layer. Numbers between 100\n   and 5000 give the best results.",
             "paramName": "value",
             "description": " The perspective layer. Numbers between 100\n   and 5000 give the best results.",
-            "type": "Number"
+            "type": "number"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPerspective": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 192,
+          "line": 179,
           "column": 4,
-          "index": 7081
+          "index": 6453
         },
         "end": {
-          "line": 197,
+          "line": 183,
           "column": 5,
-          "index": 7229
+          "index": 6594
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPerspective": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the perspective property of the given element.",
+          "     *",
+          "     * Spec: http://www.w3.org/TR/css3-3d-transforms/#perspective-property",
+          "     * @param el {Element} The dom element to read the property.",
+          "     * @return {String} The set property, e.g. <code>500</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -542,28 +788,48 @@
           {
             "name": "@return",
             "body": "{String} The set property, e.g. <code>500</code>",
-            "type": "String",
-            "description": " The set property, e.g. <code>500</code>"
+            "type": "string",
+            "description": "The set property, e.g. <code>500</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setPerspectiveOrigin": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 207,
+          "line": 192,
           "column": 4,
-          "index": 7591
+          "index": 6890
         },
         "end": {
-          "line": 211,
+          "line": 197,
           "column": 5,
-          "index": 7742
+          "index": 7033
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setPerspectiveOrigin": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the perspective-origin property of the given element.",
+          "     *",
+          "     * Spec: http://www.w3.org/TR/css3-3d-transforms/#perspective-origin-property",
+          "     * @param el {Element} The dom element to set the property.",
+          "     * @param value {String} CSS position values like <code>50% 50%</code> or",
+          "     *   <code>left top</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -583,27 +849,47 @@
             "body": "value {String} CSS position values like <code>50% 50%</code> or\n   <code>left top</code>.",
             "paramName": "value",
             "description": " CSS position values like <code>50% 50%</code> or\n   <code>left top</code>.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPerspectiveOrigin": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 220,
+          "line": 207,
           "column": 4,
-          "index": 8065
+          "index": 7385
         },
         "end": {
-          "line": 234,
+          "line": 211,
           "column": 5,
-          "index": 8556
+          "index": 7532
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPerspectiveOrigin": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the perspective-origin property of the given element.",
+          "     *",
+          "     * Spec: http://www.w3.org/TR/css3-3d-transforms/#perspective-origin-property",
+          "     * @param el {Element} The dom element to read the property.",
+          "     * @return {String} The set property, e.g. <code>50% 50%</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -623,28 +909,47 @@
           {
             "name": "@return",
             "body": "{String} The set property, e.g. <code>50% 50%</code>",
-            "type": "String",
-            "description": " The set property, e.g. <code>50% 50%</code>"
+            "type": "string",
+            "description": "The set property, e.g. <code>50% 50%</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setBackfaceVisibility": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 243,
+          "line": 220,
           "column": 4,
-          "index": 8892
+          "index": 7846
         },
         "end": {
-          "line": 249,
+          "line": 234,
           "column": 5,
-          "index": 9090
+          "index": 8323
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setBackfaceVisibility": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the backface-visibility property of the given element.",
+          "     *",
+          "     * Spec: http://www.w3.org/TR/css3-3d-transforms/#backface-visibility-property",
+          "     * @param el {Element} The dom element to set the property.",
+          "     * @param value {Boolean} <code>true</code> if the backface should be visible.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -664,27 +969,47 @@
             "body": "value {Boolean} <code>true</code> if the backface should be visible.",
             "paramName": "value",
             "description": " <code>true</code> if the backface should be visible.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getBackfaceVisibility": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 258,
+          "line": 243,
           "column": 4,
-          "index": 9419
+          "index": 8650
         },
         "end": {
-          "line": 263,
+          "line": 249,
           "column": 5,
-          "index": 9597
+          "index": 8842
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getBackfaceVisibility": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the backface-visibility property of the given element.",
+          "     *",
+          "     * Spec: http://www.w3.org/TR/css3-3d-transforms/#backface-visibility-property",
+          "     * @param el {Element} The dom element to read the property.",
+          "     * @return {Boolean} <code>true</code>, if the backface is visible.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -704,28 +1029,46 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if the backface is visible.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if the backface is visible."
+            "type": "boolean",
+            "description": "<code>true</code>, if the backface is visible."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTransformValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 271,
+          "line": 258,
           "column": 4,
-          "index": 9807
+          "index": 9162
         },
         "end": {
-          "line": 302,
+          "line": 263,
           "column": 5,
-          "index": 10766
+          "index": 9335
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getTransformValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the given transforms map to a valid CSS string.",
+          "     *",
+          "     * @param transforms {Map} A map containing the transforms.",
+          "     * @return {String} The CSS transforms.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -738,35 +1081,55 @@
             "body": "transforms {Map} A map containing the transforms.",
             "paramName": "transforms",
             "description": " A map containing the transforms.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The CSS transforms.",
-            "type": "String",
-            "description": " The CSS transforms."
+            "type": "string",
+            "description": "The CSS transforms."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_compute3dProperty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 312,
+          "line": 271,
           "column": 4,
-          "index": 11068
+          "index": 9537
         },
         "end": {
-          "line": 325,
+          "line": 302,
           "column": 5,
-          "index": 11385
+          "index": 10465
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "transforms",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_compute3dProperty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper function to create 3d property.",
+          "     *",
+          "     * @param property {String} Property of transform, e.g. translate",
+          "     * @param params {Array} Array with three values, each one stands for an axis.",
+          "     *",
+          "     * @return {String} Computed property and its value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -779,42 +1142,66 @@
             "body": "property {String} Property of transform, e.g. translate",
             "paramName": "property",
             "description": " Property of transform, e.g. translate",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "params {Array} Array with three values, each one stands for an axis.",
             "paramName": "params",
             "description": " Array with three values, each one stands for an axis.",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} Computed property and its value",
-            "type": "String",
-            "description": " Computed property and its value"
+            "type": "string",
+            "description": "Computed property and its value"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_computeAxisProperties": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 335,
+          "line": 312,
           "column": 4,
-          "index": 11690
+          "index": 10757
         },
         "end": {
-          "line": 351,
+          "line": 325,
           "column": 5,
-          "index": 12146
+          "index": 11061
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "property",
+          "type": "string"
+        },
+        {
+          "name": "params",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_computeAxisProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper function to create axis related properties.",
+          "     *",
+          "     * @param property {String} Property of transform, e.g. rotate",
+          "     * @param params {Array} Array with values, each one stands for an axis.",
+          "     *",
+          "     * @return {String} Computed property and its value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -827,28 +1214,55 @@
             "body": "property {String} Property of transform, e.g. rotate",
             "paramName": "property",
             "description": " Property of transform, e.g. rotate",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "params {Array} Array with values, each one stands for an axis.",
             "paramName": "params",
             "description": " Array with values, each one stands for an axis.",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} Computed property and its value",
-            "type": "String",
-            "description": " Computed property and its value"
+            "type": "string",
+            "description": "Computed property and its value"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 335,
+          "column": 4,
+          "index": 11356
+        },
+        "end": {
+          "line": 351,
+          "column": 5,
+          "index": 11796
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "property",
+          "type": "string"
+        },
+        {
+          "name": "params",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -1,33 +1,36 @@
 {
-  "className": "qx.theme.indigo.Color",
-  "packageName": "qx.theme.indigo",
-  "name": "Color",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 569
-      },
-      "end": {
-        "line": 121,
-        "column": 3,
-        "index": 3405
-      }
+  "version": 0.3,
+  "lastModified": 1717235169694,
+  "lastModifiedIso": "2024-06-01T09:46:09.694Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/Color.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 547
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Indigo color theme</p>"
-        }
-      ]
+    "end": {
+      "line": 121,
+      "column": 3,
+      "index": 3285
     }
   },
-  "type": "theme",
-  "descendants": []
+  "className": "qx.theme.indigo.Color",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Indigo color theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Indigo color theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

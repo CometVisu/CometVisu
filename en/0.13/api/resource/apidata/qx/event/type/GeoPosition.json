@@ -1,54 +1,53 @@
 {
-  "className": "qx.event.type.GeoPosition",
-  "packageName": "qx.event.type",
-  "name": "GeoPosition",
-  "superClass": "qx.event.type.Event",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 619
-      },
-      "end": {
-        "line": 131,
-        "column": 3,
-        "index": 3274
-      }
+  "version": 0.3,
+  "lastModified": 1717235171042,
+  "lastModifiedIso": "2024-06-01T09:46:11.042Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/type/GeoPosition.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 593
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>GeoPosition event used by GeoLocation class.</p>"
-        }
-      ]
+    "end": {
+      "line": 131,
+      "column": 3,
+      "index": 3144
     }
   },
-  "type": "class",
+  "className": "qx.event.type.GeoPosition",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " * GeoPosition event used by GeoLocation class.",
+      " *",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>GeoPosition event used by GeoLocation class.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.Event",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 33,
         "column": 2,
-        "index": 746
+        "index": 714
       },
       "end": {
         "line": 35,
         "column": 3,
-        "index": 778
+        "index": 744
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Create a new instance.</p>"
-        }
-      ]
     }
   },
   "properties": {
@@ -57,15 +56,23 @@
         "start": {
           "line": 41,
           "column": 4,
-          "index": 872
+          "index": 832
         },
         "end": {
           "line": 43,
           "column": 5,
-          "index": 914
+          "index": 872
         }
       },
+      "json": {
+        "check": "Number"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     *  The time when the position was acquired.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -73,24 +80,31 @@
           }
         ]
       },
-      "name": "timestamp",
-      "propertyType": "new",
-      "check": "Number"
+      "appearsIn": []
     },
     "latitude": {
       "location": {
         "start": {
           "line": 49,
           "column": 4,
-          "index": 1062
+          "index": 1014
         },
         "end": {
           "line": 51,
           "column": 5,
-          "index": 1103
+          "index": 1053
         }
       },
+      "json": {
+        "check": "Number"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The angular distance north or south of the earth's equator, measured in",
+          "     * decimal degrees along a meridian",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -98,24 +112,31 @@
           }
         ]
       },
-      "name": "latitude",
-      "propertyType": "new",
-      "check": "Number"
+      "appearsIn": []
     },
     "longitude": {
       "location": {
         "start": {
           "line": 57,
           "column": 4,
-          "index": 1279
+          "index": 1223
         },
         "end": {
           "line": 59,
           "column": 5,
-          "index": 1321
+          "index": 1263
         }
       },
+      "json": {
+        "check": "Number"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The angular distance on the earth's surface, measured east or west from",
+          "     * the prime meridian at Greenwich, England, in decimal degrees",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -123,24 +144,32 @@
           }
         ]
       },
-      "name": "longitude",
-      "propertyType": "new",
-      "check": "Number"
+      "appearsIn": []
     },
     "altitude": {
       "location": {
         "start": {
           "line": 65,
           "column": 4,
-          "index": 1439
+          "index": 1375
         },
         "end": {
           "line": 68,
           "column": 5,
-          "index": 1503
+          "index": 1436
         }
       },
+      "json": {
+        "check": "Number",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The height of the position, specified in meters above the earth's",
+          "     * surface.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -148,26 +177,31 @@
           }
         ]
       },
-      "name": "altitude",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Number"
+      "appearsIn": []
     },
     "accuracy": {
       "location": {
         "start": {
           "line": 74,
           "column": 4,
-          "index": 1628
+          "index": 1555
         },
         "end": {
           "line": 76,
           "column": 5,
-          "index": 1669
+          "index": 1594
         }
       },
+      "json": {
+        "check": "Number"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The accuracy level of the latitude and longitude coordinates specified",
+          "     * in meters.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -175,24 +209,31 @@
           }
         ]
       },
-      "name": "accuracy",
-      "propertyType": "new",
-      "check": "Number"
+      "appearsIn": []
     },
     "altitudeAccuracy": {
       "location": {
         "start": {
           "line": 81,
           "column": 4,
-          "index": 1760
+          "index": 1680
         },
         "end": {
           "line": 84,
           "column": 5,
-          "index": 1832
+          "index": 1749
         }
       },
+      "json": {
+        "check": "Number",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The accuracy level of the altitude specified in meters.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -200,26 +241,36 @@
           }
         ]
       },
-      "name": "altitudeAccuracy",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Number"
+      "appearsIn": []
     },
     "heading": {
       "location": {
         "start": {
           "line": 95,
           "column": 4,
-          "index": 2289
+          "index": 2195
         },
         "end": {
           "line": 97,
           "column": 5,
-          "index": 2328
+          "index": 2232
         }
       },
+      "json": {
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The direction of travel of the hosting device specified in degrees in a",
+          "     * range from 0 to 360, counting clockwise relative to the true north.",
+          "     *",
+          "     * If the implementation cannot provide heading information, the value of",
+          "     * this attribute must be null. If the hosting device is stationary (i.e.",
+          "     * the value of the speed attribute is 0), then the value of the heading",
+          "     * property must be NaN.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -227,25 +278,35 @@
           }
         ]
       },
-      "name": "heading",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "speed": {
       "location": {
         "start": {
           "line": 106,
           "column": 4,
-          "index": 2571
+          "index": 2466
         },
         "end": {
           "line": 111,
           "column": 5,
-          "index": 2684
+          "index": 2574
         }
       },
+      "json": {
+        "check": "[[ ObjectMethod Function ]]",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The current ground speed of the hosting device specified in meters per",
+          "     * second.",
+          "     *",
+          "     * If the implementation cannot provide speed information, the value of",
+          "     * this property must be null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -253,60 +314,19 @@
           }
         ]
       },
-      "name": "speed",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "[[ ObjectMethod Function ]]"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "init": {
-      "location": {
-        "start": {
-          "line": 120,
-          "column": 4,
-          "index": 2828
-        },
-        "end": {
-          "line": 129,
-          "column": 5,
-          "index": 3264
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize the fields of the event.",
+          "     *",
+          "     * @param position {Map} a position map.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -319,683 +339,35 @@
             "body": "position {Map} a position map.",
             "paramName": "position",
             "description": " a position map.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 2709
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3136
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "position",
+          "type": "Map<any, any>"
+        }
+      ],
       "overriddenFrom": "qx.event.type.Event",
       "appearsIn": [
         "qx.event.type.Event"
       ]
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Event",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getTimestamp": {
-      "type": "function",
-      "name": "getTimestamp",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>timestamp</code>.\n\nFor further details take a look at the property definition: {@link #timestamp}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for timestamp"
-          }
-        ]
-      }
-    },
-    "setTimestamp": {
-      "type": "function",
-      "name": "setTimestamp",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>timestamp</code>.\n\nFor further details take a look at the property definition: {@link #timestamp}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for timestamp"
-          }
-        ]
-      }
-    },
-    "resetTimestamp": {
-      "type": "function",
-      "name": "resetTimestamp",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>timestamp</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #timestamp}."
-          }
-        ]
-      }
-    },
-    "getLatitude": {
-      "type": "function",
-      "name": "getLatitude",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>latitude</code>.\n\nFor further details take a look at the property definition: {@link #latitude}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for latitude"
-          }
-        ]
-      }
-    },
-    "setLatitude": {
-      "type": "function",
-      "name": "setLatitude",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>latitude</code>.\n\nFor further details take a look at the property definition: {@link #latitude}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for latitude"
-          }
-        ]
-      }
-    },
-    "resetLatitude": {
-      "type": "function",
-      "name": "resetLatitude",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>latitude</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #latitude}."
-          }
-        ]
-      }
-    },
-    "getLongitude": {
-      "type": "function",
-      "name": "getLongitude",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>longitude</code>.\n\nFor further details take a look at the property definition: {@link #longitude}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for longitude"
-          }
-        ]
-      }
-    },
-    "setLongitude": {
-      "type": "function",
-      "name": "setLongitude",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>longitude</code>.\n\nFor further details take a look at the property definition: {@link #longitude}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for longitude"
-          }
-        ]
-      }
-    },
-    "resetLongitude": {
-      "type": "function",
-      "name": "resetLongitude",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>longitude</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #longitude}."
-          }
-        ]
-      }
-    },
-    "getAltitude": {
-      "type": "function",
-      "name": "getAltitude",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>altitude</code>.\n\nFor further details take a look at the property definition: {@link #altitude}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for altitude"
-          }
-        ]
-      }
-    },
-    "setAltitude": {
-      "type": "function",
-      "name": "setAltitude",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>altitude</code>.\n\nFor further details take a look at the property definition: {@link #altitude}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for altitude"
-          }
-        ]
-      }
-    },
-    "resetAltitude": {
-      "type": "function",
-      "name": "resetAltitude",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>altitude</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #altitude}."
-          }
-        ]
-      }
-    },
-    "getAccuracy": {
-      "type": "function",
-      "name": "getAccuracy",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>accuracy</code>.\n\nFor further details take a look at the property definition: {@link #accuracy}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for accuracy"
-          }
-        ]
-      }
-    },
-    "setAccuracy": {
-      "type": "function",
-      "name": "setAccuracy",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>accuracy</code>.\n\nFor further details take a look at the property definition: {@link #accuracy}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for accuracy"
-          }
-        ]
-      }
-    },
-    "resetAccuracy": {
-      "type": "function",
-      "name": "resetAccuracy",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>accuracy</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #accuracy}."
-          }
-        ]
-      }
-    },
-    "getAltitudeAccuracy": {
-      "type": "function",
-      "name": "getAltitudeAccuracy",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>altitudeAccuracy</code>.\n\nFor further details take a look at the property definition: {@link #altitudeAccuracy}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for altitudeAccuracy"
-          }
-        ]
-      }
-    },
-    "setAltitudeAccuracy": {
-      "type": "function",
-      "name": "setAltitudeAccuracy",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>altitudeAccuracy</code>.\n\nFor further details take a look at the property definition: {@link #altitudeAccuracy}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for altitudeAccuracy"
-          }
-        ]
-      }
-    },
-    "resetAltitudeAccuracy": {
-      "type": "function",
-      "name": "resetAltitudeAccuracy",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>altitudeAccuracy</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #altitudeAccuracy}."
-          }
-        ]
-      }
-    },
-    "getHeading": {
-      "type": "function",
-      "name": "getHeading",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>heading</code>.\n\nFor further details take a look at the property definition: {@link #heading}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for heading"
-          }
-        ]
-      }
-    },
-    "setHeading": {
-      "type": "function",
-      "name": "setHeading",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>heading</code>.\n\nFor further details take a look at the property definition: {@link #heading}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for heading"
-          }
-        ]
-      }
-    },
-    "resetHeading": {
-      "type": "function",
-      "name": "resetHeading",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>heading</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #heading}."
-          }
-        ]
-      }
-    },
-    "getSpeed": {
-      "type": "function",
-      "name": "getSpeed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>speed</code>.\n\nFor further details take a look at the property definition: {@link #speed}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for speed"
-          }
-        ]
-      }
-    },
-    "setSpeed": {
-      "type": "function",
-      "name": "setSpeed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>speed</code>.\n\nFor further details take a look at the property definition: {@link #speed}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for speed"
-          }
-        ]
-      }
-    },
-    "resetSpeed": {
-      "type": "function",
-      "name": "resetSpeed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>speed</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #speed}."
-          }
-        ]
-      }
     }
   },
-  "descendants": []
+  "statics": {}
 }

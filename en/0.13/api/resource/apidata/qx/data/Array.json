@@ -1,67 +1,67 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235169154,
+  "lastModifiedIso": "2024-06-01T09:46:09.154Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/Array.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 1015
+    },
+    "end": {
+      "line": 1164,
+      "column": 3,
+      "index": 34913
+    }
+  },
   "className": "qx.data.Array",
-  "packageName": "qx.data",
-  "name": "Array",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The data array is a special array used in the data binding context of",
+      " * qooxdoo. It does not extend the native array of JavaScript but its a wrapper",
+      " * for it. All the native methods are included in the implementation and it",
+      " * also fires events if the content or the length of the array changes in",
+      " * any way. Also the <code>.length</code> property is available on the array.",
+      " *",
+      " * This class does not need to be disposed, unless you set the autoDisposeItems",
+      " * property to true and want the items to be disposed.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The data array is a special array used in the data binding context of\n qooxdoo. It does not extend the native array of JavaScript but its a wrapper\n for it. All the native methods are included in the implementation and it\n also fires events if the content or the length of the array changes in\n any way. Also the <code>.length</code> property is available on the array.\n This class does not need to be disposed, unless you set the autoDisposeItems\n property to true and want the items to be disposed.</p>"
+      }
+    ]
+  },
   "superClass": "qx.core.Object",
-  "interfaces": [
-    "qx.data.IListData"
-  ],
   "mixins": [
     "qx.data.marshal.MEventBubbling"
   ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 29,
-        "column": 0,
-        "index": 1043
-      },
-      "end": {
-        "line": 1164,
-        "column": 3,
-        "index": 36076
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The data array is a special array used in the data binding context of\n qooxdoo. It does not extend the native array of JavaScript but its a wrapper\n for it. All the native methods are included in the implementation and it\n also fires events if the content or the length of the array changes in\n any way. Also the <code>.length</code> property is available on the array.\n This class does not need to be disposed, unless you set the autoDisposeItems\n property to true and want the items to be disposed.</p>"
-        }
-      ]
-    }
-  },
-  "type": "class",
+  "interfaces": [
+    "qx.data.IListData"
+  ],
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "param"
+      }
+    ],
     "location": {
       "start": {
         "line": 46,
         "column": 2,
-        "index": 1721
+        "index": 1676
       },
       "end": {
         "line": 86,
         "column": 3,
-        "index": 2941
+        "index": 2856
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Creates a new instance of an array.</p>"
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "param {var} The parameter can be some types.<br/>\n   Without a parameter a new blank array will be created.<br/>\n   If there is more than one parameter is given, the parameter will be\n   added directly to the new array.<br/>\n   If the parameter is a number, a new Array with the given length will be\n   created.<br/>\n   If the parameter is a JavaScript array, a new array containing the given\n   elements will be created.",
-          "paramName": "param",
-          "description": " The parameter can be some types.<br/>\n   Without a parameter a new blank array will be created.<br/>\n   If there is more than one parameter is given, the parameter will be\n   added directly to the new array.<br/>\n   If the parameter is a number, a new Array with the given length will be\n   created.<br/>\n   If the parameter is a JavaScript array, a new array containing the given\n   elements will be created.",
-          "type": "var"
-        }
-      ]
     }
   },
   "properties": {
@@ -70,15 +70,25 @@
         "start": {
           "line": 99,
           "column": 4,
-          "index": 3338
+          "index": 3240
         },
         "end": {
           "line": 102,
           "column": 5,
-          "index": 3408
+          "index": 3307
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag to set the dispose behavior of the array. If the property is set to",
+          "     * <code>true</code>, the array will dispose its content on dispose, too.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -86,60 +96,25 @@
           }
         ]
       },
-      "name": "autoDisposeItems",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "events": {
     "change": {
-      "location": {
-        "start": {
-          "line": 122,
-          "column": 4,
-          "index": 4169
-        },
-        "end": {
-          "line": 122,
-          "column": 32,
-          "index": 4197
-        }
-      },
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The change event which will be fired if there is a change in the array.",
+          "     * The data contains a map with five key value pairs:",
+          "     * <li>start: The start index of the change.</li>",
+          "     * <li>end: The end index of the change.</li>",
+          "     * <li>type: The type of the change as a String. This can be 'add',",
+          "     * 'remove', 'order' or 'add/remove'</li>",
+          "     * <li>added: The items which has been added (as a JavaScript array)</li>",
+          "     * <li>removed: The items which has been removed (as a JavaScript array)</li>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -147,23 +122,28 @@
           }
         ]
       },
-      "name": "change",
-      "type": "qx.event.type.Data"
-    },
-    "changeLength": {
       "location": {
         "start": {
-          "line": 128,
+          "line": 122,
           "column": 4,
-          "index": 4321
+          "index": 4048
         },
         "end": {
-          "line": 128,
-          "column": 38,
-          "index": 4355
+          "line": 122,
+          "column": 32,
+          "index": 4076
         }
-      },
+      }
+    },
+    "changeLength": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The changeLength event will be fired every time the length of the",
+          "     * array changes.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -171,58 +151,52 @@
           }
         ]
       },
-      "name": "changeLength",
-      "type": "qx.event.type.Data"
-    },
-    "changeBubble": {
-      "type": "event",
-      "name": "changeBubble",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.marshal.MEventBubbling",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The change event which will be fired on every change in the model no\n matter what property changes. This event bubbles so the root model will\n fire a change event on every change of its children properties too.\n Note that properties are required to call\n {@link #_applyEventPropagation} on apply for changes to be tracked as\n desired. It is already taken care of that properties created with the\n {@link qx.data.marshal.Json} marshaler call this method.\n The data will contain a map with the following four keys\n   <li>value: The new value of the property</li>\n   <li>old: The old value of the property.</li>\n   <li>name: The name of the property changed including its parent\n     properties separated by dots.</li>\n   <li>item: The item which has the changed property.</li>\n Due to that, the <code>getOldData</code> method will always return null\n because the old data is contained in the map.</p>"
-          }
-        ]
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 4194
+        },
+        "end": {
+          "line": 128,
+          "column": 38,
+          "index": 4228
+        }
       }
     }
   },
   "members": {
     "__array": {
+      "jsdoc": {
+        "raw": [
+          " private members"
+        ]
+      },
+      "access": "private",
       "location": {
         "start": {
           "line": 133,
           "column": 4,
-          "index": 4407
+          "index": 4275
         },
         "end": {
           "line": 133,
           "column": 17,
-          "index": 4420
+          "index": 4288
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "iterator": {
-      "location": {
-        "start": {
-          "line": 141,
-          "column": 4,
-          "index": 4713
-        },
-        "end": {
-          "line": 154,
-          "column": 5,
-          "index": 5008
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an iterator, ie an object which follows the \"Iterator Protocol\" so that",
+          "     * arrays can be used natively in `for...of`.  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols",
+          "     *",
+          "     * @returns {Iterator}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -238,23 +212,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "concat": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 165,
+          "line": 141,
           "column": 4,
-          "index": 5344
+          "index": 4573
         },
         "end": {
-          "line": 173,
+          "line": 154,
           "column": 5,
-          "index": 5604
+          "index": 4855
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Iterator"
+      },
+      "appearsIn": []
+    },
+    "concat": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Concatenates the current and the given array into a new one.",
+          "     *",
+          "     * @param array {qx.data.Array|Array} The javaScript array which should be concatenated",
+          "     *   to the current array.",
+          "     *",
+          "     * @return {qx.data.Array} A new array containing the values of both former",
+          "     *   arrays.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -278,27 +268,51 @@
             "name": "@return",
             "body": "{qx.data.Array} A new array containing the values of both former\n   arrays.",
             "type": "qx.data.Array",
-            "description": " A new array containing the values of both former\n   arrays."
+            "description": "A new array containing the values of both former\n   arrays."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "join": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 184,
+          "line": 165,
           "column": 4,
-          "index": 5912
+          "index": 5180
         },
         "end": {
-          "line": 186,
+          "line": 173,
           "column": 5,
-          "index": 5980
+          "index": 5432
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "array",
+          "type": [
+            "qx.data.Array",
+            "Array"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
+      "appearsIn": []
+    },
+    "join": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the array as a string using the given connector string to",
+          "     * connect the values.",
+          "     *",
+          "     * @param connector {String} the string which should be used to past in",
+          "     *  between of the array values.",
+          "     *",
+          "     * @return {String} The array as a string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -311,35 +325,53 @@
             "body": "connector {String} the string which should be used to past in\n  between of the array values.",
             "paramName": "connector",
             "description": " the string which should be used to past in\n  between of the array values.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The array as a string.",
-            "type": "String",
-            "description": " The array as a string."
+            "type": "string",
+            "description": "The array as a string."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "pop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 194,
+          "line": 184,
           "column": 4,
-          "index": 6166
+          "index": 5729
         },
         "end": {
-          "line": 221,
+          "line": 186,
           "column": 5,
-          "index": 6812
+          "index": 5795
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "connector",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "pop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes and returns the last element of the array.",
+          "     * An change event will be fired.",
+          "     *",
+          "     * @return {var} The last element of the array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -351,27 +383,42 @@
             "name": "@return",
             "body": "{var} The last element of the array.",
             "type": "var",
-            "description": " The last element of the array."
+            "description": "The last element of the array."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "push": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 231,
+          "line": 194,
           "column": 4,
-          "index": 7100
+          "index": 5973
         },
         "end": {
-          "line": 261,
+          "line": 221,
           "column": 5,
-          "index": 7945
+          "index": 6592
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "push": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an element at the end of the array.",
+          "     *",
+          "     * @param varargs {var} Multiple elements. Every element will be added to",
+          "     *   the end of the array. An change event will be fired.",
+          "     *",
+          "     * @return {Number} The new length of the array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -391,28 +438,43 @@
           {
             "name": "@return",
             "body": "{Number} The new length of the array.",
-            "type": "Number",
-            "description": " The new length of the array."
+            "type": "number",
+            "description": "The new length of the array."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "reverse": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 266,
+          "line": 231,
           "column": 4,
-          "index": 8044
+          "index": 6870
         },
         "end": {
-          "line": 297,
+          "line": 261,
           "column": 5,
-          "index": 8724
+          "index": 7685
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "varargs",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "reverse": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reverses the order of the array. An change event will be fired.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -420,23 +482,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "shift": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 305,
+          "line": 266,
           "column": 4,
-          "index": 8909
+          "index": 7779
         },
         "end": {
-          "line": 341,
+          "line": 297,
           "column": 5,
-          "index": 9796
+          "index": 8428
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "shift": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the first element of the array and returns it. An change event",
+          "     * will be fired.",
+          "     *",
+          "     * @return {var} the former first element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -448,27 +520,44 @@
             "name": "@return",
             "body": "{var} the former first element.",
             "type": "var",
-            "description": " the former first element."
+            "description": "the former first element."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "slice": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 353,
+          "line": 305,
           "column": 4,
-          "index": 10242
+          "index": 8605
         },
         "end": {
-          "line": 355,
+          "line": 341,
           "column": 5,
-          "index": 10329
+          "index": 9456
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "slice": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a new array based on the range specified by the parameters.",
+          "     *",
+          "     * @param from {Number} The start index.",
+          "     * @param to {Number?null} The zero-based end index. <code>slice</code> extracts",
+          "     *   up to but not including <code>to</code>. If omitted, slice extracts to the",
+          "     *   end of the array.",
+          "     *",
+          "     * @return {qx.data.Array} A new array containing the given range of values.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -481,7 +570,7 @@
             "body": "from {Number} The start index.",
             "paramName": "from",
             "description": " The start index.",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
@@ -498,27 +587,58 @@
             "name": "@return",
             "body": "{qx.data.Array} A new array containing the given range of values.",
             "type": "qx.data.Array",
-            "description": " A new array containing the given range of values."
+            "description": "A new array containing the given range of values."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "splice": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 370,
+          "line": 353,
           "column": 4,
-          "index": 11004
+          "index": 9890
         },
         "end": {
-          "line": 464,
+          "line": 355,
           "column": 5,
-          "index": 14042
+          "index": 9975
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "from",
+          "type": "number"
+        },
+        {
+          "name": "to",
+          "type": "Number",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
+      "appearsIn": []
+    },
+    "splice": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method to remove and add new elements to the array. A change event",
+          "     * will be fired for every removal or addition unless the array is",
+          "     * identical before and after splicing.",
+          "     *",
+          "     * @param startIndex {Integer} The index where the splice should start",
+          "     * @param amount {Integer} Defines number of elements which will be removed",
+          "     *   at the given position.",
+          "     * @param varargs {var} All following parameters will be added at the given",
+          "     *   position to the array.",
+          "     * @return {qx.data.Array} An data array containing the removed elements.",
+          "     *   Keep in to dispose this one, even if you don't use it!",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -553,31 +673,56 @@
             "name": "@return",
             "body": "{qx.data.Array} An data array containing the removed elements.\n   Keep in to dispose this one, even if you don't use it!",
             "type": "qx.data.Array",
-            "description": " An data array containing the removed elements.\n   Keep in to dispose this one, even if you don't use it!"
+            "description": "An data array containing the removed elements.\n   Keep in to dispose this one, even if you don't use it!"
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.data.IListData",
+      "location": {
+        "start": {
+          "line": 370,
+          "column": 4,
+          "index": 10635
+        },
+        "end": {
+          "line": 464,
+          "column": 5,
+          "index": 13579
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "startIndex",
+          "type": "Integer"
+        },
+        {
+          "name": "amount",
+          "type": "Integer"
+        },
+        {
+          "name": "varargs",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
       "appearsIn": [
         "qx.data.IListData"
       ]
     },
     "replace": {
-      "location": {
-        "start": {
-          "line": 473,
-          "column": 4,
-          "index": 14360
-        },
-        "end": {
-          "line": 483,
-          "column": 5,
-          "index": 14638
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Efficiently replaces the array with the contents of src; this will suppress the",
+          "     * change event if the array contents are the same, and will make sure that only",
+          "     * one change event is fired",
+          "     *",
+          "     * @param src {qx.data.Array|Array} the new value to set the array to",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -597,23 +742,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "sort": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 493,
+          "line": 473,
           "column": 4,
-          "index": 14990
+          "index": 13888
         },
         "end": {
-          "line": 529,
+          "line": 483,
           "column": 5,
-          "index": 15856
+          "index": 14156
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "src",
+          "type": [
+            "qx.data.Array",
+            "Array"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "sort": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sorts the array. If a function is given, this will be used to",
+          "     * compare the items. <code>changeBubble</code> event will only be fired,",
+          "     * if sorting result differs from original array.",
+          "     *",
+          "     * @param func {Function} A compare function comparing two parameters and",
+          "     *   should return a number.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -626,27 +791,43 @@
             "body": "func {Function} A compare function comparing two parameters and\n   should return a number.",
             "paramName": "func",
             "description": " A compare function comparing two parameters and\n   should return a number.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "unshift": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 538,
+          "line": 493,
           "column": 4,
-          "index": 16145
+          "index": 14498
         },
         "end": {
-          "line": 568,
+          "line": 529,
           "column": 5,
-          "index": 16962
+          "index": 15328
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "func",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unshift": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds the given items to the beginning of the array. For every element,",
+          "     * a change event will be fired.",
+          "     *",
+          "     * @param varargs {var} As many elements as you want to add to the beginning.",
+          "     * @return {Integer} The new length of the array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -667,27 +848,47 @@
             "name": "@return",
             "body": "{Integer} The new length of the array",
             "type": "Integer",
-            "description": " The new length of the array"
+            "description": "The new length of the array"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toArray": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 578,
+          "line": 538,
           "column": 4,
-          "index": 17302
+          "index": 15608
         },
         "end": {
-          "line": 580,
+          "line": 568,
           "column": 5,
-          "index": 17348
+          "index": 16395
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "varargs",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "toArray": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the list data as native array. Beware of the fact that the",
+          "     * internal representation will be returned and any manipulation of that",
+          "     * can cause a misbehavior of the array. This method should only be used for",
+          "     * debugging purposes.",
+          "     *",
+          "     * @return {Array} The native array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -698,32 +899,45 @@
           {
             "name": "@return",
             "body": "{Array} The native array.",
-            "type": "qx.data.Array",
-            "description": " The native array."
+            "type": "Array<any>",
+            "description": "The native array."
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.data.IListData",
+      "location": {
+        "start": {
+          "line": 578,
+          "column": 4,
+          "index": 16725
+        },
+        "end": {
+          "line": 580,
+          "column": 5,
+          "index": 16769
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
       "appearsIn": [
         "qx.data.IListData"
       ]
     },
     "getItem": {
-      "location": {
-        "start": {
-          "line": 590,
-          "column": 4,
-          "index": 17627
-        },
-        "end": {
-          "line": 592,
-          "column": 5,
-          "index": 17685
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replacement function for the getting of the array value.",
+          "     * array[0] should be array.getItem(0).",
+          "     *",
+          "     * @param index {Number} The index requested of the array element.",
+          "     *",
+          "     * @return {var} The element at the given index.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -736,7 +950,7 @@
             "body": "index {Number} The index requested of the array element.",
             "paramName": "index",
             "description": " The index requested of the array element.",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
@@ -744,31 +958,50 @@
             "name": "@return",
             "body": "{var} The element at the given index.",
             "type": "var",
-            "description": " The element at the given index."
+            "description": "The element at the given index."
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.data.IListData",
+      "location": {
+        "start": {
+          "line": 590,
+          "column": 4,
+          "index": 17038
+        },
+        "end": {
+          "line": 592,
+          "column": 5,
+          "index": 17094
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
       "appearsIn": [
         "qx.data.IListData"
       ]
     },
     "setItem": {
-      "location": {
-        "start": {
-          "line": 603,
-          "column": 4,
-          "index": 18078
-        },
-        "end": {
-          "line": 638,
-          "column": 5,
-          "index": 18994
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replacement function for the setting of an array value.",
+          "     * array[0] = \"a\" should be array.setItem(0, \"a\").",
+          "     * A change event will be fired if the value changes. Setting the same",
+          "     * value again will not lead to a change event.",
+          "     *",
+          "     * @param index {Number} The index of the array element.",
+          "     * @param item {var} The new item to set.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -781,7 +1014,7 @@
             "body": "index {Number} The index of the array element.",
             "paramName": "index",
             "description": " The index of the array element.",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
@@ -792,27 +1025,44 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.data.IListData",
+      "location": {
+        "start": {
+          "line": 603,
+          "column": 4,
+          "index": 17476
+        },
+        "end": {
+          "line": 638,
+          "column": 5,
+          "index": 18357
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "number"
+        },
+        {
+          "name": "item",
+          "type": "var"
+        }
+      ],
       "appearsIn": [
         "qx.data.IListData"
       ]
     },
     "getLength": {
-      "location": {
-        "start": {
-          "line": 646,
-          "column": 4,
-          "index": 19178
-        },
-        "end": {
-          "line": 648,
-          "column": 5,
-          "index": 19225
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method returns the current length stored under .length on each",
+          "     * array.",
+          "     *",
+          "     * @return {Number} The current length of the array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -823,32 +1073,44 @@
           {
             "name": "@return",
             "body": "{Number} The current length of the array.",
-            "type": "Number",
-            "description": " The current length of the array."
+            "type": "number",
+            "description": "The current length of the array."
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.data.IListData",
+      "location": {
+        "start": {
+          "line": 646,
+          "column": 4,
+          "index": 18533
+        },
+        "end": {
+          "line": 648,
+          "column": 5,
+          "index": 18578
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
       "appearsIn": [
         "qx.data.IListData"
       ]
     },
     "indexOf": {
-      "location": {
-        "start": {
-          "line": 657,
-          "column": 4,
-          "index": 19502
-        },
-        "end": {
-          "line": 659,
-          "column": 5,
-          "index": 19566
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the index of the item in the array. If the item is not in the",
+          "     * array, -1 will be returned.",
+          "     *",
+          "     * @param item {var} The item of which the index should be returned.",
+          "     * @return {Number} The Index of the given item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -868,28 +1130,47 @@
           {
             "name": "@return",
             "body": "{Number} The Index of the given item.",
-            "type": "Number",
-            "description": " The Index of the given item."
+            "type": "number",
+            "description": "The Index of the given item."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "lastIndexOf": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 668,
+          "line": 657,
           "column": 4,
-          "index": 19848
+          "index": 18846
         },
         "end": {
-          "line": 670,
+          "line": 659,
           "column": 5,
-          "index": 19920
+          "index": 18908
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "lastIndexOf": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the last index of the item in the array. If the item is not in the",
+          "     * array, -1 will be returned.",
+          "     *",
+          "     * @param item {var} The item of which the index should be returned.",
+          "     * @return {Number} The Index of the given item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -909,28 +1190,102 @@
           {
             "name": "@return",
             "body": "{Number} The Index of the given item.",
-            "type": "Number",
-            "description": " The Index of the given item."
+            "type": "number",
+            "description": "The Index of the given item."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "contains": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 696,
+          "line": 668,
           "column": 4,
-          "index": 20699
+          "index": 19181
         },
         "end": {
-          "line": 698,
+          "line": 670,
           "column": 5,
-          "index": 20757
+          "index": 19251
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "toString": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the toString of the original Array",
+          "     * @return {String} The array as a string.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the toString of the original Array</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The array as a string.",
+            "type": "string",
+            "description": "The array as a string."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 676,
+          "column": 4,
+          "index": 19371
+        },
+        "end": {
+          "line": 681,
+          "column": 5,
+          "index": 19488
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "mixin": "qx.data.marshal.MEventBubbling",
+      "appearsIn": [
+        "qx.data.marshal.MEventBubbling",
+        "qx.core.Object",
+        "qx.data.IListData",
+        "qx.data.MBinding",
+        "qx.core.MLogging",
+        "qx.core.MEvent",
+        "qx.core.MProperty",
+        "qx.core.MObjectId",
+        "qx.core.MAssert"
+      ]
+    },
+    "contains": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if the given item is in the current array.",
+          "     *",
+          "     * @deprecated {6.0} Please use the include method instead",
+          "     *",
+          "     * @param item {var} The item which is possibly in the array.",
+          "     * @return {Boolean} true, if the array contains the given item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -956,32 +1311,48 @@
           {
             "name": "@return",
             "body": "{Boolean} true, if the array contains the given item.",
-            "type": "Boolean",
-            "description": " true, if the array contains the given item."
+            "type": "boolean",
+            "description": "true, if the array contains the given item."
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.data.IListData",
+      "location": {
+        "start": {
+          "line": 696,
+          "column": 4,
+          "index": 20004
+        },
+        "end": {
+          "line": 698,
+          "column": 5,
+          "index": 20060
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
       "appearsIn": [
         "qx.data.IListData"
       ]
     },
     "includes": {
-      "location": {
-        "start": {
-          "line": 706,
-          "column": 4,
-          "index": 20986
-        },
-        "end": {
-          "line": 708,
-          "column": 5,
-          "index": 21058
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if the given item is in the current array.",
+          "     *",
+          "     * @param item {var} The item which is possibly in the array.",
+          "     * @return {Boolean} true, if the array contains the given item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1001,28 +1372,45 @@
           {
             "name": "@return",
             "body": "{Boolean} true, if the array contains the given item.",
-            "type": "Boolean",
-            "description": " true, if the array contains the given item."
+            "type": "boolean",
+            "description": "true, if the array contains the given item."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "copy": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 715,
+          "line": 706,
           "column": 4,
-          "index": 21177
+          "index": 20281
         },
         "end": {
-          "line": 717,
+          "line": 708,
           "column": 5,
-          "index": 21221
+          "index": 20351
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "copy": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return a copy of the given arr",
+          "     *",
+          "     * @return {qx.data.Array} copy of this",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1034,27 +1422,40 @@
             "name": "@return",
             "body": "{qx.data.Array} copy of this",
             "type": "qx.data.Array",
-            "description": " copy of this"
+            "description": "copy of this"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "insertAt": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 725,
+          "line": 715,
           "column": 4,
-          "index": 21418
+          "index": 20463
         },
         "end": {
-          "line": 727,
+          "line": 717,
           "column": 5,
-          "index": 21494
+          "index": 20505
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
+      "appearsIn": []
+    },
+    "insertAt": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Insert an element at a given position.",
+          "     *",
+          "     * @param index {Integer} Position where to insert the item.",
+          "     * @param item {var} The element to insert.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1078,23 +1479,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "insertBefore": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 735,
+          "line": 725,
           "column": 4,
-          "index": 21699
+          "index": 20694
         },
         "end": {
-          "line": 743,
+          "line": 727,
           "column": 5,
-          "index": 21902
+          "index": 20768
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        },
+        {
+          "name": "item",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "insertBefore": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Insert an item into the array before a given item.",
+          "     *",
+          "     * @param before {var} Insert item before this object.",
+          "     * @param item {var} The item to be inserted.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1118,23 +1538,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "insertAfter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 751,
+          "line": 735,
           "column": 4,
-          "index": 22105
+          "index": 20965
         },
         "end": {
-          "line": 759,
+          "line": 743,
           "column": 5,
-          "index": 22337
+          "index": 21160
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "before",
+          "type": "var"
+        },
+        {
+          "name": "item",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "insertAfter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Insert an element into the array after a given item.",
+          "     *",
+          "     * @param after {var} Insert item after this object.",
+          "     * @param item {var} Object to be inserted.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1158,23 +1597,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeAt": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 767,
+          "line": 751,
           "column": 4,
-          "index": 22537
+          "index": 21355
         },
         "end": {
-          "line": 772,
+          "line": 759,
           "column": 5,
-          "index": 22701
+          "index": 21579
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "after",
+          "type": "var"
+        },
+        {
+          "name": "item",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeAt": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an element from the array at the given index.",
+          "     *",
+          "     * @param index {Integer} Index of the item to be removed.",
+          "     * @return {var} The removed item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1195,27 +1653,44 @@
             "name": "@return",
             "body": "{var} The removed item.",
             "type": "var",
-            "description": " The removed item."
+            "description": "The removed item."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeAll": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 779,
+          "line": 767,
           "column": 4,
-          "index": 22852
+          "index": 21771
         },
         "end": {
-          "line": 821,
+          "line": 772,
           "column": 5,
-          "index": 23832
+          "index": 21930
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "removeAll": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all elements from the array.",
+          "     *",
+          "     * @return {Array} A native array containing the removed elements.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1226,28 +1701,42 @@
           {
             "name": "@return",
             "body": "{Array} A native array containing the removed elements.",
-            "type": "qx.data.Array",
-            "description": " A native array containing the removed elements."
+            "type": "Array<any>",
+            "description": "A native array containing the removed elements."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "append": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 830,
+          "line": 779,
           "column": 4,
-          "index": 24066
+          "index": 22074
         },
         "end": {
-          "line": 876,
+          "line": 821,
           "column": 5,
-          "index": 25352
+          "index": 23012
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "append": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Append the items of the given array.",
+          "     *",
+          "     * @param array {Array|qx.data.IListData} The items of this array will",
+          "     * be appended.",
+          "     * @throws {Error} if the argument is not an array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1275,23 +1764,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "exclude": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 883,
+          "line": 830,
           "column": 4,
-          "index": 25534
+          "index": 23237
         },
         "end": {
-          "line": 888,
+          "line": 876,
           "column": 5,
-          "index": 25692
+          "index": 24477
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "array",
+          "type": [
+            "Array",
+            "qx.data.IListData"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "exclude": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes all elements which are listed in the array.",
+          "     *",
+          "     * @param array {Array} the elements of this array will be excluded from this one",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1304,27 +1810,42 @@
             "body": "array {Array} the elements of this array will be excluded from this one",
             "paramName": "array",
             "description": " the elements of this array will be excluded from this one",
-            "type": "qx.data.Array"
+            "type": "Array<any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "remove": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 896,
+          "line": 883,
           "column": 4,
-          "index": 25859
+          "index": 24652
         },
         "end": {
-          "line": 903,
+          "line": 888,
           "column": 5,
-          "index": 26020
+          "index": 24805
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "array",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove the given item.",
+          "     *",
+          "     * @param item {var} Item to be removed from the array.",
+          "     * @return {var} The removed item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1345,27 +1866,46 @@
             "name": "@return",
             "body": "{var} The removed item.",
             "type": "var",
-            "description": " The removed item."
+            "description": "The removed item."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "equals": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 912,
+          "line": 896,
           "column": 4,
-          "index": 26297
+          "index": 24964
         },
         "end": {
-          "line": 925,
+          "line": 903,
           "column": 5,
-          "index": 26606
+          "index": 25118
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "equals": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether the given array has the same content as this.",
+          "     * Checks only the equality of the arrays' content.",
+          "     *",
+          "     * @param array {qx.data.Array} The array to check.",
+          "     * @return {Boolean} Whether the two arrays are equal.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1385,28 +1925,46 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the two arrays are equal.",
-            "type": "Boolean",
-            "description": " Whether the two arrays are equal."
+            "type": "boolean",
+            "description": "Whether the two arrays are equal."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "sum": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 933,
+          "line": 912,
           "column": 4,
-          "index": 26779
+          "index": 25386
         },
         "end": {
-          "line": 940,
+          "line": 925,
           "column": 5,
-          "index": 26932
+          "index": 25682
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "array",
+          "type": "qx.data.Array"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "sum": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the sum of all values in the array. Supports",
+          "     * numeric values only.",
+          "     *",
+          "     * @return {Number} The sum of all values.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1417,28 +1975,42 @@
           {
             "name": "@return",
             "body": "{Number} The sum of all values.",
-            "type": "Number",
-            "description": " The sum of all values."
+            "type": "number",
+            "description": "The sum of all values."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "max": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 949,
+          "line": 933,
           "column": 4,
-          "index": 27161
+          "index": 25847
         },
         "end": {
-          "line": 959,
+          "line": 940,
           "column": 5,
-          "index": 27413
+          "index": 25993
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "max": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the highest value in the given array.",
+          "     * Supports numeric values only.",
+          "     *",
+          "     * @return {Number|null} The highest of all values or undefined if the",
+          "     *   array is empty.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1450,27 +2022,41 @@
             "name": "@return",
             "body": "{Number|null} The highest of all values or undefined if the\n   array is empty.",
             "type": "Number|null",
-            "description": " The highest of all values or undefined if the\n   array is empty."
+            "description": "The highest of all values or undefined if the\n   array is empty."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "min": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 968,
+          "line": 949,
           "column": 4,
-          "index": 27634
+          "index": 26213
         },
         "end": {
-          "line": 978,
+          "line": 959,
           "column": 5,
-          "index": 27886
+          "index": 26455
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Number|null"
+      },
+      "appearsIn": []
+    },
+    "min": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the lowest value in the array. Supports",
+          "     * numeric values only.",
+          "     *",
+          "     * @return {Number|null} The lowest of all values or undefined",
+          "     *   if the array is empty.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1482,27 +2068,42 @@
             "name": "@return",
             "body": "{Number|null} The lowest of all values or undefined\n   if the array is empty.",
             "type": "Number|null",
-            "description": " The lowest of all values or undefined\n   if the array is empty."
+            "description": "The lowest of all values or undefined\n   if the array is empty."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "forEach": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 988,
+          "line": 968,
           "column": 4,
-          "index": 28266
+          "index": 26667
         },
         "end": {
-          "line": 992,
+          "line": 978,
           "column": 5,
-          "index": 28413
+          "index": 26909
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Number|null"
+      },
+      "appearsIn": []
+    },
+    "forEach": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Invokes the given function for every item in the array.",
+          "     *",
+          "     * @param callback {Function} The function which will be call for every",
+          "     *   item in the array. It will be invoked with three parameters:",
+          "     *   the item, the index and the array itself.",
+          "     * @param context {var?} The context in which the callback will be invoked.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1515,7 +2116,7 @@
             "body": "callback {Function} The function which will be call for every\n   item in the array. It will be invoked with three parameters:\n   the item, the index and the array itself.",
             "paramName": "callback",
             "description": " The function which will be call for every\n   item in the array. It will be invoked with three parameters:\n   the item, the index and the array itself.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1527,23 +2128,50 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "filter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1012,
+          "line": 988,
           "column": 4,
-          "index": 29412
+          "index": 27279
         },
         "end": {
-          "line": 1014,
+          "line": 992,
           "column": 5,
-          "index": 29513
+          "index": 27422
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "var",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "filter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a new array with all elements that pass the test implemented by",
+          "     * the provided function. It returns a new data array instance so make sure",
+          "     * to think about disposing it.",
+          "     * @param callback {Function} The test function, which will be executed for every",
+          "     *   item in the array. The function will have three arguments.",
+          "     *   <li><code>item</code>: the current item in the array</li>",
+          "     *   <li><code>index</code>: the index of the current item</li>",
+          "     *   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
+          "     * @param self {var?undefined} The context of the callback.",
+          "     * @return {qx.data.Array} A new array instance containing only the items",
+          "     *  which passed the test.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1556,7 +2184,7 @@
             "body": "callback {Function} The test function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
             "paramName": "callback",
             "description": " The test function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1573,27 +2201,57 @@
             "name": "@return",
             "body": "{qx.data.Array} A new array instance containing only the items\n  which passed the test.",
             "type": "qx.data.Array",
-            "description": " A new array instance containing only the items\n  which passed the test."
+            "description": "A new array instance containing only the items\n  which passed the test."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "map": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1028,
+          "line": 1012,
           "column": 4,
-          "index": 30286
+          "index": 28401
         },
         "end": {
-          "line": 1030,
+          "line": 1014,
           "column": 5,
-          "index": 30381
+          "index": 28500
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "undefined"
+        }
+      ],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
+      "appearsIn": []
+    },
+    "map": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a new array with the results of calling a provided function on every",
+          "     * element in this array. It returns a new data array instance so make sure",
+          "     * to think about disposing it.",
+          "     * @param callback {Function} The mapping function, which will be executed for every",
+          "     *   item in the array. The function will have three arguments.",
+          "     *   <li><code>item</code>: the current item in the array</li>",
+          "     *   <li><code>index</code>: the index of the current item</li>",
+          "     *   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
+          "     * @param self {var?undefined} The context of the callback.",
+          "     * @return {qx.data.Array} A new array instance containing the new created items.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1606,7 +2264,7 @@
             "body": "callback {Function} The mapping function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
             "paramName": "callback",
             "description": " The mapping function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1623,27 +2281,56 @@
             "name": "@return",
             "body": "{qx.data.Array} A new array instance containing the new created items.",
             "type": "qx.data.Array",
-            "description": " A new array instance containing the new created items."
+            "description": "A new array instance containing the new created items."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "find": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1043,
+          "line": 1028,
           "column": 4,
-          "index": 31031
+          "index": 29259
         },
         "end": {
-          "line": 1045,
+          "line": 1030,
           "column": 5,
-          "index": 31109
+          "index": 29352
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "undefined"
+        }
+      ],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
+      "appearsIn": []
+    },
+    "find": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds the first matching element in the array which passes the test implemented by the",
+          "     * provided function.",
+          "     * @param callback {Function} The test function, which will be executed for every",
+          "     *   item in the array. The function will have three arguments.",
+          "     *   <li><code>item</code>: the current item in the array</li>",
+          "     *   <li><code>index</code>: the index of the current item</li>",
+          "     *   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
+          "     * @param self {var?undefined} The context of the callback.",
+          "     * @return {var|undefined} The found item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1656,7 +2343,7 @@
             "body": "callback {Function} The test function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
             "paramName": "callback",
             "description": " The test function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1673,27 +2360,56 @@
             "name": "@return",
             "body": "{var|undefined} The found item.",
             "type": "var|undefined",
-            "description": " The found item."
+            "description": "The found item."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "some": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1058,
+          "line": 1043,
           "column": 4,
-          "index": 31784
+          "index": 29989
         },
         "end": {
-          "line": 1060,
+          "line": 1045,
           "column": 5,
-          "index": 31862
+          "index": 30065
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "undefined"
+        }
+      ],
+      "returnType": {
+        "type": "var|undefined"
+      },
+      "appearsIn": []
+    },
+    "some": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tests whether any element in the array passes the test implemented by the",
+          "     * provided function.",
+          "     * @param callback {Function} The test function, which will be executed for every",
+          "     *   item in the array. The function will have three arguments.",
+          "     *   <li><code>item</code>: the current item in the array</li>",
+          "     *   <li><code>index</code>: the index of the current item</li>",
+          "     *   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
+          "     * @param self {var?undefined} The context of the callback.",
+          "     * @return {Boolean} <code>true</code>, if any element passed the test function.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1706,7 +2422,7 @@
             "body": "callback {Function} The test function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
             "paramName": "callback",
             "description": " The test function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1722,28 +2438,57 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if any element passed the test function.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if any element passed the test function."
+            "type": "boolean",
+            "description": "<code>true</code>, if any element passed the test function."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "every": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1073,
+          "line": 1058,
           "column": 4,
-          "index": 32541
+          "index": 30727
         },
         "end": {
-          "line": 1075,
+          "line": 1060,
           "column": 5,
-          "index": 32621
+          "index": 30803
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "undefined"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "every": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tests whether every element in the array passes the test implemented by the",
+          "     * provided function.",
+          "     * @param callback {Function} The test function, which will be executed for every",
+          "     *   item in the array. The function will have three arguments.",
+          "     *   <li><code>item</code>: the current item in the array</li>",
+          "     *   <li><code>index</code>: the index of the current item</li>",
+          "     *   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
+          "     * @param self {var?undefined} The context of the callback.",
+          "     * @return {Boolean} <code>true</code>, if every element passed the test function.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1756,7 +2501,7 @@
             "body": "callback {Function} The test function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
             "paramName": "callback",
             "description": " The test function, which will be executed for every\n   item in the array. The function will have three arguments.\n   <li><code>item</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1772,28 +2517,59 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if every element passed the test function.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if every element passed the test function."
+            "type": "boolean",
+            "description": "<code>true</code>, if every element passed the test function."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "reduce": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1090,
+          "line": 1073,
           "column": 4,
-          "index": 33446
+          "index": 31469
         },
         "end": {
-          "line": 1092,
+          "line": 1075,
           "column": 5,
-          "index": 33538
+          "index": 31547
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "undefined"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "reduce": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply a function against an accumulator and each value of the array",
+          "     * (from left-to-right) as to reduce it to a single value.",
+          "     * @param callback {Function} The accumulator function, which will be",
+          "     *   executed for every item in the array. The function will have four arguments.",
+          "     *   <li><code>previousItem</code>: the previous item</li>",
+          "     *   <li><code>currentItem</code>: the current item in the array</li>",
+          "     *   <li><code>index</code>: the index of the current item</li>",
+          "     *   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
+          "     * @param initValue {var?undefined} Object to use as the first argument to the first",
+          "     *   call of the callback.",
+          "     * @return {var} The returned value of the last accumulator call.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1806,7 +2582,7 @@
             "body": "callback {Function} The accumulator function, which will be\n   executed for every item in the array. The function will have four arguments.\n   <li><code>previousItem</code>: the previous item</li>\n   <li><code>currentItem</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
             "paramName": "callback",
             "description": " The accumulator function, which will be\n   executed for every item in the array. The function will have four arguments.\n   <li><code>previousItem</code>: the previous item</li>\n   <li><code>currentItem</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1823,27 +2599,58 @@
             "name": "@return",
             "body": "{var} The returned value of the last accumulator call.",
             "type": "var",
-            "description": " The returned value of the last accumulator call."
+            "description": "The returned value of the last accumulator call."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "reduceRight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1107,
+          "line": 1090,
           "column": 4,
-          "index": 34363
+          "index": 32357
         },
         "end": {
-          "line": 1109,
+          "line": 1092,
           "column": 5,
-          "index": 34465
+          "index": 32447
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "initValue",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "undefined"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "reduceRight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply a function against an accumulator and each value of the array",
+          "     * (from right-to-left) as to reduce it to a single value.",
+          "     * @param callback {Function} The accumulator function, which will be",
+          "     *   executed for every item in the array. The function will have four arguments.",
+          "     *   <li><code>previousItem</code>: the previous item</li>",
+          "     *   <li><code>currentItem</code>: the current item in the array</li>",
+          "     *   <li><code>index</code>: the index of the current item</li>",
+          "     *   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
+          "     * @param initValue {var?undefined} Object to use as the first argument to the first",
+          "     *   call of the callback.",
+          "     * @return {var} The returned value of the last accumulator call.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1856,7 +2663,7 @@
             "body": "callback {Function} The accumulator function, which will be\n   executed for every item in the array. The function will have four arguments.\n   <li><code>previousItem</code>: the previous item</li>\n   <li><code>currentItem</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
             "paramName": "callback",
             "description": " The accumulator function, which will be\n   executed for every item in the array. The function will have four arguments.\n   <li><code>previousItem</code>: the previous item</li>\n   <li><code>currentItem</code>: the current item in the array</li>\n   <li><code>index</code>: the index of the current item</li>\n   <li><code>array</code>: The native array instance, NOT the data array instance.</li>",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1873,27 +2680,50 @@
             "name": "@return",
             "body": "{var} The returned value of the last accumulator call.",
             "type": "var",
-            "description": " The returned value of the last accumulator call."
+            "description": "The returned value of the last accumulator call."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__updateLength": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1121,
+          "line": 1107,
           "column": 4,
-          "index": 34873
+          "index": 33257
         },
         "end": {
-          "line": 1125,
+          "line": 1109,
           "column": 5,
-          "index": 35043
+          "index": 33357
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "initValue",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "undefined"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "__updateLength": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal function which updates the length property of the array.",
+          "     * Every time the length will be updated, a {@link #changeLength} data",
+          "     * event will be fired.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1901,23 +2731,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__updateEventPropagation": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1132,
+          "line": 1121,
           "column": 4,
-          "index": 35219
+          "index": 33753
         },
         "end": {
-          "line": 1136,
+          "line": 1125,
           "column": 5,
-          "index": 35387
+          "index": 33919
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__updateEventPropagation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper to update the event propagation for a range of items.",
+          "     * @param from {Number} Start index.",
+          "     * @param to {Number} End index.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1930,29 +2769,57 @@
             "body": "from {Number} Start index.",
             "paramName": "from",
             "description": " Start index.",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
             "body": "to {Number} End index.",
             "paramName": "to",
             "description": " End index.",
-            "type": "Number"
+            "type": "number"
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1132,
+          "column": 4,
+          "index": 34088
+        },
+        "end": {
+          "line": 1136,
+          "column": 5,
+          "index": 34252
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "from",
+          "type": "number"
+        },
+        {
+          "name": "to",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyEventPropagation": {
-      "type": "function",
-      "name": "_applyEventPropagation",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.data.marshal.MEventBubbling",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply function for every property created with the",
+          "     * {@link qx.data.marshal.Json} marshaler. It fires and",
+          "     * {@link #changeBubble} event on every change. It also adds the chaining",
+          "     * listener if possible which is necessary for the bubbling of the events.",
+          "     *",
+          "     * @param value {var} The new value of the property.",
+          "     * @param old {var} The old value of the property.",
+          "     * @param name {String} The name of the changed property.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1962,37 +2829,61 @@
         "@param": [
           {
             "name": "@param",
-            "body": "value {var} The new value of the property.",
-            "paramName": "value",
-            "description": " The new value of the property.",
-            "type": "var"
+            "body": "value {var} The new value of the property."
           },
           {
             "name": "@param",
-            "body": "old {var} The old value of the property.",
-            "paramName": "old",
-            "description": " The old value of the property.",
-            "type": "var"
+            "body": "old {var} The old value of the property."
           },
           {
             "name": "@param",
-            "body": "name {String} The name of the changed property.",
-            "paramName": "name",
-            "description": " The name of the changed property.",
-            "type": "String"
+            "body": "name {String} The name of the changed property."
           }
         ]
-      }
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 2306
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 2540
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "mixin": "qx.data.marshal.MEventBubbling",
+      "appearsIn": [
+        "qx.data.marshal.MEventBubbling"
+      ]
     },
     "_registerEventChaining": {
-      "type": "function",
-      "name": "_registerEventChaining",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.data.marshal.MEventBubbling",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers for the given parameters the changeBubble listener, if",
+          "     * possible. It also removes the old listener, if an old item with",
+          "     * a changeBubble event is given.",
+          "     *",
+          "     * @param value {var} The new value of the property.",
+          "     * @param old {var} The old value of the property.",
+          "     * @param name {String} The name of the changed property.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2002,37 +2893,60 @@
         "@param": [
           {
             "name": "@param",
-            "body": "value {var} The new value of the property.",
-            "paramName": "value",
-            "description": " The new value of the property.",
-            "type": "var"
+            "body": "value {var} The new value of the property."
           },
           {
             "name": "@param",
-            "body": "old {var} The old value of the property.",
-            "paramName": "old",
-            "description": " The old value of the property.",
-            "type": "var"
+            "body": "old {var} The old value of the property."
           },
           {
             "name": "@param",
-            "body": "name {String} The name of the changed property.",
-            "paramName": "name",
-            "description": " The name of the changed property.",
-            "type": "String"
+            "body": "name {String} The name of the changed property."
           }
         ]
-      }
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2925
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 4130
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      "mixin": "qx.data.marshal.MEventBubbling",
+      "appearsIn": [
+        "qx.data.marshal.MEventBubbling"
+      ]
     },
     "__changePropertyListener": {
-      "type": "function",
-      "name": "__changePropertyListener",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.data.marshal.MEventBubbling",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener responsible for formating the name and firing the change event",
+          "     * for the changed property.",
+          "     *",
+          "     * @param name {String} The name of the former properties.",
+          "     * @param e {qx.event.type.Data} The date event fired by the property",
+          "     *   change.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2042,278 +2956,57 @@
         "@param": [
           {
             "name": "@param",
-            "body": "name {String} The name of the former properties.",
-            "paramName": "name",
-            "description": " The name of the former properties.",
-            "type": "String"
+            "body": "name {String} The name of the former properties."
           },
           {
             "name": "@param",
-            "body": "e {qx.event.type.Data} The date event fired by the property\n   change.",
-            "paramName": "e",
-            "description": " The date event fired by the property\n   change.",
-            "type": "qx.event.type.Data"
+            "body": "e {qx.event.type.Data} The date event fired by the property\n   change."
           }
         ]
-      }
-    },
-    "getQxOwner": {
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 4426
+        },
+        "end": {
+          "line": 177,
+          "column": 5,
+          "index": 6301
+        }
+      },
       "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getAutoDisposeItems": {
-      "type": "function",
-      "name": "getAutoDisposeItems",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>autoDisposeItems</code>.\n\nFor further details take a look at the property definition: {@link #autoDisposeItems}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for autoDisposeItems"
-          }
-        ]
-      }
-    },
-    "isAutoDisposeItems": {
-      "type": "function",
-      "name": "isAutoDisposeItems",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>autoDisposeItems</code>.\n\nFor further details take a look at the property definition: {@link #autoDisposeItems}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for autoDisposeItems"
-          }
-        ]
-      }
-    },
-    "setAutoDisposeItems": {
-      "type": "function",
-      "name": "setAutoDisposeItems",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>autoDisposeItems</code>.\n\nFor further details take a look at the property definition: {@link #autoDisposeItems}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for autoDisposeItems"
-          }
-        ]
-      }
-    },
-    "resetAutoDisposeItems": {
-      "type": "function",
-      "name": "resetAutoDisposeItems",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>autoDisposeItems</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #autoDisposeItems}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "e"
+        }
+      ],
+      "mixin": "qx.data.marshal.MEventBubbling",
+      "appearsIn": [
+        "qx.data.marshal.MEventBubbling"
+      ]
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 1145,
         "column": 2,
-        "index": 35595
+        "index": 34451
       },
       "end": {
         "line": 1157,
         "column": 3,
-        "index": 35948
-      }
-    },
-    "jsdoc": {}
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 1159,
-        "column": 2,
-        "index": 35955
-      },
-      "end": {
-        "line": 1163,
-        "column": 3,
-        "index": 36071
+        "index": 34792
       }
     }
   },
-  "descendants": []
+  "statics": {}
 }

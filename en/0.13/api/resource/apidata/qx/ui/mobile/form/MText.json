@@ -1,71 +1,62 @@
 {
-  "className": "qx.ui.mobile.form.MText",
-  "packageName": "qx.ui.mobile.form",
-  "name": "MText",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 630
-      },
-      "end": {
-        "line": 125,
-        "column": 3,
-        "index": 3217
-      }
+  "version": 0.3,
+  "lastModified": 1717235171842,
+  "lastModifiedIso": "2024-06-01T09:46:11.842Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/form/MText.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 606
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The mixin contains all functionality to provide common properties for\n text fields.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.event.handler.Input"
-        }
-      ]
+    "end": {
+      "line": 125,
+      "column": 3,
+      "index": 3093
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.mobile.form.MText",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The mixin contains all functionality to provide common properties for",
+      " * text fields.",
+      " *",
+      " * @require(qx.event.handler.Input)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The mixin contains all functionality to provide common properties for\n text fields.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Input"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "value"
+      }
+    ],
     "location": {
       "start": {
         "line": 35,
         "column": 2,
-        "index": 941
+        "index": 907
       },
       "end": {
         "line": 39,
         "column": 3,
-        "index": 1046
+        "index": 1008
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "value {var?null} The value of the widget.",
-          "paramName": "value",
-          "description": " The value of the widget.",
-          "optional": true,
-          "defaultValue": "null",
-          "type": "var"
-        }
-      ]
     }
   },
   "properties": {
@@ -74,15 +65,25 @@
         "start": {
           "line": 51,
           "column": 4,
-          "index": 1360
+          "index": 1310
         },
         "end": {
           "line": 56,
           "column": 5,
-          "index": 1486
+          "index": 1431
         }
       },
+      "json": {
+        "check": "PositiveInteger",
+        "nullable": true,
+        "apply": "_applyMaxLength"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Maximal number of characters that can be entered in the input field.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -90,27 +91,34 @@
           }
         ]
       },
-      "name": "maxLength",
-      "propertyType": "new",
-      "apply": "_applyMaxLength",
-      "nullable": true,
-      "allowNull": true,
-      "check": "PositiveInteger"
+      "appearsIn": []
     },
     "placeholder": {
       "location": {
         "start": {
           "line": 63,
           "column": 4,
-          "index": 1691
+          "index": 1629
         },
         "end": {
           "line": 68,
           "column": 5,
-          "index": 1812
+          "index": 1745
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyPlaceholder"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * String value which will be shown as a hint if the field is all of:",
+          "     * unset, unfocused and enabled. Set to <code>null</code> to not show a placeholder",
+          "     * text.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -118,27 +126,30 @@
           }
         ]
       },
-      "name": "placeholder",
-      "propertyType": "new",
-      "apply": "_applyPlaceholder",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "readOnly": {
       "location": {
         "start": {
           "line": 71,
           "column": 4,
-          "index": 1864
+          "index": 1794
         },
         "end": {
           "line": 76,
           "column": 5,
-          "index": 1981
+          "index": 1906
         }
       },
+      "json": {
+        "check": "Boolean",
+        "nullable": true,
+        "apply": "_applyAttribute"
+      },
       "jsdoc": {
+        "raw": [
+          "* Whether the field is read only "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -146,69 +157,77 @@
           }
         ]
       },
-      "name": "readOnly",
-      "propertyType": "new",
-      "apply": "_applyAttribute",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Boolean"
+      "appearsIn": []
     }
   },
   "members": {
     "_applyMaxLength": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 87,
           "column": 4,
-          "index": 2222
+          "index": 2136
         },
         "end": {
           "line": 89,
           "column": 5,
-          "index": 2305
+          "index": 2217
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "maxLength"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyPlaceholder": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 92,
           "column": 4,
-          "index": 2337
+          "index": 2246
         },
         "end": {
           "line": 99,
           "column": 5,
-          "index": 2660
+          "index": 2562
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "placeholder"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "focus": {
-      "location": {
-        "start": {
-          "line": 104,
-          "column": 4,
-          "index": 2740
-        },
-        "end": {
-          "line": 113,
-          "column": 5,
-          "index": 2984
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Points the focus of the form to this widget.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -216,23 +235,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "blur": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 118,
+          "line": 104,
           "column": 4,
-          "index": 3055
+          "index": 2637
         },
         "end": {
-          "line": 123,
+          "line": 113,
           "column": 5,
-          "index": 3207
+          "index": 2872
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "blur": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the focus from this widget.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -240,231 +266,23 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getMaxLength": {
-      "type": "function",
-      "name": "getMaxLength",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
       "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxLength</code>.\n\nFor further details take a look at the property definition: {@link #maxLength}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "PositiveInteger",
-            "desc": "Returns the value for maxLength"
-          }
-        ]
-      }
-    },
-    "setMaxLength": {
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 2938
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3085
+        }
+      },
       "type": "function",
-      "name": "setMaxLength",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxLength</code>.\n\nFor further details take a look at the property definition: {@link #maxLength}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "PositiveInteger",
-            "paramName": "value",
-            "desc": "Value for maxLength"
-          }
-        ]
-      }
-    },
-    "resetMaxLength": {
-      "type": "function",
-      "name": "resetMaxLength",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxLength</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxLength}."
-          }
-        ]
-      }
-    },
-    "getPlaceholder": {
-      "type": "function",
-      "name": "getPlaceholder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>placeholder</code>.\n\nFor further details take a look at the property definition: {@link #placeholder}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for placeholder"
-          }
-        ]
-      }
-    },
-    "setPlaceholder": {
-      "type": "function",
-      "name": "setPlaceholder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>placeholder</code>.\n\nFor further details take a look at the property definition: {@link #placeholder}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for placeholder"
-          }
-        ]
-      }
-    },
-    "resetPlaceholder": {
-      "type": "function",
-      "name": "resetPlaceholder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>placeholder</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #placeholder}."
-          }
-        ]
-      }
-    },
-    "getReadOnly": {
-      "type": "function",
-      "name": "getReadOnly",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>readOnly</code>.\n\nFor further details take a look at the property definition: {@link #readOnly}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for readOnly"
-          }
-        ]
-      }
-    },
-    "isReadOnly": {
-      "type": "function",
-      "name": "isReadOnly",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>readOnly</code>.\n\nFor further details take a look at the property definition: {@link #readOnly}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for readOnly"
-          }
-        ]
-      }
-    },
-    "setReadOnly": {
-      "type": "function",
-      "name": "setReadOnly",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>readOnly</code>.\n\nFor further details take a look at the property definition: {@link #readOnly}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for readOnly"
-          }
-        ]
-      }
-    },
-    "resetReadOnly": {
-      "type": "function",
-      "name": "resetReadOnly",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>readOnly</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #readOnly}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

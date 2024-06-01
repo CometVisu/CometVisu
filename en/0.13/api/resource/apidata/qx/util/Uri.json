@@ -1,49 +1,53 @@
 {
-  "className": "qx.util.Uri",
-  "packageName": "qx.util",
-  "name": "Uri",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 559
-      },
-      "end": {
-        "line": 185,
-        "column": 3,
-        "index": 5454
-      }
+  "version": 0.3,
+  "lastModified": 1717235172634,
+  "lastModifiedIso": "2024-06-01T09:46:12.634Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/Uri.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 538
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Static helpers for parsing and modifying URIs.</p>"
-        }
-      ]
+    "end": {
+      "line": 185,
+      "column": 3,
+      "index": 5270
     }
   },
-  "type": "class",
+  "className": "qx.util.Uri",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Static helpers for parsing and modifying URIs.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Static helpers for parsing and modifying URIs.</p>"
+      }
+    ]
+  },
   "statics": {
     "parseUri": {
-      "location": {
-        "start": {
-          "line": 37,
-          "column": 4,
-          "index": 981
-        },
-        "end": {
-          "line": 85,
-          "column": 5,
-          "index": 2356
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Split URL",
+          "     *",
+          "     * Code taken from:",
+          "     *   parseUri 1.2.2",
+          "     *   (c) Steven Levithan <stevenlevithan.com>",
+          "     *   MIT License",
+          "     *",
+          "     *",
+          "     * @param str {String} String to parse as URI",
+          "     * @param strict {Boolean} Whether to parse strictly by the rules",
+          "     * @return {Object} Map with parts of URI as properties",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,42 +60,65 @@
             "body": "str {String} String to parse as URI",
             "paramName": "str",
             "description": " String to parse as URI",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "strict {Boolean} Whether to parse strictly by the rules",
             "paramName": "strict",
             "description": " Whether to parse strictly by the rules",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} Map with parts of URI as properties",
-            "type": "Object",
-            "description": " Map with parts of URI as properties"
+            "type": "Record<any, any>",
+            "description": "Map with parts of URI as properties"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "appendParamsToUrl": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 94,
+          "line": 37,
           "column": 4,
-          "index": 2638
+          "index": 945
         },
         "end": {
-          "line": 114,
+          "line": 85,
           "column": 5,
-          "index": 3197
+          "index": 2272
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        },
+        {
+          "name": "strict",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "appendParamsToUrl": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Append string to query part of URL. Respects existing query.",
+          "     *",
+          "     * @param url {String} URL to append string to.",
+          "     * @param params {String} Parameters to append to URL.",
+          "     * @return {String} URL with string appended in query part.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,42 +131,74 @@
             "body": "url {String} URL to append string to.",
             "paramName": "url",
             "description": " URL to append string to.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "params {String} Parameters to append to URL.",
             "paramName": "params",
             "description": " Parameters to append to URL.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} URL with string appended in query part.",
-            "type": "String",
-            "description": " URL with string appended in query part."
+            "type": "string",
+            "description": "URL with string appended in query part."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toParameter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 132,
+          "line": 94,
           "column": 4,
-          "index": 3975
+          "index": 2545
         },
         "end": {
-          "line": 150,
+          "line": 114,
           "column": 5,
-          "index": 4469
+          "index": 3084
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "params",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toParameter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Serializes an object to URI parameters (also known as query string).",
+          "     *",
+          "     * Escapes characters that have a special meaning in URIs as well as",
+          "     * umlauts. Uses the global function encodeURIComponent, see",
+          "     * https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/encodeURIComponent",
+          "     *",
+          "     * Note: For URI parameters that are to be sent as",
+          "     * application/x-www-form-urlencoded (POST), spaces should be encoded",
+          "     * with \"+\".",
+          "     *",
+          "     * @param obj {Object}   Object to serialize.",
+          "     * @param post {Boolean} Whether spaces should be encoded with \"+\".",
+          "     * @return {String}      Serialized object. Safe to append to URIs or send as",
+          "     *                       URL encoded string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -152,42 +211,66 @@
             "body": "obj {Object}   Object to serialize.",
             "paramName": "obj",
             "description": "   Object to serialize.",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "post {Boolean} Whether spaces should be encoded with \"+\".",
             "paramName": "post",
             "description": " Whether spaces should be encoded with \"+\".",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String}      Serialized object. Safe to append to URIs or send as\n                       URL encoded string.",
-            "type": "String",
-            "description": "      Serialized object. Safe to append to URIs or send as\n                       URL encoded string."
+            "type": "string",
+            "description": "     Serialized object. Safe to append to URIs or send as\n                       URL encoded string."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__toParameterPair": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 160,
+          "line": 132,
           "column": 4,
-          "index": 4766
+          "index": 3844
         },
         "end": {
-          "line": 171,
+          "line": 150,
           "column": 5,
-          "index": 5110
+          "index": 4320
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "post",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__toParameterPair": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Encodes key/value to URI safe string and pushes to given array.",
+          "     *",
+          "     * @param key {String} Key.",
+          "     * @param value {String} Value.",
+          "     * @param parts {Array} Array to push to.",
+          "     * @param post {Boolean} Whether spaces should be encoded with \"+\".",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -200,48 +283,75 @@
             "body": "key {String} Key.",
             "paramName": "key",
             "description": " Key.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "value {String} Value.",
             "paramName": "value",
             "description": " Value.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "parts {Array} Array to push to.",
             "paramName": "parts",
             "description": " Array to push to.",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
             "body": "post {Boolean} Whether spaces should be encoded with \"+\".",
             "paramName": "post",
             "description": " Whether spaces should be encoded with \"+\".",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "getAbsolute": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 179,
+          "line": 160,
           "column": 4,
-          "index": 5282
+          "index": 4607
         },
         "end": {
-          "line": 183,
+          "line": 171,
           "column": 5,
-          "index": 5444
+          "index": 4940
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "parts",
+          "type": "Array<any>"
+        },
+        {
+          "name": "post",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAbsolute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes a relative URI and returns an absolute one.",
+          "     *",
+          "     * @param uri {String} relative URI",
+          "     * @return {String} absolute URI",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -254,21 +364,44 @@
             "body": "uri {String} relative URI",
             "paramName": "uri",
             "description": " relative URI",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} absolute URI",
-            "type": "String",
-            "description": " absolute URI"
+            "type": "string",
+            "description": "absolute URI"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4,
+          "index": 5104
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 5262
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "uri",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

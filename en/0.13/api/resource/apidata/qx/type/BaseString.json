@@ -1,130 +1,177 @@
 {
-  "className": "qx.type.BaseString",
-  "packageName": "qx.type",
-  "name": "BaseString",
-  "superClass": "Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 35,
-        "column": 0,
-        "index": 1071
-      },
-      "end": {
-        "line": 389,
-        "column": 3,
-        "index": 14015
-      }
+  "version": 0.3,
+  "lastModified": 1717235169294,
+  "lastModifiedIso": "2024-06-01T09:46:09.294Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/type/BaseString.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 35,
+      "column": 0,
+      "index": 1037
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class emulates the built-in JavaScript String class. It can be used as\n base class for classes, which need to derive from String.\n Instances of this class can be used in any place a JavaScript string can.</p>"
-        }
-      ]
+    "end": {
+      "line": 389,
+      "column": 3,
+      "index": 13627
     }
   },
-  "type": "class",
+  "className": "qx.type.BaseString",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class emulates the built-in JavaScript String class. It can be used as",
+      " * base class for classes, which need to derive from String.",
+      " *",
+      " * Instances of this class can be used in any place a JavaScript string can.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class emulates the built-in JavaScript String class. It can be used as\n base class for classes, which need to derive from String.\n Instances of this class can be used in any place a JavaScript string can.</p>"
+      }
+    ]
+  },
+  "superClass": "Object",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "txt"
+      }
+    ],
     "location": {
       "start": {
         "line": 41,
         "column": 2,
-        "index": 1206
+        "index": 1166
       },
       "end": {
         "line": 48,
         "column": 3,
-        "index": 1339
+        "index": 1292
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "txt {String?\"\"} Initialize with this string",
-          "paramName": "txt",
-          "description": " Initialize with this string",
-          "optional": true,
-          "defaultValue": "\"\"",
-          "type": "String"
-        }
-      ]
     }
   },
   "members": {
     "$$isString": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 51,
           "column": 4,
-          "index": 1362
+          "index": 1312
         },
         "end": {
           "line": 51,
           "column": 20,
-          "index": 1378
+          "index": 1328
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "length": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 52,
           "column": 4,
-          "index": 1385
+          "index": 1334
         },
         "end": {
           "line": 52,
           "column": 13,
-          "index": 1394
+          "index": 1343
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "__txt": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 53,
           "column": 4,
-          "index": 1401
+          "index": 1349
         },
         "end": {
           "line": 53,
           "column": 15,
-          "index": 1412
+          "index": 1360
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
-    "charAt": {
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a string representing the specified object.",
+          "     *",
+          "     * The valueOf method of String returns the primitive value of a String",
+          "     * object as a string data type.",
+          "     * This method is usually called internally by JavaScript and not",
+          "     * explicitly in code.",
+          "     *",
+          "     * @return {String} A new string containing the string value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a string representing the specified object.\n The valueOf method of String returns the primitive value of a String\n object as a string data type.\n This method is usually called internally by JavaScript and not\n explicitly in code.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} A new string containing the string value.",
+            "type": "string",
+            "description": "A new string containing the string value."
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 65,
           "column": 4,
-          "index": 2414
+          "index": 1732
         },
         "end": {
-          "line": 82,
-          "column": 16,
-          "index": 2426
+          "line": 67,
+          "column": 5,
+          "index": 1775
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "charAt": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     *  Returns the specified character from a string.",
+          "     *",
+          "     * Characters in a string are indexed from left to right. The index of the",
+          "     * first character is 0, and the index of the last character in a string",
+          "     * called stringName is stringName.length - 1. If the index you supply is",
+          "     * out of range, JavaScript returns an empty string.",
+          "     *",
+          "     * @signature function(index)",
+          "     * @param index {Integer} An integer between 0 and 1 less than the length",
+          "     *   of the string.",
+          "     * @return {String} The character.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -150,28 +197,95 @@
           {
             "name": "@return",
             "body": "{String} The character.",
-            "type": "String",
-            "description": " The character."
+            "type": "string",
+            "description": "The character."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "charCodeAt": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 105,
+          "line": 82,
           "column": 4,
-          "index": 3199
+          "index": 2333
         },
         "end": {
-          "line": 105,
-          "column": 20,
-          "index": 3215
+          "line": 82,
+          "column": 16,
+          "index": 2345
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "valueOf": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the primitive value of a String object.",
+          "     *",
+          "     * The valueOf method of String returns the primitive value of a String",
+          "     * object as a string data type.",
+          "     * This method is usually called internally by JavaScript and not",
+          "     * explicitly in code.",
+          "     *",
+          "     * @signature function()",
+          "     * @return {String} A new string containing the primitive value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the primitive value of a String object.\n The valueOf method of String returns the primitive value of a String\n object as a string data type.\n This method is usually called internally by JavaScript and not\n explicitly in code.</p>"
+          }
+        ],
+        "@signature": [
+          {
+            "name": "@signature",
+            "body": "function()"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} A new string containing the primitive value.",
+            "type": "string",
+            "description": "A new string containing the primitive value."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2745
+        },
+        "end": {
+          "line": 95,
+          "column": 17,
+          "index": 2758
+        }
+      },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "charCodeAt": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a number indicating the Unicode value of the character at the given index.",
+          "     *",
+          "     * @signature function(index)",
+          "     * @param index {Integer} An integer greater than 0 and less than the length",
+          "     *   of the string; if it is not a number, it defaults to 0.",
+          "     * @return {Integer} The number.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -198,27 +312,40 @@
             "name": "@return",
             "body": "{Integer} The number.",
             "type": "Integer",
-            "description": " The number."
+            "description": "The number."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "concat": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 115,
+          "line": 105,
           "column": 4,
-          "index": 3550
+          "index": 3095
         },
         "end": {
-          "line": 115,
-          "column": 16,
-          "index": 3562
+          "line": 105,
+          "column": 20,
+          "index": 3111
         }
       },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "concat": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Combines the text of two or more strings and returns a new string.",
+          "     * Changes to the text in one string do not affect the other string.",
+          "     *",
+          "     * @signature function(stringN)",
+          "     * @param stringN {String} One or more strings to be combined.",
+          "     * @return {String} The combined string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -237,35 +364,52 @@
             "body": "stringN {String} One or more strings to be combined.",
             "paramName": "stringN",
             "description": " One or more strings to be combined.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The combined string.",
-            "type": "String",
-            "description": " The combined string."
+            "type": "string",
+            "description": "The combined string."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "indexOf": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 129,
+          "line": 115,
           "column": 4,
-          "index": 4160
+          "index": 3436
         },
         "end": {
-          "line": 129,
-          "column": 17,
-          "index": 4173
+          "line": 115,
+          "column": 16,
+          "index": 3448
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "indexOf": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the index within the calling String object of the first",
+          "     * occurrence of the specified value, starting the search at fromIndex,",
+          "     * returns -1 if the value is not found.",
+          "     *",
+          "     * @signature function(index, offset)",
+          "     * @param index {String} A string representing the value to search for.",
+          "     * @param offset {Integer?0} The location within the calling string to start",
+          "     *   the search from. It can be any integer between 0 and the length of the",
+          "     *   string. The default value is 0.",
+          "     * @return {Integer} The index or -1.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -284,7 +428,7 @@
             "body": "index {String} A string representing the value to search for.",
             "paramName": "index",
             "description": " A string representing the value to search for.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -301,27 +445,45 @@
             "name": "@return",
             "body": "{Integer} The index or -1.",
             "type": "Integer",
-            "description": " The index or -1."
+            "description": "The index or -1."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "lastIndexOf": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 144,
+          "line": 129,
           "column": 4,
-          "index": 4844
+          "index": 4032
         },
         "end": {
-          "line": 144,
-          "column": 21,
-          "index": 4861
+          "line": 129,
+          "column": 17,
+          "index": 4045
         }
       },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "lastIndexOf": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the index within the calling String object of the last occurrence",
+          "     * of the specified value, or -1 if not found. The calling string is",
+          "     * searched backward, starting at fromIndex.",
+          "     *",
+          "     * @signature function(index, offset)",
+          "     * @param index {String} A string representing the value to search for.",
+          "     * @param offset {Integer?0} The location within the calling string to start",
+          "     *   the search from, indexed from left to right. It can be any integer",
+          "     *   between 0 and the length of the string. The default value is the length",
+          "     *    of the string.",
+          "     * @return {Integer} The index or -1.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -340,7 +502,7 @@
             "body": "index {String} A string representing the value to search for.",
             "paramName": "index",
             "description": " A string representing the value to search for.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -357,27 +519,47 @@
             "name": "@return",
             "body": "{Integer} The index or -1.",
             "type": "Integer",
-            "description": " The index or -1."
+            "description": "The index or -1."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "match": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 161,
+          "line": 144,
           "column": 4,
-          "index": 5544
+          "index": 4701
         },
         "end": {
-          "line": 161,
-          "column": 15,
-          "index": 5555
+          "line": 144,
+          "column": 21,
+          "index": 4718
         }
       },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "match": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Used to retrieve the matches when matching a string against a regular",
+          "     * expression.",
+          "     *",
+          "     * If the regular expression does not include the g flag, returns the same",
+          "     * result as regexp.exec(string). If the regular expression includes the g",
+          "     * flag, the method returns an Array containing all matches.",
+          "     *",
+          "     * @signature function(regexp)",
+          "     * @param regexp {Object} A regular expression object. If a non-RegExp object",
+          "     *  obj is passed, it is implicitly converted to a RegExp by using",
+          "     *   new RegExp(obj).",
+          "     * @return {Object} The matching RegExp object or an array containing all",
+          "     *   matches.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -396,35 +578,53 @@
             "body": "regexp {Object} A regular expression object. If a non-RegExp object\n  obj is passed, it is implicitly converted to a RegExp by using\n   new RegExp(obj).",
             "paramName": "regexp",
             "description": " A regular expression object. If a non-RegExp object\n  obj is passed, it is implicitly converted to a RegExp by using\n   new RegExp(obj).",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} The matching RegExp object or an array containing all\n   matches.",
-            "type": "Object",
-            "description": " The matching RegExp object or an array containing all\n   matches."
+            "type": "Record<any, any>",
+            "description": "The matching RegExp object or an array containing all\n   matches."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "replace": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 176,
+          "line": 161,
           "column": 4,
-          "index": 6159
+          "index": 5384
         },
         "end": {
-          "line": 176,
-          "column": 17,
-          "index": 6172
+          "line": 161,
+          "column": 15,
+          "index": 5395
         }
       },
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "replace": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds a match between a regular expression and a string, and replaces the",
+          "     * matched substring with a new substring.",
+          "     *",
+          "     * @signature function(regexp, aFunction)",
+          "     * @param regexp {Object} A RegExp object. The match is replaced by the",
+          "     *   return value of parameter #2. Or a String that is to be replaced by",
+          "     *   newSubStr.",
+          "     * @param aFunction {Function} A function to be invoked to create the new",
+          "     *   substring (to put in place of the substring received from parameter",
+          "     *   #1).",
+          "     * @return {String} The new substring.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -443,42 +643,61 @@
             "body": "regexp {Object} A RegExp object. The match is replaced by the\n   return value of parameter #2. Or a String that is to be replaced by\n   newSubStr.",
             "paramName": "regexp",
             "description": " A RegExp object. The match is replaced by the\n   return value of parameter #2. Or a String that is to be replaced by\n   newSubStr.",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "aFunction {Function} A function to be invoked to create the new\n   substring (to put in place of the substring received from parameter\n   #1).",
             "paramName": "aFunction",
             "description": " A function to be invoked to create the new\n   substring (to put in place of the substring received from parameter\n   #1).",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The new substring.",
-            "type": "String",
-            "description": " The new substring."
+            "type": "string",
+            "description": "The new substring."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "search": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 192,
+          "line": 176,
           "column": 4,
-          "index": 6739
+          "index": 5984
         },
         "end": {
-          "line": 192,
-          "column": 16,
-          "index": 6751
+          "line": 176,
+          "column": 17,
+          "index": 5997
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "search": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Executes the search for a match between a regular expression and this",
+          "     * String object.",
+          "     *",
+          "     * If successful, search returns the index of the regular expression inside",
+          "     * the string. Otherwise, it returns -1.",
+          "     *",
+          "     * @signature function(regexp)",
+          "     * @param regexp {Object} A regular expression object. If a non-RegExp object",
+          "     *  obj is passed, it is implicitly converted to a RegExp by using",
+          "     *   new RegExp(obj).",
+          "     * @return {Object} The matching RegExp object or -1.",
+          "     *   matches.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -497,35 +716,55 @@
             "body": "regexp {Object} A regular expression object. If a non-RegExp object\n  obj is passed, it is implicitly converted to a RegExp by using\n   new RegExp(obj).",
             "paramName": "regexp",
             "description": " A regular expression object. If a non-RegExp object\n  obj is passed, it is implicitly converted to a RegExp by using\n   new RegExp(obj).",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} The matching RegExp object or -1.\n   matches.",
-            "type": "Object",
-            "description": " The matching RegExp object or -1.\n   matches."
+            "type": "Record<any, any>",
+            "description": "The matching RegExp object or -1.\n   matches."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "slice": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 209,
+          "line": 192,
           "column": 4,
-          "index": 7446
+          "index": 6548
         },
         "end": {
-          "line": 209,
-          "column": 15,
-          "index": 7457
+          "line": 192,
+          "column": 16,
+          "index": 6560
         }
       },
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "slice": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Extracts a section of a string and returns a new string.",
+          "     *",
+          "     * Slice extracts the text from one string and returns a new string. Changes",
+          "     * to the text in one string do not affect the other string.",
+          "     * As a negative index, endSlice indicates an offset from the end of the",
+          "     * string.",
+          "     *",
+          "     * @signature function(beginslice, endSlice)",
+          "     * @param beginslice {Integer} The zero-based index at which to begin",
+          "     *   extraction.",
+          "     * @param endSlice {Integer?null} The zero-based index at which to end",
+          "     *   extraction. If omitted, slice extracts to the end of the string.",
+          "     * @return {String} The extracted string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -560,28 +799,57 @@
           {
             "name": "@return",
             "body": "{String} The extracted string.",
-            "type": "String",
-            "description": " The extracted string."
+            "type": "string",
+            "description": "The extracted string."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "split": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 235,
+          "line": 209,
           "column": 4,
-          "index": 8710
+          "index": 7238
         },
         "end": {
-          "line": 235,
+          "line": 209,
           "column": 15,
-          "index": 8721
+          "index": 7249
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "split": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Splits a String object into an array of strings by separating the string",
+          "     * into substrings.",
+          "     *",
+          "     * When found, separator is removed from the string and the substrings are",
+          "     * returned in an array. If separator is omitted, the array contains one",
+          "     * element consisting of the entire string.",
+          "     *",
+          "     * If separator is a regular expression that contains capturing parentheses,",
+          "     * then each time separator is matched the results (including any undefined",
+          "     * results) of the capturing parentheses are spliced into the output array.",
+          "     * However, not all browsers support this capability.",
+          "     *",
+          "     * Note: When the string is empty, split returns an array containing one",
+          "     *",
+          "     * @signature function(separator, limit)",
+          "     * @param separator {String?null} Specifies the character to use for",
+          "     *   separating the string. The separator is treated as a string or a regular",
+          "     *   expression. If separator is omitted, the array returned contains one",
+          "     *   element consisting of the entire string.",
+          "     * @param limit {Integer?null} Integer specifying a limit on the number of",
+          "     *   splits to be found.",
+          "     * @return {Array} The Array containing substrings.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -618,28 +886,51 @@
           {
             "name": "@return",
             "body": "{Array} The Array containing substrings.",
-            "type": "qx.type.Array",
-            "description": " The Array containing substrings."
+            "type": "Array<any>",
+            "description": "The Array containing substrings."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "substr": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 255,
+          "line": 235,
           "column": 4,
-          "index": 9682
+          "index": 8476
         },
         "end": {
-          "line": 255,
-          "column": 16,
-          "index": 9694
+          "line": 235,
+          "column": 15,
+          "index": 8487
         }
       },
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "substr": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the characters in a string beginning at the specified location",
+          "     * through the specified number of characters.",
+          "     *",
+          "     * Start is a character index. The index of the first character is 0, and the",
+          "     * index of the last character is 1 less than the length of the string. substr",
+          "     *  begins extracting characters at start and collects length characters",
+          "     * (unless it reaches the end of the string first, in which case it will",
+          "     * return fewer).",
+          "     * If start is positive and is greater than or equal to the length of the",
+          "     * string, substr returns an empty string.",
+          "     *",
+          "     * @signature function(start, length)",
+          "     * @param start {Integer} Location at which to begin extracting characters",
+          "     *   (an integer between 0 and one less than the length of the string).",
+          "     * @param length {Integer?null} The number of characters to extract.",
+          "     * @return {String} The substring.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -674,28 +965,55 @@
           {
             "name": "@return",
             "body": "{String} The substring.",
-            "type": "String",
-            "description": " The substring."
+            "type": "string",
+            "description": "The substring."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "substring": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 279,
+          "line": 255,
           "column": 4,
-          "index": 10731
+          "index": 9428
         },
         "end": {
-          "line": 279,
-          "column": 19,
-          "index": 10746
+          "line": 255,
+          "column": 16,
+          "index": 9440
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "substring": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a subset of a String object.",
+          "     *",
+          "     * substring extracts characters from indexA up to but not including indexB.",
+          "     * In particular:",
+          "     * If indexA equals indexB, substring returns an empty string.",
+          "     * If indexB is omitted, substring extracts characters to the end of the",
+          "     * string.",
+          "     * If either argument is less than 0 or is NaN, it is treated as if it were",
+          "     * 0.",
+          "     * If either argument is greater than stringName.length, it is treated as if",
+          "     * it were stringName.length.",
+          "     * If indexA is larger than indexB, then the effect of substring is as if",
+          "     * the two arguments were swapped; for example, str.substring(1, 0) == str.substring(0, 1).",
+          "     *",
+          "     * @signature function(indexA, indexB)",
+          "     * @param indexA {Integer} An integer between 0 and one less than the",
+          "     *   length of the string.",
+          "     * @param indexB {Integer?null} (optional) An integer between 0 and the",
+          "     *   length of the string.",
+          "     * @return {String} The subset.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -730,28 +1048,41 @@
           {
             "name": "@return",
             "body": "{String} The subset.",
-            "type": "String",
-            "description": " The subset."
+            "type": "string",
+            "description": "The subset."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "toLowerCase": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 289,
+          "line": 279,
           "column": 4,
-          "index": 11072
+          "index": 10453
         },
         "end": {
-          "line": 289,
-          "column": 21,
-          "index": 11089
+          "line": 279,
+          "column": 19,
+          "index": 10468
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toLowerCase": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the calling string value converted to lowercase.",
+          "     * The toLowerCase method returns the value of the string converted to",
+          "     * lowercase. toLowerCase does not affect the value of the string itself.",
+          "     *",
+          "     * @signature function()",
+          "     * @return {String} The new string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -768,28 +1099,41 @@
           {
             "name": "@return",
             "body": "{String} The new string.",
-            "type": "String",
-            "description": " The new string."
+            "type": "string",
+            "description": "The new string."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "toUpperCase": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 299,
+          "line": 289,
           "column": 4,
-          "index": 11415
+          "index": 10784
         },
         "end": {
-          "line": 299,
+          "line": 289,
           "column": 21,
-          "index": 11432
+          "index": 10801
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toUpperCase": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the calling string value converted to uppercase.",
+          "     * The toUpperCase method returns the value of the string converted to",
+          "     * uppercase. toUpperCase does not affect the value of the string itself.",
+          "     *",
+          "     * @signature function()",
+          "     * @return {String} The new string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -806,28 +1150,38 @@
           {
             "name": "@return",
             "body": "{String} The new string.",
-            "type": "String",
-            "description": " The new string."
+            "type": "string",
+            "description": "The new string."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "toHashCode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 306,
+          "line": 299,
           "column": 4,
-          "index": 11566
+          "index": 11117
         },
         "end": {
-          "line": 308,
-          "column": 5,
-          "index": 11642
+          "line": 299,
+          "column": 21,
+          "index": 11134
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toHashCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return unique hash code of object",
+          "     *",
+          "     * @return {Integer} unique hash code of the object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -839,27 +1193,44 @@
             "name": "@return",
             "body": "{Integer} unique hash code of the object",
             "type": "Integer",
-            "description": " unique hash code of the object"
+            "description": "unique hash code of the object"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toLocaleLowerCase": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 320,
+          "line": 306,
           "column": 4,
-          "index": 12023
+          "index": 11261
         },
         "end": {
-          "line": 320,
-          "column": 27,
-          "index": 12046
+          "line": 308,
+          "column": 5,
+          "index": 11335
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "toLocaleLowerCase": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The characters within a string are converted to lower case while",
+          "     * respecting the current locale.",
+          "     *",
+          "     * The toLowerCase method returns the value of the string converted to",
+          "     * lowercase. toLowerCase does not affect the value of the string itself.",
+          "     *",
+          "     * @signature function()",
+          "     * @return {String} The new string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -876,28 +1247,42 @@
           {
             "name": "@return",
             "body": "{String} The new string.",
-            "type": "String",
-            "description": " The new string."
+            "type": "string",
+            "description": "The new string."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "toLocaleUpperCase": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 331,
+          "line": 320,
           "column": 4,
-          "index": 12419
+          "index": 11704
         },
         "end": {
-          "line": 331,
+          "line": 320,
           "column": 27,
-          "index": 12442
+          "index": 11727
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "toLocaleUpperCase": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The characters within a string are converted to upper case while",
+          "     * respecting the current locale.",
+          "     * The toUpperCase method returns the value of the string converted to",
+          "     * uppercase. toUpperCase does not affect the value of the string itself.",
+          "     *",
+          "     * @signature function()",
+          "     * @return {String} The new string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -914,28 +1299,40 @@
           {
             "name": "@return",
             "body": "{String} The new string.",
-            "type": "String",
-            "description": " The new string."
+            "type": "string",
+            "description": "The new string."
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "base": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 340,
+          "line": 331,
           "column": 4,
-          "index": 12767
+          "index": 12089
         },
         "end": {
-          "line": 342,
-          "column": 5,
-          "index": 12862
+          "line": 331,
+          "column": 27,
+          "index": 12112
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "base": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Call the same method of the super class.",
+          "     *",
+          "     * @param args {arguments} the arguments variable of the calling method",
+          "     * @param varags {var} variable number of arguments passed to the overwritten function",
+          "     * @return {var} the return value of the method of the base class.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -963,30 +1360,40 @@
             "name": "@return",
             "body": "{var} the return value of the method of the base class.",
             "type": "var",
-            "description": " the return value of the method of the base class."
+            "description": "the return value of the method of the base class."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 340,
+          "column": 4,
+          "index": 12428
+        },
+        "end": {
+          "line": 342,
+          "column": 5,
+          "index": 12521
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "args",
+          "type": "arguments"
+        },
+        {
+          "name": "varags",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 351,
-        "column": 2,
-        "index": 13066
-      },
-      "end": {
-        "line": 388,
-        "column": 3,
-        "index": 14010
-      }
-    },
-    "jsdoc": {}
-  },
-  "descendants": [
-    "qx.locale.LocalizedString"
-  ]
+  "statics": {},
+  "properties": {}
 }

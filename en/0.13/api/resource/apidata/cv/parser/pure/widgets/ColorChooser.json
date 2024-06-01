@@ -1,52 +1,51 @@
 {
-  "className": "cv.parser.pure.widgets.ColorChooser",
-  "packageName": "cv.parser.pure.widgets",
-  "name": "ColorChooser",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 867
-      },
-      "end": {
-        "line": 242,
-        "column": 3,
-        "index": 7236
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/parser/pure/widgets/ColorChooser.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 867
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Widget to be able to select a color.</p>"
-        }
-      ]
+    "end": {
+      "line": 242,
+      "column": 3,
+      "index": 7236
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.parser.pure.widgets.ColorChooser",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Widget to be able to select a color.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Widget to be able to select a color.</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "parse": {
-      "location": {
-        "start": {
-          "line": 41,
-          "column": 4,
-          "index": 1437
-        },
-        "end": {
-          "line": 57,
-          "column": 5,
-          "index": 1872
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the widgets XML configuration and extracts the given information",
+          "     * to a simple key/value map.",
+          "     *",
+          "     * @param xml {Element} XML-Element",
+          "     * @param path {String} internal path of the widget",
+          "     * @param flavour {String} Flavour of the widget",
+          "     * @param pageType {String} Page type (2d, 3d, ...)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,28 +65,61 @@
             "body": "path {String} internal path of the widget",
             "paramName": "path",
             "description": " internal path of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "flavour {String} Flavour of the widget",
             "paramName": "flavour",
             "description": " Flavour of the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "pageType {String} Page type (2d, 3d, ...)",
             "paramName": "pageType",
             "description": " Page type (2d, 3d, ...)",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1437
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1872
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "xml",
+          "type": "Element"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "flavour",
+          "type": "string"
+        },
+        {
+          "name": "pageType",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     },
     "parseAttributes": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 59,
@@ -101,9 +133,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "xml"
+        },
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
     },
     "makeAddressListFn": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 220,
@@ -117,9 +159,25 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "src"
+        },
+        {
+          "name": "transform"
+        },
+        {
+          "name": "mode"
+        },
+        {
+          "name": "variant"
+        }
+      ],
+      "appearsIn": []
     },
     "getAttributeToPropertyMappings": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 224,
@@ -133,22 +191,10 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 238,
-        "column": 2,
-        "index": 7116
-      },
-      "end": {
-        "line": 241,
-        "column": 3,
-        "index": 7232
-      }
-    }
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

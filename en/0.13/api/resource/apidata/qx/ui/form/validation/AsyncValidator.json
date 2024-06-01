@@ -1,144 +1,167 @@
 {
-  "className": "qx.ui.form.validation.AsyncValidator",
-  "packageName": "qx.ui.form.validation",
-  "name": "AsyncValidator",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 43,
-        "column": 0,
-        "index": 1616
-      },
-      "end": {
-        "line": 143,
-        "column": 3,
-        "index": 4940
-      }
+  "version": 0.3,
+  "lastModified": 1717235169210,
+  "lastModifiedIso": "2024-06-01T09:46:09.210Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/validation/AsyncValidator.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 43,
+      "column": 0,
+      "index": 1574
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is responsible for validation in all asynchronous cases and\n should always be used with {@link qx.ui.form.validation.Manager}.\n It acts like a wrapper for asynchronous validation functions. These\n validation function must be set in the constructor. The form manager will\n invoke the validation and the validator function will be called with two\n arguments:\n </p>\n<ul>\n  <li>asyncValidator: A reference to the corresponding validator.</li>\n  <li>value: The value of the assigned input field.</li>\n </ul>\n<p>These two parameters are needed to set the validation status of the current\n validator. {@link #setValid} is responsible for doing that.\n<em>Warning:</em> Instances of this class can only be used with one input\n field at a time. Multi usage is not supported!\n<em>Warning:</em> Calling {@link #setValid} synchronously does not work. If you\n have an synchronous validator, please check\n {@link qx.ui.form.validation.Manager#add}. If you have both cases, you have\n to wrap the synchronous call in a timeout to make it asynchronous.</p>"
-        }
-      ]
+    "end": {
+      "line": 143,
+      "column": 3,
+      "index": 4798
     }
   },
-  "type": "class",
+  "className": "qx.ui.form.validation.AsyncValidator",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is responsible for validation in all asynchronous cases and",
+      " * should always be used with {@link qx.ui.form.validation.Manager}.",
+      " *",
+      " *",
+      " * It acts like a wrapper for asynchronous validation functions. These",
+      " * validation function must be set in the constructor. The form manager will",
+      " * invoke the validation and the validator function will be called with two",
+      " * arguments:",
+      " * <ul>",
+      " *  <li>asyncValidator: A reference to the corresponding validator.</li>",
+      " *  <li>value: The value of the assigned input field.</li>",
+      " * </ul>",
+      " * These two parameters are needed to set the validation status of the current",
+      " * validator. {@link #setValid} is responsible for doing that.",
+      " *",
+      " *",
+      " * *Warning:* Instances of this class can only be used with one input",
+      " * field at a time. Multi usage is not supported!",
+      " *",
+      " * *Warning:* Calling {@link #setValid} synchronously does not work. If you",
+      " * have an synchronous validator, please check",
+      " * {@link qx.ui.form.validation.Manager#add}. If you have both cases, you have",
+      " * to wrap the synchronous call in a timeout to make it asynchronous.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is responsible for validation in all asynchronous cases and\n should always be used with {@link qx.ui.form.validation.Manager}.\n It acts like a wrapper for asynchronous validation functions. These\n validation function must be set in the constructor. The form manager will\n invoke the validation and the validator function will be called with two\n arguments:\n </p>\n<ul>\n  <li>asyncValidator: A reference to the corresponding validator.</li>\n  <li>value: The value of the assigned input field.</li>\n </ul>\n<p>These two parameters are needed to set the validation status of the current\n validator. {@link #setValid} is responsible for doing that.\n<em>Warning:</em> Instances of this class can only be used with one input\n field at a time. Multi usage is not supported!\n<em>Warning:</em> Calling {@link #setValid} synchronously does not work. If you\n have an synchronous validator, please check\n {@link qx.ui.form.validation.Manager#add}. If you have both cases, you have\n to wrap the synchronous call in a timeout to make it asynchronous.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "validator"
+      }
+    ],
     "location": {
       "start": {
         "line": 50,
         "column": 2,
-        "index": 1816
+        "index": 1767
       },
       "end": {
         "line": 54,
         "column": 3,
-        "index": 1936
+        "index": 1883
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "validator {Function} The validator function, which has to be\n   asynchronous.",
-          "paramName": "validator",
-          "description": " The validator function, which has to be\n   asynchronous.",
-          "type": "Function"
-        }
-      ]
     }
   },
   "members": {
     "__validatorFunction": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 57,
           "column": 4,
-          "index": 1959
+          "index": 1903
         },
         "end": {
           "line": 57,
           "column": 29,
-          "index": 1984
+          "index": 1928
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__item": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 58,
           "column": 4,
-          "index": 1991
+          "index": 1934
         },
         "end": {
           "line": 58,
           "column": 16,
-          "index": 2003
+          "index": 1946
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__manager": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 59,
           "column": 4,
-          "index": 2010
+          "index": 1952
         },
         "end": {
           "line": 59,
           "column": 19,
-          "index": 2025
+          "index": 1967
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__usedForForm": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 60,
           "column": 4,
-          "index": 2032
+          "index": 1973
         },
         "end": {
           "line": 60,
           "column": 23,
-          "index": 2051
+          "index": 1992
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "validate": {
-      "location": {
-        "start": {
-          "line": 78,
-          "column": 4,
-          "index": 2744
-        },
-        "end": {
-          "line": 86,
-          "column": 5,
-          "index": 3078
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The validate function should only be called by",
+          "     * {@link qx.ui.form.validation.Manager}.",
+          "     *",
+          "     * It stores the given information and calls the validation function set in",
+          "     * the constructor. The method is used for form fields only. Validating a",
+          "     * form itself will be invokes with {@link #validateForm}.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} The form item which should be validated.",
+          "     * @param value {var} The value of the form item.",
+          "     * @param manager {qx.ui.form.validation.Manager} A reference to the form",
+          "     *   manager.",
+          "     * @param context {var?null} The context of the validator.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -184,23 +207,61 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "validateForm": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 103,
+          "line": 78,
           "column": 4,
-          "index": 3706
+          "index": 2667
         },
         "end": {
-          "line": 107,
+          "line": 86,
           "column": 5,
-          "index": 3879
+          "index": 2993
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "manager",
+          "type": "qx.ui.form.validation.Manager"
+        },
+        {
+          "name": "context",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "validateForm": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The validateForm function should only be called by",
+          "     * {@link qx.ui.form.validation.Manager}.",
+          "     *",
+          "     * It stores the given information and calls the validation function set in",
+          "     * the constructor. The method is used for forms only. Validating a",
+          "     * form item will be invokes with {@link #validate}.",
+          "     *",
+          "     * @param items {qx.ui.core.Widget[]} All form items of the form manager.",
+          "     * @param manager {qx.ui.form.validation.Manager} A reference to the form",
+          "     *   manager.",
+          "     * @param context {var?null} The context of the validator.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -239,23 +300,49 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setValid": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 116,
+          "line": 103,
           "column": 4,
-          "index": 4183
+          "index": 3604
         },
         "end": {
-          "line": 131,
+          "line": 107,
           "column": 5,
-          "index": 4669
+          "index": 3773
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "items",
+          "type": "qx.ui.core.Widget[]"
+        },
+        {
+          "name": "manager",
+          "type": "qx.ui.form.validation.Manager"
+        },
+        {
+          "name": "context",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setValid": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method should be called within the asynchronous callback to tell the",
+          "     * validator the result of the validation.",
+          "     *",
+          "     * @param valid {Boolean} The boolean state of the validation.",
+          "     * @param message {String?} The invalidMessage of the validation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -268,7 +355,7 @@
             "body": "valid {Boolean} The boolean state of the validation.",
             "paramName": "valid",
             "description": " The boolean state of the validation.",
-            "type": "Boolean"
+            "type": "boolean"
           },
           {
             "name": "@param",
@@ -280,162 +367,50 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 4068
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 4539
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "valid",
+          "type": "boolean"
+        },
+        {
+          "name": "message",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 140,
         "column": 2,
-        "index": 4876
+        "index": 4737
       },
       "end": {
         "line": 142,
         "column": 3,
-        "index": 4935
+        "index": 4794
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

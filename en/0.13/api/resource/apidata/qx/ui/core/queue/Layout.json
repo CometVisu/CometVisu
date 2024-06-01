@@ -1,49 +1,43 @@
 {
-  "className": "qx.ui.core.queue.Layout",
-  "packageName": "qx.ui.core.queue",
-  "name": "Layout",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 731
-      },
-      "end": {
-        "line": 255,
-        "column": 3,
-        "index": 7819
-      }
+  "version": 0.3,
+  "lastModified": 1717235171546,
+  "lastModifiedIso": "2024-06-01T09:46:11.546Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/queue/Layout.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 707
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The layout queue manages all widgets, which need a recalculation of their\n layout. The {@link #flush} method computes the layout of all queued widgets\n and their dependent widgets.</p>"
-        }
-      ]
+    "end": {
+      "line": 255,
+      "column": 3,
+      "index": 7565
     }
   },
-  "type": "class",
+  "className": "qx.ui.core.queue.Layout",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The layout queue manages all widgets, which need a recalculation of their",
+      " * layout. The {@link #flush} method computes the layout of all queued widgets",
+      " * and their dependent widgets.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The layout queue manages all widgets, which need a recalculation of their\n layout. The {@link #flush} method computes the layout of all queued widgets\n and their dependent widgets.</p>"
+      }
+    ]
+  },
   "statics": {
     "__queue": {
-      "location": {
-        "start": {
-          "line": 28,
-          "column": 4,
-          "index": 876
-        },
-        "end": {
-          "line": 28,
-          "column": 15,
-          "index": 887
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Map} This contains all the queued widgets for the next flush. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +51,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__nesting": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 31,
+          "line": 28,
           "column": 4,
-          "index": 929
+          "index": 849
         },
         "end": {
-          "line": 31,
-          "column": 17,
-          "index": 942
+          "line": 28,
+          "column": 15,
+          "index": 860
         }
       },
+      "appearsIn": []
+    },
+    "__nesting": {
       "jsdoc": {
+        "raw": [
+          "* Nesting level cache *"
+        ],
         "@description": [
           {
             "name": "@description",
@@ -81,23 +78,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "remove": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 39,
+          "line": 31,
           "column": 4,
-          "index": 1167
+          "index": 899
         },
         "end": {
-          "line": 41,
-          "column": 5,
-          "index": 1239
+          "line": 31,
+          "column": 17,
+          "index": 912
         }
       },
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the widget from the internal queue. Normally only used",
+          "     * during interims disposes of one or a few widgets.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} The widget to clear",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -114,23 +119,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "add": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 51,
+          "line": 39,
           "column": 4,
-          "index": 1485
+          "index": 1129
         },
         "end": {
-          "line": 54,
+          "line": 41,
           "column": 5,
-          "index": 1613
+          "index": 1199
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "add": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Mark a widget's layout as invalid and add its layout root to",
+          "     * the queue.",
+          "     *",
+          "     * Should only be used by {@link qx.ui.core.Widget}.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} Widget to add.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -147,23 +169,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isScheduled": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 64,
+          "line": 51,
           "column": 4,
-          "index": 1958
+          "index": 1435
         },
         "end": {
-          "line": 66,
+          "line": 54,
           "column": 5,
-          "index": 2037
+          "index": 1560
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isScheduled": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether the queue has scheduled changes for a widget.",
+          "     * Note that the layout parent can have changes scheduled that",
+          "     * affect the children widgets.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} Widget to check.",
+          "     * @return {Boolean} Whether the widget given has layout changes queued.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -183,28 +222,46 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the widget given has layout changes queued.",
-            "type": "Boolean",
-            "description": " Whether the widget given has layout changes queued."
+            "type": "boolean",
+            "description": "Whether the widget given has layout changes queued."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "flush": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 74,
+          "line": 64,
           "column": 4,
-          "index": 2231
+          "index": 1895
         },
         "end": {
-          "line": 108,
+          "line": 66,
           "column": 5,
-          "index": 3468
+          "index": 1972
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "flush": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update the layout of all widgets, which layout is marked as invalid.",
+          "     *",
+          "     * This is used exclusively by the {@link qx.ui.core.queue.Manager}.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -212,23 +269,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getNestingLevel": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 117,
+          "line": 74,
           "column": 4,
-          "index": 3716
+          "index": 2158
         },
         "end": {
-          "line": 145,
+          "line": 108,
           "column": 5,
-          "index": 4405
+          "index": 3361
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getNestingLevel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the widget's nesting level. Top level widgets have a nesting level",
+          "     * of <code>0</code>.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} The widget to query.",
+          "     * @return {Integer} The nesting level",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -249,27 +317,45 @@
             "name": "@return",
             "body": "{Integer} The nesting level",
             "type": "Integer",
-            "description": " The nesting level"
+            "description": "The nesting level"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__getLevelGroupedWidgets": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 153,
+          "line": 117,
           "column": 4,
-          "index": 4638
+          "index": 3600
         },
         "end": {
-          "line": 184,
+          "line": 145,
           "column": 5,
-          "index": 5382
+          "index": 4261
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__getLevelGroupedWidgets": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Group widget by their nesting level.",
+          "     *",
+          "     * @return {Map[]} A sparse array. Each entry of the array contains a widget",
+          "     *     map with all widgets of the same level as the array index.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -281,27 +367,44 @@
             "name": "@return",
             "body": "{Map[]} A sparse array. Each entry of the array contains a widget\n     map with all widgets of the same level as the array index.",
             "type": "Map[]",
-            "description": " A sparse array. Each entry of the array contains a widget\n     map with all widgets of the same level as the array index."
+            "description": "A sparse array. Each entry of the array contains a widget\n     map with all widgets of the same level as the array index."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getSortedQueue": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 196,
+          "line": 153,
           "column": 4,
-          "index": 5826
+          "index": 4486
         },
         "end": {
-          "line": 253,
+          "line": 184,
           "column": 5,
-          "index": 7809
+          "index": 5199
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "__getSortedQueue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute all layout roots of the given widgets. Layout roots are either",
+          "     * root widgets or widgets, which preferred size has not changed by the",
+          "     * layout changes of its children.",
+          "     *",
+          "     * This function returns the roots ordered by their nesting factors. The",
+          "     * layout with the largest nesting level comes first.",
+          "     *",
+          "     * @return {qx.ui.core.Widget[]} Ordered list or layout roots.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -313,13 +416,31 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget[]} Ordered list or layout roots.",
             "type": "qx.ui.core.Widget[]",
-            "description": " Ordered list or layout roots."
+            "description": "Ordered list or layout roots."
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 5631
+        },
+        "end": {
+          "line": 253,
+          "column": 5,
+          "index": 7557
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

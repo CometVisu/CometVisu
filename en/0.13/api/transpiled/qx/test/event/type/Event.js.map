@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "testStopShouldPreventDefaultAndStopPropagation",
+    "e",
+    "event",
+    "type",
+    "Event",
+    "init",
+    "assertFalse",
+    "getPropagationStopped",
+    "getDefaultPrevented",
+    "stop",
+    "assertTrue",
+    "dispose",
+    "testStopCannotPreventDefaultOnNonCancelableEvents",
+    "testStopCannotStopPropagationOnANonBubblingEvent",
+    "test"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/event/type/Event.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.event.type.Event\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    \"test: stop() should prevent default and stop propagation\"() {\n      var e = new qx.event.type.Event().init(true, true);\n\n      this.assertFalse(e.getPropagationStopped());\n      this.assertFalse(e.getDefaultPrevented());\n\n      e.stop();\n\n      this.assertTrue(e.getPropagationStopped());\n      this.assertTrue(e.getDefaultPrevented());\n\n      e.dispose();\n    },\n\n    \"test: stop() cannot prevent default on non cancelable events\"() {\n      var e = new qx.event.type.Event().init(true, false);\n\n      this.assertFalse(e.getDefaultPrevented());\n      e.stop();\n      this.assertFalse(e.getDefaultPrevented());\n\n      e.dispose();\n    },\n\n    \"test: stop() cannot stop propagation on a non bubbling event\"() {\n      var e = new qx.event.type.Event().init(false, true);\n\n      this.assertFalse(e.getPropagationStopped());\n      e.stop();\n      this.assertFalse(e.getPropagationStopped());\n\n      e.dispose();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0BAA0B,EAAE;IAC1CC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE;MACP,0DAA0D,WAAAC,+CAAA,EAAG;QAC3D,IAAIC,CAAC,GAAG,IAAIZ,EAAE,CAACa,KAAK,CAACC,IAAI,CAACC,KAAK,CAAC,CAAC,CAACC,IAAI,CAAC,IAAI,EAAE,IAAI,CAAC;QAElD,IAAI,CAACC,WAAW,CAACL,CAAC,CAACM,qBAAqB,CAAC,CAAC,CAAC;QAC3C,IAAI,CAACD,WAAW,CAACL,CAAC,CAACO,mBAAmB,CAAC,CAAC,CAAC;QAEzCP,CAAC,CAACQ,IAAI,CAAC,CAAC;QAER,IAAI,CAACC,UAAU,CAACT,CAAC,CAACM,qBAAqB,CAAC,CAAC,CAAC;QAC1C,IAAI,CAACG,UAAU,CAACT,CAAC,CAACO,mBAAmB,CAAC,CAAC,CAAC;QAExCP,CAAC,CAACU,OAAO,CAAC,CAAC;MACb,CAAC;MAED,8DAA8D,WAAAC,kDAAA,EAAG;QAC/D,IAAIX,CAAC,GAAG,IAAIZ,EAAE,CAACa,KAAK,CAACC,IAAI,CAACC,KAAK,CAAC,CAAC,CAACC,IAAI,CAAC,IAAI,EAAE,KAAK,CAAC;QAEnD,IAAI,CAACC,WAAW,CAACL,CAAC,CAACO,mBAAmB,CAAC,CAAC,CAAC;QACzCP,CAAC,CAACQ,IAAI,CAAC,CAAC;QACR,IAAI,CAACH,WAAW,CAACL,CAAC,CAACO,mBAAmB,CAAC,CAAC,CAAC;QAEzCP,CAAC,CAACU,OAAO,CAAC,CAAC;MACb,CAAC;MAED,8DAA8D,WAAAE,iDAAA,EAAG;QAC/D,IAAIZ,CAAC,GAAG,IAAIZ,EAAE,CAACa,KAAK,CAACC,IAAI,CAACC,KAAK,CAAC,CAAC,CAACC,IAAI,CAAC,KAAK,EAAE,IAAI,CAAC;QAEnD,IAAI,CAACC,WAAW,CAACL,CAAC,CAACM,qBAAqB,CAAC,CAAC,CAAC;QAC3CN,CAAC,CAACQ,IAAI,CAAC,CAAC;QACR,IAAI,CAACH,WAAW,CAACL,CAAC,CAACM,qBAAqB,CAAC,CAAC,CAAC;QAE3CN,CAAC,CAACU,OAAO,CAAC,CAAC;MACb;IACF;EACF,CAAC,CAAC;EAxDFtB,EAAE,CAACyB,IAAI,CAACZ,KAAK,CAACC,IAAI,CAACC,KAAK,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

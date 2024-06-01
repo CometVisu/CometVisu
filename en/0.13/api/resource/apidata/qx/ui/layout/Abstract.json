@@ -1,52 +1,48 @@
 {
-  "className": "qx.ui.layout.Abstract",
-  "packageName": "qx.ui.layout",
-  "name": "Abstract",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 752
-      },
-      "end": {
-        "line": 235,
-        "column": 3,
-        "index": 6982
-      }
+  "version": 0.3,
+  "lastModified": 1717235168694,
+  "lastModifiedIso": "2024-06-01T09:46:08.694Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/layout/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 726
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Base class for all layout managers.\n Custom layout manager must derive from\n this class and implement the methods {@link #invalidateLayoutCache},\n {@link #renderLayout} and {@link #getSizeHint}.</p>"
-        }
-      ]
+    "end": {
+      "line": 235,
+      "column": 3,
+      "index": 6748
     }
   },
-  "type": "class",
-  "isAbstract": true,
-  "isStatic": false,
+  "className": "qx.ui.layout.Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for all layout managers.",
+      " *",
+      " * Custom layout manager must derive from",
+      " * this class and implement the methods {@link #invalidateLayoutCache},",
+      " * {@link #renderLayout} and {@link #getSizeHint}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for all layout managers.\n Custom layout manager must derive from\n this class and implement the methods {@link #invalidateLayoutCache},\n {@link #renderLayout} and {@link #getSizeHint}.</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": true,
+  "superClass": "qx.core.Object",
   "members": {
     "__sizeHint": {
-      "location": {
-        "start": {
-          "line": 39,
-          "column": 4,
-          "index": 1099
-        },
-        "end": {
-          "line": 39,
-          "column": 20,
-          "index": 1115
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Map} The cached size hint "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,23 +56,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "_invalidChildrenCache": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 44,
+          "line": 39,
           "column": 4,
-          "index": 1285
+          "index": 1061
         },
         "end": {
-          "line": 44,
-          "column": 31,
-          "index": 1312
+          "line": 39,
+          "column": 20,
+          "index": 1077
         }
       },
+      "appearsIn": []
+    },
+    "_invalidChildrenCache": {
       "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Whether the children cache is valid. This field is protected",
+          "     *    because sub classes must be able to access it quickly.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -90,23 +91,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "__widget": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 47,
+          "line": 44,
           "column": 4,
-          "index": 1380
+          "index": 1242
         },
         "end": {
-          "line": 47,
-          "column": 18,
-          "index": 1394
+          "line": 44,
+          "column": 31,
+          "index": 1269
         }
       },
+      "appearsIn": []
+    },
+    "__widget": {
       "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.core.Widget} The connected widget "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -120,23 +124,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "invalidateLayoutCache": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 60,
+          "line": 47,
           "column": 4,
-          "index": 1735
+          "index": 1334
         },
         "end": {
-          "line": 62,
-          "column": 5,
-          "index": 1798
+          "line": 47,
+          "column": 18,
+          "index": 1348
         }
       },
+      "appearsIn": []
+    },
+    "invalidateLayoutCache": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Invalidate all layout relevant caches. Automatically deletes the size hint.",
+          "     *",
+          "     * @abstract",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -150,23 +161,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "renderLayout": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 73,
+          "line": 60,
           "column": 4,
-          "index": 2215
+          "index": 1676
         },
         "end": {
-          "line": 75,
+          "line": 62,
           "column": 5,
-          "index": 2330
+          "index": 1737
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "renderLayout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the children layout.",
+          "     *",
+          "     * @abstract",
+          "     * @param availWidth {Integer} Final width available for the content (in pixel)",
+          "     * @param availHeight {Integer} Final height available for the content (in pixel)",
+          "     * @param padding {Map} Map containing the padding values. Keys:",
+          "     * <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -199,27 +223,52 @@
             "body": "padding {Map} Map containing the padding values. Keys:\n <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>",
             "paramName": "padding",
             "description": " Map containing the padding values. Keys:\n <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSizeHint": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 85,
+          "line": 73,
           "column": 4,
-          "index": 2709
+          "index": 2143
         },
         "end": {
-          "line": 91,
+          "line": 75,
           "column": 5,
-          "index": 2864
+          "index": 2256
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "availWidth",
+          "type": "Integer"
+        },
+        {
+          "name": "availHeight",
+          "type": "Integer"
+        },
+        {
+          "name": "padding",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSizeHint": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the layout dimensions and possible ranges of these.",
+          "     *",
+          "     * @return {Map|null} The map with the preferred width/height and the allowed",
+          "     *   minimum and maximum values in cases where shrinking or growing",
+          "     *   is required. Can also return <code>null</code> when this detection",
+          "     *   is not supported by the layout.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -231,27 +280,39 @@
             "name": "@return",
             "body": "{Map|null} The map with the preferred width/height and the allowed\n   minimum and maximum values in cases where shrinking or growing\n   is required. Can also return <code>null</code> when this detection\n   is not supported by the layout.",
             "type": "Map|null",
-            "description": " The map with the preferred width/height and the allowed\n   minimum and maximum values in cases where shrinking or growing\n   is required. Can also return <code>null</code> when this detection\n   is not supported by the layout."
+            "description": "The map with the preferred width/height and the allowed\n   minimum and maximum values in cases where shrinking or growing\n   is required. Can also return <code>null</code> when this detection\n   is not supported by the layout."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasHeightForWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 98,
+          "line": 85,
           "column": 4,
-          "index": 3040
+          "index": 2625
         },
         "end": {
-          "line": 100,
+          "line": 91,
           "column": 5,
-          "index": 3089
+          "index": 2774
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map|null"
+      },
+      "appearsIn": []
+    },
+    "hasHeightForWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the layout manager supports height for width.",
+          "     *",
+          "     * @return {Boolean} Whether the layout manager supports height for width",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -262,28 +323,44 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the layout manager supports height for width",
-            "type": "Boolean",
-            "description": " Whether the layout manager supports height for width"
+            "type": "boolean",
+            "description": "Whether the layout manager supports height for width"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getHeightForWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 111,
+          "line": 98,
           "column": 4,
-          "index": 3479
+          "index": 2943
         },
         "end": {
-          "line": 114,
+          "line": 100,
           "column": 5,
-          "index": 3597
+          "index": 2990
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getHeightForWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * If layout wants to trade height for width it has to implement this",
+          "     * method and return the preferred height if it is resized to",
+          "     * the given width. This function returns <code>null</code> if the item",
+          "     * do not support height for width.",
+          "     *",
+          "     * @param width {Integer} The computed width",
+          "     * @return {Integer} The desired height",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -304,27 +381,45 @@
             "name": "@return",
             "body": "{Integer} The desired height",
             "type": "Integer",
-            "description": " The desired height"
+            "description": "The desired height"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_computeSizeHint": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 122,
+          "line": 111,
           "column": 4,
-          "index": 3753
+          "index": 3369
         },
         "end": {
-          "line": 124,
+          "line": 114,
           "column": 5,
-          "index": 3800
+          "index": 3484
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_computeSizeHint": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This computes the size hint of the layout and returns it.",
+          "     *",
+          "     * @abstract",
+          "     * @return {Map} The size hint.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -341,28 +436,41 @@
           {
             "name": "@return",
             "body": "{Map} The size hint.",
-            "type": "Map",
-            "description": " The size hint."
+            "type": "Map<any, any>",
+            "description": "The size hint."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "invalidateChildrenCache": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 132,
+          "line": 122,
           "column": 4,
-          "index": 4044
+          "index": 3632
         },
         "end": {
-          "line": 134,
+          "line": 124,
           "column": 5,
-          "index": 4120
+          "index": 3677
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "invalidateChildrenCache": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called, on each child \"add\" and \"remove\" action and",
+          "     * whenever the layout data of a child is changed. The method should be used",
+          "     * to clear any children relevant cached data.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -370,23 +478,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "verifyLayoutProperty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 146,
+          "line": 132,
           "column": 4,
-          "index": 4494
+          "index": 3913
         },
         "end": {
-          "line": 152,
-          "column": 6,
-          "index": 4661
+          "line": 134,
+          "column": 5,
+          "index": 3987
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "verifyLayoutProperty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Verifies the value of a layout property.",
+          "     *",
+          "     * Note: This method is only available in the debug builds.",
+          "     *",
+          "     * @signature function(item, name, value)",
+          "     * @param item {Object} The affected layout item",
+          "     * @param name {Object} Name of the layout property",
+          "     * @param value {Object} Value of the layout property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -405,41 +527,46 @@
             "body": "item {Object} The affected layout item",
             "paramName": "item",
             "description": " The affected layout item",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "name {Object} Name of the layout property",
             "paramName": "name",
             "description": " Name of the layout property",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "value {Object} Value of the layout property",
             "paramName": "value",
             "description": " Value of the layout property",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "_clearSeparators": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 157,
+          "line": 146,
           "column": 4,
-          "index": 4736
+          "index": 4349
         },
         "end": {
-          "line": 164,
-          "column": 5,
-          "index": 5040
+          "line": 152,
+          "column": 6,
+          "index": 4510
         }
       },
+      "appearsIn": []
+    },
+    "_clearSeparators": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all currently visible separators",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -447,23 +574,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_renderSeparator": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 173,
+          "line": 157,
           "column": 4,
-          "index": 5339
+          "index": 4580
         },
         "end": {
-          "line": 175,
+          "line": 164,
           "column": 5,
-          "index": 5440
+          "index": 4877
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_renderSeparator": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Renders a separator between two children",
+          "     *",
+          "     * @param separator {String|qx.ui.decoration.IDecorator} The separator to render",
+          "     * @param bounds {Map} Contains the left and top coordinate and the width and height",
+          "     *    of the separator to render.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -486,27 +624,48 @@
             "body": "bounds {Map} Contains the left and top coordinate and the width and height\n    of the separator to render.",
             "paramName": "bounds",
             "description": " Contains the left and top coordinate and the width and height\n    of the separator to render.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "connectToWidget": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 182,
+          "line": 173,
           "column": 4,
-          "index": 5626
+          "index": 5167
         },
         "end": {
-          "line": 193,
+          "line": 175,
           "column": 5,
-          "index": 5914
+          "index": 5266
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "separator",
+          "type": [
+            "String",
+            "qx.ui.decoration.IDecorator"
+          ]
+        },
+        {
+          "name": "bounds",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "connectToWidget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called by the widget to connect the widget with the layout.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} The widget to connect to.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -523,23 +682,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_getWidget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 200,
+          "line": 182,
           "column": 4,
-          "index": 6088
+          "index": 5445
         },
         "end": {
-          "line": 202,
+          "line": 193,
           "column": 5,
-          "index": 6138
+          "index": 5722
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getWidget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the widget that is this layout is responsible for.",
+          "     *",
+          "     * @return {qx.ui.core.Widget} The widget connected to this layout.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -551,27 +724,40 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget} The widget connected to this layout.",
             "type": "qx.ui.core.Widget",
-            "description": " The widget connected to this layout."
+            "description": "The widget connected to this layout."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_applyLayoutChange": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 210,
+          "line": 200,
           "column": 4,
-          "index": 6370
+          "index": 5889
         },
         "end": {
-          "line": 214,
+          "line": 202,
           "column": 5,
-          "index": 6483
+          "index": 5937
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "_applyLayoutChange": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Indicate that the layout has layout changed and propagate this information",
+          "     * up the widget hierarchy.",
+          "     *",
+          "     * Also a generic property apply method for all layout relevant properties.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -579,23 +765,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getLayoutChildren": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 221,
+          "line": 210,
           "column": 4,
-          "index": 6634
+          "index": 6161
         },
         "end": {
-          "line": 223,
+          "line": 214,
           "column": 5,
-          "index": 6712
+          "index": 6270
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getLayoutChildren": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the list of all layout relevant children.",
+          "     *",
+          "     * @return {Array} List of layout relevant children.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -606,180 +801,48 @@
           {
             "name": "@return",
             "body": "{Array} List of layout relevant children.",
-            "type": "Array",
-            "description": " List of layout relevant children."
+            "type": "Array<any>",
+            "description": "List of layout relevant children."
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 221,
+          "column": 4,
+          "index": 6414
+        },
+        "end": {
+          "line": 223,
+          "column": 5,
+          "index": 6490
+        }
+      },
       "type": "function",
-      "access": "protected"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 232,
         "column": 2,
-        "index": 6915
+        "index": 6684
       },
       "end": {
         "line": 234,
         "column": 3,
-        "index": 6977
+        "index": 6744
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": [
-    "qx.ui.layout.Atom",
-    "qx.ui.layout.Basic",
-    "qx.ui.layout.Canvas",
-    "qx.ui.layout.Dock",
-    "qx.ui.layout.Flow",
-    "qx.ui.layout.Grid",
-    "qx.ui.layout.Grow",
-    "qx.ui.layout.HBox",
-    "qx.ui.layout.VBox",
-    "qx.ui.menu.ButtonLayout",
-    "qx.ui.splitpane.HLayout",
-    "qx.ui.splitpane.VLayout"
-  ]
+  "statics": {},
+  "properties": {}
 }

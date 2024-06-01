@@ -1,87 +1,87 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235170990,
+  "lastModifiedIso": "2024-06-01T09:46:10.990Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/controller/Form.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 45,
+      "column": 0,
+      "index": 1403
+    },
+    "end": {
+      "line": 403,
+      "column": 3,
+      "index": 12737
+    }
+  },
   "className": "qx.data.controller.Form",
-  "packageName": "qx.data.controller",
-  "name": "Form",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * <h2>Form Controller</h2>",
+      " *",
+      " * *General idea*",
+      " *",
+      " * The form controller is responsible for connecting a form with a model. If no",
+      " * model is given, a model can be created. This created model will fit exactly",
+      " * to the given form and can be used for serialization. All the connections",
+      " * between the form items and the model are handled by an internal",
+      " * {@link qx.data.controller.Object}.",
+      " *",
+      " * *Features*",
+      " *",
+      " * * Connect a form to a model (bidirectional)",
+      " * * Create a model for a given form",
+      " *",
+      " * *Usage*",
+      " *",
+      " * The controller only works if both a controller and a model are set.",
+      " * Creating a model will automatically set the created model.",
+      " *",
+      " * *Cross reference*",
+      " *",
+      " * * If you want to bind single values, use {@link qx.data.controller.Object}",
+      " * * If you want to bind a list like widget, use {@link qx.data.controller.List}",
+      " * * If you want to bind a tree widget, use {@link qx.data.controller.Tree}",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<h2>Form Controller</h2>\n<p><em>General idea</em>\n The form controller is responsible for connecting a form with a model. If no\n model is given, a model can be created. This created model will fit exactly\n to the given form and can be used for serialization. All the connections\n between the form items and the model are handled by an internal\n {@link qx.data.controller.Object}.\n<em>Features</em></p>\n<ul>\n<li>Connect a form to a model (bidirectional)</li>\n<li>Create a model for a given form\n<em>Usage</em>\nThe controller only works if both a controller and a model are set.\nCreating a model will automatically set the created model.\n<em>Cross reference</em></li>\n<li>If you want to bind single values, use {@link qx.data.controller.Object}</li>\n<li>If you want to bind a list like widget, use {@link qx.data.controller.List}</li>\n<li>If you want to bind a tree widget, use {@link qx.data.controller.Tree}</li>\n</ul>"
+      }
+    ]
+  },
   "superClass": "qx.core.Object",
   "interfaces": [
     "qx.core.IDisposable"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 45,
-        "column": 0,
-        "index": 1447
-      },
-      "end": {
-        "line": 403,
-        "column": 3,
-        "index": 13139
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<h2>Form Controller</h2>\n<p><em>General idea</em>\n The form controller is responsible for connecting a form with a model. If no\n model is given, a model can be created. This created model will fit exactly\n to the given form and can be used for serialization. All the connections\n between the form items and the model are handled by an internal\n {@link qx.data.controller.Object}.\n<em>Features</em></p>\n<ul>\n<li>Connect a form to a model (bidirectional)</li>\n<li>Create a model for a given form\n<em>Usage</em>\nThe controller only works if both a controller and a model are set.\nCreating a model will automatically set the created model.\n<em>Cross reference</em></li>\n<li>If you want to bind single values, use {@link qx.data.controller.Object}</li>\n<li>If you want to bind a list like widget, use {@link qx.data.controller.List}</li>\n<li>If you want to bind a tree widget, use {@link qx.data.controller.Tree}</li>\n</ul>"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "model"
+      },
+      {
+        "name": "target"
+      },
+      {
+        "name": "selfUpdate"
+      }
+    ],
     "location": {
       "start": {
         "line": 59,
         "column": 2,
-        "index": 2114
+        "index": 2056
       },
       "end": {
         "line": 72,
         "column": 3,
-        "index": 2375
+        "index": 2304
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "model {qx.core.Object | null} The model to bind the target to. The\n   given object will be set as {@link #model} property.",
-          "paramName": "model",
-          "description": " The model to bind the target to. The\n   given object will be set as {@link #model} property.",
-          "type": [
-            "qx.core.Object",
-            "null"
-          ]
-        },
-        {
-          "name": "@param",
-          "body": "target {qx.ui.form.Form | null} The form which contains the form\n   items. The given form will be set as {@link #target} property.",
-          "paramName": "target",
-          "description": " The form which contains the form\n   items. The given form will be set as {@link #target} property.",
-          "type": [
-            "qx.ui.form.Form",
-            "null"
-          ]
-        },
-        {
-          "name": "@param",
-          "body": "selfUpdate {Boolean?false} If set to true, you need to call the\n   {@link #updateModel} method to get the data in the form to the model.\n   Otherwise, the data will be synced automatically on every change of\n   the form.",
-          "paramName": "selfUpdate",
-          "description": " If set to true, you need to call the\n   {@link #updateModel} method to get the data in the form to the model.\n   Otherwise, the data will be synced automatically on every change of\n   the form.",
-          "optional": true,
-          "defaultValue": "false",
-          "type": "Boolean"
-        }
-      ]
     }
   },
   "properties": {
@@ -90,15 +90,25 @@
         "start": {
           "line": 76,
           "column": 4,
-          "index": 2482
+          "index": 2407
         },
         "end": {
           "line": 82,
           "column": 5,
-          "index": 2635
+          "index": 2554
         }
       },
+      "json": {
+        "check": "qx.core.Object",
+        "apply": "_applyModel",
+        "event": "changeModel",
+        "nullable": true,
+        "dereference": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Data object containing the data which should be shown in the target. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -106,28 +116,32 @@
           }
         ]
       },
-      "name": "model",
-      "propertyType": "new",
-      "event": "changeModel",
-      "apply": "_applyModel",
-      "nullable": true,
-      "allowNull": true,
-      "check": "qx.core.Object"
+      "appearsIn": []
     },
     "target": {
       "location": {
         "start": {
           "line": 85,
           "column": 4,
-          "index": 2702
+          "index": 2618
         },
         "end": {
           "line": 92,
           "column": 5,
-          "index": 2878
+          "index": 2787
         }
       },
+      "json": {
+        "check": "qx.ui.form.Form",
+        "apply": "_applyTarget",
+        "event": "changeTarget",
+        "nullable": true,
+        "dereference": true
+      },
       "jsdoc": {
+        "raw": [
+          "* The target widget which should show the data. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -135,94 +149,63 @@
           }
         ]
       },
-      "name": "target",
-      "propertyType": "new",
-      "event": "changeTarget",
-      "apply": "_applyTarget",
-      "nullable": true,
-      "allowNull": true,
-      "check": "qx.ui.form.Form"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "__objectController": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 96,
           "column": 4,
-          "index": 2906
+          "index": 2811
         },
         "end": {
           "line": 96,
           "column": 28,
-          "index": 2930
+          "index": 2835
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__bindingOptions": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 97,
           "column": 4,
-          "index": 2937
+          "index": 2841
         },
         "end": {
           "line": 97,
           "column": 26,
-          "index": 2959
+          "index": 2863
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "addBindingOptions": {
-      "location": {
-        "start": {
-          "line": 114,
-          "column": 4,
-          "index": 3788
-        },
-        "end": {
-          "line": 139,
-          "column": 5,
-          "index": 4602
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The form controller uses for setting up the bindings the fundamental",
+          "     * binding layer, the {@link qx.data.SingleValueBinding}. To achieve a",
+          "     * binding in both directions, two bindings are needed. With this method,",
+          "     * you have the opportunity to set the options used for the bindings.",
+          "     *",
+          "     * @param name {String} The name of the form item for which the options",
+          "     *   should be used.",
+          "     * @param model2target {Map} Options map used for the binding from model",
+          "     *   to target. The possible options can be found in the",
+          "     *   {@link qx.data.SingleValueBinding} class.",
+          "     * @param target2model {Map} Options map used for the binding from target",
+          "     *   to model. The possible options can be found in the",
+          "     *   {@link qx.data.SingleValueBinding} class.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -235,41 +218,68 @@
             "body": "name {String} The name of the form item for which the options\n   should be used.",
             "paramName": "name",
             "description": " The name of the form item for which the options\n   should be used.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "model2target {Map} Options map used for the binding from model\n   to target. The possible options can be found in the\n   {@link qx.data.SingleValueBinding} class.",
             "paramName": "model2target",
             "description": " Options map used for the binding from model\n   to target. The possible options can be found in the\n   {@link qx.data.SingleValueBinding} class.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "target2model {Map} Options map used for the binding from target\n   to model. The possible options can be found in the\n   {@link qx.data.SingleValueBinding} class.",
             "paramName": "target2model",
             "description": " Options map used for the binding from target\n   to model. The possible options can be found in the\n   {@link qx.data.SingleValueBinding} class.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createModel": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 151,
+          "line": 114,
           "column": 4,
-          "index": 5105
+          "index": 3675
         },
         "end": {
-          "line": 196,
+          "line": 139,
           "column": 5,
-          "index": 6836
+          "index": 4464
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "model2target",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "target2model",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createModel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates and sets a model using the {@link qx.data.marshal.Json} object.",
+          "     * Remember that this method can only work if the form is set. The created",
+          "     * model will fit exactly that form. Changing the form or adding an item to",
+          "     * the form will need a new model creation.",
+          "     *",
+          "     * @param includeBubbleEvents {Boolean} Whether the model should support",
+          "     *   the bubbling of change events or not.",
+          "     * @return {qx.core.Object} The created model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -282,7 +292,7 @@
             "body": "includeBubbleEvents {Boolean} Whether the model should support\n   the bubbling of change events or not.",
             "paramName": "includeBubbleEvents",
             "description": " Whether the model should support\n   the bubbling of change events or not.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
@@ -290,27 +300,46 @@
             "name": "@return",
             "body": "{qx.core.Object} The created model.",
             "type": "qx.core.Object",
-            "description": " The created model."
+            "description": "The created model."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "updateModel": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 205,
+          "line": 151,
           "column": 4,
-          "index": 7210
+          "index": 4955
         },
         "end": {
-          "line": 229,
+          "line": 196,
           "column": 5,
-          "index": 7939
+          "index": 6641
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "includeBubbleEvents",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.core.Object"
+      },
+      "appearsIn": []
+    },
+    "updateModel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Responsible for syncing the data from entered in the form to the model.",
+          "     * Please keep in mind that this method only works if you create the form",
+          "     * controller with <code>selfUpdate</code> parameter set to true. Otherwise,",
+          "     * this method will do nothing because updates will be synced automatically",
+          "     * on every change.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -318,63 +347,92 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 7006
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 7711
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "_applyTarget": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 232,
           "column": 4,
-          "index": 7969
+          "index": 7738
         },
         "end": {
           "line": 247,
           "column": 5,
-          "index": 8350
+          "index": 8104
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "target"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyModel": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 250,
           "column": 4,
-          "index": 8380
+          "index": 8131
         },
         "end": {
           "line": 286,
           "column": 5,
-          "index": 9671
+          "index": 9386
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "model"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "__setUpBinding": {
-      "location": {
-        "start": {
-          "line": 293,
-          "column": 4,
-          "index": 9856
-        },
-        "end": {
-          "line": 347,
-          "column": 5,
-          "index": 11455
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for setting up the bindings using",
+          "     * {@link qx.data.controller.Object#addTarget}. All bindings are set",
+          "     * up bidirectional.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -382,23 +440,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__tearDownBinding": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 355,
+          "line": 293,
           "column": 4,
-          "index": 11685
+          "index": 9564
         },
         "end": {
-          "line": 372,
+          "line": 347,
           "column": 5,
-          "index": 12227
+          "index": 11109
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__tearDownBinding": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for removing all set up bindings using",
+          "     * {@link qx.data.controller.Object#removeTarget}.",
+          "     *",
+          "     * @param oldTarget {qx.ui.form.Form} The form which has been removed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -415,23 +483,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__isModelSelectable": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 383,
+          "line": 355,
           "column": 4,
-          "index": 12527
+          "index": 11331
         },
         "end": {
-          "line": 388,
+          "line": 372,
           "column": 5,
-          "index": 12745
+          "index": 11856
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "oldTarget",
+          "type": "qx.ui.form.Form"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__isModelSelectable": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether the given item implements",
+          "     * {@link qx.ui.core.ISingleSelection} and",
+          "     * {@link qx.ui.form.IModelSelection}.",
+          "     *",
+          "     * @param item {qx.ui.form.IForm} The form item to check.",
+          "     *",
+          "     * @return {Boolean} true, if given item fits.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -451,299 +537,52 @@
           {
             "name": "@return",
             "body": "{Boolean} true, if given item fits.",
-            "type": "Boolean",
-            "description": " true, if given item fits."
+            "type": "boolean",
+            "description": "true, if given item fits."
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 383,
+          "column": 4,
+          "index": 12145
+        },
+        "end": {
+          "line": 388,
+          "column": 5,
+          "index": 12358
+        }
+      },
       "type": "function",
-      "access": "private"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getModel": {
-      "type": "function",
-      "name": "getModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for model"
-          }
-        ]
-      }
-    },
-    "setModel": {
-      "type": "function",
-      "name": "setModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>model</code>.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for model"
-          }
-        ]
-      }
-    },
-    "resetModel": {
-      "type": "function",
-      "name": "resetModel",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>model</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #model}."
-          }
-        ]
-      }
-    },
-    "getTarget": {
-      "type": "function",
-      "name": "getTarget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>target</code>.\n\nFor further details take a look at the property definition: {@link #target}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.ui.form.Form",
-            "desc": "Returns the value for target"
-          }
-        ]
-      }
-    },
-    "setTarget": {
-      "type": "function",
-      "name": "setTarget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>target</code>.\n\nFor further details take a look at the property definition: {@link #target}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.ui.form.Form",
-            "paramName": "value",
-            "desc": "Value for target"
-          }
-        ]
-      }
-    },
-    "resetTarget": {
-      "type": "function",
-      "name": "resetTarget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>target</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #target}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.form.IForm"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 397,
         "column": 2,
-        "index": 12954
+        "index": 12558
       },
       "end": {
         "line": 402,
         "column": 3,
-        "index": 13134
+        "index": 12733
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {}
 }

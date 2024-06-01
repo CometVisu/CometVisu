@@ -1,49 +1,45 @@
 {
-  "className": "qx.ui.core.queue.Widget",
-  "packageName": "qx.ui.core.queue",
-  "name": "Widget",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 864
-      },
-      "end": {
-        "line": 131,
-        "column": 3,
-        "index": 3945
-      }
+  "version": 0.3,
+  "lastModified": 1717235172814,
+  "lastModifiedIso": "2024-06-01T09:46:12.814Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/queue/Widget.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 837
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The widget queue handles the deferred computation of certain widget properties.\n It is used e.g. for the tree to update the indentation of tree nodes.\n This queue calls the method {@link qx.ui.core.Widget#syncWidget} of each\n queued widget before the layout queues are processed.</p>"
-        }
-      ]
+    "end": {
+      "line": 131,
+      "column": 3,
+      "index": 3815
     }
   },
-  "type": "class",
+  "className": "qx.ui.core.queue.Widget",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The widget queue handles the deferred computation of certain widget properties.",
+      " * It is used e.g. for the tree to update the indentation of tree nodes.",
+      " *",
+      " * This queue calls the method {@link qx.ui.core.Widget#syncWidget} of each",
+      " * queued widget before the layout queues are processed.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The widget queue handles the deferred computation of certain widget properties.\n It is used e.g. for the tree to update the indentation of tree nodes.\n This queue calls the method {@link qx.ui.core.Widget#syncWidget} of each\n queued widget before the layout queues are processed.</p>"
+      }
+    ]
+  },
   "statics": {
     "__queue": {
-      "location": {
-        "start": {
-          "line": 31,
-          "column": 4,
-          "index": 1011
-        },
-        "end": {
-          "line": 31,
-          "column": 15,
-          "index": 1022
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Array} This contains all the queued widgets for the next flush. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +53,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__jobs": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 37,
+          "line": 31,
           "column": 4,
-          "index": 1162
+          "index": 981
         },
         "end": {
-          "line": 37,
-          "column": 14,
-          "index": 1172
+          "line": 31,
+          "column": 15,
+          "index": 992
         }
       },
+      "appearsIn": []
+    },
+    "__jobs": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Object} This contains a map of widgets hash ($$hash) and their",
+          "     * corresponding map of jobs.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,23 +89,35 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "remove": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 49,
+          "line": 37,
           "column": 4,
-          "index": 1700
+          "index": 1126
         },
         "end": {
-          "line": 72,
-          "column": 5,
-          "index": 2291
+          "line": 37,
+          "column": 14,
+          "index": 1136
         }
       },
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears given job of a widget from the internal queue. If no jobs left, the",
+          "     * widget will be removed completely from queue. If job param is <code>null</code>",
+          "     * or <code>undefined</code> widget will be removed completely from queue.",
+          "     * Normally only used during interims disposes of one or a few widgets.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} The widget to clear",
+          "     * @param job {String?} Job identifier. If not used, it will be converted to",
+          "     * \"$$default\".",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -128,23 +142,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "add": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 83,
+          "line": 49,
           "column": 4,
-          "index": 2719
+          "index": 1652
         },
         "end": {
-          "line": 101,
+          "line": 72,
           "column": 5,
-          "index": 3187
+          "index": 2220
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "job",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "add": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a widget to the queue. The second param can be used to identify",
+          "     * several jobs. You can add one job at once, which will be returned as",
+          "     * an map at flushing on method {@link qx.ui.core.Widget#syncWidget}.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} The widget to add.",
+          "     * @param job {String?} Job identifier. If not used, it will be converted to",
+          "     * \"$$default\".",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -169,23 +206,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "flush": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 108,
+          "line": 83,
           "column": 4,
-          "index": 3330
+          "index": 2637
         },
         "end": {
-          "line": 129,
+          "line": 101,
           "column": 5,
-          "index": 3935
+          "index": 3087
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        },
+        {
+          "name": "job",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "flush": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flushes the widget queue.",
+          "     *",
+          "     * This is used exclusively by the {@link qx.ui.core.queue.Manager}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -193,9 +249,24 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 3223
+        },
+        "end": {
+          "line": 129,
+          "column": 5,
+          "index": 3807
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

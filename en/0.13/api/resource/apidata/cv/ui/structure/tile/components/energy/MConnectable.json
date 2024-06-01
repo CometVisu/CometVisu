@@ -1,47 +1,52 @@
 {
-  "className": "cv.ui.structure.tile.components.energy.MConnectable",
-  "packageName": "cv.ui.structure.tile.components.energy",
-  "name": "MConnectable",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 924
-      },
-      "end": {
-        "line": 292,
-        "column": 3,
-        "index": 9213
-      }
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/components/energy/MConnectable.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 924
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Mixin for all SVG based components that can be connected to each other.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 2023</div>"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2023"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ]
+    "end": {
+      "line": 292,
+      "column": 3,
+      "index": 9213
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.structure.tile.components.energy.MConnectable",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin for all SVG based components that can be connected to each other.",
+      " * @since 2023",
+      " * @author Tobias Bräutigam",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin for all SVG based components that can be connected to each other.</p>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2023"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 32,
@@ -53,8 +58,7 @@
         "column": 3,
         "index": 1206
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "connectTo": {
@@ -70,12 +74,13 @@
           "index": 1449
         }
       },
-      "name": "connectTo",
-      "propertyType": "new",
-      "apply": "_applyConnectTo",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyConnectTo"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "connectFrom": {
       "location": {
@@ -90,12 +95,13 @@
           "index": 1554
         }
       },
-      "name": "connectFrom",
-      "propertyType": "new",
-      "apply": "_applyConnectFrom",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "apply": "_applyConnectFrom"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "connectionPoints": {
       "location": {
@@ -110,12 +116,13 @@
           "index": 1667
         }
       },
-      "name": "connectionPoints",
-      "propertyType": "new",
-      "apply": "_applyConnectionPoints",
-      "init": "auto",
-      "check": "String",
-      "defaultValue": "auto"
+      "json": {
+        "check": "String",
+        "init": "auto",
+        "apply": "_applyConnectionPoints"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "useConnectionSum": {
       "location": {
@@ -130,16 +137,19 @@
           "index": 1780
         }
       },
-      "name": "useConnectionSum",
-      "propertyType": "new",
-      "apply": "_applyUseConnectionSum",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyUseConnectionSum"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     }
   },
   "members": {
     "_connectorTo": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 75,
@@ -152,10 +162,11 @@
           "index": 1944
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_connectorFrom": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 76,
@@ -168,10 +179,11 @@
           "index": 1970
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_useConnectionsSumAsValue": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 77,
@@ -184,10 +196,29 @@
           "index": 2007
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_connections": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Array<cv.ui.structure.tile.components.energy.PowerEntity>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Array<cv.ui.structure.tile.components.energy.PowerEntity>}"
+          }
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 81,
@@ -200,7 +231,15 @@
           "index": 2120
         }
       },
+      "appearsIn": []
+    },
+    "_inverseConnections": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Array<cv.ui.structure.tile.components.energy.PowerEntity>}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -214,10 +253,7 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_inverseConnections": {
+      "access": "protected",
       "location": {
         "start": {
           "line": 85,
@@ -230,37 +266,16 @@
           "index": 2240
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ],
-        "@type": [
-          {
-            "name": "@type",
-            "body": "{Array<cv.ui.structure.tile.components.energy.PowerEntity>}"
-          }
-        ]
-      },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "addConnection": {
-      "location": {
-        "start": {
-          "line": 92,
-          "column": 4,
-          "index": 2426
-        },
-        "end": {
-          "line": 99,
-          "column": 5,
-          "index": 2679
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an incoming connection from another PowerEntity",
+          "     * @param other {cv.ui.structure.tile.components.energy.PowerEntity} connected from other to this",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -277,23 +292,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addInverseConnection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 106,
+          "line": 92,
           "column": 4,
-          "index": 2973
+          "index": 2426
         },
         "end": {
-          "line": 113,
+          "line": 99,
           "column": 5,
-          "index": 3247
+          "index": 2679
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "other",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addInverseConnection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an incoming inverse connection from another PowerEntity.",
+          "     * Inverse connection means that the sign of the other entity is flipped for summing all values",
+          "     * @param other {cv.ui.structure.tile.components.energy.PowerEntity} connected from other to this",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -310,10 +339,52 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2973
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3247
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "other",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        }
+      ],
+      "appearsIn": []
     },
     "removeConnection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an incoming connection from another PowerEntity",
+          "     * @param other {cv.ui.structure.tile.components.energy.PowerEntity}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Remove an incoming connection from another PowerEntity</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "other {cv.ui.structure.tile.components.energy.PowerEntity}",
+            "paramName": "other",
+            "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 119,
@@ -326,24 +397,39 @@
           "index": 3665
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "other",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeInverseConnection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an incoming inverse connection from another PowerEntity",
+          "     * @param other {cv.ui.structure.tile.components.energy.PowerEntity}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Remove an incoming connection from another PowerEntity</p>"
+            "body": "<p>Remove an incoming inverse connection from another PowerEntity</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "other {cv.ui.structure.tile.components.energy.PowerEntity}"
+            "body": "other {cv.ui.structure.tile.components.energy.PowerEntity}",
+            "paramName": "other",
+            "type": "cv.ui.structure.tile.components.energy.PowerEntity"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeInverseConnection": {
+      "access": "public",
       "location": {
         "start": {
           "line": 132,
@@ -356,24 +442,18 @@
           "index": 4112
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Remove an incoming inverse connection from another PowerEntity</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "other {cv.ui.structure.tile.components.energy.PowerEntity}"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "other",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyUseConnectionSum": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 141,
@@ -387,12 +467,16 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "useConnectionSum"
-      ]
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "_updateConnectionsSum": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 156,
@@ -406,9 +490,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_updateDirection": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 167,
@@ -422,9 +509,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_applyConnectTo": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 183,
@@ -438,12 +528,16 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "connectTo"
-      ]
+      "params": [
+        {
+          "name": "targetId"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyConnectFrom": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 206,
@@ -457,25 +551,24 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "connectFrom"
-      ]
+      "params": [
+        {
+          "name": "sourceId"
+        }
+      ],
+      "appearsIn": []
     },
     "_initConnection": {
-      "location": {
-        "start": {
-          "line": 231,
-          "column": 4,
-          "index": 7263
-        },
-        "end": {
-          "line": 244,
-          "column": 5,
-          "index": 8000
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @param source {cv.ui.structure.tile.components.energy.PowerEntity}",
+          "     * @param target {cv.ui.structure.tile.components.energy.PowerEntity}",
+          "     * @returns {cv.ui.structure.tile.components.svg.Connector}",
+          "     * @private",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -485,11 +578,15 @@
         "@param": [
           {
             "name": "@param",
-            "body": "source {cv.ui.structure.tile.components.energy.PowerEntity}"
+            "body": "source {cv.ui.structure.tile.components.energy.PowerEntity}",
+            "paramName": "source",
+            "type": "cv.ui.structure.tile.components.energy.PowerEntity"
           },
           {
             "name": "@param",
-            "body": "target {cv.ui.structure.tile.components.energy.PowerEntity}"
+            "body": "target {cv.ui.structure.tile.components.energy.PowerEntity}",
+            "paramName": "target",
+            "type": "cv.ui.structure.tile.components.energy.PowerEntity"
           }
         ],
         "@return": [
@@ -507,10 +604,38 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4,
+          "index": 7263
+        },
+        "end": {
+          "line": 244,
+          "column": 5,
+          "index": 8000
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "source",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        },
+        {
+          "name": "target",
+          "type": "cv.ui.structure.tile.components.energy.PowerEntity"
+        }
+      ],
+      "returnType": {
+        "type": "cv.ui.structure.tile.components.svg.Connector"
+      },
+      "appearsIn": []
     },
     "_applyConnectionPoints": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 246,
@@ -524,301 +649,17 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "connectionPoints"
-      ]
-    },
-    "getConnectTo": {
-      "type": "function",
-      "name": "getConnectTo",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>connectTo</code>.\n\nFor further details take a look at the property definition: {@link #connectTo}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for connectTo"
-          }
-        ]
-      }
-    },
-    "setConnectTo": {
-      "type": "function",
-      "name": "setConnectTo",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>connectTo</code>.\n\nFor further details take a look at the property definition: {@link #connectTo}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for connectTo"
-          }
-        ]
-      }
-    },
-    "resetConnectTo": {
-      "type": "function",
-      "name": "resetConnectTo",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>connectTo</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #connectTo}."
-          }
-        ]
-      }
-    },
-    "getConnectFrom": {
-      "type": "function",
-      "name": "getConnectFrom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>connectFrom</code>.\n\nFor further details take a look at the property definition: {@link #connectFrom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for connectFrom"
-          }
-        ]
-      }
-    },
-    "setConnectFrom": {
-      "type": "function",
-      "name": "setConnectFrom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>connectFrom</code>.\n\nFor further details take a look at the property definition: {@link #connectFrom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for connectFrom"
-          }
-        ]
-      }
-    },
-    "resetConnectFrom": {
-      "type": "function",
-      "name": "resetConnectFrom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>connectFrom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #connectFrom}."
-          }
-        ]
-      }
-    },
-    "getConnectionPoints": {
-      "type": "function",
-      "name": "getConnectionPoints",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>connectionPoints</code>.\n\nFor further details take a look at the property definition: {@link #connectionPoints}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for connectionPoints"
-          }
-        ]
-      }
-    },
-    "setConnectionPoints": {
-      "type": "function",
-      "name": "setConnectionPoints",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>connectionPoints</code>.\n\nFor further details take a look at the property definition: {@link #connectionPoints}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for connectionPoints"
-          }
-        ]
-      }
-    },
-    "resetConnectionPoints": {
-      "type": "function",
-      "name": "resetConnectionPoints",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>connectionPoints</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #connectionPoints}."
-          }
-        ]
-      }
-    },
-    "getUseConnectionSum": {
-      "type": "function",
-      "name": "getUseConnectionSum",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>useConnectionSum</code>.\n\nFor further details take a look at the property definition: {@link #useConnectionSum}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for useConnectionSum"
-          }
-        ]
-      }
-    },
-    "isUseConnectionSum": {
-      "type": "function",
-      "name": "isUseConnectionSum",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>useConnectionSum</code>.\n\nFor further details take a look at the property definition: {@link #useConnectionSum}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for useConnectionSum"
-          }
-        ]
-      }
-    },
-    "setUseConnectionSum": {
-      "type": "function",
-      "name": "setUseConnectionSum",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>useConnectionSum</code>.\n\nFor further details take a look at the property definition: {@link #useConnectionSum}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for useConnectionSum"
-          }
-        ]
-      }
-    },
-    "resetUseConnectionSum": {
-      "type": "function",
-      "name": "resetUseConnectionSum",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>useConnectionSum</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #useConnectionSum}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 278,
@@ -830,8 +671,7 @@
         "column": 3,
         "index": 9209
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {}
 }

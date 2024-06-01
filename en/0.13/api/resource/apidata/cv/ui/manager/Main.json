@@ -1,61 +1,70 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235105606,
+  "lastModifiedIso": "2024-06-01T09:45:05.606Z",
+  "classFilename": "../../source/class/cv/ui/manager/Main.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 933
+    },
+    "end": {
+      "line": 1201,
+      "column": 3,
+      "index": 40315
+    }
+  },
   "className": "cv.ui.manager.Main",
-  "packageName": "cv.ui.manager",
-  "name": "Main",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Main class of the CometVisu file manager.",
+      " * @author Tobias Bräutigam",
+      " * @since 0.12.0",
+      " *",
+      " * @asset(manager/*)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Main class of the CometVisu file manager.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.12.0"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "manager/*"
+      }
+    ]
+  },
   "superClass": "qx.core.Object",
+  "isSingleton": true,
+  "abstract": false,
+  "mixins": [
+    "cv.ui.manager.control.MFileEventHandler"
+  ],
   "interfaces": [
     "cv.ui.manager.IActionHandler",
     "cv.ui.manager.control.IFileEventHandler"
   ],
-  "mixins": [
-    "cv.ui.manager.control.MFileEventHandler"
-  ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 933
-      },
-      "end": {
-        "line": 1201,
-        "column": 3,
-        "index": 40315
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Main class of the CometVisu file manager.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 0.12.0</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "0.12.0"
-        }
-      ],
-      "@asset": [
-        {
-          "name": "@asset",
-          "body": "manager/*"
-        }
-      ]
-    }
-  },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": false,
-  "isSingleton": true,
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 39,
@@ -67,11 +76,12 @@
         "column": 3,
         "index": 1969
       }
-    },
-    "jsdoc": {}
+    }
   },
   "statics": {
     "ROOT": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 67,
@@ -84,8 +94,7 @@
           "index": 2121
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
   "properties": {
@@ -102,9 +111,12 @@
           "index": 2346
         }
       },
-      "name": "openFiles",
-      "propertyType": "new",
-      "check": "qx.data.Array"
+      "json": {
+        "check": "qx.data.Array",
+        "deferredInit": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "writeableFolder": {
       "location": {
@@ -119,7 +131,17 @@
           "index": 2560
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeWriteableFolder"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Current selected folder (if a file is selected its parent folder) is writeable.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -127,12 +149,7 @@
           }
         ]
       },
-      "name": "writeableFolder",
-      "propertyType": "new",
-      "event": "changeWriteableFolder",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     },
     "currentFolder": {
       "location": {
@@ -147,13 +164,14 @@
           "index": 2727
         }
       },
-      "name": "currentFolder",
-      "propertyType": "new",
-      "event": "changeCurrentFolder",
-      "apply": "_applyCurrentFolder",
-      "nullable": true,
-      "allowNull": true,
-      "check": "cv.ui.manager.model.FileItem"
+      "json": {
+        "check": "cv.ui.manager.model.FileItem",
+        "nullable": true,
+        "apply": "_applyCurrentFolder",
+        "event": "changeCurrentFolder"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "currentSelection": {
       "location": {
@@ -168,13 +186,14 @@
           "index": 2903
         }
       },
-      "name": "currentSelection",
-      "propertyType": "new",
-      "event": "changeCurrentSelection",
-      "apply": "_applyCurrentSelection",
-      "nullable": true,
-      "allowNull": true,
-      "check": "cv.ui.manager.model.FileItem"
+      "json": {
+        "check": "cv.ui.manager.model.FileItem",
+        "nullable": true,
+        "apply": "_applyCurrentSelection",
+        "event": "changeCurrentSelection"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "deleteableSelection": {
       "location": {
@@ -189,12 +208,13 @@
           "index": 3022
         }
       },
-      "name": "deleteableSelection",
-      "propertyType": "new",
-      "event": "changeDeleteableSelection",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeDeleteableSelection"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "renameableSelection": {
       "location": {
@@ -209,12 +229,13 @@
           "index": 3141
         }
       },
-      "name": "renameableSelection",
-      "propertyType": "new",
-      "event": "changeRenameableSelection",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRenameableSelection"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "visible": {
       "location": {
@@ -229,49 +250,20 @@
           "index": 3265
         }
       },
-      "name": "visible",
-      "propertyType": "new",
-      "event": "changeVisible",
-      "apply": "_applyVisible",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "event": "changeVisible",
+        "apply": "_applyVisible"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     }
   },
   "members": {
     "__previewFileIndex": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 130,
@@ -284,10 +276,11 @@
           "index": 3435
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__root": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 131,
@@ -300,10 +293,11 @@
           "index": 3453
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_pane": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 132,
@@ -316,10 +310,11 @@
           "index": 3470
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_tree": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 133,
@@ -332,10 +327,11 @@
           "index": 3487
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_stack": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 134,
@@ -348,10 +344,11 @@
           "index": 3505
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_oldCommandGroup": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 135,
@@ -364,10 +361,11 @@
           "index": 3533
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_managerCommands": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 136,
@@ -380,10 +378,11 @@
           "index": 3561
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_mainContent": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 137,
@@ -396,10 +395,11 @@
           "index": 3585
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_openFilesController": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 138,
@@ -412,10 +412,11 @@
           "index": 3617
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_hiddenConfigFakeFile": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 139,
@@ -428,10 +429,11 @@
           "index": 3650
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "__actionDispatcher": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 140,
@@ -444,10 +446,11 @@
           "index": 3680
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_applyVisible": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 142,
@@ -461,12 +464,16 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "visible"
-      ]
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "_checkEnvironment": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 153,
@@ -480,9 +487,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "canHandleAction": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 206,
@@ -496,24 +506,18 @@
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.IActionHandler",
+      "params": [
+        {
+          "name": "actionName"
+        }
+      ],
       "appearsIn": [
         "cv.ui.manager.IActionHandler"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "actionName {String} action name",
-            "paramName": "actionName",
-            "description": " action name",
-            "type": "String"
-          }
-        ]
-      }
+      ]
     },
     "_doClose": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 227,
@@ -527,9 +531,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "handleAction": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 237,
@@ -543,31 +550,21 @@
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.IActionHandler",
+      "params": [
+        {
+          "name": "actionName"
+        },
+        {
+          "name": "data"
+        }
+      ],
       "appearsIn": [
         "cv.ui.manager.IActionHandler"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "actionName {String} action name",
-            "paramName": "actionName",
-            "description": " action name",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "data {var} action payload",
-            "paramName": "data",
-            "description": " action payload",
-            "type": "var"
-          }
-        ]
-      }
+      ]
     },
     "_onBeforeUnload": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 370,
@@ -581,9 +578,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "configureButton": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 381,
@@ -597,31 +601,18 @@
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.IActionHandler",
+      "params": [
+        {
+          "name": "button"
+        }
+      ],
       "appearsIn": [
         "cv.ui.manager.IActionHandler"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "actionId {String} ID of the action that button triggers",
-            "paramName": "actionId",
-            "description": " ID of the action that button triggers",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "button {Widget} the button that should be configured",
-            "paramName": "button",
-            "description": " the button that should be configured",
-            "type": "Widget"
-          }
-        ]
-      }
+      ]
     },
     "unConfigureButton": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 382,
@@ -635,28 +626,18 @@
         }
       },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.IActionHandler",
+      "params": [
+        {
+          "name": "button"
+        }
+      ],
       "appearsIn": [
         "cv.ui.manager.IActionHandler"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "actionId {String} ID of the action that button triggers",
-            "paramName": "actionId",
-            "description": " ID of the action that button triggers",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "button {Widget}"
-          }
-        ]
-      }
+      ]
     },
     "_handleFileEvent": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 384,
@@ -670,13 +651,18 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "overriddenFrom": "cv.ui.manager.control.IFileEventHandler",
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
       "appearsIn": [
         "cv.ui.manager.control.IFileEventHandler"
       ]
     },
     "__findConfigFile": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 404,
@@ -690,9 +676,16 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
     },
     "_onManagerEvent": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 432,
@@ -706,22 +699,22 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "_onChangeTreeSelection": {
-      "location": {
-        "start": {
-          "line": 463,
-          "column": 4,
-          "index": 14355
-        },
-        "end": {
-          "line": 483,
-          "column": 5,
-          "index": 14988
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * open selected file in preview mode",
+          "     * @param ev",
+          "     * @private",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -743,10 +736,30 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 463,
+          "column": 4,
+          "index": 14355
+        },
+        "end": {
+          "line": 483,
+          "column": 5,
+          "index": 14988
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "__openSelectedFile": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 485,
@@ -760,9 +773,19 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "node"
+        },
+        {
+          "name": "mode"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyCurrentFolder": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 496,
@@ -776,12 +799,19 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "currentFolder"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyCurrentSelection": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 507,
@@ -795,12 +825,19 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "currentSelection"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_onChangeFileSelection": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 523,
@@ -814,22 +851,20 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "openFile": {
-      "location": {
-        "start": {
-          "line": 561,
-          "column": 4,
-          "index": 17645
-        },
-        "end": {
-          "line": 625,
-          "column": 5,
-          "index": 20018
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param file {cv.ui.manager.model.FileItem} the file to open",
+          "     * @param preview {Boolean} open the file in preview mode",
+          "     * @param handlerId {String} use this handler to open the file (classname as string)",
+          "     * @param handlerType {String} use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer",
+          "     * @param handlerOptions",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -849,21 +884,21 @@
             "body": "preview {Boolean} open the file in preview mode",
             "paramName": "preview",
             "description": " open the file in preview mode",
-            "type": "Boolean"
+            "type": "boolean"
           },
           {
             "name": "@param",
             "body": "handlerId {String} use this handler to open the file (classname as string)",
             "paramName": "handlerId",
             "description": " use this handler to open the file (classname as string)",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "handlerType {String} use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer",
             "paramName": "handlerType",
             "description": " use a special handler type, e.g. 'edit' if you want to open the file with an editor and not a viewer",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -873,23 +908,52 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "checkUnsavedChanged": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 632,
+          "line": 561,
           "column": 4,
-          "index": 20322
+          "index": 17645
         },
         "end": {
-          "line": 691,
+          "line": 625,
           "column": 5,
-          "index": 22321
+          "index": 20018
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "file",
+          "type": "cv.ui.manager.model.FileItem"
+        },
+        {
+          "name": "preview",
+          "type": "boolean"
+        },
+        {
+          "name": "handlerId",
+          "type": "string"
+        },
+        {
+          "name": "handlerType",
+          "type": "string"
+        },
+        {
+          "name": "handlerOptions"
+        }
+      ],
+      "appearsIn": []
+    },
+    "checkUnsavedChanged": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opens a confirm dialog on how to treat the unsaved changes in the file if it has been modified and not saved.",
+          "     * @param openFile {cv.ui.manager.model.OpenFile|cv.ui.manager.model.FileItem} file to check",
+          "     * @return {boolean} true if the confirm dialog has been shown",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -913,14 +977,41 @@
             "name": "@return",
             "body": "{boolean} true if the confirm dialog has been shown",
             "type": "boolean",
-            "description": " true if the confirm dialog has been shown"
+            "description": "true if the confirm dialog has been shown"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 632,
+          "column": 4,
+          "index": 20322
+        },
+        "end": {
+          "line": 691,
+          "column": 5,
+          "index": 22321
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "openFile",
+          "type": [
+            "cv.ui.manager.model.OpenFile",
+            "cv.ui.manager.model.FileItem"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     },
     "closeFile": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 693,
@@ -934,9 +1025,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "openFile"
+        },
+        {
+          "name": "force"
+        }
+      ],
+      "appearsIn": []
     },
     "closeCurrentFile": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 767,
@@ -950,9 +1051,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "_onCloseFile": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 777,
@@ -966,9 +1070,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "__getRoot": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 781,
@@ -982,9 +1093,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "__initCommands": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 794,
@@ -998,9 +1112,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "_onDelete": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 826,
@@ -1014,9 +1131,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "file"
+        }
+      ],
+      "appearsIn": []
     },
     "_onChangeStackSelection": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 833,
@@ -1030,9 +1154,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "__getFileNamePrompt": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 851,
@@ -1046,9 +1177,28 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "message"
+        },
+        {
+          "name": "callback"
+        },
+        {
+          "name": "context"
+        },
+        {
+          "name": "value"
+        },
+        {
+          "name": "caption"
+        }
+      ],
+      "appearsIn": []
     },
     "_onCreate": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 865,
@@ -1062,22 +1212,37 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "type"
+        },
+        {
+          "name": "content"
+        },
+        {
+          "name": "folder"
+        },
+        {
+          "name": "handlerId"
+        },
+        {
+          "name": "suggestedName"
+        }
+      ],
+      "appearsIn": []
     },
     "__findDroppable": {
-      "location": {
-        "start": {
-          "line": 975,
-          "column": 4,
-          "index": 32347
-        },
-        "end": {
-          "line": 985,
-          "column": 5,
-          "index": 32571
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds next droppable parent of the given element. Maybe the element itself as well.",
+          "     *",
+          "     * Looks for the attribute <code>qxDroppable</code> with the value <code>on</code>.",
+          "     *",
+          "     * @param elem {Element} The element to query",
+          "     * @return {Element} The next parent element which is droppable. May also be <code>null</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1098,14 +1263,42 @@
             "name": "@return",
             "body": "{Element} The next parent element which is droppable. May also be <code>null</code>",
             "type": "Element",
-            "description": " The next parent element which is droppable. May also be <code>null</code>"
+            "description": "The next parent element which is droppable. May also be <code>null</code>"
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 975,
+          "column": 4,
+          "index": 32347
+        },
+        "end": {
+          "line": 985,
+          "column": 5,
+          "index": 32571
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "elem",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
     },
     "_draw": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 988,
@@ -1118,11 +1311,13 @@
           "index": 38120
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_showAbout": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 1143,
@@ -1136,3878 +1331,33 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
-    "bind": {
-      "type": "function",
-      "name": "bind",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.MBinding",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The bind method delegates the call to the\n {@link qx.data.SingleValueBinding#bind} function. As source, the current\n object (this) will be used.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "sourcePropertyChain {String} The property chain which represents\n   the source property.",
-            "paramName": "sourcePropertyChain",
-            "description": " The property chain which represents\n   the source property.",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "targetObject {qx.core.Object} The object which the source should\n   be bind to.",
-            "paramName": "targetObject",
-            "description": " The object which the source should\n   be bind to.",
-            "type": "qx.core.Object"
-          },
-          {
-            "name": "@param",
-            "body": "targetProperty {String?\"value\"} The property name of the target object,\n   defaults to \"value\".",
-            "paramName": "targetProperty",
-            "description": " The property name of the target object,\n   defaults to \"value\".",
-            "optional": true,
-            "defaultValue": "\"value\"",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "options {Map?null} A map containing the options. See\n   {@link qx.data.SingleValueBinding#bind} for more\n   information.",
-            "paramName": "options",
-            "description": " A map containing the options. See\n   {@link qx.data.SingleValueBinding#bind} for more\n   information.",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "Map"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var} Returns the internal id for that binding. This can be used\n   for referencing the binding e.g. for removing. This is not an atomic\n   id so you can't you use it as a hash-map index.",
-            "type": "var",
-            "description": " Returns the internal id for that binding. This can be used\n   for referencing the binding e.g. for removing. This is not an atomic\n   id so you can't you use it as a hash-map index."
-          }
-        ],
-        "@throws": [
-          {
-            "name": "@throws",
-            "body": "{qx.core.AssertionError} If the event is no data event or\n   there is no property definition for object and property (source and\n   target).",
-            "type": "qx.core.AssertionError",
-            "description": " If the event is no data event or\n   there is no property definition for object and property (source and\n   target)."
-          }
-        ]
-      }
-    },
-    "removeBinding": {
-      "type": "function",
-      "name": "removeBinding",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.MBinding",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Removes the binding with the given id from the current object. The\n id has to be the id returned by any of the bind functions.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "id {var} The id of the binding.",
-            "paramName": "id",
-            "description": " The id of the binding.",
-            "type": "var"
-          }
-        ],
-        "@throws": [
-          {
-            "name": "@throws",
-            "body": "{Error} If the binding could not be found.",
-            "type": "Error",
-            "description": " If the binding could not be found."
-          }
-        ]
-      }
-    },
-    "removeRelatedBindings": {
-      "type": "function",
-      "name": "removeRelatedBindings",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.MBinding",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Removes all bindings between the object and the related one.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "relatedObject {qx.core.Object} The object of which related\n   bindings should be removed.",
-            "paramName": "relatedObject",
-            "description": " The object of which related\n   bindings should be removed.",
-            "type": "qx.core.Object"
-          }
-        ],
-        "@throws": [
-          {
-            "name": "@throws",
-            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
-            "type": "Error",
-            "description": " If one of the bindings listed internally can not be\n   removed."
-          }
-        ]
-      }
-    },
-    "removeAllBindings": {
-      "type": "function",
-      "name": "removeAllBindings",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.MBinding",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Removes all bindings from the object.</p>"
-          }
-        ],
-        "@throws": [
-          {
-            "name": "@throws",
-            "body": "{qx.core.AssertionError} If the object is not in the internal\n   registry of the bindings.",
-            "type": "qx.core.AssertionError",
-            "description": " If the object is not in the internal\n   registry of the bindings."
-          },
-          {
-            "name": "@throws",
-            "body": "{Error} If one of the bindings listed internally can not be\n   removed.",
-            "type": "Error",
-            "description": " If one of the bindings listed internally can not be\n   removed."
-          }
-        ]
-      }
-    },
-    "getBindings": {
-      "type": "function",
-      "name": "getBindings",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.data.MBinding",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns an array which lists all bindings for the object.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Array} An array of binding informations. Every binding\n   information is an array itself containing id, sourceObject, sourceEvent,\n   targetObject and targetProperty in that order.",
-            "type": "qx.data.Array",
-            "description": " An array of binding informations. Every binding\n   information is an array itself containing id, sourceObject, sourceEvent,\n   targetObject and targetProperty in that order."
-          }
-        ]
-      }
-    },
-    "__Logger": {
-      "type": "function",
-      "name": "__Logger",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.core.MLogging",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ],
-        "@type": [
-          {
-            "name": "@type",
-            "body": "{Class} Pointer to the regular logger class"
-          }
-        ]
-      }
-    },
-    "debug": {
-      "type": "function",
-      "name": "debug",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MLogging",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Logs a debug message.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "varargs {var} The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
-            "paramName": "varargs",
-            "description": " The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
-            "type": "var"
-          }
-        ]
-      }
-    },
-    "info": {
-      "type": "function",
-      "name": "info",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MLogging",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Logs an info message.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "varargs {var} The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
-            "paramName": "varargs",
-            "description": " The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
-            "type": "var"
-          }
-        ]
-      }
-    },
-    "warn": {
-      "type": "function",
-      "name": "warn",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MLogging",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Logs a warning message.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "varargs {var} The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
-            "paramName": "varargs",
-            "description": " The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
-            "type": "var"
-          }
-        ]
-      }
-    },
-    "error": {
-      "type": "function",
-      "name": "error",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MLogging",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Logs an error message.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "varargs {var} The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
-            "paramName": "varargs",
-            "description": " The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
-            "type": "var"
-          }
-        ]
-      }
-    },
-    "trace": {
-      "type": "function",
-      "name": "trace",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MLogging",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Logs an error message with the current stack trace</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "varargs {var} The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
-            "paramName": "varargs",
-            "description": " The item(s) to log. Any number of arguments is\n supported. If an argument is not a string, the object dump will be\n logged.",
-            "type": "var"
-          }
-        ]
-      }
-    },
-    "__logMessage": {
-      "type": "function",
-      "name": "__logMessage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.core.MLogging",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Helper that calls the appropriate logger function with the current object\n and any number of items.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "level {String} The log level of the message",
-            "paramName": "level",
-            "description": " The log level of the message",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "varargs {arguments} Arguments list to be logged",
-            "paramName": "varargs",
-            "description": " Arguments list to be logged",
-            "type": "arguments"
-          }
-        ]
-      }
-    },
-    "__Registration": {
-      "type": "function",
-      "name": "__Registration",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ],
-        "@type": [
-          {
-            "name": "@type",
-            "body": "{Class} Pointer to the regular event registration class"
-          }
-        ]
-      }
-    },
-    "addListener": {
-      "type": "function",
-      "name": "addListener",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Add event listener to this object.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "type {String} name of the event type",
-            "paramName": "type",
-            "description": " name of the event type",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "listener {Function} event callback function",
-            "paramName": "listener",
-            "description": " event callback function",
-            "type": "Function"
-          },
-          {
-            "name": "@param",
-            "body": "self {Object ? null} Reference to the 'this' variable inside\n         the event listener. When not given, the corresponding dispatcher\n         usually falls back to a default, which is the target\n         by convention. Note this is not a strict requirement, i.e.\n         custom dispatchers can follow a different strategy.",
-            "paramName": "self",
-            "description": " Reference to the 'this' variable inside\n         the event listener. When not given, the corresponding dispatcher\n         usually falls back to a default, which is the target\n         by convention. Note this is not a strict requirement, i.e.\n         custom dispatchers can follow a different strategy.",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "Object"
-          },
-          {
-            "name": "@param",
-            "body": "capture {Boolean ? false} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
-            "paramName": "capture",
-            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
-            "optional": true,
-            "defaultValue": "false",
-            "type": "Boolean"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method.",
-            "type": "String",
-            "description": " An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
-          }
-        ]
-      }
-    },
-    "addListenerOnce": {
-      "type": "function",
-      "name": "addListenerOnce",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Add event listener to this object, which is only called once. After the\n listener is called the event listener gets removed.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "type {String} name of the event type",
-            "paramName": "type",
-            "description": " name of the event type",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "listener {Function} event callback function",
-            "paramName": "listener",
-            "description": " event callback function",
-            "type": "Function"
-          },
-          {
-            "name": "@param",
-            "body": "context {Object ? window} reference to the 'this' variable inside the callback",
-            "paramName": "context",
-            "description": " reference to the 'this' variable inside the callback",
-            "optional": true,
-            "defaultValue": "window",
-            "type": "Object"
-          },
-          {
-            "name": "@param",
-            "body": "capture {Boolean ? false} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
-            "paramName": "capture",
-            "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event. The default is\n         to attach the event handler to the bubbling phase.",
-            "optional": true,
-            "defaultValue": "false",
-            "type": "Boolean"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method.",
-            "type": "String",
-            "description": " An opaque id, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
-          }
-        ]
-      }
-    },
-    "removeListener": {
-      "type": "function",
-      "name": "removeListener",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Remove event listener from this object</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "type {String} name of the event type",
-            "paramName": "type",
-            "description": " name of the event type",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "listener {Function} event callback function",
-            "paramName": "listener",
-            "description": " event callback function",
-            "type": "Function"
-          },
-          {
-            "name": "@param",
-            "body": "self {Object ? null} reference to the 'this' variable inside the callback",
-            "paramName": "self",
-            "description": " reference to the 'this' variable inside the callback",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "Object"
-          },
-          {
-            "name": "@param",
-            "body": "capture {Boolean} Whether to remove the event listener of\n   the bubbling or of the capturing phase.",
-            "paramName": "capture",
-            "description": " Whether to remove the event listener of\n   the bubbling or of the capturing phase.",
-            "type": "Boolean"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} Whether the event was removed successfully (has existed)",
-            "type": "Boolean",
-            "description": " Whether the event was removed successfully (has existed)"
-          }
-        ]
-      }
-    },
-    "removeListenerById": {
-      "type": "function",
-      "name": "removeListenerById",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Removes an event listener from an event target by an id returned by\n {@link #addListener}</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "id {String} The id returned by {@link #addListener}",
-            "paramName": "id",
-            "description": " The id returned by {@link #addListener}",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} Whether the event was removed successfully (has existed)",
-            "type": "Boolean",
-            "description": " Whether the event was removed successfully (has existed)"
-          }
-        ]
-      }
-    },
-    "hasListener": {
-      "type": "function",
-      "name": "hasListener",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Check if there are one or more listeners for an event type.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "type {String} name of the event type",
-            "paramName": "type",
-            "description": " name of the event type",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "capture {Boolean ? false} Whether to check for listeners of\n         the bubbling or of the capturing phase.",
-            "paramName": "capture",
-            "description": " Whether to check for listeners of\n         the bubbling or of the capturing phase.",
-            "optional": true,
-            "defaultValue": "false",
-            "type": "Boolean"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} Whether the object has a listener of the given type.",
-            "type": "Boolean",
-            "description": " Whether the object has a listener of the given type."
-          }
-        ]
-      }
-    },
-    "dispatchEvent": {
-      "type": "function",
-      "name": "dispatchEvent",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Dispatch an event on this object</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "evt {qx.event.type.Event} event to dispatch",
-            "paramName": "evt",
-            "description": " event to dispatch",
-            "type": "qx.event.type.Event"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
-            "type": "Boolean",
-            "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
-          }
-        ]
-      }
-    },
-    "__trackPendingEvent": {
-      "type": "function",
-      "name": "__trackPendingEvent",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Internal helper method to track promises returned from event handlers</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "{var} result the result from the event handler",
-            "paramName": "result",
-            "description": "the result from the event handler",
-            "type": "var"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.Promise|var} the value to return",
-            "type": "qx.Promise|var",
-            "description": " the value to return"
-          }
-        ]
-      }
-    },
-    "waitForPendingEvents": {
-      "type": "function",
-      "name": "waitForPendingEvents",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Waits for all pending events to be resolved</p>"
-          }
-        ]
-      }
-    },
-    "fireEvent": {
-      "type": "function",
-      "name": "fireEvent",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Creates and dispatches an event on this object.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "type {String} Event type to fire",
-            "paramName": "type",
-            "description": " Event type to fire",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "clazz {Class?qx.event.type.Event} The event class",
-            "paramName": "clazz",
-            "description": " The event class",
-            "optional": true,
-            "defaultValue": "qx.event.type.Event",
-            "type": "Class"
-          },
-          {
-            "name": "@param",
-            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
-            "paramName": "args",
-            "description": " Arguments, which will be passed to\n       the event's init method.",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "Array"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
-            "type": "Boolean|qx.Promise",
-            "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
-          }
-        ]
-      }
-    },
-    "fireEventAsync": {
-      "type": "function",
-      "name": "fireEventAsync",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Creates and dispatches an event on this object; equivalent to fireEvent, except that it\n always returns a promise</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "type {String} Event type to fire",
-            "paramName": "type",
-            "description": " Event type to fire",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "clazz {Class?qx.event.type.Event} The event class",
-            "paramName": "clazz",
-            "description": " The event class",
-            "optional": true,
-            "defaultValue": "qx.event.type.Event",
-            "type": "Class"
-          },
-          {
-            "name": "@param",
-            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
-            "paramName": "args",
-            "description": " Arguments, which will be passed to\n       the event's init method.",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "Array"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
-            "type": "qx.Promise",
-            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
-          }
-        ]
-      }
-    },
-    "fireNonBubblingEvent": {
-      "type": "function",
-      "name": "fireNonBubblingEvent",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Create an event object and dispatch it on this object.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "type {String} Event type to fire",
-            "paramName": "type",
-            "description": " Event type to fire",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "clazz {Class?qx.event.type.Event} The event class",
-            "paramName": "clazz",
-            "description": " The event class",
-            "optional": true,
-            "defaultValue": "qx.event.type.Event",
-            "type": "Class"
-          },
-          {
-            "name": "@param",
-            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
-            "paramName": "args",
-            "description": " Arguments, which will be passed to\n       the event's init method.",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "Array"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
-            "type": "Boolean",
-            "description": " Whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
-          }
-        ]
-      }
-    },
-    "fireNonBubblingEventAsync": {
-      "type": "function",
-      "name": "fireNonBubblingEventAsync",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Create an event object and dispatch it on this object; equivalent to fireNonBubblingEvent,\n except that it always returns a promise.\n The event dispatched with this method does never bubble! Use only if you\n are sure that bubbling is not required.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "type {String} Event type to fire",
-            "paramName": "type",
-            "description": " Event type to fire",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "clazz {Class?qx.event.type.Event} The event class",
-            "paramName": "clazz",
-            "description": " The event class",
-            "optional": true,
-            "defaultValue": "qx.event.type.Event",
-            "type": "Class"
-          },
-          {
-            "name": "@param",
-            "body": "args {Array?null} Arguments, which will be passed to\n       the event's init method.",
-            "paramName": "args",
-            "description": " Arguments, which will be passed to\n       the event's init method.",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "Array"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
-            "type": "qx.Promise",
-            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
-          }
-        ]
-      }
-    },
-    "fireDataEvent": {
-      "type": "function",
-      "name": "fireDataEvent",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Creates and dispatches an non-bubbling data event on this object.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "type {String} Event type to fire",
-            "paramName": "type",
-            "description": " Event type to fire",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "data {var} User defined data attached to the event object",
-            "paramName": "data",
-            "description": " User defined data attached to the event object",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "oldData {var?null} The event's old data (optional)",
-            "paramName": "oldData",
-            "description": " The event's old data (optional)",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
-            "paramName": "cancelable",
-            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
-            "optional": true,
-            "defaultValue": "false",
-            "type": "Boolean"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
-            "type": "Boolean|qx.Promise",
-            "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
-          }
-        ]
-      }
-    },
-    "fireDataEventAsync": {
-      "type": "function",
-      "name": "fireDataEventAsync",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MEvent",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Creates and dispatches an non-bubbling data event on this object; equivalent to\n fireEvent, except that it always returns a promise.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "type {String} Event type to fire",
-            "paramName": "type",
-            "description": " Event type to fire",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "data {var} User defined data attached to the event object",
-            "paramName": "data",
-            "description": " User defined data attached to the event object",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "oldData {var?null} The event's old data (optional)",
-            "paramName": "oldData",
-            "description": " The event's old data (optional)",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "cancelable {Boolean?false} Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
-            "paramName": "cancelable",
-            "description": " Whether or not an event can have its default\n     action prevented. The default action can either be the browser's\n     default action of a native event (e.g. open the context menu on a\n     right click) or the default action of a qooxdoo class (e.g. close\n     the window widget). The default action can be prevented by calling\n     {@link qx.event.type.Event#preventDefault}",
-            "optional": true,
-            "defaultValue": "false",
-            "type": "Boolean"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.Promise} a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected",
-            "type": "qx.Promise",
-            "description": " a promise aggregated from the event handlers;\n  if the default was prevented, the promise is rejected"
-          }
-        ]
-      }
-    },
-    "set": {
-      "type": "function",
-      "name": "set",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MProperty",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Sets either multiple properties at once by using a property list or\n sets one property and its value by the first and second argument.\n As a fallback, if no generated property setter could be found, a\n handwritten setter will be searched and invoked if available.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "data {Object | String} a map of property values. The key is the name of the property.",
-            "paramName": "data",
-            "description": " a map of property values. The key is the name of the property.",
-            "type": [
-              "Object",
-              "String"
-            ]
-          },
-          {
-            "name": "@param",
-            "body": "value {var?} the value, only used when <code>data</code> is a string.",
-            "paramName": "value",
-            "description": " the value, only used when <code>data</code> is a string.",
-            "optional": true,
-            "type": "var"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Object} Returns this instance if <code>data</code> is a map\n   or a non-generated setter is called; otherwise returns <code>value</code>.",
-            "type": "qx.core.Object",
-            "description": " Returns this instance if <code>data</code> is a map\n   or a non-generated setter is called; otherwise returns <code>value</code>."
-          }
-        ],
-        "@throws": [
-          {
-            "name": "@throws",
-            "body": "{Error} if a property defined does not exist",
-            "type": "Error",
-            "description": " if a property defined does not exist"
-          }
-        ]
-      }
-    },
-    "get": {
-      "type": "function",
-      "name": "get",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MProperty",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns the value of the given property. If no generated getter could be\n found, a fallback tries to access a handwritten getter.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "prop {String} Name of the property.",
-            "paramName": "prop",
-            "description": " Name of the property.",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var} The value of the value",
-            "type": "var",
-            "description": " The value of the value"
-          }
-        ],
-        "@throws": [
-          {
-            "name": "@throws",
-            "body": "{Error} if a property defined does not exist",
-            "type": "Error",
-            "description": " if a property defined does not exist"
-          }
-        ]
-      }
-    },
-    "reset": {
-      "type": "function",
-      "name": "reset",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MProperty",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Resets the value of the given property. If no generated resetter could be\n found, a handwritten resetter will be invoked, if available.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "prop {String} Name of the property.",
-            "paramName": "prop",
-            "description": " Name of the property.",
-            "type": "String"
-          }
-        ],
-        "@throws": [
-          {
-            "name": "@throws",
-            "body": "{Error} if a property defined does not exist",
-            "type": "Error",
-            "description": " if a property defined does not exist"
-          }
-        ]
-      }
-    },
-    "isPropertyInitialized": {
-      "type": "function",
-      "name": "isPropertyInitialized",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MProperty",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Checks if the property is initialized, i.e. has a defined init value or\n has got a value by a setter method.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "prop {String} Name of the property",
-            "paramName": "prop",
-            "description": " Name of the property",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} If the property is initialized",
-            "type": "Boolean",
-            "description": " If the property is initialized"
-          }
-        ],
-        "@throws": [
-          {
-            "name": "@throws",
-            "body": "{Error} If the property defined does not exist",
-            "type": "Error",
-            "description": " If the property defined does not exist"
-          }
-        ]
-      }
-    },
-    "_applyQxOwner": {
-      "type": "function",
-      "name": "_applyQxOwner",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+    "_disableFileEvents": {
+      "jsdoc": null,
       "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Apply owner</p>"
-          }
-        ]
-      }
-    },
-    "_applyQxObjectId": {
-      "type": "function",
-      "name": "_applyQxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Apply objectId</p>"
-          }
-        ]
-      }
-    },
-    "__onOwnedObjectIdChange": {
-      "type": "function",
-      "name": "__onOwnedObjectIdChange",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Called when a child's objectId changes</p>"
-          }
-        ]
-      }
-    },
-    "_cascadeQxObjectIdChanges": {
-      "type": "function",
-      "name": "_cascadeQxObjectIdChanges",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Reflect changes to IDs or owners</p>"
-          }
-        ]
-      }
-    },
-    "getQxObject": {
-      "type": "function",
-      "name": "getQxObject",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns the object with the specified ID</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "id\n          {String} ID of the object",
-            "paramName": "id",
-            "description": " ID of the object",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.core.Object?} the found object",
-            "type": "qx.core.Object?",
-            "description": " the found object"
-          }
-        ]
-      }
-    },
-    "_createQxObject": {
-      "type": "function",
-      "name": "_createQxObject",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Creates the object and adds it to a list; most classes are expected to\n override <code>_createQxObjectImpl</code> NOT this method.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "id {String} ID of the object",
-            "paramName": "id",
-            "description": " ID of the object",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.core.Object?} the created object",
-            "type": "qx.core.Object?",
-            "description": " the created object"
-          }
-        ]
-      }
-    },
-    "_createQxObjectImpl": {
-      "type": "function",
-      "name": "_createQxObjectImpl",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Creates the object, intended to be overridden. Null is a valid return\n value and will be cached by <code>getQxObject</code>, however <code>undefined</code> is NOT a\n valid value and so will not be cached meaning that <code>_createQxObjectImpl</code>\n will be called multiple times until a valid value is returned.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "id {String} ID of the object",
-            "paramName": "id",
-            "description": " ID of the object",
-            "type": "String"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.core.Object?} the created object",
-            "type": "qx.core.Object?",
-            "description": " the created object"
-          }
-        ]
-      }
-    },
-    "addOwnedQxObject": {
-      "type": "function",
-      "name": "addOwnedQxObject",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Adds an object as owned by this object</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "obj {qx.core.Object} the object to register",
-            "paramName": "obj",
-            "description": " the object to register",
-            "type": "qx.core.Object"
-          },
-          {
-            "name": "@param",
-            "body": "id {String?} the id to set when registering the object",
-            "paramName": "id",
-            "description": " the id to set when registering the object",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "removeOwnedQxObject": {
-      "type": "function",
-      "name": "removeOwnedQxObject",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Discards an object from the list of owned objects; note that this does\n not dispose of the object, simply forgets it if it exists.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "args {String|Object} the ID of the object to discard, or the object itself",
-            "paramName": "args",
-            "description": " the ID of the object to discard, or the object itself",
-            "type": [
-              "String",
-              "Object"
-            ]
-          }
-        ]
-      }
-    },
-    "__removeOwnedQxObjectImpl": {
-      "type": "function",
-      "name": "__removeOwnedQxObjectImpl",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "private",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Removes an owned object</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "obj {qx.core.Object} the object",
-            "paramName": "obj",
-            "description": " the object",
-            "type": "qx.core.Object"
-          }
-        ]
-      }
-    },
-    "getOwnedQxObjects": {
-      "type": "function",
-      "name": "getOwnedQxObjects",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns an array of objects that are owned by this object, or an empty\n array if none exists.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Array}",
-            "type": "Array",
-            "description": ""
-          }
-        ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "assert": {
-      "type": "function",
-      "name": "assert",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the condition evaluates to <code>true</code>.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "condition {var} Condition to check for. Must evaluate to\n    <code>true</code>.",
-            "paramName": "condition",
-            "description": " Condition to check for. Must evaluate to\n    <code>true</code>.",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "fail": {
-      "type": "function",
-      "name": "fail",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Raise an {@link AssertionError}</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "msg {String} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "compact {Boolean?false} Show less verbose message. Default: false.",
-            "paramName": "compact",
-            "description": " Show less verbose message. Default: false.",
-            "optional": true,
-            "defaultValue": "false",
-            "type": "Boolean"
-          }
-        ]
-      }
-    },
-    "assertTrue": {
-      "type": "function",
-      "name": "assertTrue",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is <code>true</code> (Identity check).</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {Boolean} Condition to check for. Must be identical to\n    <code>true</code>.",
-            "paramName": "value",
-            "description": " Condition to check for. Must be identical to\n    <code>true</code>.",
-            "type": "Boolean"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertFalse": {
-      "type": "function",
-      "name": "assertFalse",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is <code>false</code> (Identity check).</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {Boolean} Condition to check for. Must be identical to\n    <code>false</code>.",
-            "paramName": "value",
-            "description": " Condition to check for. Must be identical to\n    <code>false</code>.",
-            "type": "Boolean"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertEquals": {
-      "type": "function",
-      "name": "assertEquals",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that both values are equal. (Uses the equality operator\n <code>==</code>.)</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "expected {var} Reference value",
-            "paramName": "expected",
-            "description": " Reference value",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "found {var} found value",
-            "paramName": "found",
-            "description": " found value",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertNotEquals": {
-      "type": "function",
-      "name": "assertNotEquals",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that both values are not equal. (Uses the not equality operator\n <code>!=</code>.)</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "expected {var} Reference value",
-            "paramName": "expected",
-            "description": " Reference value",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "found {var} found value",
-            "paramName": "found",
-            "description": " found value",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertEqualsFloat": {
-      "type": "function",
-      "name": "assertEqualsFloat",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that both float values are equal. This might be needed because\n of the natural floating point inaccuracy of computers.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "expected {Float} Reference value",
-            "paramName": "expected",
-            "description": " Reference value",
-            "type": "Float"
-          },
-          {
-            "name": "@param",
-            "body": "found {Float} Found value",
-            "paramName": "found",
-            "description": " Found value",
-            "type": "Float"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertNotEqualsFloat": {
-      "type": "function",
-      "name": "assertNotEqualsFloat",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that both float values are not equal. This might be needed\n because of the natural floating point inaccuracy of computers.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "expected {Float} Reference value",
-            "paramName": "expected",
-            "description": " Reference value",
-            "type": "Float"
-          },
-          {
-            "name": "@param",
-            "body": "found {Float} Found value",
-            "paramName": "found",
-            "description": " Found value",
-            "type": "Float"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertIdentical": {
-      "type": "function",
-      "name": "assertIdentical",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that both values are identical. (Uses the identity operator\n <code>===</code>.)</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "expected {var} Reference value",
-            "paramName": "expected",
-            "description": " Reference value",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "found {var} found value",
-            "paramName": "found",
-            "description": " found value",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertNotIdentical": {
-      "type": "function",
-      "name": "assertNotIdentical",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that both values are not identical. (Uses the not identity operator\n <code>!==</code>.)</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "expected {var} Reference value",
-            "paramName": "expected",
-            "description": " Reference value",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "found {var} found value",
-            "paramName": "found",
-            "description": " found value",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertNotUndefined": {
-      "type": "function",
-      "name": "assertNotUndefined",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is not <code>undefined</code>.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertUndefined": {
-      "type": "function",
-      "name": "assertUndefined",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is <code>undefined</code>.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertNotNull": {
-      "type": "function",
-      "name": "assertNotNull",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is not <code>null</code>.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertNull": {
-      "type": "function",
-      "name": "assertNull",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is <code>null</code>.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertJsonEquals": {
-      "type": "function",
-      "name": "assertJsonEquals",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the first two arguments are equal, when serialized into\n JSON.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "expected {var} The expected value",
-            "paramName": "expected",
-            "description": " The expected value",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "found {var} The found value",
-            "paramName": "found",
-            "description": " The found value",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertMatch": {
-      "type": "function",
-      "name": "assertMatch",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the given string matches the regular expression</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "str {String} String, which should match the regular expression",
-            "paramName": "str",
-            "description": " String, which should match the regular expression",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "re {RegExp} Regular expression to match",
-            "paramName": "re",
-            "description": " Regular expression to match",
-            "type": "RegExp"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertArgumentsCount": {
-      "type": "function",
-      "name": "assertArgumentsCount",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the number of arguments is within the given range</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "args {arguments} The <code>arguments<code> variable of a function",
-            "paramName": "args",
-            "description": " The <code>arguments<code> variable of a function",
-            "type": "arguments"
-          },
-          {
-            "name": "@param",
-            "body": "minCount {Integer} Minimal number of arguments",
-            "paramName": "minCount",
-            "description": " Minimal number of arguments",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "maxCount {Integer} Maximum number of arguments",
-            "paramName": "maxCount",
-            "description": " Maximum number of arguments",
-            "type": "Integer"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertEventFired": {
-      "type": "function",
-      "name": "assertEventFired",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that an event is fired.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "obj {Object} The object on which the event should be fired.",
-            "paramName": "obj",
-            "description": " The object on which the event should be fired.",
-            "type": "qx.core.Object"
-          },
-          {
-            "name": "@param",
-            "body": "event {String} The event which should be fired.",
-            "paramName": "event",
-            "description": " The event which should be fired.",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "invokeFunc {Function} The function which will be invoked and which\n   fires the event.",
-            "paramName": "invokeFunc",
-            "description": " The function which will be invoked and which\n   fires the event.",
-            "type": "Function"
-          },
-          {
-            "name": "@param",
-            "body": "listener {Function?null} The function which will be invoked in the\n   listener. The function has one parameter called e which is the event.",
-            "paramName": "listener",
-            "description": " The function which will be invoked in the\n   listener. The function has one parameter called e which is the event.",
-            "optional": true,
-            "defaultValue": "null",
-            "type": "Function"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?\"\"} Message to be shows if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shows if the assertion fails.",
-            "optional": true,
-            "defaultValue": "\"\"",
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertEventNotFired": {
-      "type": "function",
-      "name": "assertEventNotFired",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that an event is not fired.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "obj {Object} The object on which the event should be fired.",
-            "paramName": "obj",
-            "description": " The object on which the event should be fired.",
-            "type": "qx.core.Object"
-          },
-          {
-            "name": "@param",
-            "body": "event {String} The event which should be fired.",
-            "paramName": "event",
-            "description": " The event which should be fired.",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "invokeFunc {Function} The function which will be invoked and which\n   should not fire the event.",
-            "paramName": "invokeFunc",
-            "description": " The function which will be invoked and which\n   should not fire the event.",
-            "type": "Function"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shows if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shows if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertException": {
-      "type": "function",
-      "name": "assertException",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Asserts that the callback raises a matching exception.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "callback {Function} function to check",
-            "paramName": "callback",
-            "description": " function to check",
-            "type": "Function"
-          },
-          {
-            "name": "@param",
-            "body": "exception {Error?Error} Expected constructor of the exception.\n   The assertion fails if the raised exception is not an instance of the\n   parameter.",
-            "paramName": "exception",
-            "description": " Expected constructor of the exception.\n   The assertion fails if the raised exception is not an instance of the\n   parameter.",
-            "optional": true,
-            "defaultValue": "Error",
-            "type": "Error"
-          },
-          {
-            "name": "@param",
-            "body": "re {String|RegExp} The assertion fails if the error message does\n   not match this parameter",
-            "paramName": "re",
-            "description": " The assertion fails if the error message does\n   not match this parameter",
-            "type": [
-              "String",
-              "RegExp"
-            ]
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertInArray": {
-      "type": "function",
-      "name": "assertInArray",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is an item in the given array.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "array {Array} List of valid values",
-            "paramName": "array",
-            "description": " List of valid values",
-            "type": "Array"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertNotInArray": {
-      "type": "function",
-      "name": "assertNotInArray",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is NOT an item in the given array</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "array {Array} List of values",
-            "paramName": "array",
-            "description": " List of values",
-            "type": "Array"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertArrayEquals": {
-      "type": "function",
-      "name": "assertArrayEquals",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that both array have identical array items.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "expected {Array} The expected array",
-            "paramName": "expected",
-            "description": " The expected array",
-            "type": "Array"
-          },
-          {
-            "name": "@param",
-            "body": "found {Array} The found array",
-            "paramName": "found",
-            "description": " The found array",
-            "type": "Array"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertKeyInMap": {
-      "type": "function",
-      "name": "assertKeyInMap",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is a key in the given map.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "map {Map} Map, where the keys represent the valid values",
-            "paramName": "map",
-            "description": " Map, where the keys represent the valid values",
-            "type": "Map"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertFunction": {
-      "type": "function",
-      "name": "assertFunction",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is a function.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertString": {
-      "type": "function",
-      "name": "assertString",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is a string.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertBoolean": {
-      "type": "function",
-      "name": "assertBoolean",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is a boolean.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertNumber": {
-      "type": "function",
-      "name": "assertNumber",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is a number.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertPositiveNumber": {
-      "type": "function",
-      "name": "assertPositiveNumber",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is a number &gt;= 0.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertInteger": {
-      "type": "function",
-      "name": "assertInteger",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is an integer.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertPositiveInteger": {
-      "type": "function",
-      "name": "assertPositiveInteger",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is an integer &gt;= 0.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertInRange": {
-      "type": "function",
-      "name": "assertInRange",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is inside the given range.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "min {Number} lower bound",
-            "paramName": "min",
-            "description": " lower bound",
-            "type": "Number"
-          },
-          {
-            "name": "@param",
-            "body": "max {Number} upper bound",
-            "paramName": "max",
-            "description": " upper bound",
-            "type": "Number"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertObject": {
-      "type": "function",
-      "name": "assertObject",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is an object.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertArray": {
-      "type": "function",
-      "name": "assertArray",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is an array.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertMap": {
-      "type": "function",
-      "name": "assertMap",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is a map either created using <code>new Object</code>\n or by using the object literal notation <code>{ ... }</code>.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertRegExp": {
-      "type": "function",
-      "name": "assertRegExp",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is a regular expression.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertType": {
-      "type": "function",
-      "name": "assertType",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value has the given type using the <code>typeof</code>\n operator. Because the type is not always what it is supposed to be it is\n better to use more explicit checks like {@link #assertString} or\n {@link #assertArray}.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "type {String} expected type of the value",
-            "paramName": "type",
-            "description": " expected type of the value",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertInstance": {
-      "type": "function",
-      "name": "assertInstance",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is an instance of the given class.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "clazz {Class} The value must be an instance of this class",
-            "paramName": "clazz",
-            "description": " The value must be an instance of this class",
-            "type": "Class"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertInterface": {
-      "type": "function",
-      "name": "assertInterface",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value implements the given interface.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "iface {Class} The value must implement this interface",
-            "paramName": "iface",
-            "description": " The value must implement this interface",
-            "type": "Class"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertCssColor": {
-      "type": "function",
-      "name": "assertCssColor",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value represents the given CSS color value. This method\n parses the color strings and compares the RGB values. It is able to\n parse values supported by {@link qx.util.ColorUtil#stringToRgb}.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "expected {String} The expected color",
-            "paramName": "expected",
-            "description": " The expected color",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "value {String} The value to check",
-            "paramName": "value",
-            "description": " The value to check",
-            "type": "String"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertElement": {
-      "type": "function",
-      "name": "assertElement",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is a DOM element.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertQxObject": {
-      "type": "function",
-      "name": "assertQxObject",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is an instance of {@link qx.core.Object}.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "assertQxWidget": {
-      "type": "function",
-      "name": "assertQxWidget",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MAssert",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Assert that the value is an instance of {@link qx.ui.core.Widget}.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "value {var} Value to check",
-            "paramName": "value",
-            "description": " Value to check",
-            "type": "var"
-          },
-          {
-            "name": "@param",
-            "body": "msg {String?} Message to be shown if the assertion fails.",
-            "paramName": "msg",
-            "description": " Message to be shown if the assertion fails.",
-            "optional": true,
-            "type": "String"
-          }
-        ]
-      }
-    },
-    "getOpenFiles": {
-      "type": "function",
-      "name": "getOpenFiles",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>openFiles</code>.\n\nFor further details take a look at the property definition: {@link #openFiles}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.data.Array",
-            "desc": "Returns the value for openFiles"
-          }
-        ]
-      }
-    },
-    "setOpenFiles": {
-      "type": "function",
-      "name": "setOpenFiles",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>openFiles</code>.\n\nFor further details take a look at the property definition: {@link #openFiles}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.data.Array",
-            "paramName": "value",
-            "desc": "Value for openFiles"
-          }
-        ]
-      }
-    },
-    "resetOpenFiles": {
-      "type": "function",
-      "name": "resetOpenFiles",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>openFiles</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #openFiles}."
-          }
-        ]
-      }
-    },
-    "getWriteableFolder": {
-      "type": "function",
-      "name": "getWriteableFolder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>writeableFolder</code>.\n\nFor further details take a look at the property definition: {@link #writeableFolder}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for writeableFolder"
-          }
-        ]
-      }
-    },
-    "isWriteableFolder": {
-      "type": "function",
-      "name": "isWriteableFolder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>writeableFolder</code>.\n\nFor further details take a look at the property definition: {@link #writeableFolder}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for writeableFolder"
-          }
-        ]
-      }
-    },
-    "setWriteableFolder": {
-      "type": "function",
-      "name": "setWriteableFolder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>writeableFolder</code>.\n\nFor further details take a look at the property definition: {@link #writeableFolder}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for writeableFolder"
-          }
-        ]
-      }
-    },
-    "resetWriteableFolder": {
-      "type": "function",
-      "name": "resetWriteableFolder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>writeableFolder</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #writeableFolder}."
-          }
-        ]
-      }
-    },
-    "getCurrentFolder": {
-      "type": "function",
-      "name": "getCurrentFolder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>currentFolder</code>.\n\nFor further details take a look at the property definition: {@link #currentFolder}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "cv.ui.manager.model.FileItem",
-            "desc": "Returns the value for currentFolder"
-          }
-        ]
-      }
-    },
-    "setCurrentFolder": {
-      "type": "function",
-      "name": "setCurrentFolder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>currentFolder</code>.\n\nFor further details take a look at the property definition: {@link #currentFolder}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "cv.ui.manager.model.FileItem",
-            "paramName": "value",
-            "desc": "Value for currentFolder"
-          }
-        ]
-      }
-    },
-    "resetCurrentFolder": {
-      "type": "function",
-      "name": "resetCurrentFolder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>currentFolder</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #currentFolder}."
-          }
-        ]
-      }
-    },
-    "getCurrentSelection": {
-      "type": "function",
-      "name": "getCurrentSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>currentSelection</code>.\n\nFor further details take a look at the property definition: {@link #currentSelection}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "cv.ui.manager.model.FileItem",
-            "desc": "Returns the value for currentSelection"
-          }
-        ]
-      }
-    },
-    "setCurrentSelection": {
-      "type": "function",
-      "name": "setCurrentSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>currentSelection</code>.\n\nFor further details take a look at the property definition: {@link #currentSelection}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "cv.ui.manager.model.FileItem",
-            "paramName": "value",
-            "desc": "Value for currentSelection"
-          }
-        ]
-      }
-    },
-    "resetCurrentSelection": {
-      "type": "function",
-      "name": "resetCurrentSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>currentSelection</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #currentSelection}."
-          }
-        ]
-      }
-    },
-    "getDeleteableSelection": {
-      "type": "function",
-      "name": "getDeleteableSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>deleteableSelection</code>.\n\nFor further details take a look at the property definition: {@link #deleteableSelection}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for deleteableSelection"
-          }
-        ]
-      }
-    },
-    "isDeleteableSelection": {
-      "type": "function",
-      "name": "isDeleteableSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>deleteableSelection</code>.\n\nFor further details take a look at the property definition: {@link #deleteableSelection}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for deleteableSelection"
-          }
-        ]
-      }
-    },
-    "setDeleteableSelection": {
-      "type": "function",
-      "name": "setDeleteableSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>deleteableSelection</code>.\n\nFor further details take a look at the property definition: {@link #deleteableSelection}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for deleteableSelection"
-          }
-        ]
-      }
-    },
-    "resetDeleteableSelection": {
-      "type": "function",
-      "name": "resetDeleteableSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>deleteableSelection</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #deleteableSelection}."
-          }
-        ]
-      }
-    },
-    "getRenameableSelection": {
-      "type": "function",
-      "name": "getRenameableSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>renameableSelection</code>.\n\nFor further details take a look at the property definition: {@link #renameableSelection}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for renameableSelection"
-          }
-        ]
-      }
-    },
-    "isRenameableSelection": {
-      "type": "function",
-      "name": "isRenameableSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>renameableSelection</code>.\n\nFor further details take a look at the property definition: {@link #renameableSelection}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for renameableSelection"
-          }
-        ]
-      }
-    },
-    "setRenameableSelection": {
-      "type": "function",
-      "name": "setRenameableSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>renameableSelection</code>.\n\nFor further details take a look at the property definition: {@link #renameableSelection}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for renameableSelection"
-          }
-        ]
-      }
-    },
-    "resetRenameableSelection": {
-      "type": "function",
-      "name": "resetRenameableSelection",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>renameableSelection</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #renameableSelection}."
-          }
-        ]
-      }
-    },
-    "getVisible": {
-      "type": "function",
-      "name": "getVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for visible"
-          }
-        ]
-      }
-    },
-    "isVisible": {
-      "type": "function",
-      "name": "isVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for visible"
-          }
-        ]
-      }
-    },
-    "setVisible": {
-      "type": "function",
-      "name": "setVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visible</code>.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for visible"
-          }
-        ]
-      }
-    },
-    "resetVisible": {
-      "type": "function",
-      "name": "resetVisible",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visible</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visible}."
-          }
-        ]
-      }
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1619
+        },
+        "end": {
+          "line": 45,
+          "column": 29,
+          "index": 1644
+        }
+      },
+      "mixin": "cv.ui.manager.control.MFileEventHandler",
+      "appearsIn": [
+        "cv.ui.manager.control.MFileEventHandler"
+      ]
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 1178,
@@ -5019,8 +1369,6 @@
         "column": 3,
         "index": 40311
       }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+    }
+  }
 }

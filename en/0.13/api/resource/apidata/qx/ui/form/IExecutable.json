@@ -1,67 +1,77 @@
 {
-  "className": "qx.ui.form.IExecutable",
-  "packageName": "qx.ui.form",
-  "name": "IExecutable",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 630
-      },
-      "end": {
-        "line": 72,
-        "column": 3,
-        "index": 1949
-      }
+  "version": 0.3,
+  "lastModified": 1717235171222,
+  "lastModifiedIso": "2024-06-01T09:46:11.222Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/IExecutable.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 608
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Form interface for all form widgets which are executable in some way. This\n could be a button for example.</p>"
-        }
-      ]
+    "end": {
+      "line": 72,
+      "column": 3,
+      "index": 1878
     }
   },
-  "type": "interface",
+  "className": "qx.ui.form.IExecutable",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Form interface for all form widgets which are executable in some way. This",
+      " * could be a button for example.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Form interface for all form widgets which are executable in some way. This\n could be a button for example.</p>"
+      }
+    ]
+  },
   "events": {
     "execute": {
-      "type": "event",
-      "name": "execute",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": null,
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when the widget is executed. Sets the \"data\" property of the",
+          "     * event to the object that issued the command.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired when the widget is executed. Sets the \"data\" property of the\n event to the object that issued the command.</p>"
           }
         ]
+      },
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 997
+        },
+        "end": {
+          "line": 35,
+          "column": 33,
+          "index": 1026
+        }
       }
     }
   },
   "members": {
     "setCommand": {
-      "location": {
-        "start": {
-          "line": 56,
-          "column": 4,
-          "index": 1612
-        },
-        "end": {
-          "line": 58,
-          "column": 5,
-          "index": 1677
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the command of this executable.",
+          "     *",
+          "     * @param command {qx.ui.command.Command} The command.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -78,23 +88,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCommand": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 65,
+          "line": 56,
           "column": 4,
-          "index": 1836
+          "index": 1557
         },
         "end": {
-          "line": 65,
-          "column": 19,
-          "index": 1851
+          "line": 58,
+          "column": 5,
+          "index": 1620
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "command",
+          "type": "qx.ui.command.Command"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getCommand": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the current set command of this executable.",
+          "     *",
+          "     * @return {qx.ui.command.Command} The current set command.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -106,27 +130,37 @@
             "name": "@return",
             "body": "{qx.ui.command.Command} The current set command.",
             "type": "qx.ui.command.Command",
-            "description": " The current set command."
+            "description": "The current set command."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "execute": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 70,
+          "line": 65,
           "column": 4,
-          "index": 1927
+          "index": 1772
         },
         "end": {
-          "line": 70,
-          "column": 16,
-          "index": 1939
+          "line": 65,
+          "column": 19,
+          "index": 1787
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.command.Command"
+      },
+      "appearsIn": []
+    },
+    "execute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fire the \"execute\" event on the command.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -134,9 +168,24 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1858
+        },
+        "end": {
+          "line": 70,
+          "column": 16,
+          "index": 1870
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -1,39 +1,64 @@
 {
-  "className": "cv.util.Location",
-  "packageName": "cv.util",
-  "name": "Location",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 986
-      },
-      "end": {
-        "line": 70,
-        "column": 3,
-        "index": 2112
-      }
+  "version": 0.3,
+  "lastModified": 1717235105618,
+  "lastModifiedIso": "2024-06-01T09:45:05.618Z",
+  "classFilename": "../../source/class/cv/util/Location.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 986
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Helper function to proxy access to <code>window.location.*</code> functions.\n The main purpose of proxying them is to allow them to be spyable in unit tests.</p>"
-        }
-      ]
+    "end": {
+      "line": 70,
+      "column": 3,
+      "index": 2112
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.util.Location",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Helper function to proxy access to <code>window.location.*</code> functions.",
+      " * The main purpose of proxying them is to allow them to be spyable in unit tests.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Helper function to proxy access to <code>window.location.*</code> functions.\n The main purpose of proxying them is to allow them to be spyable in unit tests.</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "getHref": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wrapper for getting the <code>window.location.href</code> value.",
+          "     *",
+          "     * @return {String} URI of the page the browser is currently showing",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Wrapper for getting the <code>window.location.href</code> value.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} URI of the page the browser is currently showing",
+            "type": "string",
+            "description": "URI of the page the browser is currently showing"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 38,
@@ -46,39 +71,22 @@
           "index": 1416
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Wrapper for getting the <code>window.location.href</code> value.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} URI of the page the browser is currently showing",
-            "type": "cv.util.String",
-            "description": " URI of the page the browser is currently showing"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     },
     "setHref": {
-      "location": {
-        "start": {
-          "line": 47,
-          "column": 4,
-          "index": 1602
-        },
-        "end": {
-          "line": 49,
-          "column": 5,
-          "index": 1656
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Changes <code>window.location.href</code> to trigger a redirect",
+          "     *",
+          "     * @param loc {String} - URI of the location the browser should be redirected to",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -91,27 +99,41 @@
             "body": "loc {String} - URI of the location the browser should be redirected to",
             "paramName": "loc",
             "description": " - URI of the location the browser should be redirected to",
-            "type": "cv.util.String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "reload": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 56,
+          "line": 47,
           "column": 4,
-          "index": 1811
+          "index": 1602
         },
         "end": {
-          "line": 58,
+          "line": 49,
           "column": 5,
-          "index": 1869
+          "index": 1656
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "loc",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "reload": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wrapper for calling <code>window.location.reload()</code>",
+          "     *",
+          "     * @param value {Boolean} parameter to call reload with",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -124,27 +146,42 @@
             "body": "value {Boolean} parameter to call reload with",
             "paramName": "value",
             "description": " parameter to call reload with",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "open": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 66,
+          "line": 56,
           "column": 4,
-          "index": 2047
+          "index": 1811
         },
         "end": {
-          "line": 68,
+          "line": 58,
           "column": 5,
-          "index": 2104
+          "index": 1869
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "open": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wrapper for calling <code>window.open()</code>",
+          "     *",
+          "     * @param url {String} url to open",
+          "     * @param target {String} where to open the window",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -157,20 +194,44 @@
             "body": "url {String} url to open",
             "paramName": "url",
             "description": " url to open",
-            "type": "cv.util.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "target {String} where to open the window",
             "paramName": "target",
             "description": " where to open the window",
-            "type": "cv.util.String"
+            "type": "string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 2047
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 2104
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "target",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

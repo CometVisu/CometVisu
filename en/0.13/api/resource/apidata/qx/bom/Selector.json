@@ -1,49 +1,100 @@
 {
-  "className": "qx.bom.Selector",
-  "packageName": "qx.bom",
-  "name": "Selector",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 130,
-        "column": 0,
-        "index": 5584
-      },
-      "end": {
-        "line": 154,
-        "column": 3,
-        "index": 6511
-      }
+  "version": 0.3,
+  "lastModified": 1717235172234,
+  "lastModifiedIso": "2024-06-01T09:46:12.234Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Selector.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 130,
+      "column": 0,
+      "index": 5455
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The selector engine supports virtually all CSS 3 Selectors  – this even\n includes some parts that are infrequently implemented such as escaped\n selectors (<code>.foo\\\\+bar</code>), Unicode selectors, and results returned\n in document order. There are a few notable exceptions to the CSS 3 selector\n support:</p>\n<ul>\n<li><code>:root</code></li>\n<li><code>:target</code></li>\n<li><code>:nth-last-child</code></li>\n<li><code>:nth-of-type</code></li>\n<li><code>:nth-last-of-type</code></li>\n<li><code>:first-of-type</code></li>\n<li><code>:last-of-type</code></li>\n<li><code>:only-of-type</code></li>\n<li><code>:lang()</code>\nIn addition to the CSS 3 Selectors the engine supports the following\nadditional selectors or conventions.\n<em>Changes</em></li>\n<li><code>:not(a.b)</code>: Supports non-simple selectors in <code>:not()</code> (most browsers only support <code>:not(a)</code>, for example).</li>\n<li><code>:not(div &gt; p)</code>: Supports full selectors in <code>:not()</code>.</li>\n<li><code>:not(div, p)</code>: Supports multiple selectors in <code>:not()</code>.</li>\n<li><code>[NAME=VALUE]</code>: Doesn't require quotes around the specified value in an attribute selector.\n<em>Additions</em></li>\n<li><code>[NAME!=VALUE]</code>: Finds all elements whose <code>NAME</code> attribute doesn't match the specified value. Is equivalent to doing <code>:not([NAME=VALUE])</code>.</li>\n<li><code>:contains(TEXT)</code>: Finds all elements whose textual context contains the word <code>TEXT</code> (case sensitive).</li>\n<li><code>:header</code>: Finds all elements that are a header element (h1, h2, h3, h4, h5, h6).</li>\n<li><code>:parent</code>: Finds all elements that contains another element.\n<em>Positional Selector Additions</em></li>\n<li><code>:first</code>/</code>:last</code>: Finds the first or last matching element on the page. (e.g. <code>div:first</code> would find the first div on the page, in document order)</li>\n<li><code>:even</code>/<code>:odd</code>: Finds every other element on the page (counting begins at 0, so <code>:even</code> would match the first element).</li>\n<li><code>:eq</code>/<code>:nth</code>: Finds the Nth element on the page (e.g. <code>:eq(5)</code> finds the 6th element on the page).</li>\n<li><code>:lt</code>/<code>:gt</code>: Finds all elements at positions less than or greater than the specified positions.\n<em>Form Selector Additions</em></li>\n<li><code>:input</code>: Finds all input elements (includes textareas, selects, and buttons).</li>\n<li><code>:text</code>, <code>:checkbox</code>, <code>:file</code>, <code>:password</code>, <code>:submit</code>, <code>:image</code>, <code>:reset</code>, <code>:button</code>: Finds the input element with the specified input type (<code>:button</code> also finds button elements).\nBased on Sizzle by John Resig, see:</li>\n<li>http://sizzlejs.com/\nFor further usage details also have a look at the wiki page at:</li>\n<li>https://github.com/jquery/sizzle/wiki/Sizzle-Home</li>\n</ul>"
-        }
-      ]
+    "end": {
+      "line": 154,
+      "column": 3,
+      "index": 6358
     }
   },
-  "type": "class",
+  "className": "qx.bom.Selector",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The selector engine supports virtually all CSS 3 Selectors  – this even",
+      " * includes some parts that are infrequently implemented such as escaped",
+      " * selectors (<code>.foo\\\\+bar</code>), Unicode selectors, and results returned",
+      " * in document order. There are a few notable exceptions to the CSS 3 selector",
+      " * support:",
+      " *",
+      " * * <code>:root</code>",
+      " * * <code>:target</code>",
+      " * * <code>:nth-last-child</code>",
+      " * * <code>:nth-of-type</code>",
+      " * * <code>:nth-last-of-type</code>",
+      " * * <code>:first-of-type</code>",
+      " * * <code>:last-of-type</code>",
+      " * * <code>:only-of-type</code>",
+      " * * <code>:lang()</code>",
+      " *",
+      " * In addition to the CSS 3 Selectors the engine supports the following",
+      " * additional selectors or conventions.",
+      " *",
+      " * *Changes*",
+      " *",
+      " * * <code>:not(a.b)</code>: Supports non-simple selectors in <code>:not()</code> (most browsers only support <code>:not(a)</code>, for example).",
+      " * * <code>:not(div > p)</code>: Supports full selectors in <code>:not()</code>.",
+      " * * <code>:not(div, p)</code>: Supports multiple selectors in <code>:not()</code>.",
+      " * * <code>[NAME=VALUE]</code>: Doesn't require quotes around the specified value in an attribute selector.",
+      " *",
+      " * *Additions*",
+      " *",
+      " * * <code>[NAME!=VALUE]</code>: Finds all elements whose <code>NAME</code> attribute doesn't match the specified value. Is equivalent to doing <code>:not([NAME=VALUE])</code>.",
+      " * * <code>:contains(TEXT)</code>: Finds all elements whose textual context contains the word <code>TEXT</code> (case sensitive).",
+      " * * <code>:header</code>: Finds all elements that are a header element (h1, h2, h3, h4, h5, h6).",
+      " * * <code>:parent</code>: Finds all elements that contains another element.",
+      " *",
+      " * *Positional Selector Additions*",
+      " *",
+      " * * <code>:first</code>/</code>:last</code>: Finds the first or last matching element on the page. (e.g. <code>div:first</code> would find the first div on the page, in document order)",
+      " * * <code>:even</code>/<code>:odd</code>: Finds every other element on the page (counting begins at 0, so <code>:even</code> would match the first element).",
+      " * * <code>:eq</code>/<code>:nth</code>: Finds the Nth element on the page (e.g. <code>:eq(5)</code> finds the 6th element on the page).",
+      " * * <code>:lt</code>/<code>:gt</code>: Finds all elements at positions less than or greater than the specified positions.",
+      " *",
+      " * *Form Selector Additions*",
+      " *",
+      " * * <code>:input</code>: Finds all input elements (includes textareas, selects, and buttons).",
+      " * * <code>:text</code>, <code>:checkbox</code>, <code>:file</code>, <code>:password</code>, <code>:submit</code>, <code>:image</code>, <code>:reset</code>, <code>:button</code>: Finds the input element with the specified input type (<code>:button</code> also finds button elements).",
+      " *",
+      " * Based on Sizzle by John Resig, see:",
+      " *",
+      " * * http://sizzlejs.com/",
+      " *",
+      " * For further usage details also have a look at the wiki page at:",
+      " *",
+      " * * https://github.com/jquery/sizzle/wiki/Sizzle-Home",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The selector engine supports virtually all CSS 3 Selectors  – this even\n includes some parts that are infrequently implemented such as escaped\n selectors (<code>.foo\\\\+bar</code>), Unicode selectors, and results returned\n in document order. There are a few notable exceptions to the CSS 3 selector\n support:</p>\n<ul>\n<li><code>:root</code></li>\n<li><code>:target</code></li>\n<li><code>:nth-last-child</code></li>\n<li><code>:nth-of-type</code></li>\n<li><code>:nth-last-of-type</code></li>\n<li><code>:first-of-type</code></li>\n<li><code>:last-of-type</code></li>\n<li><code>:only-of-type</code></li>\n<li><code>:lang()</code>\nIn addition to the CSS 3 Selectors the engine supports the following\nadditional selectors or conventions.\n<em>Changes</em></li>\n<li><code>:not(a.b)</code>: Supports non-simple selectors in <code>:not()</code> (most browsers only support <code>:not(a)</code>, for example).</li>\n<li><code>:not(div &gt; p)</code>: Supports full selectors in <code>:not()</code>.</li>\n<li><code>:not(div, p)</code>: Supports multiple selectors in <code>:not()</code>.</li>\n<li><code>[NAME=VALUE]</code>: Doesn't require quotes around the specified value in an attribute selector.\n<em>Additions</em></li>\n<li><code>[NAME!=VALUE]</code>: Finds all elements whose <code>NAME</code> attribute doesn't match the specified value. Is equivalent to doing <code>:not([NAME=VALUE])</code>.</li>\n<li><code>:contains(TEXT)</code>: Finds all elements whose textual context contains the word <code>TEXT</code> (case sensitive).</li>\n<li><code>:header</code>: Finds all elements that are a header element (h1, h2, h3, h4, h5, h6).</li>\n<li><code>:parent</code>: Finds all elements that contains another element.\n<em>Positional Selector Additions</em></li>\n<li><code>:first</code>/</code>:last</code>: Finds the first or last matching element on the page. (e.g. <code>div:first</code> would find the first div on the page, in document order)</li>\n<li><code>:even</code>/<code>:odd</code>: Finds every other element on the page (counting begins at 0, so <code>:even</code> would match the first element).</li>\n<li><code>:eq</code>/<code>:nth</code>: Finds the Nth element on the page (e.g. <code>:eq(5)</code> finds the 6th element on the page).</li>\n<li><code>:lt</code>/<code>:gt</code>: Finds all elements at positions less than or greater than the specified positions.\n<em>Form Selector Additions</em></li>\n<li><code>:input</code>: Finds all input elements (includes textareas, selects, and buttons).</li>\n<li><code>:text</code>, <code>:checkbox</code>, <code>:file</code>, <code>:password</code>, <code>:submit</code>, <code>:image</code>, <code>:reset</code>, <code>:button</code>: Finds the input element with the specified input type (<code>:button</code> also finds button elements).\nBased on Sizzle by John Resig, see:</li>\n<li>http://sizzlejs.com/\nFor further usage details also have a look at the wiki page at:</li>\n<li>https://github.com/jquery/sizzle/wiki/Sizzle-Home</li>\n</ul>"
+      }
+    ]
+  },
   "statics": {
     "query": {
-      "location": {
-        "start": {
-          "line": 141,
-          "column": 4,
-          "index": 6076
-        },
-        "end": {
-          "line": 141,
-          "column": 15,
-          "index": 6087
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Queries the document for the given selector. Supports all CSS3 selectors",
+          "     * plus some extensions as mentioned in the class description.",
+          "     *",
+          "     * @signature function(selector, context)",
+          "     * @param selector {String} Valid selector (CSS3 + extensions)",
+          "     * @param context {Element} Context element (result elements must be children of this element)",
+          "     * @return {Array} Matching elements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -62,7 +113,7 @@
             "body": "selector {String} Valid selector (CSS3 + extensions)",
             "paramName": "selector",
             "description": " Valid selector (CSS3 + extensions)",
-            "type": "qx.bom.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -76,28 +127,42 @@
           {
             "name": "@return",
             "body": "{Array} Matching elements",
-            "type": "Array",
-            "description": " Matching elements"
+            "type": "Array<any>",
+            "description": "Matching elements"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "matches": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 152,
+          "line": 141,
           "column": 4,
-          "index": 6488
+          "index": 5936
         },
         "end": {
-          "line": 152,
-          "column": 17,
-          "index": 6501
+          "line": 141,
+          "column": 15,
+          "index": 5947
         }
       },
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "matches": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an reduced array which only contains the elements from the given",
+          "     * array which matches the given selector",
+          "     *",
+          "     * @signature function(selector, set)",
+          "     * @param selector {String} Selector to filter given set",
+          "     * @param set {Array} List to filter according to given selector",
+          "     * @return {Array} New array containing matching elements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -116,28 +181,44 @@
             "body": "selector {String} Selector to filter given set",
             "paramName": "selector",
             "description": " Selector to filter given set",
-            "type": "qx.bom.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "set {Array} List to filter according to given selector",
             "paramName": "set",
             "description": " List to filter according to given selector",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} New array containing matching elements",
-            "type": "Array",
-            "description": " New array containing matching elements"
+            "type": "Array<any>",
+            "description": "New array containing matching elements"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 6337
+        },
+        "end": {
+          "line": 152,
+          "column": 17,
+          "index": 6350
+        }
+      },
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -1,34 +1,35 @@
 {
-  "className": "cv.ui.common.HasAddress",
-  "packageName": "cv.ui.common",
-  "name": "HasAddress",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 864
-      },
-      "end": {
-        "line": 38,
-        "column": 3,
-        "index": 1235
-      }
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/ui/common/HasAddress.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 864
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Add the address property to widgets</p>"
-        }
-      ]
+    "end": {
+      "line": 38,
+      "column": 3,
+      "index": 1235
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.common.HasAddress",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Add the address property to widgets",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Add the address property to widgets</p>"
+      }
+    ]
+  },
   "properties": {
     "address": {
       "location": {
@@ -43,7 +44,16 @@
           "index": 1227
         }
       },
+      "json": {
+        "check": "Object",
+        "init": {}
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Map of addresses (KNX-GA's or openHAB item names) this widget communicates with",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,80 +61,9 @@
           }
         ]
       },
-      "name": "address",
-      "propertyType": "new",
-      "init": {},
-      "check": "Object",
-      "defaultValue": {}
+      "appearsIn": []
     }
   },
-  "members": {
-    "getAddress": {
-      "type": "function",
-      "name": "getAddress",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>address</code>.\n\nFor further details take a look at the property definition: {@link #address}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Object",
-            "desc": "Returns the value for address"
-          }
-        ]
-      }
-    },
-    "setAddress": {
-      "type": "function",
-      "name": "setAddress",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>address</code>.\n\nFor further details take a look at the property definition: {@link #address}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Object",
-            "paramName": "value",
-            "desc": "Value for address"
-          }
-        ]
-      }
-    },
-    "resetAddress": {
-      "type": "function",
-      "name": "resetAddress",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>address</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #address}."
-          }
-        ]
-      }
-    }
-  },
-  "descendants": []
+  "members": {},
+  "statics": {}
 }

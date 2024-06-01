@@ -1,61 +1,60 @@
 {
-  "className": "qx.lang.Object",
-  "packageName": "qx.lang",
-  "name": "Object",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 39,
-        "column": 0,
-        "index": 1038
-      },
-      "end": {
-        "line": 408,
-        "column": 3,
-        "index": 12935
-      }
+  "version": 0.3,
+  "lastModified": 1717235171898,
+  "lastModifiedIso": "2024-06-01T09:46:11.898Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/Object.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 39,
+      "column": 0,
+      "index": 1000
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Helper functions to handle Object as a Hash map.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Object"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.core.Assert"
-        }
-      ]
+    "end": {
+      "line": 408,
+      "column": 3,
+      "index": 12528
     }
   },
-  "type": "class",
+  "className": "qx.lang.Object",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Helper functions to handle Object as a Hash map.",
+      " *",
+      " * @require(qx.lang.normalize.Object)",
+      " * @ignore(qx.core.Assert)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Helper functions to handle Object as a Hash map.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Object"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.core.Assert"
+      }
+    ]
+  },
   "statics": {
     "empty": {
-      "location": {
-        "start": {
-          "line": 46,
-          "column": 4,
-          "index": 1207
-        },
-        "end": {
-          "line": 57,
-          "column": 5,
-          "index": 1500
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the map from all values",
+          "     *",
+          "     * @param map {Object} the map to clear",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -68,27 +67,44 @@
             "body": "map {Object} the map to clear",
             "paramName": "map",
             "description": " the map to clear",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isEmpty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 67,
+          "line": 46,
           "column": 4,
-          "index": 1739
+          "index": 1162
         },
         "end": {
-          "line": 78,
+          "line": 57,
           "column": 5,
-          "index": 2000
+          "index": 1444
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "map",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isEmpty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if the hash has any keys",
+          "     *",
+          "     * @signature function(map)",
+          "     * @param map {Object} the map to check",
+          "     * @return {Boolean} whether the map has any keys",
+          "     * @lint ignoreUnused(key)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -107,15 +123,15 @@
             "body": "map {Object} the map to check",
             "paramName": "map",
             "description": " the map to check",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the map has any keys",
-            "type": "Boolean",
-            "description": " whether the map has any keys"
+            "type": "boolean",
+            "description": "whether the map has any keys"
           }
         ],
         "@lint": [
@@ -125,23 +141,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLength": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 87,
+          "line": 67,
           "column": 4,
-          "index": 2204
+          "index": 1673
         },
         "end": {
-          "line": 87,
-          "column": 43,
-          "index": 2243
+          "line": 78,
+          "column": 5,
+          "index": 1923
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "map",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getLength": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the number of objects in the map",
+          "     *",
+          "     * @signature function(map)",
+          "     * @param map {Object} the map",
+          "     * @return {Integer} number of objects in the map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -160,7 +195,7 @@
             "body": "map {Object} the map",
             "paramName": "map",
             "description": " the map",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
@@ -168,27 +203,40 @@
             "name": "@return",
             "body": "{Integer} number of objects in the map",
             "type": "Integer",
-            "description": " number of objects in the map"
+            "description": "number of objects in the map"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getValues": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 97,
+          "line": 87,
           "column": 4,
-          "index": 2493
+          "index": 2118
         },
         "end": {
-          "line": 99,
-          "column": 5,
-          "index": 2550
+          "line": 87,
+          "column": 43,
+          "index": 2157
         }
       },
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getValues": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the values of a map as array",
+          "     *",
+          "     * @deprecated {6.0} Please use Object instance values method instead",
+          "     *",
+          "     * @param map {Object} the map",
+          "     * @return {Array} array of the values of the map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -207,35 +255,57 @@
             "body": "map {Object} the map",
             "paramName": "map",
             "description": " the map",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} array of the values of the map",
-            "type": "qx.lang.Array",
-            "description": " array of the values of the map"
+            "type": "Array<any>",
+            "description": "array of the values of the map"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "mergeWith": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 111,
+          "line": 97,
           "column": 4,
-          "index": 3017
+          "index": 2397
         },
         "end": {
-          "line": 111,
-          "column": 43,
-          "index": 3056
+          "line": 99,
+          "column": 5,
+          "index": 2452
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "map",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "mergeWith": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Inserts all keys of the source object into the",
+          "     * target objects. Attention: The target map gets modified.",
+          "     *",
+          "     * @signature function(target, source, overwrite)",
+          "     * @param target {Object} target object",
+          "     * @param source {Object} object to be merged",
+          "     * @param overwrite {Boolean ? true} If enabled existing keys will be overwritten",
+          "     * @return {Object} Target with merged values from the source object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -254,14 +324,14 @@
             "body": "target {Object} target object",
             "paramName": "target",
             "description": " target object",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "source {Object} object to be merged",
             "paramName": "source",
             "description": " object to be merged",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -277,28 +347,40 @@
           {
             "name": "@return",
             "body": "{Object} Target with merged values from the source object",
-            "type": "qx.lang.Object",
-            "description": " Target with merged values from the source object"
+            "type": "Record<any, any>",
+            "description": "Target with merged values from the source object"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clone": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 120,
+          "line": 111,
           "column": 4,
-          "index": 3285
+          "index": 2907
         },
         "end": {
-          "line": 143,
-          "column": 5,
-          "index": 3958
+          "line": 111,
+          "column": 43,
+          "index": 2946
         }
       },
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "clone": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return a copy of an Object",
+          "     *",
+          "     * @param source {Object} Object to copy",
+          "     * @param deep {Boolean} If the clone should be a deep clone.",
+          "     * @return {Object} A copy of the object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -311,42 +393,65 @@
             "body": "source {Object} Object to copy",
             "paramName": "source",
             "description": " Object to copy",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "deep {Boolean} If the clone should be a deep clone.",
             "paramName": "deep",
             "description": " If the clone should be a deep clone.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} A copy of the object",
-            "type": "qx.lang.Object",
-            "description": " A copy of the object"
+            "type": "Record<any, any>",
+            "description": "A copy of the object"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "equals": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 152,
+          "line": 120,
           "column": 4,
-          "index": 4244
+          "index": 3166
         },
         "end": {
-          "line": 154,
+          "line": 143,
           "column": 5,
-          "index": 4342
+          "index": 3816
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "deep",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "equals": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Perform a deep comparison to check if two objects are equal",
+          "     *",
+          "     * @param object1 {Object} the object that is compared to",
+          "     * @param object2 {Object} the object that is compared with",
+          "     * @return {Boolean} The result of the comparison",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -359,42 +464,68 @@
             "body": "object1 {Object} the object that is compared to",
             "paramName": "object1",
             "description": " the object that is compared to",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "object2 {Object} the object that is compared with",
             "paramName": "object2",
             "description": " the object that is compared with",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} The result of the comparison",
-            "type": "Boolean",
-            "description": " The result of the comparison"
+            "type": "boolean",
+            "description": "The result of the comparison"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__equals": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 166,
+          "line": 152,
           "column": 4,
-          "index": 4778
+          "index": 4093
         },
         "end": {
-          "line": 302,
+          "line": 154,
           "column": 5,
-          "index": 9857
+          "index": 4189
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object1",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "object2",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__equals": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal recursive comparison function for equals",
+          "     *",
+          "     * @param object1 {Object} the object that is compared to",
+          "     * @param object2 {Object} the object that is compared with",
+          "     * @param aStack {Object} Stack of object1 sub-objects to be traversed",
+          "     * @param bStack {Object} Stack of object2 sub-objects to be traversed",
+          "     * @return {Boolean} The result of the comparison",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -407,56 +538,89 @@
             "body": "object1 {Object} the object that is compared to",
             "paramName": "object1",
             "description": " the object that is compared to",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "object2 {Object} the object that is compared with",
             "paramName": "object2",
             "description": " the object that is compared with",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "aStack {Object} Stack of object1 sub-objects to be traversed",
             "paramName": "aStack",
             "description": " Stack of object1 sub-objects to be traversed",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "bStack {Object} Stack of object2 sub-objects to be traversed",
             "paramName": "bStack",
             "description": " Stack of object2 sub-objects to be traversed",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} The result of the comparison",
-            "type": "Boolean",
-            "description": " The result of the comparison"
+            "type": "boolean",
+            "description": "The result of the comparison"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "invert": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 313,
+          "line": 166,
           "column": 4,
-          "index": 10204
+          "index": 4613
         },
         "end": {
-          "line": 326,
+          "line": 302,
           "column": 5,
-          "index": 10513
+          "index": 9556
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object1",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "object2",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "aStack",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "bStack",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "invert": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Inverts a map by exchanging the keys with the values.",
+          "     *",
+          "     * If the map has the same values for different keys, information will get lost.",
+          "     * The values will be converted to strings using the toString methods.",
+          "     *",
+          "     * @param map {Object} Map to invert",
+          "     * @return {Object} inverted Map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -469,35 +633,56 @@
             "body": "map {Object} Map to invert",
             "paramName": "map",
             "description": " Map to invert",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} inverted Map",
-            "type": "qx.lang.Object",
-            "description": " inverted Map"
+            "type": "Record<any, any>",
+            "description": "inverted Map"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getKeyFromValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 337,
+          "line": 313,
           "column": 4,
-          "index": 10933
+          "index": 9892
         },
         "end": {
-          "line": 350,
+          "line": 326,
           "column": 5,
-          "index": 11282
+          "index": 10188
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "map",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getKeyFromValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the key of the given value from a map.",
+          "     * If the map has more than one key matching the value, the first match is returned.",
+          "     * If the map does not contain the value, <code>null</code> is returned.",
+          "     *",
+          "     * @param map {Object} Map to search for the key",
+          "     * @param value {var} Value to look for",
+          "     * @return {String|null} Name of the key (null if not found).",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -510,7 +695,7 @@
             "body": "map {Object} Map to search for the key",
             "paramName": "map",
             "description": " Map to search for the key",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -525,27 +710,50 @@
             "name": "@return",
             "body": "{String|null} Name of the key (null if not found).",
             "type": "String|null",
-            "description": " Name of the key (null if not found)."
+            "description": "Name of the key (null if not found)."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "contains": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 359,
+          "line": 337,
           "column": 4,
-          "index": 11534
+          "index": 10597
         },
         "end": {
-          "line": 366,
+          "line": 350,
           "column": 5,
-          "index": 11776
+          "index": 10933
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "map",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "contains": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the map contains the given value.",
+          "     *",
+          "     * @param map {Object} Map to search for the value",
+          "     * @param value {var} Value to look for",
+          "     * @return {Boolean} Whether the value was found in the map.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -558,7 +766,7 @@
             "body": "map {Object} Map to search for the value",
             "paramName": "map",
             "description": " Map to search for the value",
-            "type": "qx.lang.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -572,28 +780,54 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value was found in the map.",
-            "type": "Boolean",
-            "description": " Whether the value was found in the map."
+            "type": "boolean",
+            "description": "Whether the value was found in the map."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fromArray": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 378,
+          "line": 359,
           "column": 4,
-          "index": 12143
+          "index": 11176
         },
         "end": {
-          "line": 406,
+          "line": 366,
           "column": 5,
-          "index": 12925
+          "index": 11411
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "map",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "fromArray": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convert an array into a map.",
+          "     *",
+          "     * All elements of the array become keys of the returned map by",
+          "     * calling <code>toString</code> on the array elements. The values of the",
+          "     * map are set to <code>true</code>",
+          "     *",
+          "     * @param array {Array} array to convert",
+          "     * @return {Map} the array converted to a map.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -606,21 +840,44 @@
             "body": "array {Array} array to convert",
             "paramName": "array",
             "description": " array to convert",
-            "type": "qx.lang.Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Map} the array converted to a map.",
-            "type": "Map",
-            "description": " the array converted to a map."
+            "type": "Map<any, any>",
+            "description": "the array converted to a map."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 378,
+          "column": 4,
+          "index": 11766
+        },
+        "end": {
+          "line": 406,
+          "column": 5,
+          "index": 12520
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "array",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -1,83 +1,88 @@
 {
-  "className": "qx.module.event.GestureHandler",
-  "packageName": "qx.module.event",
-  "name": "GestureHandler",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 752
-      },
-      "end": {
-        "line": 96,
-        "column": 3,
-        "index": 2553
-      }
+  "version": 0.3,
+  "lastModified": 1717235171054,
+  "lastModifiedIso": "2024-06-01T09:46:11.054Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/GestureHandler.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 725
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Creates a gesture handler that fires high-level events such as \"swipe\"\n based on low-level event sequences on the given element</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        }
-      ],
-      "@use": [
-        {
-          "name": "@use",
-          "body": "qx.module.event.PointerHandler"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Event_Normalization"
-        }
-      ]
+    "end": {
+      "line": 96,
+      "column": 3,
+      "index": 2458
     }
   },
-  "type": "class",
+  "className": "qx.module.event.GestureHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Creates a gesture handler that fires high-level events such as \"swipe\"",
+      " * based on low-level event sequences on the given element",
+      " *",
+      " * @require(qx.module.Event)",
+      " * @use(qx.module.event.PointerHandler)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Creates a gesture handler that fires high-level events such as \"swipe\"\n based on low-level event sequences on the given element</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@use": [
+      {
+        "name": "@use",
+        "body": "qx.module.event.PointerHandler"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
   "statics": {
     "TYPES": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 30,
           "column": 4,
-          "index": 827
+          "index": 798
         },
         "end": {
           "line": 41,
           "column": 5,
-          "index": 1010
+          "index": 970
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "register": {
-      "location": {
-        "start": {
-          "line": 50,
-          "column": 4,
-          "index": 1242
-        },
-        "end": {
-          "line": 63,
-          "column": 5,
-          "index": 1638
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a gesture handler for the given element when a gesture event listener",
+          "     * is attached to it",
+          "     *",
+          "     * @param element {Element} DOM element",
+          "     * @param type {String} event type",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -97,27 +102,45 @@
             "body": "type {String} event type",
             "paramName": "type",
             "description": " event type",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "unregister": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 70,
+          "line": 50,
           "column": 4,
-          "index": 1837
+          "index": 1193
         },
         "end": {
-          "line": 86,
+          "line": 63,
           "column": 5,
-          "index": 2403
+          "index": 1576
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unregister": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the gesture event handler from the element if there are no more",
+          "     * gesture event listeners attached to it",
+          "     * @param element {Element} DOM element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -134,23 +157,29 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 89,
-        "column": 2,
-        "index": 2415
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1768
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2318
+        }
       },
-      "end": {
-        "line": 95,
-        "column": 3,
-        "index": 2548
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

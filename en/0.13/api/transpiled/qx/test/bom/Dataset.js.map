@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "setUp",
+    "div",
+    "document",
+    "createElement",
+    "id",
+    "_el",
+    "body",
+    "appendChild",
+    "tearDown",
+    "removeChild",
+    "testSetAttribute",
+    "Dataset",
+    "bom",
+    "element",
+    "set",
+    "assertEquals",
+    "get",
+    "getAttribute",
+    "testSetAttributeWithUndefinedValue",
+    "undefined",
+    "assertNull",
+    "assertUndefined",
+    "testGetAttribute",
+    "setAttribute",
+    "testRemoveAttribute",
+    "remove",
+    "test"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/bom/Dataset.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Gabriel Munteanu (gabios)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.bom.Dataset\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    setUp() {\n      var div = document.createElement(\"div\");\n      div.id = \"el\";\n\n      this._el = div;\n      document.body.appendChild(div);\n    },\n\n    tearDown() {\n      document.body.removeChild(this._el);\n    },\n\n    testSetAttribute() {\n      var Dataset = qx.bom.element.Dataset;\n\n      Dataset.set(this._el, \"maxAge\", \"100\");\n      this.assertEquals(\"100\", Dataset.get(this._el, \"maxAge\"));\n      this.assertEquals(\"100\", this._el.getAttribute(\"data-max-age\"));\n    },\n\n    testSetAttributeWithUndefinedValue() {\n      var Dataset = qx.bom.element.Dataset;\n\n      Dataset.set(this._el, \"age\", undefined);\n      this.assertNull(this._el.getAttribute(\"data-age\"));\n      this.assertUndefined(Dataset.get(this._el, \"age\", undefined));\n\n      Dataset.set(this._el, \"age2\", null);\n      this.assertNull(this._el.getAttribute(\"data-age2\"));\n      this.assertUndefined(Dataset.get(this._el, \"age2\", null));\n    },\n\n    testGetAttribute() {\n      var Dataset = qx.bom.element.Dataset;\n\n      this.assertUndefined(Dataset.get(this._el, \"salary\"));\n\n      this._el.setAttribute(\"data-salary\", \"20\");\n      this.assertEquals(\"20\", Dataset.get(this._el, \"salary\"));\n    },\n\n    testRemoveAttribute() {\n      var Dataset = qx.bom.element.Dataset;\n\n      Dataset.set(this._el, \"age\", \"44\");\n      Dataset.remove(this._el, \"age\");\n      this.assertNull(this._el.getAttribute(\"age\"));\n      this.assertUndefined(Dataset.get(this._el, \"age\"));\n    }\n  }\n});\n"
+  ],
+  "mappings": "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",
+  "ignoreList": []
+}

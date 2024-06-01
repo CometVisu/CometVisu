@@ -1,39 +1,41 @@
 {
-  "className": "cv.io.listmodel.Registry",
-  "packageName": "cv.io.listmodel",
-  "name": "Registry",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 4,
-        "column": 0,
-        "index": 79
-      },
-      "end": {
-        "line": 56,
-        "column": 3,
-        "index": 1339
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/io/listmodel/Registry.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 4,
+      "column": 0,
+      "index": 79
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Registry for all classes that implement cv.io.listmodel.IListModel.</p>"
-        }
-      ]
+    "end": {
+      "line": 56,
+      "column": 3,
+      "index": 1339
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.io.listmodel.Registry",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Registry for all classes that implement cv.io.listmodel.IListModel.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Registry for all classes that implement cv.io.listmodel.IListModel.</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "_REG": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 13,
@@ -46,10 +48,32 @@
           "index": 291
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "register": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @param modelClass {Class}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "modelClass {Class}",
+            "paramName": "modelClass",
+            "type": "Class"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 19,
@@ -62,7 +86,23 @@
           "index": 569
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "modelClass",
+          "type": "Class"
+        }
+      ],
+      "appearsIn": []
+    },
+    "get": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @param name {String}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -72,14 +112,13 @@
         "@param": [
           {
             "name": "@param",
-            "body": "modelClass {Class}"
+            "body": "name {String}",
+            "paramName": "name",
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "get": {
+      "access": "public",
       "location": {
         "start": {
           "line": 30,
@@ -92,23 +131,16 @@
           "index": 1331
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "name {String}"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

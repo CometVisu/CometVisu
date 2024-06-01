@@ -1,49 +1,58 @@
 {
-  "className": "qx.ui.table.IHeaderRenderer",
-  "packageName": "qx.ui.table",
-  "name": "IHeaderRenderer",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 531
-      },
-      "end": {
-        "line": 59,
-        "column": 3,
-        "index": 1906
-      }
+  "version": 0.3,
+  "lastModified": 1717235171246,
+  "lastModifiedIso": "2024-06-01T09:46:11.246Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/IHeaderRenderer.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 510
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A cell renderer for header cells.</p>"
-        }
-      ]
+    "end": {
+      "line": 59,
+      "column": 3,
+      "index": 1848
     }
   },
-  "type": "interface",
+  "className": "qx.ui.table.IHeaderRenderer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A cell renderer for header cells.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A cell renderer for header cells.</p>"
+      }
+    ]
+  },
   "members": {
     "createHeaderCell": {
-      "location": {
-        "start": {
-          "line": 42,
-          "column": 4,
-          "index": 1352
-        },
-        "end": {
-          "line": 44,
-          "column": 5,
-          "index": 1407
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a header cell.",
+          "     *",
+          "     * The cellInfo map contains the following properties:",
+          "     * <ul>",
+          "     * <li>col (int): the model index of the column.</li>",
+          "     * <li>xPos (int): the x position of the column in the table pane.</li>",
+          "     * <li>name (string): the name of the column.</li>",
+          "     * <li>editable (boolean): whether the column is editable.</li>",
+          "     * <li>sorted (boolean): whether the column is sorted.</li>",
+          "     * <li>sortedAscending (boolean): whether sorting is ascending.</li>",
+          "     * </ul>",
+          "     *",
+          "     * @abstract",
+          "     * @param cellInfo {Map} A map containing the information about the cell to",
+          "     *      create.",
+          "     * @return {qx.ui.core.Widget} the widget that renders the header cell.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -62,7 +71,7 @@
             "body": "cellInfo {Map} A map containing the information about the cell to\n      create.",
             "paramName": "cellInfo",
             "description": " A map containing the information about the cell to\n      create.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
@@ -70,27 +79,48 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget} the widget that renders the header cell.",
             "type": "qx.ui.core.Widget",
-            "description": " the widget that renders the header cell."
+            "description": "the widget that renders the header cell."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "updateHeaderCell": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 55,
+          "line": 42,
           "column": 4,
-          "index": 1829
+          "index": 1311
         },
         "end": {
-          "line": 57,
+          "line": 44,
           "column": 5,
-          "index": 1896
+          "index": 1364
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "updateHeaderCell": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates a header cell.",
+          "     *",
+          "     * @abstract",
+          "     * @param cellInfo {Map} A map containing the information about the cell to",
+          "     *      create. This map has the same structure as in {@link #createHeaderCell}.",
+          "     * @param cellWidget {qx.ui.core.Widget} the widget that renders the header cell. This is",
+          "     *      the same widget formally created by {@link #createHeaderCell}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -109,7 +139,7 @@
             "body": "cellInfo {Map} A map containing the information about the cell to\n      create. This map has the same structure as in {@link #createHeaderCell}.",
             "paramName": "cellInfo",
             "description": " A map containing the information about the cell to\n      create. This map has the same structure as in {@link #createHeaderCell}.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -120,9 +150,33 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1775
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1840
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "cellWidget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

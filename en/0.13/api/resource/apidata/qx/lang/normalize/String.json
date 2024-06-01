@@ -1,55 +1,59 @@
 {
-  "className": "qx.lang.normalize.String",
-  "packageName": "qx.lang.normalize",
-  "name": "String",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 786
-      },
-      "end": {
-        "line": 191,
-        "column": 3,
-        "index": 7101
-      }
+  "version": 0.3,
+  "lastModified": 1717235172410,
+  "lastModifiedIso": "2024-06-01T09:46:12.410Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/normalize/String.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 761
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is responsible for the normalization of the native 'String' object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Polyfill"
-        }
-      ]
+    "end": {
+      "line": 191,
+      "column": 3,
+      "index": 6911
     }
   },
-  "type": "class",
+  "className": "qx.lang.normalize.String",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is responsible for the normalization of the native 'String' object.",
+      " * It checks if these methods are available and, if not, appends them to",
+      " * ensure compatibility in all browsers.",
+      " * For usage samples, check out the attached links.",
+      " *",
+      " * @group (Polyfill)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is responsible for the normalization of the native 'String' object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Polyfill"
+      }
+    ]
+  },
   "statics": {
     "trim": {
-      "location": {
-        "start": {
-          "line": 36,
-          "column": 4,
-          "index": 1196
-        },
-        "end": {
-          "line": 38,
-          "column": 5,
-          "index": 1257
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes whitespace from both ends of the string.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/String/Trim\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.5.4.20\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @return {String} The trimmed string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,28 +64,45 @@
           {
             "name": "@return",
             "body": "{String} The trimmed string",
-            "type": "qx.lang.normalize.String",
-            "description": " The trimmed string"
+            "type": "string",
+            "description": "The trimmed string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "startsWith": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 50,
+          "line": 36,
           "column": 4,
-          "index": 1740
+          "index": 1161
         },
         "end": {
-          "line": 53,
+          "line": 38,
           "column": 5,
-          "index": 1891
+          "index": 1220
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "startsWith": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determines whether a string begins with the characters of another",
+          "     * string, returning true or false as appropriate.",
+          "     *",
+          "     * @param searchString {String} The characters to be searched for at the",
+          "     *   start of this string.",
+          "     * @param position {Integer?0} The position in this string at which to",
+          "     *   begin searching for <code>searchString</code>.",
+          "     * @return {Boolean} Whether the string begins with the other string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -94,7 +115,7 @@
             "body": "searchString {String} The characters to be searched for at the\n   start of this string.",
             "paramName": "searchString",
             "description": " The characters to be searched for at the\n   start of this string.",
-            "type": "qx.lang.normalize.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -110,28 +131,57 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the string begins with the other string.",
-            "type": "Boolean",
-            "description": " Whether the string begins with the other string."
+            "type": "boolean",
+            "description": "Whether the string begins with the other string."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "endsWith": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 66,
+          "line": 50,
           "column": 4,
-          "index": 2457
+          "index": 1691
         },
         "end": {
-          "line": 79,
+          "line": 53,
           "column": 5,
-          "index": 2944
+          "index": 1839
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "searchString",
+          "type": "string"
+        },
+        {
+          "name": "position",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "endsWith": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determines whether a ends with the characters of another string,",
+          "     * returning true or false as appropriate.",
+          "     *",
+          "     * @param searchString {String} The characters to be searched for at the",
+          "     *   end of this string.",
+          "     * @param position {Integer?length} Search within this string as if this",
+          "     *   string were only this long; defaults to this string's actual length,",
+          "     *   clamped within the range established by this string's length.",
+          "     * @return {Boolean} Whether the string ends with the other string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -144,7 +194,7 @@
             "body": "searchString {String} The characters to be searched for at the\n   end of this string.",
             "paramName": "searchString",
             "description": " The characters to be searched for at the\n   end of this string.",
-            "type": "qx.lang.normalize.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -160,28 +210,56 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the string ends with the other string.",
-            "type": "Boolean",
-            "description": " Whether the string ends with the other string."
+            "type": "boolean",
+            "description": "Whether the string ends with the other string."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "codePointAt": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 91,
+          "line": 66,
           "column": 4,
-          "index": 3463
+          "index": 2392
         },
         "end": {
-          "line": 124,
+          "line": 79,
           "column": 5,
-          "index": 4537
+          "index": 2866
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "searchString",
+          "type": "string"
+        },
+        {
+          "name": "position",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "length"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "codePointAt": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a non-negative integer that is the Unicode code point value.",
+          "     *   see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt",
+          "     *",
+          "     * @param position {Integer} Position of an element in the string to",
+          "     *   return the code point value from.",
+          "     * @return {Integer} A number representing the code point value of",
+          "     *   the character at the given pos. If there is no element at pos,",
+          "     *   returns undefined..",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -202,27 +280,48 @@
             "name": "@return",
             "body": "{Integer} A number representing the code point value of\n   the character at the given pos. If there is no element at pos,\n   returns undefined..",
             "type": "Integer",
-            "description": " A number representing the code point value of\n   the character at the given pos. If there is no element at pos,\n   returns undefined.."
+            "description": "A number representing the code point value of\n   the character at the given pos. If there is no element at pos,\n   returns undefined.."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fromCodePoint": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 135,
+          "line": 91,
           "column": 4,
-          "index": 5010
+          "index": 3373
         },
         "end": {
-          "line": 166,
+          "line": 124,
           "column": 5,
-          "index": 6329
+          "index": 4414
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "position",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "fromCodePoint": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a string created by using the specified sequence of code points.",
+          "     *   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCodePoint",
+          "     *",
+          "     * @param var_args {Integer} A sequence of code points as a variable argument list",
+          "     *   The undescore is used as a throwaway variable.",
+          "     * @return {String} A string created by using",
+          "     *   the specified sequence of code points.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -242,28 +341,36 @@
           {
             "name": "@return",
             "body": "{String} A string created by using\n   the specified sequence of code points.",
-            "type": "qx.lang.normalize.String",
-            "description": " A string created by using\n   the specified sequence of code points."
+            "type": "string",
+            "description": "A string created by using\n   the specified sequence of code points."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 169,
-        "column": 2,
-        "index": 6341
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 4876
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 6164
+        }
       },
-      "end": {
-        "line": 190,
-        "column": 3,
-        "index": 7096
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "_"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

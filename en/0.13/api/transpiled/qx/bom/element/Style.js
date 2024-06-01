@@ -331,7 +331,11 @@
         if (smart !== false && this.__P_150_5[name]) {
           this.__P_150_5[name].set(element, value);
         } else {
-          element.style[name] = value !== null ? value : "";
+          if (typeof value === "string" && name.startsWith("--")) {
+            element.style.setProperty(name, value);
+          } else {
+            element.style[name] = value !== null ? value : "";
+          }
         }
       },
       /**
@@ -508,4 +512,4 @@
   qx.bom.element.Style.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Style.js.map?dt=1709410145781
+//# sourceMappingURL=Style.js.map?dt=1717235374027

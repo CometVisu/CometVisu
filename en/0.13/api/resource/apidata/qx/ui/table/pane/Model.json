@@ -1,80 +1,65 @@
 {
-  "className": "qx.ui.table.pane.Model",
-  "packageName": "qx.ui.table.pane",
-  "name": "Model",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 670
-      },
-      "end": {
-        "line": 292,
-        "column": 3,
-        "index": 8166
-      }
+  "version": 0.3,
+  "lastModified": 1717235171802,
+  "lastModifiedIso": "2024-06-01T09:46:11.802Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/pane/Model.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 647
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The model of a table pane. This model works as proxy to a\n {@link qx.ui.table.columnmodel.Basic} and manages the visual order of the columns shown in\n a {@link Pane}.</p>"
-        }
-      ]
+    "end": {
+      "line": 292,
+      "column": 3,
+      "index": 7875
     }
   },
-  "type": "class",
+  "className": "qx.ui.table.pane.Model",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The model of a table pane. This model works as proxy to a",
+      " * {@link qx.ui.table.columnmodel.Basic} and manages the visual order of the columns shown in",
+      " * a {@link Pane}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The model of a table pane. This model works as proxy to a\n {@link qx.ui.table.columnmodel.Basic} and manages the visual order of the columns shown in\n a {@link Pane}.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "tableColumnModel"
+      }
+    ],
     "location": {
       "start": {
         "line": 38,
         "column": 2,
-        "index": 1086
+        "index": 1049
       },
       "end": {
         "line": 46,
         "column": 3,
-        "index": 1351
+        "index": 1306
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "tableColumnModel {qx.ui.table.columnmodel.Basic} The TableColumnModel of which this\n    model is the proxy.",
-          "paramName": "tableColumnModel",
-          "description": " The TableColumnModel of which this\n    model is the proxy.",
-          "type": "qx.ui.table.columnmodel.Basic"
-        }
-      ]
     }
   },
   "events": {
     "modelChanged": {
-      "location": {
-        "start": {
-          "line": 56,
-          "column": 4,
-          "index": 1604
-        },
-        "end": {
-          "line": 56,
-          "column": 39,
-          "index": 1639
-        }
-      },
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "* Fired when the model changed. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -82,25 +67,26 @@
           }
         ]
       },
-      "name": "modelChanged",
-      "type": "qx.event.type.Event"
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1549
+        },
+        "end": {
+          "line": 56,
+          "column": 39,
+          "index": 1584
+        }
+      }
     }
   },
   "statics": {
     "EVENT_TYPE_MODEL_CHANGED": {
-      "location": {
-        "start": {
-          "line": 67,
-          "column": 4,
-          "index": 1936
-        },
-        "end": {
-          "line": 67,
-          "column": 44,
-          "index": 1976
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {string} The type of the event fired when the model changed. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -114,8 +100,20 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1870
+        },
+        "end": {
+          "line": 67,
+          "column": 44,
+          "index": 1910
+        }
+      },
+      "appearsIn": []
     }
   },
   "properties": {
@@ -124,15 +122,23 @@
         "start": {
           "line": 78,
           "column": 4,
-          "index": 2282
+          "index": 2205
         },
         "end": {
           "line": 82,
           "column": 5,
-          "index": 2380
+          "index": 2299
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyFirstColumnX"
+      },
       "jsdoc": {
+        "raw": [
+          "* The visible x position of the first column this model should contain. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -140,27 +146,33 @@
           }
         ]
       },
-      "name": "firstColumnX",
-      "propertyType": "new",
-      "apply": "_applyFirstColumnX",
-      "init": 0,
-      "check": "Integer",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "maxColumnCount": {
       "location": {
         "start": {
           "line": 88,
           "column": 4,
-          "index": 2533
+          "index": 2446
         },
         "end": {
           "line": 92,
           "column": 5,
-          "index": 2635
+          "index": 2544
         }
       },
+      "json": {
+        "check": "Number",
+        "init": -1,
+        "apply": "_applyMaxColumnCount"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximum number of columns this model should contain. If -1 this model will",
+          "     * contain all remaining columns.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -168,149 +180,130 @@
           }
         ]
       },
-      "name": "maxColumnCount",
-      "propertyType": "new",
-      "apply": "_applyMaxColumnCount",
-      "init": -1,
-      "check": "Number",
-      "defaultValue": -1
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "__columnCount": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 102,
           "column": 4,
-          "index": 2853
+          "index": 2752
         },
         "end": {
           "line": 102,
           "column": 23,
-          "index": 2872
+          "index": 2771
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__tableColumnModel": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 103,
           "column": 4,
-          "index": 2879
+          "index": 2777
         },
         "end": {
           "line": 103,
           "column": 28,
-          "index": 2903
+          "index": 2801
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__defferedEventDispatcher": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 104,
           "column": 4,
-          "index": 2910
+          "index": 2807
         },
         "end": {
           "line": 104,
           "column": 35,
-          "index": 2941
+          "index": 2838
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_applyFirstColumnX": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 107,
           "column": 4,
-          "index": 2976
+          "index": 2870
         },
         "end": {
           "line": 110,
           "column": 5,
-          "index": 3099
+          "index": 2990
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "firstColumnX"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyMaxColumnCount": {
+      "jsdoc": {
+        "raw": [
+          " property modifier"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 113,
           "column": 4,
-          "index": 3134
+          "index": 3022
         },
         "end": {
           "line": 116,
           "column": 5,
-          "index": 3259
+          "index": 3144
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "maxColumnCount"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "setTableColumnModel": {
-      "location": {
-        "start": {
-          "line": 123,
-          "column": 4,
-          "index": 3428
-        },
-        "end": {
-          "line": 151,
-          "column": 5,
-          "index": 4218
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Connects the table model to the column model",
+          "     *",
+          "     * @param tableColumnModel {qx.ui.table.columnmodel.Basic} the column model",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -327,23 +320,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_onColVisibilityChanged": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 158,
+          "line": 123,
           "column": 4,
-          "index": 4364
+          "index": 3306
         },
         "end": {
-          "line": 162,
+          "line": 151,
           "column": 5,
-          "index": 4487
+          "index": 4068
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "tableColumnModel",
+          "type": "qx.ui.table.columnmodel.Basic"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onColVisibilityChanged": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the visibility of a column has changed.",
+          "     *",
+          "     * @param evt {Map} the event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -356,27 +363,41 @@
             "body": "evt {Map} the event.",
             "paramName": "evt",
             "description": " the event.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onHeaderCellRendererChanged": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 169,
+          "line": 158,
           "column": 4,
-          "index": 4636
+          "index": 4207
         },
         "end": {
-          "line": 171,
+          "line": 162,
           "column": 5,
-          "index": 4728
+          "index": 4326
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onHeaderCellRendererChanged": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called when the cell renderer of a column has changed.",
+          "     *",
+          "     * @param evt {Map} the event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -389,27 +410,41 @@
             "body": "evt {Map} the event.",
             "paramName": "evt",
             "description": " the event.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "getColumnCount": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 178,
+          "line": 169,
           "column": 4,
-          "index": 4879
+          "index": 4468
         },
         "end": {
-          "line": 192,
+          "line": 171,
           "column": 5,
-          "index": 5373
+          "index": 4558
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getColumnCount": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the number of columns in this model.",
+          "     *",
+          "     * @return {Integer} the number of columns in this model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -421,27 +456,40 @@
             "name": "@return",
             "body": "{Integer} the number of columns in this model.",
             "type": "Integer",
-            "description": " the number of columns in this model."
+            "description": "the number of columns in this model."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getColumnAtX": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 200,
+          "line": 178,
           "column": 4,
-          "index": 5624
+          "index": 4702
         },
         "end": {
-          "line": 203,
+          "line": 192,
           "column": 5,
-          "index": 5769
+          "index": 5182
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getColumnAtX": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the model index of the column at the position <code>xPos</code>.",
+          "     *",
+          "     * @param xPos {Integer} the x position in the table pane of the column.",
+          "     * @return {Integer} the model index of the column.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -462,27 +510,45 @@
             "name": "@return",
             "body": "{Integer} the model index of the column.",
             "type": "Integer",
-            "description": " the model index of the column."
+            "description": "the model index of the column."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getX": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 211,
+          "line": 200,
           "column": 4,
-          "index": 6001
+          "index": 5425
         },
         "end": {
-          "line": 222,
+          "line": 203,
           "column": 5,
-          "index": 6311
+          "index": 5567
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "xPos",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getX": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the x position of the column <code>col</code>.",
+          "     *",
+          "     * @param col {Integer} the model index of the column.",
+          "     * @return {Integer} the x position in the table pane of the column.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -503,27 +569,49 @@
             "name": "@return",
             "body": "{Integer} the x position in the table pane of the column.",
             "type": "Integer",
-            "description": " the x position in the table pane of the column."
+            "description": "the x position in the table pane of the column."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getColumnLeft": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 234,
+          "line": 211,
           "column": 4,
-          "index": 6701
+          "index": 5791
         },
         "end": {
-          "line": 249,
+          "line": 222,
           "column": 5,
-          "index": 7050
+          "index": 6090
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getColumnLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the position of the left side of a column (in pixels, relative to the",
+          "     * left side of the table pane).",
+          "     *",
+          "     * This value corresponds to the sum of the widths of all columns left of the",
+          "     * column.",
+          "     *",
+          "     * @param col {Integer} the model index of the column.",
+          "     * @return {var} the position of the left side of the column.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -544,27 +632,44 @@
             "name": "@return",
             "body": "{var} the position of the left side of the column.",
             "type": "var",
-            "description": " the position of the left side of the column."
+            "description": "the position of the left side of the column."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTotalWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 256,
+          "line": 234,
           "column": 4,
-          "index": 7217
+          "index": 6468
         },
         "end": {
-          "line": 266,
+          "line": 249,
           "column": 5,
-          "index": 7505
+          "index": 6802
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "getTotalWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the total width of all columns in the model.",
+          "     *",
+          "     * @return {Integer} the total width of all columns in the model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -576,298 +681,45 @@
             "name": "@return",
             "body": "{Integer} the total width of all columns in the model.",
             "type": "Integer",
-            "description": " the total width of all columns in the model."
+            "description": "the total width of all columns in the model."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4,
+          "index": 6962
+        },
+        "end": {
+          "line": 266,
+          "column": 5,
+          "index": 7240
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getFirstColumnX": {
-      "type": "function",
-      "name": "getFirstColumnX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>firstColumnX</code>.\n\nFor further details take a look at the property definition: {@link #firstColumnX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for firstColumnX"
-          }
-        ]
-      }
-    },
-    "setFirstColumnX": {
-      "type": "function",
-      "name": "setFirstColumnX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>firstColumnX</code>.\n\nFor further details take a look at the property definition: {@link #firstColumnX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for firstColumnX"
-          }
-        ]
-      }
-    },
-    "resetFirstColumnX": {
-      "type": "function",
-      "name": "resetFirstColumnX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>firstColumnX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #firstColumnX}."
-          }
-        ]
-      }
-    },
-    "getMaxColumnCount": {
-      "type": "function",
-      "name": "getMaxColumnCount",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxColumnCount</code>.\n\nFor further details take a look at the property definition: {@link #maxColumnCount}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for maxColumnCount"
-          }
-        ]
-      }
-    },
-    "setMaxColumnCount": {
-      "type": "function",
-      "name": "setMaxColumnCount",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxColumnCount</code>.\n\nFor further details take a look at the property definition: {@link #maxColumnCount}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for maxColumnCount"
-          }
-        ]
-      }
-    },
-    "resetMaxColumnCount": {
-      "type": "function",
-      "name": "resetMaxColumnCount",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxColumnCount</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxColumnCount}."
-          }
-        ]
-      }
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 275,
         "column": 2,
-        "index": 7710
+        "index": 7436
       },
       "end": {
         "line": 291,
         "column": 3,
-        "index": 8161
+        "index": 7871
       }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+    }
+  }
 }

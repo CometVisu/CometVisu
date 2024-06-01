@@ -1,0 +1,53 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "ui",
+    "LayoutTestCase",
+    "members",
+    "__list",
+    "setUp",
+    "list",
+    "form",
+    "List",
+    "items",
+    "forEach",
+    "item",
+    "ListItem",
+    "add",
+    "getRoot",
+    "flush",
+    "testFindRegularItem",
+    "found",
+    "findItem",
+    "assertInstance",
+    "testFindRichTextItem",
+    "set",
+    "rich",
+    "testGetContainerForListItems",
+    "container",
+    "_createListItemContainer",
+    "Composite",
+    "dispose",
+    "tearDown",
+    "superclass",
+    "prototype",
+    "call",
+    "destroy"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/form/List.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tristan Koch (tristankoch)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.ui.form.List\", {\n  extend: qx.test.ui.LayoutTestCase,\n\n  members: {\n    __list: null,\n\n    setUp() {\n      var list = (this.__list = new qx.ui.form.List());\n      var items = [\"AAA\", \"BBB\", \"CCC\"];\n      items.forEach(function (item) {\n        item = new qx.ui.form.ListItem(item);\n        list.add(item);\n      });\n\n      this.getRoot().add(list);\n      this.flush();\n    },\n\n    \"test: find regular item\"() {\n      var list = this.__list;\n      var found = list.findItem(\"AAA\");\n      this.assertInstance(found, qx.ui.form.ListItem, \"Item not found\");\n    },\n\n    \"test: find rich-text item\"() {\n      var list = this.__list;\n      var item = new qx.ui.form.ListItem(\"<b>Bold</b>\").set({ rich: true });\n      list.add(item);\n      this.flush();\n\n      var found = list.findItem(\"Bold\");\n      this.assertInstance(found, qx.ui.form.ListItem, \"Item not found\");\n    },\n\n    \"test: get container for list items\"() {\n      var container = this.__list._createListItemContainer();\n\n      this.assertInstance(\n        container,\n        qx.ui.container.Composite,\n        \"Wrong return value of '_createListItemContainer'\"\n      );\n\n      container.dispose();\n    },\n\n    tearDown() {\n      super.tearDown();\n      this.__list.destroy();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,sBAAsB,EAAE;IACtCC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,EAAE,CAACC,cAAc;IAEjCC,OAAO,EAAE;MACPC,SAAM,EAAE,IAAI;MAEZC,KAAK,WAAAA,MAAA,EAAG;QACN,IAAIC,IAAI,GAAI,IAAI,CAACF,SAAM,GAAG,IAAIX,EAAE,CAACQ,EAAE,CAACM,IAAI,CAACC,IAAI,CAAC,CAAE;QAChD,IAAIC,KAAK,GAAG,CAAC,KAAK,EAAE,KAAK,EAAE,KAAK,CAAC;QACjCA,KAAK,CAACC,OAAO,CAAC,UAAUC,IAAI,EAAE;UAC5BA,IAAI,GAAG,IAAIlB,EAAE,CAACQ,EAAE,CAACM,IAAI,CAACK,QAAQ,CAACD,IAAI,CAAC;UACpCL,IAAI,CAACO,GAAG,CAACF,IAAI,CAAC;QAChB,CAAC,CAAC;QAEF,IAAI,CAACG,OAAO,CAAC,CAAC,CAACD,GAAG,CAACP,IAAI,CAAC;QACxB,IAAI,CAACS,KAAK,CAAC,CAAC;MACd,CAAC;MAED,yBAAyB,WAAAC,oBAAA,EAAG;QAC1B,IAAIV,IAAI,GAAG,IAAI,CAACF,SAAM;QACtB,IAAIa,KAAK,GAAGX,IAAI,CAACY,QAAQ,CAAC,KAAK,CAAC;QAChC,IAAI,CAACC,cAAc,CAACF,KAAK,EAAExB,EAAE,CAACQ,EAAE,CAACM,IAAI,CAACK,QAAQ,EAAE,gBAAgB,CAAC;MACnE,CAAC;MAED,2BAA2B,WAAAQ,qBAAA,EAAG;QAC5B,IAAId,IAAI,GAAG,IAAI,CAACF,SAAM;QACtB,IAAIO,IAAI,GAAG,IAAIlB,EAAE,CAACQ,EAAE,CAACM,IAAI,CAACK,QAAQ,CAAC,aAAa,CAAC,CAACS,GAAG,CAAC;UAAEC,IAAI,EAAE;QAAK,CAAC,CAAC;QACrEhB,IAAI,CAACO,GAAG,CAACF,IAAI,CAAC;QACd,IAAI,CAACI,KAAK,CAAC,CAAC;QAEZ,IAAIE,KAAK,GAAGX,IAAI,CAACY,QAAQ,CAAC,MAAM,CAAC;QACjC,IAAI,CAACC,cAAc,CAACF,KAAK,EAAExB,EAAE,CAACQ,EAAE,CAACM,IAAI,CAACK,QAAQ,EAAE,gBAAgB,CAAC;MACnE,CAAC;MAED,oCAAoC,WAAAW,6BAAA,EAAG;QACrC,IAAIC,SAAS,GAAG,IAAI,CAACpB,SAAM,CAACqB,wBAAwB,CAAC,CAAC;QAEtD,IAAI,CAACN,cAAc,CACjBK,SAAS,EACT/B,EAAE,CAACQ,EAAE,CAACuB,SAAS,CAACE,SAAS,EACzB,kDACF,CAAC;QAEDF,SAAS,CAACG,OAAO,CAAC,CAAC;MACrB,CAAC;MAEDC,QAAQ,WAAAA,SAAA,EAAG;QACTnC,EAAA,CAAAO,IAAA,CAAAC,EAAA,CAAAM,IAAA,CAAAC,IAAA,CAAAqB,UAAA,CAAAC,SAAA,CAAAF,QAAA,CAAAG,IAAA;QACA,IAAI,CAAC3B,SAAM,CAAC4B,OAAO,CAAC,CAAC;MACvB;IACF;EACF,CAAC,CAAC;EArEFvC,EAAE,CAACO,IAAI,CAACC,EAAE,CAACM,IAAI,CAACC,IAAI,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

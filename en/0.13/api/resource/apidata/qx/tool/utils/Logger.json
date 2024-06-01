@@ -1,0 +1,345 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171654,
+  "lastModifiedIso": "2024-06-01T09:46:11.654Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/Logger.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 706
+    },
+    "end": {
+      "line": 82,
+      "column": 3,
+      "index": 1749
+    }
+  },
+  "className": "qx.tool.utils.Logger",
+  "jsdoc": {
+    "raw": [
+      " ************************************************************************",
+      " *",
+      " *    qooxdoo-compiler - node.js based replacement for the Qooxdoo python",
+      " *    toolchain",
+      " *",
+      " *    https://github.com/qooxdoo/qooxdoo",
+      " *",
+      " *    Copyright:",
+      " *      2011-2017 Zenesis Limited, http://www.zenesis.com",
+      " *",
+      " *    License:",
+      " *      MIT: https://opensource.org/licenses/MIT",
+      " *",
+      " *      This software is provided under the same licensing terms as Qooxdoo,",
+      " *      please see the LICENSE file in the Qooxdoo project's top-level directory",
+      " *      for details.",
+      " *",
+      " *    Authors:",
+      " *      * John Spackman (john.spackman@zenesis.com, @johnspackman)",
+      " *",
+      " * *********************************************************************** "
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "id"
+      },
+      {
+        "name": "minLevel"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 25,
+        "column": 2,
+        "index": 777
+      },
+      "end": {
+        "line": 28,
+        "column": 3,
+        "index": 865
+      }
+    }
+  },
+  "properties": {
+    "id": {
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 888
+        },
+        "end": {
+          "line": 33,
+          "column": 5,
+          "index": 921
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "minLevel": {
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 928
+        },
+        "end": {
+          "line": 37,
+          "column": 5,
+          "index": 968
+        }
+      },
+      "json": {
+        "check": "Integer"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "is": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 992
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1168
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "level"
+        }
+      ],
+      "appearsIn": []
+    },
+    "log": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1175
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1268
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "level"
+        },
+        {
+          "name": "msg"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_output": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1275
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1373
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "level"
+        },
+        {
+          "name": "msg"
+        }
+      ],
+      "appearsIn": []
+    },
+    "trace": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1380
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1435
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "msg"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MLogging"
+      ]
+    },
+    "debug": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1442
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1497
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "msg"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MLogging"
+      ]
+    },
+    "info": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1504
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1557
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "msg"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MLogging"
+      ]
+    },
+    "warn": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1564
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1617
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "msg"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MLogging"
+      ]
+    },
+    "error": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1624
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 1679
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "msg"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MLogging"
+      ]
+    },
+    "fatal": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1686
+        },
+        "end": {
+          "line": 80,
+          "column": 5,
+          "index": 1741
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "msg"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

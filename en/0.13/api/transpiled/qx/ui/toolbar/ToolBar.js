@@ -79,8 +79,8 @@
       this._setLayout(layout || new qx.ui.layout.HBox());
 
       // initialize the overflow handling
-      this.__P_467_0 = [];
-      this.__P_467_1 = [];
+      this.__P_686_0 = [];
+      this.__P_686_1 = [];
     },
     /*
     *****************************************************************************
@@ -157,8 +157,8 @@
       ---------------------------------------------------------------------------
       */
 
-      __P_467_0: null,
-      __P_467_1: null,
+      __P_686_0: null,
+      __P_686_1: null,
       // overridden
       _computeSizeHint: function _computeSizeHint() {
         // get the original hint
@@ -226,7 +226,7 @@
             var margins = childToHide.getMarginLeft() + childToHide.getMarginRight();
             margins = Math.max(margins, this.getSpacing());
             var childWidth = childToHide.getSizeHint().width + margins;
-            this.__P_467_2(childToHide);
+            this.__P_686_2(childToHide);
 
             // new width is the requiredWidth - the removed childs width
             requiredWidth -= childWidth;
@@ -243,9 +243,9 @@
           } while (requiredWidth > width);
 
           // if we can possibly show something
-        } else if (this.__P_467_0.length > 0) {
+        } else if (this.__P_686_0.length > 0) {
           do {
-            var removedChild = this.__P_467_0[0];
+            var removedChild = this.__P_686_0[0];
             // if we have something we can show
             if (removedChild) {
               // get the margins or spacing
@@ -267,7 +267,7 @@
               var fits = false;
               // if we can remove the overflow widget if its available
 
-              if (this.__P_467_0.length == 1 && overflowWidgetWidth > 0) {
+              if (this.__P_686_0.length == 1 && overflowWidgetWidth > 0) {
                 var addedMargin = margins - this.getSpacing();
                 var wouldRequiredWidth = requiredWidth - overflowWidgetWidth + removedChildWidth + addedMargin;
                 fits = width > wouldRequiredWidth;
@@ -275,17 +275,17 @@
 
               // if it just fits in || it fits in when we remove the overflow widget
               if (width > requiredWidth + removedChildWidth + margins || fits) {
-                this.__P_467_3(removedChild);
+                this.__P_686_3(removedChild);
                 requiredWidth += removedChildWidth;
                 // check if we need to remove the overflow widget
-                if (overflowWidget && this.__P_467_0.length == 0) {
+                if (overflowWidget && this.__P_686_0.length == 0) {
                   overflowWidget.setVisibility("excluded");
                 }
               } else {
                 return;
               }
             }
-          } while (width >= requiredWidth && this.__P_467_0.length > 0);
+          } while (width >= requiredWidth && this.__P_686_0.length > 0);
         }
       },
       /**
@@ -293,9 +293,9 @@
        *
        * @param child {qx.ui.core.Widget} The widget to show.
        */
-      __P_467_3: function __P_467_3(child) {
+      __P_686_3: function __P_686_3(child) {
         child.setVisibility("visible");
-        this.__P_467_0.shift();
+        this.__P_686_0.shift();
         this.fireDataEvent("showItem", child);
       },
       /**
@@ -303,12 +303,12 @@
        *
        * @param child {qx.ui.core.Widget} The widget to exclude.
        */
-      __P_467_2: function __P_467_2(child) {
+      __P_686_2: function __P_686_2(child) {
         // ignore the call if no child is given
         if (!child) {
           return;
         }
-        this.__P_467_0.unshift(child);
+        this.__P_686_0.unshift(child);
         child.setVisibility("excluded");
         this.fireDataEvent("hideItem", child);
       },
@@ -322,8 +322,8 @@
        */
       _getNextToHide: function _getNextToHide() {
         // get the elements by priority
-        for (var i = this.__P_467_1.length - 1; i >= 0; i--) {
-          var item = this.__P_467_1[i];
+        for (var i = this.__P_686_1.length - 1; i >= 0; i--) {
+          var item = this.__P_686_1[i];
           // maybe a priority is left out and spacers don't have the visibility
           if (item && item.getVisibility && item.getVisibility() == "visible") {
             return item;
@@ -357,10 +357,10 @@
        */
       setRemovePriority: function setRemovePriority(item, priority, override) {
         // security check for overriding priorities
-        if (!override && this.__P_467_1[priority] != undefined) {
+        if (!override && this.__P_686_1[priority] != undefined) {
           throw new Error("Priority already in use!");
         }
-        this.__P_467_1[priority] = item;
+        this.__P_686_1[priority] = item;
       },
       // property apply
       _applyOverflowHandling: function _applyOverflowHandling(value, old) {
@@ -393,11 +393,11 @@
           }
 
           // set all buttons back to visible
-          for (var i = 0; i < this.__P_467_0.length; i++) {
-            this.__P_467_0[i].setVisibility("visible");
+          for (var i = 0; i < this.__P_686_0.length; i++) {
+            this.__P_686_0[i].setVisibility("visible");
           }
           // reset the removed items
-          this.__P_467_0 = [];
+          this.__P_686_0 = [];
         }
       },
       // property apply
@@ -420,7 +420,7 @@
       ---------------------------------------------------------------------------
       */
 
-      __P_467_4: false,
+      __P_686_4: false,
       /**
        * Indicate if a menu could be opened on hover or not.
        *
@@ -429,7 +429,7 @@
        *    <code>false</code> otherwise.
        */
       _setAllowMenuOpenHover: function _setAllowMenuOpenHover(value) {
-        this.__P_467_4 = value;
+        this.__P_686_4 = value;
       },
       /**
        * Return if a menu could be opened on hover or not.
@@ -439,7 +439,7 @@
        *    <code>false</code> otherwise.
        */
       _isAllowMenuOpenHover: function _isAllowMenuOpenHover() {
-        return this.__P_467_4;
+        return this.__P_686_4;
       },
       /*
       ---------------------------------------------------------------------------
@@ -580,4 +580,4 @@
   qx.ui.toolbar.ToolBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ToolBar.js.map?dt=1709410166435
+//# sourceMappingURL=ToolBar.js.map?dt=1717235417531

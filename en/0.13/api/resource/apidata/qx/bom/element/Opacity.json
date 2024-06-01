@@ -1,49 +1,53 @@
 {
-  "className": "qx.bom.element.Opacity",
-  "packageName": "qx.bom.element",
-  "name": "Opacity",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 65,
-        "column": 0,
-        "index": 2265
-      },
-      "end": {
-        "line": 228,
-        "column": 3,
-        "index": 7051
-      }
+  "version": 0.3,
+  "lastModified": 1717235171922,
+  "lastModifiedIso": "2024-06-01T09:46:11.922Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/Opacity.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 65,
+      "column": 0,
+      "index": 2201
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Cross-browser opacity support.\n Optimized for animations (contains workarounds for typical flickering\n in some browsers). Reduced class dependencies for optimal size and\n performance.</p>"
-        }
-      ]
+    "end": {
+      "line": 228,
+      "column": 3,
+      "index": 6824
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.Opacity",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Cross-browser opacity support.",
+      " *",
+      " * Optimized for animations (contains workarounds for typical flickering",
+      " * in some browsers). Reduced class dependencies for optimal size and",
+      " * performance.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Cross-browser opacity support.\n Optimized for animations (contains workarounds for typical flickering\n in some browsers). Reduced class dependencies for optimal size and\n performance.</p>"
+      }
+    ]
+  },
   "statics": {
     "compile": {
-      "location": {
-        "start": {
-          "line": 76,
-          "column": 4,
-          "index": 2678
-        },
-        "end": {
-          "line": 96,
-          "column": 6,
-          "index": 3194
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compiles the given opacity value into a cross-browser CSS string.",
+          "     * Accepts numbers between zero and one",
+          "     * where \"0\" means transparent, \"1\" means opaque.",
+          "     *",
+          "     * @signature function(opacity)",
+          "     * @param opacity {Float} A float number between 0 and 1",
+          "     * @return {String} CSS compatible string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -69,28 +73,41 @@
           {
             "name": "@return",
             "body": "{String} CSS compatible string",
-            "type": "String",
-            "description": " CSS compatible string"
+            "type": "string",
+            "description": "CSS compatible string"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "set": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 106,
+          "line": 76,
           "column": 4,
-          "index": 3523
+          "index": 2603
         },
         "end": {
-          "line": 145,
+          "line": 96,
           "column": 6,
-          "index": 4684
+          "index": 3099
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "set": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets opacity of given element. Accepts numbers between zero and one",
+          "     * where \"0\" means transparent, \"1\" means opaque.",
+          "     *",
+          "     * @param element {Element} DOM element to modify",
+          "     * @param opacity {Float} A float number between 0 and 1",
+          "     * @signature function(element, opacity)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -120,23 +137,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "reset": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 153,
+          "line": 106,
           "column": 4,
-          "index": 4852
+          "index": 3418
         },
         "end": {
-          "line": 174,
+          "line": 145,
           "column": 6,
-          "index": 5472
+          "index": 4540
         }
       },
+      "appearsIn": []
+    },
+    "reset": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets opacity of given element.",
+          "     *",
+          "     * @param element {Element} DOM element to modify",
+          "     * @signature function(element)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -159,23 +184,36 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "get": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 187,
+          "line": 153,
           "column": 4,
-          "index": 6040
+          "index": 4700
         },
         "end": {
-          "line": 226,
+          "line": 174,
           "column": 6,
-          "index": 7041
+          "index": 5299
         }
       },
+      "appearsIn": []
+    },
+    "get": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets computed opacity of given element. Accepts numbers between zero and one",
+          "     * where \"0\" means transparent, \"1\" means opaque.",
+          "     *",
+          "     * @param element {Element} DOM element to modify",
+          "     * @param mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},",
+          "     *   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.",
+          "     *   The computed mode is the default one.",
+          "     * @return {Float} A float number between 0 and 1",
+          "     * @signature function(element, mode)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -195,7 +233,7 @@
             "body": "mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\n   The computed mode is the default one.",
             "paramName": "mode",
             "description": " Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\n   The computed mode is the default one.",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
@@ -203,7 +241,7 @@
             "name": "@return",
             "body": "{Float} A float number between 0 and 1",
             "type": "Float",
-            "description": " A float number between 0 and 1"
+            "description": "A float number between 0 and 1"
           }
         ],
         "@signature": [
@@ -213,9 +251,25 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 187,
+          "column": 4,
+          "index": 5854
+        },
+        "end": {
+          "line": 226,
+          "column": 6,
+          "index": 6816
+        }
+      },
+      "returnType": {
+        "type": "Float"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

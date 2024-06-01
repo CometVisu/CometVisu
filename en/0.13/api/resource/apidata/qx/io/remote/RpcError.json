@@ -1,36 +1,49 @@
 {
-  "className": "qx.io.remote.RpcError",
-  "packageName": "qx.io.remote",
-  "name": "RpcError",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 496
-      },
-      "end": {
-        "line": 183,
-        "column": 3,
-        "index": 5735
-      }
+  "version": 0.3,
+  "lastModified": 1645577566000,
+  "lastModifiedIso": "2022-02-23T00:52:46.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_deprecated_qx_io_remote_v1_0_2/source/class/qx/io/remote/RpcError.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 496
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The well-defined error codes for JSON-RPC.</p>"
-        }
-      ]
+    "end": {
+      "line": 183,
+      "column": 3,
+      "index": 5735
     }
   },
-  "type": "class",
+  "className": "qx.io.remote.RpcError",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The well-defined error codes for JSON-RPC.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The well-defined error codes for JSON-RPC.</p>"
+      }
+    ]
+  },
   "statics": {
     "qx1": {
+      "jsdoc": {
+        "raw": [
+          "* Information pertaining to qooxdoo's modified JSON-RPC Version 1 "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Information pertaining to qooxdoo's modified JSON-RPC Version 1</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 25,
@@ -43,18 +56,21 @@
           "index": 3592
         }
       },
+      "appearsIn": []
+    },
+    "v2": {
       "jsdoc": {
+        "raw": [
+          "* Information pertaining to a conformant JSON-RPC Version 2 "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Information pertaining to qooxdoo's modified JSON-RPC Version 1</p>"
+            "body": "<p>Information pertaining to a conformant JSON-RPC Version 2</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "v2": {
+      "access": "public",
       "location": {
         "start": {
           "line": 120,
@@ -67,17 +83,9 @@
           "index": 5725
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Information pertaining to a conformant JSON-RPC Version 2</p>"
-          }
-        ]
-      },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

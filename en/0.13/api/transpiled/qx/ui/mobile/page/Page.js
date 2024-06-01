@@ -197,7 +197,7 @@
      */
 
     members: {
-      __P_423_0: false,
+      __P_642_0: false,
       // overridden
       show: function show(properties) {
         if (qx.ui.mobile.page.Page._currentPage) {
@@ -270,7 +270,7 @@
       initialize: function initialize() {
         if (!this.isInitialized()) {
           this._initialize();
-          this.__P_423_0 = true;
+          this.__P_642_0 = true;
           this.setLifeCycleState("initialize");
         }
       },
@@ -287,7 +287,7 @@
        * @return {Boolean} Whether the page is already initialized or not
        */
       isInitialized: function isInitialized() {
-        return this.__P_423_0;
+        return this.__P_642_0;
       },
       /**
        * Lifecycle method. Called by the page manager after the {@link #initialize}
@@ -396,4 +396,4 @@
   qx.ui.mobile.page.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1709410164026
+//# sourceMappingURL=Page.js.map?dt=1717235414810

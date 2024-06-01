@@ -10,7 +10,7 @@
         "require": true
       },
       "qxl.apiviewer.dao.Class": {},
-      "qxl.apiviewer.ui.ClassViewer": {}
+      "qxl.apiviewer.Constants": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -93,7 +93,7 @@
        */
       getCheck: function getCheck() {
         var check = this._meta.check;
-        if (check && !qxl.apiviewer.dao.Class.getClassByName(check) && !qxl.apiviewer.ui.ClassViewer.PRIMITIVES[check]) {
+        if (check && !qxl.apiviewer.dao.Class.getClassByName(check) && !qxl.apiviewer.Constants.PRIMITIVES[check]) {
           return check;
         }
         return null;
@@ -148,4 +148,4 @@
   qxl.apiviewer.dao.Property.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Property.js.map?dt=1709410173969
+//# sourceMappingURL=Property.js.map?dt=1717235425707

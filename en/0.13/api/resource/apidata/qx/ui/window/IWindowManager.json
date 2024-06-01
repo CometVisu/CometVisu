@@ -1,49 +1,48 @@
 {
-  "className": "qx.ui.window.IWindowManager",
-  "packageName": "qx.ui.window",
-  "name": "IWindowManager",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 695
-      },
-      "end": {
-        "line": 69,
-        "column": 3,
-        "index": 1899
-      }
+  "version": 0.3,
+  "lastModified": 1717235171462,
+  "lastModifiedIso": "2024-06-01T09:46:11.462Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/window/IWindowManager.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 671
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Required interface for all window manager.\n Window manager handle the z-order and modality blocking of windows managed\n by the connected desktop {@link qx.ui.window.IDesktop}.</p>"
-        }
-      ]
+    "end": {
+      "line": 69,
+      "column": 3,
+      "index": 1831
     }
   },
-  "type": "interface",
+  "className": "qx.ui.window.IWindowManager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Required interface for all window manager.",
+      " *",
+      " * Window manager handle the z-order and modality blocking of windows managed",
+      " * by the connected desktop {@link qx.ui.window.IDesktop}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Required interface for all window manager.\n Window manager handle the z-order and modality blocking of windows managed\n by the connected desktop {@link qx.ui.window.IDesktop}.</p>"
+      }
+    ]
+  },
   "members": {
     "setDesktop": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 932
-        },
-        "end": {
-          "line": 36,
-          "column": 5,
-          "index": 1063
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Connect the window manager to the window desktop",
+          "     *",
+          "     * @param desktop {qx.ui.window.IDesktop|null} The connected desktop or null",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,23 +62,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "changeActiveWindow": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 44,
+          "line": 32,
           "column": 4,
-          "index": 1285
+          "index": 901
         },
         "end": {
-          "line": 44,
-          "column": 44,
-          "index": 1325
+          "line": 36,
+          "column": 5,
+          "index": 1028
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "desktop",
+          "type": [
+            "qx.ui.window.IDesktop",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "changeActiveWindow": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Inform the window manager about a new active window",
+          "     *",
+          "     * @param active {qx.ui.window.Window} new active window",
+          "     * @param oldActive {qx.ui.window.Window} old active window",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -103,23 +120,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "updateStack": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 44,
           "column": 4,
-          "index": 1405
+          "index": 1242
         },
         "end": {
-          "line": 49,
-          "column": 20,
-          "index": 1421
+          "line": 44,
+          "column": 44,
+          "index": 1282
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "active",
+          "type": "qx.ui.window.Window"
+        },
+        {
+          "name": "oldActive",
+          "type": "qx.ui.window.Window"
+        }
+      ],
+      "appearsIn": []
+    },
+    "updateStack": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update the window order and modality blocker",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -127,23 +160,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "bringToFront": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 56,
+          "line": 49,
           "column": 4,
-          "index": 1578
+          "index": 1357
         },
         "end": {
-          "line": 58,
-          "column": 5,
-          "index": 1658
+          "line": 49,
+          "column": 20,
+          "index": 1373
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "bringToFront": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Ask the manager to bring a window to the front.",
+          "     *",
+          "     * @param win {qx.ui.window.Window} window to bring to front",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -160,23 +202,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "sendToBack": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 65,
+          "line": 56,
           "column": 4,
-          "index": 1811
+          "index": 1523
         },
         "end": {
-          "line": 67,
+          "line": 58,
           "column": 5,
-          "index": 1889
+          "index": 1601
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "win",
+          "type": "qx.ui.window.Window"
+        }
+      ],
+      "appearsIn": []
+    },
+    "sendToBack": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Ask the manager to send a window to the back.",
+          "     *",
+          "     * @param win {qx.ui.window.Window} window to sent to back",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -193,9 +249,29 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1747
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1823
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "win",
+          "type": "qx.ui.window.Window"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

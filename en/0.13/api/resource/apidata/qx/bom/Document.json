@@ -1,49 +1,47 @@
 {
-  "className": "qx.bom.Document",
-  "packageName": "qx.bom",
-  "name": "Document",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 70,
-        "column": 0,
-        "index": 2720
-      },
-      "end": {
-        "line": 183,
-        "column": 3,
-        "index": 7205
-      }
+  "version": 0.3,
+  "lastModified": 1717235170262,
+  "lastModifiedIso": "2024-06-01T09:46:10.262Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Document.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 70,
+      "column": 0,
+      "index": 2651
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Includes library functions to work with the current document.</p>"
-        }
-      ]
+    "end": {
+      "line": 183,
+      "column": 3,
+      "index": 7023
     }
   },
-  "type": "class",
+  "className": "qx.bom.Document",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Includes library functions to work with the current document.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Includes library functions to work with the current document.</p>"
+      }
+    ]
+  },
   "statics": {
     "isQuirksMode": {
-      "location": {
-        "start": {
-          "line": 79,
-          "column": 4,
-          "index": 3065
-        },
-        "end": {
-          "line": 101,
-          "column": 6,
-          "index": 3877
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the document is in quirks mode (e.g. non XHTML, HTML4 Strict or missing doctype)",
+          "     *",
+          "     * @signature function(win)",
+          "     * @param win {Window?window} The window to query",
+          "     * @return {Boolean} true when containing document is in quirks mode",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -71,28 +69,39 @@
           {
             "name": "@return",
             "body": "{Boolean} true when containing document is in quirks mode",
-            "type": "Boolean",
-            "description": " true when containing document is in quirks mode"
+            "type": "boolean",
+            "description": "true when containing document is in quirks mode"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "isStandardMode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 109,
+          "line": 79,
           "column": 4,
-          "index": 4138
+          "index": 2987
         },
         "end": {
-          "line": 111,
-          "column": 5,
-          "index": 4205
+          "line": 101,
+          "column": 6,
+          "index": 3777
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isStandardMode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the document is in standard mode (e.g. XHTML, HTML4 Strict or doctype defined)",
+          "     *",
+          "     * @param win {Window?window} The window to query",
+          "     * @return {Boolean} true when containing document is in standard mode",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -114,28 +123,68 @@
           {
             "name": "@return",
             "body": "{Boolean} true when containing document is in standard mode",
-            "type": "Boolean",
-            "description": " true when containing document is in standard mode"
+            "type": "boolean",
+            "description": "true when containing document is in standard mode"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 139,
+          "line": 109,
           "column": 4,
-          "index": 5422
+          "index": 4030
         },
         "end": {
-          "line": 146,
+          "line": 111,
           "column": 5,
-          "index": 5695
+          "index": 4095
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "win",
+          "type": "Window",
+          "optional": true,
+          "defaultValue": "window"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the width of the document.",
+          "     *",
+          "     * Internet Explorer in standard mode stores the proprietary <code>scrollWidth</code> property",
+          "     * on the <code>documentElement</code>, but in quirks mode on the body element. All",
+          "     * other known browsers simply store the correct value on the <code>documentElement</code>.",
+          "     *",
+          "     * If the viewport is wider than the document the viewport width is returned.",
+          "     *",
+          "     * As the html element has no visual appearance it also can not scroll. This",
+          "     * means that we must use the body <code>scrollWidth</code> in all non mshtml clients.",
+          "     *",
+          "     * Verified to correctly work with:",
+          "     *",
+          "     * * Mozilla Firefox 2.0.0.4",
+          "     * * Opera 9.2.1",
+          "     * * Safari 3.0 beta (3.0.2)",
+          "     * * Internet Explorer 7.0",
+          "     *",
+          "     * @param win {Window?window} The window to query",
+          "     * @return {Integer} The width of the actual document (which includes the body and its margin).",
+          "     *",
+          "     * NOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,",
+          "     * if an element use negative value for top and left to be outside the viewport!",
+          "     * See: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -158,27 +207,67 @@
             "name": "@return",
             "body": "{Integer} The width of the actual document (which includes the body and its margin).\n NOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,\n if an element use negative value for top and left to be outside the viewport!\n See: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869",
             "type": "Integer",
-            "description": " The width of the actual document (which includes the body and its margin).\n NOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,\n if an element use negative value for top and left to be outside the viewport!\n See: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869"
+            "description": "The width of the actual document (which includes the body and its margin).\n NOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,\n if an element use negative value for top and left to be outside the viewport!\n See: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 174,
+          "line": 139,
           "column": 4,
-          "index": 6918
+          "index": 5284
         },
         "end": {
-          "line": 181,
+          "line": 146,
           "column": 5,
-          "index": 7195
+          "index": 5550
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "win",
+          "type": "Window",
+          "optional": true,
+          "defaultValue": "window"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the height of the document.",
+          "     *",
+          "     * Internet Explorer in standard mode stores the proprietary <code>scrollHeight</code> property",
+          "     * on the <code>documentElement</code>, but in quirks mode on the body element. All",
+          "     * other known browsers simply store the correct value on the <code>documentElement</code>.",
+          "     *",
+          "     * If the viewport is higher than the document the viewport height is returned.",
+          "     *",
+          "     * As the html element has no visual appearance it also can not scroll. This",
+          "     * means that we must use the body <code>scrollHeight</code> in all non mshtml clients.",
+          "     *",
+          "     * Verified to correctly work with:",
+          "     *",
+          "     * * Mozilla Firefox 2.0.0.4",
+          "     * * Opera 9.2.1",
+          "     * * Safari 3.0 beta (3.0.2)",
+          "     * * Internet Explorer 7.0",
+          "     *",
+          "     * @param win {Window?window} The window to query",
+          "     * @return {Integer} The height of the actual document (which includes the body and its margin).",
+          "     *",
+          "     * NOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,",
+          "     * if an element use negative value for top and left to be outside the viewport!",
+          "     * See: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -201,13 +290,38 @@
             "name": "@return",
             "body": "{Integer} The height of the actual document (which includes the body and its margin).\n NOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,\n if an element use negative value for top and left to be outside the viewport!\n See: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869",
             "type": "Integer",
-            "description": " The height of the actual document (which includes the body and its margin).\n NOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,\n if an element use negative value for top and left to be outside the viewport!\n See: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869"
+            "description": "The height of the actual document (which includes the body and its margin).\n NOTE: Opera 9.5x and 9.6x have wrong value for the scrollWidth property,\n if an element use negative value for top and left to be outside the viewport!\n See: http://bugzilla.qooxdoo.org/show_bug.cgi?id=2869"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 6745
+        },
+        "end": {
+          "line": 181,
+          "column": 5,
+          "index": 7015
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "win",
+          "type": "Window",
+          "optional": true,
+          "defaultValue": "window"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

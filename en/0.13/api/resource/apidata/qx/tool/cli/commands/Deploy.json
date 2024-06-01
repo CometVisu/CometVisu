@@ -1,0 +1,238 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235170214,
+  "lastModifiedIso": "2024-06-01T09:46:10.214Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Deploy.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 38,
+      "column": 0,
+      "index": 1186
+    },
+    "end": {
+      "line": 302,
+      "column": 3,
+      "index": 8958
+    }
+  },
+  "className": "qx.tool.cli.commands.Deploy",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Build and deploy a project.",
+      " *",
+      " * To add your own deployment actions, use the `compile.js` file by",
+      " *",
+      " * - adding a listener for the \"afterDeploy\" event fired on the command",
+      " * instance  in the `load()` method of the class extending {@link",
+      " * qx.tool.cli.api.LibraryApi} or {@link qx.tool.cli.api.CompilerApi}.",
+      " *",
+      " * - or by implementing a `afterDeploy()` method in the class",
+      " * extending {@link qx.tool.cli.api.CompilerApi}",
+      " *",
+      " * The event and/or method is called with a {@link qx.event.type.Data}",
+      " * containing an object with the properties described below.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Build and deploy a project.\n To add your own deployment actions, use the <code>compile.js</code> file by</p>\n<ul>\n<li>adding a listener for the \"afterDeploy\" event fired on the command\ninstance  in the <code>load()</code> method of the class extending {@link\nqx.tool.cli.api.LibraryApi} or {@link qx.tool.cli.api.CompilerApi}.</li>\n<li>or by implementing a <code>afterDeploy()</code> method in the class\nextending {@link qx.tool.cli.api.CompilerApi}\nThe event and/or method is called with a {@link qx.event.type.Data}\ncontaining an object with the properties described below.</li>\n</ul>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Compile",
+  "statics": {
+    "YARGS_BUILDER": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1292
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1743
+        }
+      },
+      "appearsIn": [
+        "qx.tool.cli.commands.Compile"
+      ]
+    },
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1750
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2369
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.tool.cli.commands.Compile"
+      ]
+    }
+  },
+  "events": {
+    "afterDeploy": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "**",
+          "     * fired after deploying. With this event",
+          "     * application can do aditional copying.",
+          "     *",
+          "     * The event data is an object with the following properties:",
+          "     *",
+          "     * targetDir  : {String}  The target dir of the build",
+          "     * deployDir  : {String}  The output dir for the deployment",
+          "     * argv       : {Object}  Arguments",
+          "     * application: {Object}  application to build",
+          "     "
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2793
+        },
+        "end": {
+          "line": 98,
+          "column": 37,
+          "index": 2826
+        }
+      }
+    }
+  },
+  "members": {
+    "processArgs": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 105,
+          "column": 4,
+          "index": 2882
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 3348
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "argv"
+        }
+      ],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 128,
+          "column": 4,
+          "index": 3387
+        },
+        "end": {
+          "line": 238,
+          "column": 5,
+          "index": 7082
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Compile",
+      "appearsIn": [
+        "qx.tool.cli.commands.Compile",
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "__copyFiles": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 7089
+        },
+        "end": {
+          "line": 280,
+          "column": 5,
+          "index": 8400
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "srcDir"
+        },
+        {
+          "name": "destDir"
+        },
+        {
+          "name": "sourceMaps"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

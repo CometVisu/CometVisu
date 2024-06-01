@@ -1,41 +1,45 @@
 {
-  "className": "cv.ui.structure.tile.MResize",
-  "packageName": "cv.ui.structure.tile",
-  "name": "MResize",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 882
-      },
-      "end": {
-        "line": 90,
-        "column": 3,
-        "index": 2285
-      }
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/MResize.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 882
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Detects dom elements resizing</p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "ResizeObserver"
-        }
-      ]
+    "end": {
+      "line": 90,
+      "column": 3,
+      "index": 2285
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.structure.tile.MResize",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Detects dom elements resizing",
+      " * @ignore(ResizeObserver)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Detects dom elements resizing</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "ResizeObserver"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 30,
@@ -47,11 +51,12 @@
         "column": 3,
         "index": 1241
       }
-    },
-    "jsdoc": {}
+    }
   },
   "events": {
     "resized": {
+      "type": "qx.event.type.Data",
+      "jsdoc": null,
       "location": {
         "start": {
           "line": 44,
@@ -63,9 +68,7 @@
           "column": 33,
           "index": 1410
         }
-      },
-      "name": "resized",
-      "type": "qx.event.type.Data"
+      }
     }
   },
   "properties": {
@@ -82,29 +85,23 @@
           "index": 1663
         }
       },
-      "name": "resizeTarget",
-      "propertyType": "new",
-      "apply": "_applyResizeTarget",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Element"
+      "json": {
+        "check": "Element",
+        "nullable": true,
+        "apply": "_applyResizeTarget"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     }
   },
   "members": {
     "_observer": {
-      "location": {
-        "start": {
-          "line": 69,
-          "column": 4,
-          "index": 1854
-        },
-        "end": {
-          "line": 69,
-          "column": 19,
-          "index": 1869
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @var {ResizeObserver}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -118,10 +115,24 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1854
+        },
+        "end": {
+          "line": 69,
+          "column": 19,
+          "index": 1869
+        }
+      },
+      "appearsIn": []
     },
     "_applyResizeTarget": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 71,
@@ -135,79 +146,20 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "resizeTarget"
-      ]
-    },
-    "getResizeTarget": {
-      "type": "function",
-      "name": "getResizeTarget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>resizeTarget</code>.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Element",
-            "desc": "Returns the value for resizeTarget"
-          }
-        ]
-      }
-    },
-    "setResizeTarget": {
-      "type": "function",
-      "name": "setResizeTarget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>resizeTarget</code>.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Element",
-            "paramName": "value",
-            "desc": "Value for resizeTarget"
-          }
-        ]
-      }
-    },
-    "resetResizeTarget": {
-      "type": "function",
-      "name": "resetResizeTarget",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>resizeTarget</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #resizeTarget}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "element"
+        },
+        {
+          "name": "oldElement"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 86,
@@ -219,8 +171,7 @@
         "column": 3,
         "index": 2281
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {}
 }

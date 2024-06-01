@@ -1,49 +1,63 @@
 {
-  "className": "qx.ui.mobile.core.MResize",
-  "packageName": "qx.ui.mobile.core",
-  "name": "MResize",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 677
-      },
-      "end": {
-        "line": 123,
-        "column": 3,
-        "index": 3694
-      }
+  "version": 0.3,
+  "lastModified": 1717235171830,
+  "lastModifiedIso": "2024-06-01T09:46:11.830Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/core/MResize.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 653
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin resizes the container element to the height of the parent element.\n Use this when the height can not be set by CSS.</p>"
-        }
-      ]
+    "end": {
+      "line": 123,
+      "column": 3,
+      "index": 3572
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.mobile.core.MResize",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin resizes the container element to the height of the parent element.",
+      " * Use this when the height can not be set by CSS.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin resizes the container element to the height of the parent element.\n Use this when the height can not be set by CSS.</p>"
+      }
+    ]
+  },
   "properties": {
     "fireDomUpdatedOnResize": {
       "location": {
         "start": {
           "line": 38,
           "column": 4,
-          "index": 1220
+          "index": 1183
         },
         "end": {
           "line": 41,
           "column": 5,
-          "index": 1296
+          "index": 1256
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
       "jsdoc": {
+        "raw": [
+          "* Whether the resize should fire the \"domupdated\" event. Set this to \"true\"",
+          "     *  whenever other elements should react on this size change (e.g. when the size",
+          "     *  change does not infect the size of the application, but other widgets should",
+          "     *  react).",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,60 +65,51 @@
           }
         ]
       },
-      "name": "fireDomUpdatedOnResize",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     }
   },
   "members": {
     "__lastHeight": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 51,
           "column": 4,
-          "index": 1514
+          "index": 1464
         },
         "end": {
           "line": 51,
           "column": 22,
-          "index": 1532
+          "index": 1482
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__lastWidth": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 52,
           "column": 4,
-          "index": 1539
+          "index": 1488
         },
         "end": {
           "line": 52,
           "column": 21,
-          "index": 1556
+          "index": 1505
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "releaseFixedSize": {
-      "location": {
-        "start": {
-          "line": 57,
-          "column": 4,
-          "index": 1626
-        },
-        "end": {
-          "line": 65,
-          "column": 5,
-          "index": 1935
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes fixed size from container.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -112,23 +117,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fixSize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 70,
+          "line": 57,
           "column": 4,
-          "index": 2037
+          "index": 1570
         },
         "end": {
-          "line": 93,
+          "line": 65,
           "column": 5,
-          "index": 2811
+          "index": 1871
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "fixSize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resizes the container element to the height of the parent element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -136,23 +148,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_setHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 100,
+          "line": 70,
           "column": 4,
-          "index": 2946
+          "index": 1968
         },
         "end": {
-          "line": 107,
+          "line": 93,
           "column": 5,
-          "index": 3252
+          "index": 2719
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_setHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the height of the container element.",
+          "     *",
+          "     * @param height {Integer} The height to set",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -169,23 +190,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_setWidth": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 114,
+          "line": 100,
           "column": 4,
-          "index": 3384
+          "index": 2847
         },
         "end": {
-          "line": 121,
+          "line": 107,
           "column": 5,
-          "index": 3684
+          "index": 3146
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the width of the container element.",
+          "     *",
+          "     * @param width {Integer} The width to set",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -202,99 +237,28 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3271
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3564
+        }
+      },
       "type": "function",
-      "access": "protected"
-    },
-    "getFireDomUpdatedOnResize": {
-      "type": "function",
-      "name": "getFireDomUpdatedOnResize",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>fireDomUpdatedOnResize</code>.\n\nFor further details take a look at the property definition: {@link #fireDomUpdatedOnResize}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for fireDomUpdatedOnResize"
-          }
-        ]
-      }
-    },
-    "isFireDomUpdatedOnResize": {
-      "type": "function",
-      "name": "isFireDomUpdatedOnResize",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>fireDomUpdatedOnResize</code>.\n\nFor further details take a look at the property definition: {@link #fireDomUpdatedOnResize}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for fireDomUpdatedOnResize"
-          }
-        ]
-      }
-    },
-    "setFireDomUpdatedOnResize": {
-      "type": "function",
-      "name": "setFireDomUpdatedOnResize",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>fireDomUpdatedOnResize</code>.\n\nFor further details take a look at the property definition: {@link #fireDomUpdatedOnResize}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for fireDomUpdatedOnResize"
-          }
-        ]
-      }
-    },
-    "resetFireDomUpdatedOnResize": {
-      "type": "function",
-      "name": "resetFireDomUpdatedOnResize",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>fireDomUpdatedOnResize</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #fireDomUpdatedOnResize}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

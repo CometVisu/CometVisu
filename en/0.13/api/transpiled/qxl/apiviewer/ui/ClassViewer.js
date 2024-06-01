@@ -50,6 +50,7 @@
       "qx.bom.element.Scroll": {},
       "qx.bom.element.Style": {},
       "qxl.apiviewer.TreeUtil": {},
+      "qxl.apiviewer.Constants": {},
       "qx.event.Timer": {},
       "qxl.apiviewer.UiModel": {}
     },
@@ -57,7 +58,6 @@
       "provided": [],
       "required": {
         "qx.revision": {},
-        "qx.version": {},
         "engine.name": {
           "className": "qx.bom.client.Engine"
         }
@@ -120,57 +120,6 @@
     */
 
     statics: {
-      /** {Map} The primitive types. These types will not be shown with links. */
-      PRIMITIVES: {
-        "var": true,
-        "void": true,
-        undefined: true,
-        arguments: true,
-        "null": true,
-        varargs: true,
-        Boolean: true,
-        String: true,
-        Number: true,
-        Integer: true,
-        PositiveNumber: true,
-        PositiveInteger: true,
-        Float: true,
-        Double: true,
-        Color: true,
-        Error: true,
-        RegExp: true,
-        Object: true,
-        Array: true,
-        Map: true,
-        Function: true,
-        Date: true,
-        Node: true,
-        Element: true,
-        Document: true,
-        Window: true,
-        Event: true
-      },
-      MDC_LINKS: {
-        Event: "https://developer.mozilla.org/en/DOM/event",
-        Window: "https://developer.mozilla.org/en/DOM/window",
-        Document: "https://developer.mozilla.org/en/DOM/document",
-        Element: "https://developer.mozilla.org/en/DOM/element",
-        Node: "https://developer.mozilla.org/en/DOM/node",
-        Date: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date",
-        Function: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function",
-        Array: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array",
-        Object: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object",
-        Map: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object",
-        RegExp: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/RegExp",
-        Error: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Error",
-        Number: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number",
-        Boolean: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean",
-        String: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String",
-        undefined: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/undefined",
-        arguments: "https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/arguments",
-        Font: "https://developer.mozilla.org/en/CSS/font",
-        Color: "https://developer.mozilla.org/en/CSS/color"
-      },
       /**
        * {Map} Replacement rules for placeholders in the source view URI.
        * Functions will be called with the current @link{qxl.apiviewer.dao.Node} as the
@@ -189,8 +138,8 @@
         },
         qxGitBranch: function qxGitBranch(node) {
           return qx.core.Environment.get("qx.revision") // e.g. "master:47ac02f"
-          ? qx.core.Environment.get("qx.revision").split(":")[1] : qx.core.Environment.get("qx.version") // e.g. "2.1.2"
-          ? "release_" + qx.core.Environment.get("qx.version").replace(/\./g, "_") : "master";
+          ? qx.core.Environment.get("qx.revision").split(":")[1] : null // e.g. "2.1.2"
+          ? "release_" + null.replace(/\./g, "_") : "master";
         }
       },
       /**
@@ -355,7 +304,7 @@
           tocItem.innerHTML = qxl.apiviewer.ui.ClassViewer.createImageHtml(panel.getPanelIcon(), panel.getPanelTitle()) + " ";
           q(tocItem).on("tap", function (firstItem) {
             return function () {
-              this.__P_587_0(firstItem);
+              this.__P_806_0(firstItem);
               qx.bom.element.Scroll.intoView(panel.getTitleElement(), null, "left", "top");
               if (!panel.getIsOpen()) {
                 this.togglePanelVisibility(panel);
@@ -410,20 +359,20 @@
 
         // Add the class hierarchy
         if (classNode.getType() === "interface") {
-          classHtml.add(this.__P_587_1(classNode));
+          classHtml.add(this.__P_806_1(classNode));
         } else {
-          classHtml.add(this.__P_587_2(classNode));
+          classHtml.add(this.__P_806_2(classNode));
         }
         return classNode.getChildClasses().then(function (childClasses) {
-          classHtml.add(_this2.__P_587_3(childClasses, "Direct " + subObjectsName + ":"));
-          classHtml.add(_this2.__P_587_3(classNode.getInterfaces(), "Implemented interfaces:"));
-          classHtml.add(_this2.__P_587_3(classNode.getMixins(), "Included mixins:"));
+          classHtml.add(_this2.__P_806_3(childClasses, "Direct " + subObjectsName + ":"));
+          classHtml.add(_this2.__P_806_3(classNode.getInterfaces(), "Implemented interfaces:"));
+          classHtml.add(_this2.__P_806_3(classNode.getMixins(), "Included mixins:"));
           return classNode.getImplementations();
         }).then(function (classes) {
-          classHtml.add(_this2.__P_587_3(classes, "Implementations of this interface:"));
+          classHtml.add(_this2.__P_806_3(classes, "Implementations of this interface:"));
           return classNode.getIncluder();
         }).then(function (classes) {
-          classHtml.add(_this2.__P_587_3(classes, "Classes including this mixin:"));
+          classHtml.add(_this2.__P_806_3(classes, "Classes including this mixin:"));
           if (classNode.isDeprecated()) {
             classHtml.add('<h2 class="warning">', "Deprecated:", "</h2>");
             classHtml.add("<p>");
@@ -456,7 +405,7 @@
        * @param title {String} headline
        * @return {String} HTML Fragement
        */
-      __P_587_3: function __P_587_3(dependentClasses, title) {
+      __P_806_3: function __P_806_3(dependentClasses, title) {
         var result = "";
         if (dependentClasses.length > 0) {
           result = new qx.util.StringBuilder("<h2>", title, "</h2>");
@@ -476,7 +425,7 @@
        * @param classNode {qxl.apiviewer.dao.Class} class node
        * @return {String} HTML fragemnt
        */
-      __P_587_2: function __P_587_2(classNode) {
+      __P_806_2: function __P_806_2(classNode) {
         var ClassViewer = qxl.apiviewer.ui.ClassViewer;
 
         // Create the class hierarchy
@@ -497,7 +446,7 @@
               // it is safe to get the name of the type of the object as below, because only standard native objects are used here.
               // the method below returns Object for user defined objects
               var name = Object.prototype.toString.call(new classHierarchy[i]()).match(/^\[object (.*)\]$/)[1];
-              classHtml.add('<span style="white-space: nowrap;"><a href="' + qxl.apiviewer.ui.ClassViewer.MDC_LINKS[name] + '" target="_blank" title="' + name + '">' + name + "</a></span>");
+              classHtml.add('<span style="white-space: nowrap;"><a href="' + qxl.apiviewer.Constants.MDC_LINKS[name] + '" target="_blank" title="' + name + '">' + name + "</a></span>");
             }
           } else {
             classHtml.add(classHierarchy[i].getFullName());
@@ -513,7 +462,7 @@
        * @param classNode {qxl.apiviewer.dao.Class} class node
        * @return {String} HTML fragemnt
        */
-      __P_587_1: function __P_587_1(classNode) {
+      __P_806_1: function __P_806_1(classNode) {
         var ClassViewer = qxl.apiviewer.ui.ClassViewer;
         var TreeUtil = qxl.apiviewer.TreeUtil;
         var InfoPanel = qxl.apiviewer.ui.panels.InfoPanel;
@@ -581,7 +530,7 @@
         }
 
         // Show properties, private or protected methods if they are hidden
-        this.__P_587_0(itemNode);
+        this.__P_806_0(itemNode);
         var panel = this._getPanelForItemNode(itemNode);
         if (!panel.getIsOpen()) {
           this.togglePanelVisibility(panel);
@@ -613,7 +562,7 @@
        * properties so that the selected item can be shown.
        * @param itemNode
        */
-      __P_587_0: function __P_587_0(itemNode) {
+      __P_806_0: function __P_806_0(itemNode) {
         var uiModel = qxl.apiviewer.UiModel.getInstance();
 
         // Check for property
@@ -671,4 +620,4 @@
   qxl.apiviewer.ui.ClassViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassViewer.js.map?dt=1709410174083
+//# sourceMappingURL=ClassViewer.js.map?dt=1717235425850

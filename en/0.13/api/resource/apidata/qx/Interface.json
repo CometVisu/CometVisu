@@ -1,55 +1,108 @@
 {
-  "className": "qx.Interface",
-  "packageName": "qx",
-  "name": "Interface",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 745
-      },
-      "end": {
-        "line": 690,
-        "column": 3,
-        "index": 21816
-      }
+  "version": 0.3,
+  "lastModified": 1717235171434,
+  "lastModifiedIso": "2024-06-01T09:46:11.434Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/Interface.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 718
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is used to define interfaces (similar to Java interfaces).\n See the description of the {@link #define} method how an interface is\n defined.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Array"
-        }
-      ]
+    "end": {
+      "line": 690,
+      "column": 3,
+      "index": 21127
     }
   },
-  "type": "class",
+  "className": "qx.Interface",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is used to define interfaces (similar to Java interfaces).",
+      " *",
+      " * See the description of the {@link #define} method how an interface is",
+      " * defined.",
+      " *",
+      " * @require(qx.lang.normalize.Array)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is used to define interfaces (similar to Java interfaces).\n See the description of the {@link #define} method how an interface is\n defined.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Array"
+      }
+    ]
+  },
   "statics": {
     "define": {
-      "location": {
-        "start": {
-          "line": 93,
-          "column": 4,
-          "index": 3441
-        },
-        "end": {
-          "line": 147,
-          "column": 5,
-          "index": 4810
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Define a new interface. Interface definitions look much like class definitions.",
+          "     *",
+          "     * The main difference is that the bodies of functions defined in <code>members</code>",
+          "     * and <code>statics</code> are called before the original function with the",
+          "     * same arguments. This can be used to check the passed arguments. If the",
+          "     * checks fail, an exception should be thrown. It is convenient to use the",
+          "     * method defined in {@link qx.core.MAssert} to check the arguments.",
+          "     *",
+          "     * In the <code>build</code> version the checks are omitted.",
+          "     *",
+          "     * For properties only the names are required so the value of the properties",
+          "     * can be empty maps.",
+          "     *",
+          "     * Example:",
+          "     * <pre class='javascript'>",
+          "     * qx.Interface.define(\"name\",",
+          "     * {",
+          "     *   extend: [SuperInterfaces],",
+          "     *",
+          "     *   statics:",
+          "     *   {",
+          "     *     PI : 3.14",
+          "     *   },",
+          "     *",
+          "     *   properties: {\"color\": {}, \"name\": {} },",
+          "     *",
+          "     *   members:",
+          "     *   {",
+          "     *     meth1: function() {},",
+          "     *     meth2: function(a, b) { this.assertArgumentsCount(arguments, 2, 2); },",
+          "     *     meth3: function(c) { this.assertInterface(c.constructor, qx.some.Interface); }",
+          "     *   },",
+          "     *",
+          "     *   events :",
+          "     *   {",
+          "     *     keydown : \"qx.event.type.KeySequence\"",
+          "     *   }",
+          "     * });",
+          "     * </pre>",
+          "     *",
+          "     * @param name {String} name of the interface",
+          "     * @param config {Map ? null} Interface definition structure. The configuration map has the following keys:",
+          "     *   <table>",
+          "     *     <tr><th>Name</th><th>Type</th><th>Description</th></tr>",
+          "     *     <tr><th>extend</th><td>Interface |<br>Interface[]</td><td>Single interface or array of interfaces this interface inherits from.</td></tr>",
+          "     *     <tr><th>members</th><td>Map</td><td>Map of members of the interface.</td></tr>",
+          "     *     <tr><th>statics</th><td>Map</td><td>",
+          "     *         Map of statics of the interface. The statics will not get copied into the target class.",
+          "     *         This is the same behaviour as statics in mixins ({@link qx.Mixin#define}).",
+          "     *     </td></tr>",
+          "     *     <tr><th>properties</th><td>Map</td><td>Map of properties and their definitions.</td></tr>",
+          "     *     <tr><th>events</th><td>Map</td><td>Map of event names and the corresponding event class name.</td></tr>",
+          "     *   </table>",
+          "     *",
+          "     * @return {qx.Interface} The configured interface",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -62,7 +115,7 @@
             "body": "name {String} name of the interface",
             "paramName": "name",
             "description": " name of the interface",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -79,27 +132,51 @@
             "name": "@return",
             "body": "{qx.Interface} The configured interface",
             "type": "qx.Interface",
-            "description": " The configured interface"
+            "description": "The configured interface"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getByName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 155,
+          "line": 93,
           "column": 4,
-          "index": 4967
+          "index": 3349
         },
         "end": {
-          "line": 157,
+          "line": 147,
           "column": 5,
-          "index": 5028
+          "index": 4664
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "config",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Interface"
+      },
+      "appearsIn": []
+    },
+    "getByName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an interface by name",
+          "     *",
+          "     * @param name {String} class name to resolve",
+          "     * @return {Class} the class",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -112,7 +189,7 @@
             "body": "name {String} class name to resolve",
             "paramName": "name",
             "description": " class name to resolve",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -120,27 +197,45 @@
             "name": "@return",
             "body": "{Class} the class",
             "type": "qx.Class",
-            "description": " the class"
+            "description": "the class"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isDefined": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 165,
+          "line": 155,
           "column": 4,
-          "index": 5205
+          "index": 4813
         },
         "end": {
-          "line": 167,
+          "line": 157,
           "column": 5,
-          "index": 5279
+          "index": 4872
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Class"
+      },
+      "appearsIn": []
+    },
+    "isDefined": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine if interface exists",
+          "     *",
+          "     * @param name {String} Interface name to check",
+          "     * @return {Boolean} true if interface exists",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -153,35 +248,52 @@
             "body": "name {String} Interface name to check",
             "paramName": "name",
             "description": " Interface name to check",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} true if interface exists",
-            "type": "Boolean",
-            "description": " true if interface exists"
+            "type": "boolean",
+            "description": "true if interface exists"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTotalNumber": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 174,
+          "line": 165,
           "column": 4,
-          "index": 5425
+          "index": 5041
         },
         "end": {
-          "line": 176,
+          "line": 167,
           "column": 5,
-          "index": 5511
+          "index": 5113
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getTotalNumber": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine the number of interfaces which are defined",
+          "     *",
+          "     * @return {Number} the number of interfaces",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -192,28 +304,42 @@
           {
             "name": "@return",
             "body": "{Number} the number of interfaces",
-            "type": "Number",
-            "description": " the number of interfaces"
+            "type": "number",
+            "description": "the number of interfaces"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "flatten": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 185,
+          "line": 174,
           "column": 4,
-          "index": 5775
+          "index": 5252
         },
         "end": {
-          "line": 200,
+          "line": 176,
           "column": 5,
-          "index": 6164
+          "index": 5336
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "flatten": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates a list of all interfaces including their super interfaces",
+          "     * (resolved recursively)",
+          "     *",
+          "     * @param ifaces {Interface[] ? []} List of interfaces to be resolved",
+          "     * @return {Array} List of all interfaces",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -235,28 +361,54 @@
           {
             "name": "@return",
             "body": "{Array} List of all interfaces",
-            "type": "Array",
-            "description": " List of all interfaces"
+            "type": "Array<any>",
+            "description": "List of all interfaces"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__checkMembers": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 214,
+          "line": 185,
           "column": 4,
-          "index": 6727
+          "index": 5591
         },
         "end": {
-          "line": 279,
+          "line": 200,
           "column": 5,
-          "index": 8942
+          "index": 5965
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "ifaces",
+          "type": "Interface[]",
+          "optional": true,
+          "defaultValue": "[]"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "__checkMembers": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert members",
+          "     *",
+          "     * @param object {qx.core.Object} The object, which contains the methods",
+          "     * @param clazz {Class} class of the object",
+          "     * @param iface {Interface} the interface to verify",
+          "     * @param wrap {Boolean ? false} wrap functions required by interface to",
+          "     *     check parameters etc.",
+          "     * @param shouldThrow {Boolean} if <code>false</code>, the method",
+          "     *   will return a boolean instead of throwing an exception",
+          "     * @return {Boolean} <code>true</code> if all members are supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -299,35 +451,75 @@
             "body": "shouldThrow {Boolean} if <code>false</code>, the method\n   will return a boolean instead of throwing an exception",
             "paramName": "shouldThrow",
             "description": " if <code>false</code>, the method\n   will return a boolean instead of throwing an exception",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if all members are supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if all members are supported"
+            "type": "boolean",
+            "description": "<code>true</code> if all members are supported"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__isPropertyMethod": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 291,
+          "line": 214,
           "column": 4,
-          "index": 9288
+          "index": 6514
         },
         "end": {
-          "line": 317,
+          "line": 279,
           "column": 5,
-          "index": 9958
+          "index": 8664
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "iface",
+          "type": "qx.Interface"
+        },
+        {
+          "name": "wrap",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        },
+        {
+          "name": "shouldThrow",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__isPropertyMethod": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper to detect if the method will be generated by the",
+          "     * property system.",
+          "     *",
+          "     * @param clazz {Class} The current class.",
+          "     * @param methodName {String} The name of the method.",
+          "     *",
+          "     * @return {Boolean} true, if the method will be generated by the property",
+          "     *   system.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -347,35 +539,60 @@
             "body": "methodName {String} The name of the method.",
             "paramName": "methodName",
             "description": " The name of the method.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} true, if the method will be generated by the property\n   system.",
-            "type": "Boolean",
-            "description": " true, if the method will be generated by the property\n   system."
+            "type": "boolean",
+            "description": "true, if the method will be generated by the property\n   system."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__checkProperties": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 328,
+          "line": 291,
           "column": 4,
-          "index": 10346
+          "index": 8998
         },
         "end": {
-          "line": 349,
+          "line": 317,
           "column": 5,
-          "index": 10961
+          "index": 9642
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "methodName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__checkProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert properties",
+          "     *",
+          "     * @param clazz {Class} class to check interface for",
+          "     * @param iface {Interface} the interface to verify",
+          "     * @param shouldThrow {Boolean} if <code>false</code>, the method",
+          "     *   will return a boolean instead of throwing an exception",
+          "     * @return {Boolean} <code>true</code> if all properties are supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -402,35 +619,64 @@
             "body": "shouldThrow {Boolean} if <code>false</code>, the method\n   will return a boolean instead of throwing an exception",
             "paramName": "shouldThrow",
             "description": " if <code>false</code>, the method\n   will return a boolean instead of throwing an exception",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if all properties are supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if all properties are supported"
+            "type": "boolean",
+            "description": "<code>true</code> if all properties are supported"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__checkEvents": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 360,
+          "line": 328,
           "column": 4,
-          "index": 11341
+          "index": 10019
         },
         "end": {
-          "line": 381,
+          "line": 349,
           "column": 5,
-          "index": 11933
+          "index": 10613
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "iface",
+          "type": "qx.Interface"
+        },
+        {
+          "name": "shouldThrow",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__checkEvents": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert events",
+          "     *",
+          "     * @param clazz {Class} class to check interface for",
+          "     * @param iface {Interface} the interface to verify",
+          "     * @param shouldThrow {Boolean} if <code>false</code>, the method",
+          "     *   will return a boolean instead of throwing an exception",
+          "     * @return {Boolean} <code>true</code> if all events are supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -457,35 +703,63 @@
             "body": "shouldThrow {Boolean} if <code>false</code>, the method\n   will return a boolean instead of throwing an exception",
             "paramName": "shouldThrow",
             "description": " if <code>false</code>, the method\n   will return a boolean instead of throwing an exception",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if all events are supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if all events are supported"
+            "type": "boolean",
+            "description": "<code>true</code> if all events are supported"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "assertObject": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 391,
+          "line": 360,
           "column": 4,
-          "index": 12283
+          "index": 10982
         },
         "end": {
-          "line": 404,
+          "line": 381,
           "column": 5,
-          "index": 12744
+          "index": 11553
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "iface",
+          "type": "qx.Interface"
+        },
+        {
+          "name": "shouldThrow",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "assertObject": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Asserts that the given object implements all the methods defined in the",
+          "     * interface. This method throws an exception if the object does not",
+          "     * implement the interface.",
+          "     *",
+          "     *  @param object {qx.core.Object} Object to check interface for",
+          "     *  @param iface {Interface} The interface to verify",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -509,23 +783,44 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assert": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 414,
+          "line": 391,
           "column": 4,
-          "index": 13063
+          "index": 11893
         },
         "end": {
-          "line": 426,
+          "line": 404,
           "column": 5,
-          "index": 13491
+          "index": 12341
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "iface",
+          "type": "qx.Interface"
+        }
+      ],
+      "appearsIn": []
+    },
+    "assert": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if an interface is implemented by a class",
+          "     *",
+          "     * @param clazz {Class} class to check interface for",
+          "     * @param iface {Interface} the interface to verify",
+          "     * @param wrap {Boolean ? false} wrap functions required by interface to",
+          "     *     check parameters etc.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -558,23 +853,50 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "objectImplements": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 436,
+          "line": 414,
           "column": 4,
-          "index": 13837
+          "index": 12650
         },
         "end": {
-          "line": 457,
+          "line": 426,
           "column": 5,
-          "index": 14417
+          "index": 13066
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "iface",
+          "type": "qx.Interface"
+        },
+        {
+          "name": "wrap",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "appearsIn": []
+    },
+    "objectImplements": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Asserts that the given object implements all the methods defined in the",
+          "     * interface.",
+          "     *",
+          "     *  @param object {qx.core.Object} Object to check interface for",
+          "     *  @param iface {Interface} The interface to verify",
+          "     * @return {Boolean} <code>true</code> if the objects implements the interface",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -601,28 +923,52 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the objects implements the interface",
-            "type": "Boolean",
-            "description": " <code>true</code> if the objects implements the interface"
+            "type": "boolean",
+            "description": "<code>true</code> if the objects implements the interface"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "classImplements": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 467,
+          "line": 436,
           "column": 4,
-          "index": 14756
+          "index": 13402
         },
         "end": {
-          "line": 487,
+          "line": 457,
           "column": 5,
-          "index": 15290
+          "index": 13961
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "iface",
+          "type": "qx.Interface"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "classImplements": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tests whether an interface is implemented by a class, without throwing an",
+          "     * exception when it doesn't.",
+          "     *",
+          "     * @param clazz {Class} class to check interface for",
+          "     * @param iface {Interface} the interface to verify",
+          "     * @return {Boolean} <code>true</code> if interface is implemented",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -649,28 +995,51 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if interface is implemented",
-            "type": "Boolean",
-            "description": " <code>true</code> if interface is implemented"
+            "type": "boolean",
+            "description": "<code>true</code> if interface is implemented"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "genericToString": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 502,
+          "line": 467,
           "column": 4,
-          "index": 15702
+          "index": 14290
         },
         "end": {
-          "line": 504,
+          "line": 487,
           "column": 5,
-          "index": 15775
+          "index": 14804
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "iface",
+          "type": "qx.Interface"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "genericToString": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method will be attached to all interface to return",
+          "     * a nice identifier for them.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} The interface identifier",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -687,28 +1056,36 @@
           {
             "name": "@return",
             "body": "{String} The interface identifier",
-            "type": "String",
-            "description": " The interface identifier"
+            "type": "string",
+            "description": "The interface identifier"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "$$registry": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 507,
+          "line": 502,
           "column": 4,
-          "index": 15831
+          "index": 15201
         },
         "end": {
-          "line": 507,
-          "column": 18,
-          "index": 15845
+          "line": 504,
+          "column": 5,
+          "index": 15272
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "$$registry": {
       "jsdoc": {
+        "raw": [
+          "* Registry of all defined interfaces "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -716,23 +1093,38 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "__wrapInterfaceMember": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 522,
+          "line": 507,
           "column": 4,
-          "index": 16545
+          "index": 15325
         },
         "end": {
-          "line": 543,
-          "column": 6,
-          "index": 17325
+          "line": 507,
+          "column": 18,
+          "index": 15339
         }
       },
+      "appearsIn": []
+    },
+    "__wrapInterfaceMember": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wrap a method with a precondition check.",
+          "     *",
+          "     * @signature function(iface, origFunction, functionName, preCondition)",
+          "     * @param iface {String} Name of the interface, where the pre condition",
+          "     *   was defined. (Used in error messages).",
+          "     * @param origFunction {Function} function to wrap.",
+          "     * @param functionName {String} name of the function. (Used in error messages).",
+          "     * @param preCondition {Function}. This function gets called with the arguments of the",
+          "     *   original function. If this function return true the original function is called.",
+          "     *   Otherwise an exception is thrown.",
+          "     * @return {Function} wrapped function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -751,56 +1143,62 @@
             "body": "iface {String} Name of the interface, where the pre condition\n   was defined. (Used in error messages).",
             "paramName": "iface",
             "description": " Name of the interface, where the pre condition\n   was defined. (Used in error messages).",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "origFunction {Function} function to wrap.",
             "paramName": "origFunction",
             "description": " function to wrap.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "functionName {String} name of the function. (Used in error messages).",
             "paramName": "functionName",
             "description": " name of the function. (Used in error messages).",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "preCondition {Function}. This function gets called with the arguments of the\n   original function. If this function return true the original function is called.\n   Otherwise an exception is thrown.",
             "paramName": "preCondition",
             "description": ". This function gets called with the arguments of the\n   original function. If this function return true the original function is called.\n   Otherwise an exception is thrown.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Function} wrapped function",
-            "type": "Function",
-            "description": " wrapped function"
+            "type": "((...args: any[]) => any)",
+            "description": "wrapped function"
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__allowedKeys": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 546,
+          "line": 522,
           "column": 4,
-          "index": 17395
+          "index": 16024
         },
         "end": {
-          "line": 556,
+          "line": 543,
           "column": 6,
-          "index": 17701
+          "index": 16783
         }
       },
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "__allowedKeys": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} allowed keys in interface definition "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -814,23 +1212,32 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__validateConfig": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 565,
+          "line": 546,
           "column": 4,
-          "index": 17943
+          "index": 16850
         },
         "end": {
-          "line": 688,
+          "line": 556,
           "column": 6,
-          "index": 21806
+          "index": 17146
         }
       },
+      "appearsIn": []
+    },
+    "__validateConfig": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validates incoming configuration and checks keys and values",
+          "     *",
+          "     * @signature function(name, config)",
+          "     * @param name {String} The name of the class",
+          "     * @param config {Map} Configuration map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -849,20 +1256,33 @@
             "body": "name {String} The name of the class",
             "paramName": "name",
             "description": " The name of the class",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "config {Map} Configuration map",
             "paramName": "config",
             "description": " Configuration map",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 565,
+          "column": 4,
+          "index": 17379
+        },
+        "end": {
+          "line": 688,
+          "column": 6,
+          "index": 21119
+        }
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

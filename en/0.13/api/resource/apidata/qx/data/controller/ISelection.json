@@ -1,49 +1,44 @@
 {
-  "className": "qx.data.controller.ISelection",
-  "packageName": "qx.data.controller",
-  "name": "ISelection",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 577
-      },
-      "end": {
-        "line": 41,
-        "column": 3,
-        "index": 1042
-      }
+  "version": 0.3,
+  "lastModified": 1717235171450,
+  "lastModifiedIso": "2024-06-01T09:46:11.450Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/controller/ISelection.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 556
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Interface for data binding classes offering a selection.</p>"
-        }
-      ]
+    "end": {
+      "line": 41,
+      "column": 3,
+      "index": 1002
     }
   },
-  "type": "interface",
+  "className": "qx.data.controller.ISelection",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Interface for data binding classes offering a selection.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Interface for data binding classes offering a selection.</p>"
+      }
+    ]
+  },
   "members": {
     "setSelection": {
-      "location": {
-        "start": {
-          "line": 28,
-          "column": 4,
-          "index": 771
-        },
-        "end": {
-          "line": 28,
-          "column": 26,
-          "index": 793
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for the selection.",
+          "     * @param value {qx.data.IListData} The data of the selection.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,23 +55,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 34,
+          "line": 28,
           "column": 4,
-          "index": 918
+          "index": 744
         },
         "end": {
-          "line": 34,
-          "column": 21,
-          "index": 935
+          "line": 28,
+          "column": 26,
+          "index": 766
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "qx.data.IListData"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for the selection list.",
+          "     * @return {qx.data.IListData} The current selection.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -88,27 +96,37 @@
             "name": "@return",
             "body": "{qx.data.IListData} The current selection.",
             "type": "qx.data.IListData",
-            "description": " The current selection."
+            "description": "The current selection."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 39,
+          "line": 34,
           "column": 4,
-          "index": 1013
+          "index": 885
         },
         "end": {
-          "line": 39,
-          "column": 23,
-          "index": 1032
+          "line": 34,
+          "column": 21,
+          "index": 902
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.data.IListData"
+      },
+      "appearsIn": []
+    },
+    "resetSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the selection to its default value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -116,9 +134,24 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 975
+        },
+        "end": {
+          "line": 39,
+          "column": 23,
+          "index": 994
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

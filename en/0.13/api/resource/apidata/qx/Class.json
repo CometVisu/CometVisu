@@ -1,87 +1,135 @@
 {
-  "className": "qx.Class",
-  "packageName": "qx",
-  "name": "Class",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 77,
-        "column": 0,
-        "index": 2719
-      },
-      "end": {
-        "line": 1867,
-        "column": 3,
-        "index": 59335
-      }
+  "version": 0.3,
+  "lastModified": 1717235169590,
+  "lastModifiedIso": "2024-06-01T09:46:09.590Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/Class.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 77,
+      "column": 0,
+      "index": 2643
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is one of the most important parts of qooxdoo's\n object-oriented features.\n Its {@link #define} method is used to create qooxdoo classes.\n Each instance of a class defined by {@link #define} has\n the following keys attached to the constructor and the prototype:\n </p>\n<table>\n <tr><th><code>classname</code></th><td>The fully-qualified name of the class (e.g. <code>\"qx.ui.core.Widget\"</code>).</td></tr>\n <tr><th><code>basename</code></th><td>The namespace part of the class name (e.g. <code>\"qx.ui.core\"</code>).</td></tr>\n <tr><th><code>constructor</code></th><td>A reference to the constructor of the class.</td></tr>\n <tr><th><code>superclass</code></th><td>A reference to the constructor of the super class.</td></tr>\n </table>\n<p>Each method may access static members of the same class by using\n <code>this.self(arguments)</code> ({@link qx.core.Object#self}):\n </p>\n<pre class='javascript'>\n statics : { FOO : \"bar\" },\n members: {\n   baz: function(x) {\n     this.self(arguments).FOO;\n     ...\n   }\n }\n </pre>\n<p>Each overriding method may call the overridden method by using\n <code>this.base(arguments [, ...])</code> ({@link qx.core.Object#base}). This is also true for calling\n the constructor of the superclass.\n </p>\n<pre class='javascript'>\n members: {\n   foo: function(x) {\n     this.base(arguments, x);\n     ...\n   }\n }\n </pre>\n<p>By using <code>qx.Class</code> within an app, the native JS data types are\n conveniently polyfilled according to {@link qx.lang.normalize}.\n Annotations can be added to classes, constructors, destructors, and methods, properties, and statics -\n see <code>qx.Annotation</code> for examples and means access annotations at runtime.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.Interface"
-        },
-        {
-          "name": "@require",
-          "body": "qx.Mixin"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Array"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Date"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Error"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Function"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.String"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Object"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Number"
-        }
-      ]
+    "end": {
+      "line": 1908,
+      "column": 3,
+      "index": 58544
     }
   },
-  "type": "class",
+  "className": "qx.Class",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is one of the most important parts of qooxdoo's",
+      " * object-oriented features.",
+      " *",
+      " * Its {@link #define} method is used to create qooxdoo classes.",
+      " *",
+      " * Each instance of a class defined by {@link #define} has",
+      " * the following keys attached to the constructor and the prototype:",
+      " *",
+      " * <table>",
+      " * <tr><th><code>classname</code></th><td>The fully-qualified name of the class (e.g. <code>\"qx.ui.core.Widget\"</code>).</td></tr>",
+      " * <tr><th><code>basename</code></th><td>The namespace part of the class name (e.g. <code>\"qx.ui.core\"</code>).</td></tr>",
+      " * <tr><th><code>constructor</code></th><td>A reference to the constructor of the class.</td></tr>",
+      " * <tr><th><code>superclass</code></th><td>A reference to the constructor of the super class.</td></tr>",
+      " * </table>",
+      " *",
+      " * Each method may access static members of the same class by using",
+      " * <code>this.self(arguments)</code> ({@link qx.core.Object#self}):",
+      " * <pre class='javascript'>",
+      " * statics : { FOO : \"bar\" },",
+      " * members: {",
+      " *   baz: function(x) {",
+      " *     this.self(arguments).FOO;",
+      " *     ...",
+      " *   }",
+      " * }",
+      " * </pre>",
+      " *",
+      " * Each overriding method may call the overridden method by using",
+      " * <code>this.base(arguments [, ...])</code> ({@link qx.core.Object#base}). This is also true for calling",
+      " * the constructor of the superclass.",
+      " * <pre class='javascript'>",
+      " * members: {",
+      " *   foo: function(x) {",
+      " *     this.base(arguments, x);",
+      " *     ...",
+      " *   }",
+      " * }",
+      " * </pre>",
+      " *",
+      " * By using <code>qx.Class</code> within an app, the native JS data types are",
+      " * conveniently polyfilled according to {@link qx.lang.normalize}.",
+      " *",
+      " * Annotations can be added to classes, constructors, destructors, and methods, properties, and statics -",
+      " * see <code>qx.Annotation</code> for examples and means access annotations at runtime.",
+      " *",
+      " * @require(qx.Interface)",
+      " * @require(qx.Mixin)",
+      " * @require(qx.lang.normalize.Array)",
+      " * @require(qx.lang.normalize.Date)",
+      " * @require(qx.lang.normalize.Error)",
+      " * @require(qx.lang.normalize.Function)",
+      " * @require(qx.lang.normalize.String)",
+      " * @require(qx.lang.normalize.Object)",
+      " * @require(qx.lang.normalize.Number)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is one of the most important parts of qooxdoo's\n object-oriented features.\n Its {@link #define} method is used to create qooxdoo classes.\n Each instance of a class defined by {@link #define} has\n the following keys attached to the constructor and the prototype:\n </p>\n<table>\n <tr><th><code>classname</code></th><td>The fully-qualified name of the class (e.g. <code>\"qx.ui.core.Widget\"</code>).</td></tr>\n <tr><th><code>basename</code></th><td>The namespace part of the class name (e.g. <code>\"qx.ui.core\"</code>).</td></tr>\n <tr><th><code>constructor</code></th><td>A reference to the constructor of the class.</td></tr>\n <tr><th><code>superclass</code></th><td>A reference to the constructor of the super class.</td></tr>\n </table>\n<p>Each method may access static members of the same class by using\n <code>this.self(arguments)</code> ({@link qx.core.Object#self}):\n </p>\n<pre class='javascript'>\n statics : { FOO : \"bar\" },\n members: {\n   baz: function(x) {\n     this.self(arguments).FOO;\n     ...\n   }\n }\n </pre>\n<p>Each overriding method may call the overridden method by using\n <code>this.base(arguments [, ...])</code> ({@link qx.core.Object#base}). This is also true for calling\n the constructor of the superclass.\n </p>\n<pre class='javascript'>\n members: {\n   foo: function(x) {\n     this.base(arguments, x);\n     ...\n   }\n }\n </pre>\n<p>By using <code>qx.Class</code> within an app, the native JS data types are\n conveniently polyfilled according to {@link qx.lang.normalize}.\n Annotations can be added to classes, constructors, destructors, and methods, properties, and statics -\n see <code>qx.Annotation</code> for examples and means access annotations at runtime.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.Interface"
+      },
+      {
+        "name": "@require",
+        "body": "qx.Mixin"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Array"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Date"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Error"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Function"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.String"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Object"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Number"
+      }
+    ]
+  },
   "statics": {
     "__Property": {
-      "location": {
-        "start": {
-          "line": 83,
-          "column": 4,
-          "index": 2891
-        },
-        "end": {
-          "line": 85,
-          "column": 12,
-          "index": 2985
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * A static reference to the property implementation in the case it",
+          "     * should be included.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -89,23 +137,93 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "define": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 161,
+          "line": 83,
           "column": 4,
-          "index": 6529
+          "index": 2809
         },
         "end": {
-          "line": 168,
-          "column": 5,
-          "index": 6721
+          "line": 85,
+          "column": 12,
+          "index": 2901
         }
       },
+      "appearsIn": []
+    },
+    "define": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Define a new class using the qooxdoo class system. This sets up the",
+          "     * namespace for the class and generates the class from the definition map.",
+          "     *",
+          "     * Example:",
+          "     * <pre class='javascript'>",
+          "     * qx.Class.define(\"name\",",
+          "     * {",
+          "     *   extend : Object, // superclass",
+          "     *   implement : [Interfaces],",
+          "     *   include : [Mixins],",
+          "     *",
+          "     *   statics:",
+          "     *   {",
+          "     *     CONSTANT : 3.141,",
+          "     *",
+          "     *     publicMethod: function() {},",
+          "     *     _protectedMethod: function() {},",
+          "     *     __privateMethod: function() {}",
+          "     *   },",
+          "     *",
+          "     *   properties:",
+          "     *   {",
+          "     *     \"tabIndex\": { check: \"Number\", init : -1 }",
+          "     *   },",
+          "     *",
+          "     *   members:",
+          "     *   {",
+          "     *     publicField: \"foo\",",
+          "     *     publicMethod: function() {},",
+          "     *",
+          "     *     _protectedField: \"bar\",",
+          "     *     _protectedMethod: function() {},",
+          "     *",
+          "     *     __privateField: \"baz\",",
+          "     *     __privateMethod: function() {}",
+          "     *   }",
+          "     * });",
+          "     * </pre>",
+          "     *",
+          "     * @param name {String?null} Name of the class. If <code>null</code>, the class",
+          "     *   will not be added to any namespace which could be handy for testing.",
+          "     * @param config {Map ? null} Class definition structure. The configuration map has the following keys:",
+          "     *     <table>",
+          "     *       <tr><th>Name</th><th>Type</th><th>Description</th></tr>",
+          "     *       <tr><th>type</th><td>String</td><td>",
+          "     *           Type of the class. Valid types are \"abstract\", \"static\" and \"singleton\".",
+          "     *           If unset it defaults to a regular non-static class.",
+          "     *       </td></tr>",
+          "     *       <tr><th>extend</th><td>Class</td><td>The super class the current class inherits from.</td></tr>",
+          "     *       <tr><th>implement</th><td>Interface | Interface[]</td><td>Single interface or array of interfaces the class implements.</td></tr>",
+          "     *       <tr><th>include</th><td>Mixin | Mixin[]</td><td>Single mixin or array of mixins, which will be merged into the class.</td></tr>",
+          "     *       <tr><th>construct</th><td>Function</td><td>The constructor of the class.</td></tr>",
+          "     *       <tr><th>statics</th><td>Map</td><td>Map of static members of the class.</td></tr>",
+          "     *       <tr><th>properties</th><td>Map</td><td>Map of property definitions. For a description of the format of a property definition see",
+          "     *           {@link qx.core.Property}.</td></tr>",
+          "     *       <tr><th>members</th><td>Map</td><td>Map of instance members of the class.</td></tr>",
+          "     *       <tr><th>environment</th><td>Map</td><td>Map of environment settings for this class. For a description of the format of a setting see",
+          "     *           {@link qx.core.Environment}.</td></tr>",
+          "     *       <tr><th>events</th><td>Map</td><td>",
+          "     *           Map of events the class fires. The keys are the names of the events and the values are the",
+          "     *           corresponding event type class names.",
+          "     *       </td></tr>",
+          "     *       <tr><th>defer</th><td>Function</td><td>Function that is called at the end of processing the class declaration. It allows access to the declared statics, members and properties.</td></tr>",
+          "     *       <tr><th>destruct</th><td>Function</td><td>The destructor of the class.</td></tr>",
+          "     *     </table>",
+          "     * @return {new (...args: any) => any} The defined class",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -135,29 +253,57 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Class} The defined class",
-            "type": "qx.Class",
-            "description": " The defined class"
+            "body": "{new (...args: any) => any} The defined class",
+            "type": "new (...args: any) => any",
+            "description": "The defined class"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__defineImpl": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 178,
+          "line": 161,
           "column": 4,
-          "index": 7011
+          "index": 6389
         },
         "end": {
-          "line": 306,
+          "line": 168,
           "column": 5,
-          "index": 10760
+          "index": 6574
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "config",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "new (...args: any) => any"
+      },
+      "appearsIn": []
+    },
+    "__defineImpl": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Implementation behind `define` - this exists just for the simplicity of wrapping an exception",
+          "     * handler around the code",
+          "     *",
+          "     * @param {String} name @see `define()`",
+          "     * @param {*} config @see `define()`",
+          "     * @returns  @see `define()`",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -170,7 +316,7 @@
             "body": "{String} name @see <code>define()</code>",
             "paramName": "name",
             "description": "@see <code>define()</code>",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -187,23 +333,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "undefine": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 313,
+          "line": 178,
           "column": 4,
-          "index": 10906
+          "index": 6854
         },
         "end": {
-          "line": 338,
+          "line": 311,
           "column": 5,
-          "index": 11906
+          "index": 10601
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "config",
+          "type": "*"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "undefine": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a class from qooxdoo defined by {@link #define}",
+          "     *",
+          "     * @param name {String} Name of the class",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -216,27 +381,43 @@
             "body": "name {String} Name of the class",
             "paramName": "name",
             "description": " Name of the class",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isDefined": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 347,
+          "line": 318,
           "column": 4,
-          "index": 12110
+          "index": 10740
         },
         "end": {
-          "line": 347,
-          "column": 44,
-          "index": 12150
+          "line": 343,
+          "column": 5,
+          "index": 11715
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isDefined": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given class exists",
+          "     *",
+          "     * @signature function(name)",
+          "     * @param name {String} class name to check",
+          "     * @return {Boolean} true if class exists",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -255,35 +436,45 @@
             "body": "name {String} class name to check",
             "paramName": "name",
             "description": " class name to check",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} true if class exists",
-            "type": "Boolean",
-            "description": " true if class exists"
+            "type": "boolean",
+            "description": "true if class exists"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTotalNumber": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 354,
+          "line": 352,
           "column": 4,
-          "index": 12284
+          "index": 11910
         },
         "end": {
-          "line": 356,
-          "column": 5,
-          "index": 12370
+          "line": 352,
+          "column": 44,
+          "index": 11950
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getTotalNumber": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determine the total number of classes",
+          "     *",
+          "     * @return {Number} the total number of classes",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -294,28 +485,42 @@
           {
             "name": "@return",
             "body": "{Number} the total number of classes",
-            "type": "Number",
-            "description": " the total number of classes"
+            "type": "number",
+            "description": "the total number of classes"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getByName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 365,
+          "line": 359,
           "column": 4,
-          "index": 12557
+          "index": 12077
         },
         "end": {
-          "line": 365,
-          "column": 37,
-          "index": 12590
+          "line": 361,
+          "column": 5,
+          "index": 12161
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getByName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Find a class by its name",
+          "     *",
+          "     * @signature function(name)",
+          "     * @param name {String} class name to resolve",
+          "     * @return {Class} the class",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -334,7 +539,7 @@
             "body": "name {String} class name to resolve",
             "paramName": "name",
             "description": " class name to resolve",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -342,27 +547,40 @@
             "name": "@return",
             "body": "{Class} the class",
             "type": "qx.Class",
-            "description": " the class"
+            "description": "the class"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "include": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 375,
+          "line": 370,
           "column": 4,
-          "index": 13010
+          "index": 12339
         },
         "end": {
-          "line": 389,
-          "column": 5,
-          "index": 13396
+          "line": 370,
+          "column": 37,
+          "index": 12372
         }
       },
+      "returnType": {
+        "type": "qx.Class"
+      },
+      "appearsIn": []
+    },
+    "include": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Include all features of the given mixin into the class. The mixin must",
+          "     * not include any methods or properties that are already available in the",
+          "     * class. This would only be possible using the {@link #patch} method.",
+          "     *",
+          "     * @param clazz {Class} An existing class which should be augmented by including a mixin.",
+          "     * @param mixin {Mixin} The mixin to be included.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -386,23 +604,50 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "patch": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 405,
+          "line": 380,
           "column": 4,
-          "index": 14098
+          "index": 12782
         },
         "end": {
-          "line": 420,
+          "line": 394,
           "column": 5,
-          "index": 14525
+          "index": 13154
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "mixin",
+          "type": "qx.Mixin"
+        }
+      ],
+      "appearsIn": []
+    },
+    "patch": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Include all features of the given mixin into the class. The mixin may",
+          "     * include features, which are already defined in the target class. Existing",
+          "     * features of equal name will be overwritten.",
+          "     * Please keep in mind that this functionality is not intended for regular",
+          "     * use, but as a formalized way (and a last resort) in order to patch",
+          "     * existing classes.",
+          "     *",
+          "     * <b>WARNING</b>: You may break working classes and features.",
+          "     *",
+          "     * @param clazz {Class} An existing class which should be modified by including a mixin.",
+          "     * @param mixin {Mixin} The mixin to be included.",
+          "     * @return {Class} the new class definition",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -430,27 +675,49 @@
             "name": "@return",
             "body": "{Class} the new class definition",
             "type": "qx.Class",
-            "description": " the new class definition"
+            "description": "the new class definition"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isClass": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 428,
+          "line": 410,
           "column": 4,
-          "index": 14770
+          "index": 13840
         },
         "end": {
-          "line": 430,
+          "line": 425,
           "column": 5,
-          "index": 14863
+          "index": 14252
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "mixin",
+          "type": "qx.Mixin"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Class"
+      },
+      "appearsIn": []
+    },
+    "isClass": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the object is a Class (and not an instance of a class)",
+          "     *",
+          "     *  @param obj {Object?} the object to inspect",
+          "     *  @return {Boolean} true if it is a class, false if it is anything else",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -471,28 +738,49 @@
           {
             "name": "@return",
             "body": "{Boolean} true if it is a class, false if it is anything else",
-            "type": "Boolean",
-            "description": " true if it is a class, false if it is anything else"
+            "type": "boolean",
+            "description": "true if it is a class, false if it is anything else"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isSubClassOf": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 440,
+          "line": 433,
           "column": 4,
-          "index": 15187
+          "index": 14489
         },
         "end": {
-          "line": 454,
+          "line": 435,
           "column": 5,
-          "index": 15455
+          "index": 14580
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isSubClassOf": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a class is a direct or indirect sub class of another class,",
+          "     * or both classes coincide.",
+          "     *",
+          "     * @param clazz {Class} the class to check.",
+          "     * @param superClass {Class} the potential super class",
+          "     * @return {Boolean} whether clazz is a sub class of superClass.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -519,28 +807,53 @@
           {
             "name": "@return",
             "body": "{Boolean} whether clazz is a sub class of superClass.",
-            "type": "Boolean",
-            "description": " whether clazz is a sub class of superClass."
+            "type": "boolean",
+            "description": "whether clazz is a sub class of superClass."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPropertyDefinition": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 465,
+          "line": 445,
           "column": 4,
-          "index": 15813
+          "index": 14894
         },
         "end": {
-          "line": 465,
-          "column": 63,
-          "index": 15872
+          "line": 459,
+          "column": 5,
+          "index": 15148
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "superClass",
+          "type": "qx.Class"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getPropertyDefinition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the definition of the given property. Returns null",
+          "     * if the property does not exist.",
+          "     *",
+          "     * @signature function(clazz, name)",
+          "     * @param clazz {Class} class to check",
+          "     * @param name {String} name of the class to check for",
+          "     * @return {Map|null} whether the object support the given event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -566,7 +879,7 @@
             "body": "name {String} name of the class to check for",
             "paramName": "name",
             "description": " name of the class to check for",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -574,27 +887,38 @@
             "name": "@return",
             "body": "{Map|null} whether the object support the given event.",
             "type": "Map|null",
-            "description": " whether the object support the given event."
+            "description": "whether the object support the given event."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getProperties": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 473,
+          "line": 470,
           "column": 4,
-          "index": 16075
+          "index": 15495
         },
         "end": {
-          "line": 485,
-          "column": 5,
-          "index": 16332
+          "line": 470,
+          "column": 63,
+          "index": 15554
         }
       },
+      "returnType": {
+        "type": "Map|null"
+      },
+      "appearsIn": []
+    },
+    "getProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of all properties supported by the given class",
+          "     *",
+          "     * @param clazz {Class} Class to query",
+          "     * @return {String[]} List of all property names",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -615,27 +939,48 @@
             "name": "@return",
             "body": "{String[]} List of all property names",
             "type": "String[]",
-            "description": " List of all property names"
+            "description": "List of all property names"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getByProperty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 496,
+          "line": 478,
           "column": 4,
-          "index": 16748
+          "index": 15749
         },
         "end": {
-          "line": 506,
+          "line": 490,
           "column": 5,
-          "index": 16973
+          "index": 15994
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getByProperty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the class or one of its superclasses which contains the",
+          "     * declaration for the given property in its class definition. Returns null",
+          "     * if the property is not specified anywhere.",
+          "     *",
+          "     * @param clazz {Class} class to look for the property",
+          "     * @param name {String} name of the property",
+          "     * @return {Class|null} The class which includes the property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -655,7 +1000,7 @@
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -663,27 +1008,51 @@
             "name": "@return",
             "body": "{Class|null} The class which includes the property",
             "type": "Class|null",
-            "description": " The class which includes the property"
+            "description": "The class which includes the property"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasProperty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 516,
+          "line": 501,
           "column": 4,
-          "index": 17276
+          "index": 16399
         },
         "end": {
-          "line": 516,
-          "column": 43,
-          "index": 17315
+          "line": 511,
+          "column": 5,
+          "index": 16614
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Class|null"
+      },
+      "appearsIn": []
+    },
+    "hasProperty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a class has the given property",
+          "     *",
+          "     * @signature function(clazz, name)",
+          "     * @param clazz {Class} class to check",
+          "     * @param name {String} name of the property to check for",
+          "     * @return {Boolean} whether the class includes the given property.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -709,35 +1078,49 @@
             "body": "name {String} name of the property to check for",
             "paramName": "name",
             "description": " name of the property to check for",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the class includes the given property.",
-            "type": "Boolean",
-            "description": " whether the class includes the given property."
+            "type": "boolean",
+            "description": "whether the class includes the given property."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getEventType": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 527,
+          "line": 521,
           "column": 4,
-          "index": 17644
+          "index": 16907
         },
         "end": {
-          "line": 527,
-          "column": 45,
-          "index": 17685
+          "line": 521,
+          "column": 43,
+          "index": 16946
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getEventType": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the event type of the given event. Returns null if",
+          "     * the event does not exist.",
+          "     *",
+          "     * @signature function(clazz, name)",
+          "     * @param clazz {Class} class to check",
+          "     * @param name {String} name of the event",
+          "     * @return {String|null} Event type of the given event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -763,7 +1146,7 @@
             "body": "name {String} name of the event",
             "paramName": "name",
             "description": " name of the event",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -771,27 +1154,40 @@
             "name": "@return",
             "body": "{String|null} Event type of the given event.",
             "type": "String|null",
-            "description": " Event type of the given event."
+            "description": "Event type of the given event."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "supportsEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 537,
+          "line": 532,
           "column": 4,
-          "index": 17989
+          "index": 17264
         },
         "end": {
-          "line": 537,
-          "column": 47,
-          "index": 18032
+          "line": 532,
+          "column": 45,
+          "index": 17305
         }
       },
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "supportsEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a class supports the given event type",
+          "     *",
+          "     * @signature function(clazz, name)",
+          "     * @param clazz {Class} class to check",
+          "     * @param name {String} name of the event to check for",
+          "     * @return {Boolean} whether the class supports the given event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -817,35 +1213,47 @@
             "body": "name {String} name of the event to check for",
             "paramName": "name",
             "description": " name of the event to check for",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the class supports the given event.",
-            "type": "Boolean",
-            "description": " whether the class supports the given event."
+            "type": "boolean",
+            "description": "whether the class supports the given event."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasOwnMixin": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 546,
+          "line": 542,
           "column": 4,
-          "index": 18287
+          "index": 17599
         },
         "end": {
-          "line": 548,
-          "column": 5,
-          "index": 18395
+          "line": 542,
+          "column": 47,
+          "index": 17642
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "hasOwnMixin": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a class directly includes a mixin.",
+          "     *",
+          "     * @param clazz {Class} class to check",
+          "     * @param mixin {Mixin} the mixin to check for",
+          "     * @return {Boolean} whether the class includes the mixin directly.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -872,28 +1280,53 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the class includes the mixin directly.",
-            "type": "Boolean",
-            "description": " whether the class includes the mixin directly."
+            "type": "boolean",
+            "description": "whether the class includes the mixin directly."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getByMixin": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 559,
+          "line": 551,
           "column": 4,
-          "index": 18787
+          "index": 17888
         },
         "end": {
-          "line": 577,
+          "line": 553,
           "column": 5,
-          "index": 19171
+          "index": 17994
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "mixin",
+          "type": "qx.Mixin"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getByMixin": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the class or one of its superclasses which contains the",
+          "     * declaration for the given mixin. Returns null if the mixin is not",
+          "     * specified anywhere.",
+          "     *",
+          "     * @param clazz {Class} class to look for the mixin",
+          "     * @param mixin {Mixin} mixin to look for",
+          "     * @return {Class|null} The class which directly includes the given mixin",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -921,27 +1354,50 @@
             "name": "@return",
             "body": "{Class|null} The class which directly includes the given mixin",
             "type": "Class|null",
-            "description": " The class which directly includes the given mixin"
+            "description": "The class which directly includes the given mixin"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getMixins": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 586,
+          "line": 564,
           "column": 4,
-          "index": 19425
+          "index": 18375
         },
         "end": {
-          "line": 586,
-          "column": 39,
-          "index": 19460
+          "line": 582,
+          "column": 5,
+          "index": 18741
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "mixin",
+          "type": "qx.Mixin"
+        }
+      ],
+      "returnType": {
+        "type": "Class|null"
+      },
+      "appearsIn": []
+    },
+    "getMixins": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of all mixins available in a given class.",
+          "     *",
+          "     * @signature function(clazz)",
+          "     * @param clazz {Class} class which should be inspected",
+          "     * @return {Mixin[]} array of mixins this class uses",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -968,27 +1424,39 @@
             "name": "@return",
             "body": "{Mixin[]} array of mixins this class uses",
             "type": "Mixin[]",
-            "description": " array of mixins this class uses"
+            "description": "array of mixins this class uses"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasMixin": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 595,
+          "line": 591,
           "column": 4,
-          "index": 19736
+          "index": 18986
         },
         "end": {
-          "line": 597,
-          "column": 5,
-          "index": 19814
+          "line": 591,
+          "column": 39,
+          "index": 19021
         }
       },
+      "returnType": {
+        "type": "Mixin[]"
+      },
+      "appearsIn": []
+    },
+    "hasMixin": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a given class or any of its superclasses includes a given mixin.",
+          "     *",
+          "     * @param clazz {Class} class to check",
+          "     * @param mixin {Mixin} the mixin to check for",
+          "     * @return {Boolean} whether the class includes the mixin.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1015,28 +1483,55 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the class includes the mixin.",
-            "type": "Boolean",
-            "description": " whether the class includes the mixin."
+            "type": "boolean",
+            "description": "whether the class includes the mixin."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasOwnInterface": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 610,
+          "line": 600,
           "column": 4,
-          "index": 20277
+          "index": 19288
         },
         "end": {
-          "line": 612,
+          "line": 602,
           "column": 5,
-          "index": 20393
+          "index": 19364
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "mixin",
+          "type": "qx.Mixin"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "hasOwnInterface": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a given class directly includes an interface.",
+          "     *",
+          "     * This function will only return \"true\" if the interface was defined",
+          "     * in the class declaration ({@link qx.Class#define}) using the \"implement\"",
+          "     * key.",
+          "     *",
+          "     * @param clazz {Class} class or instance to check",
+          "     * @param iface {Interface} the interface to check for",
+          "     * @return {Boolean} whether the class includes the mixin directly.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1063,28 +1558,54 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the class includes the mixin directly.",
-            "type": "Boolean",
-            "description": " whether the class includes the mixin directly."
+            "type": "boolean",
+            "description": "whether the class includes the mixin directly."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getByInterface": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 624,
+          "line": 615,
           "column": 4,
-          "index": 20853
+          "index": 19814
         },
         "end": {
-          "line": 624,
-          "column": 49,
-          "index": 20898
+          "line": 617,
+          "column": 5,
+          "index": 19928
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "iface",
+          "type": "qx.Interface"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getByInterface": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the class or one of its super classes which contains the",
+          "     * declaration of the given interface. Returns null if the interface is not",
+          "     * specified anywhere.",
+          "     *",
+          "     * @signature function(clazz, iface)",
+          "     * @param clazz {Class} class to look for the interface",
+          "     * @param iface {Interface} interface to look for",
+          "     * @return {Class|null} the class which directly implements the given interface",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1118,27 +1639,38 @@
             "name": "@return",
             "body": "{Class|null} the class which directly implements the given interface",
             "type": "Class|null",
-            "description": " the class which directly implements the given interface"
+            "description": "the class which directly implements the given interface"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getInterfaces": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 632,
+          "line": 629,
           "column": 4,
-          "index": 21139
+          "index": 20376
         },
         "end": {
-          "line": 644,
-          "column": 5,
-          "index": 21387
+          "line": 629,
+          "column": 49,
+          "index": 20421
         }
       },
+      "returnType": {
+        "type": "Class|null"
+      },
+      "appearsIn": []
+    },
+    "getInterfaces": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of all interfaces a given class has to implement.",
+          "     *",
+          "     * @param clazz {Class} class which should be inspected",
+          "     * @return {Interface[]} array of interfaces this class implements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1159,27 +1691,52 @@
             "name": "@return",
             "body": "{Interface[]} array of interfaces this class implements",
             "type": "Interface[]",
-            "description": " array of interfaces this class implements"
+            "description": "array of interfaces this class implements"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasInterface": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 659,
+          "line": 637,
           "column": 4,
-          "index": 21943
+          "index": 20654
         },
         "end": {
-          "line": 659,
-          "column": 45,
-          "index": 21984
+          "line": 649,
+          "column": 5,
+          "index": 20890
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        }
+      ],
+      "returnType": {
+        "type": "Interface[]"
+      },
+      "appearsIn": []
+    },
+    "hasInterface": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a given class or any of its super classes includes a given interface.",
+          "     *",
+          "     * This function will return \"true\" if the interface was defined",
+          "     * in the class declaration ({@link qx.Class#define}) of the class",
+          "     * or any of its super classes using the \"implement\"",
+          "     * key.",
+          "     *",
+          "     * @signature function(clazz, iface)",
+          "     * @param clazz {Class} class to check",
+          "     * @param iface {Interface} the interface to check for",
+          "     * @return {Boolean} whether the class includes the interface.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1212,28 +1769,44 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the class includes the interface.",
-            "type": "Boolean",
-            "description": " whether the class includes the interface."
+            "type": "boolean",
+            "description": "whether the class includes the interface."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "implementsInterface": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 672,
+          "line": 664,
           "column": 4,
-          "index": 22444
+          "index": 21431
         },
         "end": {
-          "line": 688,
-          "column": 5,
-          "index": 22801
+          "line": 664,
+          "column": 45,
+          "index": 21472
         }
       },
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "implementsInterface": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a given class complies to an interface.",
+          "     *",
+          "     * Checks whether all methods defined in the interface are",
+          "     * implemented. The class does not need to implement",
+          "     * the interface explicitly in the <code>extend</code> key.",
+          "     *",
+          "     * @param obj {Object} class to check",
+          "     * @param iface {Interface} the interface to check for",
+          "     * @return {Boolean} whether the class conforms to the interface.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1246,7 +1819,7 @@
             "body": "obj {Object} class to check",
             "paramName": "obj",
             "description": " class to check",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -1260,28 +1833,50 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the class conforms to the interface.",
-            "type": "Boolean",
-            "description": " whether the class conforms to the interface."
+            "type": "boolean",
+            "description": "whether the class conforms to the interface."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getInstance": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 696,
+          "line": 677,
           "column": 4,
-          "index": 22945
+          "index": 21919
         },
         "end": {
-          "line": 713,
+          "line": 693,
           "column": 5,
-          "index": 23557
+          "index": 22260
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "iface",
+          "type": "qx.Interface"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getInstance": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to handle singletons",
+          "     *",
+          "     * @internal",
+          "     * @return {Object} The singleton instance",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1298,28 +1893,42 @@
           {
             "name": "@return",
             "body": "{Object} The singleton instance",
-            "type": "Object",
-            "description": " The singleton instance"
+            "type": "Record<any, any>",
+            "description": "The singleton instance"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSubclasses": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 722,
+          "line": 701,
           "column": 4,
-          "index": 23833
+          "index": 22396
         },
         "end": {
-          "line": 737,
+          "line": 718,
           "column": 5,
-          "index": 24199
+          "index": 22991
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getSubclasses": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Retreive all subclasses of a given class",
+          "     *",
+          "     * @param clazz {Class} the class which should be inspected",
+          "     *",
+          "     * @return {Object} class name hash holding the references to the subclasses or null if the class does not exist.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1339,28 +1948,47 @@
           {
             "name": "@return",
             "body": "{Object} class name hash holding the references to the subclasses or null if the class does not exist.",
-            "type": "Object",
-            "description": " class name hash holding the references to the subclasses or null if the class does not exist."
+            "type": "Record<any, any>",
+            "description": "class name hash holding the references to the subclasses or null if the class does not exist."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "genericToString": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 752,
+          "line": 727,
           "column": 4,
-          "index": 24608
+          "index": 23258
         },
         "end": {
-          "line": 754,
+          "line": 742,
           "column": 5,
-          "index": 24682
+          "index": 23609
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "genericToString": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method will be attached to all classes to return",
+          "     * a nice identifier for them.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} The class identifier",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1377,28 +2005,36 @@
           {
             "name": "@return",
             "body": "{String} The class identifier",
-            "type": "String",
-            "description": " The class identifier"
+            "type": "string",
+            "description": "The class identifier"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "$$registry": {
+      "access": "public",
       "location": {
         "start": {
           "line": 757,
           "column": 4,
-          "index": 24730
+          "index": 24003
         },
         "end": {
-          "line": 757,
-          "column": 39,
-          "index": 24765
+          "line": 759,
+          "column": 5,
+          "index": 24075
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "$$registry": {
       "jsdoc": {
+        "raw": [
+          "* Stores all defined classes "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1406,23 +2042,26 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__allowedKeys": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 760,
+          "line": 762,
           "column": 4,
-          "index": 24842
+          "index": 24120
         },
         "end": {
-          "line": 780,
-          "column": 6,
-          "index": 25509
+          "line": 762,
+          "column": 39,
+          "index": 24155
         }
       },
+      "appearsIn": []
+    },
+    "__allowedKeys": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} allowed keys in non-static class definition "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1436,23 +2075,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__staticAllowedKeys": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 783,
+          "line": 765,
           "column": 4,
-          "index": 25582
+          "index": 24229
         },
         "end": {
-          "line": 793,
+          "line": 786,
           "column": 6,
-          "index": 25871
+          "index": 24910
         }
       },
+      "appearsIn": []
+    },
+    "__staticAllowedKeys": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} allowed keys in static class definition "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1466,23 +2108,32 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__validateConfig": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 802,
+          "line": 789,
           "column": 4,
-          "index": 26127
+          "index": 24980
         },
         "end": {
-          "line": 1018,
+          "line": 799,
           "column": 6,
-          "index": 32618
+          "index": 25259
         }
       },
+      "appearsIn": []
+    },
+    "__validateConfig": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validates an incoming configuration and checks for proper keys and values",
+          "     *",
+          "     * @signature function(name, config)",
+          "     * @param name {String} The name of the class",
+          "     * @param config {Map} Configuration map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1501,34 +2152,42 @@
             "body": "name {String} The name of the class",
             "paramName": "name",
             "description": " The name of the class",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "config {Map} Configuration map",
             "paramName": "config",
             "description": " Configuration map",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__validateAbstractInterfaces": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1026,
+          "line": 808,
           "column": 4,
-          "index": 32806
+          "index": 25506
         },
         "end": {
-          "line": 1045,
+          "line": 1024,
           "column": 6,
-          "index": 33398
+          "index": 31781
         }
       },
+      "appearsIn": []
+    },
+    "__validateAbstractInterfaces": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validates the interfaces required by abstract base classes",
+          "     *",
+          "     * @signature function(clazz)",
+          "     * @param clazz {Class} The configured class.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1551,23 +2210,33 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__attachAnno": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1055,
+          "line": 1032,
           "column": 4,
-          "index": 33670
+          "index": 31961
         },
         "end": {
-          "line": 1074,
-          "column": 5,
-          "index": 34239
+          "line": 1051,
+          "column": 6,
+          "index": 32534
         }
       },
+      "appearsIn": []
+    },
+    "__attachAnno": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attaches an annotation to a class",
+          "     *",
+          "     * @param clazz {Map} Static methods or fields",
+          "     * @param group {String} Group name",
+          "     * @param key {String} Name of the annotated item",
+          "     * @param anno {Object} Annotation object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1580,48 +2249,81 @@
             "body": "clazz {Map} Static methods or fields",
             "paramName": "clazz",
             "description": " Static methods or fields",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "group {String} Group name",
             "paramName": "group",
             "description": " Group name",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "key {String} Name of the annotated item",
             "paramName": "key",
             "description": " Name of the annotated item",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "anno {Object} Annotation object",
             "paramName": "anno",
             "description": " Annotation object",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__createClass": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1088,
+          "line": 1061,
           "column": 4,
-          "index": 34817
+          "index": 32796
         },
         "end": {
-          "line": 1217,
+          "line": 1080,
           "column": 5,
-          "index": 38672
+          "index": 33346
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "group",
+          "type": "string"
+        },
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "anno",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__createClass": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a class by type. Supports modern inheritance etc.",
+          "     *",
+          "     * @param name {String} Full name of the class",
+          "     * @param type {String} type of the class, i.e. \"static\", \"abstract\" or \"singleton\"",
+          "     * @param extend {Class} Superclass to inherit from",
+          "     * @param statics {Map} Static methods or fields",
+          "     * @param construct {Function} Constructor of the class",
+          "     * @param destruct {Function} Destructor of the class",
+          "     * @param mixins {Mixin[]} array of mixins of the class",
+          "     * @return {Class} The generated class",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1634,14 +2336,14 @@
             "body": "name {String} Full name of the class",
             "paramName": "name",
             "description": " Full name of the class",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "type {String} type of the class, i.e. \"static\", \"abstract\" or \"singleton\"",
             "paramName": "type",
             "description": " type of the class, i.e. \"static\", \"abstract\" or \"singleton\"",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -1655,21 +2357,21 @@
             "body": "statics {Map} Static methods or fields",
             "paramName": "statics",
             "description": " Static methods or fields",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "construct {Function} Constructor of the class",
             "paramName": "construct",
             "description": " Constructor of the class",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "destruct {Function} Destructor of the class",
             "paramName": "destruct",
             "description": " Destructor of the class",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1684,27 +2386,70 @@
             "name": "@return",
             "body": "{Class} The generated class",
             "type": "qx.Class",
-            "description": " The generated class"
+            "description": "The generated class"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__addEvents": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1232,
+          "line": 1094,
           "column": 4,
-          "index": 39144
+          "index": 33910
         },
         "end": {
-          "line": 1282,
+          "line": 1223,
           "column": 5,
-          "index": 40669
+          "index": 37636
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "extend",
+          "type": "qx.Class"
+        },
+        {
+          "name": "statics",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "construct",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "destruct",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "mixins",
+          "type": "Mixin[]"
+        }
+      ],
+      "returnType": {
+        "type": "qx.Class"
+      },
+      "appearsIn": []
+    },
+    "__addEvents": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach events to the class",
+          "     *",
+          "     * @param clazz {Class} class to add the events to",
+          "     * @param events {Map} map of event names the class fires.",
+          "     * @param patch {Boolean ? false} Enable redefinition of event type?",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1724,7 +2469,7 @@
             "body": "events {Map} map of event names the class fires.",
             "paramName": "events",
             "description": " map of event names the class fires.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -1737,23 +2482,76 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__addProperties": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1292,
+          "line": 1238,
           "column": 4,
-          "index": 41040
+          "index": 38093
         },
         "end": {
-          "line": 1367,
+          "line": 1288,
           "column": 5,
-          "index": 43368
+          "index": 39568
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "events",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "patch",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__addObjects": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1290,
+          "column": 4,
+          "index": 39575
+        },
+        "end": {
+          "line": 1319,
+          "column": 5,
+          "index": 40375
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz"
+        },
+        {
+          "name": "objects"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__addProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach properties to classes",
+          "     *",
+          "     * @param clazz {Class} class to add the properties to",
+          "     * @param properties {Map} map of properties",
+          "     * @param patch {Boolean ? false} Overwrite property with the limitations of a property",
+          "               which means you are able to refine but not to replace (esp. for new properties)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1773,7 +2571,7 @@
             "body": "properties {Map} map of properties",
             "paramName": "properties",
             "description": " map of properties",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -1786,23 +2584,51 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__validateProperty": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1378,
+          "line": 1329,
           "column": 4,
-          "index": 43706
+          "index": 40736
         },
         "end": {
-          "line": 1528,
-          "column": 6,
-          "index": 48207
+          "line": 1404,
+          "column": 5,
+          "index": 42989
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "properties",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "patch",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__validateProperty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validates the given property",
+          "     *",
+          "     * @signature function(clazz, name, config, patch)",
+          "     * @param clazz {Class} class to add property to",
+          "     * @param name {String} name of the property",
+          "     * @param config {Map} configuration map",
+          "     * @param patch {Boolean ? false} enable refine/patch?",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1828,14 +2654,14 @@
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "config {Map} configuration map",
             "paramName": "config",
             "description": " configuration map",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -1848,23 +2674,36 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__addMembers": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1541,
+          "line": 1415,
           "column": 4,
-          "index": 48709
+          "index": 43316
         },
         "end": {
-          "line": 1650,
-          "column": 5,
-          "index": 52471
+          "line": 1565,
+          "column": 6,
+          "index": 47667
         }
       },
+      "appearsIn": []
+    },
+    "__addMembers": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach members to a class",
+          "     *",
+          "     * @param clazz {Class} clazz to add members to",
+          "     * @param members {Map} The map of members to attach",
+          "     * @param patch {Boolean ? false} Enable patching of",
+          "     * @param base {Boolean ? true} Attach base flag to mark function as members",
+          "     *     of this class",
+          "     * @param wrap {Boolean ? false} Whether the member method should be wrapped.",
+          "     *     this is needed to allow base calls in patched mixin members.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1884,7 +2723,7 @@
             "body": "members {Map} The map of members to attach",
             "paramName": "members",
             "description": " The map of members to attach",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -1915,23 +2754,60 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__addInterface": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1658,
+          "line": 1578,
           "column": 4,
-          "index": 52657
+          "index": 48156
         },
         "end": {
-          "line": 1692,
+          "line": 1691,
           "column": 5,
-          "index": 53847
+          "index": 51897
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "members",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "patch",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        },
+        {
+          "name": "base",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        },
+        {
+          "name": "wrap",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__addInterface": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a single interface to a class",
+          "     *",
+          "     * @param clazz {Class} class to add interface to",
+          "     * @param iface {Interface} the Interface to add",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1955,23 +2831,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__addMixin": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1701,
+          "line": 1699,
           "column": 4,
-          "index": 54186
+          "index": 52075
         },
         "end": {
-          "line": 1743,
+          "line": 1733,
           "column": 5,
-          "index": 55455
+          "index": 53231
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "iface",
+          "type": "qx.Interface"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__addMixin": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Include all features of the mixin into the given class, recursively.",
+          "     *",
+          "     * @param clazz {Class} The class onto which the mixin should be attached.",
+          "     * @param mixin {Mixin} Include all features of this mixin",
+          "     * @param patch {Boolean} Overwrite existing fields, functions and properties",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1998,27 +2894,50 @@
             "body": "patch {Boolean} Overwrite existing fields, functions and properties",
             "paramName": "patch",
             "description": " Overwrite existing fields, functions and properties",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__createDefaultConstructor": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1757,
+          "line": 1742,
           "column": 4,
-          "index": 55867
+          "index": 53561
         },
         "end": {
-          "line": 1763,
+          "line": 1784,
           "column": 5,
-          "index": 56045
+          "index": 54788
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "qx.Class"
+        },
+        {
+          "name": "mixin",
+          "type": "qx.Mixin"
+        },
+        {
+          "name": "patch",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__createDefaultConstructor": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the default constructor.",
+          "     * This constructor just calls the constructor of the base class.",
+          "     *",
+          "     * @return {Function} The default constructor.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2029,28 +2948,44 @@
           {
             "name": "@return",
             "body": "{Function} The default constructor.",
-            "type": "Function",
-            "description": " The default constructor."
+            "type": "((...args: any[]) => any)",
+            "description": "The default constructor."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__wrapConstructor": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1774,
+          "line": 1798,
           "column": 4,
-          "index": 56460
+          "index": 55186
         },
         "end": {
-          "line": 1845,
+          "line": 1804,
           "column": 5,
-          "index": 58761
+          "index": 55358
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "__wrapConstructor": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generate a wrapper of the original class constructor in order to enable",
+          "     * some of the advanced OO features (e.g. abstract class, singleton, mixins)",
+          "     *",
+          "     * @param construct {Function} the original constructor",
+          "     * @param name {String} name of the class",
+          "     * @param type {String} the user specified class type",
+          "     * @return {Function} The wrapped constructor",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -2063,49 +2998,66 @@
             "body": "construct {Function} the original constructor",
             "paramName": "construct",
             "description": " the original constructor",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "name {String} name of the class",
             "paramName": "name",
             "description": " name of the class",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "type {String} the user specified class type",
             "paramName": "type",
             "description": " the user specified class type",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Function} The wrapped constructor",
-            "type": "Function",
-            "description": " The wrapped constructor"
+            "type": "((...args: any[]) => any)",
+            "description": "The wrapped constructor"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 1848,
-        "column": 2,
-        "index": 58773
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1815,
+          "column": 4,
+          "index": 55762
+        },
+        "end": {
+          "line": 1886,
+          "column": 5,
+          "index": 57992
+        }
       },
-      "end": {
-        "line": 1866,
-        "column": 3,
-        "index": 59330
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "construct",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

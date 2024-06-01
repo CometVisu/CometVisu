@@ -1,117 +1,172 @@
 {
-  "className": "qx.ui.table.model.Filtered",
-  "packageName": "qx.ui.table.model",
-  "name": "Filtered",
-  "superClass": "qx.ui.table.model.Simple",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 76,
-        "column": 0,
-        "index": 1917
-      },
-      "end": {
-        "line": 473,
-        "column": 3,
-        "index": 12796
-      }
+  "version": 0.3,
+  "lastModified": 1717235170478,
+  "lastModifiedIso": "2024-06-01T09:46:10.478Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/model/Filtered.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 76,
+      "column": 0,
+      "index": 1842
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A filtered table model to provide support for hiding and filtering table\n rows. Any rows that match any applied filters will be hidden.</p>\n<pre class='javascript'>\nvar model = new qx.ui.table.model.Filtered();\nmodel.setColumns([\"Login\", \"Name\", \"Email\"], [\"login\", \"name\", \"email\"]);\nvar table = new qx.ui.table.Table(model);\nvar data = [{\n  login : \"darthvader\",\n  name : \"Darth Vader\",\n  email : \"darthvader@tatooine.org\"\n}, {\n  login : \"anakin\",\n  name : \"Anakin Skywalker\",\n  email : \"anakin@skywalker.org\"\n}, {\n  login : \"luke\",\n  name : \"Luke Skywalker\",\n  email : \"luke@tatooine.org\"\n}, {\n  login : \"obi-wan\",\n  name : \"Obi-Wan Kenobi\",\n  email : \"obiwan@jedi.org\"\n}, {\n  login : \"rey\",\n  name : \"Rey\",\n  email : \"rey@jakku.sw\"\n}];\nmodel.setDataAsMapArray(data);\nthis.getRoot().add(table);\nvar search = new qx.ui.form.TextField();\nsearch.set({\n  liveUpdate : true,\n  placeholder : \"Search login\"\n});\nsearch.addListener(\"changeValue\", function(e) {\n  var value = e.getData();\n  model.resetHiddenRows();\n  model.addNotRegex(value, \"login\", true);\n  model.applyFilters();\n});\nthis.getRoot().add(search, {top : 500, left : 10});\n</pre>"
-        }
-      ],
-      "@deprecated": [
-        {
-          "name": "@deprecated",
-          "body": "{6.0} You should use\n <a href='http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter' target='_blank'>Array.filter</a>\n method to filter the table model"
-        }
-      ]
+    "end": {
+      "line": 473,
+      "column": 3,
+      "index": 12324
     }
   },
-  "type": "class",
+  "className": "qx.ui.table.model.Filtered",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A filtered table model to provide support for hiding and filtering table",
+      " * rows. Any rows that match any applied filters will be hidden.",
+      "",
+      "<pre class='javascript'>",
+      "var model = new qx.ui.table.model.Filtered();",
+      "model.setColumns([\"Login\", \"Name\", \"Email\"], [\"login\", \"name\", \"email\"]);",
+      "",
+      "var table = new qx.ui.table.Table(model);",
+      "",
+      "var data = [{",
+      "  login : \"darthvader\",",
+      "  name : \"Darth Vader\",",
+      "  email : \"darthvader@tatooine.org\"",
+      "}, {",
+      "  login : \"anakin\",",
+      "  name : \"Anakin Skywalker\",",
+      "  email : \"anakin@skywalker.org\"",
+      "}, {",
+      "  login : \"luke\",",
+      "  name : \"Luke Skywalker\",",
+      "  email : \"luke@tatooine.org\"",
+      "}, {",
+      "  login : \"obi-wan\",",
+      "  name : \"Obi-Wan Kenobi\",",
+      "  email : \"obiwan@jedi.org\"",
+      "}, {",
+      "  login : \"rey\",",
+      "  name : \"Rey\",",
+      "  email : \"rey@jakku.sw\"",
+      "}];",
+      "",
+      "model.setDataAsMapArray(data);",
+      "",
+      "this.getRoot().add(table);",
+      "",
+      "var search = new qx.ui.form.TextField();",
+      "search.set({",
+      "  liveUpdate : true,",
+      "  placeholder : \"Search login\"",
+      "});",
+      "",
+      "search.addListener(\"changeValue\", function(e) {",
+      "  var value = e.getData();",
+      "",
+      "  model.resetHiddenRows();",
+      "  model.addNotRegex(value, \"login\", true);",
+      "  model.applyFilters();",
+      "});",
+      "",
+      "this.getRoot().add(search, {top : 500, left : 10});",
+      "</pre>",
+      " *",
+      " * @deprecated {6.0} You should use",
+      " * <a href='http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter' target='_blank'>Array.filter</a>",
+      " * method to filter the table model",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A filtered table model to provide support for hiding and filtering table\n rows. Any rows that match any applied filters will be hidden.</p>\n<pre class='javascript'>\nvar model = new qx.ui.table.model.Filtered();\nmodel.setColumns([\"Login\", \"Name\", \"Email\"], [\"login\", \"name\", \"email\"]);\nvar table = new qx.ui.table.Table(model);\nvar data = [{\n  login : \"darthvader\",\n  name : \"Darth Vader\",\n  email : \"darthvader@tatooine.org\"\n}, {\n  login : \"anakin\",\n  name : \"Anakin Skywalker\",\n  email : \"anakin@skywalker.org\"\n}, {\n  login : \"luke\",\n  name : \"Luke Skywalker\",\n  email : \"luke@tatooine.org\"\n}, {\n  login : \"obi-wan\",\n  name : \"Obi-Wan Kenobi\",\n  email : \"obiwan@jedi.org\"\n}, {\n  login : \"rey\",\n  name : \"Rey\",\n  email : \"rey@jakku.sw\"\n}];\nmodel.setDataAsMapArray(data);\nthis.getRoot().add(table);\nvar search = new qx.ui.form.TextField();\nsearch.set({\n  liveUpdate : true,\n  placeholder : \"Search login\"\n});\nsearch.addListener(\"changeValue\", function(e) {\n  var value = e.getData();\n  model.resetHiddenRows();\n  model.addNotRegex(value, \"login\", true);\n  model.applyFilters();\n});\nthis.getRoot().add(search, {top : 500, left : 10});\n</pre>"
+      }
+    ],
+    "@deprecated": [
+      {
+        "name": "@deprecated",
+        "body": "{6.0} You should use\n <a href='http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter' target='_blank'>Array.filter</a>\n method to filter the table model"
+      }
+    ]
+  },
+  "superClass": "qx.ui.table.model.Simple",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 79,
         "column": 2,
-        "index": 2007
+        "index": 1929
       },
       "end": {
         "line": 95,
         "column": 3,
-        "index": 2338
+        "index": 2244
       }
     }
   },
   "members": {
     "__fullArr": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 98,
           "column": 4,
-          "index": 2361
+          "index": 2264
         },
         "end": {
           "line": 98,
           "column": 19,
-          "index": 2376
+          "index": 2279
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__applyingFilters": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 99,
           "column": 4,
-          "index": 2383
+          "index": 2285
         },
         "end": {
           "line": 99,
           "column": 27,
-          "index": 2406
+          "index": 2308
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__filterTypes": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 100,
           "column": 4,
-          "index": 2413
+          "index": 2314
         },
         "end": {
           "line": 100,
           "column": 23,
-          "index": 2432
+          "index": 2333
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getFullArray": {
-      "location": {
-        "start": {
-          "line": 106,
-          "column": 4,
-          "index": 2586
-        },
-        "end": {
-          "line": 108,
-          "column": 5,
-          "index": 2639
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Function to get the full array of the filtered model",
+          "     * @return {Array} the full array of model (with no changes)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -122,28 +177,43 @@
           {
             "name": "@return",
             "body": "{Array} the full array of model (with no changes)",
-            "type": "Array",
-            "description": " the full array of model (with no changes)"
+            "type": "Array<any>",
+            "description": "the full array of model (with no changes)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_js_in_array": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 118,
+          "line": 106,
           "column": 4,
-          "index": 2952
+          "index": 2481
         },
         "end": {
-          "line": 128,
+          "line": 108,
           "column": 5,
-          "index": 3239
+          "index": 2532
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "_js_in_array": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given string (needle) is in the array (haystack)",
+          "     *",
+          "     * @param the_needle {String} String to search",
+          "     * @param the_haystack {Array} Array, which should be searched",
+          "     * @return {Boolean} whether the search string was found.",
+          "     * @deprecated {6.0}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -156,22 +226,22 @@
             "body": "the_needle {String} String to search",
             "paramName": "the_needle",
             "description": " String to search",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "the_haystack {Array} Array, which should be searched",
             "paramName": "the_haystack",
             "description": " Array, which should be searched",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the search string was found.",
-            "type": "Boolean",
-            "description": " whether the search string was found."
+            "type": "boolean",
+            "description": "whether the search string was found."
           }
         ],
         "@deprecated": [
@@ -181,23 +251,59 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "addBetweenFilter": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 150,
+          "line": 118,
           "column": 4,
-          "index": 3864
+          "index": 2835
         },
         "end": {
-          "line": 162,
+          "line": 128,
           "column": 5,
-          "index": 4284
+          "index": 3112
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "the_needle",
+          "type": "string"
+        },
+        {
+          "name": "the_haystack",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "addBetweenFilter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The addBetweenFilter method is used to add a between filter to the",
+          "     * table model.",
+          "     *",
+          "     * @param filter {String}",
+          "     *    The type of filter. Accepted strings are \"between\" and \"!between\".",
+          "     *",
+          "     * @param value1 {Integer}",
+          "     *    The first value to compare against.",
+          "     *",
+          "     * @param value2 {Integer}",
+          "     *    The second value to compare against.",
+          "     *",
+          "     * @param target {String}",
+          "     *    The text value of the column to compare against.",
+          "     *",
+          "     *",
+          "     * @throws {Error} If the filter can not recognized or one of the values",
+          "     * is null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -210,7 +316,7 @@
             "body": "filter {String}\n    The type of filter. Accepted strings are \"between\" and \"!between\".",
             "paramName": "filter",
             "description": "\n    The type of filter. Accepted strings are \"between\" and \"!between\".",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -231,7 +337,7 @@
             "body": "target {String}\n    The text value of the column to compare against.",
             "paramName": "target",
             "description": "\n    The text value of the column to compare against.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@throws": [
@@ -243,23 +349,61 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addNumericFilter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 181,
+          "line": 150,
           "column": 4,
-          "index": 4830
+          "index": 3715
         },
         "end": {
-          "line": 195,
+          "line": 162,
           "column": 5,
-          "index": 5238
+          "index": 4123
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "filter",
+          "type": "string"
+        },
+        {
+          "name": "value1",
+          "type": "Integer"
+        },
+        {
+          "name": "value2",
+          "type": "Integer"
+        },
+        {
+          "name": "target",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addNumericFilter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The addNumericFilter method is used to add a basic numeric filter to",
+          "     * the table model.",
+          "     *",
+          "     * @param filter {String}",
+          "     *    The type of filter. Accepted strings are:",
+          "     *    \"==\", \"!=\", \">\", \"<\", \">=\", and \"<=\".",
+          "     *",
+          "     * @param value1 {Integer}",
+          "     *    The value to compare against.",
+          "     *",
+          "     * @param target {String}",
+          "     *    The text value of the column to compare against.",
+          "     *",
+          "     *",
+          "     * @throws {Error} If the filter can not recognized or the target is null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -272,7 +416,7 @@
             "body": "filter {String}\n    The type of filter. Accepted strings are:\n    \"==\", \"!=\", \">\", \"<\", \">=\", and \"<=\".",
             "paramName": "filter",
             "description": "\n    The type of filter. Accepted strings are:\n    \"==\", \"!=\", \">\", \"<\", \">=\", and \"<=\".",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -286,7 +430,7 @@
             "body": "target {String}\n    The text value of the column to compare against.",
             "paramName": "target",
             "description": "\n    The text value of the column to compare against.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@throws": [
@@ -298,23 +442,56 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addRegex": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 213,
+          "line": 181,
           "column": 4,
-          "index": 5725
+          "index": 4650
         },
         "end": {
-          "line": 230,
+          "line": 195,
           "column": 5,
-          "index": 6143
+          "index": 5044
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "filter",
+          "type": "string"
+        },
+        {
+          "name": "value1",
+          "type": "Integer"
+        },
+        {
+          "name": "target",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addRegex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The addRegex method is used to add a regular expression filter to the",
+          "     * table model.",
+          "     *",
+          "     * @param regex {String}",
+          "     *    The regular expression to match against.",
+          "     *",
+          "     * @param target {String}",
+          "     *    The text value of the column to compare against.",
+          "     *",
+          "     * @param ignorecase {Boolean}",
+          "     *    If true, the regular expression will ignore case.",
+          "     *",
+          "     *",
+          "     * @throws {Error} If the regex is not valid.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -327,21 +504,21 @@
             "body": "regex {String}\n    The regular expression to match against.",
             "paramName": "regex",
             "description": "\n    The regular expression to match against.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "target {String}\n    The text value of the column to compare against.",
             "paramName": "target",
             "description": "\n    The text value of the column to compare against.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "ignorecase {Boolean}\n    If true, the regular expression will ignore case.",
             "paramName": "ignorecase",
             "description": "\n    If true, the regular expression will ignore case.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@throws": [
@@ -353,23 +530,56 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addNotRegex": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 248,
+          "line": 213,
           "column": 4,
-          "index": 6663
+          "index": 5513
         },
         "end": {
-          "line": 265,
+          "line": 230,
           "column": 5,
-          "index": 7090
+          "index": 5914
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "regex",
+          "type": "string"
+        },
+        {
+          "name": "target",
+          "type": "string"
+        },
+        {
+          "name": "ignorecase",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addNotRegex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The addNotRegex method is used to add a regular expression filter to the",
+          "     * table model and filter cells that do not match.",
+          "     *",
+          "     * @param regex {String}",
+          "     *    The regular expression to match against.",
+          "     *",
+          "     * @param target {String}",
+          "     *    The text value of the column to compare against.",
+          "     *",
+          "     * @param ignorecase {Boolean}",
+          "     *    If true, the regular expression will ignore case.",
+          "     *",
+          "     *",
+          "     * @throws {Error} If the regex is null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -382,21 +592,21 @@
             "body": "regex {String}\n    The regular expression to match against.",
             "paramName": "regex",
             "description": "\n    The regular expression to match against.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "target {String}\n    The text value of the column to compare against.",
             "paramName": "target",
             "description": "\n    The text value of the column to compare against.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "ignorecase {Boolean}\n    If true, the regular expression will ignore case.",
             "paramName": "ignorecase",
             "description": "\n    If true, the regular expression will ignore case.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@throws": [
@@ -408,23 +618,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "applyFilters": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 270,
+          "line": 248,
           "column": 4,
-          "index": 7196
+          "index": 6416
         },
         "end": {
-          "line": 401,
+          "line": 265,
           "column": 5,
-          "index": 10922
+          "index": 6826
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "regex",
+          "type": "string"
+        },
+        {
+          "name": "target",
+          "type": "string"
+        },
+        {
+          "name": "ignorecase",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "applyFilters": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The applyFilters method is called to apply filters to the table model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -432,23 +662,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hideRows": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 416,
+          "line": 270,
           "column": 4,
-          "index": 11322
+          "index": 6927
         },
         "end": {
-          "line": 445,
+          "line": 401,
           "column": 5,
-          "index": 12178
+          "index": 10522
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "hideRows": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hides a specified number of rows.",
+          "     *",
+          "     * @param rowNum {Integer}",
+          "     *    Index of the first row to be hidden in the table.",
+          "     *",
+          "     * @param numOfRows {Integer}",
+          "     *    The number of rows to be hidden sequentially after rowNum.",
+          "     *",
+          "     * @param dispatchEvent {Boolean?true} Whether a model change event should",
+          "     *    be fired.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -481,23 +728,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetHiddenRows": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 452,
+          "line": 416,
           "column": 4,
-          "index": 12312
+          "index": 10907
         },
         "end": {
-          "line": 460,
+          "line": 445,
           "column": 5,
-          "index": 12509
+          "index": 11734
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "rowNum",
+          "type": "Integer"
+        },
+        {
+          "name": "numOfRows",
+          "type": "Integer"
+        },
+        {
+          "name": "dispatchEvent",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetHiddenRows": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the table to the original state with all rows shown and clears",
+          "     * all filters.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -505,273 +776,73 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 452,
+          "column": 4,
+          "index": 11861
+        },
+        "end": {
+          "line": 460,
+          "column": 5,
+          "index": 12050
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "setData": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 463,
           "column": 4,
-          "index": 12537
+          "index": 12075
         },
         "end": {
           "line": 467,
           "column": 5,
-          "index": 12698
+          "index": 12232
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "rowArr"
+        },
+        {
+          "name": "clearSorting"
+        }
+      ],
       "overriddenFrom": "qx.ui.table.model.Simple",
       "appearsIn": [
         "qx.ui.table.model.Simple"
       ]
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.model.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.model.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.model.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.model.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.model.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.table.model.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getCaseSensitiveSorting": {
-      "type": "function",
-      "name": "getCaseSensitiveSorting",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>caseSensitiveSorting</code>.\n\nFor further details take a look at the property definition: {@link #caseSensitiveSorting}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for caseSensitiveSorting"
-          }
-        ]
-      }
-    },
-    "isCaseSensitiveSorting": {
-      "type": "function",
-      "name": "isCaseSensitiveSorting",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>caseSensitiveSorting</code>.\n\nFor further details take a look at the property definition: {@link #caseSensitiveSorting}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for caseSensitiveSorting"
-          }
-        ]
-      }
-    },
-    "setCaseSensitiveSorting": {
-      "type": "function",
-      "name": "setCaseSensitiveSorting",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>caseSensitiveSorting</code>.\n\nFor further details take a look at the property definition: {@link #caseSensitiveSorting}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for caseSensitiveSorting"
-          }
-        ]
-      }
-    },
-    "resetCaseSensitiveSorting": {
-      "type": "function",
-      "name": "resetCaseSensitiveSorting",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>caseSensitiveSorting</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #caseSensitiveSorting}."
-          }
-        ]
-      }
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 470,
         "column": 2,
-        "index": 12710
+        "index": 12241
       },
       "end": {
         "line": 472,
         "column": 3,
-        "index": 12791
+        "index": 12320
       }
     }
   },
-  "events": {},
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

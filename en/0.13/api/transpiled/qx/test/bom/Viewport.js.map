@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "testGetScrollLeft",
+    "assertPositiveInteger",
+    "bom",
+    "Viewport",
+    "getScrollLeft",
+    "testGetScrollTop",
+    "getScrollTop",
+    "test"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/bom/Viewport.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Daniel Wagner (d_wagner)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.bom.Viewport\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    testGetScrollLeft() {\n      this.assertPositiveInteger(qx.bom.Viewport.getScrollLeft());\n    },\n\n    testGetScrollTop() {\n      this.assertPositiveInteger(qx.bom.Viewport.getScrollTop());\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,sBAAsB,EAAE;IACtCC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE;MACPC,iBAAiB,WAAAA,kBAAA,EAAG;QAClB,IAAI,CAACC,qBAAqB,CAACZ,EAAE,CAACa,GAAG,CAACC,QAAQ,CAACC,aAAa,CAAC,CAAC,CAAC;MAC7D,CAAC;MAEDC,gBAAgB,WAAAA,iBAAA,EAAG;QACjB,IAAI,CAACJ,qBAAqB,CAACZ,EAAE,CAACa,GAAG,CAACC,QAAQ,CAACG,YAAY,CAAC,CAAC,CAAC;MAC5D;IACF;EACF,CAAC,CAAC;EA9BFjB,EAAE,CAACkB,IAAI,CAACL,GAAG,CAACC,QAAQ,CAACX,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

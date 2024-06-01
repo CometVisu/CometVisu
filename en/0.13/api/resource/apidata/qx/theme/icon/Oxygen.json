@@ -1,50 +1,36 @@
 {
-  "className": "qx.theme.icon.Oxygen",
-  "packageName": "qx.theme.icon",
-  "name": "Oxygen",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 557
-      },
-      "end": {
-        "line": 27,
-        "column": 3,
-        "index": 670
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>KDE Oxygen icons</p>"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235171938,
+  "lastModifiedIso": "2024-06-01T09:46:11.938Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/icon/Oxygen.js",
   "type": "theme",
-  "aliases": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 2,
-        "index": 622
-      },
-      "end": {
-        "line": 26,
-        "column": 3,
-        "index": 665
-      }
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 536
     },
-    "aliasMap": {
-      "icon": "qx/icon/Oxygen"
+    "end": {
+      "line": 27,
+      "column": 3,
+      "index": 644
     }
   },
-  "descendants": []
+  "className": "qx.theme.icon.Oxygen",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * KDE Oxygen icons",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>KDE Oxygen icons</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

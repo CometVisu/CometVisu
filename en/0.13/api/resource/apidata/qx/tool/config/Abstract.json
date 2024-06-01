@@ -1,0 +1,1326 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235168690,
+  "lastModifiedIso": "2024-06-01T09:46:08.690Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/config/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 792
+    },
+    "end": {
+      "line": 470,
+      "column": 3,
+      "index": 14003
+    }
+  },
+  "className": "qx.tool.config.Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * An abstract model for config files",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>An abstract model for config files</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "statics": {
+    "schemaBaseUrl": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The base URL of all json schema definitions",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The base URL of all json schema definitions</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 948
+        },
+        "end": {
+          "line": 37,
+          "column": 47,
+          "index": 991
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "config"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 2,
+        "index": 1000
+      },
+      "end": {
+        "line": 55,
+        "column": 3,
+        "index": 1383
+      }
+    }
+  },
+  "properties": {
+    "fileName": {
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1453
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1492
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Name of the config file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Name of the config file</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "baseDir": {
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1608
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1646
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the directory containing the config file",
+          "     * Defaults to process.cwd()",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the directory containing the config file\n Defaults to process.cwd()</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "version": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1813
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 1933
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Schema version of the config file",
+          "     * If string, validate all data against this version of the schema",
+          "     * If null, do not validate",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Schema version of the config file\n If string, validate all data against this version of the schema\n If null, do not validate</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "data": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 1979
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2097
+        }
+      },
+      "json": {
+        "check": "Object",
+        "event": "changeData",
+        "validate": "_validateData",
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The config data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The config data</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "dirty": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2188
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2272
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeDirty"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag to indicate that data has changed and needs to be saved",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag to indicate that data has changed and needs to be saved</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "loaded": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2345
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 2431
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeLoaded"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag to indicate that data has been loaded",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flag to indicate that data has been loaded</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "warnOnly": {
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 2584
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 2643
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to throw an Error if validation fails (false, default),",
+          "     * or to simply output a warning to the console (true)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to throw an Error if validation fails (false, default),\n or to simply output a warning to the console (true)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "validate": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 2724
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 2782
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to validate the model data (default: true)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to validate the model data (default: true)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "createIfNotExists": {
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3093
+        },
+        "end": {
+          "line": 138,
+          "column": 5,
+          "index": 3161
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to create the file if it doesn't exist yet (default: false)",
+          "     * Setting this to true doesn't automatically create it, you still need to",
+          "     * call save(). It just prevents an error during loading the config data.",
+          "     * Only works if a \"templateFunction\" has been set.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to create the file if it doesn't exist yet (default: false)\n Setting this to true doesn't automatically create it, you still need to\n call save(). It just prevents an error during loading the config data.\n Only works if a \"templateFunction\" has been set.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "templateFunction": {
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3331
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 3403
+        }
+      },
+      "json": {
+        "check": "Function",
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * A function that returns the config file template which is used if no",
+          "     * file exists and the \"createIfNotExists\" property is set to true",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>A function that returns the config file template which is used if no\n file exists and the \"createIfNotExists\" property is set to true</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__schema": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The json-schema object",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The json-schema object</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 154,
+          "column": 4,
+          "index": 3473
+        },
+        "end": {
+          "line": 154,
+          "column": 18,
+          "index": 3487
+        }
+      },
+      "appearsIn": []
+    },
+    "_validateData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validates the given data against the schema that the model has been",
+          "     * initialized with. Throws if not valid.",
+          "     * @param data The config data",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Validates the given data against the schema that the model has been\n initialized with. Throws if not valid.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data The config data"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 3682
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 4318
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getDataPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the configuration file",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the configuration file</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4,
+          "index": 4407
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 4491
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getRelativeDataPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The path to the configuration file, relative to CWD",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The path to the configuration file, relative to CWD</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 4573
+        },
+        "end": {
+          "line": 198,
+          "column": 5,
+          "index": 4665
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_getSchemaFileName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the part of the schema URI that is identical for all paths",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the part of the schema URI that is identical for all paths</p>"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 4,
+          "index": 4778
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 5011
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getSchemaPath": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Path to the schema json file in the file system",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Path to the schema json file in the file system</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 218,
+          "column": 4,
+          "index": 5113
+        },
+        "end": {
+          "line": 222,
+          "column": 5,
+          "index": 5257
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getSchemaUri": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the URL of the JSON schema",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the URL of the JSON schema</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 228,
+          "column": 4,
+          "index": 5346
+        },
+        "end": {
+          "line": 232,
+          "column": 5,
+          "index": 5472
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getSchema": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the json-schema object",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the json-schema object</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 5557
+        },
+        "end": {
+          "line": 240,
+          "column": 5,
+          "index": 5604
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "exists": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns true if the config file exists, false if not",
+          "     * @return {Promise<Boolean>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns true if the config file exists, false if not</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<Boolean>}",
+            "type": "Promise<Boolean>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4,
+          "index": 5721
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 5798
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<Boolean>"
+      },
+      "appearsIn": []
+    },
+    "load": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method can be used to get the config model singleton in a initialized",
+          "     * state. It loads the config data into the model, unless data has already been",
+          "     * loaded. If no argument is given, load from the file specified when the",
+          "     * instance was created. If an json object is passed, use that data. In both",
+          "     * cases, the data is validated against the schema that the model has been",
+          "     * initialized with, unless it is missing schema information (for",
+          "     * backwards-compatibility). Returns the instance for chaining. To reload",
+          "     * the data, set the \"loaded\" property to false first.",
+          "     *",
+          "     * @param {Object|undefined} data The json data",
+          "     * @return {qx.tool.config.Abstract} Returns the instance for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>This method can be used to get the config model singleton in a initialized\n state. It loads the config data into the model, unless data has already been\n loaded. If no argument is given, load from the file specified when the\n instance was created. If an json object is passed, use that data. In both\n cases, the data is validated against the schema that the model has been\n initialized with, unless it is missing schema information (for\n backwards-compatibility). Returns the instance for chaining. To reload\n the data, set the \"loaded\" property to false first.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Object|undefined} data The json data",
+            "paramName": "data",
+            "description": "The json data",
+            "type": [
+              "Object",
+              "undefined"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.config.Abstract} Returns the instance for chaining",
+            "type": "qx.tool.config.Abstract",
+            "description": "Returns the instance for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 263,
+          "column": 4,
+          "index": 6566
+        },
+        "end": {
+          "line": 343,
+          "column": 5,
+          "index": 9706
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": [
+            "Object",
+            "undefined"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "qx.tool.config.Abstract"
+      },
+      "appearsIn": []
+    },
+    "getValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a value from the configuration map",
+          "     * @param prop_path {String|Array} The property path. See https://github.com/jonschlinkert/get-value#usage",
+          "     * @param options {*?} See https://github.com/jonschlinkert/get-value#options",
+          "     * @return {*}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a value from the configuration map</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "prop_path {String|Array} The property path. See https://github.com/jonschlinkert/get-value#usage",
+            "paramName": "prop_path",
+            "description": " The property path. See https://github.com/jonschlinkert/get-value#usage",
+            "type": [
+              "String",
+              "Array"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "options {*?} See https://github.com/jonschlinkert/get-value#options",
+            "paramName": "options",
+            "description": " See https://github.com/jonschlinkert/get-value#options",
+            "optional": true,
+            "type": "*"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*}",
+            "type": "*",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 351,
+          "column": 4,
+          "index": 9991
+        },
+        "end": {
+          "line": 353,
+          "column": 5,
+          "index": 10087
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "prop_path",
+          "type": [
+            "String",
+            "Array"
+          ]
+        },
+        {
+          "name": "options",
+          "type": "*",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": []
+    },
+    "setValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a value from the configuration map and validates the result against",
+          "     * the json schema of the model",
+          "     * @param prop_path {String|Array} The property path. See https://github.com/jonschlinkert/set-value#usage",
+          "     * @param value {*}",
+          "     * @param options {*?} See https://github.com/jonschlinkert/get-value#options",
+          "     * @return {qx.tool.config.Abstract} Returns the instance for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets a value from the configuration map and validates the result against\n the json schema of the model</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "prop_path {String|Array} The property path. See https://github.com/jonschlinkert/set-value#usage",
+            "paramName": "prop_path",
+            "description": " The property path. See https://github.com/jonschlinkert/set-value#usage",
+            "type": [
+              "String",
+              "Array"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "value {*}",
+            "paramName": "value",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "options {*?} See https://github.com/jonschlinkert/get-value#options",
+            "paramName": "options",
+            "description": " See https://github.com/jonschlinkert/get-value#options",
+            "optional": true,
+            "type": "*"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.config.Abstract} Returns the instance for chaining",
+            "type": "qx.tool.config.Abstract",
+            "description": "Returns the instance for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 363,
+          "column": 4,
+          "index": 10518
+        },
+        "end": {
+          "line": 382,
+          "column": 5,
+          "index": 11100
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "prop_path",
+          "type": [
+            "String",
+            "Array"
+          ]
+        },
+        {
+          "name": "value",
+          "type": "*"
+        },
+        {
+          "name": "options",
+          "type": "*",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.tool.config.Abstract"
+      },
+      "appearsIn": []
+    },
+    "unset": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Unsets a property from the configuration map and validates the model",
+          "     * @param prop_path {String|Array} The property path. See https://github.com/jonschlinkert/set-value#usage",
+          "     * @param options {*?} See https://github.com/jonschlinkert/get-value#options",
+          "     * @return {qx.tool.config.Abstract} Returns the instance for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Unsets a property from the configuration map and validates the model</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "prop_path {String|Array} The property path. See https://github.com/jonschlinkert/set-value#usage",
+            "paramName": "prop_path",
+            "description": " The property path. See https://github.com/jonschlinkert/set-value#usage",
+            "type": [
+              "String",
+              "Array"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "options {*?} See https://github.com/jonschlinkert/get-value#options",
+            "paramName": "options",
+            "description": " See https://github.com/jonschlinkert/get-value#options",
+            "optional": true,
+            "type": "*"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.config.Abstract} Returns the instance for chaining",
+            "type": "qx.tool.config.Abstract",
+            "description": "Returns the instance for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 390,
+          "column": 4,
+          "index": 11467
+        },
+        "end": {
+          "line": 406,
+          "column": 5,
+          "index": 11882
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "prop_path",
+          "type": [
+            "String",
+            "Array"
+          ]
+        },
+        {
+          "name": "options",
+          "type": "*",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.tool.config.Abstract"
+      },
+      "appearsIn": []
+    },
+    "transform": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transforms a value at a given property path, using a function.",
+          "     * @param prop_path {String|Array}",
+          "     *    The property path. See https://github.com/jonschlinkert/set-value#usage",
+          "     * @param transformFunc {Function}",
+          "     *    The transformation function, which receives the value of the property",
+          "     *    and returns the transformed value, which then is validated and saved.",
+          "     * @param options {*?} See https://github.com/jonschlinkert/get-value#options",
+          "     * @return {qx.tool.config.Abstract} Returns the instance for chaining",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transforms a value at a given property path, using a function.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "prop_path {String|Array}\n    The property path. See https://github.com/jonschlinkert/set-value#usage",
+            "paramName": "prop_path",
+            "description": "\n    The property path. See https://github.com/jonschlinkert/set-value#usage",
+            "type": [
+              "String",
+              "Array"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "transformFunc {Function}\n    The transformation function, which receives the value of the property\n    and returns the transformed value, which then is validated and saved.",
+            "paramName": "transformFunc",
+            "description": "\n    The transformation function, which receives the value of the property\n    and returns the transformed value, which then is validated and saved.",
+            "type": "((...args: any[]) => any)"
+          },
+          {
+            "name": "@param",
+            "body": "options {*?} See https://github.com/jonschlinkert/get-value#options",
+            "paramName": "options",
+            "description": " See https://github.com/jonschlinkert/get-value#options",
+            "optional": true,
+            "type": "*"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.config.Abstract} Returns the instance for chaining",
+            "type": "qx.tool.config.Abstract",
+            "description": "Returns the instance for chaining"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 418,
+          "column": 4,
+          "index": 12452
+        },
+        "end": {
+          "line": 427,
+          "column": 5,
+          "index": 12823
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "prop_path",
+          "type": [
+            "String",
+            "Array"
+          ]
+        },
+        {
+          "name": "transformFunc",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "options",
+          "type": "*",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.tool.config.Abstract"
+      },
+      "appearsIn": []
+    },
+    "keyExists": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given a map containing property paths as keys and arbitrary values,",
+          "     * return the map with values that are true if the property path exists",
+          "     * and false otherwise.",
+          "     * @param propOrMap",
+          "     * @return {boolean|*}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given a map containing property paths as keys and arbitrary values,\n return the map with values that are true if the property path exists\n and false otherwise.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "propOrMap",
+            "paramName": "propOrMap",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean|*}",
+            "type": "boolean|*",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 436,
+          "column": 4,
+          "index": 13076
+        },
+        "end": {
+          "line": 448,
+          "column": 5,
+          "index": 13520
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "propOrMap"
+        }
+      ],
+      "returnType": {
+        "type": "boolean|*"
+      },
+      "appearsIn": []
+    },
+    "validate": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Validates the stored config model data. Used when data is changed",
+          "     * outside of the API. Will not validate if validate property is false.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Validates the stored config model data. Used when data is changed\n outside of the API. Will not validate if validate property is false.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 454,
+          "column": 4,
+          "index": 13692
+        },
+        "end": {
+          "line": 456,
+          "column": 5,
+          "index": 13752
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "save": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Save the data to the config file",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Save the data to the config file</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 462,
+          "column": 4,
+          "index": 13846
+        },
+        "end": {
+          "line": 468,
+          "column": 5,
+          "index": 13995
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    }
+  }
+}

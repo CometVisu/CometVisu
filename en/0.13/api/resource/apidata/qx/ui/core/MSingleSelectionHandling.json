@@ -1,49 +1,53 @@
 {
-  "className": "qx.ui.core.MSingleSelectionHandling",
-  "packageName": "qx.ui.core",
-  "name": "MSingleSelectionHandling",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 33,
-        "column": 0,
-        "index": 1004
-      },
-      "end": {
-        "line": 249,
-        "column": 3,
-        "index": 7240
-      }
+  "version": 0.3,
+  "lastModified": 1717235171838,
+  "lastModifiedIso": "2024-06-01T09:46:11.838Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/MSingleSelectionHandling.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 972
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin links all methods to manage the single selection.\n The class which includes the mixin has to implements two methods:\n </p>\n<ul>\n <li><code>_getItems</code>, this method has to return a <code>Array</code>\n    of <code>qx.ui.core.Widget</code> that should be managed from the manager.\n </li>\n <li><code>_isAllowEmptySelection</code>, this method has to return a\n    <code>Boolean</code> value for allowing empty selection or not.\n </li>\n </ul>"
-        }
-      ]
+    "end": {
+      "line": 249,
+      "column": 3,
+      "index": 6992
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.core.MSingleSelectionHandling",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin links all methods to manage the single selection.",
+      " *",
+      " * The class which includes the mixin has to implements two methods:",
+      " *",
+      " * <ul>",
+      " * <li><code>_getItems</code>, this method has to return a <code>Array</code>",
+      " *    of <code>qx.ui.core.Widget</code> that should be managed from the manager.",
+      " * </li>",
+      " * <li><code>_isAllowEmptySelection</code>, this method has to return a",
+      " *    <code>Boolean</code> value for allowing empty selection or not.",
+      " * </li>",
+      " * </ul>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin links all methods to manage the single selection.\n The class which includes the mixin has to implements two methods:\n </p>\n<ul>\n <li><code>_getItems</code>, this method has to return a <code>Array</code>\n    of <code>qx.ui.core.Widget</code> that should be managed from the manager.\n </li>\n <li><code>_isAllowEmptySelection</code>, this method has to return a\n    <code>Boolean</code> value for allowing empty selection or not.\n </li>\n </ul>"
+      }
+    ]
+  },
   "events": {
     "changeValue": {
-      "location": {
-        "start": {
-          "line": 42,
-          "column": 4,
-          "index": 1315
-        },
-        "end": {
-          "line": 42,
-          "column": 37,
-          "index": 1348
-        }
-      },
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fires after the value was modified "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +55,25 @@
           }
         ]
       },
-      "name": "changeValue",
-      "type": "qx.event.type.Data"
-    },
-    "changeSelection": {
       "location": {
         "start": {
-          "line": 45,
+          "line": 42,
           "column": 4,
-          "index": 1408
+          "index": 1274
         },
         "end": {
-          "line": 45,
-          "column": 41,
-          "index": 1445
+          "line": 42,
+          "column": 37,
+          "index": 1307
         }
-      },
+      }
+    },
+    "changeSelection": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fires after the selection was modified "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -75,25 +81,26 @@
           }
         ]
       },
-      "name": "changeSelection",
-      "type": "qx.event.type.Data"
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1364
+        },
+        "end": {
+          "line": 45,
+          "column": 41,
+          "index": 1401
+        }
+      }
     }
   },
   "members": {
     "__manager": {
-      "location": {
-        "start": {
-          "line": 56,
-          "column": 4,
-          "index": 1746
-        },
-        "end": {
-          "line": 56,
-          "column": 19,
-          "index": 1761
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.core.SingleSelectionManager} the single selection manager "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -107,23 +114,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "setValue": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 70,
+          "line": 56,
           "column": 4,
-          "index": 2211
+          "index": 1691
         },
         "end": {
-          "line": 84,
-          "column": 5,
-          "index": 2579
+          "line": 56,
+          "column": 19,
+          "index": 1706
         }
       },
+      "appearsIn": []
+    },
+    "setValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * setValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @param item {null|qx.ui.core.Widget} Item to set as selected value.",
+          "     * @returns {null|TypeError} The status of this operation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -147,27 +162,47 @@
             "name": "@return",
             "body": "{null|TypeError} The status of this operation.",
             "type": "null|TypeError",
-            "description": " The status of this operation."
+            "description": "The status of this operation."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 91,
+          "line": 70,
           "column": 4,
-          "index": 2789
+          "index": 2142
         },
         "end": {
-          "line": 93,
+          "line": 84,
           "column": 5,
-          "index": 2865
+          "index": 2496
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": [
+            "null",
+            "qx.ui.core.Widget"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "null|TypeError"
+      },
+      "appearsIn": []
+    },
+    "getValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * getValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     *",
+          "     * @returns {null|qx.ui.core.Widget} The currently selected widget or null if there is none.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -179,27 +214,37 @@
             "name": "@return",
             "body": "{null|qx.ui.core.Widget} The currently selected widget or null if there is none.",
             "type": "null|qx.ui.core.Widget",
-            "description": " The currently selected widget or null if there is none."
+            "description": "The currently selected widget or null if there is none."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 98,
+          "line": 91,
           "column": 4,
-          "index": 2971
+          "index": 2699
         },
         "end": {
-          "line": 100,
+          "line": 93,
           "column": 5,
-          "index": 3036
+          "index": 2773
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "null|qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "resetValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * resetValue implements part of the {@link qx.ui.form.IField} interface.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -207,23 +252,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 110,
+          "line": 98,
           "column": 4,
-          "index": 3325
+          "index": 2874
         },
         "end": {
-          "line": 118,
+          "line": 100,
           "column": 5,
-          "index": 3503
+          "index": 2937
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of currently selected items.",
+          "     *",
+          "     * Note: The result is only a set of selected items, so the order can",
+          "     * differ from the sequence in which the items were added.",
+          "     *",
+          "     * @return {qx.ui.core.Widget[]} List of items.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -235,27 +292,41 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget[]} List of items.",
             "type": "qx.ui.core.Widget[]",
-            "description": " List of items."
+            "description": "List of items."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 127,
+          "line": 110,
           "column": 4,
-          "index": 3779
+          "index": 3216
         },
         "end": {
-          "line": 143,
+          "line": 118,
           "column": 5,
-          "index": 4219
+          "index": 3386
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": []
+    },
+    "setSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces current selection with the given items.",
+          "     *",
+          "     * @param items {qx.ui.core.Widget[]} Items to select.",
+          "     * @throws {Error} if one of the items is not a child element and if",
+          "     *    items contains more than one elements.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -280,23 +351,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 148,
+          "line": 127,
           "column": 4,
-          "index": 4290
+          "index": 3653
         },
         "end": {
-          "line": 150,
+          "line": 143,
           "column": 5,
-          "index": 4359
+          "index": 4077
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "items",
+          "type": "qx.ui.core.Widget[]"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the whole selection at once.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -304,23 +387,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isSelected": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 159,
+          "line": 148,
           "column": 4,
-          "index": 4647
+          "index": 4143
         },
         "end": {
-          "line": 161,
+          "line": 150,
           "column": 5,
-          "index": 4724
+          "index": 4210
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "isSelected": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the given item is currently selected.",
+          "     *",
+          "     * @param item {qx.ui.core.Widget} Any valid selectable item.",
+          "     * @return {Boolean} Whether the item is selected.",
+          "     * @throws {Error} if one of the items is not a child element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -340,8 +434,8 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the item is selected.",
-            "type": "Boolean",
-            "description": " Whether the item is selected."
+            "type": "boolean",
+            "description": "Whether the item is selected."
           }
         ],
         "@throws": [
@@ -353,23 +447,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isSelectionEmpty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 168,
+          "line": 159,
           "column": 4,
-          "index": 4857
+          "index": 4489
         },
         "end": {
-          "line": 170,
+          "line": 161,
           "column": 5,
-          "index": 4938
+          "index": 4564
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isSelectionEmpty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the selection is empty.",
+          "     *",
+          "     * @return {Boolean} Whether the selection is empty.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -380,28 +491,42 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the selection is empty.",
-            "type": "Boolean",
-            "description": " Whether the selection is empty."
+            "type": "boolean",
+            "description": "Whether the selection is empty."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSelectables": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 179,
+          "line": 168,
           "column": 4,
-          "index": 5208
+          "index": 4690
         },
         "end": {
-          "line": 181,
+          "line": 170,
           "column": 5,
-          "index": 5291
+          "index": 4769
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSelectables": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all elements which are selectable.",
+          "     *",
+          "     * @param all {Boolean} true for all selectables, false for the",
+          "     *   selectables the user can interactively select",
+          "     * @return {qx.ui.core.Widget[]} The contained items.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -414,7 +539,7 @@
             "body": "all {Boolean} true for all selectables, false for the\n   selectables the user can interactively select",
             "paramName": "all",
             "description": " true for all selectables, false for the\n   selectables the user can interactively select",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
@@ -422,27 +547,45 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget[]} The contained items.",
             "type": "qx.ui.core.Widget[]",
-            "description": " The contained items."
+            "description": "The contained items."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_onChangeSelected": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 195,
+          "line": 179,
           "column": 4,
-          "index": 5675
+          "index": 5030
         },
         "end": {
-          "line": 203,
+          "line": 181,
           "column": 5,
-          "index": 6045
+          "index": 5111
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "all",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget[]"
+      },
+      "appearsIn": []
+    },
+    "_onChangeSelected": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for <code>changeSelected</code> event on single",
+          "     * selection manager.",
+          "     *",
+          "     * @param e {qx.event.type.Data} Data event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -459,23 +602,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__getManager": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 211,
+          "line": 195,
           "column": 4,
-          "index": 6259
+          "index": 5481
         },
         "end": {
-          "line": 237,
+          "line": 203,
           "column": 5,
-          "index": 6972
+          "index": 5843
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getManager": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the selection manager if it is already exists, otherwise creates",
+          "     * the manager.",
+          "     *",
+          "     * @return {qx.ui.core.SingleSelectionManager} Single selection manager.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -487,28 +645,47 @@
             "name": "@return",
             "body": "{qx.ui.core.SingleSelectionManager} Single selection manager.",
             "type": "qx.ui.core.SingleSelectionManager",
-            "description": " Single selection manager."
+            "description": "Single selection manager."
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 211,
+          "column": 4,
+          "index": 6049
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 6736
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.SingleSelectionManager"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 246,
         "column": 2,
-        "index": 7178
+        "index": 6933
       },
       "end": {
         "line": 248,
         "column": 3,
-        "index": 7235
+        "index": 6988
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -1,9 +1,7 @@
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
-      "qx.module.Animation": {
-        "require": true
-      },
       "qx.core.Environment": {
         "defer": "load",
         "require": true
@@ -20,10 +18,12 @@
         "require": true
       },
       "qx.html.Factory": {},
-      "qx.core.Id": {},
+      "qx.html.Serializer": {},
       "qx.lang.Array": {},
+      "qx.bom.element.Attribute": {},
       "qx.html.Element": {},
       "qx.event.Registration": {},
+      "qx.html.Text": {},
       "qx.data.Array": {},
       "qx.lang.Type": {},
       "qx.lang.Function": {},
@@ -72,7 +72,10 @@
    *
    * NOTE: Instances of this class must be disposed of after use
    *
-   * @require(qx.module.Animation)
+   * NOTE:: This class used to require `qx.module.Animation` but that brings in a huge
+   * list of dependencies, so the require has been moved to the `qx.application.AbstractGui`
+   * class
+   *
    */
   qx.Class.define("qx.html.Node", {
     extend: qx.core.Object,
@@ -216,51 +219,25 @@
         throw new Error("No implementation for " + this.classname + "._createDomElement");
       },
       /**
-       * Serializes the virtual DOM element to a writer; the `writer` function accepts
-       *  an varargs, which can be joined with an empty string or streamed.
+       * Serializes the virtual DOM element to a string
        *
-       * If writer is null, the element will be serialised to a string which is returned;
-       * note that if writer is not null, the return value will be null
-       *
-       * @param writer {Function?} the writer
-       * @return {String?} the serialised version if writer is null
+       * @param pretty {Boolean?} whether to pretty print the output. Defaults to `false`
+       * @return {String} the serialised version
        */
-      serialize: function serialize(writer) {
-        var temporaryQxObjectId = !this.getQxObjectId();
-        if (temporaryQxObjectId) {
-          this.setQxObjectId(this.classname);
-        }
-        var id = qx.core.Id.getAbsoluteIdOf(this, true);
-        var isIdRoot = !id;
-        if (isIdRoot) {
-          qx.core.Id.getInstance().register(this);
-        }
-        var result = undefined;
-        if (writer) {
-          this._serializeImpl(writer);
-        } else {
-          var buffer = [];
-          this._serializeImpl(function () {
-            var args = qx.lang.Array.fromArguments(arguments);
-            qx.lang.Array.append(buffer, args);
-          });
-          result = buffer.join("");
-        }
-        if (isIdRoot) {
-          qx.core.Id.getInstance().unregister(this);
-        }
-        if (temporaryQxObjectId) {
-          this.setQxObjectId(null);
-        }
-        return result;
+      serialize: function serialize() {
+        var pretty = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+        var serializer = new qx.html.Serializer();
+        serializer.setPrettyPrint(!!pretty);
+        this._serializeImpl(serializer);
+        return serializer.getOutput();
       },
       /**
        * Serializes the virtual DOM element to a writer; the `writer` function accepts
        *  an varargs, which can be joined with an empty string or streamed.
        *
-       * @param writer {Function} the writer
+       * @param serializer {qx.html.Serializer} the serializer
        */
-      _serializeImpl: function _serializeImpl(writer) {
+      _serializeImpl: function _serializeImpl(serializer) {
         throw new Error("No implementation for " + this.classname + ".serializeImpl");
       },
       /**
@@ -270,152 +247,64 @@
        * @param domNode {Node} DOM Node to reuse
        */
       useNode: function useNode(domNode) {
-        var id = domNode.getAttribute("data-qx-object-id");
-        if (id) {
-          this.setQxObjectId(id);
-        }
-        var temporaryQxObjectId = !this.getQxObjectId();
-        if (temporaryQxObjectId) {
-          this.setQxObjectId(this.classname);
-        }
-        var id = qx.core.Id.getAbsoluteIdOf(this, true);
-        var isIdRoot = !id;
-        if (isIdRoot) {
-          qx.core.Id.getInstance().register(this);
-        }
-
-        /*
-         * When merging children, we want to keep the original DOM nodes in
-         * domNode no matter what - however, where the DOM nodes have a qxObjectId
-         * we must reuse the original instances.
-         *
-         * The crucial thing is that the qxObjectId hierarchy and the DOM hierarchy
-         * are not the same (although they are often similar, the DOM will often have
-         * extra Nodes).
-         *
-         * However, because the objects in the qxObjectId space will typically already
-         * exist (eg accessed via the constructor) we do not want to discard the original
-         * instance of qx.html.Element because there are probably references to them in
-         * code.
-         *
-         * In the code below, we map the DOM heirarchy into a temporary Javascript
-         * hierarchy, where we can either use existing qx.html.Element instances (found
-         * by looking up the qxObjectId) or fabricate new ones.
-         *
-         * Once the temporary hierarchy is ready, we go back and synchronise each
-         * qx.html.Element with the DOM node and our new array of children.
-         *
-         * The only rule to this is that if you are going to call this `useNode`, then
-         * you must not keep references to objects *unless* you also access them via
-         * the qxObjectId mechanism.
-         */
-
-        var self = this;
-        function convert(domNode) {
-          var children = qx.lang.Array.fromCollection(domNode.childNodes);
-          children = children.map(function (domChild) {
-            var child = null;
-            if (domChild.nodeType == window.Node.ELEMENT_NODE) {
-              var id = domChild.getAttribute("data-qx-object-id");
-              if (id) {
-                var owningQxObjectId = null;
-                var qxObjectId = null;
-                var owningQxObject = null;
-                var pos = id.lastIndexOf("/");
-                if (pos > -1) {
-                  owningQxObjectId = id.substring(0, pos);
-                  qxObjectId = id.substring(pos + 1);
-                  owningQxObject = qx.core.Id.getQxObject(owningQxObjectId);
-                  child = owningQxObject.getQxObject(qxObjectId);
-                } else {
-                  qxObjectId = id;
-                  owningQxObject = self;
-                  child = self.getQxObject(id);
-                }
-              }
-            }
-            if (!child) {
-              child = qx.html.Factory.getInstance().createElement(domChild.nodeName, domChild.attributes);
-            }
-            return {
-              htmlNode: child,
-              domNode: domChild,
-              children: convert(domChild)
-            };
-          });
-          return children;
-        }
-        function install(map) {
-          var htmlChildren = map.children.map(function (mapEntry) {
-            install(mapEntry);
-            return mapEntry.htmlNode;
-          });
-          map.htmlNode._useNodeImpl(map.domNode, htmlChildren);
-        }
-        var rootMap = {
-          htmlNode: this,
-          domNode: domNode,
-          children: convert(domNode)
-        };
-        install(rootMap);
-        this.flush();
-        this._insertChildren();
-        if (isIdRoot) {
-          qx.core.Id.getInstance().unregister(this);
-        }
-        if (temporaryQxObjectId) {
-          this.setQxObjectId(null);
-        }
-      },
-      /**
-       * Called internally to complete the connection to an existing DOM node
-       *
-       * @param domNode {DOMNode} the node we're syncing to
-       * @param newChildren {qx.html.Node[]} the new children
-       */
-      _useNodeImpl: function _useNodeImpl(domNode, newChildren) {
+        var _this = this;
         if (this._domNode) {
           throw new Error("Could not overwrite existing element!");
         }
-
-        // Use incoming element
-        this._connectDomNode(domNode);
-
-        // Copy currently existing data over to element
-        this._copyData(true, true);
-
-        // Add children
-        var lookup = {};
-        var oldChildren = this._children ? qx.lang.Array.clone(this._children) : null;
-        newChildren.forEach(function (child) {
-          lookup[child.toHashCode()] = child;
-        });
-        this._children = newChildren;
-
-        // Make sure that unused children are disconnected
-        if (oldChildren) {
-          oldChildren.forEach(function (child) {
-            if (!lookup[child.toHashCode()]) {
-              if (child._domNode && child._domNode.parentElement) {
-                child._domNode.parentElement.removeChild(child._domNode);
-              }
-              child._parent = null;
+        var removeAllChildren = function removeAllChildren(parentElement) {
+          if (parentElement._children) {
+            qx.lang.Array.clone(parentElement._children).forEach(function (node) {
+              parentElement._removeChildImpl(node);
+              node._disconnectDomNode();
+            });
+            parentElement._children = null;
+          }
+        };
+        var scanDomNode = function scanDomNode(parentElement, domNode, idx) {
+          if (domNode.nodeType == window.Node.TEXT_NODE) {
+            var _parentElement$_child;
+            var newChild = qx.html.Factory.getInstance().createElement("#text");
+            newChild._useNodeImpl(domNode);
+            parentElement._addChildImpl(newChild);
+            if (((_parentElement$_child = parentElement._children[idx]) === null || _parentElement$_child === void 0 ? void 0 : _parentElement$_child.classname) === "qx.html.Text") {
+              parentElement._children[idx] = newChild;
+            } else {
+              parentElement._children.push(newChild);
             }
-          });
-        }
-        var self = this;
-        this._children.forEach(function (child) {
-          child._parent = self;
-          if (child._domNode && child._domNode.parentElement !== self._domNode) {
-            child._domNode.parentElement.removeChild(child._domNode);
-            if (this._domNode) {
-              this._domNode.appendChild(child._domNode);
+            return;
+          }
+          var id = domNode.getAttribute("data-qx-object-id");
+          var element = null;
+          if (id) {
+            try {
+              element = parentElement.getQxObject(id);
+            } catch (ex) {
+              element = null;
             }
           }
+          if (!element) {
+            element = qx.html.Factory.getInstance().createElement(domNode.nodeName, domNode.attributes);
+          }
+          if (element._parent !== parentElement) {
+            parentElement._addChildImpl(element);
+            parentElement._children.push(element);
+          }
+          element._connectDomNode(domNode);
+          element._copyData(true, true);
+          qx.lang.Array.fromCollection(domNode.childNodes).forEach(function (childDomNode, idx) {
+            return scanDomNode(element, childDomNode, idx);
+          });
+          parentElement._scheduleChildrenUpdate();
+        };
+        removeAllChildren(this);
+        this._connectDomNode(domNode);
+        this._copyData(true, true);
+        qx.lang.Array.fromCollection(domNode.childNodes).forEach(function (childDomNode, idx) {
+          return scanDomNode(_this, childDomNode, idx);
         });
-        if (this._domNode) {
-          this._scheduleChildrenUpdate();
-        }
+        this.flush();
+        this._insertChildren();
+        this._scheduleChildrenUpdate();
       },
       /**
        * Connects a DOM element to this Node; if this Node is already connected to a Widget
@@ -433,11 +322,23 @@
         }
       },
       /**
+       * Disconnects the DOM node
+       */
+      _disconnectDomNode: function _disconnectDomNode() {
+        if (this._domNode && this._domNode.parentElement) {
+          this._domNode.parentElement.removeChild(this._domNode);
+        }
+        this._domNode = null;
+      },
+      /**
        * Detects whether the DOM node has been created and is in the document
        *
        * @return {Boolean}
        */
       isInDocument: function isInDocument() {
+        if (!this._domNode) {
+          return false;
+        }
         if (document.body) {
           for (var domNode = this._domNode; domNode != null; domNode = domNode.parentElement) {
             if (domNode === document.body) {
@@ -453,13 +354,14 @@
       updateObjectId: function updateObjectId() {
         // Copy Object Id
         if (qx.core.Environment.get("module.objectid")) {
-          var id = this.getQxObjectId();
-          if (!id && this._qxObject) {
-            id = this._qxObject.getQxObjectId();
+          if (this._domNode) {
+            qx.bom.element.Attribute.set("data-qx-object-id", this._getApplicableQxObjectId());
           }
-          this.setAttribute("data-qx-object-id", id, true);
         }
       },
+      /**
+       * @Override
+       */
       _cascadeQxObjectIdChanges: function _cascadeQxObjectIdChanges() {
         if (qx.core.Environment.get("module.objectid")) {
           this.updateObjectId();
@@ -879,12 +781,16 @@
         var self = this;
         function addImpl(arr) {
           arr.forEach(function (child) {
-            if (child instanceof qx.data.Array || qx.lang.Type.isArray(child)) {
+            if (["string", "number", "boolean"].includes(_typeof(child))) {
+              child = new qx.html.Text("".concat(child));
+            } else if (child instanceof qx.data.Array || qx.lang.Type.isArray(child)) {
               addImpl(child);
-            } else {
-              self._addChildImpl(child);
-              self._children.push(child);
             }
+            if (child == null) {
+              child = new qx.html.Text("[".concat(child, "]"));
+            }
+            self._addChildImpl(child);
+            self._children.push(child);
           });
         }
         addImpl(qx.lang.Array.fromArguments(arguments));
@@ -902,6 +808,11 @@
        * @return {qx.html.Element} this object (for chaining support)
        */
       addAt: function addAt(child, index) {
+        if (typeof child == "string") {
+          child = new qx.html.Text(child);
+        } else if (typeof child == "number") {
+          child = new qx.html.Text("" + child);
+        }
         this._addChildImpl(child);
         qx.lang.Array.insertAt(this._children, child, index);
 
@@ -1181,7 +1092,7 @@
       },
       /*
       ---------------------------------------------------------------------------
-        PROPERTY SUPPORT
+      PROPERTY SUPPORT
       ---------------------------------------------------------------------------
       */
       /**
@@ -1257,7 +1168,6 @@
           return this;
         }
         this._properties[key].value = value;
-
         // Uncreated elements simply copy all data
         // on creation. We don't need to remember any
         // jobs. It is a simple full list copy.
@@ -1313,7 +1223,7 @@
             }
           }
         }
-        return value === undefined || value == null ? null : value;
+        return value === undefined ? null : value;
       },
       /*
       ---------------------------------------------------------------------------
@@ -1335,23 +1245,23 @@
        *         using the {@link #removeListenerById} method.
        */
       addListener: function addListener(type, listener, self, capture) {
-        var _this = this;
+        var _this2 = this;
         if (this.$$disposed) {
           return null;
         }
         var registerDomEvent = function registerDomEvent() {
-          if (_this._domNode) {
-            return qx.event.Registration.addListener(_this._domNode, type, listener, self, capture);
+          if (_this2._domNode) {
+            return qx.event.Registration.addListener(_this2._domNode, type, listener, self, capture);
           }
-          if (!_this.__P_251_0) {
-            _this.__P_251_0 = {};
+          if (!_this2.__P_251_0) {
+            _this2.__P_251_0 = {};
           }
           if (capture == null) {
             capture = false;
           }
           var unique = qx.event.Manager.getNextUniqueId();
           var id = type + (capture ? "|capture|" : "|bubble|") + unique;
-          _this.__P_251_0[id] = {
+          _this2.__P_251_0[id] = {
             type: type,
             listener: listener,
             self: self,
@@ -1533,4 +1443,4 @@
   qx.html.Node.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Node.js.map?dt=1709410152981
+//# sourceMappingURL=Node.js.map?dt=1717235381903

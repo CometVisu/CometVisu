@@ -1,74 +1,110 @@
 {
-  "className": "qx.ui.layout.Grid",
-  "packageName": "qx.ui.layout",
-  "name": "Grid",
-  "superClass": "qx.ui.layout.Abstract",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 76,
-        "column": 0,
-        "index": 2677
-      },
-      "end": {
-        "line": 1437,
-        "column": 3,
-        "index": 44211
-      }
+  "version": 0.3,
+  "lastModified": 1717235171074,
+  "lastModifiedIso": "2024-06-01T09:46:11.074Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/layout/Grid.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 76,
+      "column": 0,
+      "index": 2602
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The grid layout manager arranges the items in a two dimensional\n grid. Widgets can be placed into the grid's cells and may span multiple rows\n and columns.\n<em>Features</em></p>\n<ul>\n<li>Flex values for rows and columns</li>\n<li>Minimal and maximal column and row sizes</li>\n<li>Manually setting of column and row sizes</li>\n<li>Horizontal and vertical alignment</li>\n<li>Horizontal and vertical spacing</li>\n<li>Column and row spans</li>\n<li><p>Auto-sizing\n<em>Item Properties</em></p></li>\n</ul>\n<ul>\n <li><strong>row</strong> <em>(Integer)</em>: The row of the cell the\n   widget should occupy. Each cell can only containing one widget. This layout\n   property is mandatory.\n </li>\n <li><strong>column</strong> <em>(Integer)</em>: The column of the cell the\n   widget should occupy. Each cell can only containing one widget. This layout\n   property is mandatory.\n </li>\n <li><strong>rowSpan</strong> <em>(Integer)</em>: The number of rows, the\n   widget should span, starting from the row specified in the <code>row</code>\n   property. The cells in the spanned rows must be empty as well.\n </li>\n <li><strong>colSpan</strong> <em>(Integer)</em>: The number of columns, the\n   widget should span, starting from the column specified in the <code>column</code>\n   property. The cells in the spanned columns must be empty as well.\n </li>\n </ul>\n<p><em>Example</em>\n Here is a little example of how to use the grid layout.\n </p>\n<pre class=\"javascript\">\n var layout = new qx.ui.layout.Grid();\n layout.setRowFlex(0, 1);\n layout.setColumnWidth(1, 200);\n var container = new qx.ui.container.Composite(layout);\n container.add(new qx.ui.core.Widget(), {row: 0, column: 0});\n container.add(new qx.ui.core.Widget(), {row: 0, column: 1});\n container.add(new qx.ui.core.Widget(), {row: 1, column: 0, rowSpan: 2});\n </pre>\n<p><em>External Documentation</em>\n <a href='https://qooxdoo.org/documentation/#/desktop/layout/grid.md'>\n Extended documentation</a> and links to demos of this layout in the qooxdoo manual.</p>"
-        }
-      ]
+    "end": {
+      "line": 1437,
+      "column": 3,
+      "index": 42775
     }
   },
-  "type": "class",
+  "className": "qx.ui.layout.Grid",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The grid layout manager arranges the items in a two dimensional",
+      " * grid. Widgets can be placed into the grid's cells and may span multiple rows",
+      " * and columns.",
+      " *",
+      " * *Features*",
+      " *",
+      " * * Flex values for rows and columns",
+      " * * Minimal and maximal column and row sizes",
+      " * * Manually setting of column and row sizes",
+      " * * Horizontal and vertical alignment",
+      " * * Horizontal and vertical spacing",
+      " * * Column and row spans",
+      " * * Auto-sizing",
+      " *",
+      " * *Item Properties*",
+      " *",
+      " * <ul>",
+      " * <li><strong>row</strong> <em>(Integer)</em>: The row of the cell the",
+      " *   widget should occupy. Each cell can only containing one widget. This layout",
+      " *   property is mandatory.",
+      " * </li>",
+      " * <li><strong>column</strong> <em>(Integer)</em>: The column of the cell the",
+      " *   widget should occupy. Each cell can only containing one widget. This layout",
+      " *   property is mandatory.",
+      " * </li>",
+      " * <li><strong>rowSpan</strong> <em>(Integer)</em>: The number of rows, the",
+      " *   widget should span, starting from the row specified in the <code>row</code>",
+      " *   property. The cells in the spanned rows must be empty as well.",
+      " * </li>",
+      " * <li><strong>colSpan</strong> <em>(Integer)</em>: The number of columns, the",
+      " *   widget should span, starting from the column specified in the <code>column</code>",
+      " *   property. The cells in the spanned columns must be empty as well.",
+      " * </li>",
+      " * </ul>",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the grid layout.",
+      " *",
+      " * <pre class=\"javascript\">",
+      " * var layout = new qx.ui.layout.Grid();",
+      " * layout.setRowFlex(0, 1); // make row 0 flexible",
+      " * layout.setColumnWidth(1, 200); // set with of column 1 to 200 pixel",
+      " *",
+      " * var container = new qx.ui.container.Composite(layout);",
+      " * container.add(new qx.ui.core.Widget(), {row: 0, column: 0});",
+      " * container.add(new qx.ui.core.Widget(), {row: 0, column: 1});",
+      " * container.add(new qx.ui.core.Widget(), {row: 1, column: 0, rowSpan: 2});",
+      " * </pre>",
+      " *",
+      " * *External Documentation*",
+      " *",
+      " * <a href='https://qooxdoo.org/documentation/#/desktop/layout/grid.md'>",
+      " * Extended documentation</a> and links to demos of this layout in the qooxdoo manual.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The grid layout manager arranges the items in a two dimensional\n grid. Widgets can be placed into the grid's cells and may span multiple rows\n and columns.\n<em>Features</em></p>\n<ul>\n<li>Flex values for rows and columns</li>\n<li>Minimal and maximal column and row sizes</li>\n<li>Manually setting of column and row sizes</li>\n<li>Horizontal and vertical alignment</li>\n<li>Horizontal and vertical spacing</li>\n<li>Column and row spans</li>\n<li><p>Auto-sizing\n<em>Item Properties</em></p></li>\n</ul>\n<ul>\n <li><strong>row</strong> <em>(Integer)</em>: The row of the cell the\n   widget should occupy. Each cell can only containing one widget. This layout\n   property is mandatory.\n </li>\n <li><strong>column</strong> <em>(Integer)</em>: The column of the cell the\n   widget should occupy. Each cell can only containing one widget. This layout\n   property is mandatory.\n </li>\n <li><strong>rowSpan</strong> <em>(Integer)</em>: The number of rows, the\n   widget should span, starting from the row specified in the <code>row</code>\n   property. The cells in the spanned rows must be empty as well.\n </li>\n <li><strong>colSpan</strong> <em>(Integer)</em>: The number of columns, the\n   widget should span, starting from the column specified in the <code>column</code>\n   property. The cells in the spanned columns must be empty as well.\n </li>\n </ul>\n<p><em>Example</em>\n Here is a little example of how to use the grid layout.\n </p>\n<pre class=\"javascript\">\n var layout = new qx.ui.layout.Grid();\n layout.setRowFlex(0, 1);\n layout.setColumnWidth(1, 200);\n var container = new qx.ui.container.Composite(layout);\n container.add(new qx.ui.core.Widget(), {row: 0, column: 0});\n container.add(new qx.ui.core.Widget(), {row: 0, column: 1});\n container.add(new qx.ui.core.Widget(), {row: 1, column: 0, rowSpan: 2});\n </pre>\n<p><em>External Documentation</em>\n <a href='https://qooxdoo.org/documentation/#/desktop/layout/grid.md'>\n Extended documentation</a> and links to demos of this layout in the qooxdoo manual.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.layout.Abstract",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "spacingX"
+      },
+      {
+        "name": "spacingY"
+      }
+    ],
     "location": {
       "start": {
         "line": 91,
         "column": 2,
-        "index": 3183
+        "index": 3093
       },
       "end": {
         "line": 104,
         "column": 3,
-        "index": 3417
+        "index": 3314
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "spacingX {Integer?0} The horizontal spacing between grid cells.\n     Sets {@link #spacingX}.",
-          "paramName": "spacingX",
-          "description": " The horizontal spacing between grid cells.\n     Sets {@link #spacingX}.",
-          "optional": true,
-          "defaultValue": "0",
-          "type": "Integer"
-        },
-        {
-          "name": "@param",
-          "body": "spacingY {Integer?0} The vertical spacing between grid cells.\n     Sets {@link #spacingY}.",
-          "paramName": "spacingY",
-          "description": " The vertical spacing between grid cells.\n     Sets {@link #spacingY}.",
-          "optional": true,
-          "defaultValue": "0",
-          "type": "Integer"
-        }
-      ]
     }
   },
   "properties": {
@@ -77,15 +113,25 @@
         "start": {
           "line": 116,
           "column": 4,
-          "index": 3705
+          "index": 3590
         },
         "end": {
           "line": 120,
           "column": 5,
-          "index": 3799
+          "index": 3680
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyLayoutChange"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The horizontal spacing between grid cells.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -93,27 +139,32 @@
           }
         ]
       },
-      "name": "spacingX",
-      "propertyType": "new",
-      "apply": "_applyLayoutChange",
-      "init": 0,
-      "check": "Integer",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "spacingY": {
       "location": {
         "start": {
           "line": 125,
           "column": 4,
-          "index": 3875
+          "index": 3751
         },
         "end": {
           "line": 129,
           "column": 5,
-          "index": 3969
+          "index": 3841
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyLayoutChange"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The vertical spacing between grid cells.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -121,27 +172,36 @@
           }
         ]
       },
-      "name": "spacingY",
-      "propertyType": "new",
-      "apply": "_applyLayoutChange",
-      "init": 0,
-      "check": "Integer",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "allowGrowSpannedCellWidth": {
       "location": {
         "start": {
           "line": 138,
           "column": 4,
-          "index": 4431
+          "index": 4294
         },
         "end": {
           "line": 142,
           "column": 5,
-          "index": 4546
+          "index": 4405
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "apply": "_applyLayoutChange"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Allow growing of spanning cells' widths beyond the accumulated widths of the columns.",
+          "     * The default behavior (init value false) is that the width of the spanning cell is",
+          "     * determined by the accumulated width of the columns (plus spacing).",
+          "     * Setting this property to true lets the cell width grow as needed to show",
+          "     * the widget in the spanning cell, which also enlarges the width of the spanned columns.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -149,61 +209,15 @@
           }
         ]
       },
-      "name": "allowGrowSpannedCellWidth",
-      "propertyType": "new",
-      "apply": "_applyLayoutChange",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "__grid": {
-      "location": {
-        "start": {
-          "line": 153,
-          "column": 4,
-          "index": 4817
-        },
-        "end": {
-          "line": 153,
-          "column": 16,
-          "index": 4829
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Array} 2D array of grid cell data "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -217,119 +231,128 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4665
+        },
+        "end": {
+          "line": 153,
+          "column": 16,
+          "index": 4677
+        }
+      },
+      "appearsIn": []
     },
     "__rowData": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 154,
           "column": 4,
-          "index": 4836
+          "index": 4683
         },
         "end": {
           "line": 154,
           "column": 19,
-          "index": 4851
+          "index": 4698
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__colData": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 155,
           "column": 4,
-          "index": 4858
+          "index": 4704
         },
         "end": {
           "line": 155,
           "column": 19,
-          "index": 4873
+          "index": 4719
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__colSpans": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 157,
           "column": 4,
-          "index": 4882
+          "index": 4726
         },
         "end": {
           "line": 157,
           "column": 20,
-          "index": 4898
+          "index": 4742
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__rowSpans": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 158,
           "column": 4,
-          "index": 4905
+          "index": 4748
         },
         "end": {
           "line": 158,
           "column": 20,
-          "index": 4921
+          "index": 4764
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__maxRowIndex": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 159,
           "column": 4,
-          "index": 4928
+          "index": 4770
         },
         "end": {
           "line": 159,
           "column": 23,
-          "index": 4947
+          "index": 4789
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__maxColIndex": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 160,
           "column": 4,
-          "index": 4954
+          "index": 4795
         },
         "end": {
           "line": 160,
           "column": 23,
-          "index": 4973
+          "index": 4814
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__rowHeights": {
-      "location": {
-        "start": {
-          "line": 163,
-          "column": 4,
-          "index": 5027
-        },
-        "end": {
-          "line": 163,
-          "column": 22,
-          "index": 5045
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Array} cached row heights "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -343,23 +366,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__colWidths": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 166,
+          "line": 163,
           "column": 4,
-          "index": 5101
+          "index": 4865
         },
         "end": {
-          "line": 166,
-          "column": 21,
-          "index": 5118
+          "line": 163,
+          "column": 22,
+          "index": 4883
         }
       },
+      "appearsIn": []
+    },
+    "__colWidths": {
       "jsdoc": {
+        "raw": [
+          "* @type {Array} cached column widths "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -373,40 +399,52 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 4936
+        },
+        "end": {
+          "line": 166,
+          "column": 21,
+          "index": 4953
+        }
+      },
+      "appearsIn": []
     },
     "verifyLayoutProperty": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 169,
           "column": 4,
-          "index": 5146
+          "index": 4978
         },
         "end": {
           "line": 188,
           "column": 6,
-          "index": 5664
+          "index": 5477
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "overriddenFrom": "qx.ui.layout.Abstract",
+      "appearsIn": [
+        "qx.ui.layout.Abstract"
+      ]
     },
     "__buildGrid": {
-      "location": {
-        "start": {
-          "line": 193,
-          "column": 4,
-          "index": 5747
-        },
-        "end": {
-          "line": 282,
-          "column": 5,
-          "index": 8123
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Rebuild the internal representation of the grid",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -414,23 +452,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "_setRowData": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 291,
+          "line": 193,
           "column": 4,
-          "index": 8351
+          "index": 5555
         },
         "end": {
-          "line": 300,
+          "line": 282,
           "column": 5,
-          "index": 8589
+          "index": 7842
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_setRowData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stores data for a grid row",
+          "     *",
+          "     * @param row {Integer} The row index",
+          "     * @param key {String} The key under which the data should be stored",
+          "     * @param value {var} data to store",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -450,7 +499,7 @@
             "body": "key {String} The key under which the data should be stored",
             "paramName": "key",
             "description": " The key under which the data should be stored",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -461,23 +510,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_setColumnData": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 309,
+          "line": 291,
           "column": 4,
-          "index": 8826
+          "index": 8061
         },
         "end": {
-          "line": 318,
+          "line": 300,
           "column": 5,
-          "index": 9079
+          "index": 8290
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        },
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setColumnData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stores data for a grid column",
+          "     *",
+          "     * @param column {Integer} The column index",
+          "     * @param key {String} The key under which the data should be stored",
+          "     * @param value {var} data to store",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -497,7 +570,7 @@
             "body": "key {String} The key under which the data should be stored",
             "paramName": "key",
             "description": " The key under which the data should be stored",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -508,23 +581,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "setSpacing": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 327,
+          "line": 309,
           "column": 4,
-          "index": 9362
+          "index": 8518
         },
         "end": {
-          "line": 331,
+          "line": 318,
           "column": 5,
-          "index": 9478
+          "index": 8762
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        },
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setSpacing": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Shortcut to set both horizontal and vertical spacing between grid cells",
+          "     * to the same value.",
+          "     *",
+          "     * @param spacing {Integer} new horizontal and vertical spacing",
+          "     * @return {qx.ui.layout.Grid} This object (for chaining support).",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -545,27 +642,55 @@
             "name": "@return",
             "body": "{qx.ui.layout.Grid} This object (for chaining support).",
             "type": "qx.ui.layout.Grid",
-            "description": " This object (for chaining support)."
+            "description": "This object (for chaining support)."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setColumnAlign": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 349,
+          "line": 327,
           "column": 4,
-          "index": 10260
+          "index": 9036
         },
         "end": {
-          "line": 362,
+          "line": 331,
           "column": 5,
-          "index": 10733
+          "index": 9148
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "spacing",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "setColumnAlign": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the default cell alignment for a column. This alignment can be",
+          "     * overridden on a per cell basis by setting the cell's content widget's",
+          "     * <code>alignX</code> and <code>alignY</code> properties.",
+          "     *",
+          "     * If on a grid cell both row and a column alignment is set, the horizontal",
+          "     * alignment is taken from the column and the vertical alignment is taken",
+          "     * from the row.",
+          "     *",
+          "     * @param column {Integer} Column index",
+          "     * @param hAlign {String} The horizontal alignment. Valid values are",
+          "     *    \"left\", \"center\" and \"right\".",
+          "     * @param vAlign {String} The vertical alignment. Valid values are",
+          "     *    \"top\", \"middle\", \"bottom\"",
+          "     * @return {qx.ui.layout.Grid} This object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -585,14 +710,14 @@
             "body": "hAlign {String} The horizontal alignment. Valid values are\n    \"left\", \"center\" and \"right\".",
             "paramName": "hAlign",
             "description": " The horizontal alignment. Valid values are\n    \"left\", \"center\" and \"right\".",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "vAlign {String} The vertical alignment. Valid values are\n    \"top\", \"middle\", \"bottom\"",
             "paramName": "vAlign",
             "description": " The vertical alignment. Valid values are\n    \"top\", \"middle\", \"bottom\"",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -600,27 +725,54 @@
             "name": "@return",
             "body": "{qx.ui.layout.Grid} This object (for chaining support)",
             "type": "qx.ui.layout.Grid",
-            "description": " This object (for chaining support)"
+            "description": "This object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getColumnAlign": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 371,
+          "line": 349,
           "column": 4,
-          "index": 11017
+          "index": 9912
         },
         "end": {
-          "line": 378,
+          "line": 362,
           "column": 5,
-          "index": 11211
+          "index": 10372
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        },
+        {
+          "name": "hAlign",
+          "type": "string"
+        },
+        {
+          "name": "vAlign",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "getColumnAlign": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a map of the column's alignment.",
+          "     *",
+          "     * @param column {Integer} The column index",
+          "     * @return {Map} A map with the keys <code>vAlign</code> and <code>hAlign</code>",
+          "     *     containing the vertical and horizontal column alignment.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -640,28 +792,56 @@
           {
             "name": "@return",
             "body": "{Map} A map with the keys <code>vAlign</code> and <code>hAlign</code>\n     containing the vertical and horizontal column alignment.",
-            "type": "Map",
-            "description": " A map with the keys <code>vAlign</code> and <code>hAlign</code>\n     containing the vertical and horizontal column alignment."
+            "type": "Map<any, any>",
+            "description": "A map with the keys <code>vAlign</code> and <code>hAlign</code>\n     containing the vertical and horizontal column alignment."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setRowAlign": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 396,
+          "line": 371,
           "column": 4,
-          "index": 11984
+          "index": 10647
         },
         "end": {
-          "line": 409,
+          "line": 378,
           "column": 5,
-          "index": 12433
+          "index": 10834
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "setRowAlign": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the default cell alignment for a row. This alignment can be",
+          "     * overridden on a per cell basis by setting the cell's content widget's",
+          "     * <code>alignX</code> and <code>alignY</code> properties.",
+          "     *",
+          "     * If on a grid cell both row and a column alignment is set, the horizontal",
+          "     * alignment is taken from the column and the vertical alignment is taken",
+          "     * from the row.",
+          "     *",
+          "     * @param row {Integer} Row index",
+          "     * @param hAlign {String} The horizontal alignment. Valid values are",
+          "     *    \"left\", \"center\" and \"right\".",
+          "     * @param vAlign {String} The vertical alignment. Valid values are",
+          "     *    \"top\", \"middle\", \"bottom\"",
+          "     * @return {qx.ui.layout.Grid} This object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -681,14 +861,14 @@
             "body": "hAlign {String} The horizontal alignment. Valid values are\n    \"left\", \"center\" and \"right\".",
             "paramName": "hAlign",
             "description": " The horizontal alignment. Valid values are\n    \"left\", \"center\" and \"right\".",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "vAlign {String} The vertical alignment. Valid values are\n    \"top\", \"middle\", \"bottom\"",
             "paramName": "vAlign",
             "description": " The vertical alignment. Valid values are\n    \"top\", \"middle\", \"bottom\"",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -696,27 +876,54 @@
             "name": "@return",
             "body": "{qx.ui.layout.Grid} This object (for chaining support)",
             "type": "qx.ui.layout.Grid",
-            "description": " This object (for chaining support)"
+            "description": "This object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRowAlign": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 418,
+          "line": 396,
           "column": 4,
-          "index": 12705
+          "index": 11589
         },
         "end": {
-          "line": 425,
+          "line": 409,
           "column": 5,
-          "index": 12890
+          "index": 12025
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        },
+        {
+          "name": "hAlign",
+          "type": "string"
+        },
+        {
+          "name": "vAlign",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "getRowAlign": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a map of the row's alignment.",
+          "     *",
+          "     * @param row {Integer} The Row index",
+          "     * @return {Map} A map with the keys <code>vAlign</code> and <code>hAlign</code>",
+          "     *     containing the vertical and horizontal row alignment.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -736,28 +943,49 @@
           {
             "name": "@return",
             "body": "{Map} A map with the keys <code>vAlign</code> and <code>hAlign</code>\n     containing the vertical and horizontal row alignment.",
-            "type": "Map",
-            "description": " A map with the keys <code>vAlign</code> and <code>hAlign</code>\n     containing the vertical and horizontal row alignment."
+            "type": "Map<any, any>",
+            "description": "A map with the keys <code>vAlign</code> and <code>hAlign</code>\n     containing the vertical and horizontal row alignment."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCellWidget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 436,
+          "line": 418,
           "column": 4,
-          "index": 13315
+          "index": 12288
         },
         "end": {
-          "line": 443,
+          "line": 425,
           "column": 5,
-          "index": 13507
+          "index": 12466
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getCellWidget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the widget located in the cell. If a the cell is empty or the widget",
+          "     * has a {@link qx.ui.core.Widget#visibility} value of <code>exclude</code>,",
+          "     * <code>null</code> is returned.",
+          "     *",
+          "     * @param row {Integer} The cell's row index",
+          "     * @param column {Integer} The cell's column index",
+          "     * @return {qx.ui.core.Widget|null}The cell's widget. The value may be null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -789,23 +1017,44 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRowCount": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 450,
+          "line": 436,
           "column": 4,
-          "index": 13652
+          "index": 12880
         },
         "end": {
-          "line": 456,
+          "line": 443,
           "column": 5,
-          "index": 13793
+          "index": 13065
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        },
+        {
+          "name": "column",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget|null"
+      },
+      "appearsIn": []
+    },
+    "getRowCount": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the number of rows in the grid layout.",
+          "     *",
+          "     * @return {Integer} The number of rows in the layout",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -817,27 +1066,39 @@
             "name": "@return",
             "body": "{Integer} The number of rows in the layout",
             "type": "Integer",
-            "description": " The number of rows in the layout"
+            "description": "The number of rows in the layout"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getColumnCount": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 463,
+          "line": 450,
           "column": 4,
-          "index": 13944
+          "index": 13203
         },
         "end": {
-          "line": 469,
+          "line": 456,
           "column": 5,
-          "index": 14088
+          "index": 13338
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getColumnCount": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the number of columns in the grid layout.",
+          "     *",
+          "     * @return {Integer} The number of columns in the layout",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -849,27 +1110,46 @@
             "name": "@return",
             "body": "{Integer} The number of columns in the layout",
             "type": "Integer",
-            "description": " The number of columns in the layout"
+            "description": "The number of columns in the layout"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCellAlign": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 483,
+          "line": 463,
           "column": 4,
-          "index": 14761
+          "index": 13482
         },
         "end": {
-          "line": 524,
+          "line": 469,
           "column": 5,
-          "index": 15887
+          "index": 13620
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getCellAlign": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a map of the cell's alignment. For vertical alignment the row alignment",
+          "     * takes precedence over the column alignment. For horizontal alignment it is",
+          "     * the over way round. If an alignment is set on the cell widget using",
+          "     * {@link qx.ui.core.LayoutItem#setLayoutProperties}, this alignment takes",
+          "     * always precedence over row or column alignment.",
+          "     *",
+          "     * @param row {Integer} The cell's row index",
+          "     * @param column {Integer} The cell's column index",
+          "     * @return {Map} A map with the keys <code>vAlign</code> and <code>hAlign</code>",
+          "     *     containing the vertical and horizontal cell alignment.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -896,28 +1176,52 @@
           {
             "name": "@return",
             "body": "{Map} A map with the keys <code>vAlign</code> and <code>hAlign</code>\n     containing the vertical and horizontal cell alignment.",
-            "type": "Map",
-            "description": " A map with the keys <code>vAlign</code> and <code>hAlign</code>\n     containing the vertical and horizontal cell alignment."
+            "type": "Map<any, any>",
+            "description": "A map with the keys <code>vAlign</code> and <code>hAlign</code>\n     containing the vertical and horizontal cell alignment."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setColumnFlex": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 534,
+          "line": 483,
           "column": 4,
-          "index": 16202
+          "index": 14279
         },
         "end": {
-          "line": 538,
+          "line": 524,
           "column": 5,
-          "index": 16342
+          "index": 15364
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        },
+        {
+          "name": "column",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "setColumnFlex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the flex value for a grid column.",
+          "     * By default the column flex value is <code>0</code>.",
+          "     *",
+          "     * @param column {Integer} The column index",
+          "     * @param flex {Integer} The column's flex value",
+          "     * @return {qx.ui.layout.Grid} This object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -945,27 +1249,49 @@
             "name": "@return",
             "body": "{qx.ui.layout.Grid} This object (for chaining support)",
             "type": "qx.ui.layout.Grid",
-            "description": " This object (for chaining support)"
+            "description": "This object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getColumnFlex": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 546,
+          "line": 534,
           "column": 4,
-          "index": 16521
+          "index": 15669
         },
         "end": {
-          "line": 549,
+          "line": 538,
           "column": 5,
-          "index": 16663
+          "index": 15805
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        },
+        {
+          "name": "flex",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "getColumnFlex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the flex value of a grid column.",
+          "     *",
+          "     * @param column {Integer} The column index",
+          "     * @return {Integer} The column's flex value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -986,27 +1312,47 @@
             "name": "@return",
             "body": "{Integer} The column's flex value",
             "type": "Integer",
-            "description": " The column's flex value"
+            "description": "The column's flex value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setRowFlex": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 559,
+          "line": 546,
           "column": 4,
-          "index": 16963
+          "index": 15976
         },
         "end": {
-          "line": 563,
+          "line": 549,
           "column": 5,
-          "index": 17091
+          "index": 16115
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setRowFlex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the flex value for a grid row.",
+          "     * By default the row flex value is <code>0</code>.",
+          "     *",
+          "     * @param row {Integer} The row index",
+          "     * @param flex {Integer} The row's flex value",
+          "     * @return {qx.ui.layout.Grid} This object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1034,27 +1380,49 @@
             "name": "@return",
             "body": "{qx.ui.layout.Grid} This object (for chaining support)",
             "type": "qx.ui.layout.Grid",
-            "description": " This object (for chaining support)"
+            "description": "This object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRowFlex": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 571,
+          "line": 559,
           "column": 4,
-          "index": 17258
+          "index": 16405
         },
         "end": {
-          "line": 575,
+          "line": 563,
           "column": 5,
-          "index": 17421
+          "index": 16529
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        },
+        {
+          "name": "flex",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "getRowFlex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the flex value of a grid row.",
+          "     *",
+          "     * @param row {Integer} The row index",
+          "     * @return {Integer} The row's flex value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1075,27 +1443,47 @@
             "name": "@return",
             "body": "{Integer} The row's flex value",
             "type": "Integer",
-            "description": " The row's flex value"
+            "description": "The row's flex value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setColumnMaxWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 585,
+          "line": 571,
           "column": 4,
-          "index": 17737
+          "index": 16688
         },
         "end": {
-          "line": 589,
+          "line": 575,
           "column": 5,
-          "index": 17893
+          "index": 16847
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setColumnMaxWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the maximum width of a grid column.",
+          "     * The default value is <code>Infinity</code>.",
+          "     *",
+          "     * @param column {Integer} The column index",
+          "     * @param maxWidth {Integer} The column's maximum width",
+          "     * @return {qx.ui.layout.Grid} This object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1123,27 +1511,49 @@
             "name": "@return",
             "body": "{qx.ui.layout.Grid} This object (for chaining support)",
             "type": "qx.ui.layout.Grid",
-            "description": " This object (for chaining support)"
+            "description": "This object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getColumnMaxWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 597,
+          "line": 585,
           "column": 4,
-          "index": 18078
+          "index": 17153
         },
         "end": {
-          "line": 600,
+          "line": 589,
           "column": 5,
-          "index": 18239
+          "index": 17305
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        },
+        {
+          "name": "maxWidth",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "getColumnMaxWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the maximum width of a grid column.",
+          "     *",
+          "     * @param column {Integer} The column index",
+          "     * @return {Integer} The column's maximum width",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1164,27 +1574,47 @@
             "name": "@return",
             "body": "{Integer} The column's maximum width",
             "type": "Integer",
-            "description": " The column's maximum width"
+            "description": "The column's maximum width"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setColumnWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 610,
+          "line": 597,
           "column": 4,
-          "index": 18546
+          "index": 17482
         },
         "end": {
-          "line": 614,
+          "line": 600,
           "column": 5,
-          "index": 18690
+          "index": 17640
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setColumnWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the preferred width of a grid column.",
+          "     * The default value is <code>Infinity</code>.",
+          "     *",
+          "     * @param column {Integer} The column index",
+          "     * @param width {Integer} The column's width",
+          "     * @return {qx.ui.layout.Grid} This object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1212,27 +1642,49 @@
             "name": "@return",
             "body": "{qx.ui.layout.Grid} This object (for chaining support)",
             "type": "qx.ui.layout.Grid",
-            "description": " This object (for chaining support)"
+            "description": "This object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getColumnWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 622,
+          "line": 610,
           "column": 4,
-          "index": 18869
+          "index": 17937
         },
         "end": {
-          "line": 625,
+          "line": 614,
           "column": 5,
-          "index": 19017
+          "index": 18077
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "getColumnWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the preferred width of a grid column.",
+          "     *",
+          "     * @param column {Integer} The column index",
+          "     * @return {Integer} The column's width",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1253,27 +1705,47 @@
             "name": "@return",
             "body": "{Integer} The column's width",
             "type": "Integer",
-            "description": " The column's width"
+            "description": "The column's width"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setColumnMinWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 635,
+          "line": 622,
           "column": 4,
-          "index": 19326
+          "index": 18248
         },
         "end": {
-          "line": 639,
+          "line": 625,
           "column": 5,
-          "index": 19482
+          "index": 18393
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setColumnMinWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the minimum width of a grid column.",
+          "     * The default value is <code>0</code>.",
+          "     *",
+          "     * @param column {Integer} The column index",
+          "     * @param minWidth {Integer} The column's minimum width",
+          "     * @return {qx.ui.layout.Grid} This object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1301,27 +1773,49 @@
             "name": "@return",
             "body": "{qx.ui.layout.Grid} This object (for chaining support)",
             "type": "qx.ui.layout.Grid",
-            "description": " This object (for chaining support)"
+            "description": "This object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getColumnMinWidth": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 647,
+          "line": 635,
           "column": 4,
-          "index": 19667
+          "index": 18692
         },
         "end": {
-          "line": 650,
+          "line": 639,
           "column": 5,
-          "index": 19789
+          "index": 18844
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        },
+        {
+          "name": "minWidth",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "getColumnMinWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the minimum width of a grid column.",
+          "     *",
+          "     * @param column {Integer} The column index",
+          "     * @return {Integer} The column's minimum width",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1342,27 +1836,47 @@
             "name": "@return",
             "body": "{Integer} The column's minimum width",
             "type": "Integer",
-            "description": " The column's minimum width"
+            "description": "The column's minimum width"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setRowMaxHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 660,
+          "line": 647,
           "column": 4,
-          "index": 20095
+          "index": 19021
         },
         "end": {
-          "line": 664,
+          "line": 650,
           "column": 5,
-          "index": 20243
+          "index": 19140
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "column",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setRowMaxHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the maximum height of a grid row.",
+          "     * The default value is <code>Infinity</code>.",
+          "     *",
+          "     * @param row {Integer} The row index",
+          "     * @param maxHeight {Integer} The row's maximum width",
+          "     * @return {qx.ui.layout.Grid} This object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1390,27 +1904,49 @@
             "name": "@return",
             "body": "{qx.ui.layout.Grid} This object (for chaining support)",
             "type": "qx.ui.layout.Grid",
-            "description": " This object (for chaining support)"
+            "description": "This object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRowMaxHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 672,
+          "line": 660,
           "column": 4,
-          "index": 20417
+          "index": 19436
         },
         "end": {
-          "line": 675,
+          "line": 664,
           "column": 5,
-          "index": 20539
+          "index": 19580
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        },
+        {
+          "name": "maxHeight",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "getRowMaxHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the maximum height of a grid row.",
+          "     *",
+          "     * @param row {Integer} The row index",
+          "     * @return {Integer} The row's maximum width",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1431,27 +1967,47 @@
             "name": "@return",
             "body": "{Integer} The row's maximum width",
             "type": "Integer",
-            "description": " The row's maximum width"
+            "description": "The row's maximum width"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setRowHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 685,
+          "line": 672,
           "column": 4,
-          "index": 20836
+          "index": 19746
         },
         "end": {
-          "line": 689,
+          "line": 675,
           "column": 5,
-          "index": 20972
+          "index": 19865
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setRowHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the preferred height of a grid row.",
+          "     * The default value is <code>Infinity</code>.",
+          "     *",
+          "     * @param row {Integer} The row index",
+          "     * @param height {Integer} The row's width",
+          "     * @return {qx.ui.layout.Grid} This object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1479,27 +2035,49 @@
             "name": "@return",
             "body": "{qx.ui.layout.Grid} This object (for chaining support)",
             "type": "qx.ui.layout.Grid",
-            "description": " This object (for chaining support)"
+            "description": "This object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRowHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 697,
+          "line": 685,
           "column": 4,
-          "index": 21140
+          "index": 20152
         },
         "end": {
-          "line": 700,
+          "line": 689,
           "column": 5,
-          "index": 21282
+          "index": 20284
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        },
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "getRowHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the preferred height of a grid row.",
+          "     *",
+          "     * @param row {Integer} The row index",
+          "     * @return {Integer} The row's width",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1520,27 +2098,47 @@
             "name": "@return",
             "body": "{Integer} The row's width",
             "type": "Integer",
-            "description": " The row's width"
+            "description": "The row's width"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setRowMinHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 710,
+          "line": 697,
           "column": 4,
-          "index": 21581
+          "index": 20444
         },
         "end": {
-          "line": 714,
+          "line": 700,
           "column": 5,
-          "index": 21729
+          "index": 20583
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setRowMinHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the minimum height of a grid row.",
+          "     * The default value is <code>0</code>.",
+          "     *",
+          "     * @param row {Integer} The row index",
+          "     * @param minHeight {Integer} The row's minimum width",
+          "     * @return {qx.ui.layout.Grid} This object (for chaining support)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1568,27 +2166,49 @@
             "name": "@return",
             "body": "{qx.ui.layout.Grid} This object (for chaining support)",
             "type": "qx.ui.layout.Grid",
-            "description": " This object (for chaining support)"
+            "description": "This object (for chaining support)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRowMinHeight": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 722,
+          "line": 710,
           "column": 4,
-          "index": 21903
+          "index": 20872
         },
         "end": {
-          "line": 725,
+          "line": 714,
           "column": 5,
-          "index": 22018
+          "index": 21016
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        },
+        {
+          "name": "minHeight",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.layout.Grid"
+      },
+      "appearsIn": []
+    },
+    "getRowMinHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the minimum height of a grid row.",
+          "     *",
+          "     * @param row {Integer} The row index",
+          "     * @return {Integer} The row's minimum width",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1609,27 +2229,45 @@
             "name": "@return",
             "body": "{Integer} The row's minimum width",
             "type": "Integer",
-            "description": " The row's minimum width"
+            "description": "The row's minimum width"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_getOuterSize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 733,
+          "line": 722,
           "column": 4,
-          "index": 22239
+          "index": 21182
         },
         "end": {
-          "line": 748,
+          "line": 725,
           "column": 5,
-          "index": 22780
+          "index": 21294
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getOuterSize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the widget's size hint including the widget's margins",
+          "     *",
+          "     * @param widget {qx.ui.core.LayoutItem} The widget to get the size for",
+          "     * @return {Map} a size hint map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1649,28 +2287,53 @@
           {
             "name": "@return",
             "body": "{Map} a size hint map",
-            "type": "Map",
-            "description": " a size hint map"
+            "type": "Map<any, any>",
+            "description": "a size hint map"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_fixHeightsRowSpan": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 763,
+          "line": 733,
           "column": 4,
-          "index": 23295
+          "index": 21507
         },
         "end": {
-          "line": 869,
+          "line": 748,
           "column": 5,
-          "index": 27166
+          "index": 22033
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.LayoutItem"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_fixHeightsRowSpan": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether all row spans fit with their preferred height into the",
+          "     * preferred row heights. If there is not enough space, the preferred",
+          "     * row sizes are increased. The distribution respects the flex and max",
+          "     * values of the rows.",
+          "     *",
+          "     *  The same is true for the min sizes.",
+          "     *",
+          "     *  The height array is modified in place.",
+          "     *",
+          "     * @param rowHeights {Map[]} The current row height array as computed by",
+          "     *     {@link #_getRowHeights}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1687,23 +2350,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_fixWidthsColSpan": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 884,
+          "line": 763,
           "column": 4,
-          "index": 27686
+          "index": 22533
         },
         "end": {
-          "line": 998,
+          "line": 869,
           "column": 5,
-          "index": 31859
+          "index": 26298
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "rowHeights",
+          "type": "Map[]"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_fixWidthsColSpan": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether all col spans fit with their preferred width into the",
+          "     * preferred column widths. If there is not enough space the preferred",
+          "     * column sizes are increased. The distribution respects the flex and max",
+          "     * values of the columns.",
+          "     *",
+          "     *  The same is true for the min sizes.",
+          "     *",
+          "     *  The width array is modified in place.",
+          "     *",
+          "     * @param colWidths {Map[]} The current column width array as computed by",
+          "     *     {@link #_getColWidths}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1720,23 +2405,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getRowHeights": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 1007,
+          "line": 884,
           "column": 4,
-          "index": 32139
+          "index": 26803
         },
         "end": {
-          "line": 1068,
+          "line": 998,
           "column": 5,
-          "index": 33903
+          "index": 30862
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "colWidths",
+          "type": "Map[]"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getRowHeights": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute the min/pref/max row heights.",
+          "     *",
+          "     * @return {Map[]} An array containing height information for each row. The",
+          "     *     entries have the keys <code>minHeight</code>, <code>maxHeight</code> and",
+          "     *     <code>height</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1748,27 +2449,41 @@
             "name": "@return",
             "body": "{Map[]} An array containing height information for each row. The\n     entries have the keys <code>minHeight</code>, <code>maxHeight</code> and\n     <code>height</code>.",
             "type": "Map[]",
-            "description": " An array containing height information for each row. The\n     entries have the keys <code>minHeight</code>, <code>maxHeight</code> and\n     <code>height</code>."
+            "description": "An array containing height information for each row. The\n     entries have the keys <code>minHeight</code>, <code>maxHeight</code> and\n     <code>height</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getColWidths": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 1077,
+          "line": 1007,
           "column": 4,
-          "index": 34184
+          "index": 31133
         },
         "end": {
-          "line": 1134,
+          "line": 1068,
           "column": 5,
-          "index": 35791
+          "index": 32836
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "_getColWidths": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compute the min/pref/max column widths.",
+          "     *",
+          "     * @return {Map[]} An array containing width information for each column. The",
+          "     *     entries have the keys <code>minWidth</code>, <code>maxWidth</code> and",
+          "     *     <code>width</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1780,27 +2495,42 @@
             "name": "@return",
             "body": "{Map[]} An array containing width information for each column. The\n     entries have the keys <code>minWidth</code>, <code>maxWidth</code> and\n     <code>width</code>.",
             "type": "Map[]",
-            "description": " An array containing width information for each column. The\n     entries have the keys <code>minWidth</code>, <code>maxWidth</code> and\n     <code>width</code>."
+            "description": "An array containing width information for each column. The\n     entries have the keys <code>minWidth</code>, <code>maxWidth</code> and\n     <code>width</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getColumnFlexOffsets": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 1144,
+          "line": 1077,
           "column": 4,
-          "index": 36178
+          "index": 33108
         },
         "end": {
-          "line": 1177,
+          "line": 1134,
           "column": 5,
-          "index": 37040
+          "index": 34658
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "_getColumnFlexOffsets": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes for each column by how many pixels it must grow or shrink, taking",
+          "     * the column flex values and min/max widths into account.",
+          "     *",
+          "     * @param width {Integer} The grid width",
+          "     * @return {Integer[]} Sparse array of offsets to add to each column width. If",
+          "     *     an array entry is empty nothing should be added to the column.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1821,27 +2551,47 @@
             "name": "@return",
             "body": "{Integer[]} Sparse array of offsets to add to each column width. If\n     an array entry is empty nothing should be added to the column.",
             "type": "Integer[]",
-            "description": " Sparse array of offsets to add to each column width. If\n     an array entry is empty nothing should be added to the column."
+            "description": "Sparse array of offsets to add to each column width. If\n     an array entry is empty nothing should be added to the column."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getRowFlexOffsets": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 1187,
+          "line": 1144,
           "column": 4,
-          "index": 37419
+          "index": 35035
         },
         "end": {
-          "line": 1224,
+          "line": 1177,
           "column": 5,
-          "index": 38327
+          "index": 35864
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer[]"
+      },
+      "appearsIn": []
+    },
+    "_getRowFlexOffsets": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes for each row by how many pixels it must grow or shrink, taking",
+          "     * the row flex values and min/max heights into account.",
+          "     *",
+          "     * @param height {Integer} The grid height",
+          "     * @return {Integer[]} Sparse array of offsets to add to each row height. If",
+          "     *     an array entry is empty nothing should be added to the row.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1862,27 +2612,46 @@
             "name": "@return",
             "body": "{Integer[]} Sparse array of offsets to add to each row height. If\n     an array entry is empty nothing should be added to the row.",
             "type": "Integer[]",
-            "description": " Sparse array of offsets to add to each row height. If\n     an array entry is empty nothing should be added to the row."
+            "description": "Sparse array of offsets to add to each row height. If\n     an array entry is empty nothing should be added to the row."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getColSpans": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 1233,
+          "line": 1187,
           "column": 4,
-          "index": 38567
+          "index": 36233
         },
         "end": {
-          "line": 1235,
+          "line": 1224,
           "column": 5,
-          "index": 38621
+          "index": 37104
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer[]"
+      },
+      "appearsIn": []
+    },
+    "_getColSpans": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the internal private __colSpans array in order",
+          "     * have a protected getter which can be used other methods",
+          "     * to make them overridable",
+          "     *",
+          "     * @return {Array} the __colSpans array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1893,452 +2662,135 @@
           {
             "name": "@return",
             "body": "{Array} the __colSpans array",
-            "type": "Array",
-            "description": " the __colSpans array"
+            "type": "Array<any>",
+            "description": "the __colSpans array"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1233,
+          "column": 4,
+          "index": 37335
+        },
+        "end": {
+          "line": 1235,
+          "column": 5,
+          "index": 37387
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
     },
     "renderLayout": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 1238,
           "column": 4,
-          "index": 38649
+          "index": 37412
         },
         "end": {
           "line": 1357,
           "column": 5,
-          "index": 42348
+          "index": 40992
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "availWidth"
+        },
+        {
+          "name": "availHeight"
+        },
+        {
+          "name": "padding"
+        }
+      ],
       "overriddenFrom": "qx.ui.layout.Abstract",
       "appearsIn": [
         "qx.ui.layout.Abstract"
       ]
     },
     "invalidateLayoutCache": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 1360,
           "column": 4,
-          "index": 42376
+          "index": 41017
         },
         "end": {
           "line": 1365,
           "column": 5,
-          "index": 42513
+          "index": 41149
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.ui.layout.Abstract",
       "appearsIn": [
         "qx.ui.layout.Abstract"
       ]
     },
     "_computeSizeHint": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 1368,
           "column": 4,
-          "index": 42541
+          "index": 41174
         },
         "end": {
           "line": 1418,
           "column": 5,
-          "index": 43801
+          "index": 42384
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.ui.layout.Abstract",
       "appearsIn": [
         "qx.ui.layout.Abstract"
       ]
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.layout.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.layout.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.layout.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.layout.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.layout.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.layout.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getSpacingX": {
-      "type": "function",
-      "name": "getSpacingX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>spacingX</code>.\n\nFor further details take a look at the property definition: {@link #spacingX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for spacingX"
-          }
-        ]
-      }
-    },
-    "setSpacingX": {
-      "type": "function",
-      "name": "setSpacingX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>spacingX</code>.\n\nFor further details take a look at the property definition: {@link #spacingX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for spacingX"
-          }
-        ]
-      }
-    },
-    "resetSpacingX": {
-      "type": "function",
-      "name": "resetSpacingX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>spacingX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #spacingX}."
-          }
-        ]
-      }
-    },
-    "getSpacingY": {
-      "type": "function",
-      "name": "getSpacingY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>spacingY</code>.\n\nFor further details take a look at the property definition: {@link #spacingY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for spacingY"
-          }
-        ]
-      }
-    },
-    "setSpacingY": {
-      "type": "function",
-      "name": "setSpacingY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>spacingY</code>.\n\nFor further details take a look at the property definition: {@link #spacingY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for spacingY"
-          }
-        ]
-      }
-    },
-    "resetSpacingY": {
-      "type": "function",
-      "name": "resetSpacingY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>spacingY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #spacingY}."
-          }
-        ]
-      }
-    },
-    "getAllowGrowSpannedCellWidth": {
-      "type": "function",
-      "name": "getAllowGrowSpannedCellWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowSpannedCellWidth</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowSpannedCellWidth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowSpannedCellWidth"
-          }
-        ]
-      }
-    },
-    "isAllowGrowSpannedCellWidth": {
-      "type": "function",
-      "name": "isAllowGrowSpannedCellWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowSpannedCellWidth</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowSpannedCellWidth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowSpannedCellWidth"
-          }
-        ]
-      }
-    },
-    "setAllowGrowSpannedCellWidth": {
-      "type": "function",
-      "name": "setAllowGrowSpannedCellWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowGrowSpannedCellWidth</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowSpannedCellWidth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowGrowSpannedCellWidth"
-          }
-        ]
-      }
-    },
-    "resetAllowGrowSpannedCellWidth": {
-      "type": "function",
-      "name": "resetAllowGrowSpannedCellWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowGrowSpannedCellWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowSpannedCellWidth}."
-          }
-        ]
-      }
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 1427,
         "column": 2,
-        "index": 44004
+        "index": 42578
       },
       "end": {
         "line": 1436,
         "column": 3,
-        "index": 44206
+        "index": 42771
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {}
 }

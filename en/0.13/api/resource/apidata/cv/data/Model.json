@@ -1,50 +1,57 @@
 {
-  "className": "cv.data.Model",
-  "packageName": "cv.data",
-  "name": "Model",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 1044
-      },
-      "end": {
-        "line": 383,
-        "column": 3,
-        "index": 11711
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/data/Model.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 1044
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Internal Model which holds all relevant data like addresses and widgetData\n and the states. Widget can add themselves as listeners to updates of certain addresses.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 0.11.0 (2017)</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "0.11.0 (2017)"
-        }
-      ]
+    "end": {
+      "line": 383,
+      "column": 3,
+      "index": 11711
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": false,
+  "className": "cv.data.Model",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Internal Model which holds all relevant data like addresses and widgetData",
+      " * and the states. Widget can add themselves as listeners to updates of certain addresses.",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.11.0 (2017)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Internal Model which holds all relevant data like addresses and widgetData\n and the states. Widget can add themselves as listeners to updates of certain addresses.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.11.0 (2017)"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "isSingleton": true,
+  "abstract": false,
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 36,
@@ -56,11 +63,12 @@
         "column": 3,
         "index": 1399
       }
-    },
-    "jsdoc": {}
+    }
   },
   "statics": {
     "READ": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 49,
@@ -73,10 +81,11 @@
           "index": 1562
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "WRITE": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 50,
@@ -89,10 +98,11 @@
           "index": 1576
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "isReadAddress": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 52,
@@ -106,9 +116,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "address"
+        }
+      ],
+      "appearsIn": []
     },
     "isWriteAddress": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 56,
@@ -122,7 +139,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "address"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "properties": {
@@ -139,47 +161,18 @@
           "index": 1977
         }
       },
-      "name": "defaultBackendName",
-      "propertyType": "new",
-      "init": "main",
-      "check": "String",
-      "defaultValue": "main"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "json": {
+        "check": "String",
+        "init": "main"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     }
   },
   "members": {
     "__states": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 79,
@@ -192,10 +185,11 @@
           "index": 2151
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__stateListeners": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 80,
@@ -208,10 +202,11 @@
           "index": 2179
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__addressList": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 81,
@@ -224,10 +219,11 @@
           "index": 2204
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__widgetData": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 82,
@@ -240,23 +236,16 @@
           "index": 2228
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getStateListener": {
-      "location": {
-        "start": {
-          "line": 88,
-          "column": 4,
-          "index": 2328
-        },
-        "end": {
-          "line": 93,
-          "column": 5,
-          "index": 2567
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param backendName {String?} name of the backend",
+          "     * @return {Map}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -277,28 +266,48 @@
           {
             "name": "@return",
             "body": "{Map}",
-            "type": "Map",
+            "type": "Map<any, any>",
             "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "onUpdate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 102,
+          "line": 88,
           "column": 4,
-          "index": 2796
+          "index": 2328
         },
         "end": {
-          "line": 122,
+          "line": 93,
           "column": 5,
-          "index": 3651
+          "index": 2567
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "backendName",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "onUpdate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the state of a single address",
+          "     *",
+          "     * @param address {String} KNX-GA or openHAB item name",
+          "     * @param state {variant} new state",
+          "     * @param backendName {String} name of the backend",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -311,7 +320,7 @@
             "body": "address {String} KNX-GA or openHAB item name",
             "paramName": "address",
             "description": " KNX-GA or openHAB item name",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -325,27 +334,50 @@
             "body": "backendName {String} name of the backend",
             "paramName": "backendName",
             "description": " name of the backend",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 130,
+          "line": 102,
           "column": 4,
-          "index": 3902
+          "index": 2796
         },
         "end": {
-          "line": 138,
+          "line": 122,
           "column": 5,
-          "index": 4212
+          "index": 3651
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "type": "variant"
+        },
+        {
+          "name": "backendName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Changes a state without notifying the listeners about that change.",
+          "     * @param address {String} KNX-GA or openHAB item name",
+          "     * @param state {variant} new state",
+          "     * @param backendName {String} name of the backend",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -358,7 +390,7 @@
             "body": "address {String} KNX-GA or openHAB item name",
             "paramName": "address",
             "description": " KNX-GA or openHAB item name",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -372,27 +404,48 @@
             "body": "backendName {String} name of the backend",
             "paramName": "backendName",
             "description": " name of the backend",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "update": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 144,
+          "line": 130,
           "column": 4,
-          "index": 4332
+          "index": 3902
         },
         "end": {
-          "line": 146,
+          "line": 138,
           "column": 5,
-          "index": 4411
+          "index": 4212
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "type": "variant"
+        },
+        {
+          "name": "backendName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "update": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handle incoming data from backend",
+          "     * @param data {Map} Key/value map of address/state",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -405,27 +458,41 @@
             "body": "data {Map} Key/value map of address/state",
             "paramName": "data",
             "description": " Key/value map of address/state",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "updateFrom": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 153,
+          "line": 144,
           "column": 4,
-          "index": 4599
+          "index": 4332
         },
         "end": {
-          "line": 167,
+          "line": 146,
           "column": 5,
-          "index": 5123
+          "index": 4411
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "updateFrom": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * handles incoming data from a specific backend.",
+          "     * @param backendName {String} name of the backend",
+          "     * @param data {Map} Key/value map of address/state",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -438,34 +505,54 @@
             "body": "backendName {String} name of the backend",
             "paramName": "backendName",
             "description": " name of the backend",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "data {Map} Key/value map of address/state",
             "paramName": "data",
             "description": " Key/value map of address/state",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 176,
+          "line": 153,
           "column": 4,
-          "index": 5336
+          "index": 4599
         },
         "end": {
-          "line": 183,
+          "line": 167,
           "column": 5,
-          "index": 5605
+          "index": 5123
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "backendName",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the current state of an address.",
+          "     *",
+          "     * @param address {String} KNX-GA or openHAB item name",
+          "     * @param backendName {String} name of the backend",
+          "     * @return {variant}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -478,14 +565,14 @@
             "body": "address {String} KNX-GA or openHAB item name",
             "paramName": "address",
             "description": " KNX-GA or openHAB item name",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "backendName {String} name of the backend",
             "paramName": "backendName",
             "description": " name of the backend",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -497,23 +584,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addUpdateListener": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 193,
+          "line": 176,
           "column": 4,
-          "index": 5961
+          "index": 5336
         },
         "end": {
-          "line": 210,
+          "line": 183,
           "column": 5,
-          "index": 6627
+          "index": 5605
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "backendName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "variant"
+      },
+      "appearsIn": []
+    },
+    "addUpdateListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add a listener to an address, that gets called when an update for that address has been received.",
+          "     *",
+          "     * @param address {String} KNX-GA or openHAB item name",
+          "     * @param callback {Function} called on updates",
+          "     * @param context {Object} context of the callback",
+          "     * @param backendName {String} name of the backend",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -526,48 +637,77 @@
             "body": "address {String} KNX-GA or openHAB item name",
             "paramName": "address",
             "description": " KNX-GA or openHAB item name",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "callback {Function} called on updates",
             "paramName": "callback",
             "description": " called on updates",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "context {Object} context of the callback",
             "paramName": "context",
             "description": " context of the callback",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "backendName {String} name of the backend",
             "paramName": "backendName",
             "description": " name of the backend",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeUpdateListener": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 220,
+          "line": 193,
           "column": 4,
-          "index": 6912
+          "index": 5961
         },
         "end": {
-          "line": 242,
+          "line": 210,
           "column": 5,
-          "index": 7802
+          "index": 6627
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "backendName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeUpdateListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an address listener",
+          "     *",
+          "     * @param address {String} KNX-GA or openHAB item name",
+          "     * @param callback {Function} called on updates",
+          "     * @param context {Object} context of the callback",
+          "     * @param backendName {String} name of the backend",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -580,48 +720,75 @@
             "body": "address {String} KNX-GA or openHAB item name",
             "paramName": "address",
             "description": " KNX-GA or openHAB item name",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "callback {Function} called on updates",
             "paramName": "callback",
             "description": " called on updates",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "context {Object} context of the callback",
             "paramName": "context",
             "description": " context of the callback",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "backendName {String} name of the backend",
             "paramName": "backendName",
             "description": " name of the backend",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addAddress": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 250,
+          "line": 220,
           "column": 4,
-          "index": 8061
+          "index": 6912
         },
         "end": {
-          "line": 265,
+          "line": 242,
           "column": 5,
-          "index": 8550
+          "index": 7802
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "backendName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addAddress": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an Address -> Path mapping to the addressList",
+          "     * @param address {String} KNX-GA or openHAB item name",
+          "     * @param id {String} path to the widget",
+          "     * @param backendName {String?} optional backend name for this address",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -634,14 +801,14 @@
             "body": "address {String} KNX-GA or openHAB item name",
             "paramName": "address",
             "description": " KNX-GA or openHAB item name",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "id {String} path to the widget",
             "paramName": "id",
             "description": " path to the widget",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -653,23 +820,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAddresses": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 272,
+          "line": 250,
           "column": 4,
-          "index": 8732
+          "index": 8061
         },
         "end": {
-          "line": 279,
+          "line": 265,
           "column": 5,
-          "index": 9003
+          "index": 8550
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "backendName",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAddresses": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the addresses as Array.",
+          "     * @param backendName {String?} optional backend name for this address",
+          "     * @return {Array<String>} list of addresses",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -691,27 +881,45 @@
             "name": "@return",
             "body": "{Array<String>} list of addresses",
             "type": "Array<String>",
-            "description": " list of addresses"
+            "description": "list of addresses"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setAddressList": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 286,
+          "line": 272,
           "column": 4,
-          "index": 9183
+          "index": 8732
         },
         "end": {
-          "line": 288,
+          "line": 279,
           "column": 5,
-          "index": 9304
+          "index": 9003
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "backendName",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Array<String>"
+      },
+      "appearsIn": []
+    },
+    "setAddressList": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for address list.",
+          "     * @param value {Map} Address -> path mapping",
+          "     * @param backendName {String?} optional backend name for this address",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -724,7 +932,7 @@
             "body": "value {Map} Address -> path mapping",
             "paramName": "value",
             "description": " Address -> path mapping",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -736,23 +944,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAddressList": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 295,
+          "line": 286,
           "column": 4,
-          "index": 9483
+          "index": 9183
         },
         "end": {
-          "line": 297,
+          "line": 288,
           "column": 5,
-          "index": 9596
+          "index": 9304
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "backendName",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAddressList": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for the address list.",
+          "     * @param backendName {String?} optional backend name for this address",
+          "     * @return {Map} Address -> path mapping",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -773,28 +1000,46 @@
           {
             "name": "@return",
             "body": "{Map} Address -> path mapping",
-            "type": "Map",
-            "description": " Address -> path mapping"
+            "type": "Map<any, any>",
+            "description": "Address -> path mapping"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetAddressList": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 304,
+          "line": 295,
           "column": 4,
-          "index": 9751
+          "index": 9483
         },
         "end": {
-          "line": 306,
+          "line": 297,
           "column": 5,
-          "index": 9864
+          "index": 9596
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "backendName",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "resetAddressList": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the current address list.",
+          "     * @param backendName {String?} optional backend name for this address",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -818,23 +1063,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getWidgetData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 313,
+          "line": 304,
           "column": 4,
-          "index": 10020
+          "index": 9751
         },
         "end": {
-          "line": 315,
+          "line": 306,
           "column": 5,
-          "index": 10119
+          "index": 9864
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "backendName",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "getWidgetData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return (reference to) widgetData object by path.",
+          "     * @param path {String} widget path",
+          "     * @return {Map} widget data map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -847,35 +1107,52 @@
             "body": "path {String} widget path",
             "paramName": "path",
             "description": " widget path",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Map} widget data map",
-            "type": "Map",
-            "description": " widget data map"
+            "type": "Map<any, any>",
+            "description": "widget data map"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getWidgetDataByElement": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 322,
+          "line": 313,
           "column": 4,
-          "index": 10306
+          "index": 10020
         },
         "end": {
-          "line": 330,
+          "line": 315,
           "column": 5,
-          "index": 10563
+          "index": 10119
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "path",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getWidgetDataByElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return (reference to) widget data by element",
+          "     * @param element {Element} DOM-Element to retrieve the widgetData for",
+          "     * @return {Map} widget data Map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -895,28 +1172,47 @@
           {
             "name": "@return",
             "body": "{Map} widget data Map",
-            "type": "Map",
-            "description": " widget data Map"
+            "type": "Map<any, any>",
+            "description": "widget data Map"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setWidgetData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 339,
+          "line": 322,
           "column": 4,
-          "index": 10770
+          "index": 10306
         },
         "end": {
-          "line": 346,
+          "line": 330,
           "column": 5,
-          "index": 10991
+          "index": 10563
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "setWidgetData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Merge obj in the widgetData.",
+          "     *",
+          "     * @param path {String} widget path to store the data",
+          "     * @param obj {Map} data to store",
+          "     * @return {Map} updated widget data map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -929,42 +1225,62 @@
             "body": "path {String} widget path to store the data",
             "paramName": "path",
             "description": " widget path to store the data",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "obj {Map} data to store",
             "paramName": "obj",
             "description": " data to store",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Map} updated widget data map",
-            "type": "Map",
-            "description": " updated widget data map"
+            "type": "Map<any, any>",
+            "description": "updated widget data map"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setWidgetDataModel": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 352,
+          "line": 339,
           "column": 4,
-          "index": 11100
+          "index": 10770
         },
         "end": {
-          "line": 354,
+          "line": 346,
           "column": 5,
-          "index": 11166
+          "index": 10991
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "obj",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "setWidgetDataModel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for widget data model",
+          "     * @param value {Map} path -> widget data map",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -977,14 +1293,56 @@
             "body": "value {Map} path -> widget data map",
             "paramName": "value",
             "description": " path -> widget data map",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 352,
+          "column": 4,
+          "index": 11100
+        },
+        "end": {
+          "line": 354,
+          "column": 5,
+          "index": 11166
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "value",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
     },
     "getWidgetDataModel": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for widget data model",
+          "     * @return {Map} path -> widget data map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Getter for widget data model</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} path -> widget data map",
+            "type": "Map<any, any>",
+            "description": "path -> widget data map"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 360,
@@ -997,39 +1355,21 @@
           "index": 11330
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Getter for widget data model</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Map} path -> widget data map",
-            "type": "Map",
-            "description": " path -> widget data map"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
     },
     "resetWidgetDataModel": {
-      "location": {
-        "start": {
-          "line": 368,
-          "column": 4,
-          "index": 11406
-        },
-        "end": {
-          "line": 370,
-          "column": 5,
-          "index": 11466
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clear the widget data model.",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1043,23 +1383,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clear": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 376,
+          "line": 368,
           "column": 4,
-          "index": 11567
+          "index": 11406
         },
         "end": {
-          "line": 381,
+          "line": 370,
           "column": 5,
-          "index": 11703
+          "index": 11466
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "clear": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clear the model, internal method for testing purposes",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1073,213 +1421,22 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 376,
+          "column": 4,
+          "index": 11567
+        },
+        "end": {
+          "line": 381,
+          "column": 5,
+          "index": 11703
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getDefaultBackendName": {
-      "type": "function",
-      "name": "getDefaultBackendName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>defaultBackendName</code>.\n\nFor further details take a look at the property definition: {@link #defaultBackendName}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for defaultBackendName"
-          }
-        ]
-      }
-    },
-    "setDefaultBackendName": {
-      "type": "function",
-      "name": "setDefaultBackendName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>defaultBackendName</code>.\n\nFor further details take a look at the property definition: {@link #defaultBackendName}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for defaultBackendName"
-          }
-        ]
-      }
-    },
-    "resetDefaultBackendName": {
-      "type": "function",
-      "name": "resetDefaultBackendName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>defaultBackendName</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultBackendName}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": []
     }
-  },
-  "descendants": []
+  }
 }

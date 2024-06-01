@@ -1,59 +1,64 @@
 {
-  "className": "qx.bom.Lifecycle",
-  "packageName": "qx.bom",
-  "name": "Lifecycle",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 29,
-        "column": 0,
-        "index": 855
-      },
-      "end": {
-        "line": 67,
-        "column": 3,
-        "index": 2345
-      }
+  "version": 0.3,
+  "lastModified": 1717235171562,
+  "lastModifiedIso": "2024-06-01T09:46:11.562Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Lifecycle.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 827
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Low-level application life-cycle management.\n One can use the static methods {@link #onReady} and {@link #onShutdown} to\n add callback functions, in order to get informed about the ready state or\n the shutdown of the low-level application, respectively.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.event.Registration"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.handler.Application"
-        }
-      ]
+    "end": {
+      "line": 67,
+      "column": 3,
+      "index": 2279
     }
   },
-  "type": "class",
+  "className": "qx.bom.Lifecycle",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Low-level application life-cycle management.",
+      " *",
+      " * One can use the static methods {@link #onReady} and {@link #onShutdown} to",
+      " * add callback functions, in order to get informed about the ready state or",
+      " * the shutdown of the low-level application, respectively.",
+      " *",
+      " * @require(qx.event.Registration)",
+      " * @require(qx.event.handler.Application)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Low-level application life-cycle management.\n One can use the static methods {@link #onReady} and {@link #onShutdown} to\n add callback functions, in order to get informed about the ready state or\n the shutdown of the low-level application, respectively.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.Registration"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Application"
+      }
+    ]
+  },
   "statics": {
     "onReady": {
-      "location": {
-        "start": {
-          "line": 38,
-          "column": 4,
-          "index": 1199
-        },
-        "end": {
-          "line": 51,
-          "column": 5,
-          "index": 1741
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Register a callback function, which is called in the optionally provided",
+          "     * context, when the application is ready.",
+          "     *",
+          "     * @param callback {Function} callback function",
+          "     * @param context {Object?window} context in which the callback is called",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,7 +71,7 @@
             "body": "callback {Function} callback function",
             "paramName": "callback",
             "description": " callback function",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -79,23 +84,48 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "onShutdown": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 63,
+          "line": 38,
           "column": 4,
-          "index": 2216
+          "index": 1162
         },
         "end": {
-          "line": 65,
+          "line": 51,
           "column": 5,
-          "index": 2335
+          "index": 1691
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "window"
+        }
+      ],
+      "appearsIn": []
+    },
+    "onShutdown": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Register a callback function, which is called in the optionally provided",
+          "     * context, when the application is shutdown.",
+          "     * <b>IMPORTANT NOTE</b>: Since it is <i>not</i> guaranteed that a",
+          "     * <code>shutdown</code> event is fired, you <i>cannot</i> fully rely on",
+          "     * getting informed.",
+          "     *",
+          "     * @param callback {Function} callback function",
+          "     * @param context {Object?window} context in which the callback is called",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -108,7 +138,7 @@
             "body": "callback {Function} callback function",
             "paramName": "callback",
             "description": " callback function",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -121,9 +151,35 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 2154
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 2271
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "window"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

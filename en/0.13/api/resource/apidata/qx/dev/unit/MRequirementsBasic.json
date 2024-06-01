@@ -1,49 +1,54 @@
 {
-  "className": "qx.dev.unit.MRequirementsBasic",
-  "packageName": "qx.dev.unit",
-  "name": "MRequirementsBasic",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 601
-      },
-      "end": {
-        "line": 96,
-        "column": 3,
-        "index": 3097
-      }
+  "version": 0.3,
+  "lastModified": 1717235171826,
+  "lastModifiedIso": "2024-06-01T09:46:11.826Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/unit/MRequirementsBasic.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 579
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Adds support for verification of infrastructure requirements to unit test\n classes.</p>"
-        }
-      ]
+    "end": {
+      "line": 96,
+      "column": 3,
+      "index": 3002
     }
   },
-  "type": "mixin",
+  "className": "qx.dev.unit.MRequirementsBasic",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Adds support for verification of infrastructure requirements to unit test",
+      " * classes.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Adds support for verification of infrastructure requirements to unit test\n classes.</p>"
+      }
+    ]
+  },
   "members": {
     "require": {
-      "location": {
-        "start": {
-          "line": 43,
-          "column": 4,
-          "index": 1494
-        },
-        "end": {
-          "line": 94,
-          "column": 5,
-          "index": 3087
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Verifies a list of infrastructure requirements by checking for",
+          "     * corresponding \"has\" methods. If no such method was found,",
+          "     * {@link qx.core.Environment} will be checked for a key matching the given",
+          "     * feature name. Note that asynchronous environment checks are not supported!",
+          "     *",
+          "     * @throws {qx.dev.unit.RequirementError} if any requirement check returned",
+          "     *   <code>false</code>",
+          "     * @throws {Error} if no valid check was found for a feature.",
+          "     *",
+          "     * @param featureList {String[]} List of infrastructure requirements",
+          "     * @lint environmentNonLiteralKey(feature)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -80,9 +85,29 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1452
+        },
+        "end": {
+          "line": 94,
+          "column": 5,
+          "index": 2994
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "featureList",
+          "type": "String[]"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

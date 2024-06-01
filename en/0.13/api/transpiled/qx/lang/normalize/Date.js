@@ -84,7 +84,7 @@
        *
        * @param dateString {String} A string representing an RFC2822 or ISO 8601
        *   date (other formats may be used, but results may be unexpected).
-       * @return {Number|NaN} A number representing the milliseconds elapsed
+       * @return {Number} A number representing the milliseconds elapsed
        *   since January 1, 1970, 00:00:00 UTC and the date obtained by parsing
        *   the given string representation of a date.
        *   If the argument doesn't represent a valid date, NaN is returned.
@@ -161,4 +161,4 @@
   qx.lang.normalize.Date.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Date.js.map?dt=1709410154704
+//# sourceMappingURL=Date.js.map?dt=1717235383810

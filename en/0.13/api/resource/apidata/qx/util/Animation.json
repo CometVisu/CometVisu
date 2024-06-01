@@ -1,49 +1,42 @@
 {
-  "className": "qx.util.Animation",
-  "packageName": "qx.util",
-  "name": "Animation",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 683
-      },
-      "end": {
-        "line": 615,
-        "column": 3,
-        "index": 12675
-      }
+  "version": 0.3,
+  "lastModified": 1717235168858,
+  "lastModifiedIso": "2024-06-01T09:46:08.858Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/Animation.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 661
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Contains property maps for the usage with qx.bom.element.Animation {@link qx.bom.element.Animation}.\n These animations can be used for page transitions for example.</p>"
-        }
-      ]
+    "end": {
+      "line": 615,
+      "column": 3,
+      "index": 12061
     }
   },
-  "type": "class",
+  "className": "qx.util.Animation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Contains property maps for the usage with qx.bom.element.Animation {@link qx.bom.element.Animation}.",
+      " * These animations can be used for page transitions for example.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Contains property maps for the usage with qx.bom.element.Animation {@link qx.bom.element.Animation}.\n These animations can be used for page transitions for example.</p>"
+      }
+    ]
+  },
   "statics": {
     "SLIDE_LEFT_IN": {
-      "location": {
-        "start": {
-          "line": 26,
-          "column": 4,
-          "index": 786
-        },
-        "end": {
-          "line": 39,
-          "column": 5,
-          "index": 1032
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* Target slides in from right. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +44,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SLIDE_LEFT_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 42,
+          "line": 26,
           "column": 4,
-          "index": 1082
+          "index": 761
         },
         "end": {
-          "line": 55,
+          "line": 39,
           "column": 5,
-          "index": 1331
+          "index": 994
         }
       },
+      "appearsIn": []
+    },
+    "SLIDE_LEFT_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target slides out from right."
+        ],
         "@description": [
           {
             "name": "@description",
@@ -75,23 +71,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SLIDE_RIGHT_IN": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 58,
+          "line": 42,
           "column": 4,
-          "index": 1379
+          "index": 1041
         },
         "end": {
-          "line": 71,
+          "line": 55,
           "column": 5,
-          "index": 1627
+          "index": 1277
         }
       },
+      "appearsIn": []
+    },
+    "SLIDE_RIGHT_IN": {
       "jsdoc": {
+        "raw": [
+          "* Target slides in from left."
+        ],
         "@description": [
           {
             "name": "@description",
@@ -99,23 +98,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SLIDE_RIGHT_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 74,
+          "line": 58,
           "column": 4,
-          "index": 1676
+          "index": 1322
         },
         "end": {
-          "line": 87,
+          "line": 71,
           "column": 5,
-          "index": 1925
+          "index": 1557
         }
       },
+      "appearsIn": []
+    },
+    "SLIDE_RIGHT_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target slides out from left."
+        ],
         "@description": [
           {
             "name": "@description",
@@ -123,23 +125,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "FADE_IN": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 90,
+          "line": 74,
           "column": 4,
-          "index": 1963
+          "index": 1603
         },
         "end": {
-          "line": 103,
+          "line": 87,
           "column": 5,
-          "index": 2195
+          "index": 1839
         }
       },
+      "appearsIn": []
+    },
+    "FADE_IN": {
       "jsdoc": {
+        "raw": [
+          "* Target fades in. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -147,23 +152,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "FADE_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 106,
+          "line": 90,
           "column": 4,
-          "index": 2234
+          "index": 1874
         },
         "end": {
-          "line": 119,
+          "line": 103,
           "column": 5,
-          "index": 2467
+          "index": 2093
         }
       },
+      "appearsIn": []
+    },
+    "FADE_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target fades out. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -171,23 +179,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "POP_IN": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 122,
+          "line": 106,
           "column": 4,
-          "index": 2516
+          "index": 2129
         },
         "end": {
-          "line": 135,
+          "line": 119,
           "column": 5,
-          "index": 2748
+          "index": 2349
         }
       },
+      "appearsIn": []
+    },
+    "POP_IN": {
       "jsdoc": {
+        "raw": [
+          "* Target pops in from center. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -195,23 +206,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "POP_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 138,
+          "line": 122,
           "column": 4,
-          "index": 2798
+          "index": 2395
         },
         "end": {
-          "line": 151,
+          "line": 135,
           "column": 5,
-          "index": 3031
+          "index": 2614
         }
       },
+      "appearsIn": []
+    },
+    "POP_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target pops out from center. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -219,23 +233,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SHRINK_HEIGHT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 154,
+          "line": 138,
           "column": 4,
-          "index": 3079
+          "index": 2661
         },
         "end": {
-          "line": 170,
+          "line": 151,
           "column": 5,
-          "index": 3384
+          "index": 2881
         }
       },
+      "appearsIn": []
+    },
+    "SHRINK_HEIGHT": {
       "jsdoc": {
+        "raw": [
+          "* Target shrinks its height. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -243,23 +260,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "GROW_HEIGHT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 173,
+          "line": 154,
           "column": 4,
-          "index": 3430
+          "index": 2926
         },
         "end": {
-          "line": 189,
+          "line": 170,
           "column": 5,
-          "index": 3733
+          "index": 3215
         }
       },
+      "appearsIn": []
+    },
+    "GROW_HEIGHT": {
       "jsdoc": {
+        "raw": [
+          "* Target grows its height. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -267,23 +287,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SHRINK_WIDTH": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 192,
+          "line": 173,
           "column": 4,
-          "index": 3780
+          "index": 3258
         },
         "end": {
-          "line": 208,
+          "line": 189,
           "column": 5,
-          "index": 4085
+          "index": 3545
         }
       },
+      "appearsIn": []
+    },
+    "SHRINK_WIDTH": {
       "jsdoc": {
+        "raw": [
+          "* Target shrinks its width. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -291,23 +314,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "GROW_WIDTH": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 211,
+          "line": 192,
           "column": 4,
-          "index": 4130
+          "index": 3589
         },
         "end": {
-          "line": 227,
+          "line": 208,
           "column": 5,
-          "index": 4433
+          "index": 3878
         }
       },
+      "appearsIn": []
+    },
+    "GROW_WIDTH": {
       "jsdoc": {
+        "raw": [
+          "* Target grows its width. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -315,23 +341,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SHRINK": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 230,
+          "line": 211,
           "column": 4,
-          "index": 4495
+          "index": 3920
         },
         "end": {
-          "line": 246,
+          "line": 227,
           "column": 5,
-          "index": 4791
+          "index": 4207
         }
       },
+      "appearsIn": []
+    },
+    "SHRINK": {
       "jsdoc": {
+        "raw": [
+          "* Target shrinks in both width and height. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -339,23 +368,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "GROW": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 249,
+          "line": 230,
           "column": 4,
-          "index": 4851
+          "index": 4266
         },
         "end": {
-          "line": 265,
+          "line": 246,
           "column": 5,
-          "index": 5145
+          "index": 4546
         }
       },
+      "appearsIn": []
+    },
+    "GROW": {
       "jsdoc": {
+        "raw": [
+          "* Target grows in both width and height. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -363,23 +395,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SLIDE_UP_IN": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 268,
+          "line": 249,
           "column": 4,
-          "index": 5191
+          "index": 4603
         },
         "end": {
-          "line": 281,
+          "line": 265,
           "column": 5,
-          "index": 5443
+          "index": 4881
         }
       },
+      "appearsIn": []
+    },
+    "SLIDE_UP_IN": {
       "jsdoc": {
+        "raw": [
+          "* Target slides in to top. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -387,23 +422,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SLIDE_UP_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 284,
+          "line": 268,
           "column": 4,
-          "index": 5489
+          "index": 4924
         },
         "end": {
-          "line": 297,
+          "line": 281,
           "column": 5,
-          "index": 5741
+          "index": 5163
         }
       },
+      "appearsIn": []
+    },
+    "SLIDE_UP_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target slides out to top."
+        ],
         "@description": [
           {
             "name": "@description",
@@ -411,23 +449,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SLIDE_DOWN_IN": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 300,
+          "line": 284,
           "column": 4,
-          "index": 5790
+          "index": 5206
         },
         "end": {
-          "line": 313,
+          "line": 297,
           "column": 5,
-          "index": 6043
+          "index": 5445
         }
       },
+      "appearsIn": []
+    },
+    "SLIDE_DOWN_IN": {
       "jsdoc": {
+        "raw": [
+          "* Target slides out to bottom."
+        ],
         "@description": [
           {
             "name": "@description",
@@ -435,23 +476,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SLIDE_DOWN_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 316,
+          "line": 300,
           "column": 4,
-          "index": 6093
+          "index": 5491
         },
         "end": {
-          "line": 329,
+          "line": 313,
           "column": 5,
-          "index": 6348
+          "index": 5731
         }
       },
+      "appearsIn": []
+    },
+    "SLIDE_DOWN_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target slides down to bottom."
+        ],
         "@description": [
           {
             "name": "@description",
@@ -459,23 +503,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "FLIP_LEFT_IN": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 332,
+          "line": 316,
           "column": 4,
-          "index": 6425
+          "index": 5778
         },
         "end": {
-          "line": 357,
+          "line": 329,
           "column": 5,
-          "index": 6885
+          "index": 6020
         }
       },
+      "appearsIn": []
+    },
+    "FLIP_LEFT_IN": {
       "jsdoc": {
+        "raw": [
+          "* Target flips (turns) left from back side to front side. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -483,23 +530,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "FLIP_LEFT_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 360,
+          "line": 332,
           "column": 4,
-          "index": 6962
+          "index": 6094
         },
         "end": {
-          "line": 375,
+          "line": 357,
           "column": 5,
-          "index": 7284
+          "index": 6529
         }
       },
+      "appearsIn": []
+    },
+    "FLIP_LEFT_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target flips (turns) left from front side to back side. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -507,23 +557,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "FLIP_RIGHT_IN": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 378,
+          "line": 360,
           "column": 4,
-          "index": 7362
+          "index": 6603
         },
         "end": {
-          "line": 403,
+          "line": 375,
           "column": 5,
-          "index": 7831
+          "index": 6910
         }
       },
+      "appearsIn": []
+    },
+    "FLIP_RIGHT_IN": {
       "jsdoc": {
+        "raw": [
+          "* Target flips (turns) right from back side to front side. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -531,23 +584,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "FLIP_RIGHT_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 406,
+          "line": 378,
           "column": 4,
-          "index": 7909
+          "index": 6985
         },
         "end": {
-          "line": 421,
+          "line": 403,
           "column": 5,
-          "index": 8231
+          "index": 7429
         }
       },
+      "appearsIn": []
+    },
+    "FLIP_RIGHT_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target flips (turns) right from front side to back side. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -555,23 +611,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SWAP_LEFT_IN": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 424,
+          "line": 406,
           "column": 4,
-          "index": 8277
+          "index": 7504
         },
         "end": {
-          "line": 447,
+          "line": 421,
           "column": 5,
-          "index": 8824
+          "index": 7811
         }
       },
+      "appearsIn": []
+    },
+    "SWAP_LEFT_IN": {
       "jsdoc": {
+        "raw": [
+          "* Target moves in to left. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -579,23 +638,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SWAP_LEFT_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 450,
+          "line": 424,
           "column": 4,
-          "index": 8872
+          "index": 7854
         },
         "end": {
-          "line": 473,
+          "line": 447,
           "column": 5,
-          "index": 9419
+          "index": 8378
         }
       },
+      "appearsIn": []
+    },
+    "SWAP_LEFT_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target moves out to left.  "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -603,23 +665,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SWAP_RIGHT_IN": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 476,
+          "line": 450,
           "column": 4,
-          "index": 9466
+          "index": 8423
         },
         "end": {
-          "line": 499,
+          "line": 473,
           "column": 5,
-          "index": 10012
+          "index": 8947
         }
       },
+      "appearsIn": []
+    },
+    "SWAP_RIGHT_IN": {
       "jsdoc": {
+        "raw": [
+          "* Target moves in to right. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -627,23 +692,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SWAP_RIGHT_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 502,
+          "line": 476,
           "column": 4,
-          "index": 10060
+          "index": 8991
         },
         "end": {
-          "line": 525,
+          "line": 499,
           "column": 5,
-          "index": 10609
+          "index": 9514
         }
       },
+      "appearsIn": []
+    },
+    "SWAP_RIGHT_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target moves out to right. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -651,23 +719,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "CUBE_LEFT_IN": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 528,
+          "line": 502,
           "column": 4,
-          "index": 10687
+          "index": 9559
         },
         "end": {
-          "line": 547,
+          "line": 525,
           "column": 5,
-          "index": 11122
+          "index": 10085
         }
       },
+      "appearsIn": []
+    },
+    "CUBE_LEFT_IN": {
       "jsdoc": {
+        "raw": [
+          "* Target moves in with cube animation from right to left.  "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -675,23 +746,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "CUBE_LEFT_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 550,
+          "line": 528,
           "column": 4,
-          "index": 11201
+          "index": 10160
         },
         "end": {
-          "line": 569,
+          "line": 547,
           "column": 5,
-          "index": 11636
+          "index": 10576
         }
       },
+      "appearsIn": []
+    },
+    "CUBE_LEFT_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target moves out with cube animation from right to left.  "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -699,23 +773,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "CUBE_RIGHT_IN": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 572,
+          "line": 550,
           "column": 4,
-          "index": 11714
+          "index": 10652
         },
         "end": {
-          "line": 591,
+          "line": 569,
           "column": 5,
-          "index": 12149
+          "index": 11068
         }
       },
+      "appearsIn": []
+    },
+    "CUBE_RIGHT_IN": {
       "jsdoc": {
+        "raw": [
+          "* Target moves in with cube animation from left to right.  "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -723,23 +800,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "CUBE_RIGHT_OUT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 594,
+          "line": 572,
           "column": 4,
-          "index": 12228
+          "index": 11143
         },
         "end": {
-          "line": 613,
+          "line": 591,
           "column": 5,
-          "index": 12665
+          "index": 11559
         }
       },
+      "appearsIn": []
+    },
+    "CUBE_RIGHT_OUT": {
       "jsdoc": {
+        "raw": [
+          "* Target moves out with cube animation from left to right.  "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -747,9 +827,22 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 594,
+          "column": 4,
+          "index": 11635
+        },
+        "end": {
+          "line": 613,
+          "column": 5,
+          "index": 12053
+        }
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

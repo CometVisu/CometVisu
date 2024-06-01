@@ -1,49 +1,52 @@
 {
-  "className": "qx.bom.element.Dataset",
-  "packageName": "qx.bom.element",
-  "name": "Dataset",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 728
-      },
-      "end": {
-        "line": 129,
-        "column": 3,
-        "index": 4010
-      }
+  "version": 0.3,
+  "lastModified": 1717235169842,
+  "lastModifiedIso": "2024-06-01T09:46:09.842Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/Dataset.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 702
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Data-* attribute handling for DOM HTML elements.\n This feature set is supported cross-browser\n through one common interface and is independent of the differences between\n the multiple implementations.</p>"
-        }
-      ]
+    "end": {
+      "line": 129,
+      "column": 3,
+      "index": 3882
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.Dataset",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Data-* attribute handling for DOM HTML elements.",
+      " *",
+      " * This feature set is supported cross-browser",
+      " * through one common interface and is independent of the differences between",
+      " * the multiple implementations.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Data-* attribute handling for DOM HTML elements.\n This feature set is supported cross-browser\n through one common interface and is independent of the differences between\n the multiple implementations.</p>"
+      }
+    ]
+  },
   "statics": {
     "set": {
-      "location": {
-        "start": {
-          "line": 42,
-          "column": 4,
-          "index": 1251
-        },
-        "end": {
-          "line": 64,
-          "column": 5,
-          "index": 1919
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a data attribute on the given DOM element.",
+          "     *",
+          "     * @param element {Element} The DOM element to modify",
+          "     * @param name {String} Name of the attribute [CamelCase variant]",
+          "     * @param value {var} New value of the attribute",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,7 +66,7 @@
             "body": "name {String} Name of the attribute [CamelCase variant]",
             "paramName": "name",
             "description": " Name of the attribute [CamelCase variant]",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -74,23 +77,48 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "get": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 74,
+          "line": 42,
           "column": 4,
-          "index": 2203
+          "index": 1210
         },
         "end": {
-          "line": 84,
+          "line": 64,
           "column": 5,
-          "index": 2607
+          "index": 1856
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "get": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the value of the given HTML \"data-*\" attribute",
+          "     *",
+          "     * @param element {Element} The DOM element to query",
+          "     * @param name {String} Name of the attribute [CamelCase variant]",
+          "     * @return {var} The value of the attribute",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -110,7 +138,7 @@
             "body": "name {String} Name of the attribute [CamelCase variant]",
             "paramName": "name",
             "description": " Name of the attribute [CamelCase variant]",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -118,27 +146,49 @@
             "name": "@return",
             "body": "{var} The value of the attribute",
             "type": "var",
-            "description": " The value of the attribute"
+            "description": "The value of the attribute"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAll": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 92,
+          "line": 74,
           "column": 4,
-          "index": 2860
+          "index": 2130
         },
         "end": {
-          "line": 108,
+          "line": 84,
           "column": 5,
-          "index": 3336
+          "index": 2524
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "getAll": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map containing all the HTML \"data-*\" attributes of the specified element",
+          "     *",
+          "     * @param element {Element} The DOM element to query",
+          "     * @return {Map} The map containing all the \"data-*\" attributes",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -158,28 +208,45 @@
           {
             "name": "@return",
             "body": "{Map} The map containing all the \"data-*\" attributes",
-            "type": "Map",
-            "description": " The map containing all the \"data-*\" attributes"
+            "type": "Map<any, any>",
+            "description": "The map containing all the \"data-*\" attributes"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 115,
+          "line": 92,
           "column": 4,
-          "index": 3621
+          "index": 2769
         },
         "end": {
-          "line": 117,
+          "line": 108,
           "column": 5,
-          "index": 3713
+          "index": 3229
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "hasData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if any element in the collection has a \"data-*\" attribute",
+          "     * @param element {Element} The DOM Element to check the presence of data-* attributes on.",
+          "     * @return {Boolean} True if any element in the collection has a \"data-*\" attribute",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -199,28 +266,46 @@
           {
             "name": "@return",
             "body": "{Boolean} True if any element in the collection has a \"data-*\" attribute",
-            "type": "Boolean",
-            "description": " True if any element in the collection has a \"data-*\" attribute"
+            "type": "boolean",
+            "description": "True if any element in the collection has a \"data-*\" attribute"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "remove": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 125,
+          "line": 115,
           "column": 4,
-          "index": 3927
+          "index": 3507
         },
         "end": {
-          "line": 127,
+          "line": 117,
           "column": 5,
-          "index": 4000
+          "index": 3597
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an HTML \"data-*\" attribute from the given DOM element",
+          "     *",
+          "     * @param element {Element} The DOM element to modify",
+          "     * @param name {String} Name of the attribute",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -240,13 +325,37 @@
             "body": "name {String} Name of the attribute",
             "paramName": "name",
             "description": " Name of the attribute",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3803
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 3874
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

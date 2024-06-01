@@ -1,49 +1,52 @@
 {
-  "className": "qx.bom.Vml",
-  "packageName": "qx.bom",
-  "name": "Vml",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 706
-      },
-      "end": {
-        "line": 170,
-        "column": 3,
-        "index": 5323
-      }
+  "version": 0.3,
+  "lastModified": 1717235172770,
+  "lastModifiedIso": "2024-06-01T09:46:12.770Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Vml.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 681
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Helper class to work with VML . If this class is used, it initialized VML\n support.\n  <em>Note: This class is only available in Internet Explorer!</em></p>"
-        }
-      ]
+    "end": {
+      "line": 170,
+      "column": 3,
+      "index": 5154
     }
   },
-  "type": "class",
+  "className": "qx.bom.Vml",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Helper class to work with VML . If this class is used, it initialized VML",
+      " * support.",
+      " *",
+      " *  <em>Note: This class is only available in Internet Explorer!</em>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Helper class to work with VML . If this class is used, it initialized VML\n support.\n  <em>Note: This class is only available in Internet Explorer!</em></p>"
+      }
+    ]
+  },
   "statics": {
     "create": {
-      "location": {
-        "start": {
-          "line": 43,
-          "column": 4,
-          "index": 1277
-        },
-        "end": {
-          "line": 54,
-          "column": 5,
-          "index": 1573
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create VML element",
+          "     *",
+          "     * @param type {String} The VML element type",
+          "     * @param attributes {Map?null} An optional map of element attributes",
+          "     * @param win {var?null} The browser window element, in which the element",
+          "     *     should be created.",
+          "     * @return {Element} The VML element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,7 +59,7 @@
             "body": "type {String} The VML element type",
             "paramName": "type",
             "description": " The VML element type",
-            "type": "qx.bom.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -82,27 +85,67 @@
             "name": "@return",
             "body": "{Element} The VML element",
             "type": "qx.bom.Element",
-            "description": " The VML element"
+            "description": "The VML element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createImage": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 43,
           "column": 4,
-          "index": 2432
+          "index": 1235
         },
         "end": {
-          "line": 105,
+          "line": 54,
           "column": 5,
-          "index": 3046
+          "index": 1520
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "attributes",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "win",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "createImage": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an VML image and configures it. The image is always tiled.",
+          "     *",
+          "     * @param source {String?} The URL of the image to display",
+          "     * @param width {Integer?} The desired width of the image element",
+          "     * @param height {Integer?} The desired height of the image element",
+          "     * @param xOffset {Integer?0} The horizontal offset of the image inside of",
+          "     *     the image element.",
+          "     * @param yOffset {Integer?0} The vertical offset of the image inside of",
+          "     *     the image element.",
+          "     * @param imageWidth {Integer?null} The full width of the image. This value",
+          "     *     is required, when an xOffset is given.",
+          "     * @param imageHeight {Integer?null} The full height of the image. This value",
+          "     *     is required, when an yOffset is given.",
+          "     * @return {Element} the VML element of the image",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -176,27 +219,92 @@
             "name": "@return",
             "body": "{Element} the VML element of the image",
             "type": "qx.bom.Element",
-            "description": " the VML element of the image"
+            "description": "the VML element of the image"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "updateImage": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 125,
+          "line": 72,
           "column": 4,
-          "index": 4103
+          "index": 2361
         },
         "end": {
-          "line": 148,
+          "line": 105,
           "column": 5,
-          "index": 4739
+          "index": 2942
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "source",
+          "type": "String",
+          "optional": true
+        },
+        {
+          "name": "width",
+          "type": "Integer",
+          "optional": true
+        },
+        {
+          "name": "height",
+          "type": "Integer",
+          "optional": true
+        },
+        {
+          "name": "xOffset",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        },
+        {
+          "name": "yOffset",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        },
+        {
+          "name": "imageWidth",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "imageHeight",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "updateImage": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the image source and configures the image. The image element size",
+          "     * resized to the given size and the image is always tiled.",
+          "     *",
+          "     * @signature function(image, source, width, height, xOffset, yOffset, imageWidth, imageHeight)",
+          "     * @param image {Element} The image VML element created by {@link #createImage}.",
+          "     * @param source {String} The URL of the image to display",
+          "     * @param width {Integer} The desired width of the image element",
+          "     * @param height {Integer} The desired height of the image element",
+          "     * @param xOffset {Integer?0} The horizontal offset of the image inside of",
+          "     *     the image element.",
+          "     * @param yOffset {Integer?0} The vertical offset of the image inside of",
+          "     *     the image element.",
+          "     * @param imageWidth {Integer?null} The full width of the image. This value",
+          "     *     is required, when an xOffset is given.",
+          "     * @param imageHeight {Integer?null} The full height of the image. This value",
+          "     *     is required, when an yOffset is given.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -222,7 +330,7 @@
             "body": "source {String} The URL of the image to display",
             "paramName": "source",
             "description": " The URL of the image to display",
-            "type": "qx.bom.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -276,24 +384,65 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 125,
+          "column": 4,
+          "index": 3979
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 4592
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "image",
+          "type": "qx.bom.Element"
+        },
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        },
+        {
+          "name": "height",
+          "type": "Integer"
+        },
+        {
+          "name": "xOffset",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        },
+        {
+          "name": "yOffset",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "0"
+        },
+        {
+          "name": "imageWidth",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "imageHeight",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 157,
-        "column": 2,
-        "index": 4939
-      },
-      "end": {
-        "line": 169,
-        "column": 3,
-        "index": 5318
-      }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

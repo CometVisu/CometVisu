@@ -1,86 +1,62 @@
 {
-  "className": "qx.ui.mobile.layout.AbstractBox",
-  "packageName": "qx.ui.mobile.layout",
-  "name": "AbstractBox",
-  "superClass": "qx.ui.mobile.layout.Abstract",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 542
-      },
-      "end": {
-        "line": 220,
-        "column": 3,
-        "index": 5626
-      }
+  "version": 0.3,
+  "lastModified": 1717235168746,
+  "lastModifiedIso": "2024-06-01T09:46:08.746Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/layout/AbstractBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 521
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Base class for all box layout managers.</p>"
-        }
-      ]
+    "end": {
+      "line": 220,
+      "column": 3,
+      "index": 5407
     }
   },
-  "type": "class",
-  "isAbstract": true,
-  "isStatic": false,
+  "className": "qx.ui.mobile.layout.AbstractBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for all box layout managers.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for all box layout managers.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.layout.Abstract",
   "isSingleton": false,
+  "abstract": true,
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "alignX"
+      },
+      {
+        "name": "alignY"
+      },
+      {
+        "name": "reversed"
+      }
+    ],
     "location": {
       "start": {
         "line": 37,
         "column": 2,
-        "index": 1083
+        "index": 1047
       },
       "end": {
         "line": 48,
         "column": 3,
-        "index": 1316
+        "index": 1269
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "alignX {String?null} Sets the {@link #alignX} property",
-          "paramName": "alignX",
-          "description": " Sets the {@link #alignX} property",
-          "optional": true,
-          "defaultValue": "null",
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "alignY {String?null} Sets the {@link #alignY} property",
-          "paramName": "alignY",
-          "description": " Sets the {@link #alignY} property",
-          "optional": true,
-          "defaultValue": "null",
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "reversed {Boolean?null} Sets the {@link #reversed} property",
-          "paramName": "reversed",
-          "description": " Sets the {@link #reversed} property",
-          "optional": true,
-          "defaultValue": "null",
-          "type": "Boolean"
-        }
-      ]
     }
   },
   "properties": {
@@ -89,15 +65,29 @@
         "start": {
           "line": 60,
           "column": 4,
-          "index": 1615
+          "index": 1556
         },
         "end": {
           "line": 65,
           "column": 5,
-          "index": 1751
+          "index": 1687
         }
       },
+      "json": {
+        "check": [
+          "left",
+          "center",
+          "right"
+        ],
+        "nullable": true,
+        "apply": "_applyLayoutChange"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Horizontal alignment of the whole children block.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -105,31 +95,36 @@
           }
         ]
       },
-      "name": "alignX",
-      "propertyType": "new",
-      "apply": "_applyLayoutChange",
-      "nullable": true,
-      "allowNull": true,
-      "possibleValues": [
-        "left",
-        "center",
-        "right"
-      ]
+      "appearsIn": []
     },
     "alignY": {
       "location": {
         "start": {
           "line": 70,
           "column": 4,
-          "index": 1820
+          "index": 1751
         },
         "end": {
           "line": 75,
           "column": 5,
-          "index": 1956
+          "index": 1882
         }
       },
+      "json": {
+        "check": [
+          "top",
+          "middle",
+          "bottom"
+        ],
+        "nullable": true,
+        "apply": "_applyLayoutChange"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Vertical alignment of each child.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -137,31 +132,32 @@
           }
         ]
       },
-      "name": "alignY",
-      "propertyType": "new",
-      "apply": "_applyLayoutChange",
-      "nullable": true,
-      "allowNull": true,
-      "possibleValues": [
-        "top",
-        "middle",
-        "bottom"
-      ]
+      "appearsIn": []
     },
     "reversed": {
       "location": {
         "start": {
           "line": 80,
           "column": 4,
-          "index": 2036
+          "index": 1957
         },
         "end": {
           "line": 85,
           "column": 5,
-          "index": 2156
+          "index": 2072
         }
       },
+      "json": {
+        "check": "Boolean",
+        "nullable": true,
+        "apply": "_applyLayoutChange"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Children will be displayed in reverse order.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -169,61 +165,17 @@
           }
         ]
       },
-      "name": "reversed",
-      "propertyType": "new",
-      "apply": "_applyLayoutChange",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Boolean"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "statics": {
     "PROPERTY_CSS_MAPPING": {
-      "location": {
-        "start": {
-          "line": 98,
-          "column": 4,
-          "index": 2433
-        },
-        "end": {
-          "line": 138,
-          "column": 5,
-          "index": 3370
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The property to CSS mapping.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -231,23 +183,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "SUPPORTED_CHILD_LAYOUT_PROPERTIES": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 144,
+          "line": 98,
           "column": 4,
-          "index": 3539
+          "index": 2336
         },
         "end": {
-          "line": 146,
+          "line": 138,
           "column": 5,
-          "index": 3597
+          "index": 3233
         }
       },
+      "appearsIn": []
+    },
+    "SUPPORTED_CHILD_LAYOUT_PROPERTIES": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Supported child layout properties. Used to check if the property is allowed.",
+          "     * List all supported child layout properties here.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -255,481 +213,177 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3396
+        },
+        "end": {
+          "line": 146,
+          "column": 5,
+          "index": 3452
+        }
+      },
+      "appearsIn": []
     }
   },
   "members": {
     "_getSupportedChildLayoutProperties": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 157,
           "column": 4,
-          "index": 3838
+          "index": 3682
         },
         "end": {
           "line": 159,
           "column": 5,
-          "index": 3964
+          "index": 3806
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.ui.mobile.layout.Abstract",
       "appearsIn": [
         "qx.ui.mobile.layout.Abstract"
       ]
     },
     "_setLayoutProperty": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 162,
           "column": 4,
-          "index": 3992
+          "index": 3831
         },
         "end": {
           "line": 170,
           "column": 5,
-          "index": 4298
+          "index": 4129
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "widget"
+        },
+        {
+          "name": "property"
+        },
+        {
+          "name": "value"
+        }
+      ],
       "overriddenFrom": "qx.ui.mobile.layout.Abstract",
       "appearsIn": [
         "qx.ui.mobile.layout.Abstract"
       ]
     },
     "connectToWidget": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 173,
           "column": 4,
-          "index": 4326
+          "index": 4154
         },
         "end": {
           "line": 180,
           "column": 5,
-          "index": 4521
+          "index": 4342
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
       "overriddenFrom": "qx.ui.mobile.layout.Abstract",
       "appearsIn": [
         "qx.ui.mobile.layout.Abstract"
       ]
     },
     "disconnectFromChildWidget": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 183,
           "column": 4,
-          "index": 4549
+          "index": 4367
         },
         "end": {
           "line": 188,
           "column": 5,
-          "index": 4727
+          "index": 4540
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [
+        {
+          "name": "widget"
+        }
+      ],
       "overriddenFrom": "qx.ui.mobile.layout.Abstract",
       "appearsIn": [
         "qx.ui.mobile.layout.Abstract"
       ]
     },
     "_applyLayoutChange": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 191,
           "column": 4,
-          "index": 4759
+          "index": 4569
         },
         "end": {
           "line": 218,
           "column": 5,
-          "index": 5616
+          "index": 5399
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "alignX",
-        "alignY",
-        "reversed"
-      ]
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.layout.Abstract",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getAlignX": {
-      "type": "function",
-      "name": "getAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for alignX"
-          }
-        ]
-      }
-    },
-    "setAlignX": {
-      "type": "function",
-      "name": "setAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for alignX"
-          }
-        ]
-      }
-    },
-    "resetAlignX": {
-      "type": "function",
-      "name": "resetAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ]
-      }
-    },
-    "getAlignY": {
-      "type": "function",
-      "name": "getAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for alignY"
-          }
-        ]
-      }
-    },
-    "setAlignY": {
-      "type": "function",
-      "name": "setAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for alignY"
-          }
-        ]
-      }
-    },
-    "resetAlignY": {
-      "type": "function",
-      "name": "resetAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ]
-      }
-    },
-    "getReversed": {
-      "type": "function",
-      "name": "getReversed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>reversed</code>.\n\nFor further details take a look at the property definition: {@link #reversed}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for reversed"
-          }
-        ]
-      }
-    },
-    "isReversed": {
-      "type": "function",
-      "name": "isReversed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>reversed</code>.\n\nFor further details take a look at the property definition: {@link #reversed}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for reversed"
-          }
-        ]
-      }
-    },
-    "setReversed": {
-      "type": "function",
-      "name": "setReversed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>reversed</code>.\n\nFor further details take a look at the property definition: {@link #reversed}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for reversed"
-          }
-        ]
-      }
-    },
-    "resetReversed": {
-      "type": "function",
-      "name": "resetReversed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>reversed</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #reversed}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        },
+        {
+          "name": "property"
+        }
+      ],
+      "appearsIn": []
     }
-  },
-  "events": {},
-  "descendants": [
-    "qx.ui.mobile.layout.HBox",
-    "qx.ui.mobile.layout.VBox"
-  ]
+  }
 }

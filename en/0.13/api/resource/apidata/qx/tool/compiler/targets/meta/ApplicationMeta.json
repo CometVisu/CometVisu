@@ -1,0 +1,1547 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169146,
+  "lastModifiedIso": "2024-06-01T09:46:09.146Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/ApplicationMeta.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 1249
+    },
+    "end": {
+      "line": 364,
+      "column": 3,
+      "index": 8521
+    }
+  },
+  "className": "qx.tool.compiler.targets.meta.ApplicationMeta",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * ApplicationMeta collects all the data about an application being compiled by a target,",
+      " * in a form easily navigated and well documented.",
+      " *",
+      " * It provides an abstraction where the target can choose to restructure and reorganise the",
+      " * output as it progresses - for example, a target may start by assembling a number of",
+      " * javascript files, and then bundle them together, effectively replacing several files",
+      " * with just one intermediate file; the target can then replace the intermediate file with",
+      " * a minified file etc.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>ApplicationMeta collects all the data about an application being compiled by a target,\n in a form easily navigated and well documented.\n It provides an abstraction where the target can choose to restructure and reorganise the\n output as it progresses - for example, a target may start by assembling a number of\n javascript files, and then bundle them together, effectively replacing several files\n with just one intermediate file; the target can then replace the intermediate file with\n a minified file etc.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "target"
+      },
+      {
+        "name": "application"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 1345
+      },
+      "end": {
+        "line": 51,
+        "column": 3,
+        "index": 1694
+      }
+    }
+  },
+  "properties": {
+    "environment": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1758
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1798
+        }
+      },
+      "json": {},
+      "jsdoc": {
+        "raw": [
+          "* The environment for the build "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The environment for the build</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "addTimestampsToUrls": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1882
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1951
+        }
+      },
+      "json": {
+        "init": true,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to add timestamps to all URLs (cache busting)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to add timestamps to all URLs (cache busting)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "appLibrary": {
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1958
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 2021
+        }
+      },
+      "json": {
+        "check": "qx.tool.compiler.app.Library"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "bootMetaJs": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2028
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2115
+        }
+      },
+      "json": {
+        "check": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "sourceUri": {
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 2122
+        },
+        "end": {
+          "line": 77,
+          "column": 5,
+          "index": 2162
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "resourceUri": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2169
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2211
+        }
+      },
+      "json": {
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__target": {
+      "jsdoc": {
+        "raw": [
+          "* {qx.tool.compiler.targets.Target} the target "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{qx.tool.compiler.targets.Target} the target</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2291
+        },
+        "end": {
+          "line": 86,
+          "column": 18,
+          "index": 2305
+        }
+      },
+      "appearsIn": []
+    },
+    "__application": {
+      "jsdoc": {
+        "raw": [
+          "* {qx.tool.compiler.app.Application} the application "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{qx.tool.compiler.app.Application} the application</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2374
+        },
+        "end": {
+          "line": 89,
+          "column": 23,
+          "index": 2393
+        }
+      },
+      "appearsIn": []
+    },
+    "__libraries": {
+      "jsdoc": {
+        "raw": [
+          "* {qx.tool.compiler.app.Libary[]} the libraries "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{qx.tool.compiler.app.Libary[]} the libraries</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2457
+        },
+        "end": {
+          "line": 92,
+          "column": 21,
+          "index": 2474
+        }
+      },
+      "appearsIn": []
+    },
+    "__preload": {
+      "jsdoc": {
+        "raw": [
+          "* {Map} uris and CSS to load "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Map} uris and CSS to load</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2519
+        },
+        "end": {
+          "line": 95,
+          "column": 19,
+          "index": 2534
+        }
+      },
+      "appearsIn": []
+    },
+    "__preBootCode": {
+      "jsdoc": {
+        "raw": [
+          "* {String[]} code to run before boot "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String[]} code to run before boot</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2587
+        },
+        "end": {
+          "line": 98,
+          "column": 23,
+          "index": 2606
+        }
+      },
+      "appearsIn": []
+    },
+    "__resources": {
+      "jsdoc": {
+        "raw": [
+          "* {Map} list of resource paths, indexed by resource id "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Map} list of resource paths, indexed by resource id</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2677
+        },
+        "end": {
+          "line": 101,
+          "column": 21,
+          "index": 2694
+        }
+      },
+      "appearsIn": []
+    },
+    "__packages": {
+      "jsdoc": {
+        "raw": [
+          "* {Package[]} list of packages "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Package[]} list of packages</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 104,
+          "column": 4,
+          "index": 2741
+        },
+        "end": {
+          "line": 104,
+          "column": 20,
+          "index": 2757
+        }
+      },
+      "appearsIn": []
+    },
+    "__parts": {
+      "jsdoc": {
+        "raw": [
+          "* {Part[]} list of parts "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Part[]} list of parts</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2798
+        },
+        "end": {
+          "line": 107,
+          "column": 17,
+          "index": 2811
+        }
+      },
+      "appearsIn": []
+    },
+    "setEnvironmentValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets an environment variable",
+          "     *",
+          "     * @param key {String} the name of the variable",
+          "     * @param value {Object} the value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets an environment variable</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} the name of the variable",
+            "paramName": "key",
+            "description": " the name of the variable",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "value {Object} the value",
+            "paramName": "value",
+            "description": " the value",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 2968
+        },
+        "end": {
+          "line": 122,
+          "column": 5,
+          "index": 3153
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getEnvironmentValue": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an environment value",
+          "     *",
+          "     * @param key {String} the key to lookup",
+          "     * @param defaultValue {Object?} optional default value to use if the key is not found",
+          "     * @return {Object} the value, or undefined if not found",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an environment value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} the key to lookup",
+            "paramName": "key",
+            "description": " the key to lookup",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "defaultValue {Object?} optional default value to use if the key is not found",
+            "paramName": "defaultValue",
+            "description": " optional default value to use if the key is not found",
+            "optional": true,
+            "type": "Object"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} the value, or undefined if not found",
+            "type": "Record<any, any>",
+            "description": "the value, or undefined if not found"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 131,
+          "column": 4,
+          "index": 3416
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 3707
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "defaultValue",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getApplication": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the application",
+          "     *",
+          "     * @return {qx.tool.compiler.app.Application}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the application</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.compiler.app.Application}",
+            "type": "qx.tool.compiler.app.Application",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 3818
+        },
+        "end": {
+          "line": 150,
+          "column": 5,
+          "index": 3875
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.compiler.app.Application"
+      },
+      "appearsIn": []
+    },
+    "getTarget": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the target",
+          "     *",
+          "     * @return {qx.tool.compiler.targets.Target}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the target</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.compiler.targets.Target}",
+            "type": "qx.tool.compiler.targets.Target",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 3980
+        },
+        "end": {
+          "line": 159,
+          "column": 5,
+          "index": 4027
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.compiler.targets.Target"
+      },
+      "appearsIn": []
+    },
+    "getApplicationRoot": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the application root",
+          "     *",
+          "     * @return {String} the folder",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the application root</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the folder",
+            "type": "string",
+            "description": "the folder"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 166,
+          "column": 4,
+          "index": 4128
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 4223
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAnalyser": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the Analyser",
+          "     *",
+          "     * @return {qx.tool.compiler.Analyser}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the Analyser</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.compiler.Analyser}",
+            "type": "qx.tool.compiler.Analyser",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 4324
+        },
+        "end": {
+          "line": 177,
+          "column": 5,
+          "index": 4392
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.compiler.Analyser"
+      },
+      "appearsIn": []
+    },
+    "syncAssets": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Syncs all assets into the output directory",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Syncs all assets into the output directory</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 182,
+          "column": 4,
+          "index": 4465
+        },
+        "end": {
+          "line": 189,
+          "column": 5,
+          "index": 4720
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "addLibrary": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a library",
+          "     *",
+          "     * @param library {qx.tool.compiler.app.Library}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a library</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "library {qx.tool.compiler.app.Library}",
+            "paramName": "library",
+            "type": "qx.tool.compiler.app.Library"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 196,
+          "column": 4,
+          "index": 4825
+        },
+        "end": {
+          "line": 198,
+          "column": 5,
+          "index": 4890
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "library",
+          "type": "qx.tool.compiler.app.Library"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAppLibrary": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the library that contains the application class",
+          "     *",
+          "     * @return {qx.tool.compiler.app.Library}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the library that contains the application class</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.compiler.app.Library}",
+            "type": "qx.tool.compiler.app.Library",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5029
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 5211
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.compiler.app.Library"
+      },
+      "appearsIn": []
+    },
+    "getLibraries": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the list of libraries",
+          "     *",
+          "     * @return {qx.tool.compiler.app.Library[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the list of libraries</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.compiler.app.Library[]}",
+            "type": "qx.tool.compiler.app.Library[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 5326
+        },
+        "end": {
+          "line": 219,
+          "column": 5,
+          "index": 5379
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.compiler.app.Library[]"
+      },
+      "appearsIn": []
+    },
+    "addExternal": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an external resource (JS or CSS) to be loaded which is a http[s] URL",
+          "     *",
+          "     * @param type {String} either \"urisBefore\" or \"cssBefore\"",
+          "     * @param uri {String} uri to load",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an external resource (JS or CSS) to be loaded which is a http[s] URL</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} either \"urisBefore\" or \"cssBefore\"",
+            "paramName": "type",
+            "description": " either \"urisBefore\" or \"cssBefore\"",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "uri {String} uri to load",
+            "paramName": "uri",
+            "description": " uri to load",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 227,
+          "column": 4,
+          "index": 5592
+        },
+        "end": {
+          "line": 229,
+          "column": 5,
+          "index": 5678
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "uri",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addPreload": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an external resource (JS or CSS) to be loaded, which is a resource path",
+          "     *",
+          "     * @param type {String} either \"urisBefore\" or \"cssBefore\"",
+          "     * @param uri {String} uri to load",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an external resource (JS or CSS) to be loaded, which is a resource path</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "type {String} either \"urisBefore\" or \"cssBefore\"",
+            "paramName": "type",
+            "description": " either \"urisBefore\" or \"cssBefore\"",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "uri {String} uri to load",
+            "paramName": "uri",
+            "description": " uri to load",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4,
+          "index": 5894
+        },
+        "end": {
+          "line": 239,
+          "column": 5,
+          "index": 5961
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "uri",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPreloads": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the list of preloads, which is a map by type",
+          "     *",
+          "     * @return {Map}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the list of preloads, which is a map by type</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}",
+            "type": "Map<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 246,
+          "column": 4,
+          "index": 6072
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 6122
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "addPreBootCode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds code to be run before the boot code is run",
+          "     *",
+          "     * @param code {String} the code to run",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds code to be run before the boot code is run</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "code {String} the code to run",
+            "paramName": "code",
+            "description": " the code to run",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 255,
+          "column": 4,
+          "index": 6251
+        },
+        "end": {
+          "line": 257,
+          "column": 5,
+          "index": 6316
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "code",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPreBootCode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the code to be run before the boot code",
+          "     *",
+          "     * @return {String} the code",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the code to be run before the boot code</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the code",
+            "type": "string",
+            "description": "the code"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 264,
+          "column": 4,
+          "index": 6434
+        },
+        "end": {
+          "line": 266,
+          "column": 5,
+          "index": 6502
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "createPart": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a new Part and adds it",
+          "     *",
+          "     * @param name {String} identifier",
+          "     * @return {Part}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a new Part and adds it</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} identifier",
+            "paramName": "name",
+            "description": " identifier",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Part}",
+            "type": "qx.tool.compiler.targets.meta.Part",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 274,
+          "column": 4,
+          "index": 6631
+        },
+        "end": {
+          "line": 284,
+          "column": 5,
+          "index": 6879
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.tool.compiler.targets.meta.Part"
+      },
+      "appearsIn": []
+    },
+    "getParts": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of all parts",
+          "     *",
+          "     * @return {Part[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of all parts</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Part[]}",
+            "type": "Part[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4,
+          "index": 6968
+        },
+        "end": {
+          "line": 293,
+          "column": 5,
+          "index": 7013
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Part[]"
+      },
+      "appearsIn": []
+    },
+    "getPart": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a part with a given name",
+          "     *",
+          "     * @param name {String} the name to look for",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a part with a given name</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name {String} the name to look for",
+            "paramName": "name",
+            "description": " the name to look for",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 300,
+          "column": 4,
+          "index": 7132
+        },
+        "end": {
+          "line": 302,
+          "column": 5,
+          "index": 7200
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPackages": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of all packages",
+          "     *",
+          "     * @return {Package[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of all packages</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Package[]}",
+            "type": "Package[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 309,
+          "column": 4,
+          "index": 7295
+        },
+        "end": {
+          "line": 311,
+          "column": 5,
+          "index": 7346
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Package[]"
+      },
+      "appearsIn": []
+    },
+    "createPackage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a package and adds it",
+          "     *",
+          "     * @return {Package}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a package and adds it</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Package}",
+            "type": "qx.tool.compiler.targets.meta.Package",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 318,
+          "column": 4,
+          "index": 7438
+        },
+        "end": {
+          "line": 326,
+          "column": 5,
+          "index": 7626
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.compiler.targets.meta.Package"
+      },
+      "appearsIn": []
+    },
+    "getLocalePackage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets a package for specific locale, creating a part with the name set to the localeId",
+          "     * if there isn't one already.  Used for when i18nAsParts == true",
+          "     *",
+          "     * @param localeId {String} the locale to look for",
+          "     * @return {Package}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a package for specific locale, creating a part with the name set to the localeId\n if there isn't one already.  Used for when i18nAsParts == true</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "localeId {String} the locale to look for",
+            "paramName": "localeId",
+            "description": " the locale to look for",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Package}",
+            "type": "qx.tool.compiler.targets.meta.Package",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 335,
+          "column": 4,
+          "index": 7899
+        },
+        "end": {
+          "line": 343,
+          "column": 5,
+          "index": 8150
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "localeId",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.tool.compiler.targets.meta.Package"
+      },
+      "appearsIn": []
+    },
+    "addResource": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a resource",
+          "     *",
+          "     * @param key {String} the resource identifier",
+          "     * @param path {String} the path to the resource",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a resource</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "key {String} the resource identifier",
+            "paramName": "key",
+            "description": " the resource identifier",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "path {String} the path to the resource",
+            "paramName": "path",
+            "description": " the path to the resource",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 351,
+          "column": 4,
+          "index": 8307
+        },
+        "end": {
+          "line": 353,
+          "column": 5,
+          "index": 8373
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getResources": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all of the resources",
+          "     *",
+          "     * @return {Map}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns all of the resources</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map}",
+            "type": "Map<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 360,
+          "column": 4,
+          "index": 8460
+        },
+        "end": {
+          "line": 362,
+          "column": 5,
+          "index": 8513
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

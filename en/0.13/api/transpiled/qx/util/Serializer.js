@@ -69,12 +69,12 @@
             var isdataArray = qx.data && qx.data.IListData && qx.Class.hasInterface(value && value.constructor, qx.data.IListData);
             for (var i = 0; i < value.length; i++) {
               var valueAtI = isdataArray ? value.getItem(i) : value[i];
-              result += this.__P_519_0(name, valueAtI, qxSerializer);
+              result += this.__P_738_0(name, valueAtI, qxSerializer);
             }
           } else if (qx.lang.Type.isDate(value) && dateFormat != null) {
-            result += this.__P_519_0(name, dateFormat.format(value), qxSerializer);
+            result += this.__P_738_0(name, dateFormat.format(value), qxSerializer);
           } else {
-            result += this.__P_519_0(name, value, qxSerializer);
+            result += this.__P_738_0(name, value, qxSerializer);
           }
         }
         return result.substring(0, result.length - 1);
@@ -88,7 +88,7 @@
        * @param qxSerializer {Function?} The serializer for qooxdoo objects.
        * @return {String} The serialized name value pair.
        */
-      __P_519_0: function __P_519_0(name, value, qxSerializer) {
+      __P_738_0: function __P_738_0(name, value, qxSerializer) {
         if (value && value.$$type == "Class") {
           value = value.classname;
         }
@@ -337,4 +337,4 @@
   qx.util.Serializer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Serializer.js.map?dt=1709410169263
+//# sourceMappingURL=Serializer.js.map?dt=1717235420527

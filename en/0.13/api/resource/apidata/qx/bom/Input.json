@@ -1,49 +1,41 @@
 {
-  "className": "qx.bom.Input",
-  "packageName": "qx.bom",
-  "name": "Input",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 37,
-        "column": 0,
-        "index": 918
-      },
-      "end": {
-        "line": 270,
-        "column": 3,
-        "index": 8025
-      }
+  "version": 0.3,
+  "lastModified": 1717235171422,
+  "lastModifiedIso": "2024-06-01T09:46:11.422Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Input.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 37,
+      "column": 0,
+      "index": 882
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Cross browser abstractions to work with input elements.</p>"
-        }
-      ]
+    "end": {
+      "line": 270,
+      "column": 3,
+      "index": 7756
     }
   },
-  "type": "class",
+  "className": "qx.bom.Input",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Cross browser abstractions to work with input elements.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Cross browser abstractions to work with input elements.</p>"
+      }
+    ]
+  },
   "statics": {
     "__types": {
-      "location": {
-        "start": {
-          "line": 46,
-          "column": 4,
-          "index": 1245
-        },
-        "end": {
-          "line": 60,
-          "column": 5,
-          "index": 1494
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Internal data structures with all supported input types "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +49,40 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "create": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 77,
+          "line": 46,
           "column": 4,
-          "index": 2154
+          "index": 1200
         },
         "end": {
-          "line": 99,
+          "line": 60,
           "column": 5,
-          "index": 2759
+          "index": 1435
         }
       },
+      "appearsIn": []
+    },
+    "create": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an DOM input/textarea/select element.",
+          "     *",
+          "     * Attributes may be given directly with this call. This is critical",
+          "     * for some attributes e.g. name, type, ... in many clients.",
+          "     *",
+          "     * Note: <code>select</code> and <code>textarea</code> elements are created",
+          "     * using the identically named <code>type</code>.",
+          "     *",
+          "     * @param type {String} Any valid type for HTML, <code>select</code>",
+          "     *   and <code>textarea</code>",
+          "     * @param attributes {Map} Map of attributes to apply",
+          "     * @param win {Window} Window to create the element for",
+          "     * @return {Element} The created input node",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -86,14 +95,14 @@
             "body": "type {String} Any valid type for HTML, <code>select</code>\n   and <code>textarea</code>",
             "paramName": "type",
             "description": " Any valid type for HTML, <code>select</code>\n   and <code>textarea</code>",
-            "type": "qx.bom.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "attributes {Map} Map of attributes to apply",
             "paramName": "attributes",
             "description": " Map of attributes to apply",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -108,27 +117,63 @@
             "name": "@return",
             "body": "{Element} The created input node",
             "type": "qx.bom.Element",
-            "description": " The created input node"
+            "description": "The created input node"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 117,
+          "line": 77,
           "column": 4,
-          "index": 3446
+          "index": 2078
         },
         "end": {
-          "line": 163,
+          "line": 99,
           "column": 5,
-          "index": 4958
+          "index": 2661
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "attributes",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "win",
+          "type": "qx.bom.Window"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "setValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies the given value to the element.",
+          "     *",
+          "     * Normally the value is given as a string/number value and applied",
+          "     * to the field content (textfield, textarea) or used to",
+          "     * detect whether the field is checked (checkbox, radiobutton).",
+          "     *",
+          "     * Supports array values for selectboxes (multiple-selection)",
+          "     * and checkboxes or radiobuttons (for convenience).",
+          "     *",
+          "     * Please note: To modify the value attribute of a checkbox or",
+          "     * radiobutton use {@link qx.bom.element.Attribute#set} instead.",
+          "     *",
+          "     * @param element {Element} element to update",
+          "     * @param value {String|Number|Array} the value to apply",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -156,23 +201,52 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 177,
+          "line": 117,
           "column": 4,
-          "index": 5379
+          "index": 3330
         },
         "end": {
-          "line": 226,
+          "line": 163,
           "column": 5,
-          "index": 6655
+          "index": 4796
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.bom.Element"
+        },
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "Number",
+            "Array"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "getValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the currently configured value.",
+          "     *",
+          "     * Works with simple input fields as well as with",
+          "     * select boxes or option elements.",
+          "     *",
+          "     * Returns an array in cases of multi-selection in",
+          "     * select boxes but in all other cases a string.",
+          "     *",
+          "     * @param element {Element} DOM element to query",
+          "     * @return {String|Array} The value of the given element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -193,27 +267,48 @@
             "name": "@return",
             "body": "{String|Array} The value of the given element",
             "type": "String|Array",
-            "description": " The value of the given element"
+            "description": "The value of the given element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setWrap": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 237,
+          "line": 177,
           "column": 4,
-          "index": 7017
+          "index": 5203
         },
         "end": {
-          "line": 268,
-          "column": 6,
-          "index": 8015
+          "line": 226,
+          "column": 5,
+          "index": 6430
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.bom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "String|Array"
+      },
+      "appearsIn": []
+    },
+    "setWrap": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the text wrap behaviour of a text area element.",
+          "     * This property uses the attribute \"wrap\" respectively",
+          "     * the style property \"whiteSpace\"",
+          "     *",
+          "     * @signature function(element, wrap)",
+          "     * @param element {Element} DOM element to modify",
+          "     * @param wrap {Boolean} Whether to turn text wrap on or off.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -239,13 +334,26 @@
             "body": "wrap {Boolean} Whether to turn text wrap on or off.",
             "paramName": "wrap",
             "description": " Whether to turn text wrap on or off.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4,
+          "index": 6781
+        },
+        "end": {
+          "line": 268,
+          "column": 6,
+          "index": 7748
+        }
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

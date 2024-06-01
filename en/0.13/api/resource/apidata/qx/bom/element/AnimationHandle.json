@@ -1,69 +1,69 @@
 {
-  "className": "qx.bom.element.AnimationHandle",
-  "packageName": "qx.bom.element",
-  "name": "AnimationHandle",
-  "superClass": "qx.event.Emitter",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 734
-      },
-      "end": {
-        "line": 137,
-        "column": 3,
-        "index": 3732
-      }
+  "version": 0.3,
+  "lastModified": 1717235168866,
+  "lastModifiedIso": "2024-06-01T09:46:08.866Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/AnimationHandle.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 709
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This is a simple handle, which will be returned when an animation is\n started using the {@link qx.bom.element.Animation#animate} method. It\n basically controls the animation.</p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.bom.element.AnimationJs"
-        }
-      ]
+    "end": {
+      "line": 137,
+      "column": 3,
+      "index": 3596
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.AnimationHandle",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is a simple handle, which will be returned when an animation is",
+      " * started using the {@link qx.bom.element.Animation#animate} method. It",
+      " * basically controls the animation.",
+      " *",
+      " * @ignore(qx.bom.element.AnimationJs)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is a simple handle, which will be returned when an animation is\n started using the {@link qx.bom.element.Animation#animate} method. It\n basically controls the animation.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.bom.element.AnimationJs"
+      }
+    ]
+  },
+  "superClass": "qx.event.Emitter",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 29,
         "column": 2,
-        "index": 824
+        "index": 796
       },
       "end": {
         "line": 34,
         "column": 3,
-        "index": 1034
+        "index": 1001
       }
     }
   },
   "events": {
     "start": {
-      "location": {
-        "start": {
-          "line": 38,
-          "column": 4,
-          "index": 1139
-        },
-        "end": {
-          "line": 38,
-          "column": 20,
-          "index": 1155
-        }
-      },
+      "type": "Element",
       "jsdoc": {
+        "raw": [
+          "* Fired when the animation started via {@link qx.bom.element.Animation}. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -71,23 +71,28 @@
           }
         ]
       },
-      "name": "start",
-      "type": "Element"
-    },
-    "end": {
       "location": {
         "start": {
-          "line": 44,
+          "line": 38,
           "column": 4,
-          "index": 1279
+          "index": 1102
         },
         "end": {
-          "line": 44,
-          "column": 18,
-          "index": 1293
+          "line": 38,
+          "column": 20,
+          "index": 1118
         }
-      },
+      }
+    },
+    "end": {
+      "type": "Element",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when the animation started via {@link qx.bom.element.Animation} has",
+          "     * ended.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -95,23 +100,25 @@
           }
         ]
       },
-      "name": "end",
-      "type": "Element"
-    },
-    "iteration": {
       "location": {
         "start": {
-          "line": 47,
+          "line": 44,
           "column": 4,
-          "index": 1357
+          "index": 1236
         },
         "end": {
-          "line": 47,
-          "column": 24,
-          "index": 1377
+          "line": 44,
+          "column": 18,
+          "index": 1250
         }
-      },
+      }
+    },
+    "iteration": {
+      "type": "Element",
       "jsdoc": {
+        "raw": [
+          "* Fired on every iteration of the animation. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -119,73 +126,80 @@
           }
         ]
       },
-      "name": "iteration",
-      "type": "Element"
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1311
+        },
+        "end": {
+          "line": 47,
+          "column": 24,
+          "index": 1331
+        }
+      }
     }
   },
   "members": {
     "__playState": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 51,
           "column": 4,
-          "index": 1405
+          "index": 1355
         },
         "end": {
           "line": 51,
           "column": 21,
-          "index": 1422
+          "index": 1372
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__playing": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 52,
           "column": 4,
-          "index": 1429
+          "index": 1378
         },
         "end": {
           "line": 52,
           "column": 20,
-          "index": 1445
+          "index": 1394
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__ended": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 53,
           "column": 4,
-          "index": 1452
+          "index": 1400
         },
         "end": {
           "line": 53,
           "column": 18,
-          "index": 1466
+          "index": 1414
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "isPlaying": {
-      "location": {
-        "start": {
-          "line": 59,
-          "column": 4,
-          "index": 1607
-        },
-        "end": {
-          "line": 61,
-          "column": 5,
-          "index": 1657
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Accessor of the playing state.",
+          "     * @return {Boolean} <code>true</code>, if the animations is playing.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -196,28 +210,39 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if the animations is playing.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if the animations is playing."
+            "type": "boolean",
+            "description": "<code>true</code>, if the animations is playing."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isEnded": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 67,
+          "line": 59,
           "column": 4,
-          "index": 1795
+          "index": 1549
         },
         "end": {
-          "line": 69,
+          "line": 61,
           "column": 5,
-          "index": 1841
+          "index": 1597
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isEnded": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Accessor of the ended state.",
+          "     * @return {Boolean} <code>true</code>, if the animations has ended.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -228,28 +253,39 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if the animations has ended.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if the animations has ended."
+            "type": "boolean",
+            "description": "<code>true</code>, if the animations has ended."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isPaused": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 67,
           "column": 4,
-          "index": 1980
+          "index": 1729
         },
         "end": {
-          "line": 77,
+          "line": 69,
           "column": 5,
-          "index": 2058
+          "index": 1773
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isPaused": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Accessor of the paused state.",
+          "     * @return {Boolean} <code>true</code>, if the animations is paused.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -260,28 +296,38 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if the animations is paused.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if the animations is paused."
+            "type": "boolean",
+            "description": "<code>true</code>, if the animations is paused."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "pause": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 75,
           "column": 4,
-          "index": 2163
+          "index": 1906
         },
         "end": {
-          "line": 91,
+          "line": 77,
           "column": 5,
-          "index": 2485
+          "index": 1982
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "pause": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pauses the animation, if running. If not running, it will be ignored.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -289,23 +335,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "play": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 97,
+          "line": 82,
           "column": 4,
-          "index": 2651
+          "index": 2082
         },
         "end": {
-          "line": 106,
+          "line": 91,
           "column": 5,
-          "index": 2974
+          "index": 2395
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "play": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resumes an animation. This does not start the animation once it has ended.",
+          "     * In this case you need to start a new Animation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -313,23 +367,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "stop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 111,
+          "line": 97,
           "column": 4,
-          "index": 3041
+          "index": 2555
         },
         "end": {
-          "line": 127,
+          "line": 106,
           "column": 5,
-          "index": 3574
+          "index": 2869
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "stop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stops the animation if running.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -337,23 +398,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__setEnded": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 132,
+          "line": 111,
           "column": 4,
-          "index": 3642
+          "index": 2931
         },
         "end": {
-          "line": 135,
+          "line": 127,
           "column": 5,
-          "index": 3722
+          "index": 3448
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__setEnded": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the animation state to ended",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -361,9 +429,24 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3511
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3588
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

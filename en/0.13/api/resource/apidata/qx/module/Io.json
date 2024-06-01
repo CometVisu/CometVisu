@@ -1,61 +1,77 @@
 {
-  "className": "qx.module.Io",
-  "packageName": "qx.module",
-  "name": "Io",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 31,
-        "column": 0,
-        "index": 728
-      },
-      "end": {
-        "line": 109,
-        "column": 3,
-        "index": 3464
-      }
+  "version": 0.3,
+  "lastModified": 1717235171438,
+  "lastModifiedIso": "2024-06-01T09:46:11.438Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Io.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 698
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This module provides basic IO functionality. It contains three ways to load\n data:</p>\n<ul>\n<li>XMLHttpRequest</li>\n<li>Script tag</li>\n<li>Script tag using JSONP</li>\n</ul>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.bom.request.Xhr#open"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "IO"
-        }
-      ]
+    "end": {
+      "line": 109,
+      "column": 3,
+      "index": 3356
     }
   },
-  "type": "class",
+  "className": "qx.module.Io",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This module provides basic IO functionality. It contains three ways to load",
+      " * data:",
+      " *",
+      " * * XMLHttpRequest",
+      " * * Script tag",
+      " * * Script tag using JSONP",
+      " *",
+      " * @require(qx.bom.request.Xhr#open)",
+      " *",
+      " * @group (IO)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This module provides basic IO functionality. It contains three ways to load\n data:</p>\n<ul>\n<li>XMLHttpRequest</li>\n<li>Script tag</li>\n<li>Script tag using JSONP</li>\n</ul>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.bom.request.Xhr#open"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "IO"
+      }
+    ]
+  },
   "statics": {
     "xhr": {
-      "location": {
-        "start": {
-          "line": 49,
-          "column": 4,
-          "index": 1489
-        },
-        "end": {
-          "line": 62,
-          "column": 5,
-          "index": 1865
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a configured XMLHttpRequest object. Using the send method will",
+          "     * finally send the request.",
+          "     *",
+          "     * @param url {String} Mandatory URL to load the data from.",
+          "     * @param settings {Map?} Optional settings map which may contain one of",
+          "     *   the following settings:",
+          "     * <ul>",
+          "     * <li><code>method</code> The method of the request. Default: <code>GET</code></li>",
+          "     * <li><code>async</code> flag to mark the request as asynchronous. Default: <code>true</code></li>",
+          "     * <li><code>header</code> A map of request headers.</li>",
+          "     * </ul>",
+          "     *",
+          "     * @attachStatic {qxWeb, io.xhr}",
+          "     * @return {qx.bom.request.Xhr} The request object.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -68,7 +84,7 @@
             "body": "url {String} Mandatory URL to load the data from.",
             "paramName": "url",
             "description": " Mandatory URL to load the data from.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -90,27 +106,52 @@
             "name": "@return",
             "body": "{qx.bom.request.Xhr} The request object.",
             "type": "qx.bom.request.Xhr",
-            "description": " The request object."
+            "description": "The request object."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "script": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 49,
           "column": 4,
-          "index": 2180
+          "index": 1441
         },
         "end": {
-          "line": 76,
+          "line": 62,
           "column": 5,
-          "index": 2303
+          "index": 1804
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "settings",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.Xhr"
+      },
+      "appearsIn": []
+    },
+    "script": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a predefined script tag wrapper which can be used to load data",
+          "     * from cross-domain origins.",
+          "     *",
+          "     * @param url {String} Mandatory URL to load the data from.",
+          "     * @attachStatic {qxWeb, io.script}",
+          "     * @return {qx.bom.request.Script} The request object.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -123,7 +164,7 @@
             "body": "url {String} Mandatory URL to load the data from.",
             "paramName": "url",
             "description": " Mandatory URL to load the data from.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@attachStatic": [
@@ -137,27 +178,53 @@
             "name": "@return",
             "body": "{qx.bom.request.Script} The request object.",
             "type": "qx.bom.request.Script",
-            "description": " The request object."
+            "description": "The request object."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "jsonp": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 92,
+          "line": 72,
           "column": 4,
-          "index": 2950
+          "index": 2109
         },
         "end": {
-          "line": 103,
+          "line": 76,
           "column": 5,
-          "index": 3391
+          "index": 2228
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.Script"
+      },
+      "appearsIn": []
+    },
+    "jsonp": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a predefined script tag wrapper which can be used to load data",
+          "     * from cross-domain origins via JSONP.",
+          "     *",
+          "     * @param url {String} Mandatory URL to load the data from.",
+          "     * @param settings {Map?} Optional settings map which may contain one of",
+          "     *   the following settings:",
+          "     *",
+          "     * * <code>callbackName</code>: The name of the callback which will",
+          "     *      be called by the loaded script.",
+          "     * * <code>callbackParam</code>: The name of the callback expected by the server",
+          "     * @attachStatic {qxWeb, io.jsonp}",
+          "     * @return {qx.bom.request.Jsonp} The request object.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -170,13 +237,13 @@
             "body": "url {String} Mandatory URL to load the data from.",
             "paramName": "url",
             "description": " Mandatory URL to load the data from.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
-            "body": "settings {Map?} Optional settings map which may contain one of\n   the following settings:\r* <code>callbackName</code>: The name of the callback which will\n      be called by the loaded script.\r* <code>callbackParam</code>: The name of the callback expected by the server",
+            "body": "settings {Map?} Optional settings map which may contain one of\n   the following settings:\n* <code>callbackName</code>: The name of the callback which will\n      be called by the loaded script.\n* <code>callbackParam</code>: The name of the callback expected by the server",
             "paramName": "settings",
-            "description": " Optional settings map which may contain one of\n   the following settings:\r* <code>callbackName</code>: The name of the callback which will\n      be called by the loaded script.\r* <code>callbackParam</code>: The name of the callback expected by the server",
+            "description": " Optional settings map which may contain one of\n   the following settings:\n* <code>callbackName</code>: The name of the callback which will\n      be called by the loaded script.\n* <code>callbackParam</code>: The name of the callback expected by the server",
             "optional": true,
             "type": "Map"
           }
@@ -192,27 +259,41 @@
             "name": "@return",
             "body": "{qx.bom.request.Jsonp} The request object.",
             "type": "qx.bom.request.Jsonp",
-            "description": " The request object."
+            "description": "The request object."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 106,
-        "column": 2,
-        "index": 3403
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2859
+        },
+        "end": {
+          "line": 103,
+          "column": 5,
+          "index": 3289
+        }
       },
-      "end": {
-        "line": 108,
-        "column": 3,
-        "index": 3459
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "settings",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.Jsonp"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

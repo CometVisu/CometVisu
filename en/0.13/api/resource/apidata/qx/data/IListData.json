@@ -1,83 +1,115 @@
 {
-  "className": "qx.data.IListData",
-  "packageName": "qx.data",
-  "name": "IListData",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 687
-      },
-      "end": {
-        "line": 99,
-        "column": 3,
-        "index": 3182
-      }
+  "version": 0.3,
+  "lastModified": 1717235171250,
+  "lastModifiedIso": "2024-06-01T09:46:11.250Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/IListData.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 664
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This interface defines a data structure compatible with the data binding\n controllers.\n It defines a minimum of functionality which the controller need to work.</p>"
-        }
-      ]
+    "end": {
+      "line": 99,
+      "column": 3,
+      "index": 3084
     }
   },
-  "type": "interface",
+  "className": "qx.data.IListData",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This interface defines a data structure compatible with the data binding",
+      " * controllers.",
+      " * It defines a minimum of functionality which the controller need to work.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This interface defines a data structure compatible with the data binding\n controllers.\n It defines a minimum of functionality which the controller need to work.</p>"
+      }
+    ]
+  },
   "events": {
     "change": {
-      "type": "event",
-      "name": "change",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": null,
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The change event which will be fired if there is a change in the data structure.",
+          "     * The data contains a map with three key value pairs:",
+          "     * <li>start: The start index of the change.</li>",
+          "     * <li>end: The end index of the change.</li>",
+          "     * <li>type: The type of the change as a String. This can be 'add',",
+          "     * 'remove', 'order' or 'add/remove'</li>",
+          "     * <li>added: The items which has been added (as a JavaScript array)</li>",
+          "     * <li>removed: The items which has been removed (as a JavaScript array)</li>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>The change event which will be fired if there is a change in the data structure.\n The data contains a map with three key value pairs:\n <li>start: The start index of the change.</li>\n <li>end: The end index of the change.</li>\n <li>type: The type of the change as a String. This can be 'add',\n 'remove', 'order' or 'add/remove'</li>\n <li>added: The items which has been added (as a JavaScript array)</li>\n <li>removed: The items which has been removed (as a JavaScript array)</li></p>"
           }
         ]
+      },
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1268
+        },
+        "end": {
+          "line": 36,
+          "column": 32,
+          "index": 1296
+        }
       }
     },
     "changeLength": {
-      "type": "event",
-      "name": "changeLength",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": null,
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The changeLength event will be fired every time the length of the",
+          "     * data structure changes.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>The changeLength event will be fired every time the length of the\n data structure changes.</p>"
           }
         ]
+      },
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1423
+        },
+        "end": {
+          "line": 42,
+          "column": 39,
+          "index": 1458
+        }
       }
     }
   },
   "members": {
     "getItem": {
-      "location": {
-        "start": {
-          "line": 53,
-          "column": 4,
-          "index": 1730
-        },
-        "end": {
-          "line": 53,
-          "column": 21,
-          "index": 1747
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the item at the given index",
+          "     *",
+          "     * @param index {Number} The index requested of the data element.",
+          "     *",
+          "     * @return {var} The element at the given index.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -90,7 +122,7 @@
             "body": "index {Number} The index requested of the data element.",
             "paramName": "index",
             "description": " The index requested of the data element.",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
@@ -98,27 +130,46 @@
             "name": "@return",
             "body": "{var} The element at the given index.",
             "type": "var",
-            "description": " The element at the given index."
+            "description": "The element at the given index."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 53,
           "column": 4,
-          "index": 2003
+          "index": 1678
         },
         "end": {
-          "line": 62,
-          "column": 27,
-          "index": 2026
+          "line": 53,
+          "column": 21,
+          "index": 1695
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "setItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the given item at the given position in the data structure. A",
+          "     * change event has to be fired.",
+          "     *",
+          "     * @param index {Number} The index of the data element.",
+          "     * @param item {var} The new item to set.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -131,7 +182,7 @@
             "body": "index {Number} The index of the data element.",
             "paramName": "index",
             "description": " The index of the data element.",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
@@ -142,23 +193,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "splice": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 62,
           "column": 4,
-          "index": 2560
+          "index": 1942
         },
         "end": {
-          "line": 75,
-          "column": 42,
-          "index": 2598
+          "line": 62,
+          "column": 27,
+          "index": 1965
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "index",
+          "type": "number"
+        },
+        {
+          "name": "item",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "splice": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method to remove and add new element to the data. For every remove or",
+          "     * add a change event should be fired.",
+          "     *",
+          "     * @param startIndex {Integer} The index where the splice should start",
+          "     * @param amount {Integer} Defines number of element which will be removed",
+          "     *   at the given position.",
+          "     * @param varargs {var} All following parameters will be added at the given",
+          "     *   position to the array.",
+          "     * @return {qx.data.Array} An array containing the removed elements.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -193,27 +268,53 @@
             "name": "@return",
             "body": "{qx.data.Array} An array containing the removed elements.",
             "type": "qx.data.Array",
-            "description": " An array containing the removed elements."
+            "description": "An array containing the removed elements."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "contains": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 83,
+          "line": 75,
           "column": 4,
-          "index": 2845
+          "index": 2486
         },
         "end": {
-          "line": 83,
-          "column": 21,
-          "index": 2862
+          "line": 75,
+          "column": 42,
+          "index": 2524
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "startIndex",
+          "type": "Integer"
+        },
+        {
+          "name": "amount",
+          "type": "Integer"
+        },
+        {
+          "name": "varargs",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
+      "appearsIn": []
+    },
+    "contains": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if the given item is in the current data structure.",
+          "     *",
+          "     * @param item {var} The item which is possibly in the data structure.",
+          "     * @return {Boolean} true, if the array contains the given item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -233,28 +334,45 @@
           {
             "name": "@return",
             "body": "{Boolean} true, if the array contains the given item.",
-            "type": "Boolean",
-            "description": " true, if the array contains the given item."
+            "type": "boolean",
+            "description": "true, if the array contains the given item."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLength": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 90,
+          "line": 83,
           "column": 4,
-          "index": 3022
+          "index": 2763
         },
         "end": {
-          "line": 90,
-          "column": 18,
-          "index": 3036
+          "line": 83,
+          "column": 21,
+          "index": 2780
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getLength": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current length of the data structure.",
+          "     *",
+          "     * @return {Number} The current length of the data structure.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -265,28 +383,40 @@
           {
             "name": "@return",
             "body": "{Number} The current length of the data structure.",
-            "type": "Number",
-            "description": " The current length of the data structure."
+            "type": "number",
+            "description": "The current length of the data structure."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toArray": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 97,
+          "line": 90,
           "column": 4,
-          "index": 3160
+          "index": 2933
         },
         "end": {
-          "line": 97,
-          "column": 16,
-          "index": 3172
+          "line": 90,
+          "column": 18,
+          "index": 2947
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "toArray": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the list data as native array.",
+          "     *",
+          "     * @return {Array} The native array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -297,14 +427,32 @@
           {
             "name": "@return",
             "body": "{Array} The native array.",
-            "type": "qx.data.Array",
-            "description": " The native array."
+            "type": "Array<any>",
+            "description": "The native array."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 3064
+        },
+        "end": {
+          "line": 97,
+          "column": 16,
+          "index": 3076
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -263,15 +263,16 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 
       loginSettings: null,
       headers: null,
-      __P_529_0: null,
+      __P_748_0: null,
       getType: function getType() {
         return this._type;
       },
       // property apply
       _applyConnected: function _applyConnected(value) {
         if (value === true) {
-          this.__P_529_0 = null;
+          this.__P_748_0 = null;
         }
+        this.record('connected', value);
       },
       setInitialAddresses: function setInitialAddresses(addresses) {
         this.initialAddresses = addresses;
@@ -556,7 +557,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         if (req.serverErrorHandled) {
           return; // ignore error when already handled
         }
-        this.__P_529_0 = {
+        this.__P_748_0 = {
           code: req.getStatus(),
           text: req.getStatusText(),
           response: req.getResponse(),
@@ -572,7 +573,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}
        */
       getLastError: function getLastError() {
-        return this.__P_529_0;
+        return this.__P_748_0;
       },
       /**
        * Handles login response, applies backend configuration if send by
@@ -722,4 +723,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1709410169995
+//# sourceMappingURL=Client.js.map?dt=1717235421386

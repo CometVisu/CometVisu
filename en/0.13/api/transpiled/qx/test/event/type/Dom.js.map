@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "testClone",
+    "domEvent",
+    "shiftKey",
+    "ctrlKey",
+    "altKey",
+    "metaKey",
+    "event",
+    "type",
+    "Dom",
+    "init",
+    "document",
+    "body",
+    "reference",
+    "shift",
+    "isShiftPressed",
+    "ctrl",
+    "isCtrlPressed",
+    "alt",
+    "isAltPressed",
+    "meta",
+    "isMetaPressed",
+    "clone",
+    "lang",
+    "Object",
+    "empty",
+    "assertEquals",
+    "dispose",
+    "test"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/event/type/Dom.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.event.type.Dom\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    testClone() {\n      var domEvent = {\n        shiftKey: true,\n        ctrlKey: true,\n        altKey: true,\n        metaKey: true\n      };\n\n      var event = new qx.event.type.Dom().init(\n        domEvent,\n        document.body,\n        document.body,\n        true,\n        true\n      );\n\n      var reference = {\n        shift: event.isShiftPressed(),\n        ctrl: event.isCtrlPressed(),\n        alt: event.isAltPressed(),\n        meta: event.isMetaPressed()\n      };\n\n      var clone = event.clone();\n\n      // simulate native event disposal\n      qx.lang.Object.empty(domEvent);\n\n      this.assertEquals(reference.shift, clone.isShiftPressed());\n      this.assertEquals(reference.ctrl, clone.isCtrlPressed());\n      this.assertEquals(reference.alt, clone.isAltPressed());\n      this.assertEquals(reference.meta, clone.isMetaPressed());\n\n      event.dispose();\n      clone.dispose();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxCC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE;MACPC,SAAS,WAAAA,UAAA,EAAG;QACV,IAAIC,QAAQ,GAAG;UACbC,QAAQ,EAAE,IAAI;UACdC,OAAO,EAAE,IAAI;UACbC,MAAM,EAAE,IAAI;UACZC,OAAO,EAAE;QACX,CAAC;QAED,IAAIC,KAAK,GAAG,IAAIjB,EAAE,CAACiB,KAAK,CAACC,IAAI,CAACC,GAAG,CAAC,CAAC,CAACC,IAAI,CACtCR,QAAQ,EACRS,QAAQ,CAACC,IAAI,EACbD,QAAQ,CAACC,IAAI,EACb,IAAI,EACJ,IACF,CAAC;QAED,IAAIC,SAAS,GAAG;UACdC,KAAK,EAAEP,KAAK,CAACQ,cAAc,CAAC,CAAC;UAC7BC,IAAI,EAAET,KAAK,CAACU,aAAa,CAAC,CAAC;UAC3BC,GAAG,EAAEX,KAAK,CAACY,YAAY,CAAC,CAAC;UACzBC,IAAI,EAAEb,KAAK,CAACc,aAAa,CAAC;QAC5B,CAAC;QAED,IAAIC,KAAK,GAAGf,KAAK,CAACe,KAAK,CAAC,CAAC;;QAEzB;QACAhC,EAAE,CAACiC,IAAI,CAACC,MAAM,CAACC,KAAK,CAACvB,QAAQ,CAAC;QAE9B,IAAI,CAACwB,YAAY,CAACb,SAAS,CAACC,KAAK,EAAEQ,KAAK,CAACP,cAAc,CAAC,CAAC,CAAC;QAC1D,IAAI,CAACW,YAAY,CAACb,SAAS,CAACG,IAAI,EAAEM,KAAK,CAACL,aAAa,CAAC,CAAC,CAAC;QACxD,IAAI,CAACS,YAAY,CAACb,SAAS,CAACK,GAAG,EAAEI,KAAK,CAACH,YAAY,CAAC,CAAC,CAAC;QACtD,IAAI,CAACO,YAAY,CAACb,SAAS,CAACO,IAAI,EAAEE,KAAK,CAACD,aAAa,CAAC,CAAC,CAAC;QAExDd,KAAK,CAACoB,OAAO,CAAC,CAAC;QACfL,KAAK,CAACK,OAAO,CAAC,CAAC;MACjB;IACF;EACF,CAAC,CAAC;EA3DFrC,EAAE,CAACsC,IAAI,CAACrB,KAAK,CAACC,IAAI,CAACC,GAAG,CAAChB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

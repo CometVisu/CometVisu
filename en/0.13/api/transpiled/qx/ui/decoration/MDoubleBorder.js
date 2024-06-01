@@ -68,8 +68,8 @@
     include: [qx.ui.decoration.MSingleBorder, qx.ui.decoration.MBackgroundImage],
     construct: function construct() {
       // override the methods of single border and background image
-      this._getDefaultInsetsForBorder = this.__P_344_0;
-      this._styleBorder = this.__P_344_1;
+      this._getDefaultInsetsForBorder = this.__P_562_0;
+      this._styleBorder = this.__P_562_1;
     },
     /*
     *****************************************************************************
@@ -167,7 +167,7 @@
        *
        * @param styles {Map} A map to add the styles.
        */
-      __P_344_1: function __P_344_1(styles) {
+      __P_562_1: function __P_562_1(styles) {
         var propName = qx.core.Environment.get("css.boxshadow");
         var color, innerColor, innerWidth;
         if (qx.core.Environment.get("qx.theme")) {
@@ -224,7 +224,7 @@
         }
         var innerOpacity = this.getInnerOpacity();
         if (innerOpacity < 1) {
-          this.__P_344_2(innerColor, innerOpacity);
+          this.__P_562_2(innerColor, innerOpacity);
         }
 
         // inner border
@@ -295,7 +295,7 @@
        * @param innerColor {Map} map of top, right, bottom and left colors
        * @param innerOpacity {Number} alpha value
        */
-      __P_344_2: function __P_344_2(innerColor, innerOpacity) {
+      __P_562_2: function __P_562_2(innerColor, innerOpacity) {
         if (!qx.core.Environment.get("css.rgba")) {
           return;
         }
@@ -313,7 +313,7 @@
        * @return {Map} A map containing the default insets.
        *   (top, right, bottom, left)
        */
-      __P_344_0: function __P_344_0() {
+      __P_562_0: function __P_562_0() {
         return {
           top: this.getWidthTop() + this.getInnerWidthTop(),
           right: this.getWidthRight() + this.getInnerWidthRight(),
@@ -326,4 +326,4 @@
   qx.ui.decoration.MDoubleBorder.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDoubleBorder.js.map?dt=1709410159406
+//# sourceMappingURL=MDoubleBorder.js.map?dt=1717235410025

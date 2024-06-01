@@ -85,7 +85,7 @@
        *   be bind to.
        * @param targetProperty {String?"value"} The property name of the target object,
        *   defaults to "value".
-       * @param options {Map} A map containing the options. See
+       * @param options {Map?} A map containing the options. See
        *   {@link qx.data.SingleValueBinding#bind} for more
        *   information.
        *
@@ -168,4 +168,4 @@
   qx.data.MBinding.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MBinding.js.map?dt=1709410147299
+//# sourceMappingURL=MBinding.js.map?dt=1717235375624

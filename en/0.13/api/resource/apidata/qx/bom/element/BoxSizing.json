@@ -1,49 +1,46 @@
 {
-  "className": "qx.bom.element.BoxSizing",
-  "packageName": "qx.bom.element",
-  "name": "BoxSizing",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 773
-      },
-      "end": {
-        "line": 149,
-        "column": 3,
-        "index": 4289
-      }
+  "version": 0.3,
+  "lastModified": 1717235169426,
+  "lastModifiedIso": "2024-06-01T09:46:09.426Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/BoxSizing.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 747
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Contains methods to control and query the element's box-sizing property.\n Supported values:</p>\n<ul>\n<li>\"content-box\" = W3C model (dimensions are content specific)</li>\n<li>\"border-box\" = Microsoft model (dimensions are box specific incl. border and padding)</li>\n</ul>"
-        }
-      ]
+    "end": {
+      "line": 149,
+      "column": 3,
+      "index": 4141
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.BoxSizing",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Contains methods to control and query the element's box-sizing property.",
+      " *",
+      " * Supported values:",
+      " *",
+      " * * \"content-box\" = W3C model (dimensions are content specific)",
+      " * * \"border-box\" = Microsoft model (dimensions are box specific incl. border and padding)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Contains methods to control and query the element's box-sizing property.\n Supported values:</p>\n<ul>\n<li>\"content-box\" = W3C model (dimensions are content specific)</li>\n<li>\"border-box\" = Microsoft model (dimensions are box specific incl. border and padding)</li>\n</ul>"
+      }
+    ]
+  },
   "statics": {
     "__nativeBorderBox": {
-      "location": {
-        "start": {
-          "line": 36,
-          "column": 4,
-          "index": 1108
-        },
-        "end": {
-          "line": 50,
-          "column": 5,
-          "index": 1369
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Internal data structure for __usesNativeBorderBox() "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +54,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__usesNativeBorderBox": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 58,
+          "line": 36,
           "column": 4,
-          "index": 1649
+          "index": 1073
         },
         "end": {
-          "line": 61,
+          "line": 50,
           "column": 5,
-          "index": 1811
+          "index": 1320
         }
       },
+      "appearsIn": []
+    },
+    "__usesNativeBorderBox": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given elements defaults to the \"border-box\" Microsoft model in all cases.",
+          "     *",
+          "     * @param element {Element} DOM element to query",
+          "     * @return {Boolean} true when the element uses \"border-box\" independently from the doctype",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -93,28 +98,46 @@
           {
             "name": "@return",
             "body": "{Boolean} true when the element uses \"border-box\" independently from the doctype",
-            "type": "Boolean",
-            "description": " true when the element uses \"border-box\" independently from the doctype"
+            "type": "boolean",
+            "description": "true when the element uses \"border-box\" independently from the doctype"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "compile": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 69,
+          "line": 58,
           "column": 4,
-          "index": 2007
+          "index": 1592
         },
         "end": {
-          "line": 86,
+          "line": 61,
           "column": 5,
-          "index": 2518
+          "index": 1751
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "compile": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compiles the given box sizing into a CSS compatible string.",
+          "     *",
+          "     * @param value {String} Valid CSS box-sizing value",
+          "     * @return {String} CSS string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -127,35 +150,53 @@
             "body": "value {String} Valid CSS box-sizing value",
             "paramName": "value",
             "description": " Valid CSS box-sizing value",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} CSS string",
-            "type": "String",
-            "description": " CSS string"
+            "type": "string",
+            "description": "CSS string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "get": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 94,
+          "line": 69,
           "column": 4,
-          "index": 2725
+          "index": 1939
         },
         "end": {
-          "line": 108,
+          "line": 86,
           "column": 5,
-          "index": 3132
+          "index": 2433
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "get": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the box sizing for the given element.",
+          "     *",
+          "     * @param element {Element} The element to query",
+          "     * @return {String} Box sizing value of the given element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -175,28 +216,46 @@
           {
             "name": "@return",
             "body": "{String} Box sizing value of the given element.",
-            "type": "String",
-            "description": " Box sizing value of the given element."
+            "type": "string",
+            "description": "Box sizing value of the given element."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "set": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 116,
+          "line": 94,
           "column": 4,
-          "index": 3334
+          "index": 2632
         },
         "end": {
-          "line": 138,
+          "line": 108,
           "column": 5,
-          "index": 4076
+          "index": 3025
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "set": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Applies a new box sizing to the given element",
+          "     *",
+          "     * @param element {Element} The element to modify",
+          "     * @param value {String} New box sizing value to set",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -216,27 +275,45 @@
             "body": "value {String} New box sizing value to set",
             "paramName": "value",
             "description": " New box sizing value to set",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "reset": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 145,
+          "line": 116,
           "column": 4,
-          "index": 4226
+          "index": 3219
         },
         "end": {
-          "line": 147,
+          "line": 138,
           "column": 5,
-          "index": 4279
+          "index": 3939
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "reset": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the local box sizing applied to the element",
+          "     *",
+          "     * @param element {Element} The element to modify",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -253,9 +330,29 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 4082
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4133
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

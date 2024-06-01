@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "events",
+    "unload",
+    "onunload",
+    "members",
+    "addEventListener",
+    "type",
+    "callback",
+    "capture",
+    "addListener",
+    "attachEvent",
+    "test",
+    "event",
+    "dispatch",
+    "TestingWindow"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/event/dispatch/TestingWindow.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.event.dispatch.TestingWindow\", {\n  extend: qx.core.Object,\n\n  events: {\n    unload: \"qx.event.type.Event\",\n    onunload: \"qx.event.type.Event\"\n  },\n\n  members: {\n    addEventListener(type, callback, capture) {\n      return this.addListener(type, callback, this, capture);\n    },\n\n    attachEvent(type, callback) {\n      return this.addListener(type, callback);\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,sCAAsC,EAAE;IACtDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IAEtBC,MAAM,EAAE;MACNC,MAAM,EAAE,qBAAqB;MAC7BC,QAAQ,EAAE;IACZ,CAAC;IAEDC,OAAO,EAAE;MACPC,gBAAgB,WAAAA,iBAACC,IAAI,EAAEC,QAAQ,EAAEC,OAAO,EAAE;QACxC,OAAO,IAAI,CAACC,WAAW,CAACH,IAAI,EAAEC,QAAQ,EAAE,IAAI,EAAEC,OAAO,CAAC;MACxD,CAAC;MAEDE,WAAW,WAAAA,YAACJ,IAAI,EAAEC,QAAQ,EAAE;QAC1B,OAAO,IAAI,CAACE,WAAW,CAACH,IAAI,EAAEC,QAAQ,CAAC;MACzC;IACF;EACF,CAAC,CAAC;EAnCFf,EAAE,CAACmB,IAAI,CAACC,KAAK,CAACC,QAAQ,CAACC,aAAa,CAACnB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

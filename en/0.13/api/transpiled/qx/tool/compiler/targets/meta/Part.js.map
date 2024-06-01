@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "target",
+    "name",
+    "partIndex",
+    "constructor",
+    "call",
+    "__target",
+    "__name",
+    "__partIndex",
+    "__packages",
+    "__packageLookup",
+    "members",
+    "addPackage",
+    "pkg",
+    "toHashCode",
+    "push",
+    "hasPackage",
+    "Boolean",
+    "getDefaultPackage",
+    "serializeInto",
+    "parts",
+    "arr",
+    "forEach",
+    "String",
+    "getPackageIndex",
+    "tool",
+    "compiler",
+    "targets",
+    "meta",
+    "Part"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/Part.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n *\n *    qooxdoo-compiler - node.js based replacement for the Qooxdoo python\n *    toolchain\n *\n *    https://github.com/qooxdoo/qooxdoo-compiler\n *\n *    Copyright:\n *      2011-2021 Zenesis Limited, http://www.zenesis.com\n *\n *    License:\n *      MIT: https://opensource.org/licenses/MIT\n *\n *      This software is provided under the same licensing terms as Qooxdoo,\n *      please see the LICENSE file in the Qooxdoo project's top-level directory\n *      for details.\n *\n *    Authors:\n *      * John Spackman (john.spackman@zenesis.com, @johnspackman)\n *\n * ************************************************************************/\n\n/**\n * A Part collects together all of the javascript files required for a single\n * part (load on demand) and merges them together as required.\n */\nqx.Class.define(\"qx.tool.compiler.targets.meta.Part\", {\n  extend: qx.core.Object,\n\n  /**\n   * Constructor\n   *\n   * @param target {Target} the target doing the compilation\n   * @param name {String} the name of the part\n   * @param partIndex {Integer}\n   */\n  construct(target, name, partIndex) {\n    super();\n    this.__target = target;\n    this.__name = name;\n    this.__partIndex = partIndex;\n    this.__packages = [];\n    this.__packageLookup = {};\n  },\n\n  members: {\n    __target: null,\n    __name: null,\n    __partIndex: -1,\n    __packages: null,\n    __packageLookup: null,\n\n    addPackage(pkg) {\n      if (!this.__packageLookup[pkg.toHashCode()]) {\n        this.__packages.push(pkg);\n        this.__packageLookup[pkg.toHashCode()] = pkg;\n      }\n    },\n\n    hasPackage(pkg) {\n      return Boolean(this.__packageLookup[pkg.toHashCode()]);\n    },\n\n    getDefaultPackage() {\n      return this.__packages[0] || null;\n    },\n\n    serializeInto(parts) {\n      let arr = (parts[this.__name] = []);\n      this.__packages.forEach(pkg => arr.push(String(pkg.getPackageIndex())));\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,oCAAoC,EAAE;IACpDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IAEtB;AACF;AACA;AACA;AACA;AACA;AACA;IACEC,SAAS,WAAAA,UAACC,MAAM,EAAEC,IAAI,EAAEC,SAAS,EAAE;MACjCZ,EAAA,CAAAO,IAAA,CAAAC,MAAA,CAAAK,WAAA,CAAAC,IAAA;MACA,IAAI,CAACC,SAAQ,GAAGL,MAAM;MACtB,IAAI,CAACM,SAAM,GAAGL,IAAI;MAClB,IAAI,CAACM,SAAW,GAAGL,SAAS;MAC5B,IAAI,CAACM,SAAU,GAAG,EAAE;MACpB,IAAI,CAACC,SAAe,GAAG,CAAC,CAAC;IAC3B,CAAC;IAEDC,OAAO,EAAE;MACPL,SAAQ,EAAE,IAAI;MACdC,SAAM,EAAE,IAAI;MACZC,SAAW,EAAE,CAAC,CAAC;MACfC,SAAU,EAAE,IAAI;MAChBC,SAAe,EAAE,IAAI;MAErBE,UAAU,WAAAA,WAACC,GAAG,EAAE;QACd,IAAI,CAAC,IAAI,CAACH,SAAe,CAACG,GAAG,CAACC,UAAU,CAAC,CAAC,CAAC,EAAE;UAC3C,IAAI,CAACL,SAAU,CAACM,IAAI,CAACF,GAAG,CAAC;UACzB,IAAI,CAACH,SAAe,CAACG,GAAG,CAACC,UAAU,CAAC,CAAC,CAAC,GAAGD,GAAG;QAC9C;MACF,CAAC;MAEDG,UAAU,WAAAA,WAACH,GAAG,EAAE;QACd,OAAOI,OAAO,CAAC,IAAI,CAACP,SAAe,CAACG,GAAG,CAACC,UAAU,CAAC,CAAC,CAAC,CAAC;MACxD,CAAC;MAEDI,iBAAiB,WAAAA,kBAAA,EAAG;QAClB,OAAO,IAAI,CAACT,SAAU,CAAC,CAAC,CAAC,IAAI,IAAI;MACnC,CAAC;MAEDU,aAAa,WAAAA,cAACC,KAAK,EAAE;QACnB,IAAIC,GAAG,GAAID,KAAK,CAAC,IAAI,CAACb,SAAM,CAAC,GAAG,EAAG;QACnC,IAAI,CAACE,SAAU,CAACa,OAAO,CAAC,UAAAT,GAAG;UAAA,OAAIQ,GAAG,CAACN,IAAI,CAACQ,MAAM,CAACV,GAAG,CAACW,eAAe,CAAC,CAAC,CAAC,CAAC;QAAA,EAAC;MACzE;IACF;EACF,CAAC,CAAC;EAxEFjC,EAAE,CAACkC,IAAI,CAACC,QAAQ,CAACC,OAAO,CAACC,IAAI,CAACC,IAAI,CAACnC,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

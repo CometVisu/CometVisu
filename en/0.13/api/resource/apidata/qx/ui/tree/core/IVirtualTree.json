@@ -1,49 +1,49 @@
 {
-  "className": "qx.ui.tree.core.IVirtualTree",
-  "packageName": "qx.ui.tree.core",
-  "name": "IVirtualTree",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 629
-      },
-      "end": {
-        "line": 140,
-        "column": 3,
-        "index": 4132
-      }
+  "version": 0.3,
+  "lastModified": 1717235171458,
+  "lastModifiedIso": "2024-06-01T09:46:11.458Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/tree/core/IVirtualTree.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 607
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Interface describes the methods which the {@link qx.ui.tree.provider.WidgetProvider}\n uses for communication.</p>"
-        }
-      ]
+    "end": {
+      "line": 140,
+      "column": 3,
+      "index": 3997
     }
   },
-  "type": "interface",
+  "className": "qx.ui.tree.core.IVirtualTree",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Interface describes the methods which the {@link qx.ui.tree.provider.WidgetProvider}",
+      " * uses for communication.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Interface describes the methods which the {@link qx.ui.tree.provider.WidgetProvider}\n uses for communication.</p>"
+      }
+    ]
+  },
   "members": {
     "isShowTopLevelOpenCloseIcons": {
-      "location": {
-        "start": {
-          "line": 33,
-          "column": 4,
-          "index": 1085
-        },
-        "end": {
-          "line": 33,
-          "column": 37,
-          "index": 1118
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return whether top level items should have an open/close button. The top",
+          "     * level item item is normally the root item, but when the root is hidden,",
+          "     * the root children are the top level items.",
+          "     *",
+          "     * @return {Boolean} Returns <code>true</code> when top level items should",
+          "     *   show open/close buttons, <code>false</code> otherwise.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -54,28 +54,42 @@
           {
             "name": "@return",
             "body": "{Boolean} Returns <code>true</code> when top level items should\n   show open/close buttons, <code>false</code> otherwise.",
-            "type": "Boolean",
-            "description": " Returns <code>true</code> when top level items should\n   show open/close buttons, <code>false</code> otherwise."
+            "type": "boolean",
+            "description": "Returns <code>true</code> when top level items should\n   show open/close buttons, <code>false</code> otherwise."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLookupTable": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 42,
+          "line": 33,
           "column": 4,
-          "index": 1345
+          "index": 1053
         },
         "end": {
-          "line": 42,
-          "column": 23,
-          "index": 1364
+          "line": 33,
+          "column": 37,
+          "index": 1086
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getLookupTable": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the internal data structure. The Array index is the row and the",
+          "     * value is the model item.",
+          "     *",
+          "     * @internal",
+          "     * @return {qx.data.Array} The internal data structure.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -93,27 +107,42 @@
             "name": "@return",
             "body": "{qx.data.Array} The internal data structure.",
             "type": "qx.data.Array",
-            "description": " The internal data structure."
+            "description": "The internal data structure."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isNode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 42,
           "column": 4,
-          "index": 1641
+          "index": 1304
         },
         "end": {
-          "line": 55,
-          "column": 5,
-          "index": 1764
+          "line": 42,
+          "column": 23,
+          "index": 1323
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
+      "appearsIn": []
+    },
+    "isNode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns if the passed item is a note or a leaf.",
+          "     *",
+          "     * @internal",
+          "     * @param item {qx.core.Object} Item to check.",
+          "     * @return {Boolean} <code>True</code> when item is a node,",
+          "     *   </code>false</code> when item is a leaf.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -139,28 +168,47 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>True</code> when item is a node,\n   </code>false</code> when item is a leaf.",
-            "type": "Boolean",
-            "description": " <code>True</code> when item is a node,\n   </code>false</code> when item is a leaf."
+            "type": "boolean",
+            "description": "<code>True</code> when item is a node,\n   </code>false</code> when item is a leaf."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isNodeOpen": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 64,
+          "line": 52,
           "column": 4,
-          "index": 2021
+          "index": 1590
         },
         "end": {
-          "line": 67,
+          "line": 55,
           "column": 5,
-          "index": 2148
+          "index": 1710
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.core.Object"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isNodeOpen": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return whether the node is opened or closed.",
+          "     *",
+          "     * @param node {qx.core.Object} Node to check.",
+          "     * @return {Boolean} Returns <code>true</code> when the node is opened,",
+          "     *   <code>false</code> otherwise.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -180,28 +228,46 @@
           {
             "name": "@return",
             "body": "{Boolean} Returns <code>true</code> when the node is opened,\n   <code>false</code> otherwise.",
-            "type": "Boolean",
-            "description": " Returns <code>true</code> when the node is opened,\n   <code>false</code> otherwise."
+            "type": "boolean",
+            "description": "Returns <code>true</code> when the node is opened,\n   <code>false</code> otherwise."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLevel": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 64,
           "column": 4,
-          "index": 2359
+          "index": 1958
         },
         "end": {
-          "line": 78,
+          "line": 67,
           "column": 5,
-          "index": 2464
+          "index": 2082
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.core.Object"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getLevel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the row's nesting level.",
+          "     *",
+          "     * @param row {Integer} The row to get the nesting level.",
+          "     * @return {Integer} The row's nesting level or <code>null</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -222,27 +288,47 @@
             "name": "@return",
             "body": "{Integer} The row's nesting level or <code>null</code>.",
             "type": "Integer",
-            "description": " The row's nesting level or <code>null</code>."
+            "description": "The row's nesting level or <code>null</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasChildren": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 88,
+          "line": 75,
           "column": 4,
-          "index": 2750
+          "index": 2285
         },
         "end": {
-          "line": 91,
+          "line": 78,
           "column": 5,
-          "index": 2878
+          "index": 2387
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "hasChildren": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return whether the node has visible children or not.",
+          "     *",
+          "     * @internal",
+          "     * @param node {qx.core.Object} Node to check.",
+          "     * @return {Boolean} <code>True</code> when the node has visible children,",
+          "     *   <code>false</code> otherwise.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -268,28 +354,45 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>True</code> when the node has visible children,\n   <code>false</code> otherwise.",
-            "type": "Boolean",
-            "description": " <code>True</code> when the node has visible children,\n   <code>false</code> otherwise."
+            "type": "boolean",
+            "description": "<code>True</code> when the node has visible children,\n   <code>false</code> otherwise."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "openNode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 98,
+          "line": 88,
           "column": 4,
-          "index": 2995
+          "index": 2663
         },
         "end": {
-          "line": 101,
+          "line": 91,
           "column": 5,
-          "index": 3120
+          "index": 2788
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.core.Object"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "openNode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opens the passed node.",
+          "     *",
+          "     * @param node {qx.core.Object} Node to open.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -306,23 +409,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "openNodeWithoutScrolling": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 108,
+          "line": 98,
           "column": 4,
-          "index": 3279
+          "index": 2898
         },
         "end": {
-          "line": 111,
+          "line": 101,
           "column": 5,
-          "index": 3420
+          "index": 3020
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.core.Object"
+        }
+      ],
+      "appearsIn": []
+    },
+    "openNodeWithoutScrolling": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opens the passed node without scrolling selected item into view.",
+          "     *",
+          "     * @param node {qx.core.Object} Node to open.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -339,23 +456,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "closeNode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 118,
+          "line": 108,
           "column": 4,
-          "index": 3539
+          "index": 3172
         },
         "end": {
-          "line": 121,
+          "line": 111,
           "column": 5,
-          "index": 3665
+          "index": 3310
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.core.Object"
+        }
+      ],
+      "appearsIn": []
+    },
+    "closeNode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Closes the passed node.",
+          "     *",
+          "     * @param node {qx.core.Object} Node to close.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -372,23 +503,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "closeNodeWithoutScrolling": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 128,
+          "line": 118,
           "column": 4,
-          "index": 3826
+          "index": 3422
         },
         "end": {
-          "line": 131,
+          "line": 121,
           "column": 5,
-          "index": 3968
+          "index": 3545
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.core.Object"
+        }
+      ],
+      "appearsIn": []
+    },
+    "closeNodeWithoutScrolling": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Closes the passed node without scrolling selected item into view.",
+          "     *",
+          "     * @param node {qx.core.Object} Node to close.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -405,23 +550,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 138,
+          "line": 128,
           "column": 4,
-          "index": 4105
+          "index": 3699
         },
         "end": {
-          "line": 138,
-          "column": 21,
-          "index": 4122
+          "line": 131,
+          "column": 5,
+          "index": 3838
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "qx.core.Object"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current selection.",
+          "     *",
+          "     * @return {qx.data.IListData} The current selected elements.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -431,15 +590,33 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{qx.data.Array} The current selected elements.",
-            "type": "qx.data.Array",
-            "description": " The current selected elements."
+            "body": "{qx.data.IListData} The current selected elements.",
+            "type": "qx.data.IListData",
+            "description": "The current selected elements."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3972
+        },
+        "end": {
+          "line": 138,
+          "column": 21,
+          "index": 3989
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "qx.data.IListData"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

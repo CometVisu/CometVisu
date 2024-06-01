@@ -1,67 +1,79 @@
 {
-  "className": "qx.module.Messaging",
-  "packageName": "qx.module",
-  "name": "Messaging",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 31,
-        "column": 0,
-        "index": 996
-      },
-      "end": {
-        "line": 87,
-        "column": 3,
-        "index": 3130
-      }
+  "version": 0.3,
+  "lastModified": 1717235171742,
+  "lastModifiedIso": "2024-06-01T09:46:11.742Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Messaging.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 966
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Define messages to react on certain channels.\n The channel names will be used in the q.messaging.on method to define handlers which will\n be called on certain channels and routes. The q.messaging.emit method can be used\n to execute a given route on a channel. q.messaging.onAny defines a handler on any channel.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.event.Messaging#on"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.Messaging#onAny"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.Messaging#remove"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.Messaging#emit"
-        }
-      ]
+    "end": {
+      "line": 87,
+      "column": 3,
+      "index": 3044
     }
   },
-  "type": "class",
+  "className": "qx.module.Messaging",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Define messages to react on certain channels.",
+      " *",
+      " * The channel names will be used in the q.messaging.on method to define handlers which will",
+      " * be called on certain channels and routes. The q.messaging.emit method can be used",
+      " * to execute a given route on a channel. q.messaging.onAny defines a handler on any channel.",
+      " *",
+      " * @require(qx.event.Messaging#on)",
+      " * @require(qx.event.Messaging#onAny)",
+      " * @require(qx.event.Messaging#remove)",
+      " * @require(qx.event.Messaging#emit)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Define messages to react on certain channels.\n The channel names will be used in the q.messaging.on method to define handlers which will\n be called on certain channels and routes. The q.messaging.emit method can be used\n to execute a given route on a channel. q.messaging.onAny defines a handler on any channel.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.Messaging#on"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.Messaging#onAny"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.Messaging#remove"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.Messaging#emit"
+      }
+    ]
+  },
   "statics": {
     "on": {
-      "location": {
-        "start": {
-          "line": 45,
-          "column": 4,
-          "index": 1690
-        },
-        "end": {
-          "line": 45,
-          "column": 12,
-          "index": 1698
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a route handler for the given channel. The route is called",
+          "     * if the {@link #emit} method finds a match.",
+          "     *",
+          "     * @attachStatic{qxWeb, messaging.on}",
+          "     * @param channel {String} The channel of the message.",
+          "     * @param type {String|RegExp} The type, used for checking if the executed path matches.",
+          "     * @param handler {Function} The handler to call if the route matches the executed path.",
+          "     * @param scope {var ? null} The scope of the handler.",
+          "     * @return {String} The id of the route used to remove the route.",
+          "     * @signature function(channel, type, handler, scope)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -80,7 +92,7 @@
             "body": "channel {String} The channel of the message.",
             "paramName": "channel",
             "description": " The channel of the message.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -97,7 +109,7 @@
             "body": "handler {Function} The handler to call if the route matches the executed path.",
             "paramName": "handler",
             "description": " The handler to call if the route matches the executed path.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -113,8 +125,8 @@
           {
             "name": "@return",
             "body": "{String} The id of the route used to remove the route.",
-            "type": "String",
-            "description": " The id of the route used to remove the route."
+            "type": "string",
+            "description": "The id of the route used to remove the route."
           }
         ],
         "@signature": [
@@ -124,23 +136,39 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "onAny": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 58,
+          "line": 45,
           "column": 4,
-          "index": 2256
+          "index": 1646
         },
         "end": {
-          "line": 58,
-          "column": 15,
-          "index": 2267
+          "line": 45,
+          "column": 12,
+          "index": 1654
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "onAny": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a handler for the \"any\" channel. The \"any\" channel is called",
+          "     * before all other channels.",
+          "     *",
+          "     * @attachStatic{qxWeb, messaging.onAny}",
+          "     * @param type {String|RegExp} The route, used for checking if the executed path matches",
+          "     * @param handler {Function} The handler to call if the route matches the executed path",
+          "     * @param scope {var ? null} The scope of the handler.",
+          "     * @return {String} The id of the route used to remove the route.",
+          "     * @signature function(type, handler, scope)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -169,7 +197,7 @@
             "body": "handler {Function} The handler to call if the route matches the executed path",
             "paramName": "handler",
             "description": " The handler to call if the route matches the executed path",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -185,8 +213,8 @@
           {
             "name": "@return",
             "body": "{String} The id of the route used to remove the route.",
-            "type": "String",
-            "description": " The id of the route used to remove the route."
+            "type": "string",
+            "description": "The id of the route used to remove the route."
           }
         ],
         "@signature": [
@@ -196,23 +224,35 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "remove": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 67,
+          "line": 58,
           "column": 4,
-          "index": 2498
+          "index": 2199
         },
         "end": {
-          "line": 67,
-          "column": 16,
-          "index": 2510
+          "line": 58,
+          "column": 15,
+          "index": 2210
         }
       },
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a registered listener by the given id.",
+          "     *",
+          "     * @attachStatic{qxWeb, messaging.remove}",
+          "     * @param id {String} The id of the registered listener.",
+          "     * @signature function(id)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -231,7 +271,7 @@
             "body": "id {String} The id of the registered listener.",
             "paramName": "id",
             "description": " The id of the registered listener.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@signature": [
@@ -241,23 +281,35 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "emit": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 79,
+          "line": 67,
           "column": 4,
-          "index": 3003
+          "index": 2432
         },
         "end": {
-          "line": 79,
-          "column": 14,
-          "index": 3013
+          "line": 67,
+          "column": 16,
+          "index": 2444
         }
       },
+      "appearsIn": []
+    },
+    "emit": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sends a message on the given channel and informs all matching route handlers.",
+          "     *",
+          "     * @attachStatic{qxWeb, messaging.emit}",
+          "     * @param channel {String} The channel of the message.",
+          "     * @param path {String} The path to execute",
+          "     * @param params {Map} The given parameters that should be propagated",
+          "     * @param customData {var} The given custom data that should be propagated",
+          "     * @signature function(channel, path, params, customData)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -276,21 +328,21 @@
             "body": "channel {String} The channel of the message.",
             "paramName": "channel",
             "description": " The channel of the message.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "path {String} The path to execute",
             "paramName": "path",
             "description": " The path to execute",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "params {Map} The given parameters that should be propagated",
             "paramName": "params",
             "description": " The given parameters that should be propagated",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -307,23 +359,22 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 82,
-        "column": 2,
-        "index": 3025
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2925
+        },
+        "end": {
+          "line": 79,
+          "column": 14,
+          "index": 2935
+        }
       },
-      "end": {
-        "line": 86,
-        "column": 3,
-        "index": 3125
-      }
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

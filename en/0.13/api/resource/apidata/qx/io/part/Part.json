@@ -1,164 +1,156 @@
 {
-  "className": "qx.io.part.Part",
-  "packageName": "qx.io.part",
-  "name": "Part",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 725
-      },
-      "end": {
-        "line": 225,
-        "column": 3,
-        "index": 6671
-      }
+  "version": 0.3,
+  "lastModified": 1717235171974,
+  "lastModifiedIso": "2024-06-01T09:46:11.974Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/part/Part.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 700
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Wrapper for a part as defined in the config file. This class knows about all\n packages the part depends on and provides functionality to load the part.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 225,
+      "column": 3,
+      "index": 6447
     }
   },
-  "type": "class",
+  "className": "qx.io.part.Part",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Wrapper for a part as defined in the config file. This class knows about all",
+      " * packages the part depends on and provides functionality to load the part.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Wrapper for a part as defined in the config file. This class knows about all\n packages the part depends on and provides functionality to load the part.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "name"
+      },
+      {
+        "name": "packages"
+      },
+      {
+        "name": "loader"
+      }
+    ],
     "location": {
       "start": {
         "line": 33,
         "column": 2,
-        "index": 1010
+        "index": 978
       },
       "end": {
         "line": 45,
         "column": 3,
-        "index": 1354
+        "index": 1310
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "name {String} Name of the part as defined in the config file at\n    compile time.",
-          "paramName": "name",
-          "description": " Name of the part as defined in the config file at\n    compile time.",
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "packages {qx.io.part.Package[]} List of dependent packages",
-          "paramName": "packages",
-          "description": " List of dependent packages",
-          "type": "qx.io.part.Package[]"
-        },
-        {
-          "name": "@param",
-          "body": "loader {qx.Part} The loader of this part.",
-          "paramName": "loader",
-          "description": " The loader of this part.",
-          "type": "qx.Part"
-        }
-      ]
     }
   },
   "members": {
     "_readyState": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 48,
           "column": 4,
-          "index": 1377
+          "index": 1330
         },
         "end": {
           "line": 48,
           "column": 21,
-          "index": 1394
+          "index": 1347
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_loader": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 49,
           "column": 4,
-          "index": 1401
+          "index": 1353
         },
         "end": {
           "line": 49,
           "column": 17,
-          "index": 1414
+          "index": 1366
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_packages": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 50,
           "column": 4,
-          "index": 1421
+          "index": 1372
         },
         "end": {
           "line": 50,
           "column": 19,
-          "index": 1436
+          "index": 1387
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "__name": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 51,
           "column": 4,
-          "index": 1443
+          "index": 1393
         },
         "end": {
           "line": 51,
           "column": 16,
-          "index": 1455
+          "index": 1405
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getReadyState": {
-      "location": {
-        "start": {
-          "line": 66,
-          "column": 4,
-          "index": 1893
-        },
-        "end": {
-          "line": 68,
-          "column": 5,
-          "index": 1949
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the ready state of the part. The value is one of",
+          "     * <ul>",
+          "     * <li>",
+          "     *   <b>initialized</b>: The part is initialized. The {@link #load}",
+          "     *   method has not yet been called",
+          "     * </li>",
+          "     * <li><b>loading</b>: The part is still loading.</li>",
+          "     * <li><b>complete</b>: The part has been loaded successfully</li>",
+          "     * </li>",
+          "     *",
+          "     * @return {String} The ready state.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -169,28 +161,40 @@
           {
             "name": "@return",
             "body": "{String} The ready state.",
-            "type": "String",
-            "description": " The ready state."
+            "type": "string",
+            "description": "The ready state."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 66,
           "column": 4,
-          "index": 2075
+          "index": 1828
         },
         "end": {
-          "line": 77,
+          "line": 68,
           "column": 5,
-          "index": 2120
+          "index": 1882
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The part name as defined in the config file",
+          "     *",
+          "     * @return {String} The part name",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -201,28 +205,40 @@
           {
             "name": "@return",
             "body": "{String} The part name",
-            "type": "String",
-            "description": " The part name"
+            "type": "string",
+            "description": "The part name"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPackages": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 84,
+          "line": 75,
           "column": 4,
-          "index": 2286
+          "index": 2001
         },
         "end": {
-          "line": 86,
+          "line": 77,
           "column": 5,
-          "index": 2338
+          "index": 2044
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getPackages": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for testing purposes.",
+          "     * @internal",
+          "     * @return {qx.io.part.Package[]} All contained packages in an array.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -240,27 +256,41 @@
             "name": "@return",
             "body": "{qx.io.part.Package[]} All contained packages in an array.",
             "type": "qx.io.part.Package[]",
-            "description": " All contained packages in an array."
+            "description": "All contained packages in an array."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "preload": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 95,
+          "line": 84,
           "column": 4,
-          "index": 2600
+          "index": 2203
         },
         "end": {
-          "line": 105,
+          "line": 86,
           "column": 5,
-          "index": 3055
+          "index": 2253
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.io.part.Package[]"
+      },
+      "appearsIn": []
+    },
+    "preload": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method for preloading this part.",
+          "     * Empty implementation! Regular parts can not be preloaded.",
+          "     *",
+          "     * @param callback {Function} Callback for the preload.",
+          "     * @param self {Object?} The context of the callback.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -273,7 +303,7 @@
             "body": "callback {Function} Callback for the preload.",
             "paramName": "callback",
             "description": " Callback for the preload.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -285,23 +315,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "load": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 117,
+          "line": 95,
           "column": 4,
-          "index": 3460
+          "index": 2506
         },
         "end": {
-          "line": 158,
+          "line": 105,
           "column": 5,
-          "index": 4521
+          "index": 2951
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "load": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads the part asynchronously. The callback is called after the part and",
+          "     * its dependencies are fully loaded. If the part is already loaded the",
+          "     * callback is called immediately.",
+          "     *",
+          "     * @internal",
+          "     *",
+          "     * @param callback {Function} Function to execute on completion",
+          "     * @param self {Object?window} Context to execute the given function in",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -320,7 +374,7 @@
             "body": "callback {Function} Function to execute on completion",
             "paramName": "callback",
             "description": " Function to execute on completion",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -333,23 +387,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_appendPartListener": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 168,
+          "line": 117,
           "column": 4,
-          "index": 4845
+          "index": 3344
         },
         "end": {
-          "line": 174,
+          "line": 158,
           "column": 5,
-          "index": 5066
+          "index": 4364
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "window"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_appendPartListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper for appending a listener for this part.",
+          "     *",
+          "     * @param callback {Function} The function to call when the part is loaded.",
+          "     * @param self {Object?} The context of the callback.",
+          "     * @param part {qx.io.part.Part|qx.io.part.ClosurePart} The part to listen",
+          "     *   to.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -362,7 +439,7 @@
             "body": "callback {Function} The function to call when the part is loaded.",
             "paramName": "callback",
             "description": " The function to call when the part is loaded.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -384,23 +461,49 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_markAsCompleted": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 181,
+          "line": 168,
           "column": 4,
-          "index": 5206
+          "index": 4678
         },
         "end": {
-          "line": 184,
+          "line": 174,
           "column": 5,
-          "index": 5325
+          "index": 4893
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true
+        },
+        {
+          "name": "part",
+          "type": [
+            "qx.io.part.Part",
+            "qx.io.part.ClosurePart"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_markAsCompleted": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper for marking the part as complete.",
+          "     *",
+          "     * @param readyState {String} The new ready state.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -413,27 +516,40 @@
             "body": "readyState {String} The new ready state.",
             "paramName": "readyState",
             "description": " The new ready state.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_signalStartup": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 190,
+          "line": 181,
           "column": 4,
-          "index": 5504
+          "index": 5026
         },
         "end": {
-          "line": 195,
+          "line": 184,
           "column": 5,
-          "index": 5688
+          "index": 5142
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "readyState",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_signalStartup": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method used to start up the application in case not all parts",
+          "     * necessary to initialize the application are in the boot part. [BUG #3793]",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -441,23 +557,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_checkCompleteLoading": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 205,
+          "line": 190,
           "column": 4,
-          "index": 6045
+          "index": 5315
         },
         "end": {
-          "line": 223,
+          "line": 195,
           "column": 5,
-          "index": 6661
+          "index": 5494
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_checkCompleteLoading": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper for checking if the part is loaded completely.",
+          "     *",
+          "     * @param callback {Function} The function to be called if the part has",
+          "     *   been loaded completely.",
+          "     * @param self {Object} The context of the callback function.",
+          "     * @return {Boolean} true, if the part is loading, complete or has an error.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -470,30 +598,55 @@
             "body": "callback {Function} The function to be called if the part has\n   been loaded completely.",
             "paramName": "callback",
             "description": " The function to be called if the part has\n   been loaded completely.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "self {Object} The context of the callback function.",
             "paramName": "self",
             "description": " The context of the callback function.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} true, if the part is loading, complete or has an error.",
-            "type": "Boolean",
-            "description": " true, if the part is loading, complete or has an error."
+            "type": "boolean",
+            "description": "true, if the part is loading, complete or has an error."
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 205,
+          "column": 4,
+          "index": 5841
+        },
+        "end": {
+          "line": 223,
+          "column": 5,
+          "index": 6439
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": [
-    "qx.io.part.ClosurePart"
-  ]
+  "statics": {},
+  "properties": {}
 }

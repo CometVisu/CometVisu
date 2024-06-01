@@ -1,113 +1,104 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235172570,
+  "lastModifiedIso": "2024-06-01T09:46:12.570Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/Touch.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 32,
+      "column": 0,
+      "index": 867
+    },
+    "end": {
+      "line": 215,
+      "column": 3,
+      "index": 5978
+    }
+  },
   "className": "qx.event.handler.Touch",
-  "packageName": "qx.event.handler",
-  "name": "Touch",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class provides a unified touch event handler.",
+      " *",
+      " * @require(qx.event.handler.UserAction)",
+      " * @require(qx.event.handler.Orientation)",
+      " * @require(qx.event.type.Tap)",
+      " * @require(qx.event.type.Swipe)",
+      " * @require(qx.event.type.Track)",
+      " * @require(qx.event.type.Rotate)",
+      " * @require(qx.event.type.Pinch)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class provides a unified touch event handler.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.handler.UserAction"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Orientation"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.type.Tap"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.type.Swipe"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.type.Track"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.type.Rotate"
+      },
+      {
+        "name": "@require",
+        "body": "qx.event.type.Pinch"
+      }
+    ]
+  },
   "superClass": "qx.event.handler.TouchCore",
   "interfaces": [
     "qx.event.IEventHandler",
     "qx.core.IDisposable"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 32,
-        "column": 0,
-        "index": 898
-      },
-      "end": {
-        "line": 215,
-        "column": 3,
-        "index": 6192
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class provides a unified touch event handler.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.event.handler.UserAction"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.handler.Orientation"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.type.Tap"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.type.Swipe"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.type.Track"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.type.Rotate"
-        },
-        {
-          "name": "@require",
-          "body": "qx.event.type.Pinch"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      }
+    ],
     "location": {
       "start": {
         "line": 47,
         "column": 2,
-        "index": 1365
+        "index": 1319
       },
       "end": {
         "line": 54,
         "column": 3,
-        "index": 1594
+        "index": 1541
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Create a new instance</p>"
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "manager {qx.event.Manager} Event manager for the window to use",
-          "paramName": "manager",
-          "description": " Event manager for the window to use",
-          "type": "qx.event.Manager"
-        }
-      ]
     }
   },
   "statics": {
     "PRIORITY": {
-      "location": {
-        "start": {
-          "line": 64,
-          "column": 4,
-          "index": 1860
-        },
-        "end": {
-          "line": 64,
-          "column": 51,
-          "index": 1907
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} Priority of this handler "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -121,23 +112,26 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "SUPPORTED_TYPES": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 67,
+          "line": 64,
           "column": 4,
-          "index": 1962
+          "index": 1797
         },
         "end": {
-          "line": 75,
-          "column": 5,
-          "index": 2186
+          "line": 64,
+          "column": 51,
+          "index": 1844
         }
       },
+      "appearsIn": []
+    },
+    "SUPPORTED_TYPES": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Supported event types "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -151,23 +145,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "TARGET_CHECK": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 78,
+          "line": 67,
           "column": 4,
-          "index": 2249
+          "index": 1896
         },
         "end": {
-          "line": 80,
-          "column": 44,
-          "index": 2355
+          "line": 75,
+          "column": 5,
+          "index": 2112
         }
       },
+      "appearsIn": []
+    },
+    "TARGET_CHECK": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} Which target check to use "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -181,23 +178,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "IGNORE_CAN_HANDLE": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 83,
+          "line": 78,
           "column": 4,
-          "index": 2443
+          "index": 2172
         },
         "end": {
-          "line": 83,
-          "column": 27,
-          "index": 2466
+          "line": 80,
+          "column": 44,
+          "index": 2276
         }
       },
+      "appearsIn": []
+    },
+    "IGNORE_CAN_HANDLE": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} Whether the method \"canHandleEvent\" must be called "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -211,23 +211,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "MOUSE_TO_TOUCH_MAPPING": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 86,
+          "line": 83,
           "column": 4,
-          "index": 2539
+          "index": 2361
         },
         "end": {
-          "line": 90,
-          "column": 5,
-          "index": 2661
+          "line": 83,
+          "column": 27,
+          "index": 2384
         }
       },
+      "appearsIn": []
+    },
+    "MOUSE_TO_TOUCH_MAPPING": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Mapping of mouse events to touch events "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -241,153 +244,209 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2454
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2572
+        }
+      },
+      "appearsIn": []
     }
   },
   "members": {
     "__manager": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 100,
           "column": 4,
-          "index": 2879
+          "index": 2780
         },
         "end": {
           "line": 100,
           "column": 19,
-          "index": 2894
+          "index": 2795
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__window": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 101,
           "column": 4,
-          "index": 2901
+          "index": 2801
         },
         "end": {
           "line": 101,
           "column": 18,
-          "index": 2915
+          "index": 2815
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__root": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 102,
           "column": 4,
-          "index": 2922
+          "index": 2821
         },
         "end": {
           "line": 102,
           "column": 16,
-          "index": 2934
+          "index": 2833
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__isInTouch": {
+      "jsdoc": {
+        "raw": [
+          " Checks if the mouse movement is happening while simulating a touch event"
+        ]
+      },
+      "access": "private",
       "location": {
         "start": {
           "line": 105,
           "column": 4,
-          "index": 3024
+          "index": 2920
         },
         "end": {
           "line": 105,
           "column": 22,
-          "index": 3042
+          "index": 2938
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "canHandleEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 114,
           "column": 4,
-          "index": 3295
+          "index": 3182
         },
         "end": {
           "line": 114,
           "column": 35,
-          "index": 3326
+          "index": 3213
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.event.IEventHandler",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        }
+      ],
       "appearsIn": [
         "qx.event.IEventHandler"
       ]
     },
     "registerEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 117,
           "column": 4,
-          "index": 3368
+          "index": 3252
         },
         "end": {
           "line": 119,
           "column": 5,
-          "index": 3453
+          "index": 3335
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.event.IEventHandler",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
       "appearsIn": [
         "qx.event.IEventHandler"
       ]
     },
     "unregisterEvent": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 122,
           "column": 4,
-          "index": 3495
+          "index": 3374
         },
         "end": {
           "line": 124,
           "column": 5,
-          "index": 3582
+          "index": 3459
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.event.IEventHandler",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "capture"
+        }
+      ],
       "appearsIn": [
         "qx.event.IEventHandler"
       ]
     },
     "_fireEvent": {
-      "location": {
-        "start": {
-          "line": 140,
-          "column": 4,
-          "index": 4093
-        },
-        "end": {
-          "line": 163,
-          "column": 5,
-          "index": 4687
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fire a touch event with the given parameters",
+          "     *",
+          "     * @param domEvent {Event} DOM event",
+          "     * @param type {String ? null} type of the event",
+          "     * @param target {Element ? null} event target",
+          "     * @param eventTypeClass {Class ? qx.event.type.Touch} the event type class",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -431,27 +490,59 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3954
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 4525
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "target",
+          "type": "Element",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "eventTypeClass",
+          "type": "Class",
+          "optional": true,
+          "defaultValue": "qx.event.type.Touch"
+        }
+      ],
       "overriddenFrom": "qx.event.handler.TouchCore",
       "appearsIn": [
         "qx.event.handler.TouchCore"
       ]
     },
     "_onTouchEvent": {
-      "location": {
-        "start": {
-          "line": 177,
-          "column": 4,
-          "index": 5081
-        },
-        "end": {
-          "line": 179,
-          "column": 6,
-          "index": 5208
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the native touch events.",
+          "     *",
+          "     * @signature function(domEvent)",
+          "     * @param domEvent {Event} The touch event from the browser.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -474,23 +565,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "dispose": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 184,
+          "line": 177,
           "column": 4,
-          "index": 5263
+          "index": 4905
         },
         "end": {
-          "line": 187,
-          "column": 5,
-          "index": 5376
+          "line": 179,
+          "column": 6,
+          "index": 5030
         }
       },
+      "overriddenFrom": "qx.event.handler.TouchCore",
+      "appearsIn": [
+        "qx.event.handler.TouchCore"
+      ]
+    },
+    "dispose": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispose this object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -498,28 +597,38 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.core.IDisposable",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 5080
+        },
+        "end": {
+          "line": 187,
+          "column": 5,
+          "index": 5190
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.event.handler.TouchCore",
       "appearsIn": [
+        "qx.event.handler.TouchCore",
         "qx.core.IDisposable",
-        "qx.event.handler.TouchCore"
+        "qx.core.IDisposable"
       ]
     },
     "__callBase": {
-      "location": {
-        "start": {
-          "line": 195,
-          "column": 4,
-          "index": 5544
-        },
-        "end": {
-          "line": 197,
-          "column": 5,
-          "index": 5654
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Call overridden method.",
+          "     *",
+          "     * @param method {String} Name of the overridden method.",
+          "     * @param args {Array} Arguments.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -532,35 +641,43 @@
             "body": "method {String} Name of the overridden method.",
             "paramName": "method",
             "description": " Name of the overridden method.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "args {Array} Arguments.",
             "paramName": "args",
             "description": " Arguments.",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 195,
+          "column": 4,
+          "index": 5350
+        },
+        "end": {
+          "line": 197,
+          "column": 5,
+          "index": 5458
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "method",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "Array<any>"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 206,
-        "column": 2,
-        "index": 5854
-      },
-      "end": {
-        "line": 214,
-        "column": 3,
-        "index": 6187
-      }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+  "properties": {}
 }

@@ -1,0 +1,96 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171750,
+  "lastModifiedIso": "2024-06-01T09:46:11.750Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/resources/MetaLoader.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 707
+    },
+    "end": {
+      "line": 42,
+      "column": 3,
+      "index": 1152
+    }
+  },
+  "className": "qx.tool.compiler.resources.MetaLoader",
+  "jsdoc": {
+    "raw": [
+      " ************************************************************************",
+      " *",
+      " *    qooxdoo-compiler - node.js based replacement for the Qooxdoo python",
+      " *    toolchain",
+      " *",
+      " *    https://github.com/qooxdoo/qooxdoo",
+      " *",
+      " *    Copyright:",
+      " *      2011-2017 Zenesis Limited, http://www.zenesis.com",
+      " *",
+      " *    License:",
+      " *      MIT: https://opensource.org/licenses/MIT",
+      " *",
+      " *      This software is provided under the same licensing terms as Qooxdoo,",
+      " *      please see the LICENSE file in the Qooxdoo project's top-level directory",
+      " *      for details.",
+      " *",
+      " *    Authors:",
+      " *      * John Spackman (john.spackman@zenesis.com, @johnspackman)",
+      " *",
+      " * *********************************************************************** "
+    ]
+  },
+  "superClass": "qx.tool.compiler.resources.ResourceLoader",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 930
+      },
+      "end": {
+        "line": 33,
+        "column": 3,
+        "index": 983
+      }
+    }
+  },
+  "members": {
+    "load": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1003
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1144
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "asset"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.resources.ResourceLoader",
+      "appearsIn": [
+        "qx.tool.compiler.resources.ResourceLoader"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

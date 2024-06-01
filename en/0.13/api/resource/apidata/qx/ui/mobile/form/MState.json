@@ -1,49 +1,45 @@
 {
-  "className": "qx.ui.mobile.form.MState",
-  "packageName": "qx.ui.mobile.form",
-  "name": "MState",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 6,
-        "column": 0,
-        "index": 155
-      },
-      "end": {
-        "line": 73,
-        "column": 3,
-        "index": 2015
-      }
+  "version": 0.3,
+  "lastModified": 1717235171838,
+  "lastModifiedIso": "2024-06-01T09:46:11.838Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/form/MState.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 6,
+      "column": 0,
+      "index": 150
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The mixin contains all functionality to provide methods\n for form elements to manipulate their state. [usually \"valid\" and \"invalid\"]</p>"
-        }
-      ]
+    "end": {
+      "line": 73,
+      "column": 3,
+      "index": 1943
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.mobile.form.MState",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The mixin contains all functionality to provide methods",
+      " * for form elements to manipulate their state. [usually \"valid\" and \"invalid\"]",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The mixin contains all functionality to provide methods\n for form elements to manipulate their state. [usually \"valid\" and \"invalid\"]</p>"
+      }
+    ]
+  },
   "members": {
     "__states": {
-      "location": {
-        "start": {
-          "line": 17,
-          "column": 4,
-          "index": 462
-        },
-        "end": {
-          "line": 17,
-          "column": 18,
-          "index": 476
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The states of the element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +47,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "addState": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 24,
+          "line": 17,
           "column": 4,
-          "index": 599
+          "index": 446
         },
         "end": {
-          "line": 30,
-          "column": 5,
-          "index": 766
+          "line": 17,
+          "column": 18,
+          "index": 460
         }
       },
+      "appearsIn": []
+    },
+    "addState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a state to the element",
+          "     * @param state {String} the state to be added",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -80,27 +83,42 @@
             "body": "state {String} the state to be added",
             "paramName": "state",
             "description": " the state to be added",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 38,
+          "line": 24,
           "column": 4,
-          "index": 1005
+          "index": 576
         },
         "end": {
-          "line": 40,
+          "line": 30,
           "column": 5,
-          "index": 1091
+          "index": 737
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the element has the state passed as argument",
+          "     * @param state {String} the state to be checked",
+          "     * @return {Boolean} true if the element has the state, false if it doesn't.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -113,35 +131,52 @@
             "body": "state {String} the state to be checked",
             "paramName": "state",
             "description": " the state to be checked",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} true if the element has the state, false if it doesn't.",
-            "type": "Boolean",
-            "description": " true if the element has the state, false if it doesn't."
+            "type": "boolean",
+            "description": "true if the element has the state, false if it doesn't."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 47,
+          "line": 38,
           "column": 4,
-          "index": 1221
+          "index": 968
         },
         "end": {
-          "line": 52,
+          "line": 40,
           "column": 5,
-          "index": 1367
+          "index": 1052
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a state from the element",
+          "     * @param state {String} the state to be removed",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -154,27 +189,44 @@
             "body": "state {String} the state to be removed",
             "paramName": "state",
             "description": " the state to be removed",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "replaceState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 47,
           "column": 4,
-          "index": 1708
+          "index": 1175
         },
         "end": {
-          "line": 71,
+          "line": 52,
           "column": 5,
-          "index": 2005
+          "index": 1316
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "state",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "replaceState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces a state of the element with a new state.",
+          "     * If the element doesn't have the state to be removed, then th new state will",
+          "     * just be added.",
+          "     * @param oldState {String} the state to be replaced",
+          "     * @param newState {String} the state to get injected in the oldState's place",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -187,20 +239,44 @@
             "body": "oldState {String} the state to be replaced",
             "paramName": "oldState",
             "description": " the state to be replaced",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "newState {String} the state to get injected in the oldState's place",
             "paramName": "newState",
             "description": " the state to get injected in the oldState's place",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1647
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1935
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "oldState",
+          "type": "string"
+        },
+        {
+          "name": "newState",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

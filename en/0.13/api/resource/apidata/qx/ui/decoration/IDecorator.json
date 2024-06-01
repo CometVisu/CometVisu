@@ -1,49 +1,46 @@
 {
-  "className": "qx.ui.decoration.IDecorator",
-  "packageName": "qx.ui.decoration",
-  "name": "IDecorator",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 619
-      },
-      "end": {
-        "line": 48,
-        "column": 3,
-        "index": 1309
-      }
+  "version": 0.3,
+  "lastModified": 1717235171202,
+  "lastModifiedIso": "2024-06-01T09:46:11.202Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/decoration/IDecorator.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 596
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A decorator is responsible for computing a widget's decoration styles.</p>"
-        }
-      ]
+    "end": {
+      "line": 48,
+      "column": 3,
+      "index": 1262
     }
   },
-  "type": "interface",
+  "className": "qx.ui.decoration.IDecorator",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A decorator is responsible for computing a widget's decoration styles.",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A decorator is responsible for computing a widget's decoration styles.</p>"
+      }
+    ]
+  },
   "members": {
     "getStyles": {
-      "location": {
-        "start": {
-          "line": 31,
-          "column": 4,
-          "index": 804
-        },
-        "end": {
-          "line": 31,
-          "column": 18,
-          "index": 818
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the decorator's styles.",
+          "     *",
+          "     * @return {Map} Map of decoration styles",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -54,28 +51,39 @@
           {
             "name": "@return",
             "body": "{Map} Map of decoration styles",
-            "type": "Map",
-            "description": " Map of decoration styles"
+            "type": "Map<any, any>",
+            "description": "Map of decoration styles"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPadding": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 37,
+          "line": 31,
           "column": 4,
-          "index": 980
+          "index": 774
         },
         "end": {
-          "line": 37,
-          "column": 19,
-          "index": 995
+          "line": 31,
+          "column": 18,
+          "index": 788
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getPadding": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the configured padding minus the border width.",
+          "     * @return {Map} Map of top, right, bottom and left padding values",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -86,28 +94,42 @@
           {
             "name": "@return",
             "body": "{Map} Map of top, right, bottom and left padding values",
-            "type": "Map",
-            "description": " Map of top, right, bottom and left padding values"
+            "type": "Map<any, any>",
+            "description": "Map of top, right, bottom and left padding values"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getInsets": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 46,
+          "line": 37,
           "column": 4,
-          "index": 1285
+          "index": 944
         },
         "end": {
-          "line": 46,
-          "column": 18,
-          "index": 1299
+          "line": 37,
+          "column": 19,
+          "index": 959
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getInsets": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the amount of space the decoration needs for its border and padding",
+          "     * on each side.",
+          "     *",
+          "     * @return {Map} the desired inset as a map with the keys <code>top</code>,",
+          "     *     <code>right</code>, <code>bottom</code>, <code>left</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -118,14 +140,32 @@
           {
             "name": "@return",
             "body": "{Map} the desired inset as a map with the keys <code>top</code>,\n     <code>right</code>, <code>bottom</code>, <code>left</code>.",
-            "type": "Map",
-            "description": " the desired inset as a map with the keys <code>top</code>,\n     <code>right</code>, <code>bottom</code>, <code>left</code>."
+            "type": "Map<any, any>",
+            "description": "the desired inset as a map with the keys <code>top</code>,\n     <code>right</code>, <code>bottom</code>, <code>left</code>."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1240
+        },
+        "end": {
+          "line": 46,
+          "column": 18,
+          "index": 1254
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -60,8 +60,8 @@
       this._createChildControl("button");
       var dropdown = this.getChildControl("dropdown");
       dropdown.getChildControl("list").setSelectionMode("single");
-      this.__P_370_0 = dropdown.getSelection();
-      this.__P_370_0.addListener("change", this.__P_370_1, this);
+      this.__P_589_0 = dropdown.getSelection();
+      this.__P_589_0.addListener("change", this.__P_589_1, this);
       this.bind("value", textField, "value");
       textField.bind("value", this, "value");
 
@@ -119,13 +119,13 @@
     },
     members: {
       /** @type {var} Binding id between local value and text field value. */
-      __P_370_2: null,
+      __P_589_2: null,
       /** @type {var} Binding id between text field value and local value. */
-      __P_370_3: null,
+      __P_589_3: null,
       /** @type {qx.data.Array} the drop-down selection. */
-      __P_370_0: null,
+      __P_589_0: null,
       /** @type {Boolean} Indicator to ignore selection changes from the list. */
-      __P_370_4: null,
+      __P_589_4: null,
       /*
       ---------------------------------------------------------------------------
         PUBLIC API
@@ -222,7 +222,7 @@
       },
       // overridden
       _beforeOpen: function _beforeOpen() {
-        this.__P_370_5();
+        this.__P_589_5();
       },
       // overridden
       _handleKeyboard: function _handleKeyboard(event) {
@@ -266,13 +266,13 @@
        *
        * @param event {qx.event.type.Data} The change event from the qx.data.Array.
        */
-      __P_370_1: function __P_370_1(event) {
-        if (this.__P_370_4 == true) {
+      __P_589_1: function __P_589_1(event) {
+        if (this.__P_589_4 == true) {
           return;
         }
-        var selected = this.__P_370_0.getItem(0);
+        var selected = this.__P_589_0.getItem(0);
         if (selected) {
-          selected = this.__P_370_6(selected);
+          selected = this.__P_589_6(selected);
           this.setValue(selected);
         }
       },
@@ -293,20 +293,20 @@
       /**
        * Selects the first list item that starts with the text field's value.
        */
-      __P_370_5: function __P_370_5() {
+      __P_589_5: function __P_589_5() {
         var value = this.getValue();
         var dropdown = this.getChildControl("dropdown");
         var selection = dropdown.getSelection();
         var selected = selection.getItem(0);
 
         // try to preselect the matching item even if there is no current selection
-        if (selected === undefined || this.__P_370_6(selected) !== value) {
+        if (selected === undefined || this.__P_589_6(selected) !== value) {
           // only reset the old selection if there is one
           if (selected !== undefined) {
             // reset the old selection
-            this.__P_370_4 = true;
+            this.__P_589_4 = true;
             selection.removeAll();
-            this.__P_370_4 = false;
+            this.__P_589_4 = false;
           }
 
           // No calculation is needed when the value is empty
@@ -317,7 +317,7 @@
           var lookupTable = dropdown.getChildControl("list")._getLookupTable();
           for (var i = 0, l = lookupTable.length; i < l; i++) {
             var modelItem = model.getItem(lookupTable[i]);
-            var itemLabel = this.__P_370_6(modelItem);
+            var itemLabel = this.__P_589_6(modelItem);
             if (itemLabel && itemLabel.indexOf(value) == 0) {
               dropdown.setPreselected(modelItem);
               break;
@@ -331,7 +331,7 @@
        * @param modelItem {var} The model item to convert.
        * @return {String} The converted value.
        */
-      __P_370_6: function __P_370_6(modelItem) {
+      __P_589_6: function __P_589_6(modelItem) {
         var labelOptions = this.getLabelOptions();
         var formatter = this.getDefaultFormat();
         var labelPath = this.getLabelPath();
@@ -355,11 +355,11 @@
       var textField = this.getChildControl("textfield");
       this.removeAllBindings();
       textField.removeAllBindings();
-      this.__P_370_0.removeListener("change", this.__P_370_1, this);
-      this.__P_370_0 = null;
+      this.__P_589_0.removeListener("change", this.__P_589_1, this);
+      this.__P_589_0 = null;
     }
   });
   qx.ui.form.VirtualComboBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualComboBox.js.map?dt=1709410160848
+//# sourceMappingURL=VirtualComboBox.js.map?dt=1717235411567

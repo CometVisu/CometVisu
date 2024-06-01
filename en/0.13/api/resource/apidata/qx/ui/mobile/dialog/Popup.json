@@ -1,89 +1,115 @@
 {
-  "className": "qx.ui.mobile.dialog.Popup",
-  "packageName": "qx.ui.mobile.dialog",
-  "name": "Popup",
-  "superClass": "qx.ui.mobile.core.Widget",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 62,
-        "column": 0,
-        "index": 1988
-      },
-      "end": {
-        "line": 590,
-        "column": 3,
-        "index": 16486
-      }
+  "version": 0.3,
+  "lastModified": 1717235172022,
+  "lastModifiedIso": "2024-06-01T09:46:12.022Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/dialog/Popup.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 62,
+      "column": 0,
+      "index": 1927
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The popup represents a widget that gets shown above other widgets,\n usually to present more info/details regarding an item in the application.\n There are 3 usages for now:\n </p>\n<pre class='javascript'>\n var widget = new qx.ui.mobile.form.Button(\"Error!\");\n var popup = new qx.ui.mobile.dialog.Popup(widget);\n popup.show();\n </pre>\n<p>Here we show a popup consisting of a single buttons alerting the user\n that an error has occurred.\n It will be centered to the screen.\n </p>\n<pre class='javascript'>\n var label = new qx.ui.mobile.basic.Label(\"Item1\");\n var widget = new qx.ui.mobile.form.Button(\"Error!\");\n var popup = new qx.ui.mobile.dialog.Popup(widget, label);\n popup.show();\n widget.addListener(\"tap\", function(){\n   popup.hide();\n });\n </pre>\n<p>In this case everything is as above, except that the popup will get shown next to \"label\"\n so that the user can understand that the info presented is about the \"Item1\"\n we also add a tap listener to the button that will hide out popup.\n Once created, the instance is reused between show/hide calls.\n </p>\n<pre class='javascript'>\n var widget = new qx.ui.mobile.form.Button(\"Error!\");\n var popup = new qx.ui.mobile.dialog.Popup(widget);\n popup.placeTo(25,100);\n popup.show();\n </pre>\n<p>Same as the first example, but this time the popup will be shown at the 25,100 coordinates.</p>"
-        }
-      ]
+    "end": {
+      "line": 590,
+      "column": 3,
+      "index": 15897
     }
   },
-  "type": "class",
+  "className": "qx.ui.mobile.dialog.Popup",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The popup represents a widget that gets shown above other widgets,",
+      " * usually to present more info/details regarding an item in the application.",
+      " *",
+      " * There are 3 usages for now:",
+      " *",
+      " * <pre class='javascript'>",
+      " * var widget = new qx.ui.mobile.form.Button(\"Error!\");",
+      " * var popup = new qx.ui.mobile.dialog.Popup(widget);",
+      " * popup.show();",
+      " * </pre>",
+      " * Here we show a popup consisting of a single buttons alerting the user",
+      " * that an error has occurred.",
+      " * It will be centered to the screen.",
+      " * <pre class='javascript'>",
+      " * var label = new qx.ui.mobile.basic.Label(\"Item1\");",
+      " * var widget = new qx.ui.mobile.form.Button(\"Error!\");",
+      " * var popup = new qx.ui.mobile.dialog.Popup(widget, label);",
+      " * popup.show();",
+      " * widget.addListener(\"tap\", function(){",
+      " *   popup.hide();",
+      " * });",
+      " *",
+      " * </pre>",
+      " *",
+      " * In this case everything is as above, except that the popup will get shown next to \"label\"",
+      " * so that the user can understand that the info presented is about the \"Item1\"",
+      " * we also add a tap listener to the button that will hide out popup.",
+      " *",
+      " * Once created, the instance is reused between show/hide calls.",
+      " *",
+      " * <pre class='javascript'>",
+      " * var widget = new qx.ui.mobile.form.Button(\"Error!\");",
+      " * var popup = new qx.ui.mobile.dialog.Popup(widget);",
+      " * popup.placeTo(25,100);",
+      " * popup.show();",
+      " * </pre>",
+      " *",
+      " * Same as the first example, but this time the popup will be shown at the 25,100 coordinates.",
+      " *",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The popup represents a widget that gets shown above other widgets,\n usually to present more info/details regarding an item in the application.\n There are 3 usages for now:\n </p>\n<pre class='javascript'>\n var widget = new qx.ui.mobile.form.Button(\"Error!\");\n var popup = new qx.ui.mobile.dialog.Popup(widget);\n popup.show();\n </pre>\n<p>Here we show a popup consisting of a single buttons alerting the user\n that an error has occurred.\n It will be centered to the screen.\n </p>\n<pre class='javascript'>\n var label = new qx.ui.mobile.basic.Label(\"Item1\");\n var widget = new qx.ui.mobile.form.Button(\"Error!\");\n var popup = new qx.ui.mobile.dialog.Popup(widget, label);\n popup.show();\n widget.addListener(\"tap\", function(){\n   popup.hide();\n });\n </pre>\n<p>In this case everything is as above, except that the popup will get shown next to \"label\"\n so that the user can understand that the info presented is about the \"Item1\"\n we also add a tap listener to the button that will hide out popup.\n Once created, the instance is reused between show/hide calls.\n </p>\n<pre class='javascript'>\n var widget = new qx.ui.mobile.form.Button(\"Error!\");\n var popup = new qx.ui.mobile.dialog.Popup(widget);\n popup.placeTo(25,100);\n popup.show();\n </pre>\n<p>Same as the first example, but this time the popup will be shown at the 25,100 coordinates.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.core.Widget",
   "statics": {
     "ROOT": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 66,
           "column": 4,
-          "index": 2093
+          "index": 2028
         },
         "end": {
           "line": 66,
           "column": 14,
-          "index": 2103
+          "index": 2038
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "widget"
+      },
+      {
+        "name": "anchor"
+      }
+    ],
     "location": {
       "start": {
         "line": 73,
         "column": 2,
-        "index": 2320
+        "index": 2248
       },
       "end": {
         "line": 87,
         "column": 3,
-        "index": 2672
+        "index": 2586
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "widget {qx.ui.mobile.core.Widget} the widget that will be shown in the popup",
-          "paramName": "widget",
-          "description": " the widget that will be shown in the popup",
-          "type": "qx.ui.mobile.core.Widget"
-        },
-        {
-          "name": "@param",
-          "body": "anchor {qx.ui.mobile.core.Widget?} optional parameter, a widget to attach this popup to",
-          "paramName": "anchor",
-          "description": " optional parameter, a widget to attach this popup to",
-          "optional": true,
-          "type": "qx.ui.mobile.core.Widget"
-        }
-      ]
     }
   },
   "properties": {
@@ -92,39 +118,52 @@
         "start": {
           "line": 91,
           "column": 4,
-          "index": 2717
+          "index": 2627
         },
         "end": {
           "line": 94,
           "column": 5,
-          "index": 2784
+          "index": 2691
         }
       },
-      "jsdoc": {},
-      "name": "defaultCssClass",
-      "propertyType": "new",
-      "refine": true,
-      "init": "popup",
-      "defaultValue": "popup",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "appearsIn": {
-        "qx.ui.mobile.core.Widget": "class"
-      }
+      "json": {
+        "refine": true,
+        "init": "popup"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
     },
     "title": {
       "location": {
         "start": {
           "line": 99,
           "column": 4,
-          "index": 2882
+          "index": 2784
         },
         "end": {
           "line": 104,
           "column": 5,
-          "index": 3001
+          "index": 2898
         }
       },
+      "json": {
+        "apply": "_applyTitle",
+        "nullable": true,
+        "check": "String",
+        "event": "changeTitle"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The label/caption/text of the qx.ui.mobile.basic.Atom instance",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -132,28 +171,33 @@
           }
         ]
       },
-      "name": "title",
-      "propertyType": "new",
-      "event": "changeTitle",
-      "apply": "_applyTitle",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "icon": {
       "location": {
         "start": {
           "line": 109,
           "column": 4,
-          "index": 3108
+          "index": 3000
         },
         "end": {
           "line": 114,
           "column": 5,
-          "index": 3224
+          "index": 3111
         }
       },
+      "json": {
+        "check": "String",
+        "apply": "_applyIcon",
+        "nullable": true,
+        "event": "changeIcon"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Any URI String supported by qx.ui.mobile.basic.Image to display an icon",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -161,28 +205,32 @@
           }
         ]
       },
-      "name": "icon",
-      "propertyType": "new",
-      "event": "changeIcon",
-      "apply": "_applyIcon",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "modal": {
       "location": {
         "start": {
           "line": 119,
           "column": 4,
-          "index": 3304
+          "index": 3186
         },
         "end": {
           "line": 123,
           "column": 5,
-          "index": 3387
+          "index": 3265
         }
       },
+      "json": {
+        "init": false,
+        "check": "Boolean",
+        "nullable": false
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the popup should be displayed modal.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -190,28 +238,31 @@
           }
         ]
       },
-      "name": "modal",
-      "propertyType": "new",
-      "nullable": false,
-      "init": false,
-      "allowNull": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     },
     "hideOnBlockerTap": {
       "location": {
         "start": {
           "line": 128,
           "column": 4,
-          "index": 3509
+          "index": 3382
         },
         "end": {
           "line": 131,
           "column": 5,
-          "index": 3579
+          "index": 3449
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Indicates whether the a modal popup should disappear when user taps/clicks on Blocker.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -219,156 +270,153 @@
           }
         ]
       },
-      "name": "hideOnBlockerTap",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     }
   },
   "members": {
     "__isShown": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 135,
           "column": 4,
-          "index": 3607
+          "index": 3473
         },
         "end": {
           "line": 135,
           "column": 20,
-          "index": 3623
+          "index": 3489
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__isPlaced": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 136,
           "column": 4,
-          "index": 3630
+          "index": 3495
         },
         "end": {
           "line": 136,
           "column": 21,
-          "index": 3647
+          "index": 3512
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__childrenContainer": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 137,
           "column": 4,
-          "index": 3654
+          "index": 3518
         },
         "end": {
           "line": 137,
           "column": 29,
-          "index": 3679
+          "index": 3543
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__percentageTop": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 138,
           "column": 4,
-          "index": 3686
+          "index": 3549
         },
         "end": {
           "line": 138,
           "column": 25,
-          "index": 3707
+          "index": 3570
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__anchor": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 139,
           "column": 4,
-          "index": 3714
+          "index": 3576
         },
         "end": {
           "line": 139,
           "column": 18,
-          "index": 3728
+          "index": 3590
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__widget": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 140,
           "column": 4,
-          "index": 3735
+          "index": 3596
         },
         "end": {
           "line": 140,
           "column": 18,
-          "index": 3749
+          "index": 3610
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__titleWidget": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 141,
           "column": 4,
-          "index": 3756
+          "index": 3616
         },
         "end": {
           "line": 141,
           "column": 23,
-          "index": 3775
+          "index": 3635
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__lastPopupDimension": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 142,
           "column": 4,
-          "index": 3782
+          "index": 3641
         },
         "end": {
           "line": 142,
           "column": 30,
-          "index": 3808
+          "index": 3667
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_updatePosition": {
-      "location": {
-        "start": {
-          "line": 147,
-          "column": 4,
-          "index": 3919
-        },
-        "end": {
-          "line": 231,
-          "column": 5,
-          "index": 6638
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler. Called whenever the position of the popup should be updated.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -376,23 +424,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "show": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 237,
+          "line": 147,
           "column": 4,
-          "index": 6790
+          "index": 3773
         },
         "end": {
-          "line": 263,
+          "line": 231,
           "column": 5,
-          "index": 7484
+          "index": 6408
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "show": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method shows the popup.",
+          "     * First it updates the position, then registers the event handlers, and shows it.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -400,27 +456,33 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 237,
+          "column": 4,
+          "index": 6554
+        },
+        "end": {
+          "line": 263,
+          "column": 5,
+          "index": 7222
+        }
+      },
+      "type": "function",
+      "params": [],
       "overriddenFrom": "qx.ui.mobile.core.Widget",
       "appearsIn": [
         "qx.ui.mobile.core.Widget"
       ]
     },
     "hide": {
-      "location": {
-        "start": {
-          "line": 268,
-          "column": 4,
-          "index": 7536
-        },
-        "end": {
-          "line": 285,
-          "column": 5,
-          "index": 7913
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hides the popup.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -428,27 +490,34 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4,
+          "index": 7269
+        },
+        "end": {
+          "line": 285,
+          "column": 5,
+          "index": 7629
+        }
+      },
+      "type": "function",
+      "params": [],
       "overriddenFrom": "qx.ui.mobile.core.Widget",
       "appearsIn": [
         "qx.ui.mobile.core.Widget"
       ]
     },
     "hideWithDelay": {
-      "location": {
-        "start": {
-          "line": 291,
-          "column": 4,
-          "index": 8039
-        },
-        "end": {
-          "line": 297,
-          "column": 5,
-          "index": 8192
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Hides the popup after a given time delay.",
+          "     * @param delay {Integer} time delay in ms.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -465,23 +534,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isShown": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 303,
+          "line": 291,
           "column": 4,
-          "index": 8327
+          "index": 7749
         },
         "end": {
-          "line": 305,
+          "line": 297,
           "column": 5,
-          "index": 8375
+          "index": 7896
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "delay",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isShown": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the shown state of this popup.",
+          "     * @return {Boolean} whether the popup is shown or not.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -492,28 +574,38 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the popup is shown or not.",
-            "type": "Boolean",
-            "description": " whether the popup is shown or not."
+            "type": "boolean",
+            "description": "whether the popup is shown or not."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toggleVisibility": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 310,
+          "line": 303,
           "column": 4,
-          "index": 8448
+          "index": 8025
         },
         "end": {
-          "line": 316,
+          "line": 305,
           "column": 5,
-          "index": 8581
+          "index": 8071
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "toggleVisibility": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggles the visibility of this popup.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -521,23 +613,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "placeTo": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 323,
+          "line": 310,
           "column": 4,
-          "index": 8869
+          "index": 8139
         },
         "end": {
-          "line": 327,
+          "line": 316,
           "column": 5,
-          "index": 9013
+          "index": 8266
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "placeTo": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method positions the popup widget at the coordinates specified.",
+          "     * @param left {Integer} - the value the will be set to container's left style property",
+          "     * @param top {Integer} - the value the will be set to container's top style property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -561,23 +662,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_trackUserTap": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 334,
+          "line": 323,
           "column": 4,
-          "index": 9239
+          "index": 8547
         },
         "end": {
-          "line": 351,
+          "line": 327,
           "column": 5,
-          "index": 9780
+          "index": 8687
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "left",
+          "type": "Integer"
+        },
+        {
+          "name": "top",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_trackUserTap": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tracks the user tap on root and hides the widget if <code>pointerdown</code> event",
+          "     * occurs outside of the widgets bounds.",
+          "     * @param evt {qx.event.type.Pointer} the pointer event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -594,23 +713,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_positionToCenter": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 356,
+          "line": 334,
           "column": 4,
-          "index": 9864
+          "index": 8906
         },
         "end": {
-          "line": 363,
+          "line": 351,
           "column": 5,
-          "index": 10224
+          "index": 9430
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_positionToCenter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Centers this widget to window's center position.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -618,23 +749,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_resetPosition": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 368,
+          "line": 356,
           "column": 4,
-          "index": 10319
+          "index": 9509
         },
         "end": {
-          "line": 374,
+          "line": 363,
           "column": 5,
-          "index": 10551
+          "index": 9862
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_resetPosition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the position of this element (left, top, margins...)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -642,23 +780,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__registerEventListener": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 379,
+          "line": 368,
           "column": 4,
-          "index": 10623
+          "index": 9952
         },
         "end": {
-          "line": 398,
+          "line": 374,
           "column": 5,
-          "index": 11173
+          "index": 10178
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__registerEventListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers all needed event listeners",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -666,23 +811,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__unregisterEventListener": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 403,
+          "line": 379,
           "column": 4,
-          "index": 11247
+          "index": 10245
         },
         "end": {
-          "line": 422,
+          "line": 398,
           "column": 5,
-          "index": 11814
+          "index": 10776
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__unregisterEventListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Unregisters all needed event listeners",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -690,23 +842,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "_initializeChild": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 430,
+          "line": 403,
           "column": 4,
-          "index": 12042
+          "index": 10845
         },
         "end": {
-          "line": 452,
+          "line": 422,
           "column": 5,
-          "index": 12744
+          "index": 11393
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_initializeChild": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method creates the container where the popup's widget will be placed",
+          "     * and adds it to the popup.",
+          "     * @param widget {qx.ui.mobile.core.Widget} - what to show in the popup",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -723,23 +885,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_createTitleWidget": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 459,
+          "line": 430,
           "column": 4,
-          "index": 12883
+          "index": 11613
         },
         "end": {
-          "line": 474,
+          "line": 452,
           "column": 5,
-          "index": 13304
+          "index": 12293
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.mobile.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createTitleWidget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the title atom widget.",
+          "     *",
+          "     * @return {qx.ui.mobile.basic.Atom} The title atom widget.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -751,67 +927,99 @@
             "name": "@return",
             "body": "{qx.ui.mobile.basic.Atom} The title atom widget.",
             "type": "qx.ui.mobile.basic.Atom",
-            "description": " The title atom widget."
+            "description": "The title atom widget."
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 459,
+          "column": 4,
+          "index": 12425
+        },
+        "end": {
+          "line": 474,
+          "column": 5,
+          "index": 12831
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.basic.Atom"
+      },
+      "appearsIn": []
     },
     "_applyTitle": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 477,
           "column": 4,
-          "index": 13336
+          "index": 12860
         },
         "end": {
           "line": 501,
           "column": 5,
-          "index": 14026
+          "index": 13526
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "title"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyIcon": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 504,
           "column": 4,
-          "index": 14058
+          "index": 13555
         },
         "end": {
           "line": 528,
           "column": 5,
-          "index": 14747
+          "index": 14220
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "icon"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "add": {
-      "location": {
-        "start": {
-          "line": 535,
-          "column": 4,
-          "index": 15046
-        },
-        "end": {
-          "line": 538,
-          "column": 5,
-          "index": 15132
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds the widget that will be shown in this popup. This method can be used in the case when you have removed the widget from the popup",
+          "     * or you haven't passed it in the constructor.",
+          "     * @param widget {qx.ui.mobile.core.Widget} - what to show in the popup",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -828,23 +1036,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setAnchor": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 545,
+          "line": 535,
           "column": 4,
-          "index": 15277
+          "index": 14512
         },
         "end": {
-          "line": 548,
+          "line": 538,
           "column": 5,
-          "index": 15365
+          "index": 14595
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.mobile.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setAnchor": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * A widget to attach this popup to.",
+          "     *",
+          "     * @param widget {qx.ui.mobile.core.Widget} The anchor widget.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -861,23 +1083,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTitleWidget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 555,
+          "line": 545,
           "column": 4,
-          "index": 15494
+          "index": 14733
         },
         "end": {
-          "line": 557,
+          "line": 548,
           "column": 5,
-          "index": 15553
+          "index": 14818
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.mobile.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getTitleWidget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the title widget.",
+          "     *",
+          "     * @return {qx.ui.mobile.basic.Atom} The title widget.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -889,27 +1125,39 @@
             "name": "@return",
             "body": "{qx.ui.mobile.basic.Atom} The title widget.",
             "type": "qx.ui.mobile.basic.Atom",
-            "description": " The title widget."
+            "description": "The title widget."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeWidget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 564,
+          "line": 555,
           "column": 4,
-          "index": 15780
+          "index": 14940
         },
         "end": {
-          "line": 575,
+          "line": 557,
           "column": 5,
-          "index": 16189
+          "index": 14997
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.basic.Atom"
+      },
+      "appearsIn": []
+    },
+    "removeWidget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method removes the widget shown in the popup.",
+          "     * @return {qx.ui.mobile.core.Widget|null} The removed widget or <code>null</code>",
+          "     * if the popup doesn't have an attached widget",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -921,1521 +1169,45 @@
             "name": "@return",
             "body": "{qx.ui.mobile.core.Widget|null} The removed widget or <code>null</code>\n if the popup doesn't have an attached widget",
             "type": "qx.ui.mobile.core.Widget|null",
-            "description": " The removed widget or <code>null</code>\n if the popup doesn't have an attached widget"
+            "description": "The removed widget or <code>null</code>\n if the popup doesn't have an attached widget"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getDefaultCssClass": {
-      "type": "function",
-      "name": "getDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for defaultCssClass"
-          }
-        ]
-      }
-    },
-    "setDefaultCssClass": {
-      "type": "function",
-      "name": "setDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for defaultCssClass"
-          }
-        ]
-      }
-    },
-    "resetDefaultCssClass": {
-      "type": "function",
-      "name": "resetDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>defaultCssClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ]
-      }
-    },
-    "getEnabled": {
-      "type": "function",
-      "name": "getEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "isEnabled": {
-      "type": "function",
-      "name": "isEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "setEnabled": {
-      "type": "function",
-      "name": "setEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for enabled"
-          }
-        ]
-      }
-    },
-    "resetEnabled": {
-      "type": "function",
-      "name": "resetEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ]
-      }
-    },
-    "getName": {
-      "type": "function",
-      "name": "getName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for name"
-          }
-        ]
-      }
-    },
-    "setName": {
-      "type": "function",
-      "name": "setName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for name"
-          }
-        ]
-      }
-    },
-    "resetName": {
-      "type": "function",
-      "name": "resetName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ]
-      }
-    },
-    "getAnonymous": {
-      "type": "function",
-      "name": "getAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "isAnonymous": {
-      "type": "function",
-      "name": "isAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "setAnonymous": {
-      "type": "function",
-      "name": "setAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for anonymous"
-          }
-        ]
-      }
-    },
-    "resetAnonymous": {
-      "type": "function",
-      "name": "resetAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ]
-      }
-    },
-    "getId": {
-      "type": "function",
-      "name": "getId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for id"
-          }
-        ]
-      }
-    },
-    "setId": {
-      "type": "function",
-      "name": "setId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for id"
-          }
-        ]
-      }
-    },
-    "resetId": {
-      "type": "function",
-      "name": "resetId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>id</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ]
-      }
-    },
-    "getVisibility": {
-      "type": "function",
-      "name": "getVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for visibility"
-          }
-        ]
-      }
-    },
-    "setVisibility": {
-      "type": "function",
-      "name": "setVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for visibility"
-          }
-        ]
-      }
-    },
-    "resetVisibility": {
-      "type": "function",
-      "name": "resetVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ]
-      }
-    },
-    "getActivatable": {
-      "type": "function",
-      "name": "getActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for activatable"
-          }
-        ]
-      }
-    },
-    "isActivatable": {
-      "type": "function",
-      "name": "isActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for activatable"
-          }
-        ]
-      }
-    },
-    "setActivatable": {
-      "type": "function",
-      "name": "setActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for activatable"
-          }
-        ]
-      }
-    },
-    "resetActivatable": {
-      "type": "function",
-      "name": "resetActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>activatable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ]
-      }
-    },
-    "getRotation": {
-      "type": "function",
-      "name": "getRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for rotation"
-          }
-        ]
-      }
-    },
-    "setRotation": {
-      "type": "function",
-      "name": "setRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for rotation"
-          }
-        ]
-      }
-    },
-    "resetRotation": {
-      "type": "function",
-      "name": "resetRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>rotation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ]
-      }
-    },
-    "getTransformUnit": {
-      "type": "function",
-      "name": "getTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for transformUnit"
-          }
-        ]
-      }
-    },
-    "setTransformUnit": {
-      "type": "function",
-      "name": "setTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for transformUnit"
-          }
-        ]
-      }
-    },
-    "resetTransformUnit": {
-      "type": "function",
-      "name": "resetTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>transformUnit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ]
-      }
-    },
-    "getScaleX": {
-      "type": "function",
-      "name": "getScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for scaleX"
-          }
-        ]
-      }
-    },
-    "setScaleX": {
-      "type": "function",
-      "name": "setScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for scaleX"
-          }
-        ]
-      }
-    },
-    "resetScaleX": {
-      "type": "function",
-      "name": "resetScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>scaleX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ]
-      }
-    },
-    "getScaleY": {
-      "type": "function",
-      "name": "getScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for scaleY"
-          }
-        ]
-      }
-    },
-    "setScaleY": {
-      "type": "function",
-      "name": "setScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for scaleY"
-          }
-        ]
-      }
-    },
-    "resetScaleY": {
-      "type": "function",
-      "name": "resetScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>scaleY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ]
-      }
-    },
-    "getTranslateX": {
-      "type": "function",
-      "name": "getTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateX"
-          }
-        ]
-      }
-    },
-    "setTranslateX": {
-      "type": "function",
-      "name": "setTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateX"
-          }
-        ]
-      }
-    },
-    "resetTranslateX": {
-      "type": "function",
-      "name": "resetTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ]
-      }
-    },
-    "getTranslateY": {
-      "type": "function",
-      "name": "getTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateY"
-          }
-        ]
-      }
-    },
-    "setTranslateY": {
-      "type": "function",
-      "name": "setTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateY"
-          }
-        ]
-      }
-    },
-    "resetTranslateY": {
-      "type": "function",
-      "name": "resetTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ]
-      }
-    },
-    "getTranslateZ": {
-      "type": "function",
-      "name": "getTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateZ"
-          }
-        ]
-      }
-    },
-    "setTranslateZ": {
-      "type": "function",
-      "name": "setTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateZ"
-          }
-        ]
-      }
-    },
-    "resetTranslateZ": {
-      "type": "function",
-      "name": "resetTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateZ</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ]
-      }
-    },
-    "getTitle": {
-      "type": "function",
-      "name": "getTitle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>title</code>.\n\nFor further details take a look at the property definition: {@link #title}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for title"
-          }
-        ]
-      }
-    },
-    "setTitle": {
-      "type": "function",
-      "name": "setTitle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>title</code>.\n\nFor further details take a look at the property definition: {@link #title}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for title"
-          }
-        ]
-      }
-    },
-    "resetTitle": {
-      "type": "function",
-      "name": "resetTitle",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>title</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #title}."
-          }
-        ]
-      }
-    },
-    "getIcon": {
-      "type": "function",
-      "name": "getIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>icon</code>.\n\nFor further details take a look at the property definition: {@link #icon}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for icon"
-          }
-        ]
-      }
-    },
-    "setIcon": {
-      "type": "function",
-      "name": "setIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>icon</code>.\n\nFor further details take a look at the property definition: {@link #icon}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for icon"
-          }
-        ]
-      }
-    },
-    "resetIcon": {
-      "type": "function",
-      "name": "resetIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>icon</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #icon}."
-          }
-        ]
-      }
-    },
-    "getModal": {
-      "type": "function",
-      "name": "getModal",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>modal</code>.\n\nFor further details take a look at the property definition: {@link #modal}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for modal"
-          }
-        ]
-      }
-    },
-    "isModal": {
-      "type": "function",
-      "name": "isModal",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>modal</code>.\n\nFor further details take a look at the property definition: {@link #modal}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for modal"
-          }
-        ]
-      }
-    },
-    "setModal": {
-      "type": "function",
-      "name": "setModal",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>modal</code>.\n\nFor further details take a look at the property definition: {@link #modal}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for modal"
-          }
-        ]
-      }
-    },
-    "resetModal": {
-      "type": "function",
-      "name": "resetModal",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>modal</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #modal}."
-          }
-        ]
-      }
-    },
-    "getHideOnBlockerTap": {
-      "type": "function",
-      "name": "getHideOnBlockerTap",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>hideOnBlockerTap</code>.\n\nFor further details take a look at the property definition: {@link #hideOnBlockerTap}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for hideOnBlockerTap"
-          }
-        ]
-      }
-    },
-    "isHideOnBlockerTap": {
-      "type": "function",
-      "name": "isHideOnBlockerTap",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>hideOnBlockerTap</code>.\n\nFor further details take a look at the property definition: {@link #hideOnBlockerTap}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for hideOnBlockerTap"
-          }
-        ]
-      }
-    },
-    "setHideOnBlockerTap": {
-      "type": "function",
-      "name": "setHideOnBlockerTap",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>hideOnBlockerTap</code>.\n\nFor further details take a look at the property definition: {@link #hideOnBlockerTap}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for hideOnBlockerTap"
-          }
-        ]
-      }
-    },
-    "resetHideOnBlockerTap": {
-      "type": "function",
-      "name": "resetHideOnBlockerTap",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
       "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>hideOnBlockerTap</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #hideOnBlockerTap}."
-          }
-        ]
-      }
+      "location": {
+        "start": {
+          "line": 564,
+          "column": 4,
+          "index": 15217
+        },
+        "end": {
+          "line": 575,
+          "column": 5,
+          "index": 15615
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.core.Widget|null"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 578,
         "column": 2,
-        "index": 16201
+        "index": 15624
       },
       "end": {
         "line": 589,
         "column": 3,
-        "index": 16481
+        "index": 15893
       }
     }
-  },
-  "events": {},
-  "descendants": [
-    "qx.ui.mobile.dialog.Menu"
-  ]
+  }
 }

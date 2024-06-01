@@ -1,49 +1,49 @@
 {
-  "className": "qx.core.IDisposable",
-  "packageName": "qx.core",
-  "name": "IDisposable",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 895
-      },
-      "end": {
-        "line": 35,
-        "column": 3,
-        "index": 1035
-      }
+  "version": 0.3,
+  "lastModified": 1717235171210,
+  "lastModifiedIso": "2024-06-01T09:46:11.210Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/IDisposable.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 869
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Classes which implement this interface are required to be disposed when they are\n no longer needed, by calling .dispose(); they are also registered with qx.core.ObjectRegistry\n so that qx.core.ObjectRegistry.fromHashCode() will work.\n Note that classes do not have to implement this interface in order to provide a dispose\n method and/or a destructor.</p>"
-        }
-      ]
+    "end": {
+      "line": 35,
+      "column": 3,
+      "index": 1001
     }
   },
-  "type": "interface",
+  "className": "qx.core.IDisposable",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Classes which implement this interface are required to be disposed when they are",
+      " * no longer needed, by calling .dispose(); they are also registered with qx.core.ObjectRegistry",
+      " * so that qx.core.ObjectRegistry.fromHashCode() will work.",
+      " *",
+      " * Note that classes do not have to implement this interface in order to provide a dispose",
+      " * method and/or a destructor.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Classes which implement this interface are required to be disposed when they are\n no longer needed, by calling .dispose(); they are also registered with qx.core.ObjectRegistry\n so that qx.core.ObjectRegistry.fromHashCode() will work.\n Note that classes do not have to implement this interface in order to provide a dispose\n method and/or a destructor.</p>"
+      }
+    ]
+  },
   "members": {
     "dispose": {
-      "location": {
-        "start": {
-          "line": 33,
-          "column": 4,
-          "index": 1013
-        },
-        "end": {
-          "line": 33,
-          "column": 16,
-          "index": 1025
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispose this object",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,9 +51,24 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 981
+        },
+        "end": {
+          "line": 33,
+          "column": 16,
+          "index": 993
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

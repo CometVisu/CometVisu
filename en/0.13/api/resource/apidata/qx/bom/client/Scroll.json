@@ -1,55 +1,60 @@
 {
-  "className": "qx.bom.client.Scroll",
-  "packageName": "qx.bom.client",
-  "name": "Scroll",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 766
-      },
-      "end": {
-        "line": 98,
-        "column": 3,
-        "index": 2818
-      }
+  "version": 0.3,
+  "lastModified": 1717235172186,
+  "lastModifiedIso": "2024-06-01T09:46:12.186Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Scroll.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 741
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is responsible for checking the scrolling behavior of the client.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 98,
+      "column": 3,
+      "index": 2721
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.Scroll",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is responsible for checking the scrolling behavior of the client.",
+      " *",
+      " * This class is used by {@link qx.core.Environment} and should not be used",
+      " * directly. Please check its class comment for details how to use it.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is responsible for checking the scrolling behavior of the client.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "statics": {
     "scrollBarOverlayed": {
-      "location": {
-        "start": {
-          "line": 37,
-          "column": 4,
-          "index": 1153
-        },
-        "end": {
-          "line": 43,
-          "column": 5,
-          "index": 1464
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if the scrollbars should be positioned on top of the content. This",
+          "     * is true of OSX Lion when the scrollbars disappear automatically.",
+          "     *",
+          "     * @internal",
+          "     *",
+          "     * @return {Boolean} <code>true</code> if the scrollbars should be",
+          "     *   positioned on top of the content.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,28 +71,43 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the scrollbars should be\n   positioned on top of the content.",
-            "type": "Boolean",
-            "description": " <code>true</code> if the scrollbars should be\n   positioned on top of the content."
+            "type": "boolean",
+            "description": "<code>true</code> if the scrollbars should be\n   positioned on top of the content."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getNativeScroll": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 53,
+          "line": 37,
           "column": 4,
-          "index": 1707
+          "index": 1117
         },
         "end": {
-          "line": 87,
+          "line": 43,
           "column": 5,
-          "index": 2593
+          "index": 1422
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getNativeScroll": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if native scroll can be used for the current mobile device.",
+          "     *",
+          "     * @internal",
+          "     *",
+          "     * @return {Boolean} <code>true</code> if the current device is capable to",
+          "     * use native scroll.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,28 +124,32 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the current device is capable to\n use native scroll.",
-            "type": "Boolean",
-            "description": " <code>true</code> if the current device is capable to\n use native scroll."
+            "type": "boolean",
+            "description": "<code>true</code> if the current device is capable to\n use native scroll."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 90,
-        "column": 2,
-        "index": 2605
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1655
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2507
+        }
       },
-      "end": {
-        "line": 97,
-        "column": 3,
-        "index": 2813
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

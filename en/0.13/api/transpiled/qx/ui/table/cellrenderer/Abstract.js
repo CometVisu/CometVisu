@@ -78,8 +78,8 @@
     construct: function construct() {
       qx.core.Object.constructor.call(this);
       var cr = qx.ui.table.cellrenderer.Abstract;
-      if (!cr.__P_445_0) {
-        cr.__P_445_0 = qx.ui.table.cellrenderer.Abstract;
+      if (!cr.__P_664_0) {
+        cr.__P_664_0 = qx.ui.table.cellrenderer.Abstract;
         this._createStyleSheet();
 
         // add dynamic theme listener
@@ -106,7 +106,7 @@
        */
       _onChangeTheme: qx.core.Environment.select("qx.dyntheme", {
         "true": function _true() {
-          qx.bom.Stylesheet.removeAllRules(qx.ui.table.cellrenderer.Abstract.__P_445_0.stylesheet);
+          qx.bom.Stylesheet.removeAllRules(qx.ui.table.cellrenderer.Abstract.__P_664_0.stylesheet);
           this._createStyleSheet();
         },
         "false": null
@@ -142,7 +142,7 @@
         if (qx.core.Environment.get("css.boxsizing")) {
           stylesheet += ".qooxdoo-table-cell {" + qx.bom.element.BoxSizing.compile("content-box") + "}";
         }
-        qx.ui.table.cellrenderer.Abstract.__P_445_0.stylesheet = qx.bom.Stylesheet.createElement(stylesheet);
+        qx.ui.table.cellrenderer.Abstract.__P_664_0.stylesheet = qx.bom.Stylesheet.createElement(stylesheet);
       },
       /**
        * Get a string of the cell element's HTML classes.
@@ -231,4 +231,4 @@
   qx.ui.table.cellrenderer.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1709410165139
+//# sourceMappingURL=Abstract.js.map?dt=1717235416125

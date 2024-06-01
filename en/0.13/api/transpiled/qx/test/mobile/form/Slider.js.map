@@ -1,0 +1,53 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "mobile",
+    "MobileTestCase",
+    "members",
+    "testValue",
+    "slider",
+    "ui",
+    "form",
+    "Slider",
+    "set",
+    "step",
+    "getRoot",
+    "add",
+    "assertEquals",
+    "getValue",
+    "bom",
+    "element",
+    "Dataset",
+    "get",
+    "_getKnobElement",
+    "assertEventFired",
+    "nextValue",
+    "evt",
+    "getData",
+    "bind",
+    "setValue",
+    "previousValue",
+    "destroy",
+    "testEnabled",
+    "setEnabled",
+    "getEnabled",
+    "has",
+    "getContainerElement"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/mobile/form/Slider.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.mobile.form.Slider\", {\n  extend: qx.test.mobile.MobileTestCase,\n\n  members: {\n    testValue() {\n      var slider = new qx.ui.mobile.form.Slider().set({ step: 4.5 });\n      this.getRoot().add(slider);\n\n      this.assertEquals(0, slider.getValue());\n      this.assertEquals(\n        0,\n        qx.bom.element.Dataset.get(slider._getKnobElement(), \"value\")\n      );\n\n      this.assertEquals(\n        0,\n        qx.bom.element.Dataset.get(slider._getKnobElement(), \"percent\")\n      );\n\n      this.assertEventFired(\n        slider,\n        \"changeValue\",\n        function () {\n          slider.nextValue();\n        },\n        function (evt) {\n          this.assertEquals(4.5, evt.getData());\n        }.bind(this)\n      );\n\n      this.assertEventFired(\n        slider,\n        \"changeValue\",\n        function () {\n          slider.setValue(11);\n        },\n        function (evt) {\n          this.assertEquals(11, evt.getData());\n        }.bind(this)\n      );\n\n      this.assertEventFired(\n        slider,\n        \"changeValue\",\n        function () {\n          slider.previousValue();\n        },\n        function (evt) {\n          this.assertEquals(6.5, evt.getData());\n        }.bind(this)\n      );\n\n      slider.destroy();\n    },\n\n    testEnabled() {\n      var slider = new qx.ui.mobile.form.Slider();\n      this.getRoot().add(slider);\n      slider.setEnabled(false);\n      this.assertEquals(false, slider.getEnabled());\n      this.assertEquals(\n        true,\n        qx.bom.element.Class.has(slider.getContainerElement(), \"disabled\")\n      );\n\n      slider.destroy();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,4BAA4B,EAAE;IAC5CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM,CAACC,cAAc;IAErCC,OAAO,EAAE;MACPC,SAAS,WAAAA,UAAA,EAAG;QACV,IAAIC,MAAM,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACC,MAAM,CAAC,CAAC,CAACC,GAAG,CAAC;UAAEC,IAAI,EAAE;QAAI,CAAC,CAAC;QAC9D,IAAI,CAACC,OAAO,CAAC,CAAC,CAACC,GAAG,CAACP,MAAM,CAAC;QAE1B,IAAI,CAACQ,YAAY,CAAC,CAAC,EAAER,MAAM,CAACS,QAAQ,CAAC,CAAC,CAAC;QACvC,IAAI,CAACD,YAAY,CACf,CAAC,EACDpB,EAAE,CAACsB,GAAG,CAACC,OAAO,CAACC,OAAO,CAACC,GAAG,CAACb,MAAM,CAACc,eAAe,CAAC,CAAC,EAAE,OAAO,CAC9D,CAAC;QAED,IAAI,CAACN,YAAY,CACf,CAAC,EACDpB,EAAE,CAACsB,GAAG,CAACC,OAAO,CAACC,OAAO,CAACC,GAAG,CAACb,MAAM,CAACc,eAAe,CAAC,CAAC,EAAE,SAAS,CAChE,CAAC;QAED,IAAI,CAACC,gBAAgB,CACnBf,MAAM,EACN,aAAa,EACb,YAAY;UACVA,MAAM,CAACgB,SAAS,CAAC,CAAC;QACpB,CAAC,EACD,UAAUC,GAAG,EAAE;UACb,IAAI,CAACT,YAAY,CAAC,GAAG,EAAES,GAAG,CAACC,OAAO,CAAC,CAAC,CAAC;QACvC,CAAC,CAACC,IAAI,CAAC,IAAI,CACb,CAAC;QAED,IAAI,CAACJ,gBAAgB,CACnBf,MAAM,EACN,aAAa,EACb,YAAY;UACVA,MAAM,CAACoB,QAAQ,CAAC,EAAE,CAAC;QACrB,CAAC,EACD,UAAUH,GAAG,EAAE;UACb,IAAI,CAACT,YAAY,CAAC,EAAE,EAAES,GAAG,CAACC,OAAO,CAAC,CAAC,CAAC;QACtC,CAAC,CAACC,IAAI,CAAC,IAAI,CACb,CAAC;QAED,IAAI,CAACJ,gBAAgB,CACnBf,MAAM,EACN,aAAa,EACb,YAAY;UACVA,MAAM,CAACqB,aAAa,CAAC,CAAC;QACxB,CAAC,EACD,UAAUJ,GAAG,EAAE;UACb,IAAI,CAACT,YAAY,CAAC,GAAG,EAAES,GAAG,CAACC,OAAO,CAAC,CAAC,CAAC;QACvC,CAAC,CAACC,IAAI,CAAC,IAAI,CACb,CAAC;QAEDnB,MAAM,CAACsB,OAAO,CAAC,CAAC;MAClB,CAAC;MAEDC,WAAW,WAAAA,YAAA,EAAG;QACZ,IAAIvB,MAAM,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACC,MAAM,CAAC,CAAC;QAC3C,IAAI,CAACG,OAAO,CAAC,CAAC,CAACC,GAAG,CAACP,MAAM,CAAC;QAC1BA,MAAM,CAACwB,UAAU,CAAC,KAAK,CAAC;QACxB,IAAI,CAAChB,YAAY,CAAC,KAAK,EAAER,MAAM,CAACyB,UAAU,CAAC,CAAC,CAAC;QAC7C,IAAI,CAACjB,YAAY,CACf,IAAI,EACJpB,EAAE,CAACsB,GAAG,CAACC,OAAO,CAACnB,KAAK,CAACkC,GAAG,CAAC1B,MAAM,CAAC2B,mBAAmB,CAAC,CAAC,EAAE,UAAU,CACnE,CAAC;QAED3B,MAAM,CAACsB,OAAO,CAAC,CAAC;MAClB;IACF;EACF,CAAC,CAAC;EAtFFlC,EAAE,CAACO,IAAI,CAACC,MAAM,CAACM,IAAI,CAACC,MAAM,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

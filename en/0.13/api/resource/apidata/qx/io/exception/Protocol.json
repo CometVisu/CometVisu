@@ -1,33 +1,38 @@
 {
-  "className": "qx.io.exception.Protocol",
-  "packageName": "qx.io.exception",
-  "name": "Protocol",
-  "superClass": "qx.io.exception.Exception",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 623
-      },
-      "end": {
-        "line": 25,
-        "column": 3,
-        "index": 710
-      }
+  "version": 0.3,
+  "lastModified": 1717235172066,
+  "lastModifiedIso": "2024-06-01T09:46:12.066Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/exception/Protocol.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 601
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A class for representing errors that occurred on server and are handled\n according to the service protocol (JSON-RPC, GraphQL, etc.)</p>"
-        }
-      ]
+    "end": {
+      "line": 25,
+      "column": 3,
+      "index": 686
     }
   },
-  "type": "class",
-  "descendants": []
+  "className": "qx.io.exception.Protocol",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A class for representing errors that occurred on server and are handled",
+      " * according to the service protocol (JSON-RPC, GraphQL, etc.)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A class for representing errors that occurred on server and are handled\n according to the service protocol (JSON-RPC, GraphQL, etc.)</p>"
+      }
+    ]
+  },
+  "superClass": "qx.io.exception.Exception",
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

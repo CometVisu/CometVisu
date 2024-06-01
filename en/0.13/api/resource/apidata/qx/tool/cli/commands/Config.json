@@ -1,0 +1,144 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169786,
+  "lastModifiedIso": "2024-06-01T09:46:09.786Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Config.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 575
+    },
+    "end": {
+      "line": 107,
+      "column": 3,
+      "index": 2657
+    }
+  },
+  "className": "qx.tool.cli.commands.Config",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Handles persistent configuration",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Handles persistent configuration</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Command",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "index": 682
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1115
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "KNOWN_VALUES": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1122
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 1975
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_describe": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 1999
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2117
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_checkKey": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2124
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2376
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "argv"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_breakout": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2383
+        },
+        "end": {
+          "line": 105,
+          "column": 5,
+          "index": 2649
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

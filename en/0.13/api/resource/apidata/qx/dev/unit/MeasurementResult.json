@@ -1,165 +1,143 @@
 {
-  "className": "qx.dev.unit.MeasurementResult",
-  "packageName": "qx.dev.unit",
-  "name": "MeasurementResult",
-  "superClass": "Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 614
-      },
-      "end": {
-        "line": 73,
-        "column": 3,
-        "index": 1927
-      }
+  "version": 0.3,
+  "lastModified": 1717235171718,
+  "lastModifiedIso": "2024-06-01T09:46:11.718Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/unit/MeasurementResult.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 592
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Performance test result object. Used to communicate measurements to the unit\n testing framework.</p>"
-        }
-      ]
+    "end": {
+      "line": 73,
+      "column": 3,
+      "index": 1855
     }
   },
-  "type": "class",
+  "className": "qx.dev.unit.MeasurementResult",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Performance test result object. Used to communicate measurements to the unit",
+      " * testing framework.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Performance test result object. Used to communicate measurements to the unit\n testing framework.</p>"
+      }
+    ]
+  },
+  "superClass": "Object",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "message"
+      },
+      {
+        "name": "iterations"
+      },
+      {
+        "name": "ownTime"
+      },
+      {
+        "name": "renderTime"
+      }
+    ],
     "location": {
       "start": {
         "line": 33,
         "column": 2,
-        "index": 953
+        "index": 921
       },
       "end": {
         "line": 38,
         "column": 3,
-        "index": 1147
+        "index": 1110
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "message {String} Description",
-          "paramName": "message",
-          "description": " Description",
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "iterations {Number} Amount of times the tested code was executed",
-          "paramName": "iterations",
-          "description": " Amount of times the tested code was executed",
-          "type": "Number"
-        },
-        {
-          "name": "@param",
-          "body": "ownTime {Number} Elapsed JavaScript execution time",
-          "paramName": "ownTime",
-          "description": " Elapsed JavaScript execution time",
-          "type": "Number"
-        },
-        {
-          "name": "@param",
-          "body": "renderTime {Number} Elapsed DOM rendering time",
-          "paramName": "renderTime",
-          "description": " Elapsed DOM rendering time",
-          "type": "Number"
-        }
-      ]
     }
   },
   "members": {
     "__message": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 41,
           "column": 4,
-          "index": 1170
+          "index": 1130
         },
         "end": {
           "line": 41,
           "column": 19,
-          "index": 1185
+          "index": 1145
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__iterations": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 42,
           "column": 4,
-          "index": 1192
+          "index": 1151
         },
         "end": {
           "line": 42,
           "column": 22,
-          "index": 1210
+          "index": 1169
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__ownTime": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 43,
           "column": 4,
-          "index": 1217
+          "index": 1175
         },
         "end": {
           "line": 43,
           "column": 19,
-          "index": 1232
+          "index": 1190
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__renderTime": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 44,
           "column": 4,
-          "index": 1239
+          "index": 1196
         },
         "end": {
           "line": 44,
           "column": 22,
-          "index": 1257
+          "index": 1214
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getData": {
-      "location": {
-        "start": {
-          "line": 50,
-          "column": 4,
-          "index": 1365
-        },
-        "end": {
-          "line": 57,
-          "column": 5,
-          "index": 1556
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the stored data as a map.",
+          "     * @return {Map} The stored data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -170,14 +148,76 @@
           {
             "name": "@return",
             "body": "{Map} The stored data.",
-            "type": "Map",
-            "description": " The stored data."
+            "type": "Map<any, any>",
+            "description": "The stored data."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1316
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1500
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a readable summary of this result",
+          "     *",
+          "     * @return {String} Result summary",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a readable summary of this result</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Result summary",
+            "type": "string",
+            "description": "Result summary"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1618
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1847
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

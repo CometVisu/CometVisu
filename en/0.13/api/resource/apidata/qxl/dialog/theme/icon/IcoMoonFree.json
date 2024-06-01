@@ -1,0 +1,72 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/theme/icon/IcoMoonFree.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 18,
+      "column": 0,
+      "index": 611
+    },
+    "end": {
+      "line": 29,
+      "column": 3,
+      "index": 1127
+    }
+  },
+  "className": "qxl.dialog.theme.icon.IcoMoonFree",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Icons from the IcoMoon Free Pack",
+      " *",
+      " * https://icomoon.io/#preview-free",
+      " * https://github.com/Keyamoon/IcoMoon-Free",
+      " *",
+      " * Dual-licences under CC BY 4.0 or GPL.",
+      " * see https://github.com/Keyamoon/IcoMoon-Free/blob/master/License.txt",
+      " * http://creativecommons.org/licenses/by/4.0/",
+      " * http://www.gnu.org/licenses/gpl.html",
+      " *",
+      " * @asset(qxl/dialog/icon/IcoMoonFree/272-cross.svg)",
+      " * @asset(qxl/dialog/icon/IcoMoonFree/273-checkmark.svg)",
+      " * @asset(qxl/dialog/icon/IcoMoonFree/264-warning.svg)",
+      " * @asset(qxl/dialog/icon/IcoMoonFree/269-info.svg)",
+      " * @asset(qxl/dialog/icon/IcoMoonFree/270-cancel-circle.svg)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Icons from the IcoMoon Free Pack\n https://icomoon.io/#preview-free\n https://github.com/Keyamoon/IcoMoon-Free\n Dual-licences under CC BY 4.0 or GPL.\n see https://github.com/Keyamoon/IcoMoon-Free/blob/master/License.txt\n http://creativecommons.org/licenses/by/4.0/\n http://www.gnu.org/licenses/gpl.html</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qxl/dialog/icon/IcoMoonFree/272-cross.svg"
+      },
+      {
+        "name": "@asset",
+        "body": "qxl/dialog/icon/IcoMoonFree/273-checkmark.svg"
+      },
+      {
+        "name": "@asset",
+        "body": "qxl/dialog/icon/IcoMoonFree/264-warning.svg"
+      },
+      {
+        "name": "@asset",
+        "body": "qxl/dialog/icon/IcoMoonFree/269-info.svg"
+      },
+      {
+        "name": "@asset",
+        "body": "qxl/dialog/icon/IcoMoonFree/270-cancel-circle.svg"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

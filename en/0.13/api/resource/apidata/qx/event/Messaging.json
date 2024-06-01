@@ -1,111 +1,136 @@
 {
-  "className": "qx.event.Messaging",
-  "packageName": "qx.event",
-  "name": "Messaging",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 42,
-        "column": 0,
-        "index": 1212
-      },
-      "end": {
-        "line": 267,
-        "column": 3,
-        "index": 8788
-      }
+  "version": 0.3,
+  "lastModified": 1717235171738,
+  "lastModifiedIso": "2024-06-01T09:46:11.738Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/Messaging.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 42,
+      "column": 0,
+      "index": 1171
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Define messages to react on certain channels.\n The channel names will be used in the {@link #on} method to define handlers which will\n be called on certain channels and routes. The {@link #emit} method can be used\n to execute a given route on a channel. {@link #onAny} defines a handler on any channel.\n<em>Example</em>\n Here is a little example of how to use the messaging.\n </p>\n<pre class='javascript'>\n   var m = new qx.event.Messaging();\n   m.on(\"get\", \"/address/{id}\", function(data) {\n     var id = data.params.id;\n\n   },this);\n   m.emit(\"get\", \"/address/1234\");\n </pre>"
-        }
-      ]
+    "end": {
+      "line": 267,
+      "column": 3,
+      "index": 8522
     }
   },
-  "type": "class",
+  "className": "qx.event.Messaging",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Define messages to react on certain channels.",
+      " *",
+      " * The channel names will be used in the {@link #on} method to define handlers which will",
+      " * be called on certain channels and routes. The {@link #emit} method can be used",
+      " * to execute a given route on a channel. {@link #onAny} defines a handler on any channel.",
+      " *",
+      " * *Example*",
+      " *",
+      " * Here is a little example of how to use the messaging.",
+      " *",
+      " * <pre class='javascript'>",
+      " *   var m = new qx.event.Messaging();",
+      " *",
+      " *   m.on(\"get\", \"/address/{id}\", function(data) {",
+      " *     var id = data.params.id; // 1234",
+      " *     // do something with the id...",
+      " *   },this);",
+      " *",
+      " *   m.emit(\"get\", \"/address/1234\");",
+      " * </pre>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Define messages to react on certain channels.\n The channel names will be used in the {@link #on} method to define handlers which will\n be called on certain channels and routes. The {@link #emit} method can be used\n to execute a given route on a channel. {@link #onAny} defines a handler on any channel.\n<em>Example</em>\n Here is a little example of how to use the messaging.\n </p>\n<pre class='javascript'>\n   var m = new qx.event.Messaging();\n   m.on(\"get\", \"/address/{id}\", function(data) {\n     var id = data.params.id;\n\n   },this);\n   m.emit(\"get\", \"/address/1234\");\n </pre>"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 43,
         "column": 2,
-        "index": 1259
+        "index": 1217
       },
       "end": {
         "line": 47,
         "column": 3,
-        "index": 1373
+        "index": 1327
       }
     }
   },
   "members": {
     "_listener": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 50,
           "column": 4,
-          "index": 1396
+          "index": 1347
         },
         "end": {
           "line": 50,
           "column": 19,
-          "index": 1411
+          "index": 1362
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "__listenerIdCount": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 51,
           "column": 4,
-          "index": 1418
+          "index": 1368
         },
         "end": {
           "line": 51,
           "column": 27,
-          "index": 1441
+          "index": 1391
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__channelToIdMapping": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 52,
           "column": 4,
-          "index": 1448
+          "index": 1397
         },
         "end": {
           "line": 52,
           "column": 30,
-          "index": 1474
+          "index": 1423
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "on": {
-      "location": {
-        "start": {
-          "line": 64,
-          "column": 4,
-          "index": 2011
-        },
-        "end": {
-          "line": 66,
-          "column": 5,
-          "index": 2117
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a route handler for the given channel. The route is called",
+          "     * if the {@link #emit} method finds a match.",
+          "     *",
+          "     * @param channel {String} The channel of the message.",
+          "     * @param type {String|RegExp} The type, used for checking if the executed path matches.",
+          "     * @param handler {Function} The handler to call if the route matches the executed path.",
+          "     * @param scope {var ? null} The scope of the handler.",
+          "     * @return {String} The id of the route used to remove the route.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -118,7 +143,7 @@
             "body": "channel {String} The channel of the message.",
             "paramName": "channel",
             "description": " The channel of the message.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -135,7 +160,7 @@
             "body": "handler {Function} The handler to call if the route matches the executed path.",
             "paramName": "handler",
             "description": " The handler to call if the route matches the executed path.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -151,28 +176,66 @@
           {
             "name": "@return",
             "body": "{String} The id of the route used to remove the route.",
-            "type": "String",
-            "description": " The id of the route used to remove the route."
+            "type": "string",
+            "description": "The id of the route used to remove the route."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "onAny": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 77,
+          "line": 64,
           "column": 4,
-          "index": 2579
+          "index": 1948
         },
         "end": {
-          "line": 79,
+          "line": 66,
           "column": 5,
-          "index": 2677
+          "index": 2052
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "channel",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "handler",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "scope",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "onAny": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a handler for the \"any\" channel. The \"any\" channel is called",
+          "     * before all other channels.",
+          "     *",
+          "     * @param type {String|RegExp} The route, used for checking if the executed path matches",
+          "     * @param handler {Function} The handler to call if the route matches the executed path",
+          "     * @param scope {var ? null} The scope of the handler.",
+          "     * @return {String} The id of the route used to remove the route.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -195,7 +258,7 @@
             "body": "handler {Function} The handler to call if the route matches the executed path",
             "paramName": "handler",
             "description": " The handler to call if the route matches the executed path",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -211,28 +274,62 @@
           {
             "name": "@return",
             "body": "{String} The id of the route used to remove the route.",
-            "type": "String",
-            "description": " The id of the route used to remove the route."
+            "type": "string",
+            "description": "The id of the route used to remove the route."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_addListener": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 90,
+          "line": 77,
           "column": 4,
-          "index": 3155
+          "index": 2503
         },
         "end": {
-          "line": 115,
+          "line": 79,
           "column": 5,
-          "index": 3922
+          "index": 2599
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "type",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "handler",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "scope",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_addListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a listener for a certain channel.",
+          "     *",
+          "     * @param channel {String} The channel the route should be registered for",
+          "     * @param type {String|RegExp} The type, used for checking if the executed path matches",
+          "     * @param handler {Function} The handler to call if the route matches the executed path",
+          "     * @param scope {var ? null} The scope of the handler.",
+          "     * @return {String} The id of the route used to remove the route.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -245,7 +342,7 @@
             "body": "channel {String} The channel the route should be registered for",
             "paramName": "channel",
             "description": " The channel the route should be registered for",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -262,7 +359,7 @@
             "body": "handler {Function} The handler to call if the route matches the executed path",
             "paramName": "handler",
             "description": " The handler to call if the route matches the executed path",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -278,28 +375,62 @@
           {
             "name": "@return",
             "body": "{String} The id of the route used to remove the route.",
-            "type": "String",
-            "description": " The id of the route used to remove the route."
+            "type": "string",
+            "description": "The id of the route used to remove the route."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "remove": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 122,
+          "line": 90,
           "column": 4,
-          "index": 4074
+          "index": 3066
         },
         "end": {
-          "line": 127,
+          "line": 115,
           "column": 5,
-          "index": 4265
+          "index": 3808
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "channel",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "handler",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "scope",
+          "type": "var",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a registered listener by the given id.",
+          "     *",
+          "     * @param id {String} The id of the registered listener.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -312,27 +443,43 @@
             "body": "id {String} The id of the registered listener.",
             "paramName": "id",
             "description": " The id of the registered listener.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "has": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 136,
+          "line": 122,
           "column": 4,
-          "index": 4552
+          "index": 3953
         },
         "end": {
-          "line": 150,
+          "line": 127,
           "column": 5,
-          "index": 4907
+          "index": 4139
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "has": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if a listener is registered for the given path in the given channel.",
+          "     *",
+          "     * @param channel {String} The channel of the message.",
+          "     * @param path {String} The path to check.",
+          "     * @return {Boolean} Whether a listener is registered.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -345,42 +492,66 @@
             "body": "channel {String} The channel of the message.",
             "paramName": "channel",
             "description": " The channel of the message.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "path {String} The path to check.",
             "paramName": "path",
             "description": " The path to check.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether a listener is registered.",
-            "type": "Boolean",
-            "description": " Whether a listener is registered."
+            "type": "boolean",
+            "description": "Whether a listener is registered."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "emit": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 160,
+          "line": 136,
           "column": 4,
-          "index": 5292
+          "index": 4417
         },
         "end": {
-          "line": 162,
+          "line": 150,
           "column": 5,
-          "index": 5394
+          "index": 4758
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "channel",
+          "type": "string"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "emit": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sends a message on the given channel and informs all matching route handlers.",
+          "     *",
+          "     * @param channel {String} The channel of the message.",
+          "     * @param path {String} The path to execute",
+          "     * @param params {Map} The given parameters that should be propagated",
+          "     * @param customData {var} The given custom data that should be propagated",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -393,21 +564,21 @@
             "body": "channel {String} The channel of the message.",
             "paramName": "channel",
             "description": " The channel of the message.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "path {String} The path to execute",
             "paramName": "path",
             "description": " The path to execute",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "params {Map} The given parameters that should be propagated",
             "paramName": "params",
             "description": " The given parameters that should be propagated",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -418,23 +589,53 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_emit": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 173,
+          "line": 160,
           "column": 4,
-          "index": 5802
+          "index": 5133
         },
         "end": {
-          "line": 197,
+          "line": 162,
           "column": 5,
-          "index": 6435
+          "index": 5233
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "channel",
+          "type": "string"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "params",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "customData",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_emit": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Executes a certain channel with a given path. Informs all",
+          "     * route handlers that match with the path.",
+          "     *",
+          "     * @param channel {String} The channel to execute.",
+          "     * @param path {String} The path to check",
+          "     * @param params {Map} The given parameters that should be propagated",
+          "     * @param customData {var} The given custom data that should be propagated",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -447,21 +648,21 @@
             "body": "channel {String} The channel to execute.",
             "paramName": "channel",
             "description": " The channel to execute.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "path {String} The path to check",
             "paramName": "path",
             "description": " The path to check",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "params {Map} The given parameters that should be propagated",
             "paramName": "params",
             "description": " The given parameters that should be propagated",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -472,23 +673,56 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_emitListeners": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 211,
+          "line": 173,
           "column": 4,
-          "index": 7040
+          "index": 5630
         },
         "end": {
-          "line": 227,
+          "line": 197,
           "column": 5,
-          "index": 7509
+          "index": 6239
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "channel",
+          "type": "string"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "params",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "customData",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_emitListeners": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Executes all given listener for a certain channel. Checks all listeners if they match",
+          "     * with the given path and executes the stored handler of the matching route.",
+          "     *",
+          "     * @param channel {String} The channel to execute.",
+          "     * @param path {String} The path to check",
+          "     * @param listeners {Map[]} All routes to test and execute.",
+          "     * @param params {Map} The given parameters that should be propagated",
+          "     * @param customData {var} The given custom data that should be propagated",
+          "     *",
+          "     * @return {Boolean} Whether the route has been executed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -501,14 +735,14 @@
             "body": "channel {String} The channel to execute.",
             "paramName": "channel",
             "description": " The channel to execute.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "path {String} The path to check",
             "paramName": "path",
             "description": " The path to check",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -522,7 +756,7 @@
             "body": "params {Map} The given parameters that should be propagated",
             "paramName": "params",
             "description": " The given parameters that should be propagated",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -536,28 +770,68 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the route has been executed",
-            "type": "Boolean",
-            "description": " Whether the route has been executed"
+            "type": "boolean",
+            "description": "Whether the route has been executed"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_emitRoute": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 241,
+          "line": 211,
           "column": 4,
-          "index": 8055
+          "index": 6830
         },
         "end": {
-          "line": 265,
+          "line": 227,
           "column": 5,
-          "index": 8778
+          "index": 7283
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "channel",
+          "type": "string"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "listeners",
+          "type": "Map[]"
+        },
+        {
+          "name": "params",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "customData",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_emitRoute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Executes a certain listener. Checks if the listener matches the given path and",
+          "     * executes the stored handler of the route.",
+          "     *",
+          "     * @param channel {String} The channel to execute.",
+          "     * @param path {String} The path to check",
+          "     * @param listener {Map} The route data.",
+          "     * @param params {Map} The given parameters that should be propagated",
+          "     * @param customData {var} The given custom data that should be propagated",
+          "     *",
+          "     * @return {Boolean} Whether the route has been executed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -570,28 +844,28 @@
             "body": "channel {String} The channel to execute.",
             "paramName": "channel",
             "description": " The channel to execute.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "path {String} The path to check",
             "paramName": "path",
             "description": " The path to check",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "listener {Map} The route data.",
             "paramName": "listener",
             "description": " The route data.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "params {Map} The given parameters that should be propagated",
             "paramName": "params",
             "description": " The given parameters that should be propagated",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -605,14 +879,53 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the route has been executed",
-            "type": "Boolean",
-            "description": " Whether the route has been executed"
+            "type": "boolean",
+            "description": "Whether the route has been executed"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4,
+          "index": 7815
+        },
+        "end": {
+          "line": 265,
+          "column": 5,
+          "index": 8514
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "channel",
+          "type": "string"
+        },
+        {
+          "name": "path",
+          "type": "string"
+        },
+        {
+          "name": "listener",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "params",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "customData",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

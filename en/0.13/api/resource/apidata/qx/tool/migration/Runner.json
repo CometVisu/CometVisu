@@ -1,0 +1,186 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172178,
+  "lastModifiedIso": "2024-06-01T09:46:12.178Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/migration/Runner.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 581
+    },
+    "end": {
+      "line": 125,
+      "column": 3,
+      "index": 4030
+    }
+  },
+  "className": "qx.tool.migration.Runner",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Runs all available migrations",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Runs all available migrations</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "properties": {
+    "dryRun": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 765
+        },
+        "end": {
+          "line": 33,
+          "column": 5,
+          "index": 822
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to apply the migrations (false) or just announce them (true)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to apply the migrations (false) or just announce them (true)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "verbose": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 899
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 957
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to log additional output for debugging",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to log additional output for debugging</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "qxVersion": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1066
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1178
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximum qooxdoo version for which the migration class should be applicable",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The maximum qooxdoo version for which the migration class should be applicable</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "runMigrations": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Instantiates all migration classes in the `qx.tool.migration` namespace which",
+          "     * match the version of the current application, and runs all methods of",
+          "     * these instances that start with \"migrate\".",
+          "     *",
+          "     * The methods must return an object with two numeric properties, `applied`",
+          "     * containing the number of migrations that have been applied, `pending`",
+          "     * containing the number of those that still have to be applied (for example,",
+          "     * after a dry-run).",
+          "     *",
+          "     * @return {Promise<{applied, pending}>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Instantiates all migration classes in the <code>qx.tool.migration</code> namespace which\n match the version of the current application, and runs all methods of\n these instances that start with \"migrate\".\n The methods must return an object with two numeric properties, <code>applied</code>\n containing the number of migrations that have been applied, <code>pending</code>\n containing the number of those that still have to be applied (for example,\n after a dry-run).</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<{applied, pending}>}",
+            "type": "Promise<{applied, pending}>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1753
+        },
+        "end": {
+          "line": 123,
+          "column": 5,
+          "index": 4022
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<{applied, pending}>"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

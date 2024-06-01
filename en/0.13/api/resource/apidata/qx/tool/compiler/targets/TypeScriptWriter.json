@@ -1,0 +1,1075 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172622,
+  "lastModifiedIso": "2024-06-01T09:46:12.622Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/TypeScriptWriter.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 920
+    },
+    "end": {
+      "line": 849,
+      "column": 3,
+      "index": 25253
+    }
+  },
+  "className": "qx.tool.compiler.targets.TypeScriptWriter",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Generates TypeScript .d.ts files",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Generates TypeScript .d.ts files</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "metaDb"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 40,
+        "column": 2,
+        "index": 1096
+      },
+      "end": {
+        "line": 43,
+        "column": 3,
+        "index": 1160
+      }
+    }
+  },
+  "properties": {
+    "outputTo": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1183
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1250
+        }
+      },
+      "json": {
+        "init": "qooxdoo.d.ts",
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__metaDb": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.tool.compiler.MetaDatabase} "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.tool.compiler.MetaDatabase}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1323
+        },
+        "end": {
+          "line": 54,
+          "column": 18,
+          "index": 1337
+        }
+      },
+      "appearsIn": []
+    },
+    "__outputStream": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Stream} where to write the .d.ts "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Stream} where to write the .d.ts"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1395
+        },
+        "end": {
+          "line": 57,
+          "column": 24,
+          "index": 1415
+        }
+      },
+      "appearsIn": []
+    },
+    "__outputStreamClosed": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1422
+        },
+        "end": {
+          "line": 59,
+          "column": 30,
+          "index": 1448
+        }
+      },
+      "appearsIn": []
+    },
+    "__currentClass": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.tool.compiler.MetaExtraction} "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.tool.compiler.MetaExtraction}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1506
+        },
+        "end": {
+          "line": 62,
+          "column": 24,
+          "index": 1526
+        }
+      },
+      "appearsIn": []
+    },
+    "__hierarchy": {
+      "jsdoc": {
+        "raw": [
+          "* @type {object} "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{object}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1559
+        },
+        "end": {
+          "line": 65,
+          "column": 21,
+          "index": 1576
+        }
+      },
+      "appearsIn": []
+    },
+    "__indent": {
+      "jsdoc": {
+        "raw": [
+          "* Current indent "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Current indent</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1609
+        },
+        "end": {
+          "line": 68,
+          "column": 20,
+          "index": 1625
+        }
+      },
+      "appearsIn": []
+    },
+    "open": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Opens the stream to write to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Opens the stream to write to</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1684
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2233
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "close": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Closes the stream",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Closes the stream</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2281
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 2983
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Processes a list of filename and generates the .d.ts",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Processes a list of filename and generates the .d.ts</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3073
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4082
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "write": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Write a piece of code to the declaration file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Write a piece of code to the declaration file</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 152,
+          "column": 4,
+          "index": 4158
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 4214
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "msg"
+        }
+      ],
+      "appearsIn": []
+    },
+    "writeClass": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Write the class or interface declaration",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Write the class or interface declaration</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 159,
+          "column": 4,
+          "index": 4285
+        },
+        "end": {
+          "line": 224,
+          "column": 5,
+          "index": 6300
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "meta"
+        },
+        {
+          "name": "declared"
+        }
+      ],
+      "appearsIn": []
+    },
+    "writeClassBody": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the body of the class (excl. constructor) and processes mixins",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the body of the class (excl. constructor) and processes mixins</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4,
+          "index": 6400
+        },
+        "end": {
+          "line": 252,
+          "column": 5,
+          "index": 6954
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "meta"
+        }
+      ],
+      "appearsIn": []
+    },
+    "writeProperties": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the property accessors",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the property accessors</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4,
+          "index": 7014
+        },
+        "end": {
+          "line": 397,
+          "column": 5,
+          "index": 11661
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "meta"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__propertiesInHierarchy": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Determines if any class in the hierarchy defines any properties",
+          "     * @param {qx.tool.compiler.MetaExtraction} meta",
+          "     * @returns {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Determines if any class in the hierarchy defines any properties</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.tool.compiler.MetaExtraction} meta",
+            "paramName": "meta",
+            "description": "",
+            "type": "qx.tool.compiler.MetaExtraction"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 404,
+          "column": 4,
+          "index": 11834
+        },
+        "end": {
+          "line": 422,
+          "column": 5,
+          "index": 12469
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "meta",
+          "type": "qx.tool.compiler.MetaExtraction"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Do the mapping of types from Qooxdoo to TypeScript",
+          "     *",
+          "     * @param {String|String[]} typename the name of the type to convert",
+          "     * @return {String} the Typescript name, if possible",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Do the mapping of types from Qooxdoo to TypeScript</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String|String[]} typename the name of the type to convert",
+            "paramName": "typename",
+            "description": "the name of the type to convert",
+            "type": [
+              "String",
+              {
+                "type": "String",
+                "dimensions": 2
+              }
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the Typescript name, if possible",
+            "type": "string",
+            "description": "the Typescript name, if possible"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 429,
+          "column": 4,
+          "index": 12686
+        },
+        "end": {
+          "line": 500,
+          "column": 5,
+          "index": 14861
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "typename",
+          "type": [
+            "String",
+            {
+              "type": "String",
+              "dimensions": 2
+            }
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "writeConstructor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Write a constructor",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Write a constructor</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 505,
+          "column": 4,
+          "index": 14911
+        },
+        "end": {
+          "line": 512,
+          "column": 5,
+          "index": 15101
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "methodMeta"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__writeMethod": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @typedef {Object} MemberConfig",
+          "     * @property {object} location",
+          "     * @property {Boolean} access",
+          "     * @property {Boolean} abstract",
+          "     * @property {Boolean} override",
+          "     * @property {Boolean} async",
+          "     * @property {Boolean} static",
+          "     * @property {Array} parameters JSDoc parameters and types",
+          "     * @property {any} returnType JSDoc return type",
+          "     * @property {object} jsdoc",
+          "     *",
+          "     * @param {string} methodName",
+          "     * @param {MemberConfig} config",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@typedef": [
+          {
+            "name": "@typedef",
+            "body": "{Object} MemberConfig"
+          }
+        ],
+        "@property": [
+          {
+            "name": "@property",
+            "body": "{object} location"
+          },
+          {
+            "name": "@property",
+            "body": "{Boolean} access"
+          },
+          {
+            "name": "@property",
+            "body": "{Boolean} abstract"
+          },
+          {
+            "name": "@property",
+            "body": "{Boolean} override"
+          },
+          {
+            "name": "@property",
+            "body": "{Boolean} async"
+          },
+          {
+            "name": "@property",
+            "body": "{Boolean} static"
+          },
+          {
+            "name": "@property",
+            "body": "{Array} parameters JSDoc parameters and types"
+          },
+          {
+            "name": "@property",
+            "body": "{any} returnType JSDoc return type"
+          },
+          {
+            "name": "@property",
+            "body": "{object} jsdoc"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string} methodName",
+            "paramName": "methodName",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{MemberConfig} config",
+            "paramName": "config",
+            "description": "",
+            "type": "MemberConfig"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 529,
+          "column": 4,
+          "index": 15594
+        },
+        "end": {
+          "line": 573,
+          "column": 5,
+          "index": 16727
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "methodName",
+          "type": "string"
+        },
+        {
+          "name": "config",
+          "type": "MemberConfig"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__writeField": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @typedef {Object} FieldConfig",
+          "     * @property {object} location",
+          "     * @property {Boolean} access",
+          "     * @property {Boolean} abstract",
+          "     * @property {Boolean} override",
+          "     * @property {Boolean} async",
+          "     * @property {Boolean} static",
+          "     * @property {Array} type",
+          "     * @property {object} jsdoc",
+          "     *",
+          "     * @param {string} fieldName",
+          "     * @param {FieldConfig} config",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@typedef": [
+          {
+            "name": "@typedef",
+            "body": "{Object} FieldConfig"
+          }
+        ],
+        "@property": [
+          {
+            "name": "@property",
+            "body": "{object} location"
+          },
+          {
+            "name": "@property",
+            "body": "{Boolean} access"
+          },
+          {
+            "name": "@property",
+            "body": "{Boolean} abstract"
+          },
+          {
+            "name": "@property",
+            "body": "{Boolean} override"
+          },
+          {
+            "name": "@property",
+            "body": "{Boolean} async"
+          },
+          {
+            "name": "@property",
+            "body": "{Boolean} static"
+          },
+          {
+            "name": "@property",
+            "body": "{Array} type"
+          },
+          {
+            "name": "@property",
+            "body": "{object} jsdoc"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string} fieldName",
+            "paramName": "fieldName",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{FieldConfig} config",
+            "paramName": "config",
+            "description": "",
+            "type": "FieldConfig"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 589,
+          "column": 4,
+          "index": 17132
+        },
+        "end": {
+          "line": 622,
+          "column": 5,
+          "index": 17975
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fieldName",
+          "type": "string"
+        },
+        {
+          "name": "config",
+          "type": "FieldConfig"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__writeJsDoc": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the JSDoc content and adds a link to the source code",
+          "     * @param {string[]} jsdoc",
+          "     * @param {object} location",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the JSDoc content and adds a link to the source code</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string[]} jsdoc",
+            "paramName": "jsdoc",
+            "description": "",
+            "type": "string[]"
+          },
+          {
+            "name": "@param",
+            "body": "{object} location",
+            "paramName": "location",
+            "description": "",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 629,
+          "column": 4,
+          "index": 18128
+        },
+        "end": {
+          "line": 682,
+          "column": 5,
+          "index": 19847
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "jsdoc",
+          "type": "string[]"
+        },
+        {
+          "name": "location",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__serializeParameters": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 684,
+          "column": 4,
+          "index": 19854
+        },
+        "end": {
+          "line": 718,
+          "column": 5,
+          "index": 20791
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "params"
+        }
+      ],
+      "appearsIn": []
+    },
+    "writeMembers": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Write all the methods of a type",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Write all the methods of a type</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 723,
+          "column": 4,
+          "index": 20853
+        },
+        "end": {
+          "line": 795,
+          "column": 5,
+          "index": 23620
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "body"
+        },
+        {
+          "name": "classMeta"
+        },
+        {
+          "name": "isStatic"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__escapeMemberName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Escapes the name with quote marks, only if necessary",
+          "     *",
+          "     * @param name",
+          "     *          {String} the name to escape",
+          "     * @return {String} the escaped (if necessary) name",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Escapes the name with quote marks, only if necessary</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "name\n          {String} the name to escape",
+            "paramName": "name",
+            "description": " the name to escape",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the escaped (if necessary) name",
+            "type": "string",
+            "description": "the escaped (if necessary) name"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 804,
+          "column": 4,
+          "index": 23829
+        },
+        "end": {
+          "line": 809,
+          "column": 5,
+          "index": 23976
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "TYPE_MAPPINGS": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 813,
+          "column": 4,
+          "index": 24000
+        },
+        "end": {
+          "line": 847,
+          "column": 5,
+          "index": 25245
+        }
+      },
+      "appearsIn": []
+    }
+  }
+}

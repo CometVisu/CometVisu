@@ -1,39 +1,41 @@
 {
-  "className": "cv.io.Fetch",
-  "packageName": "cv.io",
-  "name": "Fetch",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 912
-      },
-      "end": {
-        "line": 168,
-        "column": 3,
-        "index": 5491
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/io/Fetch.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 912
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>native fetch replacement that supports the internal recording mechanism for replay file.</p>"
-        }
-      ]
+    "end": {
+      "line": 168,
+      "column": 3,
+      "index": 5491
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.io.Fetch",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * native fetch replacement that supports the internal recording mechanism for replay file.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>native fetch replacement that supports the internal recording mechanism for replay file.</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "__cache": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 32,
@@ -46,10 +48,11 @@
           "index": 1114
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "DEFAULT_CACHE_TTL": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 33,
@@ -62,10 +65,15 @@
           "index": 1143
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "__gcInterval": {
+      "jsdoc": {
+        "raw": [
+          " 5 minutes"
+        ]
+      },
+      "access": "private",
       "location": {
         "start": {
           "line": 34,
@@ -78,11 +86,11 @@
           "index": 1180
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "cachedFetch": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 36,
@@ -96,10 +104,79 @@
         }
       },
       "type": "function",
-      "async": true,
-      "access": "public"
+      "params": [
+        {
+          "name": "resource"
+        },
+        {
+          "name": "options"
+        },
+        {
+          "name": "proxy"
+        },
+        {
+          "name": "client"
+        }
+      ],
+      "appearsIn": []
     },
     "fetch": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @param resource {URL|string}",
+          "     * @param options {object}",
+          "     * @param proxy {boolean}",
+          "     * @param client {cv.io.IClient}",
+          "     * @returns {Promise<String>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "resource {URL|string}",
+            "paramName": "resource",
+            "type": [
+              "URL",
+              "string"
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "options {object}",
+            "paramName": "options",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "proxy {boolean}",
+            "paramName": "proxy",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "client {cv.io.IClient}",
+            "paramName": "client",
+            "type": "cv.io.IClient"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<String>}",
+            "type": "Promise<String>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 82,
@@ -112,7 +189,44 @@
           "index": 4691
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "resource",
+          "type": [
+            "URL",
+            "string"
+          ]
+        },
+        {
+          "name": "options",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "proxy",
+          "type": "boolean"
+        },
+        {
+          "name": "client",
+          "type": "cv.io.IClient"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<String>"
+      },
+      "appearsIn": []
+    },
+    "proxyFetch": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @param resource {URL|string}",
+          "     * @param options {object}",
+          "     * @param client {cv.io.IClient}",
+          "     * @returns {Promise<Response>}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -122,35 +236,36 @@
         "@param": [
           {
             "name": "@param",
-            "body": "resource {URL|string}"
+            "body": "resource {URL|string}",
+            "paramName": "resource",
+            "type": [
+              "URL",
+              "string"
+            ]
           },
           {
             "name": "@param",
-            "body": "options {object}"
+            "body": "options {object}",
+            "paramName": "options",
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
-            "body": "proxy {boolean}"
-          },
-          {
-            "name": "@param",
-            "body": "client {cv.io.IClient}"
+            "body": "client {cv.io.IClient}",
+            "paramName": "client",
+            "type": "cv.io.IClient"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Promise<String>}",
-            "type": "Promise<String>",
+            "body": "{Promise<Response>}",
+            "type": "Promise<Response>",
             "description": ""
           }
         ]
       },
-      "type": "function",
-      "async": true,
-      "access": "public"
-    },
-    "proxyFetch": {
+      "access": "public",
       "location": {
         "start": {
           "line": 147,
@@ -163,54 +278,37 @@
           "index": 4977
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "resource {URL|string}"
-          },
-          {
-            "name": "@param",
-            "body": "options {object}"
-          },
-          {
-            "name": "@param",
-            "body": "client {cv.io.IClient}"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Promise<Response>}",
-            "type": "Promise<Response>",
-            "description": ""
-          }
-        ]
-      },
       "type": "function",
-      "async": true,
-      "access": "public"
+      "params": [
+        {
+          "name": "resource",
+          "type": [
+            "URL",
+            "string"
+          ]
+        },
+        {
+          "name": "options",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "client",
+          "type": "cv.io.IClient"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<Response>"
+      },
+      "appearsIn": []
     },
     "_gc": {
-      "location": {
-        "start": {
-          "line": 155,
-          "column": 4,
-          "index": 5058
-        },
-        "end": {
-          "line": 166,
-          "column": 5,
-          "index": 5483
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Garbage collection for fetch cache",
+          "     * @private",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -224,9 +322,24 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 5058
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 5483
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

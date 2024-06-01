@@ -1,70 +1,53 @@
 {
-  "className": "cv.transforms.Mqtt",
-  "packageName": "cv.transforms",
-  "name": "Mqtt",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 904
-      },
-      "end": {
-        "line": 473,
-        "column": 3,
-        "index": 12247
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Transformations for the MQTT backend</p><div class=\"authors\"><label>Author:</label> Christian Mayer</div><div class=\"since\"><label>Since:</label> 2021</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Christian Mayer"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2021"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/transforms/Mqtt.js",
   "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
-  "isSingleton": false,
-  "defer": {
-    "location": {
-      "start": {
-        "line": 33,
-        "column": 2,
-        "index": 1114
-      },
-      "end": {
-        "line": 472,
-        "column": 3,
-        "index": 12243
-      }
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 904
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class defines the default transforms: encode: transform JavaScript to\n bus value decode: transform bus to JavaScript value</p>"
-        }
-      ]
+    "end": {
+      "line": 473,
+      "column": 3,
+      "index": 12247
     }
   },
-  "descendants": []
+  "className": "cv.transforms.Mqtt",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Transformations for the MQTT backend",
+      " *",
+      " * @author Christian Mayer",
+      " * @since 2021",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Transformations for the MQTT backend</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Christian Mayer"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2021"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

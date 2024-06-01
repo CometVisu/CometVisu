@@ -1,0 +1,530 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169770,
+  "lastModifiedIso": "2024-06-01T09:46:09.770Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/api/CompilerApi.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 824
+    },
+    "end": {
+      "line": 154,
+      "column": 3,
+      "index": 3853
+    }
+  },
+  "className": "qx.tool.cli.api.CompilerApi",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Provides an API for the compiler",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Provides an API for the compiler</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.api.AbstractApi",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 33,
+        "column": 2,
+        "index": 915
+      },
+      "end": {
+        "line": 40,
+        "column": 3,
+        "index": 1115
+      }
+    }
+  },
+  "properties": {
+    "configFilename": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1179
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1247
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "* Default filename to load from "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Default filename to load from</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "command": {
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1285
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1415
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "qx.tool.cli.commands.Command",
+        "event": "changeCommand"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The current command "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The current command</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__libraryApis": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1439
+        },
+        "end": {
+          "line": 59,
+          "column": 23,
+          "index": 1458
+        }
+      },
+      "appearsIn": []
+    },
+    "afterCommandLoaded": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called after the command is loaded",
+          "     * @param cmd {qx.tool.cli.commands.Command} current command",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called after the command is loaded</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cmd {qx.tool.cli.commands.Command} current command",
+            "paramName": "cmd",
+            "description": " current command",
+            "type": "qx.tool.cli.commands.Command"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1588
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1636
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cmd",
+          "type": "qx.tool.cli.commands.Command"
+        }
+      ],
+      "appearsIn": []
+    },
+    "beforeTests": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Register compiler tests",
+          "     * @param cmd {qx.tool.cli.commands.Command} current command",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Register compiler tests</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cmd {qx.tool.cli.commands.Command} current command",
+            "paramName": "cmd",
+            "description": " current command",
+            "type": "qx.tool.cli.commands.Command"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1755
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 1802
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cmd",
+          "type": "qx.tool.cli.commands.Command"
+        }
+      ],
+      "appearsIn": []
+    },
+    "afterDeploy": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * called after deployment happens",
+          "     *",
+          "     * @param data {Object}  contains deployment infos with the following properties:",
+          "     *           targetDir  : {String}  The target dir of the build",
+          "     *           deployDir  : {String}  The output dir for the deployment",
+          "     *           argv       : {Object}  Arguments",
+          "     *           application: {Object}  application to build",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>called after deployment happens</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "data {Object}  contains deployment infos with the following properties:\n           targetDir  : {String}  The target dir of the build\n           deployDir  : {String}  The output dir for the deployment\n           argv       : {Object}  Arguments\n           application: {Object}  application to build",
+            "paramName": "data",
+            "description": "  contains deployment infos with the following properties:\n           targetDir  : {String}  The target dir of the build\n           deployDir  : {String}  The output dir for the deployment\n           argv       : {Object}  Arguments\n           application: {Object}  application to build",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2241
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2289
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "load": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads the configuration data",
+          "     *",
+          "     * @overridden",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads the configuration data</p>"
+          }
+        ],
+        "@overridden": [
+          {
+            "name": "@overridden",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2374
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 2789
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.api.AbstractApi",
+      "appearsIn": [
+        "qx.tool.cli.api.AbstractApi"
+      ]
+    },
+    "compileJsonExists": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 2796
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 2861
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "afterProcessFinished": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * runs after the whole process is finished",
+          "     * @param cmd {qx.tool.cli.commands.Command} current command",
+          "     * @param res {boolean} result of the just finished process",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>runs after the whole process is finished</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "cmd {qx.tool.cli.commands.Command} current command",
+            "paramName": "cmd",
+            "description": " current command",
+            "type": "qx.tool.cli.commands.Command"
+          },
+          {
+            "name": "@param",
+            "body": "res {boolean} result of the just finished process",
+            "paramName": "res",
+            "description": " result of the just finished process",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3061
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 3122
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "cmd",
+          "type": "qx.tool.cli.commands.Command"
+        },
+        {
+          "name": "res",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "afterLibrariesLoaded": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called after all libraries have been loaded and added to the compilation data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called after all libraries have been loaded and added to the compilation data</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3230
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 3393
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "addLibraryApi": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a library configuration",
+          "     *",
+          "     * @param libraryApi {LibraryApi} the configuration for the library",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a library configuration</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "libraryApi {LibraryApi} the configuration for the library",
+            "paramName": "libraryApi",
+            "description": " the configuration for the library",
+            "type": "qx.tool.cli.api.LibraryApi"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3531
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 3663
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "libraryApi",
+          "type": "qx.tool.cli.api.LibraryApi"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLibraryApis": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an array of library configurations",
+          "     *",
+          "     * @return {LibraryApi[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns an array of library configurations</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{LibraryApi[]}",
+            "type": "LibraryApi[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 3773
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 3845
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "LibraryApi[]"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

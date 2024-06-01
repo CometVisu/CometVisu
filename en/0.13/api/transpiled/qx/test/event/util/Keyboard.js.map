@@ -1,0 +1,31 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "testCommaAsValidKeyIdentifier",
+    "isValidKeyIdentifier",
+    "event",
+    "util",
+    "Keyboard",
+    "assertTrue",
+    "test"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/event/util/Keyboard.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n qooxdoo - the new era of web development\n\n http://qooxdoo.org\n\n Copyright:\n 2007-20014 1&1 Internet AG, Germany, http://www.1und1.de\n\n License:\n     MIT: https://opensource.org/licenses/MIT\n See the LICENSE file in the project's top-level directory for details.\n\n Authors:\n * Tobias Oberrauch <tobias.oberrauch@1und1.de>\n\n ************************************************************************\n */\nqx.Class.define(\"qx.test.event.util.Keyboard\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    testCommaAsValidKeyIdentifier() {\n      var isValidKeyIdentifier =\n        qx.event.util.Keyboard.isValidKeyIdentifier(\",\");\n\n      this.assertTrue(isValidKeyIdentifier);\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,6BAA6B,EAAE;IAC7CC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE;MACPC,6BAA6B,WAAAA,8BAAA,EAAG;QAC9B,IAAIC,oBAAoB,GACtBZ,EAAE,CAACa,KAAK,CAACC,IAAI,CAACC,QAAQ,CAACH,oBAAoB,CAAC,GAAG,CAAC;QAElD,IAAI,CAACI,UAAU,CAACJ,oBAAoB,CAAC;MACvC;IACF;EACF,CAAC,CAAC;EA7BFZ,EAAE,CAACiB,IAAI,CAACJ,KAAK,CAACC,IAAI,CAACC,QAAQ,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

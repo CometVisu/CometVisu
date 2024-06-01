@@ -1,54 +1,36 @@
 {
-  "className": "qx.theme.Modern",
-  "packageName": "qx.theme",
-  "name": "Modern",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 563
-      },
-      "end": {
-        "line": 33,
-        "column": 3,
-        "index": 831
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Contemporary Theme</p>"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235171806,
+  "lastModifiedIso": "2024-06-01T09:46:11.806Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/Modern.js",
   "type": "theme",
-  "themeMeta": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 2,
-        "index": 625
-      },
-      "end": {
-        "line": 32,
-        "column": 3,
-        "index": 826
-      }
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 541
     },
-    "themeMetaMap": {
-      "color": "qx.theme.modern.Color",
-      "decoration": "qx.theme.modern.Decoration",
-      "font": "qx.theme.modern.Font",
-      "appearance": "qx.theme.modern.Appearance",
-      "icon": "qx.theme.icon.Tango"
+    "end": {
+      "line": 33,
+      "column": 3,
+      "index": 799
     }
   },
-  "descendants": []
+  "className": "qx.theme.Modern",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Contemporary Theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Contemporary Theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

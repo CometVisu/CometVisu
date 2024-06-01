@@ -1,0 +1,374 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169446,
+  "lastModifiedIso": "2024-06-01T09:46:09.446Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/BuildTarget.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 788
+    },
+    "end": {
+      "line": 139,
+      "column": 3,
+      "index": 3586
+    }
+  },
+  "className": "qx.tool.compiler.targets.BuildTarget",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Compiles a \"build\" application, minified and self contained application",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Compiles a \"build\" application, minified and self contained application</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.targets.Target",
+  "properties": {
+    "minify": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 950
+        },
+        "end": {
+          "line": 34,
+          "column": 5,
+          "index": 1063
+        }
+      },
+      "json": {
+        "init": "mangle",
+        "check": [
+          "off",
+          "minify",
+          "mangle",
+          "beautify"
+        ],
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to minify the output "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to minify the output</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "saveUnminified": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1119
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1207
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean",
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to preserve unminified output "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to preserve unminified output</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "saveSourceInMap": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1268
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1357
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean",
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to save the source in the map file "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to save the source in the map file</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "deployDir": {
+      "location": {
+        "start": {
+          "line": 51,
+          "column": 4,
+          "index": 1430
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1550
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "transform": "_transformOutputDir"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Deploy directory (guaranteed to have a trailing slash) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Deploy directory (guaranteed to have a trailing slash)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "deployMap": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1602
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1685
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean",
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to deploy the source maps "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to deploy the source maps</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "defaultEnvironment": {
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1692
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1788
+        }
+      },
+      "json": {
+        "init": {
+          "undefined": false
+        },
+        "refine": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.tool.compiler.targets.Target"
+      ]
+    }
+  },
+  "events": {
+    "minifyingApplication": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when minification begins, data is a map containing:",
+          "     *  application {qx.tool.compiler.app.Application} the app being minified",
+          "     *  part: {String} the part being minified",
+          "     *  filename: {String} the part filename",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when minification begins, data is a map containing:\n  application {qx.tool.compiler.app.Application} the app being minified\n  part: {String} the part being minified\n  filename: {String} the part filename</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2062
+        },
+        "end": {
+          "line": 81,
+          "column": 46,
+          "index": 2104
+        }
+      }
+    },
+    "minifiedApplication": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when minification is done, data is a map containing:",
+          "     *  application {qx.tool.compiler.app.Application} the app being minified",
+          "     *  part: {String} the part being minified",
+          "     *  filename: {String} the part filename",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when minification is done, data is a map containing:\n  application {qx.tool.compiler.app.Application} the app being minified\n  part: {String} the part being minified\n  filename: {String} the part filename</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2363
+        },
+        "end": {
+          "line": 89,
+          "column": 45,
+          "index": 2404
+        }
+      }
+    }
+  },
+  "members": {
+    "_writeApplication": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2460
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 3468
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.targets.Target",
+      "appearsIn": [
+        "qx.tool.compiler.targets.Target"
+      ]
+    },
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 3507
+        },
+        "end": {
+          "line": 137,
+          "column": 5,
+          "index": 3578
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.targets.Target",
+      "appearsIn": [
+        "qx.tool.compiler.targets.Target",
+        "qx.core.Object",
+        "qx.data.MBinding",
+        "qx.core.MLogging",
+        "qx.core.MEvent",
+        "qx.core.MProperty",
+        "qx.core.MObjectId",
+        "qx.core.MAssert"
+      ]
+    }
+  },
+  "statics": {}
+}

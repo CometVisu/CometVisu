@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "testEvents",
+    "core",
+    "Object",
+    "events",
+    "click",
+    "target",
+    "Event",
+    "addListener",
+    "dispose",
+    "test",
+    "Target"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/core/Target.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\n/**\n * @ignore(qx.Event)\n */\n\nqx.Class.define(\"qx.test.core.Target\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    testEvents() {\n      qx.Class.define(\"qx.Event\", {\n        extend: qx.core.Object,\n        events: { click: \"qx.event.type.Event\" }\n      });\n\n      var target = new qx.Event();\n      target.addListener(\"click\", function () {});\n      target.dispose();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qBAAqB,EAAE;IACrCC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE;MACPC,UAAU,WAAAA,WAAA,EAAG;QACXX,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,UAAU,EAAE;UAC1BC,MAAM,EAAEN,EAAE,CAACY,IAAI,CAACC,MAAM;UACtBC,MAAM,EAAE;YAAEC,KAAK,EAAE;UAAsB;QACzC,CAAC,CAAC;QAEF,IAAIC,MAAM,GAAG,IAAIhB,EAAE,CAACiB,KAAK,CAAC,CAAC;QAC3BD,MAAM,CAACE,WAAW,CAAC,OAAO,EAAE,YAAY,CAAC,CAAC,CAAC;QAC3CF,MAAM,CAACG,OAAO,CAAC,CAAC;MAClB;IACF;EACF,CAAC,CAAC;EArCFnB,EAAE,CAACoB,IAAI,CAACR,IAAI,CAACS,MAAM,CAAClB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

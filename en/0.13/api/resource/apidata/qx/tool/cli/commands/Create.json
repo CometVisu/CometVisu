@@ -1,0 +1,143 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169806,
+  "lastModifiedIso": "2024-06-01T09:46:09.806Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Create.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 1178
+    },
+    "end": {
+      "line": 335,
+      "column": 3,
+      "index": 10526
+    }
+  },
+  "className": "qx.tool.cli.commands.Create",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Create a new qooxdoo project. This will assemble the information needed to create the",
+      " * new project by the following ways, in order of precedence:",
+      " * 1. use parameters passed to the CLI command via the options",
+      " * 2. if available, retrieve the info from the given environment",
+      " * 3. ask the user the missing values interactively, offering default values where available",
+      " * The variables needed are stored in the templates/template_vars.js file, together",
+      " * with some metadata.",
+      " *",
+      " * Issues: automatic determination of qooxdoo path doesn't work yet.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Create a new qooxdoo project. This will assemble the information needed to create the\n new project by the following ways, in order of precedence:</p>\n<ol>\n<li>use parameters passed to the CLI command via the options</li>\n<li>if available, retrieve the info from the given environment</li>\n<li>ask the user the missing values interactively, offering default values where available\nThe variables needed are stored in the templates/template_vars.js file, together\nwith some metadata.\nIssues: automatic determination of qooxdoo path doesn't work yet.</li>\n</ol>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Command",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1284
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2586
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getSkeletonNames": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the names of the skeleton directories in the template folder",
+          "     * @returns {string[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the names of the skeleton directories in the template folder</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string[]}",
+            "type": "string[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 93,
+          "column": 4,
+          "index": 2711
+        },
+        "end": {
+          "line": 104,
+          "column": 5,
+          "index": 3084
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string[]"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a new qooxdoo application",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a new qooxdoo application</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3165
+        },
+        "end": {
+          "line": 333,
+          "column": 5,
+          "index": 10518
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    }
+  },
+  "properties": {}
+}

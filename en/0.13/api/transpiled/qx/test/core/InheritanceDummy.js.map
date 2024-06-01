@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "constructor",
+    "call",
+    "children",
+    "properties",
+    "enabled",
+    "inheritable",
+    "width_",
+    "themeable",
+    "height_",
+    "left_",
+    "top_",
+    "members",
+    "add",
+    "child",
+    "push",
+    "parent",
+    "$$refreshInheritables",
+    "_getChildren",
+    "getLayoutParent",
+    "test",
+    "InheritanceDummy"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/core/InheritanceDummy.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.core.InheritanceDummy\", {\n  extend: qx.core.Object,\n\n  construct() {\n    super();\n    this.children = [];\n  },\n\n  properties: {\n    enabled: { inheritable: true },\n\n    width_: {\n      inheritable: true,\n      themeable: true\n    },\n\n    height_: {\n      inheritable: true,\n      themeable: true\n    },\n\n    left_: {\n      inheritable: true,\n      themeable: true\n    },\n\n    top_: {\n      inheritable: true,\n      themeable: true\n    }\n  },\n\n  members: {\n    add(child) {\n      this.children.push(child);\n      child.parent = this;\n      child.$$refreshInheritables();\n    },\n\n    _getChildren() {\n      return this.children;\n    },\n\n    getLayoutParent() {\n      return this.parent;\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,+BAA+B,EAAE;IAC/CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IAEtBC,SAAS,WAAAA,UAAA,EAAG;MACVT,EAAA,CAAAO,IAAA,CAAAC,MAAA,CAAAE,WAAA,CAAAC,IAAA;MACA,IAAI,CAACC,QAAQ,GAAG,EAAE;IACpB,CAAC;IAEDC,UAAU,EAAE;MACVC,OAAO,EAAE;QAAEC,WAAW,EAAE;MAAK,CAAC;MAE9BC,MAAM,EAAE;QACND,WAAW,EAAE,IAAI;QACjBE,SAAS,EAAE;MACb,CAAC;MAEDC,OAAO,EAAE;QACPH,WAAW,EAAE,IAAI;QACjBE,SAAS,EAAE;MACb,CAAC;MAEDE,KAAK,EAAE;QACLJ,WAAW,EAAE,IAAI;QACjBE,SAAS,EAAE;MACb,CAAC;MAEDG,IAAI,EAAE;QACJL,WAAW,EAAE,IAAI;QACjBE,SAAS,EAAE;MACb;IACF,CAAC;IAEDI,OAAO,EAAE;MACPC,GAAG,WAAAA,IAACC,KAAK,EAAE;QACT,IAAI,CAACX,QAAQ,CAACY,IAAI,CAACD,KAAK,CAAC;QACzBA,KAAK,CAACE,MAAM,GAAG,IAAI;QACnBF,KAAK,CAACG,qBAAqB,CAAC,CAAC;MAC/B,CAAC;MAEDC,YAAY,WAAAA,aAAA,EAAG;QACb,OAAO,IAAI,CAACf,QAAQ;MACtB,CAAC;MAEDgB,eAAe,WAAAA,gBAAA,EAAG;QAChB,OAAO,IAAI,CAACH,MAAM;MACpB;IACF;EACF,CAAC,CAAC;EAjEFzB,EAAE,CAAC6B,IAAI,CAACtB,IAAI,CAACuB,gBAAgB,CAAC3B,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

@@ -1,55 +1,63 @@
 {
-  "className": "qx.module.util.Function",
-  "packageName": "qx.module.util",
-  "name": "Function",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 628
-      },
-      "end": {
-        "line": 65,
-        "column": 3,
-        "index": 2889
-      }
+  "version": 0.3,
+  "lastModified": 1717235171026,
+  "lastModifiedIso": "2024-06-01T09:46:11.026Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/util/Function.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 605
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Utility module to give some support to work with functions.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Utilities"
-        }
-      ]
+    "end": {
+      "line": 65,
+      "column": 3,
+      "index": 2825
     }
   },
-  "type": "class",
+  "className": "qx.module.util.Function",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Utility module to give some support to work with functions.",
+      " *",
+      " * @group (Utilities)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Utility module to give some support to work with functions.</p>"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Utilities"
+      }
+    ]
+  },
   "statics": {
     "debounce": {
-      "location": {
-        "start": {
-          "line": 41,
-          "column": 4,
-          "index": 1665
-        },
-        "end": {
-          "line": 41,
-          "column": 39,
-          "index": 1700
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a debounced version of the given callback. The execution of the callback",
+          "     * is delayed by the given delay and after no events were triggered anymore.",
+          "     * This mechanism is very useful for event handling: only after a specified delay",
+          "     * the event should be handled (e.g. at keyboard input by the user) to prevent flooding",
+          "     * the handler with a large amounts of events.",
+          "     *",
+          "     * @attachStatic{qxWeb, func.debounce}",
+          "     * @signature function (callback, delay, immediate)",
+          "     * @param callback {Function} the callback which should be executed after the given delay",
+          "     * if the wrapper method is *not* called during this delay.",
+          "     * @param delay {Number} Delay in milliseconds",
+          "     * @param immediate {Boolean?} whether to run the callback at the beginning and then debounce, default is <code>false</code>",
+          "     * @return {Function} a wrapper function which <em>shields</em> the given callback function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -74,14 +82,14 @@
             "body": "callback {Function} the callback which should be executed after the given delay\n if the wrapper method is *not* called during this delay.",
             "paramName": "callback",
             "description": " the callback which should be executed after the given delay\n if the wrapper method is *not* called during this delay.",
-            "type": "qx.module.util.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "delay {Number} Delay in milliseconds",
             "paramName": "delay",
             "description": " Delay in milliseconds",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
@@ -96,28 +104,49 @@
           {
             "name": "@return",
             "body": "{Function} a wrapper function which <em>shields</em> the given callback function",
-            "type": "qx.module.util.Function",
-            "description": " a wrapper function which <em>shields</em> the given callback function"
+            "type": "((...args: any[]) => any)",
+            "description": "a wrapper function which <em>shields</em> the given callback function"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "throttle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 59,
+          "line": 41,
           "column": 4,
-          "index": 2779
+          "index": 1625
         },
         "end": {
-          "line": 59,
+          "line": 41,
           "column": 39,
-          "index": 2814
+          "index": 1660
         }
       },
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "throttle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a throttled version of the given callback. The execution of the callback",
+          "     * is throttled which means it is only executed in the given interval.",
+          "     * This mechanism is very useful for event handling: only in specified intervals",
+          "     * the event should be handled (e.g. at resize of the browser window) to prevent flooding",
+          "     * the handler with a large amounts of events.",
+          "     * As default the <code>leading</code> and <code>trailing</code> calls are executed.",
+          "     *",
+          "     * @attachStatic{qxWeb, func.throttle}",
+          "     * @signature function (callback, interval, options)",
+          "     * @param callback {Function} the callback which should be executed in the given interval",
+          "     * @param interval {Number} Interval in milliseconds",
+          "     * @param options {Map} the keys are <code>leading</code> and <code>trailing</code> to control the",
+          "     * executing of the callback precisely. Default values are <code>true</code> for both options.",
+          "     * @return {Function} a wrapper function which <em>shields</em> the given callback function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -142,49 +171,51 @@
             "body": "callback {Function} the callback which should be executed in the given interval",
             "paramName": "callback",
             "description": " the callback which should be executed in the given interval",
-            "type": "qx.module.util.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "interval {Number} Interval in milliseconds",
             "paramName": "interval",
             "description": " Interval in milliseconds",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
             "body": "options {Map} the keys are <code>leading</code> and <code>trailing</code> to control the\n executing of the callback precisely. Default values are <code>true</code> for both options.",
             "paramName": "options",
             "description": " the keys are <code>leading</code> and <code>trailing</code> to control the\n executing of the callback precisely. Default values are <code>true</code> for both options.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Function} a wrapper function which <em>shields</em> the given callback function",
-            "type": "qx.module.util.Function",
-            "description": " a wrapper function which <em>shields</em> the given callback function"
+            "type": "((...args: any[]) => any)",
+            "description": "a wrapper function which <em>shields</em> the given callback function"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 62,
-        "column": 2,
-        "index": 2826
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 2721
+        },
+        "end": {
+          "line": 59,
+          "column": 39,
+          "index": 2756
+        }
       },
-      "end": {
-        "line": 64,
-        "column": 3,
-        "index": 2884
-      }
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

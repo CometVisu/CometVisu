@@ -1,49 +1,45 @@
 {
-  "className": "cv.theme.dark.Icon",
-  "packageName": "cv.theme.dark",
-  "name": "Icon",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 20,
-        "column": 0,
-        "index": 811
-      },
-      "end": {
-        "line": 30,
-        "column": 3,
-        "index": 1245
-      }
-    },
-    "jsdoc": {}
-  },
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/theme/dark/Icon.js",
   "type": "theme",
-  "aliases": {
-    "location": {
-      "start": {
-        "line": 21,
-        "column": 2,
-        "index": 853
-      },
-      "end": {
-        "line": 29,
-        "column": 3,
-        "index": 1241
-      }
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 811
     },
-    "aliasMap": {
-      "icon": "qx/icon/Oxygen",
-      "qxl.dialog.icon.cancel": "@MaterialIcons/cancel/18",
-      "qxl.dialog.icon.ok": "@MaterialIcons/check/18",
-      "qxl.dialog.icon.info": "@MaterialIcons/info/18",
-      "qxl.dialog.icon.error": "@MaterialIcons/error/18",
-      "qxl.dialog.icon.warning": "@MaterialIcons/warning/18",
-      "qxl.dialog.icon.delete": "@MaterialIcons/delete_forever/18"
+    "end": {
+      "line": 30,
+      "column": 3,
+      "index": 1245
     }
   },
-  "descendants": []
+  "className": "cv.theme.dark.Icon",
+  "jsdoc": {
+    "raw": [
+      " Icon.js",
+      " *",
+      " * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " "
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

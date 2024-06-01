@@ -1,55 +1,53 @@
 {
-  "className": "qx.dev.ObjectSummary",
-  "packageName": "qx.dev",
-  "name": "ObjectSummary",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 798
-      },
-      "end": {
-        "line": 154,
-        "column": 3,
-        "index": 4101
-      }
+  "version": 0.3,
+  "lastModified": 1717235171914,
+  "lastModifiedIso": "2024-06-01T09:46:11.914Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/ObjectSummary.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 772
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Statics around created qooxdoo instances.</p>"
-        }
-      ],
-      "@deprecated": [
-        {
-          "name": "@deprecated",
-          "body": "{6.0} automatic memory management means that most objects are no\n longer stored in the object registry; this class is no longer useful"
-        }
-      ]
+    "end": {
+      "line": 154,
+      "column": 3,
+      "index": 3948
     }
   },
-  "type": "class",
+  "className": "qx.dev.ObjectSummary",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Statics around created qooxdoo instances.",
+      " * @deprecated {6.0} automatic memory management means that most objects are no",
+      " * longer stored in the object registry; this class is no longer useful",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Statics around created qooxdoo instances.</p>"
+      }
+    ],
+    "@deprecated": [
+      {
+        "name": "@deprecated",
+        "body": "{6.0} automatic memory management means that most objects are no\n longer stored in the object registry; this class is no longer useful"
+      }
+    ]
+  },
   "statics": {
     "getInfo": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 977
-        },
-        "end": {
-          "line": 74,
-          "column": 5,
-          "index": 1950
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Summary of allocated objects",
+          "     *",
+          "     * @return {String} summary of allocated objects.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,28 +58,41 @@
           {
             "name": "@return",
             "body": "{String} summary of allocated objects.",
-            "type": "String",
-            "description": " summary of allocated objects."
+            "type": "string",
+            "description": "summary of allocated objects."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getNewObjects": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 34,
           "column": 4,
-          "index": 2165
+          "index": 944
         },
         "end": {
-          "line": 152,
+          "line": 74,
           "column": 5,
-          "index": 4091
+          "index": 1877
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getNewObjects": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Allocated objects and lists all objects, which have been newly created",
+          "     * since the last call of this function.",
+          "     *",
+          "     * @return {String} summary of allocated objects.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -92,14 +103,32 @@
           {
             "name": "@return",
             "body": "{String} summary of allocated objects.",
-            "type": "String",
-            "description": " summary of allocated objects."
+            "type": "string",
+            "description": "summary of allocated objects."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2084
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 3940
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

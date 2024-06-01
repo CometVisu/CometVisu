@@ -1,0 +1,37 @@
+{
+  "version": 0.3,
+  "lastModified": 1646967780000,
+  "lastModifiedIso": "2022-03-11T03:03:00.000Z",
+  "classFilename": "../../qx_packages/johnspackman_UploadMgr_v2_0_0/source/class/com/zenesis/qx/upload/demo/theme/Decoration.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 11,
+      "column": 0,
+      "index": 195
+    },
+    "end": {
+      "line": 15,
+      "column": 3,
+      "index": 321
+    }
+  },
+  "className": "com.zenesis.qx.upload.demo.theme.Decoration",
+  "jsdoc": {
+    "raw": [
+      " ************************************************************************",
+      "",
+      "   Copyright:",
+      "",
+      "   License:",
+      "",
+      "   Authors:",
+      "",
+      "************************************************************************ "
+    ]
+  },
+  "superClass": "qx.theme.modern.Decoration",
+  "members": {},
+  "statics": {},
+  "properties": {}
+}

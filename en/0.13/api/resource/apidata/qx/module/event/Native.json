@@ -1,69 +1,69 @@
 {
-  "className": "qx.module.event.Native",
-  "packageName": "qx.module.event",
-  "name": "Native",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 701
-      },
-      "end": {
-        "line": 138,
-        "column": 3,
-        "index": 3643
-      }
+  "version": 0.3,
+  "lastModified": 1717235171854,
+  "lastModifiedIso": "2024-06-01T09:46:11.854Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/Native.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 674
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Common normalizations for native events</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.Event#getTarget"
-        },
-        {
-          "name": "@require",
-          "body": "qx.bom.Event#getRelatedTarget"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Event_Normalization"
-        }
-      ]
+    "end": {
+      "line": 138,
+      "column": 3,
+      "index": 3506
     }
   },
-  "type": "class",
+  "className": "qx.module.event.Native",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Common normalizations for native events",
+      " *",
+      " * @require(qx.module.Event)",
+      " * @require(qx.bom.Event#getTarget)",
+      " * @require(qx.bom.Event#getRelatedTarget)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Common normalizations for native events</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.Event#getTarget"
+      },
+      {
+        "name": "@require",
+        "body": "qx.bom.Event#getRelatedTarget"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
   "statics": {
     "TYPES": {
-      "location": {
-        "start": {
-          "line": 33,
-          "column": 4,
-          "index": 831
-        },
-        "end": {
-          "line": 33,
-          "column": 16,
-          "index": 843
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of event types to be normalized",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -71,23 +71,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "FORWARD_METHODS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 39,
+          "line": 33,
           "column": 4,
-          "index": 964
+          "index": 799
         },
         "end": {
-          "line": 39,
-          "column": 54,
-          "index": 1014
+          "line": 33,
+          "column": 16,
+          "index": 811
         }
       },
+      "appearsIn": []
+    },
+    "FORWARD_METHODS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of qx.bom.Event methods to be attached to native event objects",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -101,23 +107,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "BIND_METHODS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 45,
+          "line": 39,
           "column": 4,
-          "index": 1145
+          "index": 926
         },
         "end": {
-          "line": 45,
-          "column": 66,
-          "index": 1207
+          "line": 39,
+          "column": 54,
+          "index": 976
         }
       },
+      "appearsIn": []
+    },
+    "BIND_METHODS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of qx.module.event.Native methods to be attached to native event objects",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -131,23 +143,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "preventDefault": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 50,
+          "line": 45,
           "column": 4,
-          "index": 1292
+          "index": 1101
         },
         "end": {
-          "line": 58,
-          "column": 5,
-          "index": 1508
+          "line": 45,
+          "column": 66,
+          "index": 1163
         }
       },
+      "appearsIn": []
+    },
+    "preventDefault": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Prevent the native default behavior of the event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -155,23 +172,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "stopPropagation": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 63,
+          "line": 50,
           "column": 4,
-          "index": 1597
+          "index": 1243
         },
         "end": {
-          "line": 65,
+          "line": 58,
           "column": 5,
-          "index": 1656
+          "index": 1451
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "stopPropagation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stops the event's propagation to the element's parent",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -179,23 +203,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getType": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 63,
           "column": 4,
-          "index": 1760
+          "index": 1535
         },
         "end": {
-          "line": 74,
+          "line": 65,
           "column": 5,
-          "index": 1817
+          "index": 1592
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getType": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the event's type",
+          "     *",
+          "     * @return {String} event type",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -206,28 +239,41 @@
           {
             "name": "@return",
             "body": "{String} event type",
-            "type": "String",
-            "description": " event type"
+            "type": "string",
+            "description": "event type"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTarget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 72,
           "column": 4,
-          "index": 1979
+          "index": 1689
         },
         "end": {
-          "line": 82,
-          "column": 18,
-          "index": 1993
+          "line": 74,
+          "column": 5,
+          "index": 1744
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getTarget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the target of the event.",
+          "     *",
+          "     * @signature function ()",
+          "     * @return {Object} Any valid native event target",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -244,28 +290,41 @@
           {
             "name": "@return",
             "body": "{Object} Any valid native event target",
-            "type": "Object",
-            "description": " Any valid native event target"
+            "type": "Record<any, any>",
+            "description": "Any valid native event target"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRelatedTarget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 90,
+          "line": 82,
           "column": 4,
-          "index": 2166
+          "index": 1898
         },
         "end": {
-          "line": 90,
-          "column": 25,
-          "index": 2187
+          "line": 82,
+          "column": 18,
+          "index": 1912
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getRelatedTarget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the related target from the native DOM event",
+          "     *",
+          "     * @signature function ()",
+          "     * @return {Element} The related target",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -283,27 +342,41 @@
             "name": "@return",
             "body": "{Element} The related target",
             "type": "Element",
-            "description": " The related target"
+            "description": "The related target"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCurrentTarget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 99,
+          "line": 90,
           "column": 4,
-          "index": 2455
+          "index": 2077
         },
         "end": {
-          "line": 99,
+          "line": 90,
           "column": 25,
-          "index": 2476
+          "index": 2098
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "getCurrentTarget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the current target from the native DOM event. Emulates the current target",
+          "     * for all browsers without native support (like older IEs).",
+          "     *",
+          "     * @signature function ()",
+          "     * @return {Element} The current target",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -321,27 +394,43 @@
             "name": "@return",
             "body": "{Element} The current target",
             "type": "Element",
-            "description": " The current target"
+            "description": "The current target"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "normalize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 110,
+          "line": 99,
           "column": 4,
-          "index": 2799
+          "index": 2357
         },
         "end": {
-          "line": 132,
-          "column": 5,
-          "index": 3531
+          "line": 99,
+          "column": 25,
+          "index": 2378
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "normalize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the native event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element the listener was attached to",
+          "     * @return {Event} Normalized event object",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -369,7 +458,7 @@
             "name": "@return",
             "body": "{Event} Normalized event object",
             "type": "Event",
-            "description": " Normalized event object"
+            "description": "Normalized event object"
           }
         ],
         "@internal": [
@@ -379,23 +468,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 135,
-        "column": 2,
-        "index": 3543
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2690
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 3400
+        }
       },
-      "end": {
-        "line": 137,
-        "column": 3,
-        "index": 3638
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

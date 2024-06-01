@@ -1,51 +1,68 @@
 {
-  "className": "qx.event.type.Mouse",
-  "packageName": "qx.event.type",
-  "name": "Mouse",
-  "superClass": "qx.event.type.Dom",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 815
-      },
-      "end": {
-        "line": 320,
-        "column": 3,
-        "index": 10182
-      }
+  "version": 0.3,
+  "lastModified": 1717235171810,
+  "lastModifiedIso": "2024-06-01T09:46:11.810Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/type/Mouse.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 788
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Mouse event object.\n the interface of this class is based on the DOM Level 2 mouse event\n interface: http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-eventgroupings-mouseevents</p>"
-        }
-      ]
+    "end": {
+      "line": 320,
+      "column": 3,
+      "index": 9863
     }
   },
-  "type": "class",
+  "className": "qx.event.type.Mouse",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mouse event object.",
+      " *",
+      " * the interface of this class is based on the DOM Level 2 mouse event",
+      " * interface: http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-eventgroupings-mouseevents",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mouse event object.\n the interface of this class is based on the DOM Level 2 mouse event\n interface: http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-eventgroupings-mouseevents</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.Dom",
   "members": {
     "_cloneNativeEvent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 39,
           "column": 4,
-          "index": 1169
+          "index": 1131
         },
         "end": {
           "line": 84,
           "column": 5,
-          "index": 2962
+          "index": 2879
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "nativeEvent"
+        },
+        {
+          "name": "clone"
+        }
+      ],
       "overriddenFrom": "qx.event.type.Dom",
       "appearsIn": [
         "qx.event.type.Dom",
@@ -53,19 +70,14 @@
       ]
     },
     "__buttonsDom2EventModel": {
-      "location": {
-        "start": {
-          "line": 91,
-          "column": 4,
-          "index": 3120
-        },
-        "end": {
-          "line": 95,
-          "column": 5,
-          "index": 3209
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Contains the button ID to identifier data.",
+          "     *",
+          "     * @lint ignoreReferenceField(__buttonsDom2EventModel)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -85,23 +97,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__buttonsDom3EventModel": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 102,
+          "line": 91,
           "column": 4,
-          "index": 3367
+          "index": 3030
         },
         "end": {
-          "line": 107,
+          "line": 95,
           "column": 5,
-          "index": 3474
+          "index": 3115
         }
       },
+      "appearsIn": []
+    },
+    "__buttonsDom3EventModel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Contains the button ID to identifier data.",
+          "     *",
+          "     * @lint ignoreReferenceField(__buttonsDom3EventModel)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -121,23 +140,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__buttonsMshtmlEventModel": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 114,
+          "line": 102,
           "column": 4,
-          "index": 3634
+          "index": 3266
         },
         "end": {
-          "line": 118,
+          "line": 107,
           "column": 5,
-          "index": 3725
+          "index": 3368
         }
       },
+      "appearsIn": []
+    },
+    "__buttonsMshtmlEventModel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Contains the button ID to identifier data.",
+          "     *",
+          "     * @lint ignoreReferenceField(__buttonsMshtmlEventModel)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -157,44 +183,76 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3521
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 3608
+        }
+      },
+      "appearsIn": []
     },
     "stop": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 121,
           "column": 4,
-          "index": 3753
+          "index": 3633
         },
         "end": {
           "line": 123,
           "column": 5,
-          "index": 3799
+          "index": 3677
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.event.type.Event",
       "appearsIn": [
         "qx.event.type.Event"
       ]
     },
     "getButton": {
-      "location": {
-        "start": {
-          "line": 150,
-          "column": 4,
-          "index": 4807
-        },
-        "end": {
-          "line": 185,
-          "column": 5,
-          "index": 6071
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * During mouse events caused by the depression or release of a mouse button,",
+          "     * this method can be used to check which mouse button changed state.",
+          "     *",
+          "     * Only internet explorer can compute the button during mouse move events. For",
+          "     * all other browsers the button only contains sensible data during",
+          "     * \"click\" events like \"click\", \"dblclick\", \"mousedown\", \"mouseup\" or \"contextmenu\".",
+          "     *",
+          "     * But still, browsers act different on click:",
+          "     * <pre>",
+          "     * <- = left mouse button",
+          "     * -> = right mouse button",
+          "     * ^  = middle mouse button",
+          "     *",
+          "     * Browser | click, dblclick | contextmenu",
+          "     * ---------------------------------------",
+          "     * Firefox | <- ^ ->         | ->",
+          "     * Chrome  | <- ^            | ->",
+          "     * Safari  | <- ^            | ->",
+          "     * IE      | <- (^ is <-)    | ->",
+          "     * Opera   | <-              | -> (twice)",
+          "     * </pre>",
+          "     *",
+          "     * @return {String} One of \"left\", \"right\", \"middle\" or \"none\"",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -205,28 +263,40 @@
           {
             "name": "@return",
             "body": "{String} One of \"left\", \"right\", \"middle\" or \"none\"",
-            "type": "String",
-            "description": " One of \"left\", \"right\", \"middle\" or \"none\""
+            "type": "string",
+            "description": "One of \"left\", \"right\", \"middle\" or \"none\""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isLeftPressed": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 192,
+          "line": 150,
           "column": 4,
-          "index": 6212
+          "index": 4658
         },
         "end": {
-          "line": 194,
+          "line": 185,
           "column": 5,
-          "index": 6279
+          "index": 5887
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "isLeftPressed": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the left button is pressed",
+          "     *",
+          "     * @return {Boolean} true when the left button is pressed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -237,28 +307,40 @@
           {
             "name": "@return",
             "body": "{Boolean} true when the left button is pressed",
-            "type": "Boolean",
-            "description": " true when the left button is pressed"
+            "type": "boolean",
+            "description": "true when the left button is pressed"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isMiddlePressed": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 201,
+          "line": 192,
           "column": 4,
-          "index": 6424
+          "index": 6021
         },
         "end": {
-          "line": 203,
+          "line": 194,
           "column": 5,
-          "index": 6495
+          "index": 6086
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isMiddlePressed": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the middle button is pressed",
+          "     *",
+          "     * @return {Boolean} true when the middle button is pressed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -269,28 +351,40 @@
           {
             "name": "@return",
             "body": "{Boolean} true when the middle button is pressed",
-            "type": "Boolean",
-            "description": " true when the middle button is pressed"
+            "type": "boolean",
+            "description": "true when the middle button is pressed"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isRightPressed": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 210,
+          "line": 201,
           "column": 4,
-          "index": 6638
+          "index": 6224
         },
         "end": {
-          "line": 212,
+          "line": 203,
           "column": 5,
-          "index": 6707
+          "index": 6293
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isRightPressed": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the right button is pressed",
+          "     *",
+          "     * @return {Boolean} true when the right button is pressed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -301,28 +395,44 @@
           {
             "name": "@return",
             "body": "{Boolean} true when the right button is pressed",
-            "type": "Boolean",
-            "description": " true when the right button is pressed"
+            "type": "boolean",
+            "description": "true when the right button is pressed"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRelatedTarget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 223,
+          "line": 210,
           "column": 4,
-          "index": 7113
+          "index": 6429
         },
         "end": {
-          "line": 225,
+          "line": 212,
           "column": 5,
-          "index": 7175
+          "index": 6496
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getRelatedTarget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a secondary event target related to an UI event. This attribute is",
+          "     * used with the mouseover event to indicate the event target which the",
+          "     * pointing device exited and with the mouseout event to indicate the",
+          "     * event target which the pointing device entered.",
+          "     *",
+          "     * @return {Element} The secondary event target.",
+          "     * @signature function()",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -334,7 +444,7 @@
             "name": "@return",
             "body": "{Element} The secondary event target.",
             "type": "Element",
-            "description": " The secondary event target."
+            "description": "The secondary event target."
           }
         ],
         "@signature": [
@@ -344,27 +454,39 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 223,
+          "column": 4,
+          "index": 6891
+        },
+        "end": {
+          "line": 225,
+          "column": 5,
+          "index": 6951
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Element"
+      },
       "overriddenFrom": "qx.event.type.Event",
       "appearsIn": [
         "qx.event.type.Event"
       ]
     },
     "getViewportLeft": {
-      "location": {
-        "start": {
-          "line": 233,
-          "column": 4,
-          "index": 7369
-        },
-        "end": {
-          "line": 235,
-          "column": 5,
-          "index": 7443
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the he horizontal coordinate at which the event occurred relative",
+          "     * to the viewport.",
+          "     *",
+          "     * @return {Integer} The horizontal mouse position",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -376,27 +498,41 @@
             "name": "@return",
             "body": "{Integer} The horizontal mouse position",
             "type": "Integer",
-            "description": " The horizontal mouse position"
+            "description": "The horizontal mouse position"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getViewportTop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 244,
+          "line": 233,
           "column": 4,
-          "index": 7660
+          "index": 7137
         },
         "end": {
-          "line": 246,
+          "line": 235,
           "column": 5,
-          "index": 7733
+          "index": 7209
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getViewportTop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical coordinate at which the event occurred relative",
+          "     * to the viewport.",
+          "     *",
+          "     * @return {Integer} The vertical mouse position",
+          "     * @signature function()",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -408,7 +544,7 @@
             "name": "@return",
             "body": "{Integer} The vertical mouse position",
             "type": "Integer",
-            "description": " The vertical mouse position"
+            "description": "The vertical mouse position"
           }
         ],
         "@signature": [
@@ -418,23 +554,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDocumentLeft": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 255,
+          "line": 244,
           "column": 4,
-          "index": 8019
+          "index": 7417
         },
         "end": {
-          "line": 269,
+          "line": 246,
           "column": 5,
-          "index": 8513
+          "index": 7488
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getDocumentLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the horizontal position at which the event occurred relative to the",
+          "     * left of the document. This property takes into account any scrolling of",
+          "     * the page.",
+          "     *",
+          "     * @return {Integer} The horizontal mouse position in the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -446,27 +596,41 @@
             "name": "@return",
             "body": "{Integer} The horizontal mouse position in the document.",
             "type": "Integer",
-            "description": " The horizontal mouse position in the document."
+            "description": "The horizontal mouse position in the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDocumentTop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 278,
+          "line": 255,
           "column": 4,
-          "index": 8794
+          "index": 7765
         },
         "end": {
-          "line": 292,
+          "line": 269,
           "column": 5,
-          "index": 9285
+          "index": 8245
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getDocumentTop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical position at which the event occurred relative to the",
+          "     * top of the document. This property takes into account any scrolling of",
+          "     * the page.",
+          "     *",
+          "     * @return {Integer} The vertical mouse position in the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -478,27 +642,43 @@
             "name": "@return",
             "body": "{Integer} The vertical mouse position in the document.",
             "type": "Integer",
-            "description": " The vertical mouse position in the document."
+            "description": "The vertical mouse position in the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getScreenLeft": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 303,
+          "line": 278,
           "column": 4,
-          "index": 9659
+          "index": 8517
         },
         "end": {
-          "line": 305,
+          "line": 292,
           "column": 5,
-          "index": 9731
+          "index": 8994
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getScreenLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the horizontal coordinate at which the event occurred relative to",
+          "     * the origin of the screen coordinate system.",
+          "     *",
+          "     * Note: This value is usually not very useful unless you want to",
+          "     * position a native popup window at this coordinate.",
+          "     *",
+          "     * @return {Integer} The horizontal mouse position on the screen.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -510,27 +690,43 @@
             "name": "@return",
             "body": "{Integer} The horizontal mouse position on the screen.",
             "type": "Integer",
-            "description": " The horizontal mouse position on the screen."
+            "description": "The horizontal mouse position on the screen."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getScreenTop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 316,
+          "line": 303,
           "column": 4,
-          "index": 10101
+          "index": 9357
         },
         "end": {
-          "line": 318,
+          "line": 305,
           "column": 5,
-          "index": 10172
+          "index": 9427
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getScreenTop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical coordinate at which the event occurred relative to",
+          "     * the origin of the screen coordinate system.",
+          "     *",
+          "     * Note: This value is usually not very useful unless you want to",
+          "     * position a native popup window at this coordinate.",
+          "     *",
+          "     * @return {Integer} The vertical mouse position on the screen.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -542,154 +738,31 @@
             "name": "@return",
             "body": "{Integer} The vertical mouse position on the screen.",
             "type": "Integer",
-            "description": " The vertical mouse position on the screen."
+            "description": "The vertical mouse position on the screen."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.event.type.Dom",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 316,
+          "column": 4,
+          "index": 9786
+        },
+        "end": {
+          "line": 318,
+          "column": 5,
+          "index": 9855
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Dom",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Dom",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Dom",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Dom",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Dom",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": [
-    "qx.event.type.MouseWheel",
-    "qx.event.type.Pointer"
-  ]
+  "statics": {},
+  "properties": {}
 }

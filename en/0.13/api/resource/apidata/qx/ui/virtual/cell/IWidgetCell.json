@@ -1,49 +1,50 @@
 {
-  "className": "qx.ui.virtual.cell.IWidgetCell",
-  "packageName": "qx.ui.virtual.cell",
-  "name": "IWidgetCell",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 667
-      },
-      "end": {
-        "line": 62,
-        "column": 3,
-        "index": 1790
-      }
+  "version": 0.3,
+  "lastModified": 1717235171462,
+  "lastModifiedIso": "2024-06-01T09:46:11.462Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/cell/IWidgetCell.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 644
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A widget cell renderer manages a pool of widgets to render cells in a\n {@link qx.ui.virtual.layer.WidgetCell} layer.</p>"
-        }
-      ]
+    "end": {
+      "line": 62,
+      "column": 3,
+      "index": 1729
     }
   },
-  "type": "interface",
+  "className": "qx.ui.virtual.cell.IWidgetCell",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A widget cell renderer manages a pool of widgets to render cells in a",
+      " * {@link qx.ui.virtual.layer.WidgetCell} layer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A widget cell renderer manages a pool of widgets to render cells in a\n {@link qx.ui.virtual.layer.WidgetCell} layer.</p>"
+      }
+    ]
+  },
   "members": {
     "getCellWidget": {
-      "location": {
-        "start": {
-          "line": 35,
-          "column": 4,
-          "index": 1063
-        },
-        "end": {
-          "line": 35,
-          "column": 34,
-          "index": 1093
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a widget instance to render the cell",
+          "     *",
+          "     * @param data {var} Data needed for the cell to render.",
+          "     * @param states {Map} The states set on the cell (e.g. <i>selected</i>,",
+          "     * <i>focused</i>, <i>editable</i>).",
+          "     *",
+          "     * @return {qx.ui.core.LayoutItem} The cell widget",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,7 +64,7 @@
             "body": "states {Map} The states set on the cell (e.g. <i>selected</i>,\n <i>focused</i>, <i>editable</i>).",
             "paramName": "states",
             "description": " The states set on the cell (e.g. <i>selected</i>,\n <i>focused</i>, <i>editable</i>).",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
@@ -71,27 +72,50 @@
             "name": "@return",
             "body": "{qx.ui.core.LayoutItem} The cell widget",
             "type": "qx.ui.core.LayoutItem",
-            "description": " The cell widget"
+            "description": "The cell widget"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "pool": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 44,
+          "line": 35,
           "column": 4,
-          "index": 1292
+          "index": 1029
         },
         "end": {
-          "line": 44,
-          "column": 19,
-          "index": 1307
+          "line": 35,
+          "column": 34,
+          "index": 1059
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "var"
+        },
+        {
+          "name": "states",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.LayoutItem"
+      },
+      "appearsIn": []
+    },
+    "pool": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Release the given widget instance.",
+          "     *",
+          "     * Either pool or dispose the widget.",
+          "     *",
+          "     * @param widget {qx.ui.core.LayoutItem} The cell widget to pool",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -108,23 +132,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "updateStates": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 44,
           "column": 4,
-          "index": 1514
+          "index": 1249
         },
         "end": {
-          "line": 52,
-          "column": 35,
-          "index": 1545
+          "line": 44,
+          "column": 19,
+          "index": 1264
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.LayoutItem"
+        }
+      ],
+      "appearsIn": []
+    },
+    "updateStates": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update the states of the given widget.",
+          "     *",
+          "     * @param widget {qx.ui.core.LayoutItem} The cell widget to update",
+          "     * @param states {Map} The cell widget's states",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -144,27 +183,46 @@
             "body": "states {Map} The cell widget's states",
             "paramName": "states",
             "description": " The cell widget's states",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "updateData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 60,
+          "line": 52,
           "column": 4,
-          "index": 1753
+          "index": 1463
         },
         "end": {
-          "line": 60,
-          "column": 31,
-          "index": 1780
+          "line": 52,
+          "column": 35,
+          "index": 1494
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "states",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "updateData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update the data the cell widget should display",
+          "     *",
+          "     * @param widget {qx.ui.core.LayoutItem} The cell widget to update",
+          "     * @param data {var} The data to display",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -188,9 +246,33 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1694
+        },
+        "end": {
+          "line": 60,
+          "column": 31,
+          "index": 1721
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.LayoutItem"
+        },
+        {
+          "name": "data",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -1,63 +1,83 @@
 {
-  "className": "qx.module.Core",
-  "packageName": "qx.module",
-  "name": "Core",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 39,
-        "column": 0,
-        "index": 1080
-      },
-      "end": {
-        "line": 39,
-        "column": 42,
-        "index": 1122
-      }
+  "version": 0.3,
+  "lastModified": 1717235169802,
+  "lastModifiedIso": "2024-06-01T09:46:09.802Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Core.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 39,
+      "column": 0,
+      "index": 1042
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Placeholder class which simply defines and includes the core of qxWeb.\n The core modules are:</p>\n<ul>\n<li>{@link qx.module.Attribute}</li>\n<li>{@link qx.module.Css}</li>\n<li>{@link qx.module.Environment}</li>\n<li>{@link qx.module.Event}</li>\n<li>{@link qx.module.Manipulating}</li>\n<li>{@link qx.module.Polyfill}</li>\n<li>{@link qx.module.Traversing}</li>\n</ul>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Attribute"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Css"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Environment"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Manipulating"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Polyfill"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.Traversing"
-        }
-      ]
+    "end": {
+      "line": 39,
+      "column": 42,
+      "index": 1084
     }
   },
-  "type": "class",
-  "descendants": []
+  "className": "qx.module.Core",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Placeholder class which simply defines and includes the core of qxWeb.",
+      " * The core modules are:",
+      " *",
+      " * * {@link qx.module.Attribute}",
+      " * * {@link qx.module.Css}",
+      " * * {@link qx.module.Environment}",
+      " * * {@link qx.module.Event}",
+      " * * {@link qx.module.Manipulating}",
+      " * * {@link qx.module.Polyfill}",
+      " * * {@link qx.module.Traversing}",
+      " *",
+      " * @require(qx.module.Attribute)",
+      " * @require(qx.module.Css)",
+      " * @require(qx.module.Environment)",
+      " * @require(qx.module.Event)",
+      " * @require(qx.module.Manipulating)",
+      " * @require(qx.module.Polyfill)",
+      " * @require(qx.module.Traversing)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Placeholder class which simply defines and includes the core of qxWeb.\n The core modules are:</p>\n<ul>\n<li>{@link qx.module.Attribute}</li>\n<li>{@link qx.module.Css}</li>\n<li>{@link qx.module.Environment}</li>\n<li>{@link qx.module.Event}</li>\n<li>{@link qx.module.Manipulating}</li>\n<li>{@link qx.module.Polyfill}</li>\n<li>{@link qx.module.Traversing}</li>\n</ul>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Attribute"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.Css"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.Environment"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.Manipulating"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.Polyfill"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.Traversing"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

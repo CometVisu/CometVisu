@@ -1,51 +1,67 @@
 {
-  "className": "qx.event.type.Track",
-  "packageName": "qx.event.type",
-  "name": "Track",
-  "superClass": "qx.event.type.Pointer",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 752
-      },
-      "end": {
-        "line": 48,
-        "column": 3,
-        "index": 1418
-      }
+  "version": 0.3,
+  "lastModified": 1717235172578,
+  "lastModifiedIso": "2024-06-01T09:46:12.578Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/type/Track.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 729
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Track is a single pointer gesture and contains of a three vent types:\n <code>trackstart</code>, <code>track</code> and <code>trackend</code>. These\n events will be fired when a pointer grabs an item and moves the pointer on it.</p>"
-        }
-      ]
+    "end": {
+      "line": 48,
+      "column": 3,
+      "index": 1371
     }
   },
-  "type": "class",
+  "className": "qx.event.type.Track",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Track is a single pointer gesture and contains of a three vent types:",
+      " * <code>trackstart</code>, <code>track</code> and <code>trackend</code>. These",
+      " * events will be fired when a pointer grabs an item and moves the pointer on it.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Track is a single pointer gesture and contains of a three vent types:\n <code>trackstart</code>, <code>track</code> and <code>trackend</code>. These\n events will be fired when a pointer grabs an item and moves the pointer on it.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.Pointer",
   "members": {
     "_cloneNativeEvent": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 29,
           "column": 4,
-          "index": 867
+          "index": 839
         },
         "end": {
           "line": 35,
           "column": 5,
-          "index": 1042
+          "index": 1008
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "nativeEvent"
+        },
+        {
+          "name": "clone"
+        }
+      ],
       "overriddenFrom": "qx.event.type.Pointer",
       "appearsIn": [
         "qx.event.type.Pointer",
@@ -55,19 +71,16 @@
       ]
     },
     "getDelta": {
-      "location": {
-        "start": {
-          "line": 44,
-          "column": 4,
-          "index": 1355
-        },
-        "end": {
-          "line": 46,
-          "column": 5,
-          "index": 1408
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map with the calculated delta coordinates and axis,",
+          "     * relative to the position on <code>trackstart</code> event.",
+          "     *",
+          "     * @return {Map} a map with contains the delta as <code>x</code> and",
+          "     * <code>y</code> and the movement axis as <code>axis</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -78,152 +91,32 @@
           {
             "name": "@return",
             "body": "{Map} a map with contains the delta as <code>x</code> and\n <code>y</code> and the movement axis as <code>axis</code>.",
-            "type": "Map",
-            "description": " a map with contains the delta as <code>x</code> and\n <code>y</code> and the movement axis as <code>axis</code>."
+            "type": "Map<any, any>",
+            "description": "a map with contains the delta as <code>x</code> and\n <code>y</code> and the movement axis as <code>axis</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1312
+        },
+        "end": {
+          "line": 46,
+          "column": 5,
+          "index": 1363
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.event.type.Pointer",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

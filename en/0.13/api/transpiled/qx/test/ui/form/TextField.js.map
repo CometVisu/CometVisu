@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "ui",
+    "LayoutTestCase",
+    "members",
+    "setUp",
+    "__field",
+    "form",
+    "TextField",
+    "getRoot",
+    "add",
+    "tearDown",
+    "destroy",
+    "superclass",
+    "prototype",
+    "call",
+    "testGetDefaultLength",
+    "l",
+    "getMaxLength",
+    "assertEquals",
+    "Infinity",
+    "testSetMaxLength",
+    "setMaxLength",
+    "testResetMaxLength",
+    "resetMaxLength",
+    "testValidateInputWithFilter",
+    "setFilter",
+    "s",
+    "_validateInput",
+    "testValidateInputWithComplexFilter",
+    "testValidateInputWithComplexFilter2"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/form/TextField.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Henner Kollmann\n\n************************************************************************ */\nqx.Class.define(\"qx.test.ui.form.TextField\", {\n  extend: qx.test.ui.LayoutTestCase,\n\n  members: {\n    setUp() {\n      this.__field = new qx.ui.form.TextField();\n      this.getRoot().add(this.__field);\n    },\n\n    tearDown() {\n      this.__field.destroy();\n      this.__field = null;\n      super.tearDown();\n    },\n\n    \"test: get default length\"() {\n      var l = this.__field.getMaxLength();\n      this.assertEquals(Infinity, l);\n    },\n\n    \"test: set max length\"() {\n      this.__field.setMaxLength(4);\n      var l = this.__field.getMaxLength();\n      this.assertEquals(4, l);\n    },\n\n    \"test: reset max length\"() {\n      this.__field.setMaxLength(4);\n      var l = this.__field.getMaxLength();\n      this.assertEquals(4, l);\n      this.__field.resetMaxLength();\n      var l = this.__field.getMaxLength();\n      this.assertEquals(Infinity, l);\n    },\n\n    \"test: validate input with filter\"() {\n      this.__field.setFilter(/[0-9]/);\n      var s = this.__field._validateInput(\"a\");\n      this.assertEquals(\"\", s);\n      var s = this.__field._validateInput(\"111\");\n      this.assertEquals(\"111\", s);\n    },\n    \"test: validate input with complex filter\"() {\n      this.__field.setFilter(/^(\\+|-)?\\d*$/);\n      var s = this.__field._validateInput(\"a\");\n      this.assertEquals(\"\", s);\n      var s = this.__field._validateInput(\"1\");\n      this.assertEquals(\"1\", s);\n      var s = this.__field._validateInput(\"-\");\n      this.assertEquals(\"-\", s);\n      var s = this.__field._validateInput(\"111\");\n      this.assertEquals(\"111\", s);\n      var s = this.__field._validateInput(\"-111\");\n      this.assertEquals(\"-111\", s);\n      var s = this.__field._validateInput(\"-11-1\");\n      this.assertEquals(\"\", s);\n    },\n    \"test: validate input with complex filter 2\"() {\n      this.__field.setFilter(/^xy$/);\n      var s = this.__field._validateInput(\"x? y?\");\n      this.assertEquals(\"\", s);\n    },\n\n    __field: null\n  }\n});\n"
+  ],
+  "mappings": "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",
+  "ignoreList": []
+}

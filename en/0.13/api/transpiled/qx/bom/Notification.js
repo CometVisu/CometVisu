@@ -204,7 +204,7 @@
        * @param title {String} The notification title
        * @param message {String} The message body
        * @param icon {String} Resource string or icon URL
-       * @param expire {Unsigned} Number of milliseconds after the message is
+       * @param expire {Integer} Number of milliseconds after the message is
        *                     automatically destroyed. Leave empty for no
        *                     timeout. Note that some notification systems
        *                     tend to remove timeout-less messages after some
@@ -312,4 +312,4 @@
   qx.bom.Notification.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Notification.js.map?dt=1709410144020
+//# sourceMappingURL=Notification.js.map?dt=1717235372176

@@ -1,35 +1,38 @@
 {
-  "className": "cv.ui.structure.tile.MRefresh",
-  "packageName": "cv.ui.structure.tile",
-  "name": "MRefresh",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 943
-      },
-      "end": {
-        "line": 113,
-        "column": 3,
-        "index": 3302
-      }
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/MRefresh.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 943
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Adds a refresh attribute that triggers a 'refresh' method which must be implemented by classes including this mixin.</p>"
-        }
-      ]
+    "end": {
+      "line": 113,
+      "column": 3,
+      "index": 3302
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.structure.tile.MRefresh",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Adds a refresh attribute that triggers a 'refresh' method which must be implemented by classes including this mixin.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Adds a refresh attribute that triggers a 'refresh' method which must be implemented by classes including this mixin.</p>"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 30,
@@ -41,8 +44,7 @@
         "column": 3,
         "index": 1301
       }
-    },
-    "jsdoc": {}
+    }
   },
   "properties": {
     "refresh": {
@@ -58,16 +60,19 @@
           "index": 1532
         }
       },
-      "name": "refresh",
-      "propertyType": "new",
-      "apply": "_applyRefresh",
-      "init": 0,
-      "check": "Number",
-      "defaultValue": 0
+      "json": {
+        "check": "Number",
+        "init": 0,
+        "apply": "_applyRefresh"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     }
   },
   "members": {
     "_refreshTimer": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 55,
@@ -80,10 +85,11 @@
           "index": 1697
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_lastRefresh": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 56,
@@ -96,10 +102,11 @@
           "index": 1721
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_applyRefresh": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 58,
@@ -113,12 +120,16 @@
         }
       },
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "refresh"
-      ]
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "__onVisibilityChange": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 78,
@@ -132,9 +143,16 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "__doRefresh": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 95,
@@ -148,76 +166,13 @@
         }
       },
       "type": "function",
-      "access": "private"
-    },
-    "getRefresh": {
-      "type": "function",
-      "name": "getRefresh",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>refresh</code>.\n\nFor further details take a look at the property definition: {@link #refresh}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for refresh"
-          }
-        ]
-      }
-    },
-    "setRefresh": {
-      "type": "function",
-      "name": "setRefresh",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>refresh</code>.\n\nFor further details take a look at the property definition: {@link #refresh}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for refresh"
-          }
-        ]
-      }
-    },
-    "resetRefresh": {
-      "type": "function",
-      "name": "resetRefresh",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>refresh</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #refresh}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 110,
@@ -229,8 +184,7 @@
         "column": 3,
         "index": 3298
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {}
 }

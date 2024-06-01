@@ -1,0 +1,697 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171666,
+  "lastModifiedIso": "2024-06-01T09:46:11.666Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/resources/Manager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 956
+    },
+    "end": {
+      "line": 519,
+      "column": 3,
+      "index": 15810
+    }
+  },
+  "className": "qx.tool.compiler.resources.Manager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Analyses library resources, collecting information into a cached database",
+      " * file",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Analyses library resources, collecting information into a cached database\n file</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "analyser"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 41,
+        "column": 2,
+        "index": 1124
+      },
+      "end": {
+        "line": 54,
+        "column": 3,
+        "index": 1557
+      }
+    }
+  },
+  "members": {
+    "__dbFilename": {
+      "jsdoc": {
+        "raw": [
+          "* {String} filename of database "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String} filename of database</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1618
+        },
+        "end": {
+          "line": 58,
+          "column": 22,
+          "index": 1636
+        }
+      },
+      "appearsIn": []
+    },
+    "__db": {
+      "jsdoc": {
+        "raw": [
+          "* {Object} Database "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Object} Database</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1672
+        },
+        "end": {
+          "line": 61,
+          "column": 14,
+          "index": 1682
+        }
+      },
+      "appearsIn": []
+    },
+    "__analyser": {
+      "jsdoc": {
+        "raw": [
+          "* the used analyser "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>the used analyser</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1718
+        },
+        "end": {
+          "line": 64,
+          "column": 20,
+          "index": 1734
+        }
+      },
+      "appearsIn": []
+    },
+    "__librariesByResourceUri": {
+      "jsdoc": {
+        "raw": [
+          "* {Map{String,Library}} Lookup of libraries, indexed by resource URI "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Map{String,Library}} Lookup of libraries, indexed by resource URI</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1819
+        },
+        "end": {
+          "line": 67,
+          "column": 34,
+          "index": 1849
+        }
+      },
+      "appearsIn": []
+    },
+    "__allResourceUris": {
+      "jsdoc": {
+        "raw": [
+          "* {String[]} Array of all resource URIs, sorted alphabetically (ie these are the keys in __librariesByResourceUri) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{String[]} Array of all resource URIs, sorted alphabetically (ie these are the keys in __librariesByResourceUri)</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1980
+        },
+        "end": {
+          "line": 70,
+          "column": 27,
+          "index": 2003
+        }
+      },
+      "appearsIn": []
+    },
+    "__loaders": {
+      "jsdoc": {
+        "raw": [
+          "* {ResourceLoader[]} list of resource loaders, used to add info to the database "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{ResourceLoader[]} list of resource loaders, used to add info to the database</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2099
+        },
+        "end": {
+          "line": 73,
+          "column": 19,
+          "index": 2114
+        }
+      },
+      "appearsIn": []
+    },
+    "__converters": {
+      "jsdoc": {
+        "raw": [
+          "* {ResourceConverter[]} list of resource converters, used to copy resources to the target "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{ResourceConverter[]} list of resource converters, used to copy resources to the target</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2220
+        },
+        "end": {
+          "line": 76,
+          "column": 22,
+          "index": 2238
+        }
+      },
+      "appearsIn": []
+    },
+    "loadDatabase": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads the cached database",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Loads the cached database</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 81,
+          "column": 4,
+          "index": 2294
+        },
+        "end": {
+          "line": 84,
+          "column": 5,
+          "index": 2415
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "saveDatabase": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Saves the database",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Saves the database</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2464
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2622
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getDatabase": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the loaded database",
+          "     *",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the loaded database</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 99,
+          "column": 4,
+          "index": 2703
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2748
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "findLibraryForResource": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds the library needed for a resource, see `findLibrariesForResource`.  This reports",
+          "     * an error if more than one library is found.",
+          "     *",
+          "     * @param uri {String} URI",
+          "     * @return {qx.tool.compiler.app.Library[]} the libraries, empty list if not found",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds the library needed for a resource, see <code>findLibrariesForResource</code>.  This reports\n an error if more than one library is found.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "uri {String} URI",
+            "paramName": "uri",
+            "description": " URI",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.compiler.app.Library[]} the libraries, empty list if not found",
+            "type": "qx.tool.compiler.app.Library[]",
+            "description": "the libraries, empty list if not found"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 3041
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 3498
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "uri",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.tool.compiler.app.Library[]"
+      },
+      "appearsIn": []
+    },
+    "findLibrariesForResource": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Finds the libraries needed for a resource; this depends on `findAllResources` having",
+          "     * already been called.  `uri` can include optional explicit namespace (eg \"qx:blah/blah.png\"),",
+          "     * otherwise the library resource lookups are examined to find the library.",
+          "     *",
+          "     * Note that there can be more than one directory because the lookup holds directory names (used",
+          "     * for wildcards) and they are allowed to be duplicated.",
+          "     *",
+          "     * @param uri {String} URI",
+          "     * @return {qx.tool.compiler.app.Library[]} the libraries, empty list if not found",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Finds the libraries needed for a resource; this depends on <code>findAllResources</code> having\n already been called.  <code>uri</code> can include optional explicit namespace (eg \"qx:blah/blah.png\"),\n otherwise the library resource lookups are examined to find the library.\n Note that there can be more than one directory because the lookup holds directory names (used\n for wildcards) and they are allowed to be duplicated.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "uri {String} URI",
+            "paramName": "uri",
+            "description": " URI",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.tool.compiler.app.Library[]} the libraries, empty list if not found",
+            "type": "qx.tool.compiler.app.Library[]",
+            "description": "the libraries, empty list if not found"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 4087
+        },
+        "end": {
+          "line": 227,
+          "column": 5,
+          "index": 6725
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "uri",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.tool.compiler.app.Library[]"
+      },
+      "appearsIn": []
+    },
+    "findAllResources": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scans all libraries looking for resources; this does not analyse the",
+          "     * files, simply compiles the list",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Scans all libraries looking for resources; this does not analyse the\n files, simply compiles the list</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4,
+          "index": 6863
+        },
+        "end": {
+          "line": 352,
+          "column": 5,
+          "index": 10761
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__addAsset": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an asset",
+          "     *",
+          "     * @param asset {Asset} the asset to add",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an asset</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "asset {Asset} the asset to add",
+            "paramName": "asset",
+            "description": " the asset to add",
+            "type": "qx.tool.compiler.resources.Asset"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 359,
+          "column": 4,
+          "index": 10857
+        },
+        "end": {
+          "line": 393,
+          "column": 5,
+          "index": 11871
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "asset",
+          "type": "qx.tool.compiler.resources.Asset"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAsset": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets an individual asset",
+          "     *",
+          "     * @param srcPath {String} the resource name, with or without a namespace prefix",
+          "     * @param create {Boolean?} if true the asset will be created if it does not exist",
+          "     * @param isThemeFile {Boolean?} if true the asset will be expected to be in the theme folder",
+          "     * @return {Asset?} the asset, if found",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets an individual asset</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "srcPath {String} the resource name, with or without a namespace prefix",
+            "paramName": "srcPath",
+            "description": " the resource name, with or without a namespace prefix",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "create {Boolean?} if true the asset will be created if it does not exist",
+            "paramName": "create",
+            "description": " if true the asset will be created if it does not exist",
+            "optional": true,
+            "type": "Boolean"
+          },
+          {
+            "name": "@param",
+            "body": "isThemeFile {Boolean?} if true the asset will be expected to be in the theme folder",
+            "paramName": "isThemeFile",
+            "description": " if true the asset will be expected to be in the theme folder",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Asset?} the asset, if found",
+            "type": "Asset?",
+            "description": "the asset, if found"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 403,
+          "column": 4,
+          "index": 12247
+        },
+        "end": {
+          "line": 429,
+          "column": 5,
+          "index": 13055
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "srcPath",
+          "type": "string"
+        },
+        {
+          "name": "create",
+          "type": "Boolean",
+          "optional": true
+        },
+        {
+          "name": "isThemeFile",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Asset?"
+      },
+      "appearsIn": []
+    },
+    "getAssetsForPaths": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Collects information about the assets listed in srcPaths;",
+          "     *",
+          "     * @param srcPaths",
+          "     * @return {Asset[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Collects information about the assets listed in srcPaths;</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "srcPaths",
+            "paramName": "srcPaths",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Asset[]}",
+            "type": "Asset[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 437,
+          "column": 4,
+          "index": 13198
+        },
+        "end": {
+          "line": 517,
+          "column": 5,
+          "index": 15802
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "srcPaths"
+        }
+      ],
+      "returnType": {
+        "type": "Asset[]"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

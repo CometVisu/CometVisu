@@ -1,55 +1,58 @@
 {
-  "className": "qx.core.MAssert",
-  "packageName": "qx.core",
-  "name": "MAssert",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 796
-      },
-      "end": {
-        "line": 508,
-        "column": 3,
-        "index": 16920
-      }
+  "version": 0.3,
+  "lastModified": 1717235171690,
+  "lastModifiedIso": "2024-06-01T09:46:11.690Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/MAssert.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 770
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin includes all assertions from {@link qx.core.Assert} to conveniently\n call assertions. It is included into {@link qx.core.Object} if debugging code\n is enabled. It is further included into all unit tests\n {@link qx.dev.unit.TestCase}.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.core.Assert"
-        }
-      ]
+    "end": {
+      "line": 508,
+      "column": 3,
+      "index": 16413
     }
   },
-  "type": "mixin",
+  "className": "qx.core.MAssert",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin includes all assertions from {@link qx.core.Assert} to conveniently",
+      " * call assertions. It is included into {@link qx.core.Object} if debugging code",
+      " * is enabled. It is further included into all unit tests",
+      " * {@link qx.dev.unit.TestCase}.",
+      " *",
+      " * @require(qx.core.Assert)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin includes all assertions from {@link qx.core.Assert} to conveniently\n call assertions. It is included into {@link qx.core.Object} if debugging code\n is enabled. It is further included into all unit tests\n {@link qx.dev.unit.TestCase}.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.core.Assert"
+      }
+    ]
+  },
   "members": {
     "assert": {
-      "location": {
-        "start": {
-          "line": 36,
-          "column": 4,
-          "index": 1119
-        },
-        "end": {
-          "line": 38,
-          "column": 5,
-          "index": 1196
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the condition evaluates to <code>true</code>.",
+          "     *",
+          "     * @param condition {var} Condition to check for. Must evaluate to",
+          "     *    <code>true</code>.",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -74,23 +77,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "fail": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 46,
+          "line": 36,
           "column": 4,
-          "index": 1425
+          "index": 1084
         },
         "end": {
-          "line": 48,
+          "line": 38,
           "column": 5,
-          "index": 1494
+          "index": 1159
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "condition",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "fail": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Raise an {@link AssertionError}",
+          "     *",
+          "     * @param msg {String} Message to be shown if the assertion fails.",
+          "     * @param compact {Boolean?false} Show less verbose message. Default: false.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -103,7 +126,7 @@
             "body": "msg {String} Message to be shown if the assertion fails.",
             "paramName": "msg",
             "description": " Message to be shown if the assertion fails.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -116,23 +139,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertTrue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 57,
+          "line": 46,
           "column": 4,
-          "index": 1777
+          "index": 1380
         },
         "end": {
-          "line": 59,
+          "line": 48,
           "column": 5,
-          "index": 1854
+          "index": 1447
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "msg",
+          "type": "string"
+        },
+        {
+          "name": "compact",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertTrue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is <code>true</code> (Identity check).",
+          "     *",
+          "     * @param value {Boolean} Condition to check for. Must be identical to",
+          "     *    <code>true</code>.",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -145,7 +190,7 @@
             "body": "value {Boolean} Condition to check for. Must be identical to\n    <code>true</code>.",
             "paramName": "value",
             "description": " Condition to check for. Must be identical to\n    <code>true</code>.",
-            "type": "Boolean"
+            "type": "boolean"
           },
           {
             "name": "@param",
@@ -157,23 +202,44 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertFalse": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 68,
+          "line": 57,
           "column": 4,
-          "index": 2139
+          "index": 1721
         },
         "end": {
-          "line": 70,
+          "line": 59,
           "column": 5,
-          "index": 2218
+          "index": 1796
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertFalse": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is <code>false</code> (Identity check).",
+          "     *",
+          "     * @param value {Boolean} Condition to check for. Must be identical to",
+          "     *    <code>false</code>.",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -186,7 +252,7 @@
             "body": "value {Boolean} Condition to check for. Must be identical to\n    <code>false</code>.",
             "paramName": "value",
             "description": " Condition to check for. Must be identical to\n    <code>false</code>.",
-            "type": "Boolean"
+            "type": "boolean"
           },
           {
             "name": "@param",
@@ -198,23 +264,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertEquals": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 80,
+          "line": 68,
           "column": 4,
-          "index": 2508
+          "index": 2072
         },
         "end": {
-          "line": 82,
+          "line": 70,
           "column": 5,
-          "index": 2609
+          "index": 2149
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertEquals": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that both values are equal. (Uses the equality operator",
+          "     * <code>==</code>.)",
+          "     *",
+          "     * @param expected {var} Reference value",
+          "     * @param found {var} found value",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -246,23 +334,49 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertNotEquals": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 92,
+          "line": 80,
           "column": 4,
-          "index": 2907
+          "index": 2429
         },
         "end": {
-          "line": 94,
+          "line": 82,
           "column": 5,
-          "index": 3014
+          "index": 2528
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "expected",
+          "type": "var"
+        },
+        {
+          "name": "found",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertNotEquals": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that both values are not equal. (Uses the not equality operator",
+          "     * <code>!=</code>.)",
+          "     *",
+          "     * @param expected {var} Reference value",
+          "     * @param found {var} found value",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -294,23 +408,49 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertEqualsFloat": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 104,
+          "line": 92,
           "column": 4,
-          "index": 3352
+          "index": 2816
         },
         "end": {
-          "line": 106,
+          "line": 94,
           "column": 5,
-          "index": 3463
+          "index": 2921
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "expected",
+          "type": "var"
+        },
+        {
+          "name": "found",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertEqualsFloat": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that both float values are equal. This might be needed because",
+          "     * of the natural floating point inaccuracy of computers.",
+          "     *",
+          "     * @param expected {Float} Reference value",
+          "     * @param found {Float} Found value",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -342,23 +482,49 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertNotEqualsFloat": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 116,
+          "line": 104,
           "column": 4,
-          "index": 3805
+          "index": 3249
         },
         "end": {
-          "line": 118,
+          "line": 106,
           "column": 5,
-          "index": 3922
+          "index": 3358
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "expected",
+          "type": "Float"
+        },
+        {
+          "name": "found",
+          "type": "Float"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertNotEqualsFloat": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that both float values are not equal. This might be needed",
+          "     * because of the natural floating point inaccuracy of computers.",
+          "     *",
+          "     * @param expected {Float} Reference value",
+          "     * @param found {Float} Found value",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -390,23 +556,49 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertIdentical": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 128,
+          "line": 116,
           "column": 4,
-          "index": 4217
+          "index": 3690
         },
         "end": {
-          "line": 130,
+          "line": 118,
           "column": 5,
-          "index": 4324
+          "index": 3805
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "expected",
+          "type": "Float"
+        },
+        {
+          "name": "found",
+          "type": "Float"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertIdentical": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that both values are identical. (Uses the identity operator",
+          "     * <code>===</code>.)",
+          "     *",
+          "     * @param expected {var} Reference value",
+          "     * @param found {var} found value",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -438,23 +630,49 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertNotIdentical": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 140,
+          "line": 128,
           "column": 4,
-          "index": 4627
+          "index": 4090
         },
         "end": {
-          "line": 142,
+          "line": 130,
           "column": 5,
-          "index": 4740
+          "index": 4195
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "expected",
+          "type": "var"
+        },
+        {
+          "name": "found",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertNotIdentical": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that both values are not identical. (Uses the not identity operator",
+          "     * <code>!==</code>.)",
+          "     *",
+          "     * @param expected {var} Reference value",
+          "     * @param found {var} found value",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -486,23 +704,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertNotUndefined": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 150,
+          "line": 140,
           "column": 4,
-          "index": 4951
+          "index": 4488
         },
         "end": {
-          "line": 152,
+          "line": 142,
           "column": 5,
-          "index": 5044
+          "index": 4599
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "expected",
+          "type": "var"
+        },
+        {
+          "name": "found",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertNotUndefined": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is not <code>undefined</code>.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -527,23 +769,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertUndefined": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 160,
+          "line": 150,
           "column": 4,
-          "index": 5251
+          "index": 4802
         },
         "end": {
-          "line": 162,
+          "line": 152,
           "column": 5,
-          "index": 5338
+          "index": 4893
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertUndefined": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is <code>undefined</code>.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -568,23 +830,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertNotNull": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 170,
+          "line": 160,
           "column": 4,
-          "index": 5544
+          "index": 5092
         },
         "end": {
-          "line": 172,
+          "line": 162,
           "column": 5,
-          "index": 5627
+          "index": 5177
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertNotNull": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is not <code>null</code>.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -609,23 +891,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertNull": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 180,
+          "line": 170,
           "column": 4,
-          "index": 5829
+          "index": 5375
         },
         "end": {
-          "line": 182,
+          "line": 172,
           "column": 5,
-          "index": 5906
+          "index": 5456
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertNull": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is <code>null</code>.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -650,23 +952,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertJsonEquals": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 192,
+          "line": 180,
           "column": 4,
-          "index": 6196
+          "index": 5650
         },
         "end": {
-          "line": 194,
+          "line": 182,
           "column": 5,
-          "index": 6305
+          "index": 5725
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertJsonEquals": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the first two arguments are equal, when serialized into",
+          "     * JSON.",
+          "     *",
+          "     * @param expected {var} The expected value",
+          "     * @param found {var} The found value",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -698,23 +1022,48 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertMatch": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 203,
+          "line": 192,
           "column": 4,
-          "index": 6614
+          "index": 6005
         },
         "end": {
-          "line": 205,
+          "line": 194,
           "column": 5,
-          "index": 6697
+          "index": 6112
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "expected",
+          "type": "var"
+        },
+        {
+          "name": "found",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertMatch": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the given string matches the regular expression",
+          "     *",
+          "     * @param str {String} String, which should match the regular expression",
+          "     * @param re {RegExp} Regular expression to match",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -727,7 +1076,7 @@
             "body": "str {String} String, which should match the regular expression",
             "paramName": "str",
             "description": " String, which should match the regular expression",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -746,23 +1095,49 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertArgumentsCount": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 215,
+          "line": 203,
           "column": 4,
-          "index": 7080
+          "index": 6412
         },
         "end": {
-          "line": 217,
+          "line": 205,
           "column": 5,
-          "index": 7215
+          "index": 6493
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "str",
+          "type": "string"
+        },
+        {
+          "name": "re",
+          "type": "RegExp"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertArgumentsCount": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the number of arguments is within the given range",
+          "     *",
+          "     * @param args {arguments} The <code>arguments<code> variable of a function",
+          "     * @param minCount {Integer} Minimal number of arguments",
+          "     * @param maxCount {Integer} Maximum number of arguments",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -801,23 +1176,56 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertEventFired": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 230,
+          "line": 215,
           "column": 4,
-          "index": 7773
+          "index": 6866
         },
         "end": {
-          "line": 232,
+          "line": 217,
           "column": 5,
-          "index": 7916
+          "index": 6999
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "args",
+          "type": "arguments"
+        },
+        {
+          "name": "minCount",
+          "type": "Integer"
+        },
+        {
+          "name": "maxCount",
+          "type": "Integer"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertEventFired": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that an event is fired.",
+          "     *",
+          "     * @param obj {Object} The object on which the event should be fired.",
+          "     * @param event {String} The event which should be fired.",
+          "     * @param invokeFunc {Function} The function which will be invoked and which",
+          "     *   fires the event.",
+          "     * @param listener {Function?null} The function which will be invoked in the",
+          "     *   listener. The function has one parameter called e which is the event.",
+          "     * @param msg {String?\"\"} Message to be shows if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -830,21 +1238,21 @@
             "body": "obj {Object} The object on which the event should be fired.",
             "paramName": "obj",
             "description": " The object on which the event should be fired.",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "event {String} The event which should be fired.",
             "paramName": "event",
             "description": " The event which should be fired.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "invokeFunc {Function} The function which will be invoked and which\n   fires the event.",
             "paramName": "invokeFunc",
             "description": " The function which will be invoked and which\n   fires the event.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -866,23 +1274,61 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertEventNotFired": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 243,
+          "line": 230,
           "column": 4,
-          "index": 8324
+          "index": 7544
         },
         "end": {
-          "line": 245,
+          "line": 232,
           "column": 5,
-          "index": 8453
+          "index": 7685
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "event",
+          "type": "string"
+        },
+        {
+          "name": "invokeFunc",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "listener",
+          "type": "Function",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "\"\""
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertEventNotFired": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that an event is not fired.",
+          "     *",
+          "     * @param obj {Object} The object on which the event should be fired.",
+          "     * @param event {String} The event which should be fired.",
+          "     * @param invokeFunc {Function} The function which will be invoked and which",
+          "     *   should not fire the event.",
+          "     * @param msg {String?} Message to be shows if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -895,21 +1341,21 @@
             "body": "obj {Object} The object on which the event should be fired.",
             "paramName": "obj",
             "description": " The object on which the event should be fired.",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "event {String} The event which should be fired.",
             "paramName": "event",
             "description": " The event which should be fired.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "invokeFunc {Function} The function which will be invoked and which\n   should not fire the event.",
             "paramName": "invokeFunc",
             "description": " The function which will be invoked and which\n   should not fire the event.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -921,23 +1367,56 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertException": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 258,
+          "line": 243,
           "column": 4,
-          "index": 8971
+          "index": 8082
         },
         "end": {
-          "line": 260,
+          "line": 245,
           "column": 5,
-          "index": 9094
+          "index": 8209
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "event",
+          "type": "string"
+        },
+        {
+          "name": "invokeFunc",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertException": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Asserts that the callback raises a matching exception.",
+          "     *",
+          "     * @param callback {Function} function to check",
+          "     * @param exception {Error?Error} Expected constructor of the exception.",
+          "     *   The assertion fails if the raised exception is not an instance of the",
+          "     *   parameter.",
+          "     * @param re {String|RegExp} The assertion fails if the error message does",
+          "     *   not match this parameter",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -950,7 +1429,7 @@
             "body": "callback {Function} function to check",
             "paramName": "callback",
             "description": " function to check",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -981,23 +1460,57 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertInArray": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 269,
+          "line": 258,
           "column": 4,
-          "index": 9355
+          "index": 8714
         },
         "end": {
-          "line": 271,
+          "line": 260,
           "column": 5,
-          "index": 9452
+          "index": 8835
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "exception",
+          "type": "Error",
+          "optional": true,
+          "defaultValue": "Error"
+        },
+        {
+          "name": "re",
+          "type": [
+            "String",
+            "RegExp"
+          ]
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertInArray": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is an item in the given array.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param array {Array} List of valid values",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1017,7 +1530,7 @@
             "body": "array {Array} List of valid values",
             "paramName": "array",
             "description": " List of valid values",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
@@ -1029,23 +1542,48 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertNotInArray": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 280,
+          "line": 269,
           "column": 4,
-          "index": 9709
+          "index": 9087
         },
         "end": {
-          "line": 282,
+          "line": 271,
           "column": 5,
-          "index": 9812
+          "index": 9182
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "array",
+          "type": "Array<any>"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertNotInArray": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is NOT an item in the given array",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param array {Array} List of values",
+          "     * @param msg {String?} Message to be shown if the assertion fails",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1065,7 +1603,7 @@
             "body": "array {Array} List of values",
             "paramName": "array",
             "description": " List of values",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
@@ -1077,23 +1615,48 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertArrayEquals": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 291,
+          "line": 280,
           "column": 4,
-          "index": 10075
+          "index": 9430
         },
         "end": {
-          "line": 293,
+          "line": 282,
           "column": 5,
-          "index": 10186
+          "index": 9531
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "array",
+          "type": "Array<any>"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertArrayEquals": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that both array have identical array items.",
+          "     *",
+          "     * @param expected {Array} The expected array",
+          "     * @param found {Array} The found array",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1106,14 +1669,14 @@
             "body": "expected {Array} The expected array",
             "paramName": "expected",
             "description": " The expected array",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
             "body": "found {Array} The found array",
             "paramName": "found",
             "description": " The found array",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
@@ -1125,23 +1688,48 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertKeyInMap": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 302,
+          "line": 291,
           "column": 4,
-          "index": 10465
+          "index": 9785
         },
         "end": {
-          "line": 304,
+          "line": 293,
           "column": 5,
-          "index": 10560
+          "index": 9894
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "expected",
+          "type": "Array<any>"
+        },
+        {
+          "name": "found",
+          "type": "Array<any>"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertKeyInMap": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is a key in the given map.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param map {Map} Map, where the keys represent the valid values",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1161,7 +1749,7 @@
             "body": "map {Map} Map, where the keys represent the valid values",
             "paramName": "map",
             "description": " Map, where the keys represent the valid values",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -1173,23 +1761,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertFunction": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 312,
+          "line": 302,
           "column": 4,
-          "index": 10755
+          "index": 10164
         },
         "end": {
-          "line": 314,
+          "line": 304,
           "column": 5,
-          "index": 10840
+          "index": 10257
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "map",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertFunction": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is a function.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1214,23 +1826,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertString": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 322,
+          "line": 312,
           "column": 4,
-          "index": 11033
+          "index": 10444
         },
         "end": {
-          "line": 324,
+          "line": 314,
           "column": 5,
-          "index": 11114
+          "index": 10527
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertString": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is a string.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1255,23 +1887,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertBoolean": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 332,
+          "line": 322,
           "column": 4,
-          "index": 11308
+          "index": 10712
         },
         "end": {
-          "line": 334,
+          "line": 324,
           "column": 5,
-          "index": 11391
+          "index": 10791
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertBoolean": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is a boolean.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1296,23 +1948,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertNumber": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 342,
+          "line": 332,
           "column": 4,
-          "index": 11584
+          "index": 10977
         },
         "end": {
-          "line": 344,
+          "line": 334,
           "column": 5,
-          "index": 11665
+          "index": 11058
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertNumber": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is a number.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1337,23 +2009,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertPositiveNumber": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 352,
+          "line": 342,
           "column": 4,
-          "index": 11863
+          "index": 11243
         },
         "end": {
-          "line": 354,
+          "line": 344,
           "column": 5,
-          "index": 11960
+          "index": 11322
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertPositiveNumber": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is a number >= 0.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1378,23 +2070,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertInteger": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 362,
+          "line": 352,
           "column": 4,
-          "index": 12155
+          "index": 11512
         },
         "end": {
-          "line": 364,
+          "line": 354,
           "column": 5,
-          "index": 12238
+          "index": 11607
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertInteger": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is an integer.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1419,23 +2131,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertPositiveInteger": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 372,
+          "line": 362,
           "column": 4,
-          "index": 12438
+          "index": 11794
         },
         "end": {
-          "line": 374,
+          "line": 364,
           "column": 5,
-          "index": 12537
+          "index": 11875
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertPositiveInteger": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is an integer >= 0.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1460,23 +2192,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertInRange": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 384,
+          "line": 372,
           "column": 4,
-          "index": 12824
+          "index": 12067
         },
         "end": {
-          "line": 386,
+          "line": 374,
           "column": 5,
-          "index": 12927
+          "index": 12164
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertInRange": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is inside the given range.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param min {Number} lower bound",
+          "     * @param max {Number} upper bound",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1496,14 +2250,14 @@
             "body": "min {Number} lower bound",
             "paramName": "min",
             "description": " lower bound",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
             "body": "max {Number} upper bound",
             "paramName": "max",
             "description": " upper bound",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
@@ -1515,23 +2269,51 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertObject": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 394,
+          "line": 384,
           "column": 4,
-          "index": 13121
+          "index": 12441
         },
         "end": {
-          "line": 396,
+          "line": 386,
           "column": 5,
-          "index": 13202
+          "index": 12542
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "min",
+          "type": "number"
+        },
+        {
+          "name": "max",
+          "type": "number"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertObject": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is an object.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1556,23 +2338,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertArray": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 404,
+          "line": 394,
           "column": 4,
-          "index": 13395
+          "index": 12728
         },
         "end": {
-          "line": 406,
+          "line": 396,
           "column": 5,
-          "index": 13474
+          "index": 12807
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertArray": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is an array.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1597,23 +2399,44 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertMap": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 415,
+          "line": 404,
           "column": 4,
-          "index": 13778
+          "index": 12992
         },
         "end": {
-          "line": 417,
+          "line": 406,
           "column": 5,
-          "index": 13853
+          "index": 13069
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertMap": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is a map either created using <code>new Object</code>",
+          "     * or by using the object literal notation <code>{ ... }</code>.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1638,23 +2461,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertRegExp": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 425,
+          "line": 415,
           "column": 4,
-          "index": 14058
+          "index": 13364
         },
         "end": {
-          "line": 427,
+          "line": 417,
           "column": 5,
-          "index": 14139
+          "index": 13437
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertRegExp": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is a regular expression.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1679,23 +2522,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertType": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 439,
+          "line": 425,
           "column": 4,
-          "index": 14608
+          "index": 13634
         },
         "end": {
-          "line": 441,
+          "line": 427,
           "column": 5,
-          "index": 14697
+          "index": 13713
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertType": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value has the given type using the <code>typeof</code>",
+          "     * operator. Because the type is not always what it is supposed to be it is",
+          "     * better to use more explicit checks like {@link #assertString} or",
+          "     * {@link #assertArray}.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param type {String} expected type of the value",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1715,7 +2582,7 @@
             "body": "type {String} expected type of the value",
             "paramName": "type",
             "description": " expected type of the value",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -1727,23 +2594,48 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertInstance": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 450,
+          "line": 439,
           "column": 4,
-          "index": 14985
+          "index": 14170
         },
         "end": {
-          "line": 452,
+          "line": 441,
           "column": 5,
-          "index": 15084
+          "index": 14257
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertInstance": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is an instance of the given class.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param clazz {Class} The value must be an instance of this class",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1775,23 +2667,48 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertInterface": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 461,
+          "line": 450,
           "column": 4,
-          "index": 15365
+          "index": 14536
         },
         "end": {
-          "line": 463,
+          "line": 452,
           "column": 5,
-          "index": 15466
+          "index": 14633
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertInterface": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value implements the given interface.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param iface {Class} The value must implement this interface",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1823,23 +2740,50 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertCssColor": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 474,
+          "line": 461,
           "column": 4,
-          "index": 15907
+          "index": 14905
         },
         "end": {
-          "line": 476,
+          "line": 463,
           "column": 5,
-          "index": 16012
+          "index": 15004
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "iface",
+          "type": "Class"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertCssColor": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value represents the given CSS color value. This method",
+          "     * parses the color strings and compares the RGB values. It is able to",
+          "     * parse values supported by {@link qx.util.ColorUtil#stringToRgb}.",
+          "     *",
+          "     *  @param expected {String} The expected color",
+          "     *  @param value {String} The value to check",
+          "     *  @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1852,14 +2796,14 @@
             "body": "expected {String} The expected color",
             "paramName": "expected",
             "description": " The expected color",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "value {String} The value to check",
             "paramName": "value",
             "description": " The value to check",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -1871,23 +2815,47 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertElement": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 484,
+          "line": 474,
           "column": 4,
-          "index": 16210
+          "index": 15434
         },
         "end": {
-          "line": 486,
+          "line": 476,
           "column": 5,
-          "index": 16293
+          "index": 15537
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "expected",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is a DOM element.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1912,23 +2880,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertQxObject": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 494,
+          "line": 484,
           "column": 4,
-          "index": 16515
+          "index": 15727
         },
         "end": {
-          "line": 496,
+          "line": 486,
           "column": 5,
-          "index": 16600
+          "index": 15808
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertQxObject": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is an instance of {@link qx.core.Object}.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1953,23 +2941,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "assertQxWidget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 504,
+          "line": 494,
           "column": 4,
-          "index": 16825
+          "index": 16022
         },
         "end": {
-          "line": 506,
+          "line": 496,
           "column": 5,
-          "index": 16910
+          "index": 16105
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "assertQxWidget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assert that the value is an instance of {@link qx.ui.core.Widget}.",
+          "     *",
+          "     * @param value {var} Value to check",
+          "     * @param msg {String?} Message to be shown if the assertion fails.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1994,9 +3002,34 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 504,
+          "column": 4,
+          "index": 16322
+        },
+        "end": {
+          "line": 506,
+          "column": 5,
+          "index": 16405
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "msg",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

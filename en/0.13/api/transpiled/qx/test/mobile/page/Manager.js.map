@@ -1,0 +1,37 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "mobile",
+    "MobileTestCase",
+    "members",
+    "testCreate",
+    "manager",
+    "ui",
+    "page",
+    "Manager",
+    "dispose",
+    "testAddTablet",
+    "NavigationPage",
+    "addMaster",
+    "addDetail",
+    "testAddMobile",
+    "page1",
+    "page2"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/mobile/page/Manager.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2012 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.mobile.page.Manager\", {\n  extend: qx.test.mobile.MobileTestCase,\n\n  members: {\n    testCreate() {\n      var manager = new qx.ui.mobile.page.Manager();\n      manager.dispose();\n    },\n\n    testAddTablet() {\n      var manager = new qx.ui.mobile.page.Manager(true);\n      var page = new qx.ui.mobile.page.NavigationPage();\n      manager.addMaster([page]);\n      manager.addDetail([page]);\n      manager.dispose();\n    },\n\n    testAddMobile() {\n      var manager = new qx.ui.mobile.page.Manager(false);\n      var page1 = new qx.ui.mobile.page.NavigationPage();\n      var page2 = new qx.ui.mobile.page.NavigationPage();\n      manager.addMaster([page1]);\n      manager.addMaster([page2]);\n      manager.dispose();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,6BAA6B,EAAE;IAC7CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM,CAACC,cAAc;IAErCC,OAAO,EAAE;MACPC,UAAU,WAAAA,WAAA,EAAG;QACX,IAAIC,OAAO,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACC,OAAO,CAAC,CAAC;QAC7CH,OAAO,CAACI,OAAO,CAAC,CAAC;MACnB,CAAC;MAEDC,aAAa,WAAAA,cAAA,EAAG;QACd,IAAIL,OAAO,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACC,OAAO,CAAC,IAAI,CAAC;QACjD,IAAID,IAAI,GAAG,IAAId,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACI,cAAc,CAAC,CAAC;QACjDN,OAAO,CAACO,SAAS,CAAC,CAACL,IAAI,CAAC,CAAC;QACzBF,OAAO,CAACQ,SAAS,CAAC,CAACN,IAAI,CAAC,CAAC;QACzBF,OAAO,CAACI,OAAO,CAAC,CAAC;MACnB,CAAC;MAEDK,aAAa,WAAAA,cAAA,EAAG;QACd,IAAIT,OAAO,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACC,OAAO,CAAC,KAAK,CAAC;QAClD,IAAIO,KAAK,GAAG,IAAItB,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACI,cAAc,CAAC,CAAC;QAClD,IAAIK,KAAK,GAAG,IAAIvB,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,IAAI,CAACI,cAAc,CAAC,CAAC;QAClDN,OAAO,CAACO,SAAS,CAAC,CAACG,KAAK,CAAC,CAAC;QAC1BV,OAAO,CAACO,SAAS,CAAC,CAACI,KAAK,CAAC,CAAC;QAC1BX,OAAO,CAACI,OAAO,CAAC,CAAC;MACnB;IACF;EACF,CAAC,CAAC;EA5CFhB,EAAE,CAACO,IAAI,CAACC,MAAM,CAACM,IAAI,CAACC,OAAO,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

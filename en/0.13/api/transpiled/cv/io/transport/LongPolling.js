@@ -121,10 +121,10 @@
           data = this.client.buildRequest();
           successCallback = this.handleRead;
         }
-        this.__P_563_0(data, successCallback);
+        this.__P_783_0(data, successCallback);
         this.watchdog.start(5);
       },
-      __P_563_0: function __P_563_0(data, callback) {
+      __P_783_0: function __P_783_0(data, callback) {
         data = data || this.client.buildRequest();
         callback = callback || this.handleRead;
         data.t = 0;
@@ -159,7 +159,7 @@
               this.watchdog.start(5);
             }
             qx.event.Timer.once(function () {
-              this.__P_563_0();
+              this.__P_783_0();
               this.watchdog.ping(true);
             }, this, delay);
           }
@@ -346,4 +346,4 @@
   cv.io.transport.LongPolling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LongPolling.js.map?dt=1709410172744
+//# sourceMappingURL=LongPolling.js.map?dt=1717235424345

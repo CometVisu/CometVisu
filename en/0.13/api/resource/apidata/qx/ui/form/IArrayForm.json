@@ -1,67 +1,74 @@
 {
-  "className": "qx.ui.form.IArrayForm",
-  "packageName": "qx.ui.form",
-  "name": "IArrayForm",
-  "superClass": "qx.ui.form.IField",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 569
-      },
-      "end": {
-        "line": 70,
-        "column": 3,
-        "index": 1790
-      }
+  "version": 0.3,
+  "lastModified": 1717235171174,
+  "lastModifiedIso": "2024-06-01T09:46:11.174Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/IArrayForm.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 548
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Form interface for all form widgets which have arrays as their primary data type.</p>"
-        }
-      ]
+    "end": {
+      "line": 70,
+      "column": 3,
+      "index": 1721
     }
   },
-  "type": "interface",
+  "className": "qx.ui.form.IArrayForm",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Form interface for all form widgets which have arrays as their primary data type.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Form interface for all form widgets which have arrays as their primary data type.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.IField",
   "events": {
     "changeValue": {
-      "type": "event",
-      "name": "changeValue",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IField",
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fired when the value was modified "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired when the value was modified</p>"
           }
         ]
+      },
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 869
+        },
+        "end": {
+          "line": 33,
+          "column": 37,
+          "index": 902
+        }
       }
     }
   },
   "members": {
     "setValue": {
-      "location": {
-        "start": {
-          "line": 54,
-          "column": 4,
-          "index": 1486
-        },
-        "end": {
-          "line": 56,
-          "column": 5,
-          "index": 1547
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the element's value.",
+          "     *",
+          "     * @param value {qx.data.Array|null} The new value of the element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -81,27 +88,41 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1433
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1492
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "qx.data.Array",
+            "null"
+          ]
+        }
+      ],
       "overriddenFrom": "qx.ui.form.IField",
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     },
     "resetValue": {
-      "location": {
-        "start": {
-          "line": 61,
-          "column": 4,
-          "index": 1631
-        },
-        "end": {
-          "line": 61,
-          "column": 19,
-          "index": 1646
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the element's value to its initial value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -109,27 +130,35 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1571
+        },
+        "end": {
+          "line": 61,
+          "column": 19,
+          "index": 1586
+        }
+      },
+      "type": "function",
+      "params": [],
       "overriddenFrom": "qx.ui.form.IField",
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     },
     "getValue": {
-      "location": {
-        "start": {
-          "line": 68,
-          "column": 4,
-          "index": 1767
-        },
-        "end": {
-          "line": 68,
-          "column": 17,
-          "index": 1780
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The element's user set value.",
+          "     *",
+          "     * @return {qx.data.Array|null} The value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -141,17 +170,34 @@
             "name": "@return",
             "body": "{qx.data.Array|null} The value.",
             "type": "qx.data.Array|null",
-            "description": " The value."
+            "description": "The value."
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1700
+        },
+        "end": {
+          "line": 68,
+          "column": 17,
+          "index": 1713
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.data.Array|null"
+      },
       "overriddenFrom": "qx.ui.form.IField",
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

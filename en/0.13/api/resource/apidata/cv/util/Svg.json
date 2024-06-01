@@ -1,39 +1,41 @@
 {
-  "className": "cv.util.Svg",
-  "packageName": "cv.util",
-  "name": "Svg",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 843
-      },
-      "end": {
-        "line": 82,
-        "column": 3,
-        "index": 2814
-      }
+  "version": 0.3,
+  "lastModified": 1717235105618,
+  "lastModifiedIso": "2024-06-01T09:45:05.618Z",
+  "classFilename": "../../source/class/cv/util/Svg.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 843
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Helper functions for SVG elements.</p>"
-        }
-      ]
+    "end": {
+      "line": 82,
+      "column": 3,
+      "index": 2814
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.util.Svg",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Helper functions for SVG elements.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Helper functions for SVG elements.</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "getBBox": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 30,
@@ -47,8 +49,14 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -29,7 +29,7 @@
     ******************************************************
     */
     construct: function construct(config) {
-      this.__P_565_0 = config;
+      this.__P_785_0 = config;
     },
     /*
     ******************************************************
@@ -49,23 +49,23 @@
     ******************************************************
     */
     members: {
-      __P_565_0: null,
-      __P_565_1: null,
+      __P_785_0: null,
+      __P_785_1: null,
       // property apply
       _applyRequestData: function _applyRequestData(value) {
-        if (!this.__P_565_0) {
-          this.__P_565_0['data'] = value;
+        if (!this.__P_785_0) {
+          this.__P_785_0['data'] = value;
         }
       },
       removeListener: function removeListener(eventName) {
-        delete this.__P_565_0[eventName];
+        delete this.__P_785_0[eventName];
       },
       addListener: function addListener(eventName, callback, context) {
-        this.__P_565_0[eventName] = callback.bind(context);
+        this.__P_785_0[eventName] = callback.bind(context);
       },
       send: function send() {
-        if (this.__P_565_0) {
-          $.ajax(this.__P_565_0);
+        if (this.__P_785_0) {
+          $.ajax(this.__P_785_0);
         } else {
           this.error('no request settings found, skipping');
         }
@@ -76,13 +76,13 @@
       ***********************************************************
       */
       abort: function abort() {
-        if (this.__P_565_1 && this.__P_565_1.abort) {
-          this.__P_565_1.abort();
+        if (this.__P_785_1 && this.__P_785_1.abort) {
+          this.__P_785_1.abort();
         }
       },
       getResponseHeader: function getResponseHeader(headerName) {
-        if (this.__P_565_1) {
-          return this.__P_565_1.getResponseHeader(headerName);
+        if (this.__P_785_1) {
+          return this.__P_785_1.getResponseHeader(headerName);
         }
         return null;
       }
@@ -91,4 +91,4 @@
   cv.io.request.Jquery.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jquery.js.map?dt=1709410172798
+//# sourceMappingURL=Jquery.js.map?dt=1717235424404

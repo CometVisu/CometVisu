@@ -1,41 +1,107 @@
 {
-  "className": "qx.io.remote.Rpc",
-  "packageName": "qx.io.remote",
-  "name": "Rpc",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 80,
-        "column": 0,
-        "index": 3025
-      },
-      "end": {
-        "line": 1001,
-        "column": 3,
-        "index": 32705
-      }
+  "version": 0.3,
+  "lastModified": 1645577566000,
+  "lastModifiedIso": "2022-02-23T00:52:46.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_deprecated_qx_io_remote_v1_0_2/source/class/qx/io/remote/Rpc.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 80,
+      "column": 0,
+      "index": 3025
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Provides a Remote Procedure Call (RPC) implementation.\n Each instance of this class represents a \"Service\". These services can\n correspond to various concepts on the server side (depending on the\n programming language/environment being used), but usually, a service means\n a class on the server.\n In case multiple instances of the same service are needed, they can be\n distinguished by ids. If such an id is specified, the server routes all\n calls to a service that have the same id to the same server-side instance.\n When calling a server-side method, the parameters and return values are\n converted automatically. Supported types are int (and Integer), double\n (and Double), String, Date, Map, and JavaBeans. Beans must have a default\n constructor on the server side and are represented by simple JavaScript\n objects on the client side (used as associative arrays with keys matching\n the server-side properties). Beans can also be nested, but be careful not to\n create circular references! There are no checks to detect these (which would\n be expensive), so you as the user are responsible for avoiding them.\n A simple example:\n </p>\n<pre class='javascript'>\n   function callRpcServer ()\n   {\n     var rpc = new qx.io.remote.Rpc();\n     rpc.setTimeout(10000);\n     rpc.setUrl(\"http://127.0.0.1:8007\");\n     rpc.setServiceName(\"qooxdoo.admin\");\n\n     var that = this;\n     this.RpcRunning = rpc.callAsync(\n       function(result, ex, id)\n       {\n         that.RpcRunning = null;\n         if (ex == null) {\n             alert(result);\n         } else {\n             alert(\"Async(\" + id + \") exception: \" + ex);\n         }\n       },\n       \"fss.getBaseDir\");\n   }\n </pre>\n<p><strong>fss.getBaseDir</strong> is the remote procedure in this case, potential arguments\n would be listed after the procedure name.\n <p>\n Passing data from the client (qooxdoo) side is demonstrated in the\n qooxdoo-contrib project RpcExample. There are three ways to issue a remote\n procedure call: synchronously (qx.io.remote.Rpc.callSync -- dangerous\n because it blocks the whole browser, not just your application, so is\n highly discouraged); async with results via a callback function\n (qx.io.remote.Rpc.callAsync) and async with results via an event listener\n (qx.io.remote.Rpc.callAsyncListeners).\n <p></p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.core.ServerSettings.*"
-        }
-      ]
+    "end": {
+      "line": 1001,
+      "column": 3,
+      "index": 32705
     }
   },
-  "type": "class",
+  "className": "qx.io.remote.Rpc",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Provides a Remote Procedure Call (RPC) implementation.",
+      " *",
+      " * Each instance of this class represents a \"Service\". These services can",
+      " * correspond to various concepts on the server side (depending on the",
+      " * programming language/environment being used), but usually, a service means",
+      " * a class on the server.",
+      " *",
+      " * In case multiple instances of the same service are needed, they can be",
+      " * distinguished by ids. If such an id is specified, the server routes all",
+      " * calls to a service that have the same id to the same server-side instance.",
+      " *",
+      " * When calling a server-side method, the parameters and return values are",
+      " * converted automatically. Supported types are int (and Integer), double",
+      " * (and Double), String, Date, Map, and JavaBeans. Beans must have a default",
+      " * constructor on the server side and are represented by simple JavaScript",
+      " * objects on the client side (used as associative arrays with keys matching",
+      " * the server-side properties). Beans can also be nested, but be careful not to",
+      " * create circular references! There are no checks to detect these (which would",
+      " * be expensive), so you as the user are responsible for avoiding them.",
+      " *",
+      " * A simple example:",
+      " * <pre class='javascript'>",
+      " *   function callRpcServer ()",
+      " *   {",
+      " *     var rpc = new qx.io.remote.Rpc();",
+      " *     rpc.setTimeout(10000);",
+      " *     rpc.setUrl(\"http://127.0.0.1:8007\");",
+      " *     rpc.setServiceName(\"qooxdoo.admin\");",
+      " *",
+      " *     // call a remote procedure -- takes no arguments, returns a string",
+      " *     var that = this;",
+      " *     this.RpcRunning = rpc.callAsync(",
+      " *       function(result, ex, id)",
+      " *       {",
+      " *         that.RpcRunning = null;",
+      " *         if (ex == null) {",
+      " *             alert(result);",
+      " *         } else {",
+      " *             alert(\"Async(\" + id + \") exception: \" + ex);",
+      " *         }",
+      " *       },",
+      " *       \"fss.getBaseDir\");",
+      " *   }",
+      " * </pre>",
+      " * __fss.getBaseDir__ is the remote procedure in this case, potential arguments",
+      " * would be listed after the procedure name.",
+      " * <p>",
+      " * Passing data from the client (qooxdoo) side is demonstrated in the",
+      " * qooxdoo-contrib project RpcExample. There are three ways to issue a remote",
+      " * procedure call: synchronously (qx.io.remote.Rpc.callSync -- dangerous",
+      " * because it blocks the whole browser, not just your application, so is",
+      " * highly discouraged); async with results via a callback function",
+      " * (qx.io.remote.Rpc.callAsync) and async with results via an event listener",
+      " * (qx.io.remote.Rpc.callAsyncListeners).",
+      " * <p>",
+      " * @ignore(qx.core.ServerSettings.*)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Provides a Remote Procedure Call (RPC) implementation.\n Each instance of this class represents a \"Service\". These services can\n correspond to various concepts on the server side (depending on the\n programming language/environment being used), but usually, a service means\n a class on the server.\n In case multiple instances of the same service are needed, they can be\n distinguished by ids. If such an id is specified, the server routes all\n calls to a service that have the same id to the same server-side instance.\n When calling a server-side method, the parameters and return values are\n converted automatically. Supported types are int (and Integer), double\n (and Double), String, Date, Map, and JavaBeans. Beans must have a default\n constructor on the server side and are represented by simple JavaScript\n objects on the client side (used as associative arrays with keys matching\n the server-side properties). Beans can also be nested, but be careful not to\n create circular references! There are no checks to detect these (which would\n be expensive), so you as the user are responsible for avoiding them.\n A simple example:\n </p>\n<pre class='javascript'>\n   function callRpcServer ()\n   {\n     var rpc = new qx.io.remote.Rpc();\n     rpc.setTimeout(10000);\n     rpc.setUrl(\"http://127.0.0.1:8007\");\n     rpc.setServiceName(\"qooxdoo.admin\");\n\n     var that = this;\n     this.RpcRunning = rpc.callAsync(\n       function(result, ex, id)\n       {\n         that.RpcRunning = null;\n         if (ex == null) {\n             alert(result);\n         } else {\n             alert(\"Async(\" + id + \") exception: \" + ex);\n         }\n       },\n       \"fss.getBaseDir\");\n   }\n </pre>\n<p><strong>fss.getBaseDir</strong> is the remote procedure in this case, potential arguments\n would be listed after the procedure name.\n <p>\n Passing data from the client (qooxdoo) side is demonstrated in the\n qooxdoo-contrib project RpcExample. There are three ways to issue a remote\n procedure call: synchronously (qx.io.remote.Rpc.callSync -- dangerous\n because it blocks the whole browser, not just your application, so is\n highly discouraged); async with results via a callback function\n (qx.io.remote.Rpc.callAsync) and async with results via an event listener\n (qx.io.remote.Rpc.callAsyncListeners).\n <p></p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.core.ServerSettings.*"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "url"
+      },
+      {
+        "name": "serviceName"
+      }
+    ],
     "location": {
       "start": {
         "line": 106,
@@ -47,34 +113,24 @@
         "column": 3,
         "index": 4599
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "url {String}            identifies the url where the service\n                                is found.  Note that if the url is to\n                                a domain (server) other than where the\n                                qooxdoo script came from, i.e. it is\n                                cross-domain, then you must also call\n                                the setCrossDomain(true) method to\n                                enable the ScriptTransport instead of\n                                the XmlHttpTransport, since the latter\n                                can not handle cross-domain requests.",
-          "paramName": "url",
-          "description": "            identifies the url where the service\n                                is found.  Note that if the url is to\n                                a domain (server) other than where the\n                                qooxdoo script came from, i.e. it is\n                                cross-domain, then you must also call\n                                the setCrossDomain(true) method to\n                                enable the ScriptTransport instead of\n                                the XmlHttpTransport, since the latter\n                                can not handle cross-domain requests.",
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "serviceName {String}    identifies the service. For the Java\n                                implementation, this is the fully\n                                qualified name of the class that offers\n                                the service methods\n                                (e.g. \"my.pkg.MyService\").",
-          "paramName": "serviceName",
-          "description": "    identifies the service. For the Java\n                                implementation, this is the fully\n                                qualified name of the class that offers\n                                the service methods\n                                (e.g. \"my.pkg.MyService\").",
-          "type": "String"
-        }
-      ]
     }
   },
   "events": {
     "completed": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when call is completed.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when call is completed.</p>"
+          }
+        ]
+      },
       "location": {
         "start": {
           "line": 132,
@@ -86,19 +142,23 @@
           "column": 36,
           "index": 4886
         }
-      },
+      }
+    },
+    "aborted": {
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when call aborted.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired when call is completed.</p>"
+            "body": "<p>Fired when call aborted.</p>"
           }
         ]
       },
-      "name": "completed",
-      "type": "qx.event.type.Event"
-    },
-    "aborted": {
       "location": {
         "start": {
           "line": 137,
@@ -110,19 +170,23 @@
           "column": 34,
           "index": 4971
         }
-      },
+      }
+    },
+    "failed": {
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when call failed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired when call aborted.</p>"
+            "body": "<p>Fired when call failed.</p>"
           }
         ]
       },
-      "name": "aborted",
-      "type": "qx.event.type.Event"
-    },
-    "failed": {
       "location": {
         "start": {
           "line": 142,
@@ -134,19 +198,23 @@
           "column": 33,
           "index": 5054
         }
-      },
+      }
+    },
+    "timeout": {
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when call timed out.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired when call failed.</p>"
+            "body": "<p>Fired when call timed out.</p>"
           }
         ]
       },
-      "name": "failed",
-      "type": "qx.event.type.Event"
-    },
-    "timeout": {
       "location": {
         "start": {
           "line": 147,
@@ -158,21 +226,25 @@
           "column": 34,
           "index": 5141
         }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Fired when call timed out.</p>"
-          }
-        ]
-      },
-      "name": "timeout",
-      "type": "qx.event.type.Event"
+      }
     }
   },
   "statics": {
     "origin": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Origins of errors",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Origins of errors</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 160,
@@ -185,18 +257,23 @@
           "index": 5481
         }
       },
+      "appearsIn": []
+    },
+    "localError": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     *  Locally-detected errors",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Origins of errors</p>"
+            "body": "<p>Locally-detected errors</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "localError": {
+      "access": "public",
       "location": {
         "start": {
           "line": 170,
@@ -209,18 +286,42 @@
           "index": 5606
         }
       },
+      "appearsIn": []
+    },
+    "CONVERT_DATES": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Boolean flag which controls the stringification of date objects.",
+          "     * <code>null</code> for the default behavior, acts like false",
+          "     * <code>true</code> for stringifying dates the old, qooxdoo specific way",
+          "     * <code>false</code> using the native toJSON of date objects.",
+          "     *",
+          "     * When enabled, dates are converted to and parsed from",
+          "     * a literal that complies to the format",
+          "     *",
+          "     * <code>new Date(Date.UTC(year,month,day,hour,min,sec,ms))</code>",
+          "     *",
+          "     * The server can fairly easily parse this in its JSON",
+          "     * implementation by stripping off \"new Date(Date.UTC(\"",
+          "     * from the beginning of the string, and \"))\" from the",
+          "     * end of the string. What remains is the set of",
+          "     * comma-separated date components, which are also very",
+          "     * easy to parse.",
+          "     *",
+          "     * The work-around compensates for the fact that while the",
+          "     * Date object is a primitive type in Javascript, the",
+          "     * specification neglects to provide a literal form for it.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Locally-detected errors</p>"
+            "body": "<p>Boolean flag which controls the stringification of date objects.\n <code>null</code> for the default behavior, acts like false\n <code>true</code> for stringifying dates the old, qooxdoo specific way\n <code>false</code> using the native toJSON of date objects.\n When enabled, dates are converted to and parsed from\n a literal that complies to the format\n <code>new Date(Date.UTC(year,month,day,hour,min,sec,ms))</code>\n The server can fairly easily parse this in its JSON\n implementation by stripping off \"new Date(Date.UTC(\"\n from the beginning of the string, and \"))\" from the\n end of the string. What remains is the set of\n comma-separated date components, which are also very\n easy to parse.\n The work-around compensates for the fact that while the\n Date object is a primitive type in Javascript, the\n specification neglects to provide a literal form for it.</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "CONVERT_DATES": {
+      "access": "public",
       "location": {
         "start": {
           "line": 198,
@@ -233,18 +334,37 @@
           "index": 6634
         }
       },
+      "appearsIn": []
+    },
+    "RESPONSE_JSON": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Boolean flag which controls whether to expect and verify a JSON",
+          "     * response.",
+          "     *",
+          "     * Should be <code>true</code> when backend returns valid JSON.",
+          "     *",
+          "     * Date literals are parsed when CONVERT_DATES is <code>true</code>",
+          "     * and comply to the format",
+          "     *",
+          "     * <code>\"new Date(Date.UTC(year,month,day,hour,min,sec,ms))\"</code>",
+          "     *",
+          "     * Note the surrounding quotes that encode the literal as string.",
+          "     *",
+          "     * Using valid JSON is recommended, because it allows to use",
+          "     * {@link qx.lang.Json#parse} for parsing. {@link qx.lang.Json#parse}",
+          "     * is preferred over the potentially insecure <code>eval</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Boolean flag which controls the stringification of date objects.\n <code>null</code> for the default behavior, acts like false\n <code>true</code> for stringifying dates the old, qooxdoo specific way\n <code>false</code> using the native toJSON of date objects.\n When enabled, dates are converted to and parsed from\n a literal that complies to the format\n <code>new Date(Date.UTC(year,month,day,hour,min,sec,ms))</code>\n The server can fairly easily parse this in its JSON\n implementation by stripping off \"new Date(Date.UTC(\"\n from the beginning of the string, and \"))\" from the\n end of the string. What remains is the set of\n comma-separated date components, which are also very\n easy to parse.\n The work-around compensates for the fact that while the\n Date object is a primitive type in Javascript, the\n specification neglects to provide a literal form for it.</p>"
+            "body": "<p>Boolean flag which controls whether to expect and verify a JSON\n response.\n Should be <code>true</code> when backend returns valid JSON.\n Date literals are parsed when CONVERT_DATES is <code>true</code>\n and comply to the format\n <code>\"new Date(Date.UTC(year,month,day,hour,min,sec,ms))\"</code>\n Note the surrounding quotes that encode the literal as string.\n Using valid JSON is recommended, because it allows to use\n {@link qx.lang.Json#parse} for parsing. {@link qx.lang.Json#parse}\n is preferred over the potentially insecure <code>eval</code>.</p>"
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "RESPONSE_JSON": {
+      "access": "public",
       "location": {
         "start": {
           "line": 217,
@@ -257,31 +377,28 @@
           "index": 7322
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Boolean flag which controls whether to expect and verify a JSON\n response.\n Should be <code>true</code> when backend returns valid JSON.\n Date literals are parsed when CONVERT_DATES is <code>true</code>\n and comply to the format\n <code>\"new Date(Date.UTC(year,month,day,hour,min,sec,ms))\"</code>\n Note the surrounding quotes that encode the literal as string.\n Using valid JSON is recommended, because it allows to use\n {@link qx.lang.Json#parse} for parsing. {@link qx.lang.Json#parse}\n is preferred over the potentially insecure <code>eval</code>.</p>"
-          }
-        ]
-      },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "makeServerURL": {
-      "location": {
-        "start": {
-          "line": 235,
-          "column": 4,
-          "index": 8281
-        },
-        "end": {
-          "line": 250,
-          "column": 5,
-          "index": 8642
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an URL for talking to a local service. A local service is one that",
+          "     * lives in the same application as the page calling the service. For backends",
+          "     * that don't support this auto-generation, this method returns null.",
+          "     *",
+          "     * @param instanceId {String ? null} an optional identifier for the",
+          "     *                                   server side instance that should be",
+          "     *                                   used. All calls to the same service",
+          "     *                                   with the same instance id are",
+          "     *                                   routed to the same object instance",
+          "     *                                   on the server. The instance id can",
+          "     *                                   also be used to provide additional",
+          "     *                                   data for the service instantiation",
+          "     *                                   on the server.",
+          "     * @return {String} the url.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -303,13 +420,37 @@
           {
             "name": "@return",
             "body": "{String} the url.",
-            "type": "String",
-            "description": " the url."
+            "type": "string",
+            "description": "the url."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4,
+          "index": 8281
+        },
+        "end": {
+          "line": 250,
+          "column": 5,
+          "index": 8642
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "instanceId",
+          "type": "String",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
   "properties": {
@@ -326,7 +467,14 @@
           "index": 9174
         }
       },
+      "json": {
+        "check": "Integer",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* The timeout for asynchronous calls in milliseconds. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -334,11 +482,7 @@
           }
         ]
       },
-      "name": "timeout",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Integer"
+      "appearsIn": []
     },
     "crossDomain": {
       "location": {
@@ -353,7 +497,22 @@
           "index": 9649
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Indicate that the request is cross domain.",
+          "     *",
+          "     * A request is cross domain if the request's URL points to a host other",
+          "     * than the local host. This switches the concrete implementation that is",
+          "     * used for sending the request from qx.io.remote.transport.XmlHttp to",
+          "     * qx.io.remote.transport.Script because only the latter can handle cross",
+          "     * domain requests.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -361,11 +520,7 @@
           }
         ]
       },
-      "name": "crossDomain",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     },
     "url": {
       "location": {
@@ -380,7 +535,14 @@
           "index": 9765
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* The URL at which the service is located. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -388,11 +550,7 @@
           }
         ]
       },
-      "name": "url",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "serviceName": {
       "location": {
@@ -407,7 +565,14 @@
           "index": 9867
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* The service name.  "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -415,11 +580,7 @@
           }
         ]
       },
-      "name": "serviceName",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "serverData": {
       "location": {
@@ -434,7 +595,21 @@
           "index": 10381
         }
       },
+      "json": {
+        "check": "Object",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Data sent as \"out of band\" data in the request to the server.  The",
+          "     * format of the data is opaque to RPC and may be recognized only by",
+          "     * particular servers It is up to the server to decide what to do with",
+          "     * it: whether to ignore it, handle it locally before calling the",
+          "     * specified method, or pass it on to the method.  This server data is",
+          "     * not sent to the server if it has been set to 'null'.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -442,11 +617,7 @@
           }
         ]
       },
-      "name": "serverData",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Object"
+      "appearsIn": []
     },
     "username": {
       "location": {
@@ -461,7 +632,17 @@
           "index": 10562
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Username to use for HTTP authentication. Null if HTTP authentication",
+          "     * is not used.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -469,11 +650,7 @@
           }
         ]
       },
-      "name": "username",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "password": {
       "location": {
@@ -488,7 +665,17 @@
           "index": 10743
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Password to use for HTTP authentication. Null if HTTP authentication",
+          "     * is not used.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -496,11 +683,7 @@
           }
         ]
       },
-      "name": "password",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "useBasicHttpAuth": {
       "location": {
@@ -515,7 +698,16 @@
           "index": 10872
         }
       },
+      "json": {
+        "check": "Boolean",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "      Use Basic HTTP Authentication",
+          "    "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -523,11 +715,7 @@
           }
         ]
       },
-      "name": "useBasicHttpAuth",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Boolean"
+      "appearsIn": []
     },
     "protocol": {
       "location": {
@@ -542,7 +730,21 @@
           "index": 11244
         }
       },
+      "json": {
+        "init": "2.0",
+        "check": "[[ ObjectMethod Function ]]"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * Whether to use the original qooxdoo RPC protocol or the",
+          "     * now-standardized Version 2 protocol.  Defaults to the original qooxdoo",
+          "     * protocol for backward compatibility.",
+          "     *",
+          "     * Valid values are \"qx1\" and \"2.0\".",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -550,47 +752,13 @@
           }
         ]
       },
-      "name": "protocol",
-      "propertyType": "new",
-      "init": "2.0",
-      "check": "[[ ObjectMethod Function ]]",
-      "defaultValue": "2.0"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "__previousServerSuffix": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 360,
@@ -603,10 +771,11 @@
           "index": 11481
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__currentServerSuffix": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 361,
@@ -619,23 +788,20 @@
           "index": 11514
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "createRequest": {
-      "location": {
-        "start": {
-          "line": 371,
-          "column": 4,
-          "index": 11859
-        },
-        "end": {
-          "line": 377,
-          "column": 5,
-          "index": 11996
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method to create a request object. By default, a POST request",
+          "     * will be made, and the expected response type will be",
+          "     * \"application/json\". Classes extending this one may override this method",
+          "     * to obtain a Request object with different parameters.",
+          "     *",
+          "     * @return {qx.io.remote.Request}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -651,23 +817,53 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createRpcData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 402,
+          "line": 371,
           "column": 4,
-          "index": 12852
+          "index": 11859
         },
         "end": {
-          "line": 439,
+          "line": 377,
           "column": 5,
-          "index": 13953
+          "index": 11996
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.io.remote.Request"
+      },
+      "appearsIn": []
+    },
+    "createRpcData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method to create the object containing the remote procedure",
+          "     * call data. By default, a qooxdoo-style RPC request is built, which",
+          "     * contains the following members: \"service\", \"method\", \"id\", and",
+          "     * \"params\". If a different style of RPC request is desired, a class",
+          "     * extending this one may override this method.",
+          "     *",
+          "     * @param id {Integer}",
+          "     *   The unique sequence number of this request.",
+          "     *",
+          "     * @param method {String}",
+          "     *   The name of the method to be called",
+          "     *",
+          "     * @param parameters {Array}",
+          "     *   An array containing the arguments to the called method.",
+          "     *",
+          "     * @param serverData {var}",
+          "     *   \"Out-of-band\" data to be provided to the server.",
+          "     *",
+          "     * @return {Object}",
+          "     *   The object to be converted to JSON and passed to the JSON-RPC",
+          "     *   server.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -687,14 +883,14 @@
             "body": "method {String}\n   The name of the method to be called",
             "paramName": "method",
             "description": "\n   The name of the method to be called",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "parameters {Array}\n   An array containing the arguments to the called method.",
             "paramName": "parameters",
             "description": "\n   An array containing the arguments to the called method.",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
@@ -708,28 +904,71 @@
           {
             "name": "@return",
             "body": "{Object}\n   The object to be converted to JSON and passed to the JSON-RPC\n   server.",
-            "type": "Object",
-            "description": "\n   The object to be converted to JSON and passed to the JSON-RPC\n   server."
+            "type": "Record<any, any>",
+            "description": "   The object to be converted to JSON and passed to the JSON-RPC\n   server."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_callInternal": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 460,
+          "line": 402,
           "column": 4,
-          "index": 14425
+          "index": 12852
         },
         "end": {
-          "line": 782,
+          "line": 439,
           "column": 5,
-          "index": 24157
+          "index": 13953
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "id",
+          "type": "Integer"
+        },
+        {
+          "name": "method",
+          "type": "string"
+        },
+        {
+          "name": "parameters",
+          "type": "Array<any>"
+        },
+        {
+          "name": "serverData",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_callInternal": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal RPC call method",
+          "     *",
+          "     * @lint ignoreDeprecated(eval)",
+          "     *",
+          "     * @param args {Array}",
+          "     *   array of arguments",
+          "     *",
+          "     * @param callType {Integer}",
+          "     *   0 = sync,",
+          "     *   1 = async with handler,",
+          "     *   2 = async event listeners",
+          "     *",
+          "     * @param refreshSession {Boolean}",
+          "     *   whether a new session should be requested",
+          "     *",
+          "     * @return {var} the method call reference.",
+          "     * @throws {Error} An error.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -748,7 +987,7 @@
             "body": "args {Array}\n   array of arguments",
             "paramName": "args",
             "description": "\n   array of arguments",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
@@ -762,7 +1001,7 @@
             "body": "refreshSession {Boolean}\n   whether a new session should be requested",
             "paramName": "refreshSession",
             "description": "\n   whether a new session should be requested",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
@@ -770,7 +1009,7 @@
             "name": "@return",
             "body": "{var} the method call reference.",
             "type": "var",
-            "description": " the method call reference."
+            "description": "the method call reference."
           }
         ],
         "@throws": [
@@ -782,23 +1021,50 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "fixUrl": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 791,
+          "line": 460,
           "column": 4,
-          "index": 24415
+          "index": 14425
         },
         "end": {
-          "line": 812,
+          "line": 782,
           "column": 5,
-          "index": 24964
+          "index": 24157
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "args",
+          "type": "Array<any>"
+        },
+        {
+          "name": "callType",
+          "type": "Integer"
+        },
+        {
+          "name": "refreshSession",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "fixUrl": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method to rewrite a URL with a stale session id (so that it includes",
+          "     * the correct session id afterwards).",
+          "     *",
+          "     * @param url {String} the URL to examine.",
+          "     * @return {String} the (possibly re-written) URL.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -811,35 +1077,69 @@
             "body": "url {String} the URL to examine.",
             "paramName": "url",
             "description": " the URL to examine.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the (possibly re-written) URL.",
-            "type": "String",
-            "description": " the (possibly re-written) URL."
+            "type": "string",
+            "description": "the (possibly re-written) URL."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "callSync": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 836,
+          "line": 791,
           "column": 4,
-          "index": 25870
+          "index": 24415
         },
         "end": {
-          "line": 838,
+          "line": 812,
           "column": 5,
-          "index": 25951
+          "index": 24964
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "callSync": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Makes a synchronous server call. The method arguments (if any) follow",
+          "     * after the method name (as normal JavaScript arguments, separated by",
+          "     * commas, not as an array).",
+          "     *",
+          "     * If a problem occurs when making the call, an exception is thrown.",
+          "     *",
+          "     *",
+          "     * WARNING.  With some browsers, the synchronous interface",
+          "     * causes the browser to hang while awaiting a response!  If the server",
+          "     * decides to pause for a minute or two, your browser may do nothing",
+          "     * (including refreshing following window changes) until the response is",
+          "     * received.  Instead, use the asynchronous interface.",
+          "     *",
+          "     *",
+          "     * YOU HAVE BEEN WARNED.",
+          "     *",
+          "     *",
+          "     * @param methodName {String} the name of the method to call.",
+          "     * @param args {Array} an array of values passed through to the backend.",
+          "     * @return {var} the result returned by the server.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -852,14 +1152,14 @@
             "body": "methodName {String} the name of the method to call.",
             "paramName": "methodName",
             "description": " the name of the method to call.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "args {Array} an array of values passed through to the backend.",
             "paramName": "args",
             "description": " an array of values passed through to the backend.",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
@@ -867,27 +1167,76 @@
             "name": "@return",
             "body": "{var} the result returned by the server.",
             "type": "var",
-            "description": " the result returned by the server."
+            "description": "the result returned by the server."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "callAsync": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 873,
+          "line": 836,
           "column": 4,
-          "index": 27669
+          "index": 25870
         },
         "end": {
-          "line": 875,
+          "line": 838,
           "column": 5,
-          "index": 27760
+          "index": 25951
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "methodName",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "callAsync": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Makes an asynchronous server call. The method arguments (if any) follow",
+          "     * after the method name (as normal JavaScript arguments, separated by",
+          "     * commas, not as an array).",
+          "     *",
+          "     * When an answer from the server arrives, the <code>handler</code>",
+          "     * function is called with the result of the call as the first, an",
+          "     * exception as the second parameter, and the id (aka sequence number) of",
+          "     * the invoking request as the third parameter. If the call was",
+          "     * successful, the second parameter is <code>null</code>. If there was a",
+          "     * problem, the second parameter contains an exception, and the first one",
+          "     * is <code>null</code>.",
+          "     *",
+          "     *",
+          "     * The return value of this method is a call reference that you can store",
+          "     * if you want to abort the request later on. This value should be treated",
+          "     * as opaque and can change completely in the future! The only thing you",
+          "     * can rely on is that the <code>abort</code> method will accept this",
+          "     * reference and that you can retrieve the sequence number of the request",
+          "     * by invoking the getSequenceNumber() method (see below).",
+          "     *",
+          "     *",
+          "     * If a specific method is being called, asynchronously, a number of times",
+          "     * in succession, the getSequenceNumber() method may be used to",
+          "     * disambiguate which request a response corresponds to.  The sequence",
+          "     * number value is a value which increments with each request.)",
+          "     *",
+          "     *",
+          "     * @param handler {Function} the callback function.",
+          "     * @param methodName {String} the name of the method to call.",
+          "     * @param args {Array} an array of values passed through to the backend.",
+          "     * @return {var} the method call reference.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -900,21 +1249,21 @@
             "body": "handler {Function} the callback function.",
             "paramName": "handler",
             "description": " the callback function.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "methodName {String} the name of the method to call.",
             "paramName": "methodName",
             "description": " the name of the method to call.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "args {Array} an array of values passed through to the backend.",
             "paramName": "args",
             "description": " an array of values passed through to the backend.",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
@@ -922,27 +1271,96 @@
             "name": "@return",
             "body": "{var} the method call reference.",
             "type": "var",
-            "description": " the method call reference."
+            "description": "the method call reference."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "callAsyncListeners": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 926,
+          "line": 873,
           "column": 4,
-          "index": 30155
+          "index": 27669
         },
         "end": {
-          "line": 928,
+          "line": 875,
           "column": 5,
-          "index": 30256
+          "index": 27760
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "handler",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "methodName",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "callAsyncListeners": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Makes an asynchronous server call and dispatches an event upon completion",
+          "     * or failure. The method arguments (if any) follow after the method name",
+          "     * (as normal JavaScript arguments, separated by commas, not as an array).",
+          "     *",
+          "     * When an answer from the server arrives (or fails to arrive on time), if",
+          "     * an exception occurred, a \"failed\", \"timeout\" or \"aborted\" event, as",
+          "     * appropriate, is dispatched to any waiting event listeners.  If no",
+          "     * exception occurred, a \"completed\" event is dispatched.",
+          "     *",
+          "     *",
+          "     * When a \"failed\", \"timeout\" or \"aborted\" event is dispatched, the event",
+          "     * data contains an object with the properties 'origin', 'code', 'message'",
+          "     * and 'id'.  The object has a toString() function which may be called to",
+          "     * convert the exception to a string.",
+          "     *",
+          "     *",
+          "     * When a \"completed\" event is dispatched, the event data contains a",
+          "     * map with the JSON-RPC sequence number and result:",
+          "     * <p>",
+          "     * {",
+          "     *   id: rpc_id,",
+          "     *   result: json-rpc result",
+          "     * }",
+          "     *",
+          "     *",
+          "     * The return value of this method is a call reference that you can store",
+          "     * if you want to abort the request later on. This value should be treated",
+          "     * as opaque and can change completely in the future! The only thing you",
+          "     * can rely on is that the <code>abort</code> method will accept this",
+          "     * reference and that you can retrieve the sequence number of the request",
+          "     * by invoking the getSequenceNumber() method (see below).",
+          "     *",
+          "     *",
+          "     * If a specific method is being called, asynchronously, a number of times",
+          "     * in succession, the getSequenceNumber() method may be used to",
+          "     * disambiguate which request a response corresponds to.  The sequence",
+          "     * number value is a value which increments with each request.)",
+          "     *",
+          "     *",
+          "     * @param coalesce {Boolean} coalesce all failure types (\"failed\",",
+          "     *                           \"timeout\", and \"aborted\") to \"failed\".",
+          "     *                           This is reasonable in many cases, as",
+          "     *                           the provided exception contains adequate",
+          "     *                           disambiguating information.",
+          "     * @param methodName {String} the name of the method to call.",
+          "     * @param args {Array} an array of values passed through to the backend.",
+          "     * @return {var} the method call reference.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -955,21 +1373,21 @@
             "body": "coalesce {Boolean} coalesce all failure types (\"failed\",\n                           \"timeout\", and \"aborted\") to \"failed\".\n                           This is reasonable in many cases, as\n                           the provided exception contains adequate\n                           disambiguating information.",
             "paramName": "coalesce",
             "description": " coalesce all failure types (\"failed\",\n                           \"timeout\", and \"aborted\") to \"failed\".\n                           This is reasonable in many cases, as\n                           the provided exception contains adequate\n                           disambiguating information.",
-            "type": "Boolean"
+            "type": "boolean"
           },
           {
             "name": "@param",
             "body": "methodName {String} the name of the method to call.",
             "paramName": "methodName",
             "description": " the name of the method to call.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "args {Array} an array of values passed through to the backend.",
             "paramName": "args",
             "description": " an array of values passed through to the backend.",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
@@ -977,27 +1395,63 @@
             "name": "@return",
             "body": "{var} the method call reference.",
             "type": "var",
-            "description": " the method call reference."
+            "description": "the method call reference."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "refreshSession": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 946,
+          "line": 926,
           "column": 4,
-          "index": 31056
+          "index": 30155
         },
         "end": {
-          "line": 963,
+          "line": 928,
           "column": 5,
-          "index": 31676
+          "index": 30256
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "coalesce",
+          "type": "boolean"
+        },
+        {
+          "name": "methodName",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "refreshSession": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Refreshes a server session by retrieving the session id again from the",
+          "     * server.",
+          "     *",
+          "     * The specified handler function is called when the refresh is",
+          "     * complete. The first parameter can be <code>true</code> (indicating that",
+          "     * a refresh either wasn't necessary at this time or it was successful) or",
+          "     * <code>false</code> (indicating that a refresh would have been necessary",
+          "     * but can't be performed because the server backend doesn't support",
+          "     * it). If there is a non-null second parameter, it's an exception",
+          "     * indicating that there was an error when refreshing the session.",
+          "     *",
+          "     *",
+          "     * @param handler {Function} a callback function that is called when the",
+          "     *                           refresh is complete (or failed).",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1010,14 +1464,60 @@
             "body": "handler {Function} a callback function that is called when the\n                           refresh is complete (or failed).",
             "paramName": "handler",
             "description": " a callback function that is called when the\n                           refresh is complete (or failed).",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 946,
+          "column": 4,
+          "index": 31056
+        },
+        "end": {
+          "line": 963,
+          "column": 5,
+          "index": 31676
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "handler",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": []
     },
     "_isConvertDates": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to convert date objects to pseudo literals and",
+          "     * parse with eval.",
+          "     *",
+          "     * Controlled by {@link #CONVERT_DATES}.",
+          "     *",
+          "     * @return {Boolean} Whether to convert.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to convert date objects to pseudo literals and\n parse with eval.\n Controlled by {@link #CONVERT_DATES}.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean} Whether to convert.",
+            "type": "boolean",
+            "description": "Whether to convert."
+          }
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 973,
@@ -1030,26 +1530,40 @@
           "index": 31961
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_isResponseJson": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to expect and verify a JSON response.",
+          "     *",
+          "     * Controlled by {@link #RESPONSE_JSON}.",
+          "     *",
+          "     * @return {Boolean} Whether to expect JSON.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Whether to convert date objects to pseudo literals and\n parse with eval.\n Controlled by {@link #CONVERT_DATES}.</p>"
+            "body": "<p>Whether to expect and verify a JSON response.\n Controlled by {@link #RESPONSE_JSON}.</p>"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean} Whether to convert.",
-            "type": "Boolean",
-            "description": " Whether to convert."
+            "body": "{Boolean} Whether to expect JSON.",
+            "type": "boolean",
+            "description": "Whether to expect JSON."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_isResponseJson": {
+      "access": "protected",
       "location": {
         "start": {
           "line": 984,
@@ -1062,39 +1576,26 @@
           "index": 32217
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Whether to expect and verify a JSON response.\n Controlled by {@link #RESPONSE_JSON}.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} Whether to expect JSON.",
-            "type": "Boolean",
-            "description": " Whether to expect JSON."
-          }
-        ]
-      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     },
     "abort": {
-      "location": {
-        "start": {
-          "line": 997,
-          "column": 4,
-          "index": 32638
-        },
-        "end": {
-          "line": 999,
-          "column": 5,
-          "index": 32695
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Aborts an asynchronous server call. Consequently, the callback function",
+          "     * provided to <code>callAsync</code> or <code>callAsyncListeners</code>",
+          "     * will be called with an exception.",
+          "     *",
+          "     * @param opaqueCallRef {var} the call reference as returned by",
+          "     *                            <code>callAsync</code> or",
+          "     *                            <code>callAsyncListeners</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1111,789 +1612,27 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 997,
+          "column": 4,
+          "index": 32638
+        },
+        "end": {
+          "line": 999,
+          "column": 5,
+          "index": 32695
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getTimeout": {
-      "type": "function",
-      "name": "getTimeout",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>timeout</code>.\n\nFor further details take a look at the property definition: {@link #timeout}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for timeout"
-          }
-        ]
-      }
-    },
-    "setTimeout": {
-      "type": "function",
-      "name": "setTimeout",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>timeout</code>.\n\nFor further details take a look at the property definition: {@link #timeout}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for timeout"
-          }
-        ]
-      }
-    },
-    "resetTimeout": {
-      "type": "function",
-      "name": "resetTimeout",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>timeout</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #timeout}."
-          }
-        ]
-      }
-    },
-    "getCrossDomain": {
-      "type": "function",
-      "name": "getCrossDomain",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>crossDomain</code>.\n\nFor further details take a look at the property definition: {@link #crossDomain}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for crossDomain"
-          }
-        ]
-      }
-    },
-    "isCrossDomain": {
-      "type": "function",
-      "name": "isCrossDomain",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>crossDomain</code>.\n\nFor further details take a look at the property definition: {@link #crossDomain}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for crossDomain"
-          }
-        ]
-      }
-    },
-    "setCrossDomain": {
-      "type": "function",
-      "name": "setCrossDomain",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>crossDomain</code>.\n\nFor further details take a look at the property definition: {@link #crossDomain}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for crossDomain"
-          }
-        ]
-      }
-    },
-    "resetCrossDomain": {
-      "type": "function",
-      "name": "resetCrossDomain",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>crossDomain</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #crossDomain}."
-          }
-        ]
-      }
-    },
-    "getUrl": {
-      "type": "function",
-      "name": "getUrl",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>url</code>.\n\nFor further details take a look at the property definition: {@link #url}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for url"
-          }
-        ]
-      }
-    },
-    "setUrl": {
-      "type": "function",
-      "name": "setUrl",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>url</code>.\n\nFor further details take a look at the property definition: {@link #url}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for url"
-          }
-        ]
-      }
-    },
-    "resetUrl": {
-      "type": "function",
-      "name": "resetUrl",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>url</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #url}."
-          }
-        ]
-      }
-    },
-    "getServiceName": {
-      "type": "function",
-      "name": "getServiceName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>serviceName</code>.\n\nFor further details take a look at the property definition: {@link #serviceName}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for serviceName"
-          }
-        ]
-      }
-    },
-    "setServiceName": {
-      "type": "function",
-      "name": "setServiceName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>serviceName</code>.\n\nFor further details take a look at the property definition: {@link #serviceName}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for serviceName"
-          }
-        ]
-      }
-    },
-    "resetServiceName": {
-      "type": "function",
-      "name": "resetServiceName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>serviceName</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #serviceName}."
-          }
-        ]
-      }
-    },
-    "getServerData": {
-      "type": "function",
-      "name": "getServerData",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>serverData</code>.\n\nFor further details take a look at the property definition: {@link #serverData}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Object",
-            "desc": "Returns the value for serverData"
-          }
-        ]
-      }
-    },
-    "setServerData": {
-      "type": "function",
-      "name": "setServerData",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>serverData</code>.\n\nFor further details take a look at the property definition: {@link #serverData}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Object",
-            "paramName": "value",
-            "desc": "Value for serverData"
-          }
-        ]
-      }
-    },
-    "resetServerData": {
-      "type": "function",
-      "name": "resetServerData",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>serverData</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #serverData}."
-          }
-        ]
-      }
-    },
-    "getUsername": {
-      "type": "function",
-      "name": "getUsername",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>username</code>.\n\nFor further details take a look at the property definition: {@link #username}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for username"
-          }
-        ]
-      }
-    },
-    "setUsername": {
-      "type": "function",
-      "name": "setUsername",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>username</code>.\n\nFor further details take a look at the property definition: {@link #username}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for username"
-          }
-        ]
-      }
-    },
-    "resetUsername": {
-      "type": "function",
-      "name": "resetUsername",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>username</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #username}."
-          }
-        ]
-      }
-    },
-    "getPassword": {
-      "type": "function",
-      "name": "getPassword",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>password</code>.\n\nFor further details take a look at the property definition: {@link #password}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for password"
-          }
-        ]
-      }
-    },
-    "setPassword": {
-      "type": "function",
-      "name": "setPassword",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>password</code>.\n\nFor further details take a look at the property definition: {@link #password}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for password"
-          }
-        ]
-      }
-    },
-    "resetPassword": {
-      "type": "function",
-      "name": "resetPassword",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>password</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #password}."
-          }
-        ]
-      }
-    },
-    "getUseBasicHttpAuth": {
-      "type": "function",
-      "name": "getUseBasicHttpAuth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>useBasicHttpAuth</code>.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for useBasicHttpAuth"
-          }
-        ]
-      }
-    },
-    "isUseBasicHttpAuth": {
-      "type": "function",
-      "name": "isUseBasicHttpAuth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>useBasicHttpAuth</code>.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for useBasicHttpAuth"
-          }
-        ]
-      }
-    },
-    "setUseBasicHttpAuth": {
-      "type": "function",
-      "name": "setUseBasicHttpAuth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>useBasicHttpAuth</code>.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for useBasicHttpAuth"
-          }
-        ]
-      }
-    },
-    "resetUseBasicHttpAuth": {
-      "type": "function",
-      "name": "resetUseBasicHttpAuth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>useBasicHttpAuth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #useBasicHttpAuth}."
-          }
-        ]
-      }
-    },
-    "getProtocol": {
-      "type": "function",
-      "name": "getProtocol",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>protocol</code>.\n\nFor further details take a look at the property definition: {@link #protocol}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for protocol"
-          }
-        ]
-      }
-    },
-    "setProtocol": {
-      "type": "function",
-      "name": "setProtocol",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>protocol</code>.\n\nFor further details take a look at the property definition: {@link #protocol}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for protocol"
-          }
-        ]
-      }
-    },
-    "resetProtocol": {
-      "type": "function",
-      "name": "resetProtocol",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>protocol</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #protocol}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "opaqueCallRef",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
     }
-  },
-  "descendants": []
+  }
 }

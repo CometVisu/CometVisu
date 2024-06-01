@@ -1,82 +1,84 @@
 {
-  "className": "qx.html.Factory",
-  "packageName": "qx.html",
-  "name": "Factory",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 621
-      },
-      "end": {
-        "line": 129,
-        "column": 3,
-        "index": 4180
-      }
+  "version": 0.3,
+  "lastModified": 1717235170458,
+  "lastModifiedIso": "2024-06-01T09:46:10.458Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/html/Factory.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 600
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Factory class used to create Virtual DOM instances by JSX support</p>"
-        }
-      ]
+    "end": {
+      "line": 156,
+      "column": 3,
+      "index": 4691
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": false,
+  "className": "qx.html.Factory",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Factory class used to create Virtual DOM instances by JSX support",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Factory class used to create Virtual DOM instances by JSX support</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "isSingleton": true,
+  "abstract": false,
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 26,
         "column": 2,
-        "index": 712
+        "index": 687
       },
       "end": {
-        "line": 39,
+        "line": 66,
         "column": 3,
-        "index": 1272
+        "index": 1873
       }
     }
   },
   "members": {
     "__factoriesByTagName": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
-          "line": 42,
+          "line": 69,
           "column": 4,
-          "index": 1295
+          "index": 1893
         },
         "end": {
-          "line": 42,
+          "line": 69,
           "column": 30,
-          "index": 1321
+          "index": 1919
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "registerFactory": {
-      "location": {
-        "start": {
-          "line": 52,
-          "column": 4,
-          "index": 1725
-        },
-        "end": {
-          "line": 58,
-          "column": 5,
-          "index": 1986
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers a factory; a factory is either a class, or a function which is",
+          "     * called with the parameters (tagName {String}, styles{Map?}, attributes {Map?}), and",
+          "     * which is expected to return an {Element}",
+          "     *",
+          "     * @param tagName {String} the name of the tag",
+          "     * @param factory {Class|Function} the function used to create instances for that tagName",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -89,7 +91,7 @@
             "body": "tagName {String} the name of the tag",
             "paramName": "tagName",
             "description": " the name of the tag",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -103,23 +105,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createElement": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 67,
+          "line": 79,
           "column": 4,
-          "index": 2222
+          "index": 2313
         },
         "end": {
-          "line": 127,
+          "line": 85,
           "column": 5,
-          "index": 4170
+          "index": 2568
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "tagName",
+          "type": "string"
+        },
+        {
+          "name": "factory",
+          "type": [
+            "Class",
+            "Function"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "createElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called to create an {Element}",
+          "     *",
+          "     * @param tagName {String} the name of the tag",
+          "     * @param attributes {Map?} the attributes to create (including style etc)",
+          "     * @return {qx.html.Node}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -132,7 +157,7 @@
             "body": "tagName {String} the name of the tag",
             "paramName": "tagName",
             "description": " the name of the tag",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -152,147 +177,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2795
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 4683
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "tagName",
+          "type": "string"
+        },
+        {
+          "name": "attributes",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.html.Node"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

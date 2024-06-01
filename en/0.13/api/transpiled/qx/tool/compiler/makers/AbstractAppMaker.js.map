@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "tool",
+    "compiler",
+    "makers",
+    "Maker",
+    "type",
+    "properties",
+    "target",
+    "nullable",
+    "check",
+    "apply",
+    "locales",
+    "init",
+    "writeAllTranslations",
+    "members",
+    "getOutputDir",
+    "getTarget",
+    "__applyTarget",
+    "__P_490_0",
+    "value",
+    "oldValue",
+    "_analyser",
+    "setOutputDir",
+    "set",
+    "getLocales",
+    "getWriteAllTranslations",
+    "__applyWriteAllTranslations",
+    "__P_490_1",
+    "setWriteAllTranslations",
+    "_applyLocales",
+    "setLocales",
+    "AbstractAppMaker"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/makers/AbstractAppMaker.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n *\n *    qooxdoo-compiler - node.js based replacement for the Qooxdoo python\n *    toolchain\n *\n *    https://github.com/qooxdoo/qooxdoo\n *\n *    Copyright:\n *      2011-2017 Zenesis Limited, http://www.zenesis.com\n *\n *    License:\n *      MIT: https://opensource.org/licenses/MIT\n *\n *      This software is provided under the same licensing terms as Qooxdoo,\n *      please see the LICENSE file in the Qooxdoo project's top-level directory\n *      for details.\n *\n *    Authors:\n *      * John Spackman (john.spackman@zenesis.com, @johnspackman)\n *\n * *********************************************************************** */\n\n/**\n * Base class for application makers, add targets, locales etc\n */\nqx.Class.define(\"qx.tool.compiler.makers.AbstractAppMaker\", {\n  extend: qx.tool.compiler.makers.Maker,\n  type: \"abstract\",\n\n  properties: {\n    /** Target for the compiled application */\n    target: {\n      nullable: false,\n      check: \"qx.tool.compiler.targets.Target\",\n      apply: \"__applyTarget\"\n    },\n\n    /** Supported Locales */\n    locales: {\n      nullable: false,\n      init: [\"en\"],\n      apply: \"_applyLocales\"\n    },\n\n    /** Whether to write all translation strings (as opposed to just those used by the classes) */\n    writeAllTranslations: {\n      init: false,\n      nullable: false,\n      check: \"Boolean\",\n      apply: \"__applyWriteAllTranslations\"\n    }\n  },\n\n  members: {\n    /*\n     * @Override\n     */\n    getOutputDir() {\n      return this.getTarget().getOutputDir();\n    },\n\n    /**\n     * Apply for target property\n     * @param value\n     * @param oldValue\n     * @private\n     */\n    __applyTarget(value, oldValue) {\n      if (this._analyser) {\n        this._analyser.setOutputDir(value ? value.getOutputDir() : null);\n      }\n      if (value) {\n        value.set({\n          locales: this.getLocales(),\n          writeAllTranslations: this.getWriteAllTranslations()\n        });\n      }\n    },\n\n    /**\n     * Apply for writeAllTranslations\n     * @param value\n     * @param oldValue\n     * @private\n     */\n    __applyWriteAllTranslations(value, oldValue) {\n      if (this.getTarget()) {\n        this.getTarget().setWriteAllTranslations(value);\n      }\n    },\n\n    /**\n     * Apply for locales property\n     * @param value\n     * @param oldValue\n     * @private\n     */\n    _applyLocales(value, oldValue) {\n      if (this.getTarget()) {\n        this.getTarget().setLocales(value);\n      }\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0CAA0C,EAAE;IAC1DC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,QAAQ,CAACC,MAAM,CAACC,KAAK;IACrCC,IAAI,EAAE,UAAU;IAEhBC,UAAU,EAAE;MACV;MACAC,MAAM,EAAE;QACNC,QAAQ,EAAE,KAAK;QACfC,KAAK,EAAE,iCAAiC;QACxCC,KAAK,EAAE;MACT,CAAC;MAED;MACAC,OAAO,EAAE;QACPH,QAAQ,EAAE,KAAK;QACfI,IAAI,EAAE,CAAC,IAAI,CAAC;QACZF,KAAK,EAAE;MACT,CAAC;MAED;MACAG,oBAAoB,EAAE;QACpBD,IAAI,EAAE,KAAK;QACXJ,QAAQ,EAAE,KAAK;QACfC,KAAK,EAAE,SAAS;QAChBC,KAAK,EAAE;MACT;IACF,CAAC;IAEDI,OAAO,EAAE;MACP;AACJ;AACA;MACIC,YAAY,WAAAA,aAAA,EAAG;QACb,OAAO,IAAI,CAACC,SAAS,CAAC,CAAC,CAACD,YAAY,CAAC,CAAC;MACxC,CAAC;MAED;AACJ;AACA;AACA;AACA;AACA;MACIE,SAAa,WAAAC,UAACC,KAAK,EAAEC,QAAQ,EAAE;QAC7B,IAAI,IAAI,CAACC,SAAS,EAAE;UAClB,IAAI,CAACA,SAAS,CAACC,YAAY,CAACH,KAAK,GAAGA,KAAK,CAACJ,YAAY,CAAC,CAAC,GAAG,IAAI,CAAC;QAClE;QACA,IAAII,KAAK,EAAE;UACTA,KAAK,CAACI,GAAG,CAAC;YACRZ,OAAO,EAAE,IAAI,CAACa,UAAU,CAAC,CAAC;YAC1BX,oBAAoB,EAAE,IAAI,CAACY,uBAAuB,CAAC;UACrD,CAAC,CAAC;QACJ;MACF,CAAC;MAED;AACJ;AACA;AACA;AACA;AACA;MACIC,SAA2B,WAAAC,UAACR,KAAK,EAAEC,QAAQ,EAAE;QAC3C,IAAI,IAAI,CAACJ,SAAS,CAAC,CAAC,EAAE;UACpB,IAAI,CAACA,SAAS,CAAC,CAAC,CAACY,uBAAuB,CAACT,KAAK,CAAC;QACjD;MACF,CAAC;MAED;AACJ;AACA;AACA;AACA;AACA;MACIU,aAAa,WAAAA,cAACV,KAAK,EAAEC,QAAQ,EAAE;QAC7B,IAAI,IAAI,CAACJ,SAAS,CAAC,CAAC,EAAE;UACpB,IAAI,CAACA,SAAS,CAAC,CAAC,CAACc,UAAU,CAACX,KAAK,CAAC;QACpC;MACF;IACF;EACF,CAAC,CAAC;EAvGFzB,EAAE,CAACO,IAAI,CAACC,QAAQ,CAACC,MAAM,CAAC4B,gBAAgB,CAAClC,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

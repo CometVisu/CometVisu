@@ -220,7 +220,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *       <tr><th>defer</th><td>Function</td><td>Function that is called at the end of processing the class declaration. It allows access to the declared statics, members and properties.</td></tr>
        *       <tr><th>destruct</th><td>Function</td><td>The destructor of the class.</td></tr>
        *     </table>
-       * @return {Class} The defined class
+       * @return {new (...args: any) => any} The defined class
        */
       define: function define(name, config) {
         try {
@@ -287,11 +287,16 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             this.__P_98_6(clazz, config.events, true);
           }
 
+          //Process cached objects
+          if (config.objects) {
+            this.__P_98_7(clazz, config.objects);
+          }
+
           // Include mixins
           // Must be the last here to detect conflicts
           if (config.include) {
             for (var i = 0, l = config.include.length; i < l; i++) {
-              this.__P_98_7(clazz, config.include[i], false);
+              this.__P_98_8(clazz, config.include[i], false);
             }
           }
         }
@@ -310,7 +315,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         // Interface support for non-static classes
         if (config.implement) {
           for (var i = 0, l = config.implement.length; i < l; i++) {
-            this.__P_98_8(clazz, config.implement[i]);
+            this.__P_98_9(clazz, config.implement[i]);
           }
         }
         // Process defer
@@ -394,7 +399,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param mixin {Mixin} The mixin to be included.
        */
       include: function include(clazz, mixin) {
-        qx.Class.__P_98_7(clazz, mixin, false);
+        qx.Class.__P_98_8(clazz, mixin, false);
       },
       /**
        * Include all features of the given mixin into the class. The mixin may
@@ -411,7 +416,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {Class} the new class definition
        */
       patch: function patch(clazz, mixin) {
-        qx.Class.__P_98_7(clazz, mixin, true);
+        qx.Class.__P_98_8(clazz, mixin, true);
         return qx.Class.getByName(clazz.classname);
       },
       /**
@@ -702,7 +707,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       /** Stores all defined classes */
       $$registry: qx.Bootstrap.$$registry,
       /** @type {Map} allowed keys in non-static class definition */
-      __P_98_9: qx.core.Environment.select("qx.debug", {
+      __P_98_10: qx.core.Environment.select("qx.debug", {
         "true": {
           "@": "object",
           "@construct": "object",
@@ -729,12 +734,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           // Map
           defer: "function",
           // Function
-          destruct: "function" // Function
+          destruct: "function",
+          // Function
+          objects: "object" // Map
         },
         "default": null
       }),
       /** @type {Map} allowed keys in static class definition */
-      __P_98_10: qx.core.Environment.select("qx.debug", {
+      __P_98_11: qx.core.Environment.select("qx.debug", {
         "true": {
           "@": "object",
           type: "string",
@@ -754,7 +761,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param name {String} The name of the class
        * @param config {Map} Configuration map
        */
-      __P_98_11: qx.core.Environment.select("qx.debug", {
+      __P_98_12: qx.core.Environment.select("qx.debug", {
         "true": function _true(name, config) {
           // Validate type
           if (config.type && !(config.type === "static" || config.type === "abstract" || config.type === "singleton")) {
@@ -767,7 +774,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           }
 
           // Validate keys
-          var allowed = config.type === "static" ? this.__P_98_10 : this.__P_98_9;
+          var allowed = config.type === "static" ? this.__P_98_11 : this.__P_98_10;
           for (var key in config) {
             if (!allowed[key]) {
               throw new Error('The configuration key "' + key + '" in class "' + name + '" is not allowed!');
@@ -859,7 +866,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @signature function(clazz)
        * @param clazz {Class} The configured class.
        */
-      __P_98_12: qx.core.Environment.select("qx.debug", {
+      __P_98_13: qx.core.Environment.select("qx.debug", {
         "true": function _true(clazz) {
           var superclass = clazz.superclass;
           while (superclass) {
@@ -929,9 +936,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           if (extend) {
             // Create default constructor
             if (!construct) {
-              construct = this.__P_98_13();
+              construct = this.__P_98_14();
             }
-            clazz = this.__P_98_14(construct, name, type);
+            clazz = this.__P_98_15(construct, name, type);
 
             // Add singleton getInstance()
             if (type === "singleton") {
@@ -1021,6 +1028,20 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           clazz.$$events = events;
         }
       },
+      __P_98_7: function __P_98_7(clazz, objects) {
+        function validateCachedObject(key, value) {
+          if (typeof value !== "function") {
+            throw new Error("Invalid cached object definition for " + key + " in " + clazz.classname);
+          }
+          if (typeof key != "string") {
+            throw new Error("Invalid cached object key for " + key + " in " + clazz.classname);
+          }
+        }
+        if (!(objects instanceof Object)) {
+          throw new Error("Invalid objects definition for " + clazz.classname);
+        }
+        clazz.$$objects = objects;
+      },
       /**
        * Attach properties to classes
        *
@@ -1095,7 +1116,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param config {Map} configuration map
        * @param patch {Boolean ? false} enable refine/patch?
        */
-      __P_98_15: qx.core.Environment.select("qx.debug", {
+      __P_98_16: qx.core.Environment.select("qx.debug", {
         "true": function _true(clazz, name, config, patch) {
           // check for properties
 
@@ -1214,7 +1235,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param clazz {Class} class to add interface to
        * @param iface {Interface} the Interface to add
        */
-      __P_98_8: function __P_98_8(clazz, iface) {
+      __P_98_9: function __P_98_9(clazz, iface) {
         // Store interface reference
         var list = qx.Interface.flatten([iface]);
         if (clazz.$$implements) {
@@ -1232,7 +1253,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param mixin {Mixin} Include all features of this mixin
        * @param patch {Boolean} Overwrite existing fields, functions and properties
        */
-      __P_98_7: function __P_98_7(clazz, mixin, patch) {
+      __P_98_8: function __P_98_8(clazz, mixin, patch) {
         if (this.hasMixin(clazz, mixin)) {
           return;
         }
@@ -1279,7 +1300,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        *
        * @return {Function} The default constructor.
        */
-      __P_98_13: function __P_98_13() {
+      __P_98_14: function __P_98_14() {
         function defaultConstructor() {
           defaultConstructor.base.apply(this, arguments);
         }
@@ -1294,7 +1315,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @param type {String} the user specified class type
        * @return {Function} The wrapped constructor
        */
-      __P_98_14: function __P_98_14(construct, name, type) {
+      __P_98_15: function __P_98_15(construct, name, type) {
         var wrapper = function wrapper() {
           var clazz = wrapper;
           // Execute default constructor
@@ -1327,4 +1348,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1709410142372
+//# sourceMappingURL=Class.js.map?dt=1717235370484

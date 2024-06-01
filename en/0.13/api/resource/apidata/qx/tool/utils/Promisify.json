@@ -1,0 +1,492 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172054,
+  "lastModifiedIso": "2024-06-01T09:46:12.054Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/Promisify.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 829
+    },
+    "end": {
+      "line": 218,
+      "column": 3,
+      "index": 5371
+    }
+  },
+  "className": "qx.tool.utils.Promisify",
+  "jsdoc": null,
+  "statics": {
+    "MAGIC_KEY": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 891
+        },
+        "end": {
+          "line": 29,
+          "column": 34,
+          "index": 921
+        }
+      },
+      "appearsIn": []
+    },
+    "IGNORED_PROPS": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 927
+        },
+        "end": {
+          "line": 31,
+          "column": 86,
+          "index": 1028
+        }
+      },
+      "appearsIn": []
+    },
+    "promisifyAll": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1035
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1778
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isPromisified": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1785
+        },
+        "end": {
+          "line": 68,
+          "column": 5,
+          "index": 1916
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "promisify": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1923
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 2060
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fn"
+        },
+        {
+          "name": "context"
+        }
+      ],
+      "appearsIn": []
+    },
+    "poolEachOf": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2067
+        },
+        "end": {
+          "line": 88,
+          "column": 5,
+          "index": 2334
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "arr"
+        },
+        {
+          "name": "size"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "map": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2341
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2415
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "arr"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "some": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2422
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 2909
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "arr"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "someEach": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 2916
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3312
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "arr"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "somePool": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 130,
+          "column": 4,
+          "index": 3319
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 3894
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "arr"
+        },
+        {
+          "name": "size"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "call": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 3901
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 4125
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "callback": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 165,
+          "column": 4,
+          "index": 4132
+        },
+        "end": {
+          "line": 172,
+          "column": 5,
+          "index": 4315
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "promise"
+        },
+        {
+          "name": "cb"
+        }
+      ],
+      "appearsIn": []
+    },
+    "fs": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 174,
+          "column": 4,
+          "index": 4322
+        },
+        "end": {
+          "line": 174,
+          "column": 12,
+          "index": 4330
+        }
+      },
+      "appearsIn": []
+    },
+    "each": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4337
+        },
+        "end": {
+          "line": 178,
+          "column": 5,
+          "index": 4414
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "coll"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "forEachOf": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 180,
+          "column": 4,
+          "index": 4421
+        },
+        "end": {
+          "line": 182,
+          "column": 5,
+          "index": 4503
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "coll"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "eachOf": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 4510
+        },
+        "end": {
+          "line": 187,
+          "column": 5,
+          "index": 4644
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "coll"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "eachSeries": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 189,
+          "column": 4,
+          "index": 4651
+        },
+        "end": {
+          "line": 191,
+          "column": 5,
+          "index": 4740
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "coll"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "forEachOfSeries": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 193,
+          "column": 4,
+          "index": 4747
+        },
+        "end": {
+          "line": 195,
+          "column": 5,
+          "index": 4841
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "coll"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    },
+    "eachOfSeries": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 197,
+          "column": 4,
+          "index": 4848
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 5216
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "coll"
+        },
+        {
+          "name": "fn"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

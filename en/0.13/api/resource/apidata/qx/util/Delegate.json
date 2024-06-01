@@ -1,49 +1,47 @@
 {
-  "className": "qx.util.Delegate",
-  "packageName": "qx.util",
-  "name": "Delegate",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 607
-      },
-      "end": {
-        "line": 57,
-        "column": 3,
-        "index": 1719
-      }
+  "version": 0.3,
+  "lastModified": 1717235170022,
+  "lastModifiedIso": "2024-06-01T09:46:10.022Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/Delegate.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 585
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Methods to work with the delegate pattern.</p>"
-        }
-      ]
+    "end": {
+      "line": 57,
+      "column": 3,
+      "index": 1663
     }
   },
-  "type": "class",
+  "className": "qx.util.Delegate",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Methods to work with the delegate pattern.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Methods to work with the delegate pattern.</p>"
+      }
+    ]
+  },
   "statics": {
     "getMethod": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 974
-        },
-        "end": {
-          "line": 38,
-          "column": 5,
-          "index": 1196
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the delegate method given my its name.",
+          "     *",
+          "     * @param delegate {Object} The delegate object to check the method.",
+          "     * @param specificMethod {String} The name of the delegate method.",
+          "     * @return {Function|null} The requested method or null, if no method is set.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,14 +54,14 @@
             "body": "delegate {Object} The delegate object to check the method.",
             "paramName": "delegate",
             "description": " The delegate object to check the method.",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "specificMethod {String} The name of the delegate method.",
             "paramName": "specificMethod",
             "description": " The name of the delegate method.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -71,27 +69,50 @@
             "name": "@return",
             "body": "{Function|null} The requested method or null, if no method is set.",
             "type": "Function|null",
-            "description": " The requested method or null, if no method is set."
+            "description": "The requested method or null, if no method is set."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "containsMethod": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 47,
+          "line": 32,
           "column": 4,
-          "index": 1497
+          "index": 943
         },
         "end": {
-          "line": 55,
+          "line": 38,
           "column": 5,
-          "index": 1709
+          "index": 1159
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "delegate",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "specificMethod",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Function|null"
+      },
+      "appearsIn": []
+    },
+    "containsMethod": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks, if the given delegate is valid or if a specific method is given.",
+          "     *",
+          "     * @param delegate {Object} The delegate object.",
+          "     * @param specificMethod {String} The name of the method to search for.",
+          "     * @return {Boolean} True, if everything was ok.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,28 +125,55 @@
             "body": "delegate {Object} The delegate object.",
             "paramName": "delegate",
             "description": " The delegate object.",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "specificMethod {String} The name of the method to search for.",
             "paramName": "specificMethod",
             "description": " The name of the method to search for.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} True, if everything was ok.",
-            "type": "Boolean",
-            "description": " True, if everything was ok."
+            "type": "boolean",
+            "description": "True, if everything was ok."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1451
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1655
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "delegate",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "specificMethod",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

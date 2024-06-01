@@ -1,49 +1,66 @@
 {
-  "className": "qx.ui.mobile.list.provider.Provider",
-  "packageName": "qx.ui.mobile.list.provider",
-  "name": "Provider",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 744
-      },
-      "end": {
-        "line": 210,
-        "column": 3,
-        "index": 5944
-      }
+  "version": 0.3,
+  "lastModified": 1717235172070,
+  "lastModifiedIso": "2024-06-01T09:46:12.070Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/list/provider/Provider.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 721
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Provides a list item element for a certain row and its data.\n Uses the {@link qx.ui.mobile.list.renderer.Default} list item renderer as a\n default renderer when no other renderer is given by the {@link qx.ui.mobile.list.List#delegate}.</p>"
-        }
-      ]
+    "end": {
+      "line": 210,
+      "column": 3,
+      "index": 5735
     }
   },
-  "type": "class",
+  "className": "qx.ui.mobile.list.provider.Provider",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Provides a list item element for a certain row and its data.",
+      " * Uses the {@link qx.ui.mobile.list.renderer.Default} list item renderer as a",
+      " * default renderer when no other renderer is given by the {@link qx.ui.mobile.list.List#delegate}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Provides a list item element for a certain row and its data.\n Uses the {@link qx.ui.mobile.list.renderer.Default} list item renderer as a\n default renderer when no other renderer is given by the {@link qx.ui.mobile.list.List#delegate}.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "properties": {
     "delegate": {
       "location": {
         "start": {
           "line": 34,
           "column": 4,
-          "index": 1050
+          "index": 1017
         },
         "end": {
           "line": 39,
           "column": 5,
-          "index": 1173
+          "index": 1135
         }
       },
+      "json": {
+        "event": "changeDelegate",
+        "nullable": true,
+        "apply": "_applyDelegate"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Delegation object which can have one or more functions defined by the",
+          "     * {@link qx.ui.mobile.list.IListDelegate} interface. Set by the list.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,93 +74,53 @@
           }
         ]
       },
-      "name": "delegate",
-      "propertyType": "new",
-      "event": "changeDelegate",
-      "apply": "_applyDelegate",
-      "nullable": true,
-      "allowNull": true
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "__itemRenderer": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 43,
           "column": 4,
-          "index": 1201
+          "index": 1159
         },
         "end": {
           "line": 43,
           "column": 24,
-          "index": 1221
+          "index": 1179
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__groupRenderer": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 44,
           "column": 4,
-          "index": 1228
+          "index": 1185
         },
         "end": {
           "line": 44,
           "column": 25,
-          "index": 1249
+          "index": 1206
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_setItemRenderer": {
-      "location": {
-        "start": {
-          "line": 51,
-          "column": 4,
-          "index": 1401
-        },
-        "end": {
-          "line": 53,
-          "column": 5,
-          "index": 1475
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the item renderer.",
+          "     *",
+          "     * @param renderer {qx.ui.mobile.list.renderer.Abstract} The used item renderer",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -160,23 +137,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getItemRenderer": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 60,
+          "line": 51,
           "column": 4,
-          "index": 1626
+          "index": 1351
         },
         "end": {
-          "line": 62,
+          "line": 53,
           "column": 5,
-          "index": 1688
+          "index": 1423
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "renderer",
+          "type": "qx.ui.mobile.list.renderer.Abstract"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getItemRenderer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the set item renderer.",
+          "     *",
+          "     * @return {qx.ui.mobile.list.renderer.Abstract} The used item renderer",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -188,27 +179,38 @@
             "name": "@return",
             "body": "{qx.ui.mobile.list.renderer.Abstract} The used item renderer",
             "type": "qx.ui.mobile.list.renderer.Abstract",
-            "description": " The used item renderer"
+            "description": "The used item renderer"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_setGroupRenderer": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 68,
+          "line": 60,
           "column": 4,
-          "index": 1836
+          "index": 1567
         },
         "end": {
-          "line": 70,
+          "line": 62,
           "column": 5,
-          "index": 1912
+          "index": 1627
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.list.renderer.Abstract"
+      },
+      "appearsIn": []
+    },
+    "_setGroupRenderer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the group renderer.",
+          "     * @param renderer {qx.ui.mobile.list.renderer.group.Abstract} the group renderer.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -225,23 +227,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getGroupRenderer": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 76,
+          "line": 68,
           "column": 4,
-          "index": 2052
+          "index": 1769
         },
         "end": {
-          "line": 78,
+          "line": 70,
           "column": 5,
-          "index": 2116
+          "index": 1843
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "renderer",
+          "type": "qx.ui.mobile.list.renderer.group.Abstract"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getGroupRenderer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the group renderer.",
+          "     * @return {qx.ui.mobile.list.renderer.group.Abstract} the group renderer.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -253,27 +268,42 @@
             "name": "@return",
             "body": "{qx.ui.mobile.list.renderer.group.Abstract} the group renderer.",
             "type": "qx.ui.mobile.list.renderer.group.Abstract",
-            "description": " the group renderer."
+            "description": "the group renderer."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "getItemElement": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 88,
+          "line": 76,
           "column": 4,
-          "index": 2354
+          "index": 1977
         },
         "end": {
-          "line": 100,
+          "line": 78,
           "column": 5,
-          "index": 2697
+          "index": 2039
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.list.renderer.group.Abstract"
+      },
+      "appearsIn": []
+    },
+    "getItemElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the list item element for a given row.",
+          "     *",
+          "     * @param data {var} The data of the row.",
+          "     * @param row {Integer} The row index.",
+          "     *",
+          "     * @return {Element} the list item element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -301,27 +331,51 @@
             "name": "@return",
             "body": "{Element} the list item element.",
             "type": "Element",
-            "description": " the list item element."
+            "description": "the list item element."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getGroupElement": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 110,
+          "line": 88,
           "column": 4,
-          "index": 2943
+          "index": 2267
         },
         "end": {
-          "line": 123,
+          "line": 100,
           "column": 5,
-          "index": 3338
+          "index": 2598
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "var"
+        },
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "getGroupElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the group item element for a given row.",
+          "     *",
+          "     * @param data {var} The data of the group.",
+          "     * @param group {Integer} The group index.",
+          "     *",
+          "     * @return {Element} the group item element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -349,27 +403,49 @@
             "name": "@return",
             "body": "{Element} the group item element.",
             "type": "Element",
-            "description": " the group item element."
+            "description": "the group item element."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_configureItem": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 131,
+          "line": 110,
           "column": 4,
-          "index": 3527
+          "index": 2834
         },
         "end": {
-          "line": 137,
+          "line": 123,
           "column": 5,
-          "index": 3744
+          "index": 3216
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "var"
+        },
+        {
+          "name": "group",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Element"
+      },
+      "appearsIn": []
+    },
+    "_configureItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Configure the list item renderer with the passed data.",
+          "     *",
+          "     * @param data {var} The data of the row.",
+          "     * @param row {Integer} The row index.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -393,23 +469,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_configureGroupItem": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 144,
+          "line": 131,
           "column": 4,
-          "index": 3934
+          "index": 3397
         },
         "end": {
-          "line": 153,
+          "line": 137,
           "column": 5,
-          "index": 4212
+          "index": 3608
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "var"
+        },
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_configureGroupItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Configures the group renderer with the passed group data.",
+          "     * @param data {var} The data of the group.",
+          "     * @param group {Integer} The group index.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -433,23 +527,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_createGroupRenderer": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 161,
+          "line": 144,
           "column": 4,
-          "index": 4531
+          "index": 3791
         },
         "end": {
-          "line": 175,
+          "line": 153,
           "column": 5,
-          "index": 4947
+          "index": 4060
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": "var"
+        },
+        {
+          "name": "group",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createGroupRenderer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an instance of the group renderer to use. When no delegate method",
+          "     * is given the function will return an instance of {@link qx.ui.mobile.list.renderer.group.Default}.",
+          "     *",
+          "     * @return {qx.ui.mobile.list.renderer.group.Abstract} An instance of the group renderer.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -461,27 +574,41 @@
             "name": "@return",
             "body": "{qx.ui.mobile.list.renderer.group.Abstract} An instance of the group renderer.",
             "type": "qx.ui.mobile.list.renderer.group.Abstract",
-            "description": " An instance of the group renderer."
+            "description": "An instance of the group renderer."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_createItemRenderer": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 184,
+          "line": 161,
           "column": 4,
-          "index": 5260
+          "index": 4371
         },
         "end": {
-          "line": 198,
+          "line": 175,
           "column": 5,
-          "index": 5661
+          "index": 4773
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.list.renderer.group.Abstract"
+      },
+      "appearsIn": []
+    },
+    "_createItemRenderer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an instance of the item renderer to use. When no delegate method",
+          "     * is given the function will return an instance of {@link qx.ui.mobile.list.renderer.Default}.",
+          "     *",
+          "     * @return {qx.ui.mobile.list.renderer.Abstract} An instance of the item renderer.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -493,251 +620,76 @@
             "name": "@return",
             "body": "{qx.ui.mobile.list.renderer.Abstract} An instance of the item renderer.",
             "type": "qx.ui.mobile.list.renderer.Abstract",
-            "description": " An instance of the item renderer."
+            "description": "An instance of the item renderer."
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 5077
+        },
+        "end": {
+          "line": 198,
+          "column": 5,
+          "index": 5464
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.list.renderer.Abstract"
+      },
+      "appearsIn": []
     },
     "_applyDelegate": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 201,
           "column": 4,
-          "index": 5693
+          "index": 5493
         },
         "end": {
           "line": 204,
           "column": 5,
-          "index": 5846
+          "index": 5643
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "delegate"
-      ]
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getDelegate": {
-      "type": "function",
-      "name": "getDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for delegate"
-          }
-        ]
-      }
-    },
-    "setDelegate": {
-      "type": "function",
-      "name": "setDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>delegate</code>.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for delegate"
-          }
-        ]
-      }
-    },
-    "resetDelegate": {
-      "type": "function",
-      "name": "resetDelegate",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>delegate</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #delegate}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 207,
         "column": 2,
-        "index": 5858
+        "index": 5652
       },
       "end": {
         "line": 209,
         "column": 3,
-        "index": 5939
+        "index": 5731
       }
     }
   },
-  "descendants": []
+  "statics": {}
 }

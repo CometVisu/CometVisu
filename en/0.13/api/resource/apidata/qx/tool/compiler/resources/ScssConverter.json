@@ -1,0 +1,263 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172210,
+  "lastModifiedIso": "2024-06-01T09:46:12.210Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/resources/ScssConverter.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 875
+    },
+    "end": {
+      "line": 164,
+      "column": 3,
+      "index": 4936
+    }
+  },
+  "className": "qx.tool.compiler.resources.ScssConverter",
+  "jsdoc": null,
+  "superClass": "qx.tool.compiler.resources.ResourceConverter",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 996
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 1026
+      }
+    }
+  },
+  "members": {
+    "matches": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1046
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1176
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.resources.AbstractMatcher",
+      "appearsIn": [
+        "qx.tool.compiler.resources.AbstractMatcher"
+      ]
+    },
+    "getDestFilename": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1183
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1665
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "asset"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.resources.ResourceConverter",
+      "appearsIn": [
+        "qx.tool.compiler.resources.ResourceConverter"
+      ]
+    },
+    "convert": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1672
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2491
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "asset"
+        },
+        {
+          "name": "srcFilename"
+        },
+        {
+          "name": "destFilename"
+        },
+        {
+          "name": "isThemeFile"
+        }
+      ],
+      "appearsIn": []
+    },
+    "legacyMobileSassConvert": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The traditional SASS compilation; it does not use the newer advanced SASS compiler and so",
+          "     * does not support relative `url()` paths and automatically has Qooxdoo SASS built in.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The traditional SASS compilation; it does not use the newer advanced SASS compiler and so\n does not support relative <code>url()</code> paths and automatically has Qooxdoo SASS built in.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 2703
+        },
+        "end": {
+          "line": 141,
+          "column": 5,
+          "index": 4150
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "asset"
+        },
+        {
+          "name": "srcFilename"
+        },
+        {
+          "name": "destFilename"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "USE_V6_COMPILER": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Default is true for the API, the CLI will set this to null "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Default is true for the API, the CLI will set this to null"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 146,
+          "column": 4,
+          "index": 4260
+        },
+        "end": {
+          "line": 146,
+          "column": 25,
+          "index": 4281
+        }
+      },
+      "appearsIn": []
+    },
+    "COPY_ORIGINAL_FILES": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Whether to copy .scss files "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Boolean} Whether to copy .scss files"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4343
+        },
+        "end": {
+          "line": 149,
+          "column": 30,
+          "index": 4369
+        }
+      },
+      "appearsIn": []
+    },
+    "isNewCompiler": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 4376
+        },
+        "end": {
+          "line": 162,
+          "column": 5,
+          "index": 4928
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

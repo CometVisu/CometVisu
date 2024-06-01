@@ -1,35 +1,38 @@
 {
-  "className": "cv.ui.manager.model.schema.MAnnotation",
-  "packageName": "cv.ui.manager.model.schema",
-  "name": "MAnnotation",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 919
-      },
-      "end": {
-        "line": 188,
-        "column": 3,
-        "index": 6212
-      }
+  "version": 0.3,
+  "lastModified": 1717235105610,
+  "lastModifiedIso": "2024-06-01T09:45:05.610Z",
+  "classFilename": "../../source/class/cv/ui/manager/model/schema/MAnnotation.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 919
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Code the extract data from annotations (e.g. appinfo, documentation) in Element/Attribute</p>"
-        }
-      ]
+    "end": {
+      "line": 188,
+      "column": 3,
+      "index": 6212
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.manager.model.schema.MAnnotation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Code the extract data from annotations (e.g. appinfo, documentation) in Element/Attribute",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Code the extract data from annotations (e.g. appinfo, documentation) in Element/Attribute</p>"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 29,
@@ -41,24 +44,17 @@
         "column": 3,
         "index": 1280
       }
-    },
-    "jsdoc": {}
+    }
   },
   "members": {
     "__appInfoCache": {
-      "location": {
-        "start": {
-          "line": 44,
-          "column": 4,
-          "index": 1484
-        },
-        "end": {
-          "line": 44,
-          "column": 24,
-          "index": 1504
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * cache for getAppinfo",
+          "     * @var array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -72,10 +68,24 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1484
+        },
+        "end": {
+          "line": 44,
+          "column": 24,
+          "index": 1504
+        }
+      },
+      "appearsIn": []
     },
     "__linkRegex": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 45,
@@ -88,10 +98,11 @@
           "index": 1527
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__language": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 46,
@@ -104,23 +115,16 @@
           "index": 1549
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__documentationCache": {
-      "location": {
-        "start": {
-          "line": 52,
-          "column": 4,
-          "index": 1624
-        },
-        "end": {
-          "line": 52,
-          "column": 30,
-          "index": 1650
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * cache for getDocumentation",
+          "     * @var array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -134,10 +138,24 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1624
+        },
+        "end": {
+          "line": 52,
+          "column": 30,
+          "index": 1650
+        }
+      },
+      "appearsIn": []
     },
     "__getTextNodesByXPath": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 54,
@@ -151,22 +169,25 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "node"
+        },
+        {
+          "name": "xpath"
+        }
+      ],
+      "appearsIn": []
     },
     "getAppinfo": {
-      "location": {
-        "start": {
-          "line": 79,
-          "column": 4,
-          "index": 2445
-        },
-        "end": {
-          "line": 107,
-          "column": 5,
-          "index": 3518
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the appinfo information from the element, if any",
+          "     *",
+          "     * @return  array   list of texts, or empty list if none",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -180,23 +201,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDocumentation": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 114,
+          "line": 79,
           "column": 4,
-          "index": 3675
+          "index": 2445
         },
         "end": {
-          "line": 147,
+          "line": 107,
           "column": 5,
-          "index": 5019
+          "index": 3518
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getDocumentation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the documentation information from the element, if any",
+          "     *",
+          "     * @return  array   list of texts, or empty list if none",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -210,23 +241,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createDocumentationWebLinks": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 155,
+          "line": 114,
           "column": 4,
-          "index": 5222
+          "index": 3675
         },
         "end": {
-          "line": 175,
+          "line": 147,
           "column": 5,
-          "index": 5959
+          "index": 5019
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "createDocumentationWebLinks": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transform documentation text to link to the online documentation when it",
+          "     * contains a reference.",
+          "     * @param text",
+          "     * @return string The transformed input string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -248,11 +290,32 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 5222
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 5959
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "text"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 183,
@@ -264,8 +327,8 @@
         "column": 3,
         "index": 6208
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

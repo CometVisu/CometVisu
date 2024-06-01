@@ -1,0 +1,264 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172258,
+  "lastModifiedIso": "2024-06-01T09:46:12.258Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Serve.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 775
+    },
+    "end": {
+      "line": 249,
+      "column": 3,
+      "index": 7675
+    }
+  },
+  "className": "qx.tool.cli.commands.Serve",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Compiles the project and serves it up as a web page",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Compiles the project and serves it up as a web page</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Compile",
+  "statics": {
+    "YARGS_BUILDER": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 881
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1490
+        }
+      },
+      "appearsIn": [
+        "qx.tool.cli.commands.Compile"
+      ]
+    },
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1497
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1962
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.tool.cli.commands.Compile"
+      ]
+    }
+  },
+  "events": {
+    "beforeStart": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired before server start",
+          "     *",
+          "     * The event data is an object with the following properties:",
+          "     *   server: the http server",
+          "     *   application: the used express server instance",
+          "     *   outputdir: the qooxdoo app output dir",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired before server start\n The event data is an object with the following properties:\n   server: the http server\n   application: the used express server instance\n   outputdir: the qooxdoo app output dir</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2242
+        },
+        "end": {
+          "line": 85,
+          "column": 37,
+          "index": 2275
+        }
+      }
+    },
+    "afterStart": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when server is started",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when server is started</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2333
+        },
+        "end": {
+          "line": 89,
+          "column": 37,
+          "index": 2366
+        }
+      }
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2422
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3025
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Compile",
+      "appearsIn": [
+        "qx.tool.cli.commands.Compile",
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "showStartpage": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * returns the showStartpage flag",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>returns the showStartpage flag</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3100
+        },
+        "end": {
+          "line": 122,
+          "column": 5,
+          "index": 3158
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "runWebServer": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Runs the web server",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Runs the web server</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3208
+        },
+        "end": {
+          "line": 237,
+          "column": 5,
+          "index": 7372
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__showStartpage": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 7379
+        },
+        "end": {
+          "line": 239,
+          "column": 25,
+          "index": 7400
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

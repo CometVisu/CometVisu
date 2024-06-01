@@ -1,72 +1,72 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235169566,
+  "lastModifiedIso": "2024-06-01T09:46:09.566Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/CheckedSelectBox.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 802
+    },
+    "end": {
+      "line": 484,
+      "column": 3,
+      "index": 12107
+    }
+  },
   "className": "qx.ui.form.CheckedSelectBox",
-  "packageName": "qx.ui.form",
-  "name": "CheckedSelectBox",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A form widget which allows multiple selection with a drop down checked list.",
+      " *",
+      " * @childControl spacer {qx.ui.core.Spacer} flexible spacer widget",
+      " * @childControl atom {qx.ui.basic.Atom} shows the text and icon of the content",
+      " * @childControl arrow {qx.ui.basic.Image} shows the arrow to open the popup",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A form widget which allows multiple selection with a drop down checked list.</p>"
+      }
+    ],
+    "@childControl": [
+      {
+        "name": "@childControl",
+        "body": "spacer {qx.ui.core.Spacer} flexible spacer widget"
+      },
+      {
+        "name": "@childControl",
+        "body": "atom {qx.ui.basic.Atom} shows the text and icon of the content"
+      },
+      {
+        "name": "@childControl",
+        "body": "arrow {qx.ui.basic.Image} shows the arrow to open the popup"
+      }
+    ]
+  },
   "superClass": "qx.ui.form.AbstractSelectBox",
   "interfaces": [
     "qx.ui.core.IMultiSelection",
     "qx.ui.form.IModelSelection",
     "qx.ui.form.IField"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 827
-      },
-      "end": {
-        "line": 484,
-        "column": 3,
-        "index": 12590
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A form widget which allows multiple selection with a drop down checked list.</p>"
-        }
-      ],
-      "@childControl": [
-        {
-          "name": "@childControl",
-          "body": "spacer {qx.ui.core.Spacer} flexible spacer widget",
-          "controlName": "spacer",
-          "description": "flexible spacer widget",
-          "type": "qx.ui.core.Spacer"
-        },
-        {
-          "name": "@childControl",
-          "body": "atom {qx.ui.basic.Atom} shows the text and icon of the content",
-          "controlName": "atom",
-          "description": "shows the text and icon of the content",
-          "type": "qx.ui.basic.Atom"
-        },
-        {
-          "name": "@childControl",
-          "body": "arrow {qx.ui.basic.Image} shows the arrow to open the popup",
-          "controlName": "arrow",
-          "description": "shows the arrow to open the popup",
-          "type": "qx.ui.basic.Image"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 34,
         "column": 2,
-        "index": 1033
+        "index": 1000
       },
       "end": {
         "line": 53,
         "column": 3,
-        "index": 1656
+        "index": 1604
       }
     }
   },
@@ -76,40 +76,31 @@
         "start": {
           "line": 56,
           "column": 4,
-          "index": 1682
+          "index": 1627
         },
         "end": {
           "line": 59,
           "column": 5,
-          "index": 1756
+          "index": 1698
         }
       },
-      "name": "appearance",
-      "propertyType": "new",
-      "refine": true,
-      "init": "checked-selectbox",
-      "defaultValue": "checked-selectbox",
-      "overriddenFrom": "qx.ui.core.Widget",
-      "appearsIn": {
-        "qx.ui.core.Widget": "class"
-      }
+      "json": {
+        "refine": true,
+        "init": "checked-selectbox"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
     }
   },
   "events": {
     "changeSelection": {
-      "location": {
-        "start": {
-          "line": 64,
-          "column": 4,
-          "index": 1831
-        },
-        "end": {
-          "line": 64,
-          "column": 41,
-          "index": 1868
-        }
-      },
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Event for psuedo property selection "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,23 +108,25 @@
           }
         ]
       },
-      "name": "changeSelection",
-      "type": "qx.event.type.Data"
-    },
-    "changeChecked": {
       "location": {
         "start": {
-          "line": 67,
+          "line": 64,
           "column": 4,
-          "index": 1923
+          "index": 1768
         },
         "end": {
-          "line": 67,
-          "column": 39,
-          "index": 1958
+          "line": 64,
+          "column": 41,
+          "index": 1805
         }
-      },
+      }
+    },
+    "changeChecked": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Event for psuedo property checked "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -141,23 +134,25 @@
           }
         ]
       },
-      "name": "changeChecked",
-      "type": "qx.event.type.Data"
-    },
-    "changeValue": {
       "location": {
         "start": {
-          "line": 70,
+          "line": 67,
           "column": 4,
-          "index": 2011
+          "index": 1857
         },
         "end": {
-          "line": 70,
-          "column": 37,
-          "index": 2044
+          "line": 67,
+          "column": 39,
+          "index": 1892
         }
-      },
+      }
+    },
+    "changeValue": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Event for psuedo property value "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -165,23 +160,25 @@
           }
         ]
       },
-      "name": "changeValue",
-      "type": "qx.event.type.Data"
-    },
-    "changeModelSelection": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 70,
           "column": 4,
-          "index": 2106
+          "index": 1942
         },
         "end": {
-          "line": 73,
-          "column": 46,
-          "index": 2148
+          "line": 70,
+          "column": 37,
+          "index": 1975
         }
-      },
+      }
+    },
+    "changeModelSelection": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Event for psuedo property modelSelection "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -189,23 +186,29 @@
           }
         ]
       },
-      "name": "changeModelSelection",
-      "type": "qx.event.type.Data"
-    },
-    "attachResultsTag": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 73,
           "column": 4,
-          "index": 2410
+          "index": 2034
         },
         "end": {
-          "line": 80,
-          "column": 42,
-          "index": 2448
+          "line": 73,
+          "column": 46,
+          "index": 2076
         }
-      },
+      }
+    },
+    "attachResultsTag": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fired when a tag widget is added to the results; data is a map containing:",
+          "     * `tagWidget` - the tag widget being added",
+          "     * `item` - the item in the list that is checked",
+          "     * `itemModel` - the model item that backs the item",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -213,23 +216,29 @@
           }
         ]
       },
-      "name": "attachResultsTag",
-      "type": "qx.event.type.Data"
-    },
-    "detachResultsTag": {
       "location": {
         "start": {
-          "line": 87,
+          "line": 80,
           "column": 4,
-          "index": 2714
+          "index": 2331
         },
         "end": {
-          "line": 87,
+          "line": 80,
           "column": 42,
-          "index": 2752
+          "index": 2369
         }
-      },
+      }
+    },
+    "detachResultsTag": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fired when a tag widget is removed from the results; data is a map containing:",
+          "     * `tagWidget` - the tag widget being added",
+          "     * `item` - the item in the list that is checked",
+          "     * `itemModel` - the model item that backs the item",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -237,25 +246,26 @@
           }
         ]
       },
-      "name": "detachResultsTag",
-      "type": "qx.event.type.Data"
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2628
+        },
+        "end": {
+          "line": 87,
+          "column": 42,
+          "index": 2666
+        }
+      }
     }
   },
   "members": {
     "__modelSelection": {
-      "location": {
-        "start": {
-          "line": 92,
-          "column": 4,
-          "index": 2849
-        },
-        "end": {
-          "line": 92,
-          "column": 26,
-          "index": 2871
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {qx.data.Array} the modelSelection psuedo property "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -269,23 +279,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__atomsOnDisplay": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 95,
+          "line": 92,
           "column": 4,
-          "index": 2952
+          "index": 2758
         },
         "end": {
-          "line": 95,
+          "line": 92,
           "column": 26,
-          "index": 2974
+          "index": 2780
         }
       },
+      "appearsIn": []
+    },
+    "__atomsOnDisplay": {
       "jsdoc": {
+        "raw": [
+          "* @type {qx.ui.basic.Atom[]} atoms used to show the selection "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -299,23 +312,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "_forwardStates": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 101,
+          "line": 95,
           "column": 4,
-          "index": 3070
+          "index": 2858
         },
         "end": {
-          "line": 103,
-          "column": 5,
-          "index": 3115
+          "line": 95,
+          "column": 26,
+          "index": 2880
         }
       },
+      "appearsIn": []
+    },
+    "_forwardStates": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @lint ignoreReferenceField(_forwardStates)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -335,23 +354,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_createChildControlImpl": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 108,
+          "line": 101,
           "column": 4,
-          "index": 3160
+          "index": 2970
         },
         "end": {
-          "line": 162,
+          "line": 103,
           "column": 5,
-          "index": 4731
+          "index": 3013
         }
       },
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    },
+    "_createChildControlImpl": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -365,8 +392,28 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
+      "location": {
+        "start": {
+          "line": 108,
+          "column": 4,
+          "index": 3053
+        },
+        "end": {
+          "line": 162,
+          "column": 5,
+          "index": 4570
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "id"
+        },
+        {
+          "name": "hash"
+        }
+      ],
       "overriddenFrom": "qx.ui.form.AbstractSelectBox",
       "appearsIn": [
         "qx.ui.form.AbstractSelectBox",
@@ -374,19 +421,13 @@
       ]
     },
     "getValue": {
-      "location": {
-        "start": {
-          "line": 168,
-          "column": 4,
-          "index": 4807
-        },
-        "end": {
-          "line": 170,
-          "column": 5,
-          "index": 4861
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.form.IField",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -406,27 +447,33 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.ui.form.IField",
+      "location": {
+        "start": {
+          "line": 168,
+          "column": 4,
+          "index": 4640
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4692
+        }
+      },
+      "type": "function",
+      "params": [],
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     },
     "setValue": {
-      "location": {
-        "start": {
-          "line": 176,
-          "column": 4,
-          "index": 4937
-        },
-        "end": {
-          "line": 178,
-          "column": 5,
-          "index": 4994
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.form.IField",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -446,27 +493,37 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.ui.form.IField",
+      "location": {
+        "start": {
+          "line": 176,
+          "column": 4,
+          "index": 4762
+        },
+        "end": {
+          "line": 178,
+          "column": 5,
+          "index": 4817
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     },
     "resetValue": {
-      "location": {
-        "start": {
-          "line": 184,
-          "column": 4,
-          "index": 5070
-        },
-        "end": {
-          "line": 186,
-          "column": 5,
-          "index": 5121
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.form.IField",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -486,27 +543,34 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.ui.form.IField",
+      "location": {
+        "start": {
+          "line": 184,
+          "column": 4,
+          "index": 4887
+        },
+        "end": {
+          "line": 186,
+          "column": 5,
+          "index": 4936
+        }
+      },
+      "type": "function",
+      "params": [],
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     },
     "getChecked": {
-      "location": {
-        "start": {
-          "line": 193,
-          "column": 4,
-          "index": 5242
-        },
-        "end": {
-          "line": 195,
-          "column": 5,
-          "index": 5320
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for psuedo property \"checked\"",
+          "     *",
+          "     * @return {qx.ui.form.IListItem[]}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -522,23 +586,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setChecked": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 202,
+          "line": 193,
           "column": 4,
-          "index": 5448
+          "index": 5050
         },
         "end": {
-          "line": 204,
+          "line": 195,
           "column": 5,
-          "index": 5533
+          "index": 5126
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.IListItem[]"
+      },
+      "appearsIn": []
+    },
+    "setChecked": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for psuedo property \"checked\"",
+          "     *",
+          "     * @param checked {qx.ui.form.IListItem[]}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -548,27 +624,41 @@
         "@param": [
           {
             "name": "@param",
-            "body": "checked {qx.ui.form.IListItem[]}"
+            "body": "checked {qx.ui.form.IListItem[]}",
+            "paramName": "checked",
+            "type": "qx.ui.form.IListItem[]"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetChecked": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 209,
+          "line": 202,
           "column": 4,
-          "index": 5604
+          "index": 5247
         },
         "end": {
-          "line": 211,
+          "line": 204,
           "column": 5,
-          "index": 5679
+          "index": 5330
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "checked",
+          "type": "qx.ui.form.IListItem[]"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetChecked": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reset for psuedo property \"checked\"",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -576,228 +666,269 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 5396
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 5469
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "getSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.ISingleSelection"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 217,
           "column": 4,
-          "index": 5765
+          "index": 5549
         },
         "end": {
           "line": 219,
           "column": 5,
-          "index": 5845
+          "index": 5627
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ],
-        "@Override": [
-          {
-            "name": "@Override",
-            "body": ""
-          }
-        ],
-        "@see": [
-          {
-            "name": "@see",
-            "body": "qx.ui.core.ISingleSelection"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.IMultiSelection",
+      "params": [],
       "appearsIn": [
-        "qx.ui.core.IMultiSelection",
         "qx.ui.core.ISingleSelection"
       ]
     },
     "setSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.ISingleSelection"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 225,
           "column": 4,
-          "index": 5931
+          "index": 5707
         },
         "end": {
           "line": 227,
           "column": 5,
-          "index": 6014
+          "index": 5788
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ],
-        "@Override": [
-          {
-            "name": "@Override",
-            "body": ""
-          }
-        ],
-        "@see": [
-          {
-            "name": "@see",
-            "body": "qx.ui.core.ISingleSelection"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.IMultiSelection",
+      "params": [
+        {
+          "name": "items"
+        }
+      ],
       "appearsIn": [
-        "qx.ui.core.IMultiSelection",
         "qx.ui.core.ISingleSelection"
       ]
     },
     "resetSelection": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.ISingleSelection"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 233,
           "column": 4,
-          "index": 6100
+          "index": 5868
         },
         "end": {
           "line": 235,
           "column": 5,
-          "index": 6177
+          "index": 5943
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ],
-        "@Override": [
-          {
-            "name": "@Override",
-            "body": ""
-          }
-        ],
-        "@see": [
-          {
-            "name": "@see",
-            "body": "qx.ui.core.ISingleSelection"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.IMultiSelection",
+      "params": [],
       "appearsIn": [
-        "qx.ui.core.IMultiSelection",
         "qx.ui.core.ISingleSelection"
       ]
     },
     "isSelected": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.ISingleSelection"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 241,
           "column": 4,
-          "index": 6263
+          "index": 6023
         },
         "end": {
           "line": 246,
           "column": 5,
-          "index": 6402
+          "index": 6157
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ],
-        "@Override": [
-          {
-            "name": "@Override",
-            "body": ""
-          }
-        ],
-        "@see": [
-          {
-            "name": "@see",
-            "body": "qx.ui.core.ISingleSelection"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.IMultiSelection",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
       "appearsIn": [
-        "qx.ui.core.IMultiSelection",
         "qx.ui.core.ISingleSelection"
       ]
     },
     "isSelectionEmpty": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ],
+        "@see": [
+          {
+            "name": "@see",
+            "body": "qx.ui.core.ISingleSelection"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 252,
           "column": 4,
-          "index": 6488
+          "index": 6237
         },
         "end": {
           "line": 254,
           "column": 5,
-          "index": 6584
+          "index": 6331
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": ""
-          }
-        ],
-        "@Override": [
-          {
-            "name": "@Override",
-            "body": ""
-          }
-        ],
-        "@see": [
-          {
-            "name": "@see",
-            "body": "qx.ui.core.ISingleSelection"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.core.IMultiSelection",
+      "params": [],
       "appearsIn": [
-        "qx.ui.core.IMultiSelection",
         "qx.ui.core.ISingleSelection"
       ]
     },
     "getSelectables": {
-      "location": {
-        "start": {
-          "line": 260,
-          "column": 4,
-          "index": 6670
-        },
-        "end": {
-          "line": 262,
-          "column": 5,
-          "index": 6753
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.ISingleSelection",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -817,28 +948,33 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.ui.core.IMultiSelection",
+      "location": {
+        "start": {
+          "line": 260,
+          "column": 4,
+          "index": 6411
+        },
+        "end": {
+          "line": 262,
+          "column": 5,
+          "index": 6492
+        }
+      },
+      "type": "function",
+      "params": [],
       "appearsIn": [
-        "qx.ui.core.IMultiSelection",
         "qx.ui.core.ISingleSelection"
       ]
     },
     "selectAll": {
-      "location": {
-        "start": {
-          "line": 268,
-          "column": 4,
-          "index": 6838
-        },
-        "end": {
-          "line": 271,
-          "column": 5,
-          "index": 6947
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.IMultiSelection",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -858,27 +994,33 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.ui.core.IMultiSelection",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4,
+          "index": 6571
+        },
+        "end": {
+          "line": 271,
+          "column": 5,
+          "index": 6677
+        }
+      },
+      "type": "function",
+      "params": [],
       "appearsIn": [
         "qx.ui.core.IMultiSelection"
       ]
     },
     "addToSelection": {
-      "location": {
-        "start": {
-          "line": 277,
-          "column": 4,
-          "index": 7032
-        },
-        "end": {
-          "line": 284,
-          "column": 5,
-          "index": 7271
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.IMultiSelection",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -898,27 +1040,37 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.ui.core.IMultiSelection",
+      "location": {
+        "start": {
+          "line": 277,
+          "column": 4,
+          "index": 6756
+        },
+        "end": {
+          "line": 284,
+          "column": 5,
+          "index": 6988
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
       "appearsIn": [
         "qx.ui.core.IMultiSelection"
       ]
     },
     "removeFromSelection": {
-      "location": {
-        "start": {
-          "line": 290,
-          "column": 4,
-          "index": 7356
-        },
-        "end": {
-          "line": 296,
-          "column": 5,
-          "index": 7569
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.core.IMultiSelection",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -938,27 +1090,37 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.ui.core.IMultiSelection",
+      "location": {
+        "start": {
+          "line": 290,
+          "column": 4,
+          "index": 7067
+        },
+        "end": {
+          "line": 296,
+          "column": 5,
+          "index": 7274
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "item"
+        }
+      ],
       "appearsIn": [
         "qx.ui.core.IMultiSelection"
       ]
     },
     "setModelSelection": {
-      "location": {
-        "start": {
-          "line": 302,
-          "column": 4,
-          "index": 7654
-        },
-        "end": {
-          "line": 304,
-          "column": 5,
-          "index": 7753
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.form.IModelSelection",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -978,27 +1140,37 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.ui.form.IModelSelection",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 7353
+        },
+        "end": {
+          "line": 304,
+          "column": 5,
+          "index": 7450
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
       "appearsIn": [
         "qx.ui.form.IModelSelection"
       ]
     },
     "getModelSelection": {
-      "location": {
-        "start": {
-          "line": 310,
-          "column": 4,
-          "index": 7838
-        },
-        "end": {
-          "line": 312,
-          "column": 5,
-          "index": 7903
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     * @see qx.ui.form.IModelSelection",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1018,27 +1190,32 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.ui.form.IModelSelection",
+      "location": {
+        "start": {
+          "line": 310,
+          "column": 4,
+          "index": 7529
+        },
+        "end": {
+          "line": 312,
+          "column": 5,
+          "index": 7592
+        }
+      },
+      "type": "function",
+      "params": [],
       "appearsIn": [
         "qx.ui.form.IModelSelection"
       ]
     },
     "__onModelSelectionChange": {
-      "location": {
-        "start": {
-          "line": 317,
-          "column": 4,
-          "index": 7992
-        },
-        "end": {
-          "line": 334,
-          "column": 5,
-          "index": 8544
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for changes to the modelSelection array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1046,23 +1223,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "_onAllNoneExecute": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 339,
+          "line": 317,
           "column": 4,
-          "index": 8617
+          "index": 7676
         },
         "end": {
-          "line": 347,
+          "line": 334,
           "column": 5,
-          "index": 8863
+          "index": 8211
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onAllNoneExecute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for the All/None button",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1070,23 +1258,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onListChangeChecked": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 352,
+          "line": 339,
           "column": 4,
-          "index": 8952
+          "index": 8279
         },
         "end": {
-          "line": 410,
+          "line": 347,
           "column": 5,
-          "index": 10859
+          "index": 8517
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onListChangeChecked": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event handler for changes to the list's checked array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1094,23 +1289,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onPointerOver": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 421,
+          "line": 352,
           "column": 4,
-          "index": 11154
+          "index": 8601
         },
         "end": {
-          "line": 432,
+          "line": 410,
           "column": 5,
-          "index": 11426
+          "index": 10450
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerOver": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener method for \"pointerover\" event",
+          "     * <ul>",
+          "     * <li>Adds state \"hovered\"</li>",
+          "     * <li>Removes \"abandoned\" and adds \"pressed\" state (if \"abandoned\" state is set)</li>",
+          "     * </ul>",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Pointer event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1127,23 +1339,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onPointerOut": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 443,
+          "line": 421,
           "column": 4,
-          "index": 11721
+          "index": 10734
         },
         "end": {
-          "line": 454,
+          "line": 432,
           "column": 5,
-          "index": 11993
+          "index": 10995
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onPointerOut": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Listener method for \"pointerout\" event",
+          "     * <ul>",
+          "     * <li>Removes \"hovered\" state</li>",
+          "     * <li>Adds \"abandoned\" and removes \"pressed\" state (if \"pressed\" state is set)</li>",
+          "     * </ul>",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Pointer event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1160,23 +1390,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onTap": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 461,
+          "line": 443,
           "column": 4,
-          "index": 12123
+          "index": 11279
         },
         "end": {
-          "line": 463,
+          "line": 454,
           "column": 5,
-          "index": 12161
+          "index": 11540
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onTap": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Toggles the popup's visibility.",
+          "     *",
+          "     * @param e {qx.event.type.Pointer} Pointer event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1193,23 +1437,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onBlur": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 468,
+          "line": 461,
           "column": 4,
-          "index": 12206
+          "index": 11663
         },
         "end": {
-          "line": 482,
+          "line": 463,
           "column": 5,
-          "index": 12580
+          "index": 11699
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Pointer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onBlur": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1223,4273 +1479,30 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
+      "location": {
+        "start": {
+          "line": 468,
+          "column": 4,
+          "index": 11739
+        },
+        "end": {
+          "line": 482,
+          "column": 5,
+          "index": 12099
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt"
+        }
+      ],
       "overriddenFrom": "qx.ui.form.AbstractSelectBox",
       "appearsIn": [
         "qx.ui.form.AbstractSelectBox"
       ]
-    },
-    "setEnabled": {
-      "type": "function",
-      "name": "setEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Set the enabled state of the widget.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "enabled {Boolean} The enabled state.",
-            "paramName": "enabled",
-            "description": " The enabled state.",
-            "type": "Boolean"
-          }
-        ]
-      }
-    },
-    "getEnabled": {
-      "type": "function",
-      "name": "getEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Return the current set enabled state.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Boolean} If the widget is enabled.",
-            "type": "Boolean",
-            "description": " If the widget is enabled."
-          }
-        ]
-      }
-    },
-    "setRequired": {
-      "type": "function",
-      "name": "setRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for required"
-          }
-        ]
-      }
-    },
-    "getRequired": {
-      "type": "function",
-      "name": "getRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for required"
-          }
-        ]
-      }
-    },
-    "setValid": {
-      "type": "function",
-      "name": "setValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for valid"
-          }
-        ]
-      }
-    },
-    "getValid": {
-      "type": "function",
-      "name": "getValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for valid"
-          }
-        ]
-      }
-    },
-    "setInvalidMessage": {
-      "type": "function",
-      "name": "setInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>invalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for invalidMessage"
-          }
-        ]
-      }
-    },
-    "getInvalidMessage": {
-      "type": "function",
-      "name": "getInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>invalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for invalidMessage"
-          }
-        ]
-      }
-    },
-    "setRequiredInvalidMessage": {
-      "type": "function",
-      "name": "setRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>requiredInvalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for requiredInvalidMessage"
-          }
-        ]
-      }
-    },
-    "getRequiredInvalidMessage": {
-      "type": "function",
-      "name": "getRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>requiredInvalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for requiredInvalidMessage"
-          }
-        ]
-      }
-    },
-    "isValid": {
-      "type": "function",
-      "name": "isValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for valid"
-          }
-        ]
-      }
-    },
-    "resetValid": {
-      "type": "function",
-      "name": "resetValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>valid</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ]
-      }
-    },
-    "isRequired": {
-      "type": "function",
-      "name": "isRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for required"
-          }
-        ]
-      }
-    },
-    "resetRequired": {
-      "type": "function",
-      "name": "resetRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>required</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ]
-      }
-    },
-    "resetInvalidMessage": {
-      "type": "function",
-      "name": "resetInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>invalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
-          }
-        ]
-      }
-    },
-    "resetRequiredInvalidMessage": {
-      "type": "function",
-      "name": "resetRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>requiredInvalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
-          }
-        ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getMinWidth": {
-      "type": "function",
-      "name": "getMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>minWidth</code>.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for minWidth"
-          }
-        ]
-      }
-    },
-    "setMinWidth": {
-      "type": "function",
-      "name": "setMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>minWidth</code>.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for minWidth"
-          }
-        ]
-      }
-    },
-    "resetMinWidth": {
-      "type": "function",
-      "name": "resetMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>minWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ]
-      }
-    },
-    "getWidth": {
-      "type": "function",
-      "name": "getWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for width"
-          }
-        ]
-      }
-    },
-    "setWidth": {
-      "type": "function",
-      "name": "setWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for width"
-          }
-        ]
-      }
-    },
-    "resetWidth": {
-      "type": "function",
-      "name": "resetWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ]
-      }
-    },
-    "getMaxWidth": {
-      "type": "function",
-      "name": "getMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxWidth</code>.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for maxWidth"
-          }
-        ]
-      }
-    },
-    "setMaxWidth": {
-      "type": "function",
-      "name": "setMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxWidth</code>.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for maxWidth"
-          }
-        ]
-      }
-    },
-    "resetMaxWidth": {
-      "type": "function",
-      "name": "resetMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ]
-      }
-    },
-    "getMinHeight": {
-      "type": "function",
-      "name": "getMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>minHeight</code>.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for minHeight"
-          }
-        ]
-      }
-    },
-    "setMinHeight": {
-      "type": "function",
-      "name": "setMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>minHeight</code>.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for minHeight"
-          }
-        ]
-      }
-    },
-    "resetMinHeight": {
-      "type": "function",
-      "name": "resetMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>minHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ]
-      }
-    },
-    "getHeight": {
-      "type": "function",
-      "name": "getHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for height"
-          }
-        ]
-      }
-    },
-    "setHeight": {
-      "type": "function",
-      "name": "setHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for height"
-          }
-        ]
-      }
-    },
-    "resetHeight": {
-      "type": "function",
-      "name": "resetHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>height</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ]
-      }
-    },
-    "getMaxHeight": {
-      "type": "function",
-      "name": "getMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for maxHeight"
-          }
-        ]
-      }
-    },
-    "setMaxHeight": {
-      "type": "function",
-      "name": "setMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for maxHeight"
-          }
-        ]
-      }
-    },
-    "resetMaxHeight": {
-      "type": "function",
-      "name": "resetMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ]
-      }
-    },
-    "getAllowGrowX": {
-      "type": "function",
-      "name": "getAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "isAllowGrowX": {
-      "type": "function",
-      "name": "isAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "setAllowGrowX": {
-      "type": "function",
-      "name": "setAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "resetAllowGrowX": {
-      "type": "function",
-      "name": "resetAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowGrowX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ]
-      }
-    },
-    "getAllowShrinkX": {
-      "type": "function",
-      "name": "getAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "isAllowShrinkX": {
-      "type": "function",
-      "name": "isAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "setAllowShrinkX": {
-      "type": "function",
-      "name": "setAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "resetAllowShrinkX": {
-      "type": "function",
-      "name": "resetAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowShrinkX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ]
-      }
-    },
-    "getAllowGrowY": {
-      "type": "function",
-      "name": "getAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "isAllowGrowY": {
-      "type": "function",
-      "name": "isAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "setAllowGrowY": {
-      "type": "function",
-      "name": "setAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "resetAllowGrowY": {
-      "type": "function",
-      "name": "resetAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowGrowY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ]
-      }
-    },
-    "getAllowShrinkY": {
-      "type": "function",
-      "name": "getAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "isAllowShrinkY": {
-      "type": "function",
-      "name": "isAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "setAllowShrinkY": {
-      "type": "function",
-      "name": "setAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "resetAllowShrinkY": {
-      "type": "function",
-      "name": "resetAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowShrinkY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ]
-      }
-    },
-    "setAllowStretchX": {
-      "type": "function",
-      "name": "setAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowStretchX</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for allowStretchX"
-          }
-        ]
-      }
-    },
-    "resetAllowStretchX": {
-      "type": "function",
-      "name": "resetAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ]
-      }
-    },
-    "setAllowStretchY": {
-      "type": "function",
-      "name": "setAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowStretchY</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for allowStretchY"
-          }
-        ]
-      }
-    },
-    "resetAllowStretchY": {
-      "type": "function",
-      "name": "resetAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowStretchY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ]
-      }
-    },
-    "getMarginTop": {
-      "type": "function",
-      "name": "getMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginTop</code>.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginTop"
-          }
-        ]
-      }
-    },
-    "setMarginTop": {
-      "type": "function",
-      "name": "setMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginTop</code>.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginTop"
-          }
-        ]
-      }
-    },
-    "resetMarginTop": {
-      "type": "function",
-      "name": "resetMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ]
-      }
-    },
-    "getMarginRight": {
-      "type": "function",
-      "name": "getMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginRight</code>.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginRight"
-          }
-        ]
-      }
-    },
-    "setMarginRight": {
-      "type": "function",
-      "name": "setMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginRight</code>.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginRight"
-          }
-        ]
-      }
-    },
-    "resetMarginRight": {
-      "type": "function",
-      "name": "resetMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ]
-      }
-    },
-    "getMarginBottom": {
-      "type": "function",
-      "name": "getMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginBottom</code>.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginBottom"
-          }
-        ]
-      }
-    },
-    "setMarginBottom": {
-      "type": "function",
-      "name": "setMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginBottom</code>.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginBottom"
-          }
-        ]
-      }
-    },
-    "resetMarginBottom": {
-      "type": "function",
-      "name": "resetMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ]
-      }
-    },
-    "getMarginLeft": {
-      "type": "function",
-      "name": "getMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginLeft</code>.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginLeft"
-          }
-        ]
-      }
-    },
-    "setMarginLeft": {
-      "type": "function",
-      "name": "setMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginLeft</code>.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginLeft"
-          }
-        ]
-      }
-    },
-    "resetMarginLeft": {
-      "type": "function",
-      "name": "resetMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ]
-      }
-    },
-    "setMargin": {
-      "type": "function",
-      "name": "setMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>margin</code>.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for margin"
-          }
-        ]
-      }
-    },
-    "resetMargin": {
-      "type": "function",
-      "name": "resetMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>margin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ]
-      }
-    },
-    "getAlignX": {
-      "type": "function",
-      "name": "getAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for alignX"
-          }
-        ]
-      }
-    },
-    "setAlignX": {
-      "type": "function",
-      "name": "setAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for alignX"
-          }
-        ]
-      }
-    },
-    "resetAlignX": {
-      "type": "function",
-      "name": "resetAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ]
-      }
-    },
-    "getAlignY": {
-      "type": "function",
-      "name": "getAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for alignY"
-          }
-        ]
-      }
-    },
-    "setAlignY": {
-      "type": "function",
-      "name": "setAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for alignY"
-          }
-        ]
-      }
-    },
-    "resetAlignY": {
-      "type": "function",
-      "name": "resetAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ]
-      }
-    },
-    "getPaddingTop": {
-      "type": "function",
-      "name": "getPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingTop</code>.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingTop"
-          }
-        ]
-      }
-    },
-    "setPaddingTop": {
-      "type": "function",
-      "name": "setPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingTop</code>.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingTop"
-          }
-        ]
-      }
-    },
-    "resetPaddingTop": {
-      "type": "function",
-      "name": "resetPaddingTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingTop}."
-          }
-        ]
-      }
-    },
-    "getPaddingRight": {
-      "type": "function",
-      "name": "getPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingRight</code>.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingRight"
-          }
-        ]
-      }
-    },
-    "setPaddingRight": {
-      "type": "function",
-      "name": "setPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingRight</code>.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingRight"
-          }
-        ]
-      }
-    },
-    "resetPaddingRight": {
-      "type": "function",
-      "name": "resetPaddingRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingRight}."
-          }
-        ]
-      }
-    },
-    "getPaddingBottom": {
-      "type": "function",
-      "name": "getPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingBottom</code>.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingBottom"
-          }
-        ]
-      }
-    },
-    "setPaddingBottom": {
-      "type": "function",
-      "name": "setPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingBottom</code>.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingBottom"
-          }
-        ]
-      }
-    },
-    "resetPaddingBottom": {
-      "type": "function",
-      "name": "resetPaddingBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingBottom}."
-          }
-        ]
-      }
-    },
-    "getPaddingLeft": {
-      "type": "function",
-      "name": "getPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>paddingLeft</code>.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for paddingLeft"
-          }
-        ]
-      }
-    },
-    "setPaddingLeft": {
-      "type": "function",
-      "name": "setPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>paddingLeft</code>.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for paddingLeft"
-          }
-        ]
-      }
-    },
-    "resetPaddingLeft": {
-      "type": "function",
-      "name": "resetPaddingLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>paddingLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #paddingLeft}."
-          }
-        ]
-      }
-    },
-    "setPadding": {
-      "type": "function",
-      "name": "setPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>padding</code>.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for padding"
-          }
-        ]
-      }
-    },
-    "resetPadding": {
-      "type": "function",
-      "name": "resetPadding",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>padding</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #padding}."
-          }
-        ]
-      }
-    },
-    "getZIndex": {
-      "type": "function",
-      "name": "getZIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>zIndex</code>.\n\nFor further details take a look at the property definition: {@link #zIndex}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for zIndex"
-          }
-        ]
-      }
-    },
-    "setZIndex": {
-      "type": "function",
-      "name": "setZIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>zIndex</code>.\n\nFor further details take a look at the property definition: {@link #zIndex}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for zIndex"
-          }
-        ]
-      }
-    },
-    "resetZIndex": {
-      "type": "function",
-      "name": "resetZIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>zIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #zIndex}."
-          }
-        ]
-      }
-    },
-    "getDecorator": {
-      "type": "function",
-      "name": "getDecorator",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>decorator</code>.\n\nFor further details take a look at the property definition: {@link #decorator}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Decorator",
-            "desc": "Returns the value for decorator"
-          }
-        ]
-      }
-    },
-    "setDecorator": {
-      "type": "function",
-      "name": "setDecorator",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>decorator</code>.\n\nFor further details take a look at the property definition: {@link #decorator}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Decorator",
-            "paramName": "value",
-            "desc": "Value for decorator"
-          }
-        ]
-      }
-    },
-    "resetDecorator": {
-      "type": "function",
-      "name": "resetDecorator",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>decorator</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #decorator}."
-          }
-        ]
-      }
-    },
-    "getBackgroundColor": {
-      "type": "function",
-      "name": "getBackgroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for backgroundColor"
-          }
-        ]
-      }
-    },
-    "setBackgroundColor": {
-      "type": "function",
-      "name": "setBackgroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>backgroundColor</code>.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for backgroundColor"
-          }
-        ]
-      }
-    },
-    "resetBackgroundColor": {
-      "type": "function",
-      "name": "resetBackgroundColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>backgroundColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #backgroundColor}."
-          }
-        ]
-      }
-    },
-    "getTextColor": {
-      "type": "function",
-      "name": "getTextColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>textColor</code>.\n\nFor further details take a look at the property definition: {@link #textColor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Color",
-            "desc": "Returns the value for textColor"
-          }
-        ]
-      }
-    },
-    "setTextColor": {
-      "type": "function",
-      "name": "setTextColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>textColor</code>.\n\nFor further details take a look at the property definition: {@link #textColor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Color",
-            "paramName": "value",
-            "desc": "Value for textColor"
-          }
-        ]
-      }
-    },
-    "resetTextColor": {
-      "type": "function",
-      "name": "resetTextColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>textColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #textColor}."
-          }
-        ]
-      }
-    },
-    "getFont": {
-      "type": "function",
-      "name": "getFont",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>font</code>.\n\nFor further details take a look at the property definition: {@link #font}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Font",
-            "desc": "Returns the value for font"
-          }
-        ]
-      }
-    },
-    "setFont": {
-      "type": "function",
-      "name": "setFont",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>font</code>.\n\nFor further details take a look at the property definition: {@link #font}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Font",
-            "paramName": "value",
-            "desc": "Value for font"
-          }
-        ]
-      }
-    },
-    "resetFont": {
-      "type": "function",
-      "name": "resetFont",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>font</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #font}."
-          }
-        ]
-      }
-    },
-    "getOpacity": {
-      "type": "function",
-      "name": "getOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>opacity</code>.\n\nFor further details take a look at the property definition: {@link #opacity}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for opacity"
-          }
-        ]
-      }
-    },
-    "setOpacity": {
-      "type": "function",
-      "name": "setOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>opacity</code>.\n\nFor further details take a look at the property definition: {@link #opacity}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for opacity"
-          }
-        ]
-      }
-    },
-    "resetOpacity": {
-      "type": "function",
-      "name": "resetOpacity",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>opacity</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #opacity}."
-          }
-        ]
-      }
-    },
-    "getCursor": {
-      "type": "function",
-      "name": "getCursor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>cursor</code>.\n\nFor further details take a look at the property definition: {@link #cursor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for cursor"
-          }
-        ]
-      }
-    },
-    "setCursor": {
-      "type": "function",
-      "name": "setCursor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>cursor</code>.\n\nFor further details take a look at the property definition: {@link #cursor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for cursor"
-          }
-        ]
-      }
-    },
-    "resetCursor": {
-      "type": "function",
-      "name": "resetCursor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>cursor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #cursor}."
-          }
-        ]
-      }
-    },
-    "getToolTip": {
-      "type": "function",
-      "name": "getToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>toolTip</code>.\n\nFor further details take a look at the property definition: {@link #toolTip}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.ui.tooltip.ToolTip",
-            "desc": "Returns the value for toolTip"
-          }
-        ]
-      }
-    },
-    "setToolTip": {
-      "type": "function",
-      "name": "setToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>toolTip</code>.\n\nFor further details take a look at the property definition: {@link #toolTip}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.ui.tooltip.ToolTip",
-            "paramName": "value",
-            "desc": "Value for toolTip"
-          }
-        ]
-      }
-    },
-    "resetToolTip": {
-      "type": "function",
-      "name": "resetToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>toolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTip}."
-          }
-        ]
-      }
-    },
-    "getToolTipText": {
-      "type": "function",
-      "name": "getToolTipText",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>toolTipText</code>.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for toolTipText"
-          }
-        ]
-      }
-    },
-    "setToolTipText": {
-      "type": "function",
-      "name": "setToolTipText",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>toolTipText</code>.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for toolTipText"
-          }
-        ]
-      }
-    },
-    "resetToolTipText": {
-      "type": "function",
-      "name": "resetToolTipText",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>toolTipText</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipText}."
-          }
-        ]
-      }
-    },
-    "getToolTipIcon": {
-      "type": "function",
-      "name": "getToolTipIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>toolTipIcon</code>.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for toolTipIcon"
-          }
-        ]
-      }
-    },
-    "setToolTipIcon": {
-      "type": "function",
-      "name": "setToolTipIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>toolTipIcon</code>.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for toolTipIcon"
-          }
-        ]
-      }
-    },
-    "resetToolTipIcon": {
-      "type": "function",
-      "name": "resetToolTipIcon",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>toolTipIcon</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #toolTipIcon}."
-          }
-        ]
-      }
-    },
-    "getBlockToolTip": {
-      "type": "function",
-      "name": "getBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for blockToolTip"
-          }
-        ]
-      }
-    },
-    "isBlockToolTip": {
-      "type": "function",
-      "name": "isBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for blockToolTip"
-          }
-        ]
-      }
-    },
-    "setBlockToolTip": {
-      "type": "function",
-      "name": "setBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>blockToolTip</code>.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for blockToolTip"
-          }
-        ]
-      }
-    },
-    "resetBlockToolTip": {
-      "type": "function",
-      "name": "resetBlockToolTip",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>blockToolTip</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #blockToolTip}."
-          }
-        ]
-      }
-    },
-    "getShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "getShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for showToolTipWhenDisabled"
-          }
-        ]
-      }
-    },
-    "isShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "isShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for showToolTipWhenDisabled"
-          }
-        ]
-      }
-    },
-    "setShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "setShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>showToolTipWhenDisabled</code>.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for showToolTipWhenDisabled"
-          }
-        ]
-      }
-    },
-    "resetShowToolTipWhenDisabled": {
-      "type": "function",
-      "name": "resetShowToolTipWhenDisabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>showToolTipWhenDisabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #showToolTipWhenDisabled}."
-          }
-        ]
-      }
-    },
-    "getVisibility": {
-      "type": "function",
-      "name": "getVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for visibility"
-          }
-        ]
-      }
-    },
-    "setVisibility": {
-      "type": "function",
-      "name": "setVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for visibility"
-          }
-        ]
-      }
-    },
-    "resetVisibility": {
-      "type": "function",
-      "name": "resetVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ]
-      }
-    },
-    "isEnabled": {
-      "type": "function",
-      "name": "isEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "resetEnabled": {
-      "type": "function",
-      "name": "resetEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ]
-      }
-    },
-    "getAnonymous": {
-      "type": "function",
-      "name": "getAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "isAnonymous": {
-      "type": "function",
-      "name": "isAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "setAnonymous": {
-      "type": "function",
-      "name": "setAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for anonymous"
-          }
-        ]
-      }
-    },
-    "resetAnonymous": {
-      "type": "function",
-      "name": "resetAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ]
-      }
-    },
-    "getTabIndex": {
-      "type": "function",
-      "name": "getTabIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>tabIndex</code>.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for tabIndex"
-          }
-        ]
-      }
-    },
-    "setTabIndex": {
-      "type": "function",
-      "name": "setTabIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>tabIndex</code>.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for tabIndex"
-          }
-        ]
-      }
-    },
-    "resetTabIndex": {
-      "type": "function",
-      "name": "resetTabIndex",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>tabIndex</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #tabIndex}."
-          }
-        ]
-      }
-    },
-    "getFocusable": {
-      "type": "function",
-      "name": "getFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for focusable"
-          }
-        ]
-      }
-    },
-    "isFocusable": {
-      "type": "function",
-      "name": "isFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for focusable"
-          }
-        ]
-      }
-    },
-    "setFocusable": {
-      "type": "function",
-      "name": "setFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>focusable</code>.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for focusable"
-          }
-        ]
-      }
-    },
-    "resetFocusable": {
-      "type": "function",
-      "name": "resetFocusable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>focusable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #focusable}."
-          }
-        ]
-      }
-    },
-    "getKeepFocus": {
-      "type": "function",
-      "name": "getKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepFocus"
-          }
-        ]
-      }
-    },
-    "isKeepFocus": {
-      "type": "function",
-      "name": "isKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepFocus"
-          }
-        ]
-      }
-    },
-    "setKeepFocus": {
-      "type": "function",
-      "name": "setKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>keepFocus</code>.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for keepFocus"
-          }
-        ]
-      }
-    },
-    "resetKeepFocus": {
-      "type": "function",
-      "name": "resetKeepFocus",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>keepFocus</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepFocus}."
-          }
-        ]
-      }
-    },
-    "getKeepActive": {
-      "type": "function",
-      "name": "getKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepActive"
-          }
-        ]
-      }
-    },
-    "isKeepActive": {
-      "type": "function",
-      "name": "isKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for keepActive"
-          }
-        ]
-      }
-    },
-    "setKeepActive": {
-      "type": "function",
-      "name": "setKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>keepActive</code>.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for keepActive"
-          }
-        ]
-      }
-    },
-    "resetKeepActive": {
-      "type": "function",
-      "name": "resetKeepActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>keepActive</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #keepActive}."
-          }
-        ]
-      }
-    },
-    "getDraggable": {
-      "type": "function",
-      "name": "getDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for draggable"
-          }
-        ]
-      }
-    },
-    "isDraggable": {
-      "type": "function",
-      "name": "isDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for draggable"
-          }
-        ]
-      }
-    },
-    "setDraggable": {
-      "type": "function",
-      "name": "setDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>draggable</code>.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for draggable"
-          }
-        ]
-      }
-    },
-    "resetDraggable": {
-      "type": "function",
-      "name": "resetDraggable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>draggable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #draggable}."
-          }
-        ]
-      }
-    },
-    "getDroppable": {
-      "type": "function",
-      "name": "getDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for droppable"
-          }
-        ]
-      }
-    },
-    "isDroppable": {
-      "type": "function",
-      "name": "isDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for droppable"
-          }
-        ]
-      }
-    },
-    "setDroppable": {
-      "type": "function",
-      "name": "setDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>droppable</code>.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for droppable"
-          }
-        ]
-      }
-    },
-    "resetDroppable": {
-      "type": "function",
-      "name": "resetDroppable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>droppable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #droppable}."
-          }
-        ]
-      }
-    },
-    "getSelectable": {
-      "type": "function",
-      "name": "getSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for selectable"
-          }
-        ]
-      }
-    },
-    "isSelectable": {
-      "type": "function",
-      "name": "isSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for selectable"
-          }
-        ]
-      }
-    },
-    "setSelectable": {
-      "type": "function",
-      "name": "setSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>selectable</code>.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for selectable"
-          }
-        ]
-      }
-    },
-    "resetSelectable": {
-      "type": "function",
-      "name": "resetSelectable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>selectable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #selectable}."
-          }
-        ]
-      }
-    },
-    "getContextMenu": {
-      "type": "function",
-      "name": "getContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>contextMenu</code>.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.ui.menu.Menu",
-            "desc": "Returns the value for contextMenu"
-          }
-        ]
-      }
-    },
-    "setContextMenu": {
-      "type": "function",
-      "name": "setContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>contextMenu</code>.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.ui.menu.Menu",
-            "paramName": "value",
-            "desc": "Value for contextMenu"
-          }
-        ]
-      }
-    },
-    "resetContextMenu": {
-      "type": "function",
-      "name": "resetContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>contextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #contextMenu}."
-          }
-        ]
-      }
-    },
-    "getNativeContextMenu": {
-      "type": "function",
-      "name": "getNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for nativeContextMenu"
-          }
-        ]
-      }
-    },
-    "isNativeContextMenu": {
-      "type": "function",
-      "name": "isNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for nativeContextMenu"
-          }
-        ]
-      }
-    },
-    "setNativeContextMenu": {
-      "type": "function",
-      "name": "setNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>nativeContextMenu</code>.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for nativeContextMenu"
-          }
-        ]
-      }
-    },
-    "resetNativeContextMenu": {
-      "type": "function",
-      "name": "resetNativeContextMenu",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>nativeContextMenu</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #nativeContextMenu}."
-          }
-        ]
-      }
-    },
-    "getAppearance": {
-      "type": "function",
-      "name": "getAppearance",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>appearance</code>.\n\nFor further details take a look at the property definition: {@link #appearance}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for appearance"
-          }
-        ]
-      }
-    },
-    "setAppearance": {
-      "type": "function",
-      "name": "setAppearance",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>appearance</code>.\n\nFor further details take a look at the property definition: {@link #appearance}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for appearance"
-          }
-        ]
-      }
-    },
-    "resetAppearance": {
-      "type": "function",
-      "name": "resetAppearance",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>appearance</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #appearance}."
-          }
-        ]
-      }
-    },
-    "getMaxListHeight": {
-      "type": "function",
-      "name": "getMaxListHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxListHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxListHeight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for maxListHeight"
-          }
-        ]
-      }
-    },
-    "setMaxListHeight": {
-      "type": "function",
-      "name": "setMaxListHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxListHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxListHeight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for maxListHeight"
-          }
-        ]
-      }
-    },
-    "resetMaxListHeight": {
-      "type": "function",
-      "name": "resetMaxListHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxListHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxListHeight}."
-          }
-        ]
-      }
-    },
-    "getFormat": {
-      "type": "function",
-      "name": "getFormat",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>format</code>.\n\nFor further details take a look at the property definition: {@link #format}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Function",
-            "desc": "Returns the value for format"
-          }
-        ]
-      }
-    },
-    "setFormat": {
-      "type": "function",
-      "name": "setFormat",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>format</code>.\n\nFor further details take a look at the property definition: {@link #format}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Function",
-            "paramName": "value",
-            "desc": "Value for format"
-          }
-        ]
-      }
-    },
-    "resetFormat": {
-      "type": "function",
-      "name": "resetFormat",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.AbstractSelectBox",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>format</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #format}."
-          }
-        ]
-      }
     }
   },
-  "descendants": []
+  "statics": {}
 }

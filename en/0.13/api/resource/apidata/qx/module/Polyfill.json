@@ -1,69 +1,82 @@
 {
-  "className": "qx.module.Polyfill",
-  "packageName": "qx.module",
-  "name": "Polyfill",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 33,
-        "column": 0,
-        "index": 914
-      },
-      "end": {
-        "line": 33,
-        "column": 46,
-        "index": 960
-      }
+  "version": 0.3,
+  "lastModified": 1717235172014,
+  "lastModifiedIso": "2024-06-01T09:46:12.014Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Polyfill.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 882
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Adds JavaScript features that may not be supported by all clients.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Function"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.String"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Date"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Array"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Error"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Object"
-        },
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Number"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Polyfill"
-        }
-      ]
+    "end": {
+      "line": 33,
+      "column": 46,
+      "index": 928
     }
   },
-  "type": "class",
-  "descendants": []
+  "className": "qx.module.Polyfill",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Adds JavaScript features that may not be supported by all clients.",
+      " *",
+      " * @require(qx.lang.normalize.Function)",
+      " * @require(qx.lang.normalize.String)",
+      " * @require(qx.lang.normalize.Date)",
+      " * @require(qx.lang.normalize.Array)",
+      " * @require(qx.lang.normalize.Error)",
+      " * @require(qx.lang.normalize.Object)",
+      " * @require(qx.lang.normalize.Number)",
+      " *",
+      " * @group (Polyfill)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Adds JavaScript features that may not be supported by all clients.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Function"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.String"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Date"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Array"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Error"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Object"
+      },
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Number"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Polyfill"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

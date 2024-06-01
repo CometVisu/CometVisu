@@ -112,8 +112,8 @@
      */
     construct: function construct(scriptArr) {
       qx.core.Object.constructor.call(this);
-      this.__P_512_0 = false;
-      this.__P_512_1 = qx.lang.Type.isString(scriptArr) ? [scriptArr] : qx.lang.Array.clone(scriptArr);
+      this.__P_731_0 = false;
+      this.__P_731_1 = qx.lang.Type.isString(scriptArr) ? [scriptArr] : qx.lang.Array.clone(scriptArr);
     },
     /*
     *****************************************************************************
@@ -140,11 +140,11 @@
        * Map of scripts being added at the present time. Key is script name; value is instance of this class which
        * is loading it.
        */
-      __P_512_2: {},
+      __P_731_2: {},
       /**
        * Map of scripts that have fully loaded. Key is script name; value is true
        */
-      __P_512_3: {}
+      __P_731_3: {}
     },
     /*
     *****************************************************************************
@@ -156,11 +156,11 @@
       /**
        * Array of the scripts to be loaded
        */
-      __P_512_1: null,
+      __P_731_1: null,
       /**
        * True if start has been called.
        */
-      __P_512_0: null,
+      __P_731_0: null,
       /**
        * Start loading scripts. This may only be called once!
        * @return {Promise?} a promise which will be resolved after load of all scripts if promise support is enabled; nothing (undefined) if promises are not enabled.
@@ -175,22 +175,22 @@
             if (this.isDisposed()) {
               reject(new Error("disposed"));
             }
-            if (this.__P_512_0) {
+            if (this.__P_731_0) {
               reject(new Error("you can only call start once per instance"));
             }
-            this.__P_512_0 = true;
-            this.__P_512_4();
+            this.__P_731_0 = true;
+            this.__P_731_4();
           }, this);
         },
         "false": function _false() {
           if (this.isDisposed()) {
             return;
           }
-          if (this.__P_512_0) {
+          if (this.__P_731_0) {
             throw new Error("you can only call start once per instance");
           }
-          this.__P_512_0 = true;
-          this.__P_512_4();
+          this.__P_731_0 = true;
+          this.__P_731_4();
         }
       }),
       /**
@@ -199,7 +199,7 @@
        * Recursively called until the array of scripts is consumed
        *
        */
-      __P_512_4: function __P_512_4() {
+      __P_731_4: function __P_731_4() {
         var _this = this;
         var DynamicScriptLoader = qx.util.DynamicScriptLoader;
         var script;
@@ -207,20 +207,20 @@
         var id1, id2;
         var uri;
         var loader;
-        script = this.__P_512_1.shift();
+        script = this.__P_731_1.shift();
         if (!script) {
           this.fireEvent("ready");
           return;
         }
-        if (DynamicScriptLoader.__P_512_3[script]) {
+        if (DynamicScriptLoader.__P_731_3[script]) {
           this.fireDataEvent("loaded", {
             script: script,
             status: "preloaded"
           });
-          this.__P_512_4();
+          this.__P_731_4();
           return;
         }
-        dynLoader = DynamicScriptLoader.__P_512_2[script];
+        dynLoader = DynamicScriptLoader.__P_731_2[script];
         if (dynLoader) {
           id1 = dynLoader.addListener("loaded", function (e) {
             if (_this.isDisposed()) {
@@ -231,7 +231,7 @@
               dynLoader.removeListenerById(id2);
               dynLoader.removeListenerById(id1);
               _this.fireDataEvent("loaded", data);
-              _this.__P_512_4();
+              _this.__P_731_4();
             }
           });
           id2 = dynLoader.addListener("failed", function (e) {
@@ -254,19 +254,19 @@
           if (this.isDisposed()) {
             return;
           }
-          DynamicScriptLoader.__P_512_3[script] = true;
-          delete DynamicScriptLoader.__P_512_2[script];
+          DynamicScriptLoader.__P_731_3[script] = true;
+          delete DynamicScriptLoader.__P_731_2[script];
           this.fireDataEvent("loaded", {
             script: script,
             status: request.status
           });
-          this.__P_512_4();
+          this.__P_731_4();
         }, this);
         var onError = function onError(request) {
           if (this.isDisposed()) {
             return;
           }
-          delete DynamicScriptLoader.__P_512_2[script];
+          delete DynamicScriptLoader.__P_731_2[script];
           this.fireDataEvent("failed", {
             script: script,
             status: request.status
@@ -277,21 +277,21 @@
 
         // this.debug("Loading " + script + " started");
         loader.open("GET", uri);
-        DynamicScriptLoader.__P_512_2[script] = this;
+        DynamicScriptLoader.__P_731_2[script] = this;
         loader.send();
       }
     },
     destruct: function destruct() {
       var DynamicScriptLoader = qx.util.DynamicScriptLoader;
-      for (var key in DynamicScriptLoader.__P_512_2) {
-        if (DynamicScriptLoader.__P_512_2[key] === this) {
-          delete DynamicScriptLoader.__P_512_2[key];
+      for (var key in DynamicScriptLoader.__P_731_2) {
+        if (DynamicScriptLoader.__P_731_2[key] === this) {
+          delete DynamicScriptLoader.__P_731_2[key];
         }
       }
-      this.__P_512_1 = undefined;
+      this.__P_731_1 = undefined;
     }
   });
   qx.util.DynamicScriptLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DynamicScriptLoader.js.map?dt=1709410168991
+//# sourceMappingURL=DynamicScriptLoader.js.map?dt=1717235420229

@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "construct",
+    "dateMap",
+    "constructor",
+    "call",
+    "__date",
+    "members",
+    "getFullYear",
+    "fullYear",
+    "getMonth",
+    "month",
+    "getDate",
+    "date",
+    "getDay",
+    "day",
+    "getHours",
+    "hours",
+    "getSeconds",
+    "seconds",
+    "getMinutes",
+    "minutes",
+    "getMilliseconds",
+    "milliseconds",
+    "getTimezoneOffset",
+    "timezoneOffset",
+    "getTime",
+    "time",
+    "test",
+    "util",
+    "DateMock"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/util/DateMock.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.util.DateMock\", {\n  extend: qx.core.Object,\n\n  construct(dateMap) {\n    super();\n    this.__date = dateMap;\n  },\n\n  members: {\n    getFullYear() {\n      return this.__date.fullYear;\n    },\n\n    getMonth() {\n      return this.__date.month;\n    },\n\n    getDate() {\n      return this.__date.date;\n    },\n\n    getDay() {\n      return this.__date.day;\n    },\n\n    getHours() {\n      return this.__date.hours;\n    },\n\n    getSeconds() {\n      return this.__date.seconds;\n    },\n\n    getMinutes() {\n      return this.__date.minutes;\n    },\n\n    getMilliseconds() {\n      return this.__date.milliseconds;\n    },\n\n    getTimezoneOffset() {\n      return this.__date.timezoneOffset;\n    },\n\n    getTime() {\n      return this.__date.time;\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,uBAAuB,EAAE;IACvCC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IAEtBC,SAAS,WAAAA,UAACC,OAAO,EAAE;MACjBV,EAAA,CAAAO,IAAA,CAAAC,MAAA,CAAAG,WAAA,CAAAC,IAAA;MACA,IAAI,CAACC,SAAM,GAAGH,OAAO;IACvB,CAAC;IAEDI,OAAO,EAAE;MACPC,WAAW,WAAAA,YAAA,EAAG;QACZ,OAAO,IAAI,CAACF,SAAM,CAACG,QAAQ;MAC7B,CAAC;MAEDC,QAAQ,WAAAA,SAAA,EAAG;QACT,OAAO,IAAI,CAACJ,SAAM,CAACK,KAAK;MAC1B,CAAC;MAEDC,OAAO,WAAAA,QAAA,EAAG;QACR,OAAO,IAAI,CAACN,SAAM,CAACO,IAAI;MACzB,CAAC;MAEDC,MAAM,WAAAA,OAAA,EAAG;QACP,OAAO,IAAI,CAACR,SAAM,CAACS,GAAG;MACxB,CAAC;MAEDC,QAAQ,WAAAA,SAAA,EAAG;QACT,OAAO,IAAI,CAACV,SAAM,CAACW,KAAK;MAC1B,CAAC;MAEDC,UAAU,WAAAA,WAAA,EAAG;QACX,OAAO,IAAI,CAACZ,SAAM,CAACa,OAAO;MAC5B,CAAC;MAEDC,UAAU,WAAAA,WAAA,EAAG;QACX,OAAO,IAAI,CAACd,SAAM,CAACe,OAAO;MAC5B,CAAC;MAEDC,eAAe,WAAAA,gBAAA,EAAG;QAChB,OAAO,IAAI,CAAChB,SAAM,CAACiB,YAAY;MACjC,CAAC;MAEDC,iBAAiB,WAAAA,kBAAA,EAAG;QAClB,OAAO,IAAI,CAAClB,SAAM,CAACmB,cAAc;MACnC,CAAC;MAEDC,OAAO,WAAAA,QAAA,EAAG;QACR,OAAO,IAAI,CAACpB,SAAM,CAACqB,IAAI;MACzB;IACF;EACF,CAAC,CAAC;EAnEFlC,EAAE,CAACmC,IAAI,CAACC,IAAI,CAACC,QAAQ,CAAClC,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

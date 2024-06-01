@@ -1,33 +1,36 @@
 {
-  "className": "qx.theme.indigo.ColorDark",
-  "packageName": "qx.theme.indigo",
-  "name": "ColorDark",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 19,
-        "column": 0,
-        "index": 451
-      },
-      "end": {
-        "line": 117,
-        "column": 3,
-        "index": 3272
-      }
+  "version": 0.3,
+  "lastModified": 1717235169706,
+  "lastModifiedIso": "2024-06-01T09:46:09.706Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/ColorDark.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 19,
+      "column": 0,
+      "index": 433
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Indigo dark color theme</p>"
-        }
-      ]
+    "end": {
+      "line": 117,
+      "column": 3,
+      "index": 3156
     }
   },
-  "type": "theme",
-  "descendants": []
+  "className": "qx.theme.indigo.ColorDark",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Indigo dark color theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Indigo dark color theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

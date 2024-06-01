@@ -53,17 +53,17 @@
 
       // If no pane was specified. Create one.
       if (!pane) {
-        this.__P_434_0 = new qx.ui.core.Widget();
-        this.__P_434_1 = this.__P_434_0;
+        this.__P_653_0 = new qx.ui.core.Widget();
+        this.__P_653_1 = this.__P_653_0;
       } else {
-        this.__P_434_0 = null;
-        this.__P_434_1 = pane;
+        this.__P_653_0 = null;
+        this.__P_653_1 = pane;
       }
-      this.__P_434_1.getContentElement().setStyle("overflowY", "auto");
+      this.__P_653_1.getContentElement().setStyle("overflowY", "auto");
     },
     members: {
-      __P_434_0: null,
-      __P_434_1: null,
+      __P_653_0: null,
+      __P_653_1: null,
       /**
        * Apply the structure typically defined in the constructor to the
        * Progressive.
@@ -80,17 +80,17 @@
        * @return {qx.ui.core.Widget}
        */
       getPane: function getPane() {
-        return this.__P_434_1;
+        return this.__P_653_1;
       }
     },
     destruct: function destruct() {
-      if (this.__P_434_0) {
-        this.__P_434_0.dispose();
+      if (this.__P_653_0) {
+        this.__P_653_0.dispose();
       }
-      this.__P_434_0 = this.__P_434_1 = null;
+      this.__P_653_0 = this.__P_653_1 = null;
     }
   });
   qx.ui.progressive.structure.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1709410164504
+//# sourceMappingURL=Abstract.js.map?dt=1717235415330

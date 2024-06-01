@@ -1246,6 +1246,7 @@
       listitem: {
         alias: "atom",
         style: function style(states) {
+          var useSelectionState = !states.readonly && states.selected;
           var padding = [3, 5, 3, 5];
           if (states.lead) {
             padding = [2, 4, 2, 4];
@@ -1256,8 +1257,8 @@
           return {
             gap: 4,
             padding: padding,
-            backgroundColor: states.selected ? states.disabled ? "primary-disabled" : "primary" : "transparent",
-            textColor: states.selected ? "text-on-primary" : "text-primary-on-surface",
+            backgroundColor: useSelectionState ? states.disabled ? "primary-disabled" : "primary" : "transparent",
+            textColor: useSelectionState ? "text-on-primary" : "text-primary-on-surface",
             decorator: states.lead ? "lead-item" : states.dragover ? "dragover" : undefined,
             opacity: states.drag ? 0.5 : undefined
           };
@@ -2143,4 +2144,4 @@
   qx.theme.tangible.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1709410157131
+//# sourceMappingURL=Appearance.js.map?dt=1717235398619

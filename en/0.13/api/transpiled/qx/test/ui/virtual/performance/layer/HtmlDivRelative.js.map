@@ -1,0 +1,46 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "ui",
+    "virtual",
+    "layer",
+    "Abstract",
+    "members",
+    "_fullUpdate",
+    "firstRow",
+    "firstColumn",
+    "rowSizes",
+    "columnSizes",
+    "html",
+    "left",
+    "top",
+    "row",
+    "col",
+    "x",
+    "length",
+    "y",
+    "content",
+    "push",
+    "getContentElement",
+    "setAttribute",
+    "join",
+    "test",
+    "performance",
+    "HtmlDivRelative"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/virtual/performance/layer/HtmlDivRelative.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.ui.virtual.performance.layer.HtmlDivRelative\", {\n  extend: qx.ui.virtual.layer.Abstract,\n\n  /*\n  *****************************************************************************\n     MEMBERS\n  *****************************************************************************\n  */\n\n  members: {\n    _fullUpdate(firstRow, firstColumn, rowSizes, columnSizes) {\n      var html = [];\n      var left = 0;\n      var top = 0;\n      var row = firstRow;\n      var col = firstColumn;\n      for (var x = 0; x < rowSizes.length; x++) {\n        var left = 0;\n        var col = firstColumn;\n        for (var y = 0; y < columnSizes.length; y++) {\n          var content = col + \" / \" + row;\n\n          html.push(\n            \"<div style='\",\n            \"float: left;\",\n            \"width:\",\n            columnSizes[y],\n            \"px;\",\n            \"height:\",\n            rowSizes[x],\n            \"px;\",\n            \"'>\",\n            content,\n            \"</div>\"\n          );\n\n          col++;\n          left += columnSizes[y];\n        }\n        top += rowSizes[x];\n        row++;\n      }\n\n      this.getContentElement().setAttribute(\"html\", html.join(\"\"));\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,sDAAsD,EAAE;IACtEC,MAAM,EAAEN,EAAE,CAACO,EAAE,CAACC,OAAO,CAACC,KAAK,CAACC,QAAQ;IAEpC;AACF;AACA;AACA;AACA;;IAEEC,OAAO,EAAE;MACPC,WAAW,WAAAA,YAACC,QAAQ,EAAEC,WAAW,EAAEC,QAAQ,EAAEC,WAAW,EAAE;QACxD,IAAIC,IAAI,GAAG,EAAE;QACb,IAAIC,IAAI,GAAG,CAAC;QACZ,IAAIC,GAAG,GAAG,CAAC;QACX,IAAIC,GAAG,GAAGP,QAAQ;QAClB,IAAIQ,GAAG,GAAGP,WAAW;QACrB,KAAK,IAAIQ,CAAC,GAAG,CAAC,EAAEA,CAAC,GAAGP,QAAQ,CAACQ,MAAM,EAAED,CAAC,EAAE,EAAE;UACxC,IAAIJ,IAAI,GAAG,CAAC;UACZ,IAAIG,GAAG,GAAGP,WAAW;UACrB,KAAK,IAAIU,CAAC,GAAG,CAAC,EAAEA,CAAC,GAAGR,WAAW,CAACO,MAAM,EAAEC,CAAC,EAAE,EAAE;YAC3C,IAAIC,OAAO,GAAGJ,GAAG,GAAG,KAAK,GAAGD,GAAG;YAE/BH,IAAI,CAACS,IAAI,CACP,cAAc,EACd,cAAc,EACd,QAAQ,EACRV,WAAW,CAACQ,CAAC,CAAC,EACd,KAAK,EACL,SAAS,EACTT,QAAQ,CAACO,CAAC,CAAC,EACX,KAAK,EACL,IAAI,EACJG,OAAO,EACP,QACF,CAAC;YAEDJ,GAAG,EAAE;YACLH,IAAI,IAAIF,WAAW,CAACQ,CAAC,CAAC;UACxB;UACAL,GAAG,IAAIJ,QAAQ,CAACO,CAAC,CAAC;UAClBF,GAAG,EAAE;QACP;QAEA,IAAI,CAACO,iBAAiB,CAAC,CAAC,CAACC,YAAY,CAAC,MAAM,EAAEX,IAAI,CAACY,IAAI,CAAC,EAAE,CAAC,CAAC;MAC9D;IACF;EACF,CAAC,CAAC;EAhEF7B,EAAE,CAAC8B,IAAI,CAACvB,EAAE,CAACC,OAAO,CAACuB,WAAW,CAACtB,KAAK,CAACuB,eAAe,CAAC7B,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

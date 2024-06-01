@@ -1,50 +1,36 @@
 {
-  "className": "qx.theme.classic.Decoration",
-  "packageName": "qx.theme.classic",
-  "name": "Decoration",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 31,
-        "column": 0,
-        "index": 859
-      },
-      "end": {
-        "line": 560,
-        "column": 3,
-        "index": 12208
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The classic qooxdoo decoration theme.</p>"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235169910,
+  "lastModifiedIso": "2024-06-01T09:46:09.910Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/classic/Decoration.js",
   "type": "theme",
-  "aliases": {
-    "location": {
-      "start": {
-        "line": 32,
-        "column": 2,
-        "index": 911
-      },
-      "end": {
-        "line": 34,
-        "column": 3,
-        "index": 967
-      }
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 829
     },
-    "aliasMap": {
-      "decoration": "qx/decoration/Classic"
+    "end": {
+      "line": 560,
+      "column": 3,
+      "index": 11649
     }
   },
-  "descendants": []
+  "className": "qx.theme.classic.Decoration",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The classic qooxdoo decoration theme.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The classic qooxdoo decoration theme.</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

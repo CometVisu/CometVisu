@@ -1,10 +1,10 @@
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t["return"] || t["return"](); } finally { if (u) throw o; } } }; }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
@@ -71,10 +71,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
        * @var {cv.io.Mockup}
        */
       _client: null,
-      __P_566_0: null,
-      __P_566_1: false,
-      __P_566_2: null,
-      __P_566_3: 0,
+      __P_786_0: null,
+      __P_786_1: false,
+      __P_786_2: null,
+      __P_786_3: 0,
       _addressConfigs: null,
       init: function init(configFile) {
         var _this = this;
@@ -82,7 +82,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var r = new qx.io.request.Xhr(configFile);
         r.addListener('success', function (e) {
           cv.Config.initialDemoData = e.getTarget().getResponse();
-          _this.__P_566_4();
+          _this.__P_786_4();
           _this.setInitialized(true);
           _this.debug('simulator data has been loaded');
         });
@@ -91,15 +91,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         });
         r.send();
       },
-      __P_566_4: function __P_566_4() {
+      __P_786_4: function __P_786_4() {
         var _this2 = this;
-        this.__P_566_5 = cv.Config.initialDemoData.xhr;
+        this.__P_786_5 = cv.Config.initialDemoData.xhr;
 
         // we need to adjust the timestamps of the chart data
         var now = Date.now();
-        for (var url in this.__P_566_5) {
+        for (var url in this.__P_786_5) {
           if (url.startsWith('rrd')) {
-            this.__P_566_5[url].forEach(function (d) {
+            this.__P_786_5[url].forEach(function (d) {
               var data = d.body;
               var offset = now - data[data.length - 1][0];
               data.forEach(function (entry) {
@@ -107,7 +107,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               });
             });
           } else if (url.startsWith('resource/plugin/rsslog.php')) {
-            this.__P_566_5[url].forEach(function (d) {
+            this.__P_786_5[url].forEach(function (d) {
               var data = d.body.responseData.feed.entries;
               var date = new Date();
               date.setDate(date.getDate() - 1);
@@ -183,16 +183,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
               url = url.substr(window.location.pathname.length - 1);
             }
           }
-          if (!this.__P_566_5[url] || this.__P_566_5[url].length === 0) {
+          if (!this.__P_786_5[url] || this.__P_786_5[url].length === 0) {
             qx.log.Logger.error(this, '404: no logged responses for URI ' + url + ' found');
           } else {
             qx.log.Logger.debug(this, 'faking response for ' + url);
             var response = '';
-            if (this.__P_566_5[url].length === 1) {
-              response = this.__P_566_5[url][0];
+            if (this.__P_786_5[url].length === 1) {
+              response = this.__P_786_5[url][0];
             } else {
               // multiple responses recorded use them as LIFO stack
-              response = this.__P_566_5[url].shift();
+              response = this.__P_786_5[url].shift();
             }
             if (request.readyState === 4 && request.status === 404) {
               // This is a hack, sometimes the request has a 404 status and send readystate
@@ -208,33 +208,33 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }.bind(this));
       },
       onWrite: function onWrite(address, value) {
-        if (this.__P_566_0 && Object.prototype.hasOwnProperty.call(this.__P_566_0, address)) {
+        if (this.__P_786_0 && Object.prototype.hasOwnProperty.call(this.__P_786_0, address)) {
           this._processSimulation(address, value);
           return true;
         }
         return false;
       },
       _registerSimulations: function _registerSimulations(simulations) {
-        this.__P_566_0 = {};
+        this.__P_786_0 = {};
         Object.keys(simulations).forEach(function (mainAddress) {
           var simulation = simulations[mainAddress];
-          this.__P_566_0[mainAddress] = simulation;
+          this.__P_786_0[mainAddress] = simulation;
           if (Object.prototype.hasOwnProperty.call(simulation, 'additionalAddresses')) {
             simulation.additionalAddresses.forEach(function (addr) {
-              this.__P_566_0[addr] = simulation;
+              this.__P_786_0[addr] = simulation;
             }, this);
           }
         }, this);
       },
       _registerGenerators: function _registerGenerators(generators) {
         var _this3 = this;
-        this.__P_566_6 = generators;
+        this.__P_786_6 = generators;
         var _loop = function _loop() {
-          var gen = _this3.__P_566_6[name];
+          var gen = _this3.__P_786_6[name];
           gen.interval = setInterval(function () {
             var data = {};
             var value = gen.targetValue + (Math.random() - 0.5) * gen.deviation * 2;
-            if (_this3.__P_566_1 && _this3._addressConfigs[gen.address]) {
+            if (_this3.__P_786_1 && _this3._addressConfigs[gen.address]) {
               value = cv.Transform.encodeBusAndRaw(_this3._addressConfigs[gen.address], value).raw;
             }
             data[gen.address] = value;
@@ -244,12 +244,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             });
           }, gen.interval);
         };
-        for (var name in this.__P_566_6) {
+        for (var name in this.__P_786_6) {
           _loop();
         }
       },
       generate: function generate(name, options) {
-        var generator = this.__P_566_6 ? this.__P_566_6[name] : null;
+        var generator = this.__P_786_6 ? this.__P_786_6[name] : null;
         var data = [];
         if (generator) {
           if (options) {
@@ -331,26 +331,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return data;
       },
       _startSequence: function _startSequence() {
-        if (this.__P_566_2.length <= this.__P_566_3) {
+        if (this.__P_786_2.length <= this.__P_786_3) {
           // start again
-          this.__P_566_3 = 0;
+          this.__P_786_3 = 0;
         }
         qx.event.Timer.once(function () {
           this._client.receive({
             i: new Date().getTime(),
-            d: this.__P_566_2[this.__P_566_3].data
+            d: this.__P_786_2[this.__P_786_3].data
           });
-          this.__P_566_3++;
+          this.__P_786_3++;
           this._startSequence();
-        }, this, this.__P_566_2[this.__P_566_3].delay);
+        }, this, this.__P_786_2[this.__P_786_3].delay);
       },
       _processSimulation: function _processSimulation(address, value) {
         var _this4 = this;
-        var simulation = this.__P_566_0[address];
+        var simulation = this.__P_786_0[address];
         if (!simulation) {
           return;
         }
-        if (this.__P_566_1 && address in this._addressConfigs) {
+        if (this.__P_786_1 && address in this._addressConfigs) {
           value = cv.Transform.encodeBusAndRaw(this._addressConfigs[address], value).raw;
         }
         var start = false;
@@ -374,7 +374,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             var initValue = cv.data.Model.getInstance().getState(simulation.targetAddress);
             if (initValue === undefined) {
               initValue = 0;
-            } else if (this.__P_566_1 && simulation.targetAddress in this._addressConfigs) {
+            } else if (this.__P_786_1 && simulation.targetAddress in this._addressConfigs) {
               initValue = cv.Transform.decode(this._addressConfigs[simulation.targetAddress], initValue);
             }
             simulation.value = initValue;
@@ -405,7 +405,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   d: {}
                 };
                 var sendValue = newValue;
-                if (_this4.__P_566_1 && simulation.targetAddress in _this4._addressConfigs) {
+                if (_this4.__P_786_1 && simulation.targetAddress in _this4._addressConfigs) {
                   sendValue = cv.Transform.encodeBusAndRaw(_this4._addressConfigs[simulation.targetAddress], newValue).raw;
                 }
                 update.d[simulation.targetAddress] = sendValue;
@@ -428,7 +428,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var _this5 = this;
         if (cv.Config.initialDemoData && addresses.length > 0) {
           if (cv.Config.initialDemoData.encodeFirst) {
-            this.__P_566_1 = true;
+            this.__P_786_1 = true;
             // connect address data from widgets first
             this._addressConfigs = {};
             var widgetData = cv.data.Model.getInstance().getWidgetDataModel();
@@ -505,7 +505,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             d: cv.Config.initialDemoData.states
           });
           if (cv.Config.initialDemoData.sequence) {
-            this.__P_566_2 = cv.Config.initialDemoData.sequence;
+            this.__P_786_2 = cv.Config.initialDemoData.sequence;
             this._startSequence();
           }
           if (cv.Config.initialDemoData.simulations) {
@@ -597,13 +597,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     ***********************************************
     */
     destruct: function destruct() {
-      this.__P_566_0 = null;
+      this.__P_786_0 = null;
       this._addressConfigs = null;
-      this.__P_566_2 = null;
+      this.__P_786_2 = null;
       this._client = null;
     }
   });
   cv.data.Simulation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Simulation.js.map?dt=1709410172888
+//# sourceMappingURL=Simulation.js.map?dt=1717235424500

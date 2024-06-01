@@ -1,95 +1,76 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235171662,
+  "lastModifiedIso": "2024-06-01T09:46:11.662Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/Manager.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 697
+    },
+    "end": {
+      "line": 1025,
+      "column": 3,
+      "index": 31640
+    }
+  },
   "className": "qx.event.Manager",
-  "packageName": "qx.event",
-  "name": "Manager",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Wrapper for browser DOM event handling for each browser window/frame.",
+      " *",
+      " * @require(qx.bom.Event)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Wrapper for browser DOM event handling for each browser window/frame.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.bom.Event"
+      }
+    ]
+  },
   "superClass": "Object",
   "interfaces": [
     "qx.core.IDisposable"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 723
-      },
-      "end": {
-        "line": 1025,
-        "column": 3,
-        "index": 32664
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Wrapper for browser DOM event handling for each browser window/frame.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.bom.Event"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "win"
+      },
+      {
+        "name": "registration"
+      }
+    ],
     "location": {
       "start": {
         "line": 43,
         "column": 2,
-        "index": 1244
+        "index": 1202
       },
       "end": {
         "line": 81,
         "column": 3,
-        "index": 2404
+        "index": 2324
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Creates a new instance of the event handler.</p>"
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "win {Window} The DOM window this manager handles the events for",
-          "paramName": "win",
-          "description": " The DOM window this manager handles the events for",
-          "type": "Window"
-        },
-        {
-          "name": "@param",
-          "body": "registration {qx.event.Registration} The event registration to use",
-          "paramName": "registration",
-          "description": " The event registration to use",
-          "type": "qx.event.Registration"
-        }
-      ]
     }
   },
   "statics": {
     "__lastUnique": {
-      "location": {
-        "start": {
-          "line": 91,
-          "column": 4,
-          "index": 2671
-        },
-        "end": {
-          "line": 91,
-          "column": 19,
-          "index": 2686
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} Last used ID for an event "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -103,23 +84,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "getNextUniqueId": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 99,
+          "line": 91,
           "column": 4,
-          "index": 2913
+          "index": 2581
         },
         "end": {
-          "line": 101,
-          "column": 5,
-          "index": 2979
+          "line": 91,
+          "column": 19,
+          "index": 2596
         }
       },
+      "appearsIn": []
+    },
+    "getNextUniqueId": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an unique ID which may be used in combination with a target and",
+          "     * a type to identify an event entry.",
+          "     *",
+          "     * @return {String} The next free identifier (auto-incremented)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -130,28 +119,38 @@
           {
             "name": "@return",
             "body": "{String} The next free identifier (auto-incremented)",
-            "type": "String",
-            "description": " The next free identifier (auto-incremented)"
+            "type": "string",
+            "description": "The next free identifier (auto-incremented)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__globalEventMonitors": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 106,
+          "line": 99,
           "column": 4,
-          "index": 3075
+          "index": 2815
         },
         "end": {
-          "line": 106,
-          "column": 29,
-          "index": 3100
+          "line": 101,
+          "column": 5,
+          "index": 2879
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__globalEventMonitors": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Array} private list of global event monitor functions",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -165,23 +164,35 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "addGlobalEventMonitor": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 118,
+          "line": 106,
           "column": 4,
-          "index": 3640
+          "index": 2970
         },
         "end": {
-          "line": 122,
-          "column": 5,
-          "index": 3800
+          "line": 106,
+          "column": 29,
+          "index": 2995
         }
       },
+      "appearsIn": []
+    },
+    "addGlobalEventMonitor": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a global event monitor function which is called for each event fired",
+          "     * anywhere in the application. The function is called with the signature",
+          "     * (target: {@link qx.core.Object}, event: {@link qx.event.type.Event}).",
+          "     * Since for performance reasons, the original event object is passed,",
+          "     * the monitor function must not change this event in any way.",
+          "     *",
+          "     * @param fn {Function} Monitor function",
+          "     * @param context {Object?} Optional execution context of the function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -194,7 +205,7 @@
             "body": "fn {Function} Monitor function",
             "paramName": "fn",
             "description": " Monitor function",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -206,23 +217,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeGlobalEventMonitor": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 129,
+          "line": 118,
           "column": 4,
-          "index": 3972
+          "index": 3523
         },
         "end": {
-          "line": 132,
+          "line": 122,
           "column": 5,
-          "index": 4112
+          "index": 3679
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "fn",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeGlobalEventMonitor": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a global event monitor function that had",
+          "     * previously been added.",
+          "     * @param fn {Function} The global monitor function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -235,27 +265,39 @@
             "body": "fn {Function} The global monitor function",
             "paramName": "fn",
             "description": " The global monitor function",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetGlobalEventMonitors": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 137,
+          "line": 129,
           "column": 4,
-          "index": 4184
+          "index": 3844
         },
         "end": {
-          "line": 139,
+          "line": 132,
           "column": 5,
-          "index": 4271
+          "index": 3981
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "fn",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetGlobalEventMonitors": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all registered event monitors",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -263,23 +305,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getGlobalEventMonitor": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 148,
+          "line": 137,
           "column": 4,
-          "index": 4540
+          "index": 4048
         },
         "end": {
-          "line": 150,
+          "line": 139,
           "column": 5,
-          "index": 4617
+          "index": 4133
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getGlobalEventMonitor": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the global event monitor. Not compatible with the {@link",
+          "     * qx.event.Manager.addGlobalEventMonitor} API. Will be removed in v7.0.0",
+          "     *",
+          "     * @deprecated {6.0}",
+          "     * @return {Function?} the global monitor function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -297,27 +350,42 @@
             "name": "@return",
             "body": "{Function?} the global monitor function",
             "type": "Function?",
-            "description": " the global monitor function"
+            "description": "the global monitor function"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setGlobalEventMonitor": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 160,
+          "line": 148,
           "column": 4,
-          "index": 4954
+          "index": 4393
         },
         "end": {
-          "line": 163,
+          "line": 150,
           "column": 5,
-          "index": 5073
+          "index": 4468
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Function?"
+      },
+      "appearsIn": []
+    },
+    "setGlobalEventMonitor": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the global event monitor. Not compatible with the {@link",
+          "     * qx.event.Manager.addGlobalEventMonitor} API. Will be removed in",
+          "     * v7.0.0. Use {@link qx.event.Manager.addGlobalEventMonitor} instead.",
+          "     *",
+          "     * @deprecated {6.0}",
+          "     * @param fn {Function?} the global monitor function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -341,185 +409,210 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 4795
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 4911
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "fn",
+          "type": "Function",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
     }
   },
   "members": {
     "__registration": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 173,
           "column": 4,
-          "index": 5291
+          "index": 5119
         },
         "end": {
           "line": 173,
           "column": 24,
-          "index": 5311
+          "index": 5139
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__listeners": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 174,
           "column": 4,
-          "index": 5318
+          "index": 5145
         },
         "end": {
           "line": 174,
           "column": 21,
-          "index": 5335
+          "index": 5162
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__dispatchers": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 176,
           "column": 4,
-          "index": 5344
+          "index": 5169
         },
         "end": {
           "line": 176,
           "column": 23,
-          "index": 5363
+          "index": 5188
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__disposeWrapper": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 177,
           "column": 4,
-          "index": 5370
+          "index": 5194
         },
         "end": {
           "line": 177,
           "column": 26,
-          "index": 5392
+          "index": 5216
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__handlers": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 179,
           "column": 4,
-          "index": 5401
+          "index": 5223
         },
         "end": {
           "line": 179,
           "column": 20,
-          "index": 5417
+          "index": 5239
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__handlerCache": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 180,
           "column": 4,
-          "index": 5424
+          "index": 5245
         },
         "end": {
           "line": 180,
           "column": 24,
-          "index": 5444
+          "index": 5265
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__window": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 181,
           "column": 4,
-          "index": 5451
+          "index": 5271
         },
         "end": {
           "line": 181,
           "column": 18,
-          "index": 5465
+          "index": 5285
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__windowId": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 182,
           "column": 4,
-          "index": 5472
+          "index": 5291
         },
         "end": {
           "line": 182,
           "column": 20,
-          "index": 5488
+          "index": 5307
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__blacklist": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 184,
           "column": 4,
-          "index": 5497
+          "index": 5314
         },
         "end": {
           "line": 184,
           "column": 21,
-          "index": 5514
+          "index": 5331
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__clearBlackList": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 185,
           "column": 4,
-          "index": 5521
+          "index": 5337
         },
         "end": {
           "line": 185,
           "column": 26,
-          "index": 5543
+          "index": 5359
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getWindow": {
-      "location": {
-        "start": {
-          "line": 198,
-          "column": 4,
-          "index": 5887
-        },
-        "end": {
-          "line": 200,
-          "column": 5,
-          "index": 5936
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the window instance the event manager is responsible for",
+          "     *",
+          "     * @return {Window} DOM window instance",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -531,27 +624,39 @@
             "name": "@return",
             "body": "{Window} DOM window instance",
             "type": "Window",
-            "description": " DOM window instance"
+            "description": "DOM window instance"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getWindowId": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 207,
+          "line": 198,
           "column": 4,
-          "index": 6067
+          "index": 5690
         },
         "end": {
-          "line": 209,
+          "line": 200,
           "column": 5,
-          "index": 6120
+          "index": 5737
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Window"
+      },
+      "appearsIn": []
+    },
+    "getWindowId": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the hashcode of the manager's window",
+          "     *",
+          "     * @return {String} The window's hashcode",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -562,28 +667,41 @@
           {
             "name": "@return",
             "body": "{String} The window's hashcode",
-            "type": "String",
-            "description": " The window's hashcode"
+            "type": "string",
+            "description": "The window's hashcode"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getHandler": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 217,
+          "line": 207,
           "column": 4,
-          "index": 6382
+          "index": 5861
         },
         "end": {
-          "line": 225,
+          "line": 209,
           "column": 5,
-          "index": 6591
+          "index": 5912
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getHandler": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an instance of the given handler class for this manager(window).",
+          "     *",
+          "     * @param clazz {Class} Any class which implements {@link qx.event.IEventHandler}",
+          "     * @return {Object} The instance used by this manager",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -603,28 +721,46 @@
           {
             "name": "@return",
             "body": "{Object} The instance used by this manager",
-            "type": "Object",
-            "description": " The instance used by this manager"
+            "type": "Record<any, any>",
+            "description": "The instance used by this manager"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDispatcher": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 233,
+          "line": 217,
           "column": 4,
-          "index": 6856
+          "index": 6166
         },
         "end": {
-          "line": 244,
+          "line": 225,
           "column": 5,
-          "index": 7131
+          "index": 6367
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getDispatcher": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns an instance of the given dispatcher class for this manager(window).",
+          "     *",
+          "     * @param clazz {Class} Any class which implements {@link qx.event.IEventHandler}",
+          "     * @return {Object} The instance used by this manager",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -644,28 +780,54 @@
           {
             "name": "@return",
             "body": "{Object} The instance used by this manager",
-            "type": "Object",
-            "description": " The instance used by this manager"
+            "type": "Record<any, any>",
+            "description": "The instance used by this manager"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getListeners": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 266,
+          "line": 233,
           "column": 4,
-          "index": 7965
+          "index": 6624
         },
         "end": {
-          "line": 279,
+          "line": 244,
           "column": 5,
-          "index": 8377
+          "index": 6888
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getListeners": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get a copy of all event listeners for the given combination",
+          "     * of target, event type and phase.",
+          "     *",
+          "     * This method is especially useful and for event handlers to",
+          "     * to query the listeners registered in the manager.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} Event type",
+          "     * @param capture {Boolean ? false} Whether the listener is for the",
+          "     *       capturing phase of the bubbling phase.",
+          "     * @return {Array|null} Array of registered event handlers. May return",
+          "     *       null when no listener were found.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -678,14 +840,14 @@
             "body": "target {Object} Any valid event target",
             "paramName": "target",
             "description": " Any valid event target",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "type {String} Event type",
             "paramName": "type",
             "description": " Event type",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -702,27 +864,56 @@
             "name": "@return",
             "body": "{Array|null} Array of registered event handlers. May return\n       null when no listener were found.",
             "type": "Array|null",
-            "description": " Array of registered event handlers. May return\n       null when no listener were found."
+            "description": "Array of registered event handlers. May return\n       null when no listener were found."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAllListeners": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 288,
+          "line": 266,
           "column": 4,
-          "index": 8569
+          "index": 7700
         },
         "end": {
-          "line": 290,
+          "line": 279,
           "column": 5,
-          "index": 8627
+          "index": 8099
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "capture",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "Array|null"
+      },
+      "appearsIn": []
+    },
+    "getAllListeners": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all registered listeners.",
+          "     *",
+          "     * @internal",
+          "     *",
+          "     * @return {Map} All registered listeners. The key is the hash code form an object.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -739,28 +930,42 @@
           {
             "name": "@return",
             "body": "{Map} All registered listeners. The key is the hash code form an object.",
-            "type": "Map",
-            "description": " All registered listeners. The key is the hash code form an object."
+            "type": "Map<any, any>",
+            "description": "All registered listeners. The key is the hash code form an object."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "serializeListeners": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 299,
+          "line": 288,
           "column": 4,
-          "index": 8962
+          "index": 8282
         },
         "end": {
-          "line": 326,
+          "line": 290,
           "column": 5,
-          "index": 9820
+          "index": 8338
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "serializeListeners": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a serialized array of all events attached on the given target.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @return {Map[]} Array of maps where everyone contains the keys:",
+          "     *   <code>handler</code>, <code>self</code>, <code>type</code> and <code>capture</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -773,7 +978,7 @@
             "body": "target {Object} Any valid event target",
             "paramName": "target",
             "description": " Any valid event target",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
@@ -781,27 +986,52 @@
             "name": "@return",
             "body": "{Map[]} Array of maps where everyone contains the keys:\n   <code>handler</code>, <code>self</code>, <code>type</code> and <code>capture</code>.",
             "type": "Map[]",
-            "description": " Array of maps where everyone contains the keys:\n   <code>handler</code>, <code>self</code>, <code>type</code> and <code>capture</code>."
+            "description": "Array of maps where everyone contains the keys:\n   <code>handler</code>, <code>self</code>, <code>type</code> and <code>capture</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toggleAttachedEvents": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 341,
+          "line": 299,
           "column": 4,
-          "index": 10377
+          "index": 8664
         },
         "end": {
-          "line": 361,
+          "line": 326,
           "column": 5,
-          "index": 11120
+          "index": 9495
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map[]"
+      },
+      "appearsIn": []
+    },
+    "toggleAttachedEvents": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method might be used to temporally remove all events",
+          "     * directly attached to the given target. This do not work",
+          "     * have any effect on bubbling events normally.",
+          "     *",
+          "     * This is mainly thought for detaching events in IE, before",
+          "     * cloning them. It also removes all leak scenarios",
+          "     * when unloading a document and may be used here as well.",
+          "     *",
+          "     * @internal",
+          "     * @param target {Object} Any valid event target",
+          "     * @param enable {Boolean} Whether to enable or disable the events",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -820,34 +1050,57 @@
             "body": "target {Object} Any valid event target",
             "paramName": "target",
             "description": " Any valid event target",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "enable {Boolean} Whether to enable or disable the events",
             "paramName": "enable",
             "description": " Whether to enable or disable the events",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasListener": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 373,
+          "line": 341,
           "column": 4,
-          "index": 11574
+          "index": 10037
         },
         "end": {
-          "line": 393,
+          "line": 361,
           "column": 5,
-          "index": 12184
+          "index": 10760
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "enable",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "hasListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether there are one or more listeners for an event type",
+          "     * registered at the target.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} The event type",
+          "     * @param capture {Boolean ? false} Whether to check for listeners of",
+          "     *         the bubbling or of the capturing phase.",
+          "     * @return {Boolean} Whether the target has event listeners of the given type.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -860,14 +1113,14 @@
             "body": "target {Object} Any valid event target",
             "paramName": "target",
             "description": " Any valid event target",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "type {String} The event type",
             "paramName": "type",
             "description": " The event type",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -883,28 +1136,65 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the target has event listeners of the given type.",
-            "type": "Boolean",
-            "description": " Whether the target has event listeners of the given type."
+            "type": "boolean",
+            "description": "Whether the target has event listeners of the given type."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "importListeners": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 410,
+          "line": 373,
           "column": 4,
-          "index": 12866
+          "index": 11202
         },
         "end": {
-          "line": 445,
+          "line": 393,
           "column": 5,
-          "index": 14064
+          "index": 11792
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "capture",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "importListeners": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Imports a list of event listeners at once. This only",
+          "     * works for newly created elements as it replaces",
+          "     * all existing data structures.",
+          "     *",
+          "     * Works with a map of data. Each entry in this map should be a",
+          "     * map again with the keys <code>type</code>, <code>listener</code>,",
+          "     * <code>self</code>, <code>capture</code> and an optional <code>unique</code>.",
+          "     *",
+          "     * The values are identical to the parameters of {@link #addListener}.",
+          "     * For details please have a look there.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param list {Map} A map where every listener has an unique key.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -917,34 +1207,67 @@
             "body": "target {Object} Any valid event target",
             "paramName": "target",
             "description": " Any valid event target",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "list {Map} A map where every listener has an unique key.",
             "paramName": "list",
             "description": " A map where every listener has an unique key.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addListener": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 467,
+          "line": 410,
           "column": 4,
-          "index": 15288
+          "index": 12457
         },
         "end": {
-          "line": 522,
+          "line": 445,
           "column": 5,
-          "index": 17003
+          "index": 13620
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "list",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add an event listener to any valid target. The event listener is passed an",
+          "     * instance of {@link qx.event.type.Event} containing all relevant information",
+          "     * about the event as parameter.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} Name of the event e.g. \"click\", \"keydown\", ...",
+          "     * @param listener {Function} Event listener function",
+          "     * @param self {Object ? null} Reference to the 'this' variable inside",
+          "     *         the event listener. When not given, the corresponding dispatcher",
+          "     *         usually falls back to a default, which is the target",
+          "     *         by convention. Note this is not a strict requirement, i.e.",
+          "     *         custom dispatchers can follow a different strategy.",
+          "     * @param capture {Boolean ? false} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event. The default is",
+          "     *         to attach the event handler to the bubbling phase.",
+          "     * @return {String} An opaque ID, which can be used to remove the event listener",
+          "     *         using the {@link #removeListenerById} method.",
+          "     * @throws {Error} if the parameters are wrong",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -957,21 +1280,21 @@
             "body": "target {Object} Any valid event target",
             "paramName": "target",
             "description": " Any valid event target",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "type {String} Name of the event e.g. \"click\", \"keydown\", ...",
             "paramName": "type",
             "description": " Name of the event e.g. \"click\", \"keydown\", ...",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "listener {Function} Event listener function",
             "paramName": "listener",
             "description": " Event listener function",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -996,8 +1319,8 @@
           {
             "name": "@return",
             "body": "{String} An opaque ID, which can be used to remove the event listener\n         using the {@link #removeListenerById} method.",
-            "type": "String",
-            "description": " An opaque ID, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
+            "type": "string",
+            "description": "An opaque ID, which can be used to remove the event listener\n         using the {@link #removeListenerById} method."
           }
         ],
         "@throws": [
@@ -1009,23 +1332,63 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "findHandler": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 532,
+          "line": 467,
           "column": 4,
-          "index": 17316
+          "index": 14822
         },
         "end": {
-          "line": 615,
+          "line": 522,
           "column": 5,
-          "index": 19803
+          "index": 16482
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "listener",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "capture",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "findHandler": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the event handler class matching the given event target and type",
+          "     *",
+          "     * @param target {var} The event target",
+          "     * @param type {String} The event type",
+          "     * @return {qx.event.IEventHandler|null} The best matching event handler or",
+          "     *     <code>null</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1045,7 +1408,7 @@
             "body": "type {String} The event type",
             "paramName": "type",
             "description": " The event type",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -1053,27 +1416,53 @@
             "name": "@return",
             "body": "{qx.event.IEventHandler|null} The best matching event handler or\n     <code>null</code>.",
             "type": "qx.event.IEventHandler|null",
-            "description": " The best matching event handler or\n     <code>null</code>."
+            "description": "The best matching event handler or\n     <code>null</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__registerAtHandler": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 627,
+          "line": 532,
           "column": 4,
-          "index": 20274
+          "index": 16785
         },
         "end": {
-          "line": 645,
+          "line": 615,
           "column": 5,
-          "index": 20750
+          "index": 19189
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "var"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.event.IEventHandler|null"
+      },
+      "appearsIn": []
+    },
+    "__registerAtHandler": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called each time an event listener for one of the",
+          "     * supported events is added using {qx.event.Manager#addListener}.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} event type",
+          "     * @param capture {Boolean} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event.",
+          "     * @throws {Error} if there is no handler for the event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1086,21 +1475,21 @@
             "body": "target {Object} Any valid event target",
             "paramName": "target",
             "description": " Any valid event target",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "type {String} event type",
             "paramName": "type",
             "description": " event type",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
             "paramName": "capture",
             "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@throws": [
@@ -1112,23 +1501,53 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "removeListener": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 660,
+          "line": 627,
           "column": 4,
-          "index": 21395
+          "index": 19648
         },
         "end": {
-          "line": 718,
+          "line": 645,
           "column": 5,
-          "index": 23068
+          "index": 20106
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "capture",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove an event listener from an event target.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} Name of the event",
+          "     * @param listener {Function} The pointer to the event listener",
+          "     * @param self {Object ? null} Reference to the 'this' variable inside",
+          "     *         the event listener.",
+          "     * @param capture {Boolean ? false} Whether to remove the event listener of",
+          "     *         the bubbling or of the capturing phase.",
+          "     * @return {Boolean} Whether the event was removed successfully (was existant)",
+          "     * @throws {Error} if the parameters are wrong",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1141,21 +1560,21 @@
             "body": "target {Object} Any valid event target",
             "paramName": "target",
             "description": " Any valid event target",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "type {String} Name of the event",
             "paramName": "type",
             "description": " Name of the event",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "listener {Function} The pointer to the event listener",
             "paramName": "listener",
             "description": " The pointer to the event listener",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1180,8 +1599,8 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the event was removed successfully (was existant)",
-            "type": "Boolean",
-            "description": " Whether the event was removed successfully (was existant)"
+            "type": "boolean",
+            "description": "Whether the event was removed successfully (was existant)"
           }
         ],
         "@throws": [
@@ -1193,23 +1612,63 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeListenerById": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 728,
+          "line": 660,
           "column": 4,
-          "index": 23395
+          "index": 20736
         },
         "end": {
-          "line": 779,
+          "line": 718,
           "column": 5,
-          "index": 24803
+          "index": 22351
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "listener",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "capture",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeListenerById": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes an event listener from an event target by an ID returned by",
+          "     * {@link #addListener}.",
+          "     *",
+          "     * @param target {Object} The event target",
+          "     * @param id {String} The ID returned by {@link #addListener}",
+          "     * @return {Boolean} <code>true</code> if the handler was removed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1222,42 +1681,64 @@
             "body": "target {Object} The event target",
             "paramName": "target",
             "description": " The event target",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "id {String} The ID returned by {@link #addListener}",
             "paramName": "id",
             "description": " The ID returned by {@link #addListener}",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the handler was removed",
-            "type": "Boolean",
-            "description": " <code>true</code> if the handler was removed"
+            "type": "boolean",
+            "description": "<code>true</code> if the handler was removed"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeAllListeners": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 787,
+          "line": 728,
           "column": 4,
-          "index": 25094
+          "index": 22668
         },
         "end": {
-          "line": 815,
+          "line": 779,
           "column": 5,
-          "index": 25942
+          "index": 24025
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "removeAllListeners": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remove all event listeners, which are attached to the given event target.",
+          "     *",
+          "     * @param target {Object} The event target to remove all event listeners from.",
+          "     * @return {Boolean} Whether the events were existant and were removed successfully.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1270,35 +1751,56 @@
             "body": "target {Object} The event target to remove all event listeners from.",
             "paramName": "target",
             "description": " The event target to remove all event listeners from.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether the events were existant and were removed successfully.",
-            "type": "Boolean",
-            "description": " Whether the events were existant and were removed successfully."
+            "type": "boolean",
+            "description": "Whether the events were existant and were removed successfully."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "deleteAllListeners": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 826,
+          "line": 787,
           "column": 4,
-          "index": 26205
+          "index": 24308
         },
         "end": {
-          "line": 828,
+          "line": 815,
           "column": 5,
-          "index": 26286
+          "index": 25128
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "deleteAllListeners": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for deleting the internal listener  data structure for",
+          "     * the given targetKey.",
+          "     *",
+          "     * @param targetKey {String} Hash code for the object to delete its",
+          "     *   listeners.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1311,7 +1813,7 @@
             "body": "targetKey {String} Hash code for the object to delete its\n   listeners.",
             "paramName": "targetKey",
             "description": " Hash code for the object to delete its\n   listeners.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@internal": [
@@ -1321,23 +1823,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__unregisterAtHandler": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 841,
+          "line": 826,
           "column": 4,
-          "index": 26831
+          "index": 25380
         },
         "end": {
-          "line": 859,
+          "line": 828,
           "column": 5,
-          "index": 27311
+          "index": 25459
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "targetKey",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__unregisterAtHandler": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called each time the an event listener for one of the",
+          "     * supported events is removed by using {qx.event.Manager#removeListener}",
+          "     * and no other event listener is listening on this type.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param type {String} event type",
+          "     * @param capture {Boolean} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event.",
+          "     * @throws {Error} if there is no handler for the event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1350,21 +1872,21 @@
             "body": "target {Object} Any valid event target",
             "paramName": "target",
             "description": " Any valid event target",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "type {String} event type",
             "paramName": "type",
             "description": " event type",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
             "paramName": "capture",
             "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@throws": [
@@ -1376,23 +1898,54 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "dispatchEvent": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 881,
+          "line": 841,
           "column": 4,
-          "index": 28311
+          "index": 25991
         },
         "end": {
-          "line": 985,
+          "line": 859,
           "column": 5,
-          "index": 31589
+          "index": 26453
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "capture",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "dispatchEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispatches an event object using the qooxdoo event handler system. The",
+          "     * event will only be visible in event listeners attached using",
+          "     * {@link #addListener}. After dispatching the event object will be pooled",
+          "     * for later reuse or disposed.",
+          "     *",
+          "     * @param target {Object} Any valid event target",
+          "     * @param event {qx.event.type.Event} The event object to dispatch. The event",
+          "     *     object must be obtained using {@link qx.event.Registration#createEvent}",
+          "     *     and initialized using {@link qx.event.type.Event#init}.",
+          "     * @return {Boolean|qx.Promise} whether the event default was prevented or not.",
+          "     *     Returns true, when the event was NOT prevented.",
+          "     * @throws {Error} if there is no dispatcher for the event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1405,7 +1958,7 @@
             "body": "target {Object} Any valid event target",
             "paramName": "target",
             "description": " Any valid event target",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -1420,7 +1973,7 @@
             "name": "@return",
             "body": "{Boolean|qx.Promise} whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented.",
             "type": "Boolean|qx.Promise",
-            "description": " whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
+            "description": "whether the event default was prevented or not.\n     Returns true, when the event was NOT prevented."
           }
         ],
         "@throws": [
@@ -1432,23 +1985,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "dispose": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 990,
+          "line": 881,
           "column": 4,
-          "index": 31650
+          "index": 27431
         },
         "end": {
-          "line": 1000,
+          "line": 985,
           "column": 5,
-          "index": 32035
+          "index": 30605
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "event",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "returnType": {
+        "type": "Boolean|qx.Promise"
+      },
+      "appearsIn": []
+    },
+    "dispose": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dispose the event manager",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1456,27 +2028,34 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.core.IDisposable",
+      "location": {
+        "start": {
+          "line": 990,
+          "column": 4,
+          "index": 30661
+        },
+        "end": {
+          "line": 1000,
+          "column": 5,
+          "index": 31036
+        }
+      },
+      "type": "function",
+      "params": [],
       "appearsIn": [
         "qx.core.IDisposable"
       ]
     },
     "__addToBlacklist": {
-      "location": {
-        "start": {
-          "line": 1007,
-          "column": 4,
-          "index": 32146
-        },
-        "end": {
-          "line": 1013,
-          "column": 5,
-          "index": 32337
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Add event to blacklist.",
+          "     *",
+          "     * @param uid {number} unique event id",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1493,23 +2072,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "isBlacklisted": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1021,
+          "line": 1007,
           "column": 4,
-          "index": 32552
+          "index": 31140
         },
         "end": {
-          "line": 1023,
+          "line": 1013,
           "column": 5,
-          "index": 32654
+          "index": 31325
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "uid",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isBlacklisted": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check if the event with the given id has been removed and is therefore blacklisted for event handling",
+          "     *",
+          "     * @param uid {number} unique event id",
+          "     * @return {boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1534,9 +2128,31 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1021,
+          "column": 4,
+          "index": 31532
+        },
+        "end": {
+          "line": 1023,
+          "column": 5,
+          "index": 31632
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "uid",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

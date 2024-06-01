@@ -1,0 +1,98 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169758,
+  "lastModifiedIso": "2024-06-01T09:46:09.758Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/jsdoc/CommandParser.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 764
+    },
+    "end": {
+      "line": 43,
+      "column": 3,
+      "index": 1179
+    }
+  },
+  "className": "qx.tool.compiler.jsdoc.CommandParser",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Abstract base class for JSDoc command parsers",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Abstract base class for JSDoc command parsers</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": false,
+  "abstract": true,
+  "members": {
+    "parseCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses the JSDoc command",
+          "     *",
+          "     * @param {*} jsdoc",
+          "     * @param {qx.tool.compiler.jsdoc.ITypeResolver} typeResolver",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses the JSDoc command</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} jsdoc",
+            "paramName": "jsdoc",
+            "description": "",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{qx.tool.compiler.jsdoc.ITypeResolver} typeResolver",
+            "paramName": "typeResolver",
+            "description": "",
+            "type": "qx.tool.compiler.jsdoc.ITypeResolver"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1031
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1171
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "pdoc"
+        },
+        {
+          "name": "typeResolver",
+          "type": "qx.tool.compiler.jsdoc.ITypeResolver"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -1,51 +1,56 @@
 {
-  "className": "cv.ConfigCache",
-  "packageName": "cv",
-  "name": "ConfigCache",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 914
-      },
-      "end": {
-        "line": 321,
-        "column": 3,
-        "index": 11280
-      }
+  "version": 0.3,
+  "lastModified": 1717235105594,
+  "lastModifiedIso": "2024-06-01T09:45:05.594Z",
+  "classFilename": "../../source/class/cv/ConfigCache.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 914
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Handles caches for cometvisu configs</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 0.10.0</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "0.10.0"
-        }
-      ]
+    "end": {
+      "line": 321,
+      "column": 3,
+      "index": 11280
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.ConfigCache",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Handles caches for cometvisu configs",
+      " *",
+      " * @author Tobias Bräutigam",
+      " * @since 0.10.0",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Handles caches for cometvisu configs</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "0.10.0"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "_cacheKey": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 35,
@@ -58,10 +63,11 @@
           "index": 1139
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_parseCacheData": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 36,
@@ -74,10 +80,11 @@
           "index": 1166
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_valid": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 37,
@@ -90,10 +97,11 @@
           "index": 1184
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "replayCache": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 38,
@@ -106,10 +114,11 @@
           "index": 1207
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "__initPromise": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 39,
@@ -122,10 +131,11 @@
           "index": 1232
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "failed": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 40,
@@ -138,10 +148,11 @@
           "index": 1250
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "DB": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 41,
@@ -154,10 +165,11 @@
           "index": 1264
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "init": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 43,
@@ -171,9 +183,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "dump": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 85,
@@ -187,9 +202,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "xml"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "appearsIn": []
     },
     "restore": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 99,
@@ -203,9 +228,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "save": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 204,
@@ -219,9 +247,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "data"
+        }
+      ],
+      "appearsIn": []
     },
     "getData": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 211,
@@ -235,10 +270,28 @@
         }
       },
       "type": "function",
-      "async": true,
-      "access": "public"
+      "params": [
+        {
+          "name": "key"
+        }
+      ],
+      "appearsIn": []
     },
     "isCached": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns true if there is an existing cache for the current config file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns true if there is an existing cache for the current config file</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 248,
@@ -251,19 +304,13 @@
           "index": 9507
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns true if there is an existing cache for the current config file</p>"
-          }
-        ]
-      },
       "type": "function",
-      "async": true,
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "isValid": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 264,
@@ -277,10 +324,19 @@
         }
       },
       "type": "function",
-      "async": true,
-      "access": "public"
+      "params": [
+        {
+          "name": "xml"
+        },
+        {
+          "name": "hash"
+        }
+      ],
+      "appearsIn": []
     },
     "toHash": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 282,
@@ -294,9 +350,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "xml"
+        }
+      ],
+      "appearsIn": []
     },
     "clear": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 286,
@@ -310,22 +373,22 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "configSuffix"
+        }
+      ],
+      "appearsIn": []
     },
     "hashCode": {
-      "location": {
-        "start": {
-          "line": 302,
-          "column": 4,
-          "index": 10755
-        },
-        "end": {
-          "line": 319,
-          "column": 5,
-          "index": 11272
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param string",
+          "     * @see http://stackoverflow.com/q/7616461/940217",
+          "     * @return {number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -355,9 +418,31 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 10755
+        },
+        "end": {
+          "line": 319,
+          "column": 5,
+          "index": 11272
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "string"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

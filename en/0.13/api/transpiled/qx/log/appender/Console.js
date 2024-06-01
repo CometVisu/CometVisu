@@ -75,10 +75,10 @@
       ---------------------------------------------------------------------------
       */
 
-      __P_281_0: null,
-      __P_281_1: null,
-      __P_281_2: null,
-      __P_281_3: null,
+      __P_282_0: null,
+      __P_282_1: null,
+      __P_282_2: null,
+      __P_282_3: null,
       /**
        * Initializes the console, building HTML and pushing last
        * log messages to the output window.
@@ -101,12 +101,12 @@
         document.body.appendChild(wrapper.firstChild);
 
         // Make important DOM nodes available
-        this.__P_281_0 = main;
-        this.__P_281_1 = main.childNodes[1];
-        this.__P_281_2 = main.childNodes[2].firstChild;
+        this.__P_282_0 = main;
+        this.__P_282_1 = main.childNodes[1];
+        this.__P_282_2 = main.childNodes[2].firstChild;
 
         // Correct height of messages frame
-        this.__P_281_4();
+        this.__P_282_4();
 
         // Finally register to log engine
         qx.log.Logger.register(this);
@@ -119,7 +119,7 @@
        *
        */
       dispose: function dispose() {
-        qx.event.Registration.removeListener(document.documentElement, "keypress", this.__P_281_5, this);
+        qx.event.Registration.removeListener(document.documentElement, "keypress", this.__P_282_5, this);
         qx.log.Logger.unregister(this);
       },
       /*
@@ -133,7 +133,7 @@
        */
       clear: function clear() {
         // Remove all messages
-        this.__P_281_1.innerHTML = "";
+        this.__P_282_1.innerHTML = "";
       },
       /**
        * Processes a single log entry
@@ -144,16 +144,16 @@
       process: function process(entry) {
         // Append new content
         var formatter = qx.log.appender.Formatter.getFormatter();
-        this.__P_281_1.appendChild(formatter.toHtml(entry));
+        this.__P_282_1.appendChild(formatter.toHtml(entry));
 
         // Scroll down
-        this.__P_281_6();
+        this.__P_282_6();
       },
       /**
        * Automatically scroll down to the last line
        */
-      __P_281_6: function __P_281_6() {
-        this.__P_281_1.scrollTop = this.__P_281_1.scrollHeight;
+      __P_282_6: function __P_282_6() {
+        this.__P_282_1.scrollTop = this.__P_282_1.scrollHeight;
       },
       /*
       ---------------------------------------------------------------------------
@@ -162,18 +162,18 @@
       */
 
       /** @type {Boolean} Flag to store last visibility status */
-      __P_281_7: true,
+      __P_282_7: true,
       /**
        * Toggles the visibility of the console between visible and hidden.
        *
        */
       toggle: function toggle() {
-        if (!this.__P_281_0) {
+        if (!this.__P_282_0) {
           this.init();
-        } else if (this.__P_281_0.style.display == "none") {
+        } else if (this.__P_282_0.style.display == "none") {
           this.show();
         } else {
-          this.__P_281_0.style.display = "none";
+          this.__P_282_0.style.display = "none";
         }
       },
       /**
@@ -181,11 +181,11 @@
        *
        */
       show: function show() {
-        if (!this.__P_281_0) {
+        if (!this.__P_282_0) {
           this.init();
         } else {
-          this.__P_281_0.style.display = "block";
-          this.__P_281_1.scrollTop = this.__P_281_1.scrollHeight;
+          this.__P_282_0.style.display = "block";
+          this.__P_282_1.scrollTop = this.__P_282_1.scrollHeight;
         }
       },
       /*
@@ -195,13 +195,13 @@
       */
 
       /** @type {Array} List of all previous commands. */
-      __P_281_8: [],
+      __P_282_8: [],
       /**
        * Executes the currently given command
        *
        */
       execute: function execute() {
-        var value = this.__P_281_2.value;
+        var value = this.__P_282_2.value;
         if (value == "") {
           return;
         }
@@ -213,10 +213,10 @@
         var formatter = qx.log.appender.Formatter.getFormatter();
         command.innerHTML = formatter.escapeHTML(">>> " + value);
         command.className = "user-command";
-        this.__P_281_8.push(value);
-        this.__P_281_3 = this.__P_281_8.length;
-        this.__P_281_1.appendChild(command);
-        this.__P_281_6();
+        this.__P_282_8.push(value);
+        this.__P_282_3 = this.__P_282_8.length;
+        this.__P_282_1.appendChild(command);
+        this.__P_282_6();
         try {
           var ret = window.eval(value);
         } catch (ex) {
@@ -236,15 +236,15 @@
        *
        * @param e {Event} Event object
        */
-      __P_281_4: function __P_281_4(e) {
-        this.__P_281_1.style.height = this.__P_281_0.clientHeight - this.__P_281_0.firstChild.offsetHeight - this.__P_281_0.lastChild.offsetHeight + "px";
+      __P_282_4: function __P_282_4(e) {
+        this.__P_282_1.style.height = this.__P_282_0.clientHeight - this.__P_282_0.firstChild.offsetHeight - this.__P_282_0.lastChild.offsetHeight + "px";
       },
       /**
        * Event handler for keydown listener
        *
        * @param e {Event} Event object
        */
-      __P_281_5: function __P_281_5(e) {
+      __P_282_5: function __P_282_5(e) {
         if (e instanceof qx.event.type.Tap || e instanceof qx.event.type.Pointer) {
           var target = e.getTarget();
           if (target && target.className && target.className.indexOf && target.className.indexOf("navigationbar") != -1) {
@@ -261,28 +261,28 @@
         }
 
         // Not yet created
-        if (!this.__P_281_0) {
+        if (!this.__P_282_0) {
           return;
         }
 
         // Active element not in console
-        if (!qx.dom.Hierarchy.contains(this.__P_281_0, e.getTarget())) {
+        if (!qx.dom.Hierarchy.contains(this.__P_282_0, e.getTarget())) {
           return;
         }
 
         // Command execution
-        if (iden == "Enter" && this.__P_281_2.value != "") {
+        if (iden == "Enter" && this.__P_282_2.value != "") {
           this.execute();
-          this.__P_281_2.value = "";
+          this.__P_282_2.value = "";
         }
 
         // History management
         if (iden == "Up" || iden == "Down") {
-          this.__P_281_3 += iden == "Up" ? -1 : 1;
-          this.__P_281_3 = Math.min(Math.max(0, this.__P_281_3), this.__P_281_8.length);
-          var entry = this.__P_281_8[this.__P_281_3];
-          this.__P_281_2.value = entry || "";
-          this.__P_281_2.select();
+          this.__P_282_3 += iden == "Up" ? -1 : 1;
+          this.__P_282_3 = Math.min(Math.max(0, this.__P_282_3), this.__P_282_8.length);
+          var entry = this.__P_282_8[this.__P_282_3];
+          this.__P_282_2.value = entry || "";
+          this.__P_282_2.select();
         }
       }
     },
@@ -292,11 +292,11 @@
     *****************************************************************************
     */
     defer: function defer(statics) {
-      qx.event.Registration.addListener(document.documentElement, "keypress", statics.__P_281_5, statics);
-      qx.event.Registration.addListener(document.documentElement, "longtap", statics.__P_281_5, statics);
+      qx.event.Registration.addListener(document.documentElement, "keypress", statics.__P_282_5, statics);
+      qx.event.Registration.addListener(document.documentElement, "longtap", statics.__P_282_5, statics);
     }
   });
   qx.log.appender.Console.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Console.js.map?dt=1709410155031
+//# sourceMappingURL=Console.js.map?dt=1717235384145

@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "mobile",
+    "MobileTestCase",
+    "members",
+    "testCreate",
+    "bar",
+    "ui",
+    "navigationbar",
+    "NavigationBar",
+    "getRoot",
+    "add",
+    "back",
+    "BackButton",
+    "title",
+    "Title",
+    "button",
+    "Button",
+    "assertEquals",
+    "getChildren",
+    "length",
+    "destroy"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/mobile/navigationbar/NavigationBar.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.mobile.navigationbar.NavigationBar\", {\n  extend: qx.test.mobile.MobileTestCase,\n\n  members: {\n    testCreate() {\n      var bar = new qx.ui.mobile.navigationbar.NavigationBar();\n      this.getRoot().add(bar);\n\n      var back = new qx.ui.mobile.navigationbar.BackButton(\"Back\");\n      bar.add(back);\n\n      var title = new qx.ui.mobile.navigationbar.Title(\"Title\");\n      bar.add(title);\n\n      var button = new qx.ui.mobile.navigationbar.Button(\"Action\");\n      bar.add(button);\n\n      this.assertEquals(3, bar.getChildren().length);\n\n      back.destroy();\n      title.destroy();\n      button.destroy();\n      bar.destroy();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,4CAA4C,EAAE;IAC5DC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM,CAACC,cAAc;IAErCC,OAAO,EAAE;MACPC,UAAU,WAAAA,WAAA,EAAG;QACX,IAAIC,GAAG,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,aAAa,CAACC,aAAa,CAAC,CAAC;QACxD,IAAI,CAACC,OAAO,CAAC,CAAC,CAACC,GAAG,CAACL,GAAG,CAAC;QAEvB,IAAIM,IAAI,GAAG,IAAIlB,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,aAAa,CAACK,UAAU,CAAC,MAAM,CAAC;QAC5DP,GAAG,CAACK,GAAG,CAACC,IAAI,CAAC;QAEb,IAAIE,KAAK,GAAG,IAAIpB,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,aAAa,CAACO,KAAK,CAAC,OAAO,CAAC;QACzDT,GAAG,CAACK,GAAG,CAACG,KAAK,CAAC;QAEd,IAAIE,MAAM,GAAG,IAAItB,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,aAAa,CAACS,MAAM,CAAC,QAAQ,CAAC;QAC5DX,GAAG,CAACK,GAAG,CAACK,MAAM,CAAC;QAEf,IAAI,CAACE,YAAY,CAAC,CAAC,EAAEZ,GAAG,CAACa,WAAW,CAAC,CAAC,CAACC,MAAM,CAAC;QAE9CR,IAAI,CAACS,OAAO,CAAC,CAAC;QACdP,KAAK,CAACO,OAAO,CAAC,CAAC;QACfL,MAAM,CAACK,OAAO,CAAC,CAAC;QAChBf,GAAG,CAACe,OAAO,CAAC,CAAC;MACf;IACF;EACF,CAAC,CAAC;EA3CF3B,EAAE,CAACO,IAAI,CAACC,MAAM,CAACM,aAAa,CAACC,aAAa,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

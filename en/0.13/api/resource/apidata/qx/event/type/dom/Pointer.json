@@ -1,113 +1,116 @@
 {
-  "className": "qx.event.type.dom.Pointer",
-  "packageName": "qx.event.type.dom",
-  "name": "Pointer",
-  "superClass": "qx.event.type.dom.Custom",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 574
-      },
-      "end": {
-        "line": 335,
-        "column": 3,
-        "index": 9374
-      }
+  "version": 0.3,
+  "lastModified": 1717235172006,
+  "lastModifiedIso": "2024-06-01T09:46:12.006Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/type/dom/Pointer.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 552
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Synthetic pointer event</p>"
-        }
-      ]
+    "end": {
+      "line": 335,
+      "column": 3,
+      "index": 9040
     }
   },
-  "type": "class",
+  "className": "qx.event.type.dom.Pointer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Synthetic pointer event",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Synthetic pointer event</p>"
+      }
+    ]
+  },
+  "superClass": "qx.event.type.dom.Custom",
   "statics": {
     "MOUSE_PROPERTIES": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 27,
           "column": 4,
-          "index": 683
+          "index": 657
         },
         "end": {
           "line": 48,
           "column": 5,
-          "index": 1080
+          "index": 1033
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "POINTER_PROPERTIES": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 50,
           "column": 4,
-          "index": 1089
+          "index": 1040
         },
         "end": {
           "line": 59,
           "column": 5,
-          "index": 1277
+          "index": 1219
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "READONLY_PROPERTIES": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 61,
           "column": 4,
-          "index": 1286
+          "index": 1226
         },
         "end": {
           "line": 61,
           "column": 27,
-          "index": 1309
+          "index": 1249
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "BIND_METHODS": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 63,
           "column": 4,
-          "index": 1318
+          "index": 1256
         },
         "end": {
           "line": 71,
           "column": 5,
-          "index": 1513
+          "index": 1443
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "getPointerType": {
-      "location": {
-        "start": {
-          "line": 80,
-          "column": 4,
-          "index": 1775
-        },
-        "end": {
-          "line": 98,
-          "column": 5,
-          "index": 2270
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the device type which the event triggered. This can be one",
+          "     * of the following strings: <code>mouse</code>, <code>pen</code>",
+          "     * or <code>touch</code>.",
+          "     *",
+          "     * @return {String} The type of the pointer.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -118,28 +121,41 @@
           {
             "name": "@return",
             "body": "{String} The type of the pointer.",
-            "type": "String",
-            "description": " The type of the pointer."
+            "type": "string",
+            "description": "The type of the pointer."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getViewportLeft": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 106,
+          "line": 80,
           "column": 4,
-          "index": 2460
+          "index": 1696
         },
         "end": {
-          "line": 108,
+          "line": 98,
           "column": 5,
-          "index": 2514
+          "index": 2173
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getViewportLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the horizontal coordinate at which the event occurred relative",
+          "     * to the viewport.",
+          "     *",
+          "     * @return {Number} The horizontal mouse position",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -150,28 +166,42 @@
           {
             "name": "@return",
             "body": "{Number} The horizontal mouse position",
-            "type": "Number",
-            "description": " The horizontal mouse position"
+            "type": "number",
+            "description": "The horizontal mouse position"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getViewportTop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 117,
+          "line": 106,
           "column": 4,
-          "index": 2730
+          "index": 2355
         },
         "end": {
-          "line": 119,
+          "line": 108,
           "column": 5,
-          "index": 2783
+          "index": 2407
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getViewportTop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical coordinate at which the event occurred relative",
+          "     * to the viewport.",
+          "     *",
+          "     * @return {Number} The vertical mouse position",
+          "     * @signature function()",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -182,8 +212,8 @@
           {
             "name": "@return",
             "body": "{Number} The vertical mouse position",
-            "type": "Number",
-            "description": " The vertical mouse position"
+            "type": "number",
+            "description": "The vertical mouse position"
           }
         ],
         "@signature": [
@@ -193,23 +223,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDocumentLeft": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 128,
+          "line": 117,
           "column": 4,
-          "index": 3068
+          "index": 2614
         },
         "end": {
-          "line": 135,
+          "line": 119,
           "column": 5,
-          "index": 3312
+          "index": 2665
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getDocumentLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the horizontal position at which the event occurred relative to the",
+          "     * left of the document. This property takes into account any scrolling of",
+          "     * the page.",
+          "     *",
+          "     * @return {Number} The horizontal mouse position in the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -220,28 +264,42 @@
           {
             "name": "@return",
             "body": "{Number} The horizontal mouse position in the document.",
-            "type": "Number",
-            "description": " The horizontal mouse position in the document."
+            "type": "number",
+            "description": "The horizontal mouse position in the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDocumentTop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 144,
+          "line": 128,
           "column": 4,
-          "index": 3592
+          "index": 2941
         },
         "end": {
-          "line": 151,
+          "line": 135,
           "column": 5,
-          "index": 3834
+          "index": 3178
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getDocumentTop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical position at which the event occurred relative to the",
+          "     * top of the document. This property takes into account any scrolling of",
+          "     * the page.",
+          "     *",
+          "     * @return {Number} The vertical mouse position in the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -252,28 +310,44 @@
           {
             "name": "@return",
             "body": "{Number} The vertical mouse position in the document.",
-            "type": "Number",
-            "description": " The vertical mouse position in the document."
+            "type": "number",
+            "description": "The vertical mouse position in the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getScreenLeft": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 162,
+          "line": 144,
           "column": 4,
-          "index": 4207
+          "index": 3449
         },
         "end": {
-          "line": 164,
+          "line": 151,
           "column": 5,
-          "index": 4259
+          "index": 3684
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getScreenLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the horizontal coordinate at which the event occurred relative to",
+          "     * the origin of the screen coordinate system.",
+          "     *",
+          "     * Note: This value is usually not very useful unless you want to",
+          "     * position a native popup window at this coordinate.",
+          "     *",
+          "     * @return {Number} The horizontal mouse position on the screen.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -284,28 +358,44 @@
           {
             "name": "@return",
             "body": "{Number} The horizontal mouse position on the screen.",
-            "type": "Number",
-            "description": " The horizontal mouse position on the screen."
+            "type": "number",
+            "description": "The horizontal mouse position on the screen."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getScreenTop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 175,
+          "line": 162,
           "column": 4,
-          "index": 4628
+          "index": 4046
         },
         "end": {
-          "line": 177,
+          "line": 164,
           "column": 5,
-          "index": 4679
+          "index": 4096
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getScreenTop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical coordinate at which the event occurred relative to",
+          "     * the origin of the screen coordinate system.",
+          "     *",
+          "     * Note: This value is usually not very useful unless you want to",
+          "     * position a native popup window at this coordinate.",
+          "     *",
+          "     * @return {Number} The vertical mouse position on the screen.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -316,28 +406,41 @@
           {
             "name": "@return",
             "body": "{Number} The vertical mouse position on the screen.",
-            "type": "Number",
-            "description": " The vertical mouse position on the screen."
+            "type": "number",
+            "description": "The vertical mouse position on the screen."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "normalize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 185,
+          "line": 175,
           "column": 4,
-          "index": 4855
+          "index": 4454
         },
         "end": {
-          "line": 193,
+          "line": 177,
           "column": 5,
-          "index": 5188
+          "index": 4503
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "normalize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -354,108 +457,107 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 4671
+        },
+        "end": {
+          "line": 193,
+          "column": 5,
+          "index": 4996
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "type"
+      },
+      {
+        "name": "domEvent"
+      },
+      {
+        "name": "customProps"
+      }
+    ],
     "location": {
       "start": {
         "line": 196,
         "column": 2,
-        "index": 5200
+        "index": 5005
       },
       "end": {
         "line": 198,
         "column": 3,
-        "index": 5293
+        "index": 5096
       }
     }
   },
   "members": {
     "_createEvent": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 201,
           "column": 4,
-          "index": 5316
+          "index": 5116
         },
         "end": {
           "line": 218,
           "column": 5,
-          "index": 6031
+          "index": 5814
         }
       },
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.event.type.dom.Custom",
       "appearsIn": [
         "qx.event.type.dom.Custom"
-      ],
-      "jsdoc": {
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Event} event object",
-            "type": "Event",
-            "description": " event object"
-          }
-        ]
-      }
+      ]
     },
     "_initEvent": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 220,
           "column": 4,
-          "index": 6040
+          "index": 5821
         },
         "end": {
           "line": 320,
           "column": 5,
-          "index": 8956
+          "index": 8637
         }
       },
       "type": "function",
-      "access": "protected",
+      "params": [
+        {
+          "name": "domEvent"
+        },
+        {
+          "name": "customProps"
+        }
+      ],
       "overriddenFrom": "qx.event.type.dom.Custom",
       "appearsIn": [
         "qx.event.type.dom.Custom"
-      ],
-      "jsdoc": {
-        "@param": [
-          {
-            "name": "@param",
-            "body": "domEvent {Event} Native event that will be used as a template for the new event",
-            "paramName": "domEvent",
-            "description": " Native event that will be used as a template for the new event",
-            "type": "Event"
-          },
-          {
-            "name": "@param",
-            "body": "customProps {Map?} Map of event properties (will override the domEvent's values)",
-            "paramName": "customProps",
-            "description": " Map of event properties (will override the domEvent's values)",
-            "optional": true,
-            "type": "Map"
-          }
-        ]
-      }
+      ]
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 323,
-        "column": 2,
-        "index": 8968
-      },
-      "end": {
-        "line": 334,
-        "column": 3,
-        "index": 9369
-      }
-    }
-  },
-  "descendants": []
+  "properties": {}
 }

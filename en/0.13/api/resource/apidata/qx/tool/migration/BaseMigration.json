@@ -1,0 +1,865 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169286,
+  "lastModifiedIso": "2024-06-01T09:46:09.286Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/migration/BaseMigration.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 925
+    },
+    "end": {
+      "line": 339,
+      "column": 3,
+      "index": 10671
+    }
+  },
+  "className": "qx.tool.migration.BaseMigration",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The base class for migrations, containing useful methods to",
+      " * manipulate source files, and to update runtime information",
+      " * on the individual migration class. It also holds a reference",
+      " * to the runner which contains meta data for all migrations.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The base class for migrations, containing useful methods to\n manipulate source files, and to update runtime information\n on the individual migration class. It also holds a reference\n to the runner which contains meta data for all migrations.</p>"
+      }
+    ]
+  },
+  "isSingleton": false,
+  "abstract": true,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "runner"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 39,
+        "column": 2,
+        "index": 1122
+      },
+      "end": {
+        "line": 42,
+        "column": 3,
+        "index": 1186
+      }
+    }
+  },
+  "properties": {
+    "runner": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1209
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1264
+        }
+      },
+      "json": {
+        "check": "qx.tool.migration.Runner"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "applied": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1271
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1324
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "pending": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1331
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1384
+        }
+      },
+      "json": {
+        "check": "Number",
+        "init": 0
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "getVersion": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the version of qooxdoo this migration applies to.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the version of qooxdoo this migration applies to.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1489
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1583
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getQxVersion": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the qooxdoo version that has been passed to the Runner or the",
+          "     * one from the environment",
+          "     * @return {Promise<String>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the qooxdoo version that has been passed to the Runner or the\n one from the environment</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<String>}",
+            "type": "Promise<String>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1748
+        },
+        "end": {
+          "line": 78,
+          "column": 5,
+          "index": 1895
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<String>"
+      },
+      "appearsIn": []
+    },
+    "announce": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Output message that announces a migration. What this does is to mark it",
+          "     * visually",
+          "     * @param message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Output message that announces a migration. What this does is to mark it\n visually</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "message",
+            "paramName": "message",
+            "type": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2035
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2168
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message"
+        }
+      ],
+      "appearsIn": []
+    },
+    "markAsApplied": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Marks one or more migration steps as applied",
+          "     * @param {Number|String} param Optional. If number, number of migrations to mark",
+          "     * as applied, defaults to 1; if String, message to be `info()`ed if verbose=true",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Marks one or more migration steps as applied</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Number|String} param Optional. If number, number of migrations to mark\n as applied, defaults to 1; if String, message to be <code>info()</code>ed if verbose=true",
+            "paramName": "param",
+            "description": "Optional. If number, number of migrations to mark\n as applied, defaults to 1; if String, message to be <code>info()</code>ed if verbose=true",
+            "type": [
+              "Number",
+              "String"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2415
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 2884
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "param",
+          "type": [
+            "Number",
+            "String"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "markAsPending": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Marks one or more migration steps as pending",
+          "     * @param {Number|String} param Optional. If number, number of migrations to mark",
+          "     * as pending, defaults to 1; if String, message to be `announce()`ed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Marks one or more migration steps as pending</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Number|String} param Optional. If number, number of migrations to mark\n as pending, defaults to 1; if String, message to be <code>announce()</code>ed",
+            "paramName": "param",
+            "description": "Optional. If number, number of migrations to mark\n as pending, defaults to 1; if String, message to be <code>announce()</code>ed",
+            "type": [
+              "Number",
+              "String"
+            ]
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 3119
+        },
+        "end": {
+          "line": 127,
+          "column": 5,
+          "index": 3572
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "param",
+          "type": [
+            "Number",
+            "String"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "renameFilesUnlessDryRun": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Rename source files, unless this is a dry run, in which case",
+          "     * it will only annouce it and mark the migration step as pending.",
+          "     * @param {String[]} fileList Array containing arrays of [new name, old name]",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Rename source files, unless this is a dry run, in which case\n it will only annouce it and mark the migration step as pending.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String[]} fileList Array containing arrays of [new name, old name]",
+            "paramName": "fileList",
+            "description": "Array containing arrays of [new name, old name]",
+            "type": "String[]"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3816
+        },
+        "end": {
+          "line": 163,
+          "column": 5,
+          "index": 4856
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fileList",
+          "type": "String[]"
+        }
+      ],
+      "appearsIn": []
+    },
+    "checkFilesToRename": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Given an array of [newPath,oldPath], filter by those which exist",
+          "     * at oldPath and not at newPath",
+          "     * @param fileList {[]}",
+          "     * @return {Promise<[]>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Given an array of [newPath,oldPath], filter by those which exist\n at oldPath and not at newPath</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fileList {[]}",
+            "paramName": "fileList",
+            "type": "[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<[]>}",
+            "type": "Promise<[]>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4,
+          "index": 5045
+        },
+        "end": {
+          "line": 182,
+          "column": 5,
+          "index": 5375
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fileList",
+          "type": "[]"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<[]>"
+      },
+      "appearsIn": []
+    },
+    "checkFilesContain": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the given file or array of files contains a given text",
+          "     * @param {String|String[]} files",
+          "     * @param {String} text",
+          "     * @return {Promise<Boolean>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the given file or array of files contains a given text</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String|String[]} files",
+            "paramName": "files",
+            "description": "",
+            "type": [
+              "String",
+              {
+                "type": "String",
+                "dimensions": 2
+              }
+            ]
+          },
+          {
+            "name": "@param",
+            "body": "{String} text",
+            "paramName": "text",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<Boolean>}",
+            "type": "Promise<Boolean>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4,
+          "index": 5570
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 5891
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "files",
+          "type": [
+            "String",
+            {
+              "type": "String",
+              "dimensions": 2
+            }
+          ]
+        },
+        {
+          "name": "text",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<Boolean>"
+      },
+      "appearsIn": []
+    },
+    "replaceInFilesUnlessDryRun": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replace text in source files, unless this is a dry run, in which case",
+          "     * it will only annouce it and mark the migration step as pending.",
+          "     * @param {{files: string, from: string, to: string}[]} replaceInFilesArr",
+          "     *    Array containing objects compatible with https://github.com/adamreisnz/replace-in-file",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Replace text in source files, unless this is a dry run, in which case\n it will only annouce it and mark the migration step as pending.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{{files: string, from: string, to: string}[]} replaceInFilesArr\n    Array containing objects compatible with https://github.com/adamreisnz/replace-in-file"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 210,
+          "column": 4,
+          "index": 6268
+        },
+        "end": {
+          "line": 244,
+          "column": 5,
+          "index": 7333
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "replaceInFilesArr"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "updateDependencyUnlessDryRun": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates a dependency in the given Manifest model, , unless this is a dry run, in which case",
+          "     * it will only annouce it and mark the migration step as pending.",
+          "     * @param {qx.tool.config.Manifest} manifestModel",
+          "     * @param {String} dependencyName The name of the dependency in the `require object",
+          "     * @param {String} semverRange A semver-compatible range string",
+          "     * @return {Promise<void>}",
+          "     * @private",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates a dependency in the given Manifest model, , unless this is a dry run, in which case\n it will only annouce it and mark the migration step as pending.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.tool.config.Manifest} manifestModel",
+            "paramName": "manifestModel",
+            "description": "",
+            "type": "qx.tool.config.Manifest"
+          },
+          {
+            "name": "@param",
+            "body": "{String} dependencyName The name of the dependency in the `require object",
+            "paramName": "dependencyName",
+            "description": "The name of the dependency in the `require object",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String} semverRange A semver-compatible range string",
+            "paramName": "semverRange",
+            "description": "A semver-compatible range string",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          },
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 256,
+          "column": 4,
+          "index": 7814
+        },
+        "end": {
+          "line": 272,
+          "column": 5,
+          "index": 8345
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "manifestModel",
+          "type": "qx.tool.config.Manifest"
+        },
+        {
+          "name": "dependencyName",
+          "type": "string"
+        },
+        {
+          "name": "semverRange",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "updateQxDependencyUnlessDryRun": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the `@qooxdoo/framework` dependency in the given Manifest model, if",
+          "     * the current qooxdoo version is not covered by it. If this is a dry run, the",
+          "     * change will only be annouced and the migration step marked as pending.",
+          "     *",
+          "     * @param {qx.tool.config.Manifest} manifestModel",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the <code>@qooxdoo/framework</code> dependency in the given Manifest model, if\n the current qooxdoo version is not covered by it. If this is a dry run, the\n change will only be annouced and the migration step marked as pending.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.tool.config.Manifest} manifestModel",
+            "paramName": "manifestModel",
+            "description": "",
+            "type": "qx.tool.config.Manifest"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 282,
+          "column": 4,
+          "index": 8704
+        },
+        "end": {
+          "line": 293,
+          "column": 5,
+          "index": 9116
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "manifestModel",
+          "type": "qx.tool.config.Manifest"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "updateSchemaUnlessDryRun": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the json-schema in a configuration file, unless this is a dry run, in which case",
+          "     * it will only annouce it and mark the migration step as pending.",
+          "     * @param {qx.tool.config.Abstract} configModel",
+          "     * @param {String} schemaUri",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the json-schema in a configuration file, unless this is a dry run, in which case\n it will only annouce it and mark the migration step as pending.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.tool.config.Abstract} configModel",
+            "paramName": "configModel",
+            "description": "",
+            "type": "qx.tool.config.Abstract"
+          },
+          {
+            "name": "@param",
+            "body": "{String} schemaUri",
+            "paramName": "schemaUri",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 302,
+          "column": 4,
+          "index": 9422
+        },
+        "end": {
+          "line": 316,
+          "column": 5,
+          "index": 9999
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "configModel",
+          "type": "qx.tool.config.Abstract"
+        },
+        {
+          "name": "schemaUri",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "upgradePackagesUnlessDryRun": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Upgrades the applications's installed packages, unless this is a dry run, in which case",
+          "     * it will only annouce it and mark the migration step as pending.",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Upgrades the applications's installed packages, unless this is a dry run, in which case\n it will only annouce it and mark the migration step as pending.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 323,
+          "column": 4,
+          "index": 10219
+        },
+        "end": {
+          "line": 337,
+          "column": 5,
+          "index": 10663
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

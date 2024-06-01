@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "__handler",
+    "event",
+    "Registration",
+    "getManager",
+    "window",
+    "getHandler",
+    "handler",
+    "Offline",
+    "testIsOnline",
+    "assertBoolean",
+    "isOnline",
+    "test"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/event/handler/Offline.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\nqx.Class.define(\"qx.test.event.handler.Offline\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    __handler: qx.event.Registration.getManager(window).getHandler(\n      qx.event.handler.Offline\n    ),\n\n    testIsOnline() {\n      this.assertBoolean(this.__handler.isOnline());\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,+BAA+B,EAAE;IAC/CC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE;MACPC,SAAS,EAAEX,EAAE,CAACY,KAAK,CAACC,YAAY,CAACC,UAAU,CAACC,MAAM,CAAC,CAACC,UAAU,CAC5DhB,EAAE,CAACY,KAAK,CAACK,OAAO,CAACC,OACnB,CAAC;MAEDC,YAAY,WAAAA,aAAA,EAAG;QACb,IAAI,CAACC,aAAa,CAAC,IAAI,CAACT,SAAS,CAACU,QAAQ,CAAC,CAAC,CAAC;MAC/C;IACF;EACF,CAAC,CAAC;EA7BFrB,EAAE,CAACsB,IAAI,CAACV,KAAK,CAACK,OAAO,CAACC,OAAO,CAACf,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

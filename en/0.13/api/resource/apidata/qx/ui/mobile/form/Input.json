@@ -1,95 +1,99 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235171426,
+  "lastModifiedIso": "2024-06-01T09:46:11.426Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/form/Input.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 558
+    },
+    "end": {
+      "line": 95,
+      "column": 3,
+      "index": 2350
+    }
+  },
   "className": "qx.ui.mobile.form.Input",
-  "packageName": "qx.ui.mobile.form",
-  "name": "Input",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Abstract class for all input fields.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Abstract class for all input fields.</p>"
+      }
+    ]
+  },
   "superClass": "qx.ui.mobile.core.Widget",
-  "interfaces": [
-    "qx.ui.form.IForm",
-    "qx.ui.form.IModel"
-  ],
   "mixins": [
     "qx.ui.form.MForm",
     "qx.ui.form.MModelProperty",
     "qx.ui.mobile.container.MScrollHandling",
     "qx.ui.mobile.form.MState"
   ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 580
-      },
-      "end": {
-        "line": 95,
-        "column": 3,
-        "index": 2444
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Abstract class for all input fields.</p>"
-        }
-      ]
-    }
-  },
-  "type": "class",
-  "isAbstract": true,
-  "isStatic": false,
+  "interfaces": [
+    "qx.ui.form.IForm",
+    "qx.ui.form.IModel"
+  ],
   "isSingleton": false,
+  "abstract": true,
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 36,
         "column": 2,
-        "index": 895
+        "index": 860
       },
       "end": {
         "line": 42,
         "column": 3,
-        "index": 1065
+        "index": 1024
       }
     }
   },
   "members": {
     "_getTagName": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 46,
           "column": 4,
-          "index": 1107
+          "index": 1062
         },
         "end": {
           "line": 48,
           "column": 5,
-          "index": 1152
+          "index": 1105
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "qx.ui.mobile.core.Widget",
       "appearsIn": [
         "qx.ui.mobile.core.Widget"
       ]
     },
     "_getType": {
-      "location": {
-        "start": {
-          "line": 54,
-          "column": 4,
-          "index": 1285
-        },
-        "end": {
-          "line": 58,
-          "column": 5,
-          "index": 1413
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the type of the input field. Override this method in the",
+          "     * specialized input class.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -97,23 +101,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onSelected": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 64,
+          "line": 54,
           "column": 4,
-          "index": 1618
+          "index": 1232
         },
         "end": {
-          "line": 89,
+          "line": 58,
           "column": 5,
-          "index": 2351
+          "index": 1356
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onSelected": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles the <code>click</code> and <code>focus</code> event on this input widget.",
+          "     * @param evt {qx.event.type.Event} <code>click</code> or <code>focus</code> event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -130,19 +142,38 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1555
+        },
+        "end": {
+          "line": 89,
+          "column": 5,
+          "index": 2263
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
     },
     "setEnabled": {
-      "type": "function",
-      "name": "setEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "property": "set",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the enabled state of the widget.",
+          "     *",
+          "     * @param enabled {Boolean} The enabled state.",
+          "     * @return {Boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -155,21 +186,56 @@
             "body": "enabled {Boolean} The enabled state.",
             "paramName": "enabled",
             "description": " The enabled state.",
-            "type": "Boolean"
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1762
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1825
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "enabled",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.form.IForm"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IForm"
     },
     "getEnabled": {
-      "type": "function",
-      "name": "getEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "property": "get",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the current set enabled state.",
+          "     *",
+          "     * @return {Boolean} If the widget is enabled.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -180,22 +246,44 @@
           {
             "name": "@return",
             "body": "{Boolean} If the widget is enabled.",
-            "type": "Boolean",
-            "description": " If the widget is enabled."
+            "type": "boolean",
+            "description": "If the widget is enabled."
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1951
+        },
+        "end": {
+          "line": 72,
+          "column": 19,
+          "index": 1966
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.form.IForm"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IForm"
     },
     "setRequired": {
-      "type": "function",
-      "name": "setRequired",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "property": "set",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the required state of a widget.",
+          "     *",
+          "     * @param required {Boolean} A flag signaling if the widget is required.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -208,21 +296,45 @@
             "body": "required {Boolean} A flag signaling if the widget is required.",
             "paramName": "required",
             "description": " A flag signaling if the widget is required.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 85,
+          "column": 4,
+          "index": 2316
+        },
+        "end": {
+          "line": 87,
+          "column": 5,
+          "index": 2381
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "required",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.IForm"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IForm"
     },
     "getRequired": {
-      "type": "function",
-      "name": "getRequired",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "property": "get",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the current required state of the widget.",
+          "     *",
+          "     * @return {Boolean} True, if the widget is required.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -233,22 +345,44 @@
           {
             "name": "@return",
             "body": "{Boolean} True, if the widget is required.",
-            "type": "Boolean",
-            "description": " True, if the widget is required."
+            "type": "boolean",
+            "description": "True, if the widget is required."
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 94,
+          "column": 4,
+          "index": 2525
+        },
+        "end": {
+          "line": 94,
+          "column": 20,
+          "index": 2541
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.form.IForm"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IForm"
     },
     "setValid": {
-      "type": "function",
-      "name": "setValid",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "property": "set",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the valid state of the widget.",
+          "     *",
+          "     * @param valid {Boolean} The valid state of the widget.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -261,21 +395,45 @@
             "body": "valid {Boolean} The valid state of the widget.",
             "paramName": "valid",
             "description": " The valid state of the widget.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 107,
+          "column": 4,
+          "index": 2871
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2930
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "valid",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.IForm"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IForm"
     },
     "getValid": {
-      "type": "function",
-      "name": "getValid",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "property": "get",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the valid state of the widget.",
+          "     *",
+          "     * @return {Boolean} If the state of the widget is valid.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -286,22 +444,44 @@
           {
             "name": "@return",
             "body": "{Boolean} If the state of the widget is valid.",
-            "type": "Boolean",
-            "description": " If the state of the widget is valid."
+            "type": "boolean",
+            "description": "If the state of the widget is valid."
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 116,
+          "column": 4,
+          "index": 3068
+        },
+        "end": {
+          "line": 116,
+          "column": 17,
+          "index": 3081
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": [
+        "qx.ui.form.IForm"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IForm"
     },
     "setInvalidMessage": {
-      "type": "function",
-      "name": "setInvalidMessage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "property": "set",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the invalid message of the widget.",
+          "     *",
+          "     * @param message {String} The invalid message.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -314,21 +494,45 @@
             "body": "message {String} The invalid message.",
             "paramName": "message",
             "description": " The invalid message.",
-            "type": "String"
+            "type": "string"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3416
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3486
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.IForm"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IForm"
     },
     "getInvalidMessage": {
-      "type": "function",
-      "name": "getInvalidMessage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "property": "get",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the invalid message of the widget.",
+          "     *",
+          "     * @return {String} The current set message.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -339,22 +543,44 @@
           {
             "name": "@return",
             "body": "{String} The current set message.",
-            "type": "String",
-            "description": " The current set message."
+            "type": "string",
+            "description": "The current set message."
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3615
+        },
+        "end": {
+          "line": 138,
+          "column": 26,
+          "index": 3637
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": [
+        "qx.ui.form.IForm"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IForm"
     },
     "setRequiredInvalidMessage": {
-      "type": "function",
-      "name": "setRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "property": "set",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the invalid message if required of the widget.",
+          "     *",
+          "     * @param message {String} The invalid message.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -367,21 +593,45 @@
             "body": "message {String} The invalid message.",
             "paramName": "message",
             "description": " The invalid message.",
-            "type": "String"
+            "type": "string"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 151,
+          "column": 4,
+          "index": 3993
+        },
+        "end": {
+          "line": 153,
+          "column": 5,
+          "index": 4071
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.IForm"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IForm"
     },
     "getRequiredInvalidMessage": {
-      "type": "function",
-      "name": "getRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
-      "property": "get",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the invalid message if required of the widget.",
+          "     *",
+          "     * @return {String} The current set message.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -392,22 +642,44 @@
           {
             "name": "@return",
             "body": "{String} The current set message.",
-            "type": "String",
-            "description": " The current set message."
+            "type": "string",
+            "description": "The current set message."
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 160,
+          "column": 4,
+          "index": 4212
+        },
+        "end": {
+          "line": 160,
+          "column": 34,
+          "index": 4242
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": [
+        "qx.ui.form.IForm"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IForm"
     },
     "setModel": {
-      "type": "function",
-      "name": "setModel",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IModel",
-      "property": "set",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the representative data for the item.",
+          "     *",
+          "     * @param value {var} The data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -423,18 +695,42 @@
             "type": "var"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1242
+        },
+        "end": {
+          "line": 47,
+          "column": 22,
+          "index": 1260
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.IModel"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IModel"
     },
     "getModel": {
-      "type": "function",
-      "name": "getModel",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IModel",
-      "property": "get",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the representative data for the item",
+          "     *",
+          "     * @return {var} The data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -446,180 +742,193 @@
             "name": "@return",
             "body": "{var} The data.",
             "type": "var",
-            "description": " The data."
+            "description": "The data."
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1373
+        },
+        "end": {
+          "line": 54,
+          "column": 17,
+          "index": 1386
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": [
+        "qx.ui.form.IModel"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IModel"
     },
     "resetModel": {
-      "type": "function",
-      "name": "resetModel",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IModel",
-      "property": "reset",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the representative data to null.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Sets the representative data to null.</p>"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1454
+        },
+        "end": {
+          "line": 59,
+          "column": 19,
+          "index": 1469
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.ui.form.IModel"
+      ],
+      "abstract": true,
+      "fromInterface": "qx.ui.form.IModel"
     },
     "_applyValid": {
-      "type": "function",
-      "name": "_applyValid",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
       "access": "protected",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "jsdoc": {}
-    },
-    "isValid": {
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1739
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 1840
+        }
+      },
       "type": "function",
-      "name": "isValid",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "property": "is",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
+    },
+    "__onChangeLocale": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Locale change event handler",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} the change event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "Gets the (computed) value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
+            "body": "<p>Locale change event handler</p>"
           }
         ],
-        "@return": [
+        "@signature": [
           {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for valid"
-          }
-        ]
-      }
-    },
-    "resetValid": {
-      "type": "function",
-      "name": "resetValid",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>valid</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ]
-      }
-    },
-    "isRequired": {
-      "type": "function",
-      "name": "isRequired",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
+            "name": "@signature",
+            "body": "function(e)"
           }
         ],
-        "@return": [
+        "@param": [
           {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for required"
+            "name": "@param",
+            "body": "e {Event} the change event",
+            "paramName": "e",
+            "description": " the change event",
+            "type": "Event"
           }
         ]
-      }
-    },
-    "resetRequired": {
-      "type": "function",
-      "name": "resetRequired",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>required</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ]
-      }
-    },
-    "resetInvalidMessage": {
-      "type": "function",
-      "name": "resetInvalidMessage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>invalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
-          }
-        ]
-      }
-    },
-    "resetRequiredInvalidMessage": {
-      "type": "function",
-      "name": "resetRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.MForm",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>requiredInvalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
-          }
-        ]
-      }
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 1976
+        },
+        "end": {
+          "line": 102,
+          "column": 6,
+          "index": 2570
+        }
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
     },
     "_applyModel": {
-      "type": "function",
-      "name": "_applyModel",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
       "access": "protected",
-      "overriddenFrom": "qx.ui.form.MModelProperty",
-      "jsdoc": {}
+      "location": {
+        "start": {
+          "line": 50,
+          "column": 4,
+          "index": 1527
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1588
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": [
+        "qx.ui.form.MModelProperty"
+      ],
+      "mixin": "qx.ui.form.MModelProperty"
     },
     "_getParentScrollContainer": {
-      "type": "function",
-      "name": "_getParentScrollContainer",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "protected",
-      "overriddenFrom": "qx.ui.mobile.container.MScrollHandling",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the parent scroll container of this widget.",
+          "     * @return {qx.ui.mobile.container.Scroll} the parent scroll container or <code>null</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -631,20 +940,74 @@
             "name": "@return",
             "body": "{qx.ui.mobile.container.Scroll} the parent scroll container or <code>null</code>",
             "type": "qx.ui.mobile.container.Scroll",
-            "description": " the parent scroll container or <code>null</code>"
+            "description": "the parent scroll container or <code>null</code>"
           }
         ]
-      }
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 877
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1371
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Scroll"
+      },
+      "appearsIn": [
+        "qx.ui.mobile.container.MScrollHandling"
+      ],
+      "mixin": "qx.ui.mobile.container.MScrollHandling"
+    },
+    "__states": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The states of the element",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The states of the element</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 17,
+          "column": 4,
+          "index": 446
+        },
+        "end": {
+          "line": 17,
+          "column": 18,
+          "index": 460
+        }
+      },
+      "mixin": "qx.ui.mobile.form.MState",
+      "appearsIn": [
+        "qx.ui.mobile.form.MState"
+      ]
     },
     "addState": {
-      "type": "function",
-      "name": "addState",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.form.MState",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a state to the element",
+          "     * @param state {String} the state to be added",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -654,23 +1017,44 @@
         "@param": [
           {
             "name": "@param",
-            "body": "state {String} the state to be added",
-            "paramName": "state",
-            "description": " the state to be added",
-            "type": "String"
+            "body": "state {String} the state to be added"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 24,
+          "column": 4,
+          "index": 576
+        },
+        "end": {
+          "line": 30,
+          "column": 5,
+          "index": 737
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state"
+        }
+      ],
+      "mixin": "qx.ui.mobile.form.MState",
+      "appearsIn": [
+        "qx.ui.mobile.form.MState"
+      ]
     },
     "hasState": {
-      "type": "function",
-      "name": "hasState",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.form.MState",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the element has the state passed as argument",
+          "     * @param state {String} the state to be checked",
+          "     * @return {Boolean} true if the element has the state, false if it doesn't.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -680,31 +1064,49 @@
         "@param": [
           {
             "name": "@param",
-            "body": "state {String} the state to be checked",
-            "paramName": "state",
-            "description": " the state to be checked",
-            "type": "String"
+            "body": "state {String} the state to be checked"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Boolean} true if the element has the state, false if it doesn't.",
-            "type": "Boolean",
-            "description": " true if the element has the state, false if it doesn't."
+            "body": "{Boolean} true if the element has the state, false if it doesn't."
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 968
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1052
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state"
+        }
+      ],
+      "mixin": "qx.ui.mobile.form.MState",
+      "appearsIn": [
+        "qx.ui.mobile.form.MState"
+      ]
     },
     "removeState": {
-      "type": "function",
-      "name": "removeState",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.form.MState",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a state from the element",
+          "     * @param state {String} the state to be removed",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -714,23 +1116,46 @@
         "@param": [
           {
             "name": "@param",
-            "body": "state {String} the state to be removed",
-            "paramName": "state",
-            "description": " the state to be removed",
-            "type": "String"
+            "body": "state {String} the state to be removed"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1175
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1316
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "state"
+        }
+      ],
+      "mixin": "qx.ui.mobile.form.MState",
+      "appearsIn": [
+        "qx.ui.mobile.form.MState"
+      ]
     },
     "replaceState": {
-      "type": "function",
-      "name": "replaceState",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.form.MState",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Replaces a state of the element with a new state.",
+          "     * If the element doesn't have the state to be removed, then th new state will",
+          "     * just be added.",
+          "     * @param oldState {String} the state to be replaced",
+          "     * @param newState {String} the state to get injected in the oldState's place",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -740,1250 +1165,256 @@
         "@param": [
           {
             "name": "@param",
-            "body": "oldState {String} the state to be replaced",
-            "paramName": "oldState",
-            "description": " the state to be replaced",
-            "type": "String"
+            "body": "oldState {String} the state to be replaced"
           },
           {
             "name": "@param",
-            "body": "newState {String} the state to get injected in the oldState's place",
-            "paramName": "newState",
-            "description": " the state to get injected in the oldState's place",
-            "type": "String"
+            "body": "newState {String} the state to get injected in the oldState's place"
           }
         ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
+      },
       "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1647
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 1935
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getDefaultCssClass": {
-      "type": "function",
-      "name": "getDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for defaultCssClass"
-          }
-        ]
-      }
-    },
-    "setDefaultCssClass": {
-      "type": "function",
-      "name": "setDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for defaultCssClass"
-          }
-        ]
-      }
-    },
-    "resetDefaultCssClass": {
-      "type": "function",
-      "name": "resetDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>defaultCssClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ]
-      }
-    },
-    "isEnabled": {
-      "type": "function",
-      "name": "isEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "resetEnabled": {
-      "type": "function",
-      "name": "resetEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ]
-      }
-    },
-    "getName": {
-      "type": "function",
-      "name": "getName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for name"
-          }
-        ]
-      }
-    },
-    "setName": {
-      "type": "function",
-      "name": "setName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for name"
-          }
-        ]
-      }
-    },
-    "resetName": {
-      "type": "function",
-      "name": "resetName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ]
-      }
-    },
-    "getAnonymous": {
-      "type": "function",
-      "name": "getAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "isAnonymous": {
-      "type": "function",
-      "name": "isAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "setAnonymous": {
-      "type": "function",
-      "name": "setAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for anonymous"
-          }
-        ]
-      }
-    },
-    "resetAnonymous": {
-      "type": "function",
-      "name": "resetAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ]
-      }
-    },
-    "getId": {
-      "type": "function",
-      "name": "getId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for id"
-          }
-        ]
-      }
-    },
-    "setId": {
-      "type": "function",
-      "name": "setId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for id"
-          }
-        ]
-      }
-    },
-    "resetId": {
-      "type": "function",
-      "name": "resetId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>id</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ]
-      }
-    },
-    "getVisibility": {
-      "type": "function",
-      "name": "getVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for visibility"
-          }
-        ]
-      }
-    },
-    "setVisibility": {
-      "type": "function",
-      "name": "setVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for visibility"
-          }
-        ]
-      }
-    },
-    "resetVisibility": {
-      "type": "function",
-      "name": "resetVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ]
-      }
-    },
-    "getActivatable": {
-      "type": "function",
-      "name": "getActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for activatable"
-          }
-        ]
-      }
-    },
-    "isActivatable": {
-      "type": "function",
-      "name": "isActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for activatable"
-          }
-        ]
-      }
-    },
-    "setActivatable": {
-      "type": "function",
-      "name": "setActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for activatable"
-          }
-        ]
-      }
-    },
-    "resetActivatable": {
-      "type": "function",
-      "name": "resetActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>activatable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ]
-      }
-    },
-    "getRotation": {
-      "type": "function",
-      "name": "getRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for rotation"
-          }
-        ]
-      }
-    },
-    "setRotation": {
-      "type": "function",
-      "name": "setRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for rotation"
-          }
-        ]
-      }
-    },
-    "resetRotation": {
-      "type": "function",
-      "name": "resetRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>rotation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ]
-      }
-    },
-    "getTransformUnit": {
-      "type": "function",
-      "name": "getTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for transformUnit"
-          }
-        ]
-      }
-    },
-    "setTransformUnit": {
-      "type": "function",
-      "name": "setTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for transformUnit"
-          }
-        ]
-      }
-    },
-    "resetTransformUnit": {
-      "type": "function",
-      "name": "resetTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>transformUnit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ]
-      }
-    },
-    "getScaleX": {
-      "type": "function",
-      "name": "getScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for scaleX"
-          }
-        ]
-      }
-    },
-    "setScaleX": {
-      "type": "function",
-      "name": "setScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for scaleX"
-          }
-        ]
-      }
-    },
-    "resetScaleX": {
-      "type": "function",
-      "name": "resetScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>scaleX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ]
-      }
-    },
-    "getScaleY": {
-      "type": "function",
-      "name": "getScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for scaleY"
-          }
-        ]
-      }
-    },
-    "setScaleY": {
-      "type": "function",
-      "name": "setScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for scaleY"
-          }
-        ]
-      }
-    },
-    "resetScaleY": {
-      "type": "function",
-      "name": "resetScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>scaleY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ]
-      }
-    },
-    "getTranslateX": {
-      "type": "function",
-      "name": "getTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateX"
-          }
-        ]
-      }
-    },
-    "setTranslateX": {
-      "type": "function",
-      "name": "setTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateX"
-          }
-        ]
-      }
-    },
-    "resetTranslateX": {
-      "type": "function",
-      "name": "resetTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ]
-      }
-    },
-    "getTranslateY": {
-      "type": "function",
-      "name": "getTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateY"
-          }
-        ]
-      }
-    },
-    "setTranslateY": {
-      "type": "function",
-      "name": "setTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateY"
-          }
-        ]
-      }
-    },
-    "resetTranslateY": {
-      "type": "function",
-      "name": "resetTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ]
-      }
-    },
-    "getTranslateZ": {
-      "type": "function",
-      "name": "getTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateZ"
-          }
-        ]
-      }
-    },
-    "setTranslateZ": {
-      "type": "function",
-      "name": "setTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateZ"
-          }
-        ]
-      }
-    },
-    "resetTranslateZ": {
-      "type": "function",
-      "name": "resetTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateZ</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "oldState"
+        },
+        {
+          "name": "newState"
+        }
+      ],
+      "mixin": "qx.ui.mobile.form.MState",
+      "appearsIn": [
+        "qx.ui.mobile.form.MState"
+      ]
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 92,
         "column": 2,
-        "index": 2363
+        "index": 2272
       },
       "end": {
         "line": 94,
         "column": 3,
-        "index": 2439
+        "index": 2346
       }
     }
   },
-  "events": {
-    "changeEnabled": {
-      "type": "event",
-      "name": "changeEnabled",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
+  "statics": {},
+  "properties": {
+    "valid": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 956
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1067
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyValid",
+        "event": "changeValid"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is valid. If a widget is invalid, an invalid",
+          "     * state will be set.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired when the enabled state was modified</p>"
+            "body": "<p>Flag signaling if a widget is valid. If a widget is invalid, an invalid\n state will be set.</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
     },
-    "changeValid": {
-      "type": "event",
-      "name": "changeValid",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
+    "required": {
+      "location": {
+        "start": {
+          "line": 48,
+          "column": 4,
+          "index": 1137
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1227
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRequired"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is required.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired when the valid state was modified</p>"
+            "body": "<p>Flag signaling if a widget is required.</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
     },
-    "changeInvalidMessage": {
-      "type": "event",
-      "name": "changeInvalidMessage",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
+    "invalidMessage": {
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1325
+        },
+        "end": {
+          "line": 62,
+          "column": 5,
+          "index": 1447
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "event": "changeInvalidMessage"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an tooltip if the widget is invalid.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired when the invalidMessage was modified</p>"
+            "body": "<p>Message which will be shown in an tooltip if the widget is invalid.</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
     },
-    "changeRequired": {
-      "type": "event",
-      "name": "changeRequired",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IForm",
+    "requiredInvalidMessage": {
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1575
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 1695
+        }
+      },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeRequiredInvalidMessage"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an invalid tooltip if the {@link #required} is",
+          "     * set to true.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired when the required was modified</p>"
+            "body": "<p>Message which will be shown in an invalid tooltip if the {@link #required} is\n set to true.</p>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.form.MForm"
+      ],
+      "mixin": "qx.ui.form.MForm"
     },
-    "changeModel": {
-      "type": "event",
-      "name": "changeModel",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IModel",
+    "model": {
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1367
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1483
+        }
+      },
+      "json": {
+        "nullable": true,
+        "event": "changeModel",
+        "apply": "_applyModel",
+        "dereference": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Model property for storing additional information for the including",
+          "     * object. It can act as value property on form items for example.",
+          "     *",
+          "     * Be careful using that property as this is used for the",
+          "     * {@link qx.ui.form.MModelSelection} it has some restrictions:",
+          "     *",
+          "     * * Don't use equal models in one widget using the",
+          "     *     {@link qx.ui.form.MModelSelection}.",
+          "     *",
+          "     * * Avoid setting only some model properties if the widgets are added to",
+          "     *     a {@link qx.ui.form.MModelSelection} widget.",
+          "     *",
+          "     * Both restrictions result of the fact, that the set models are deputies",
+          "     * for their widget.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired when the model data changes</p>"
+            "body": "<p>Model property for storing additional information for the including\n object. It can act as value property on form items for example.\n Be careful using that property as this is used for the\n {@link qx.ui.form.MModelSelection} it has some restrictions:</p>\n<ul>\n<li>Don't use equal models in one widget using the\n {@link qx.ui.form.MModelSelection}.</li>\n<li>Avoid setting only some model properties if the widgets are added to\n a {@link qx.ui.form.MModelSelection} widget.\nBoth restrictions result of the fact, that the set models are deputies\nfor their widget.</li>\n</ul>"
           }
         ]
-      }
+      },
+      "appearsIn": [
+        "qx.ui.form.MModelProperty"
+      ],
+      "mixin": "qx.ui.form.MModelProperty"
     }
-  },
-  "descendants": [
-    "qx.ui.mobile.form.CheckBox",
-    "qx.ui.mobile.form.NumberField",
-    "qx.ui.mobile.form.RadioButton",
-    "qx.ui.mobile.form.TextField"
-  ]
+  }
 }

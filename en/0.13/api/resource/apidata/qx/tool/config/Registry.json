@@ -1,0 +1,93 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172102,
+  "lastModifiedIso": "2024-06-01T09:46:12.102Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/config/Registry.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 527
+    },
+    "end": {
+      "line": 41,
+      "column": 3,
+      "index": 872
+    }
+  },
+  "className": "qx.tool.config.Registry",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A model for the Manifest.json file",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A model for the Manifest.json file</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.config.Abstract",
+  "isSingleton": true,
+  "abstract": false,
+  "statics": {
+    "config": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 26,
+          "column": 4,
+          "index": 645
+        },
+        "end": {
+          "line": 29,
+          "column": 5,
+          "index": 715
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 724
+      },
+      "end": {
+        "line": 34,
+        "column": 3,
+        "index": 781
+      }
+    }
+  },
+  "members": {
+    "getLibraries": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 801
+        },
+        "end": {
+          "line": 39,
+          "column": 5,
+          "index": 864
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

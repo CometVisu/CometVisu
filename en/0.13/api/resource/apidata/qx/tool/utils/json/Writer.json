@@ -1,0 +1,270 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172902,
+  "lastModifiedIso": "2024-06-01T09:46:12.902Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/json/Writer.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 783
+    },
+    "end": {
+      "line": 145,
+      "column": 3,
+      "index": 4117
+    }
+  },
+  "className": "qx.tool.utils.json.Writer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Writer for serialising JSON, automatically indenting as required",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Writer for serialising JSON, automatically indenting as required</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 29,
+        "column": 2,
+        "index": 859
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 989
+      }
+    }
+  },
+  "members": {
+    "write": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes a string/number.  Multiple lines are rewritten with indentation at the",
+          "     * start of each line",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes a string/number.  Multiple lines are rewritten with indentation at the\n start of each line</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1136
+        },
+        "end": {
+          "line": 71,
+          "column": 5,
+          "index": 2010
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "str"
+        }
+      ],
+      "appearsIn": []
+    },
+    "comments": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Outputs comments",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Outputs comments</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2057
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2233
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "comments"
+        }
+      ],
+      "appearsIn": []
+    },
+    "indent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Increases or decreases the indentation level (one indent is two spaces)",
+          "     *",
+          "     * @param count {Number} number to increase/decrease by",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Increases or decreases the indentation level (one indent is two spaces)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "count {Number} number to increase/decrease by",
+            "paramName": "count",
+            "description": " number to increase/decrease by",
+            "type": "number"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 90,
+          "column": 4,
+          "index": 2402
+        },
+        "end": {
+          "line": 113,
+          "column": 5,
+          "index": 3068
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "count",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "matchIndent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects the current indentation level in the output, which has been added manually,",
+          "     * ie outside of the `indent()` method.  When outputting an AST via `reprint()`, whitespace",
+          "     * is copied too, this allows the code to adopt whatever indentation level has been",
+          "     * output by the AST so that injecting `prettyPrint()`-ed new objects are at the same\\",
+          "     * level.",
+          "     *",
+          "     * The old indent is returned, and should be passed to `resetIndent()` to restore the",
+          "     * previous value.",
+          "     *",
+          "     * @return {Object} previous indentation",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects the current indentation level in the output, which has been added manually,\n ie outside of the <code>indent()</code> method.  When outputting an AST via <code>reprint()</code>, whitespace\n is copied too, this allows the code to adopt whatever indentation level has been\n output by the AST so that injecting <code>prettyPrint()</code>-ed new objects are at the same\\\n level.\n The old indent is returned, and should be passed to <code>resetIndent()</code> to restore the\n previous value.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object} previous indentation",
+            "type": "Record<any, any>",
+            "description": "previous indentation"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 3643
+        },
+        "end": {
+          "line": 134,
+          "column": 5,
+          "index": 3884
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "resetIndent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Restores the previous indentation settings prior to `matchIndent()`",
+          "     *",
+          "     * @param indent {Object} previous indentation settings",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Restores the previous indentation settings prior to <code>matchIndent()</code></p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "indent {Object} previous indentation settings",
+            "paramName": "indent",
+            "description": " previous indentation settings",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 4049
+        },
+        "end": {
+          "line": 143,
+          "column": 5,
+          "index": 4109
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "indent",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

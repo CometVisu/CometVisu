@@ -9,7 +9,8 @@
         "construct": true,
         "require": true
       },
-      "qxl.apiviewer.dao.Method": {}
+      "qxl.apiviewer.dao.Method": {},
+      "qxl.apiviewer.dao.PropertyMethod": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -46,11 +47,11 @@
        * @Override
        */
       canDisplayItem: function canDisplayItem(dao) {
-        return dao instanceof qxl.apiviewer.dao.Method && !dao.isStatic();
+        return dao instanceof qxl.apiviewer.dao.Method && !dao.isStatic() || dao instanceof qxl.apiviewer.dao.PropertyMethod;
       }
     }
   });
   qxl.apiviewer.ui.panels.MethodPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MethodPanel.js.map?dt=1709410174557
+//# sourceMappingURL=MethodPanel.js.map?dt=1717235426361

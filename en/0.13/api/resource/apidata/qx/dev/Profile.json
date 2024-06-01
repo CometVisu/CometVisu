@@ -1,49 +1,53 @@
 {
-  "className": "qx.dev.Profile",
-  "packageName": "qx.dev",
-  "name": "Profile",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 30,
-        "column": 0,
-        "index": 973
-      },
-      "end": {
-        "line": 345,
-        "column": 3,
-        "index": 9829
-      }
+  "version": 0.3,
+  "lastModified": 1717235172034,
+  "lastModifiedIso": "2024-06-01T09:46:12.034Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/Profile.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 944
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>qooxdoo profiler.\n All functions of qooxdoo classes (constructors, members, statics) can be profiled\n using this class.\n To enable profiling this class must be loaded <b>before</b> <code>qx.Class</code> is\n loaded. This can be achieved by making <code>qx.core.Aspect</code> and\n <code>qx.dev.Profile</code> a load time dependency of <code>qx.Class</code>.\n Further more the variant <code>qx.aspects</code> must be set to <code>on</code>.</p>"
-        }
-      ]
+    "end": {
+      "line": 345,
+      "column": 3,
+      "index": 9485
     }
   },
-  "type": "class",
+  "className": "qx.dev.Profile",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * qooxdoo profiler.",
+      " *",
+      " * All functions of qooxdoo classes (constructors, members, statics) can be profiled",
+      " * using this class.",
+      " *",
+      " * To enable profiling this class must be loaded <b>before</b> <code>qx.Class</code> is",
+      " * loaded. This can be achieved by making <code>qx.core.Aspect</code> and",
+      " * <code>qx.dev.Profile</code> a load time dependency of <code>qx.Class</code>.",
+      " * Further more the variant <code>qx.aspects</code> must be set to <code>on</code>.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>qooxdoo profiler.\n All functions of qooxdoo classes (constructors, members, statics) can be profiled\n using this class.\n To enable profiling this class must be loaded <b>before</b> <code>qx.Class</code> is\n loaded. This can be achieved by making <code>qx.core.Aspect</code> and\n <code>qx.dev.Profile</code> a load time dependency of <code>qx.Class</code>.\n Further more the variant <code>qx.aspects</code> must be set to <code>on</code>.</p>"
+      }
+    ]
+  },
   "statics": {
     "__profileData": {
-      "location": {
-        "start": {
-          "line": 37,
-          "column": 4,
-          "index": 1111
-        },
-        "end": {
-          "line": 37,
-          "column": 21,
-          "index": 1128
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Storage for profiling data",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +61,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__callStack": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 44,
+          "line": 37,
           "column": 4,
-          "index": 1227
+          "index": 1075
         },
         "end": {
-          "line": 44,
-          "column": 19,
-          "index": 1242
+          "line": 37,
+          "column": 21,
+          "index": 1092
         }
       },
+      "appearsIn": []
+    },
+    "__callStack": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Array for call stack-like data types.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,23 +98,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__doProfile": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 51,
+          "line": 44,
           "column": 4,
-          "index": 1330
+          "index": 1184
         },
         "end": {
-          "line": 51,
-          "column": 21,
-          "index": 1347
+          "line": 44,
+          "column": 19,
+          "index": 1199
         }
       },
+      "appearsIn": []
+    },
+    "__doProfile": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag marking profiler run.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,23 +135,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__callOverhead": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 58,
+          "line": 51,
           "column": 4,
-          "index": 1476
+          "index": 1280
         },
         "end": {
-          "line": 58,
-          "column": 29,
-          "index": 1501
+          "line": 51,
+          "column": 21,
+          "index": 1297
         }
       },
+      "appearsIn": []
+    },
+    "__callOverhead": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Profiler execution time. Subtracted for more accurate calculations.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -147,23 +172,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__calibrateCount": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 65,
+          "line": 58,
           "column": 4,
-          "index": 1619
+          "index": 1419
         },
         "end": {
-          "line": 65,
-          "column": 26,
-          "index": 1641
+          "line": 58,
+          "column": 29,
+          "index": 1444
         }
       },
+      "appearsIn": []
+    },
+    "__calibrateCount": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Amount of times to run calculation of profiler overhead.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -177,23 +209,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "start": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 70,
+          "line": 65,
           "column": 4,
-          "index": 1718
+          "index": 1555
         },
         "end": {
-          "line": 74,
-          "column": 5,
-          "index": 1862
+          "line": 65,
+          "column": 26,
+          "index": 1577
         }
       },
+      "appearsIn": []
+    },
+    "start": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clear profiling data and start profiling.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -201,23 +238,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "stop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 79,
+          "line": 70,
           "column": 4,
-          "index": 1913
+          "index": 1649
         },
         "end": {
-          "line": 81,
+          "line": 74,
           "column": 5,
-          "index": 1961
+          "index": 1789
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "stop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stop profiling.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -225,23 +269,62 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getProfileData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 118,
+          "line": 79,
           "column": 4,
-          "index": 3001
+          "index": 1835
         },
         "end": {
-          "line": 120,
+          "line": 81,
           "column": 5,
-          "index": 3060
+          "index": 1881
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getProfileData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the profiling data as JSON data structure.",
+          "     *",
+          "     * Example:",
+          "     * <pre class=\"javascript\">",
+          "     * {",
+          "     *   \"qx.core.ObjectRegistry.toHashCode (static)\":{",
+          "     *     *     \"totalTime\":3,",
+          "     *     \"ownTime\":3,",
+          "     *     \"callCount\":218,",
+          "     *     \"subRoutineCalls\":0,",
+          "     *     \"name\":\"qx.core.ObjectRegistry.toHashCode\",",
+          "     *     \"type\":\"static\"",
+          "     *   },",
+          "     *   \"qx.core.Object.addListener (member)\":{",
+          "     *     \"totalTime\":19,",
+          "     *     \"ownTime\":12,",
+          "     *     \"callCount\":59,",
+          "     *     \"subRoutineCalls\":251,",
+          "     *     \"name\":\"qx.core.Object.addListener\",",
+          "     *     \"type\":\"member\"",
+          "     *   },",
+          "     *   \"qx.ui.table.cellrenderer.Default (constructor)\":{",
+          "     *     \"totalTime\":2,",
+          "     *     \"ownTime\":1,",
+          "     *     \"callCount\":1,",
+          "     *     \"subRoutineCalls\":4,",
+          "     *     \"name\":\"qx.ui.table.cellrenderer.Default\",",
+          "     *     \"type\":\"constructor\"",
+          "     *   }",
+          "     * }",
+          "     * </pre>",
+          "     *",
+          "     * @return {Map} The current profiling data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -252,28 +335,41 @@
           {
             "name": "@return",
             "body": "{Map} The current profiling data.",
-            "type": "Map",
-            "description": " The current profiling data."
+            "type": "Map<any, any>",
+            "description": "The current profiling data."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "showResults": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 128,
+          "line": 118,
           "column": 4,
-          "index": 3281
+          "index": 2884
         },
         "end": {
-          "line": 177,
+          "line": 120,
           "column": 5,
-          "index": 4799
+          "index": 2941
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "showResults": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Show profiling results in a popup window. The results are sorted by the",
+          "     * function's own time.",
+          "     *",
+          "     * @param maxLength {Integer?100} maximum number of entries to display.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -292,23 +388,43 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__calibrate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 188,
+          "line": 128,
           "column": 4,
-          "index": 5123
+          "index": 3154
         },
         "end": {
-          "line": 226,
+          "line": 177,
           "column": 5,
-          "index": 6138
+          "index": 4623
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "maxLength",
+          "type": "Integer",
+          "optional": true,
+          "defaultValue": "100"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__calibrate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Measure the overhead of calling a wrapped function vs. calling an",
+          "     * unwrapped function.",
+          "     *",
+          "     * @lint ignoreDeprecated(eval)",
+          "     *",
+          "     * @param count {Integer} Number of iterations to measure.",
+          "     * @return {Number} Overhead of a wrapped function call in milliseconds.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -334,28 +450,43 @@
           {
             "name": "@return",
             "body": "{Number} Overhead of a wrapped function call in milliseconds.",
-            "type": "Number",
-            "description": " Overhead of a wrapped function call in milliseconds."
+            "type": "number",
+            "description": "Overhead of a wrapped function call in milliseconds."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__calibrateHelper": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 231,
+          "line": 188,
           "column": 4,
-          "index": 6201
+          "index": 4936
         },
         "end": {
-          "line": 231,
-          "column": 26,
-          "index": 6223
+          "line": 226,
+          "column": 5,
+          "index": 5913
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "count",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "__calibrateHelper": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper to measure overhead.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -363,23 +494,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "normalizeProfileData": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 237,
+          "line": 231,
           "column": 4,
-          "index": 6361
+          "index": 5971
         },
         "end": {
-          "line": 254,
-          "column": 5,
-          "index": 6912
+          "line": 231,
+          "column": 26,
+          "index": 5993
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "normalizeProfileData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Normalize profiling data by subtracting the overhead of wrapping from the",
+          "     * function's own time.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -387,23 +526,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "profileBefore": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 265,
+          "line": 237,
           "column": 4,
-          "index": 7375
+          "index": 6125
         },
         "end": {
-          "line": 279,
+          "line": 254,
           "column": 5,
-          "index": 7686
+          "index": 6659
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "profileBefore": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function will be called before each function call. (Start timing)",
+          "     *",
+          "     * @param fullName {String} Full name of the function including the class name.",
+          "     * @param fcn {Function} Function to time.",
+          "     * @param type {String} Function type as in parameter with same name to",
+          "     *                      {@link qx.core.Aspect#addAdvice}",
+          "     * @param args {arguments} The arguments passed to the wrapped function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -416,21 +568,21 @@
             "body": "fullName {String} Full name of the function including the class name.",
             "paramName": "fullName",
             "description": " Full name of the function including the class name.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "fcn {Function} Function to time.",
             "paramName": "fcn",
             "description": " Function to time.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "type {String} Function type as in parameter with same name to\n                      {@link qx.core.Aspect#addAdvice}",
             "paramName": "type",
             "description": " Function type as in parameter with same name to\n                      {@link qx.core.Aspect#addAdvice}",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -441,23 +593,54 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "profileAfter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 291,
+          "line": 265,
           "column": 4,
-          "index": 8218
+          "index": 7111
         },
         "end": {
-          "line": 326,
+          "line": 279,
           "column": 5,
-          "index": 9320
+          "index": 7408
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "fullName",
+          "type": "string"
+        },
+        {
+          "name": "fcn",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "arguments"
+        }
+      ],
+      "appearsIn": []
+    },
+    "profileAfter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This function will be called after each function call. (Stop timing)",
+          "     *",
+          "     * @param fullName {String} Full name of the function including the class name.",
+          "     * @param fcn {Function} Function to time.",
+          "     * @param type {String} Function type as in parameter with same name to",
+          "     *                      {@link qx.core.Aspect#addAdvice}",
+          "     * @param args {arguments} The arguments passed to the wrapped function",
+          "     * @param returnValue {var} return value of the wrapped function.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -470,21 +653,21 @@
             "body": "fullName {String} Full name of the function including the class name.",
             "paramName": "fullName",
             "description": " Full name of the function including the class name.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "fcn {Function} Function to time.",
             "paramName": "fcn",
             "description": " Function to time.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "type {String} Function type as in parameter with same name to\n                      {@link qx.core.Aspect#addAdvice}",
             "paramName": "type",
             "description": " Function type as in parameter with same name to\n                      {@link qx.core.Aspect#addAdvice}",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -502,23 +685,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 329,
-        "column": 2,
-        "index": 9332
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 291,
+          "column": 4,
+          "index": 7928
+        },
+        "end": {
+          "line": 326,
+          "column": 5,
+          "index": 8995
+        }
       },
-      "end": {
-        "line": 344,
-        "column": 3,
-        "index": 9824
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "fullName",
+          "type": "string"
+        },
+        {
+          "name": "fcn",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "arguments"
+        },
+        {
+          "name": "returnValue",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

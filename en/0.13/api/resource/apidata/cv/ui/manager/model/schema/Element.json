@@ -1,37 +1,49 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235105610,
+  "lastModifiedIso": "2024-06-01T09:45:05.610Z",
+  "classFilename": "../../source/class/cv/ui/manager/model/schema/Element.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 858
+    },
+    "end": {
+      "line": 752,
+      "column": 3,
+      "index": 24455
+    }
+  },
   "className": "cv.ui.manager.model.schema.Element",
-  "packageName": "cv.ui.manager.model.schema",
-  "name": "Element",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * a single element from the schema",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>a single element from the schema</p>"
+      }
+    ]
+  },
   "superClass": "cv.ui.manager.model.schema.Base",
-  "interfaces": [],
   "mixins": [
     "cv.ui.manager.model.schema.MAnnotation"
   ],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 858
-      },
-      "end": {
-        "line": 752,
-        "column": 3,
-        "index": 24455
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>a single element from the schema</p>"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "node"
+      },
+      {
+        "name": "schema"
+      }
+    ],
     "location": {
       "start": {
         "line": 32,
@@ -43,24 +55,20 @@
         "column": 3,
         "index": 1209
       }
-    },
-    "jsdoc": {}
+    }
   },
   "statics": {
     "getElementName": {
-      "location": {
-        "start": {
-          "line": 50,
-          "column": 4,
-          "index": 1577
-        },
-        "end": {
-          "line": 68,
-          "column": 5,
-          "index": 2099
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the name of a schema-element",
+          "     * @param e object  element to find the name of",
+          "     * @param schema",
+          "     * @return  string          name of the element",
+          "     * @throws  if the name can not be found",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -92,23 +100,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTypeNode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 76,
+          "line": 50,
           "column": 4,
-          "index": 2253
+          "index": 1577
         },
         "end": {
-          "line": 101,
+          "line": 68,
           "column": 5,
-          "index": 3216
+          "index": 2099
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e"
+        },
+        {
+          "name": "schema"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getTypeNode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * find the type-node for this element",
+          "     * @param node",
+          "     * @param schema",
+          "     * @return  object  object of the type-Node",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -136,10 +162,34 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2253
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 3216
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "node"
+        },
+        {
+          "name": "schema"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
     },
     "sortChildNodes": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 103,
@@ -153,7 +203,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "sorting"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "properties": {
@@ -170,15 +225,14 @@
           "index": 4947
         }
       },
-      "name": "type",
-      "propertyType": "new",
-      "refine": true,
-      "init": "element",
-      "defaultValue": "element",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "appearsIn": {
-        "cv.ui.manager.model.schema.Base": "class"
-      }
+      "json": {
+        "refine": true,
+        "init": "element"
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "cv.ui.manager.model.schema.Base"
+      ]
     },
     "name": {
       "location": {
@@ -193,11 +247,12 @@
           "index": 5005
         }
       },
-      "name": "name",
-      "propertyType": "new",
-      "init": "",
-      "check": "String",
-      "defaultValue": ""
+      "json": {
+        "check": "String",
+        "init": ""
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "defaultValue": {
       "location": {
@@ -212,11 +267,12 @@
           "index": 5077
         }
       },
-      "name": "defaultValue",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "json": {
+        "check": "String",
+        "nullable": true
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "sortable": {
       "location": {
@@ -231,12 +287,13 @@
           "index": 5174
         }
       },
-      "name": "sortable",
-      "propertyType": "new",
-      "event": "changeSortable",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeSortable"
+      },
+      "jsdoc": null,
+      "appearsIn": []
     },
     "mixed": {
       "location": {
@@ -251,15 +308,18 @@
           "index": 5237
         }
       },
-      "name": "mixed",
-      "propertyType": "new",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "json": {
+        "check": "Boolean",
+        "init": false
+      },
+      "jsdoc": null,
+      "appearsIn": []
     }
   },
   "members": {
     "__allowedContentLoaded": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 192,
@@ -272,10 +332,11 @@
           "index": 5412
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__allowedContent": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 193,
@@ -288,10 +349,11 @@
           "index": 5440
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__allowedAttributes": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 194,
@@ -304,10 +366,11 @@
           "index": 5471
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__textNodeSchemaElement": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 195,
@@ -320,10 +383,11 @@
           "index": 5506
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__extendedElement": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 196,
@@ -336,23 +400,16 @@
           "index": 5540
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_type": {
-      "location": {
-        "start": {
-          "line": 202,
-          "column": 4,
-          "index": 5673
-        },
-        "end": {
-          "line": 202,
-          "column": 15,
-          "index": 5684
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get and set the type-node for the element",
+          "     * @var object  Type-Node (most certainly a complexType)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -366,10 +423,24 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 202,
+          "column": 4,
+          "index": 5673
+        },
+        "end": {
+          "line": 202,
+          "column": 15,
+          "index": 5684
+        }
+      },
+      "appearsIn": []
     },
     "parse": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 204,
@@ -383,13 +454,15 @@
         }
       },
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "cv.ui.manager.model.schema.Base",
       "appearsIn": [
         "cv.ui.manager.model.schema.Base"
       ]
     },
     "getExtendedElement": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 218,
@@ -403,22 +476,18 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "getAllowedContent": {
-      "location": {
-        "start": {
-          "line": 242,
-          "column": 4,
-          "index": 7128
-        },
-        "end": {
-          "line": 298,
-          "column": 5,
-          "index": 9619
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get a list of allowed elements for this element",
+          "     *",
+          "     * @return  object  object of SchemaElement-elements, key is the name",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -432,10 +501,27 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4,
+          "index": 7128
+        },
+        "end": {
+          "line": 298,
+          "column": 5,
+          "index": 9619
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
     },
     "_parseGrouping": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 300,
@@ -449,22 +535,24 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "node"
+        },
+        {
+          "name": "schema"
+        }
+      ],
+      "appearsIn": []
     },
     "getAllowedAttributes": {
-      "location": {
-        "start": {
-          "line": 334,
-          "column": 4,
-          "index": 10631
-        },
-        "end": {
-          "line": 382,
-          "column": 5,
-          "index": 12602
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get and set the list of allowed attributes",
+          "     * @var array   List of SchemaAttribute-objects",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -478,23 +566,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "areChildrenSortable": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 389,
+          "line": 334,
           "column": 4,
-          "index": 12777
+          "index": 10631
         },
         "end": {
-          "line": 398,
+          "line": 382,
           "column": 5,
-          "index": 13056
+          "index": 12602
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "areChildrenSortable": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * are these elements children sortable? this is not the case if a sequence is used, e.g.",
+          "     *",
+          "     * @return  boolean     are children sortable?",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -508,23 +605,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRequiredElements": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 406,
+          "line": 389,
           "column": 4,
-          "index": 13253
+          "index": 12777
         },
         "end": {
-          "line": 427,
+          "line": 398,
           "column": 5,
-          "index": 13859
+          "index": 13056
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getRequiredElements": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get a list of required elements.",
+          "     * if an element is required multiple times, it is listed multiple times",
+          "     *",
+          "     * @return  array   list of required elements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -538,27 +646,36 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 406,
+          "column": 4,
+          "index": 13253
+        },
+        "end": {
+          "line": 427,
+          "column": 5,
+          "index": 13859
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
       "overriddenFrom": "cv.ui.manager.model.schema.Base",
       "appearsIn": [
         "cv.ui.manager.model.schema.Base"
       ]
     },
     "getAllowedElements": {
-      "location": {
-        "start": {
-          "line": 434,
-          "column": 4,
-          "index": 14042
-        },
-        "end": {
-          "line": 462,
-          "column": 5,
-          "index": 15136
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get a list of all allowed elements for this element",
+          "     * @param excludeComment",
+          "     * @return  object  list of SchemaElement-elements, key is the name",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -580,27 +697,40 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 434,
+          "column": 4,
+          "index": 14042
+        },
+        "end": {
+          "line": 462,
+          "column": 5,
+          "index": 15136
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "excludeComment"
+        }
+      ],
+      "returnType": {},
       "overriddenFrom": "cv.ui.manager.model.schema.Base",
       "appearsIn": [
         "cv.ui.manager.model.schema.Base"
       ]
     },
     "getAllowedElementsSorting": {
-      "location": {
-        "start": {
-          "line": 469,
-          "column": 4,
-          "index": 15308
-        },
-        "end": {
-          "line": 477,
-          "column": 5,
-          "index": 15539
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the sorting of the allowed elements.",
+          "     *",
+          "     * @return  object              list of allowed elements, with their sort-number as value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -614,14 +744,30 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 469,
+          "column": 4,
+          "index": 15308
+        },
+        "end": {
+          "line": 477,
+          "column": 5,
+          "index": 15539
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
       "overriddenFrom": "cv.ui.manager.model.schema.Base",
       "appearsIn": [
         "cv.ui.manager.model.schema.Base"
       ]
     },
     "getFirstLevelElementSorting": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 479,
@@ -635,9 +781,34 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "getChildBounds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the bounds for this elements children (as defined by a choice)",
+          "     *",
+          "     * @return  object  bounds ({min: x, max: y})",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>get the bounds for this elements children (as defined by a choice)</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "object  bounds ({min: x, max: y})",
+            "type": "min: x, max: y",
+            "description": ")"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 499,
@@ -650,37 +821,24 @@
           "index": 16634
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>get the bounds for this elements children (as defined by a choice)</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "object  bounds ({min: x, max: y})"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "min: x, max: y"
+      },
+      "appearsIn": []
     },
     "getBoundsForElementName": {
-      "location": {
-        "start": {
-          "line": 522,
-          "column": 4,
-          "index": 16931
-        },
-        "end": {
-          "line": 526,
-          "column": 5,
-          "index": 17103
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the bounds for a specific element-name",
+          "     * will go through all of the groupings-tree to find out, just how many elements of this may appear",
+          "     *",
+          "     * @param   childName   string  name of the child-to-be",
+          "     * @return  object              {min: x, max: y}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -696,31 +854,48 @@
         "@return": [
           {
             "name": "@return",
-            "body": "object              {min: x, max: y}"
+            "body": "object              {min: x, max: y}",
+            "type": "min: x, max: y",
+            "description": ""
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 522,
+          "column": 4,
+          "index": 16931
+        },
+        "end": {
+          "line": 526,
+          "column": 5,
+          "index": 17103
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "childName"
+        }
+      ],
+      "returnType": {
+        "type": "min: x, max: y"
+      },
       "overriddenFrom": "cv.ui.manager.model.schema.Base",
       "appearsIn": [
         "cv.ui.manager.model.schema.Base"
       ]
     },
     "isTextContentAllowed": {
-      "location": {
-        "start": {
-          "line": 533,
-          "column": 4,
-          "index": 17205
-        },
-        "end": {
-          "line": 549,
-          "column": 5,
-          "index": 17746
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * check if a text-only-node is allowed ...",
+          "     *",
+          "     * @return  boolean",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -734,10 +909,27 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 533,
+          "column": 4,
+          "index": 17205
+        },
+        "end": {
+          "line": 549,
+          "column": 5,
+          "index": 17746
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
     },
     "isTextContentRequired": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 551,
@@ -751,22 +943,20 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "isChildElementAllowed": {
-      "location": {
-        "start": {
-          "line": 565,
-          "column": 4,
-          "index": 18230
-        },
-        "end": {
-          "line": 587,
-          "column": 5,
-          "index": 19037
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * check if an element (specified by its name) is allowed as one of our immediate children",
+          "     * Goes recursive if we have choices.",
+          "     *",
+          "     * @param   child   string  name of the element we want to check",
+          "     * @return  boolean         is this element allowed?",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -786,23 +976,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSchemaElementForElementName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 596,
+          "line": 565,
           "column": 4,
-          "index": 19425
+          "index": 18230
         },
         "end": {
-          "line": 642,
+          "line": 587,
           "column": 5,
-          "index": 21438
+          "index": 19037
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "child"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getSchemaElementForElementName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the SchemaElement-object for a certain element-name.",
+          "     * May return undefined if no element is found, so you might be interested in checking isElementAllowed beforehand.",
+          "     *",
+          "     * @param   elementName string  name of the element to find the SchemaElement for",
+          "     * @return  object              SchemaElement-object, or undefined if none is found",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -822,27 +1028,40 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 596,
+          "column": 4,
+          "index": 19425
+        },
+        "end": {
+          "line": 642,
+          "column": 5,
+          "index": 21438
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "elementName"
+        }
+      ],
+      "returnType": {},
       "overriddenFrom": "cv.ui.manager.model.schema.Base",
       "appearsIn": [
         "cv.ui.manager.model.schema.Base"
       ]
     },
     "getSchemaDOM": {
-      "location": {
-        "start": {
-          "line": 649,
-          "column": 4,
-          "index": 21550
-        },
-        "end": {
-          "line": 651,
-          "column": 5,
-          "index": 21618
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * return the DOM this Schema is based on",
+          "     *",
+          "     * @return  object  DOM of $xsd",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -856,23 +1075,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isValueValid": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 659,
+          "line": 649,
           "column": 4,
-          "index": 21796
+          "index": 21550
         },
         "end": {
-          "line": 673,
+          "line": 651,
           "column": 5,
-          "index": 22174
+          "index": 21618
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "isValueValid": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * check if a given value is valid for this element",
+          "     *",
+          "     * @param   value   string  value to check",
+          "     * @return  boolean         is it valid?",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -892,23 +1122,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRegex": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 682,
+          "line": 659,
           "column": 4,
-          "index": 22497
+          "index": 21796
         },
         "end": {
-          "line": 717,
+          "line": 673,
           "column": 5,
-          "index": 23425
+          "index": 22174
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getRegex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * create and retrieve the part of a regular expression which describes this very element",
+          "     *",
+          "     * @param   separator   string  the string used to separate different elements, e.g. ';'",
+          "     * @param   nocapture   bool    when set to true non capturing groups are used",
+          "     * @return  string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -932,27 +1178,44 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 682,
+          "column": 4,
+          "index": 22497
+        },
+        "end": {
+          "line": 717,
+          "column": 5,
+          "index": 23425
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "separator"
+        },
+        {
+          "name": "nocapture"
+        }
+      ],
+      "returnType": {},
       "overriddenFrom": "cv.ui.manager.model.schema.Base",
       "appearsIn": [
         "cv.ui.manager.model.schema.Base"
       ]
     },
     "getChildrenRegex": {
-      "location": {
-        "start": {
-          "line": 725,
-          "column": 4,
-          "index": 23716
-        },
-        "end": {
-          "line": 739,
-          "column": 5,
-          "index": 24140
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * create a full-blown regular expression that describes this elements immediate children",
+          "     * @param separator   string  the string used to separate different elements, e.g. ';'",
+          "     * @param nocapture",
+          "     * @return  string              the regular expression",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -978,27 +1241,187 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 725,
+          "column": 4,
+          "index": 23716
+        },
+        "end": {
+          "line": 739,
+          "column": 5,
+          "index": 24140
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "separator"
+        },
+        {
+          "name": "nocapture"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "__appInfoCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * cache for getAppinfo",
+          "     * @var array",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for getAppinfo</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "array"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1484
+        },
+        "end": {
+          "line": 44,
+          "column": 24,
+          "index": 1504
+        }
+      },
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
+    },
+    "__linkRegex": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1510
+        },
+        "end": {
+          "line": 45,
+          "column": 21,
+          "index": 1527
+        }
+      },
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
+    },
+    "__language": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1533
+        },
+        "end": {
+          "line": 46,
+          "column": 20,
+          "index": 1549
+        }
+      },
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
+    },
+    "__documentationCache": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * cache for getDocumentation",
+          "     * @var array",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>cache for getDocumentation</p>"
+          }
+        ],
+        "@var": [
+          {
+            "name": "@var",
+            "body": "array"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1624
+        },
+        "end": {
+          "line": 52,
+          "column": 30,
+          "index": 1650
+        }
+      },
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
     },
     "__getTextNodesByXPath": {
-      "type": "function",
-      "name": "__getTextNodesByXPath",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
+      "jsdoc": null,
       "access": "private",
-      "overriddenFrom": "cv.ui.manager.model.schema.MAnnotation"
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1657
+        },
+        "end": {
+          "line": 72,
+          "column": 5,
+          "index": 2294
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "node"
+        },
+        {
+          "name": "xpath"
+        }
+      ],
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
     },
     "getAppinfo": {
-      "type": "function",
-      "name": "getAppinfo",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.MAnnotation",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the appinfo information from the element, if any",
+          "     *",
+          "     * @return  array   list of texts, or empty list if none",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1011,17 +1434,36 @@
             "body": "array   list of texts, or empty list if none"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2445
+        },
+        "end": {
+          "line": 107,
+          "column": 5,
+          "index": 3518
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
     },
     "getDocumentation": {
-      "type": "function",
-      "name": "getDocumentation",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.MAnnotation",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * get the documentation information from the element, if any",
+          "     *",
+          "     * @return  array   list of texts, or empty list if none",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1034,17 +1476,37 @@
             "body": "array   list of texts, or empty list if none"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3675
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 5019
+        }
+      },
+      "type": "function",
+      "params": [],
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
     },
     "createDocumentationWebLinks": {
-      "type": "function",
-      "name": "createDocumentationWebLinks",
-      "abstract": false,
-      "mixin": true,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.MAnnotation",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transform documentation text to link to the online documentation when it",
+          "     * contains a reference.",
+          "     * @param text",
+          "     * @return string The transformed input string.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1054,9 +1516,7 @@
         "@param": [
           {
             "name": "@param",
-            "body": "text",
-            "paramName": "text",
-            "type": ""
+            "body": "text"
           }
         ],
         "@return": [
@@ -1065,830 +1525,35 @@
             "body": "string The transformed input string."
           }
         ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
+      },
       "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 155,
+          "column": 4,
+          "index": 5222
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 5959
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getType": {
-      "type": "function",
-      "name": "getType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>type</code>.\n\nFor further details take a look at the property definition: {@link #type}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for type"
-          }
-        ]
-      }
-    },
-    "setType": {
-      "type": "function",
-      "name": "setType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>type</code>.\n\nFor further details take a look at the property definition: {@link #type}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for type"
-          }
-        ]
-      }
-    },
-    "resetType": {
-      "type": "function",
-      "name": "resetType",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>type</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #type}."
-          }
-        ]
-      }
-    },
-    "getElementsHaveOrder": {
-      "type": "function",
-      "name": "getElementsHaveOrder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>elementsHaveOrder</code>.\n\nFor further details take a look at the property definition: {@link #elementsHaveOrder}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for elementsHaveOrder"
-          }
-        ]
-      }
-    },
-    "isElementsHaveOrder": {
-      "type": "function",
-      "name": "isElementsHaveOrder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>elementsHaveOrder</code>.\n\nFor further details take a look at the property definition: {@link #elementsHaveOrder}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for elementsHaveOrder"
-          }
-        ]
-      }
-    },
-    "setElementsHaveOrder": {
-      "type": "function",
-      "name": "setElementsHaveOrder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>elementsHaveOrder</code>.\n\nFor further details take a look at the property definition: {@link #elementsHaveOrder}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for elementsHaveOrder"
-          }
-        ]
-      }
-    },
-    "resetElementsHaveOrder": {
-      "type": "function",
-      "name": "resetElementsHaveOrder",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>elementsHaveOrder</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #elementsHaveOrder}."
-          }
-        ]
-      }
-    },
-    "getSchema": {
-      "type": "function",
-      "name": "getSchema",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>schema</code>.\n\nFor further details take a look at the property definition: {@link #schema}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "cv.ui.manager.model.Schema",
-            "desc": "Returns the value for schema"
-          }
-        ]
-      }
-    },
-    "setSchema": {
-      "type": "function",
-      "name": "setSchema",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>schema</code>.\n\nFor further details take a look at the property definition: {@link #schema}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "cv.ui.manager.model.Schema",
-            "paramName": "value",
-            "desc": "Value for schema"
-          }
-        ]
-      }
-    },
-    "resetSchema": {
-      "type": "function",
-      "name": "resetSchema",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>schema</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #schema}."
-          }
-        ]
-      }
-    },
-    "getNode": {
-      "type": "function",
-      "name": "getNode",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>node</code>.\n\nFor further details take a look at the property definition: {@link #node}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Node",
-            "desc": "Returns the value for node"
-          }
-        ]
-      }
-    },
-    "setNode": {
-      "type": "function",
-      "name": "setNode",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>node</code>.\n\nFor further details take a look at the property definition: {@link #node}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Node",
-            "paramName": "value",
-            "desc": "Value for node"
-          }
-        ]
-      }
-    },
-    "resetNode": {
-      "type": "function",
-      "name": "resetNode",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>node</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #node}."
-          }
-        ]
-      }
-    },
-    "getSubGroupings": {
-      "type": "function",
-      "name": "getSubGroupings",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>subGroupings</code>.\n\nFor further details take a look at the property definition: {@link #subGroupings}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Array",
-            "desc": "Returns the value for subGroupings"
-          }
-        ]
-      }
-    },
-    "setSubGroupings": {
-      "type": "function",
-      "name": "setSubGroupings",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>subGroupings</code>.\n\nFor further details take a look at the property definition: {@link #subGroupings}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Array",
-            "paramName": "value",
-            "desc": "Value for subGroupings"
-          }
-        ]
-      }
-    },
-    "resetSubGroupings": {
-      "type": "function",
-      "name": "resetSubGroupings",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.manager.model.schema.Base",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>subGroupings</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #subGroupings}."
-          }
-        ]
-      }
-    },
-    "getName": {
-      "type": "function",
-      "name": "getName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for name"
-          }
-        ]
-      }
-    },
-    "setName": {
-      "type": "function",
-      "name": "setName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for name"
-          }
-        ]
-      }
-    },
-    "resetName": {
-      "type": "function",
-      "name": "resetName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ]
-      }
-    },
-    "getDefaultValue": {
-      "type": "function",
-      "name": "getDefaultValue",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>defaultValue</code>.\n\nFor further details take a look at the property definition: {@link #defaultValue}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for defaultValue"
-          }
-        ]
-      }
-    },
-    "setDefaultValue": {
-      "type": "function",
-      "name": "setDefaultValue",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>defaultValue</code>.\n\nFor further details take a look at the property definition: {@link #defaultValue}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for defaultValue"
-          }
-        ]
-      }
-    },
-    "resetDefaultValue": {
-      "type": "function",
-      "name": "resetDefaultValue",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>defaultValue</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultValue}."
-          }
-        ]
-      }
-    },
-    "getSortable": {
-      "type": "function",
-      "name": "getSortable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>sortable</code>.\n\nFor further details take a look at the property definition: {@link #sortable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for sortable"
-          }
-        ]
-      }
-    },
-    "isSortable": {
-      "type": "function",
-      "name": "isSortable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>sortable</code>.\n\nFor further details take a look at the property definition: {@link #sortable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for sortable"
-          }
-        ]
-      }
-    },
-    "setSortable": {
-      "type": "function",
-      "name": "setSortable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>sortable</code>.\n\nFor further details take a look at the property definition: {@link #sortable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for sortable"
-          }
-        ]
-      }
-    },
-    "resetSortable": {
-      "type": "function",
-      "name": "resetSortable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>sortable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #sortable}."
-          }
-        ]
-      }
-    },
-    "getMixed": {
-      "type": "function",
-      "name": "getMixed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>mixed</code>.\n\nFor further details take a look at the property definition: {@link #mixed}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for mixed"
-          }
-        ]
-      }
-    },
-    "isMixed": {
-      "type": "function",
-      "name": "isMixed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>mixed</code>.\n\nFor further details take a look at the property definition: {@link #mixed}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for mixed"
-          }
-        ]
-      }
-    },
-    "setMixed": {
-      "type": "function",
-      "name": "setMixed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>mixed</code>.\n\nFor further details take a look at the property definition: {@link #mixed}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for mixed"
-          }
-        ]
-      }
-    },
-    "resetMixed": {
-      "type": "function",
-      "name": "resetMixed",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>mixed</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #mixed}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "text"
+        }
+      ],
+      "mixin": "cv.ui.manager.model.schema.MAnnotation",
+      "appearsIn": [
+        "cv.ui.manager.model.schema.MAnnotation"
+      ]
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 747,
@@ -1900,8 +1565,6 @@
         "column": 3,
         "index": 24451
       }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+    }
+  }
 }

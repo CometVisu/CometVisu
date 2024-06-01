@@ -1,0 +1,465 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235168778,
+  "lastModifiedIso": "2024-06-01T09:46:08.778Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/AbstractJavascriptMeta.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 35,
+      "column": 0,
+      "index": 1213
+    },
+    "end": {
+      "line": 195,
+      "column": 3,
+      "index": 5268
+    }
+  },
+  "className": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * An AbstractJavascriptMeta provides an abstraction of some source code, and might be",
+      " * comprised of a number of input files which are merged together as required.",
+      " *",
+      " * This object could represent a file which already exists on disk (eg a transpiled",
+      " * source file), or something that is generated on the fly (such as a index.js), or",
+      " * a compilation of files (eg a part)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>An AbstractJavascriptMeta provides an abstraction of some source code, and might be\n comprised of a number of input files which are merged together as required.\n This object could represent a file which already exists on disk (eg a transpiled\n source file), or something that is generated on the fly (such as a index.js), or\n a compilation of files (eg a part)</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "appMeta"
+      },
+      {
+        "name": "filename"
+      },
+      {
+        "name": "originalSourceFile"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 45,
+        "column": 2,
+        "index": 1538
+      },
+      "end": {
+        "line": 50,
+        "column": 3,
+        "index": 1718
+      }
+    }
+  },
+  "properties": {
+    "needsWriteToDisk": {
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1813
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1880
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* If true, this is generated on the fly and needs to be output "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>If true, this is generated on the fly and needs to be output</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "_appMeta": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1904
+        },
+        "end": {
+          "line": 61,
+          "column": 18,
+          "index": 1918
+        }
+      },
+      "appearsIn": []
+    },
+    "__filename": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1924
+        },
+        "end": {
+          "line": 62,
+          "column": 20,
+          "index": 1940
+        }
+      },
+      "appearsIn": []
+    },
+    "__originalSourceFile": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1946
+        },
+        "end": {
+          "line": 63,
+          "column": 30,
+          "index": 1972
+        }
+      },
+      "appearsIn": []
+    },
+    "__wrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1978
+        },
+        "end": {
+          "line": 64,
+          "column": 19,
+          "index": 1993
+        }
+      },
+      "appearsIn": []
+    },
+    "getAppMeta": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the ApplicationMeta",
+          "     *",
+          "     * @return {ApplicationMeta}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the ApplicationMeta</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{ApplicationMeta}",
+            "type": "qx.tool.compiler.targets.meta.ApplicationMeta",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 2091
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2139
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.tool.compiler.targets.meta.ApplicationMeta"
+      },
+      "appearsIn": []
+    },
+    "getFilename": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the filename for the output of this JS",
+          "     *",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the filename for the output of this JS</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2247
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2298
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "wrap": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2305
+        },
+        "end": {
+          "line": 86,
+          "column": 5,
+          "index": 2356
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "jsMeta"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getWrapper": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2363
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2412
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "unwrap": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 92,
+          "column": 4,
+          "index": 2419
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2530
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "writeToDisk": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the file to disk, if appropriate",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the file to disk, if appropriate</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2600
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3189
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "writeSourceCodeToStream": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the source code as a stream, merging source files etc",
+          "     * as necessary",
+          "     *",
+          "     * @param ws {NodeJS.WritableStream} the stream to write to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the source code as a stream, merging source files etc\n as necessary</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "ws {NodeJS.WritableStream} the stream to write to",
+            "paramName": "ws",
+            "description": " the stream to write to",
+            "type": "NodeJS.WritableStream"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 3371
+        },
+        "end": {
+          "line": 133,
+          "column": 5,
+          "index": 3518
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ws",
+          "type": "NodeJS.WritableStream"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSourceMap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reads the source map as a string",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Reads the source map as a string</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3581
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 3628
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_copySourceMap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Utility method that merges multiple source maps",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Utility method that merges multiple source maps</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 145,
+          "column": 4,
+          "index": 3706
+        },
+        "end": {
+          "line": 193,
+          "column": 5,
+          "index": 5260
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "jsMetas"
+        },
+        {
+          "name": "lineOffsets"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

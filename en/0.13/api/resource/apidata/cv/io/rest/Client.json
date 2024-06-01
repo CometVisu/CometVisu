@@ -1,39 +1,41 @@
 {
-  "className": "cv.io.rest.Client",
-  "packageName": "cv.io.rest",
-  "name": "Client",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 824
-      },
-      "end": {
-        "line": 288,
-        "column": 3,
-        "index": 8734
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/io/rest/Client.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 824
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 288,
+      "column": 3,
+      "index": 8734
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.io.rest.Client",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "BASE_URL": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 32,
@@ -46,10 +48,11 @@
           "index": 1035
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "__configFile": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 33,
@@ -62,10 +65,11 @@
           "index": 1059
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__dirClient": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 34,
@@ -78,10 +82,11 @@
           "index": 1082
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__dpClient": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 35,
@@ -94,10 +99,11 @@
           "index": 1104
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__callbacks": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 36,
@@ -110,10 +116,11 @@
           "index": 1125
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getBaseUrl": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 38,
@@ -127,9 +134,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "getConfigClient": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 53,
@@ -143,9 +153,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "getFsClient": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 99,
@@ -159,9 +172,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "getDataProviderClient": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 171,
@@ -175,9 +191,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "_enableSync": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 218,
@@ -191,9 +210,19 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "client"
+        },
+        {
+          "name": "config"
+        }
+      ],
+      "appearsIn": []
     },
     "_onSaveSuccess": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 270,
@@ -207,9 +236,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     },
     "_onSaveError": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 279,
@@ -223,8 +259,14 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

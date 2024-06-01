@@ -1,0 +1,1691 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172478,
+  "lastModifiedIso": "2024-06-01T09:46:12.478Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/Target.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 954
+    },
+    "end": {
+      "line": 1146,
+      "column": 3,
+      "index": 34878
+    }
+  },
+  "className": "qx.tool.compiler.targets.Target",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A target for building an application, instances of Target control the generation of transpiled",
+      " * source and collection into an application, including minifying etc",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A target for building an application, instances of Target control the generation of transpiled\n source and collection into an application, including minifying etc</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "outputDir"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 38,
+        "column": 2,
+        "index": 1113
+      },
+      "end": {
+        "line": 41,
+        "column": 3,
+        "index": 1186
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1240
+        },
+        "end": {
+          "line": 49,
+          "column": 5,
+          "index": 1331
+        }
+      },
+      "json": {
+        "init": "source",
+        "nullable": false,
+        "check": [
+          "source",
+          "build"
+        ]
+      },
+      "jsdoc": {
+        "raw": [
+          "* Type of compilation "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Type of compilation</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "outputDir": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1404
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1529
+        }
+      },
+      "json": {
+        "init": "output",
+        "nullable": false,
+        "check": "String",
+        "transform": "_transformOutputDir"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Output directory (guaranteed to have a trailing slash) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Output directory (guaranteed to have a trailing slash)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "generateIndexHtml": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1594
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1661
+        }
+      },
+      "json": {
+        "init": true,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to generate the index.html",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to generate the index.html</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "privateArtifacts": {
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1904
+        },
+        "end": {
+          "line": 74,
+          "column": 5,
+          "index": 1971
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the generated artifacts (ie resources and transpiled) are private to the application; this requires",
+          "     * the web server to mount the resources and transpiled directories inside the application directory",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the generated artifacts (ie resources and transpiled) are private to the application; this requires\n the web server to mount the resources and transpiled directories inside the application directory</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "environment": {
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2026
+        },
+        "end": {
+          "line": 82,
+          "column": 5,
+          "index": 2085
+        }
+      },
+      "json": {
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Environment property map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Environment property map</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "defaultEnvironment": {
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 2160
+        },
+        "end": {
+          "line": 91,
+          "column": 5,
+          "index": 2251
+        }
+      },
+      "json": {
+        "inheritable": true,
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Target type default environment property map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Target type default environment property map</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "preserveEnvironment": {
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2401
+        },
+        "end": {
+          "line": 101,
+          "column": 5,
+          "index": 2490
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Array"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of environment keys to preserve in code, ie reserve for runtime detection",
+          "     * and exclude from code elimination",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>List of environment keys to preserve in code, ie reserve for runtime detection\n and exclude from code elimination</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "analyser": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2549
+        },
+        "end": {
+          "line": 108,
+          "column": 5,
+          "index": 2588
+        }
+      },
+      "json": {
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The analyser being generated",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The analyser being generated</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "inlineExternalScripts": {
+      "location": {
+        "start": {
+          "line": 113,
+          "column": 4,
+          "index": 2653
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 2725
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to inline external scripts",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to inline external scripts</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "preferLocalFonts": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 2801
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 2868
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to prefer local fonts instead of CDNs",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to prefer local fonts instead of CDNs</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "fontTypes": {
+      "location": {
+        "start": {
+          "line": 129,
+          "column": 4,
+          "index": 2928
+        },
+        "end": {
+          "line": 132,
+          "column": 5,
+          "index": 2989
+        }
+      },
+      "json": {
+        "init": [
+          "woff"
+        ],
+        "check": "Array"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Types of fonts to be included",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Types of fonts to be included</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "addTimestampsToUrls": {
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3073
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 3142
+        }
+      },
+      "json": {
+        "init": true,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to add timestamps to all URLs (cache busting)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to add timestamps to all URLs (cache busting)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "locales": {
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 3184
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 3280
+        }
+      },
+      "json": {
+        "nullable": false,
+        "init": [
+          "en"
+        ],
+        "transform": "_transformLocales"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Locales being generated "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Locales being generated</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "i18nAsParts": {
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 3365
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 3450
+        }
+      },
+      "json": {
+        "init": false,
+        "nullable": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to break locale & translation data out into separate parts "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to break locale &amp; translation data out into separate parts</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "writeAllTranslations": {
+      "location": {
+        "start": {
+          "line": 157,
+          "column": 4,
+          "index": 3556
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 3650
+        }
+      },
+      "json": {
+        "init": false,
+        "nullable": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to write all translation strings (as opposed to just those used by the classes) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to write all translation strings (as opposed to just those used by the classes)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "updatePoFiles": {
+      "location": {
+        "start": {
+          "line": 164,
+          "column": 4,
+          "index": 3724
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 3811
+        }
+      },
+      "json": {
+        "init": false,
+        "nullable": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to update the source .po files with new strings "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to update the source .po files with new strings</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "libraryPoPolicy": {
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4,
+          "index": 3872
+        },
+        "end": {
+          "line": 174,
+          "column": 5,
+          "index": 3965
+        }
+      },
+      "json": {
+        "init": "ignore",
+        "check": [
+          "ignore",
+          "untranslated",
+          "all"
+        ]
+      },
+      "jsdoc": {
+        "raw": [
+          "* What to do with library transation strings "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>What to do with library transation strings</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "writeCompileInfo": {
+      "location": {
+        "start": {
+          "line": 181,
+          "column": 4,
+          "index": 4208
+        },
+        "end": {
+          "line": 185,
+          "column": 5,
+          "index": 4298
+        }
+      },
+      "json": {
+        "init": false,
+        "nullable": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to write a summary of the compile info to disk, ie everything about dependencies and",
+          "     * resources that are used to create the index.js file, but stored as pure JSON for third party code",
+          "     * to use.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to write a summary of the compile info to disk, ie everything about dependencies and\n resources that are used to create the index.js file, but stored as pure JSON for third party code\n to use.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "writeLibraryInfo": {
+      "location": {
+        "start": {
+          "line": 190,
+          "column": 4,
+          "index": 4398
+        },
+        "end": {
+          "line": 194,
+          "column": 5,
+          "index": 4487
+        }
+      },
+      "json": {
+        "init": true,
+        "nullable": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to write information about the libraries into the boot script",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to write information about the libraries into the boot script</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "sourceMapRelativePaths": {
+      "location": {
+        "start": {
+          "line": 199,
+          "column": 4,
+          "index": 4562
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 4658
+        }
+      },
+      "json": {
+        "init": false,
+        "nullable": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to use relative paths in source maps",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to use relative paths in source maps</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "checkEnvironment": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired after all enviroment data is collected, but before compilation begins; this",
+          "     * is an  opportunity to adjust the environment for the target.  The event data contains:",
+          "     *  application {qx.tool.compiler.app.Application} the app",
+          "     *  enviroment: {Object} enviroment data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired after all enviroment data is collected, but before compilation begins; this\n is an  opportunity to adjust the environment for the target.  The event data contains:\n  application {qx.tool.compiler.app.Application} the app\n  enviroment: {Object} enviroment data</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 4988
+        },
+        "end": {
+          "line": 213,
+          "column": 42,
+          "index": 5026
+        }
+      }
+    },
+    "writingApplication": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when an application is about to be serialized to disk; the appMeta is fully",
+          "     * populated, and this is an opportunity to amend the meta data before it is serialized",
+          "     * into files on disk",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when an application is about to be serialized to disk; the appMeta is fully\n populated, and this is an opportunity to amend the meta data before it is serialized\n into files on disk</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 220,
+          "column": 4,
+          "index": 5256
+        },
+        "end": {
+          "line": 220,
+          "column": 45,
+          "index": 5297
+        }
+      }
+    },
+    "writtenApplication": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when an application has been serialized to disk",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when an application has been serialized to disk</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 225,
+          "column": 4,
+          "index": 5381
+        },
+        "end": {
+          "line": 225,
+          "column": 45,
+          "index": 5422
+        }
+      }
+    }
+  },
+  "members": {
+    "__pathMappings": {
+      "jsdoc": {
+        "raw": [
+          "* @type {Map} maps filenames to uris "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Map} maps filenames to uris"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 230,
+          "column": 4,
+          "index": 5492
+        },
+        "end": {
+          "line": 230,
+          "column": 24,
+          "index": 5512
+        }
+      },
+      "appearsIn": []
+    },
+    "__appMeta": {
+      "jsdoc": {
+        "raw": [
+          "* @type {qx.tool.compiler.targets.meta.ApplicationMeta} for the current application "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.tool.compiler.targets.meta.ApplicationMeta} for the current application"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 233,
+          "column": 4,
+          "index": 5612
+        },
+        "end": {
+          "line": 233,
+          "column": 19,
+          "index": 5627
+        }
+      },
+      "appearsIn": []
+    },
+    "open": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialises the target, creating directories etc",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialises the target, creating directories etc</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 5706
+        },
+        "end": {
+          "line": 238,
+          "column": 19,
+          "index": 5721
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_transformOutputDir": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transforms outputDir so that it always includes a trailing slash",
+          "     *",
+          "     * @param value",
+          "     * @returns {*}",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transforms outputDir so that it always includes a trailing slash</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value",
+            "paramName": "value",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{*}",
+            "type": "*",
+            "description": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 247,
+          "column": 4,
+          "index": 5879
+        },
+        "end": {
+          "line": 254,
+          "column": 5,
+          "index": 6040
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "returnType": {
+        "type": "*"
+      },
+      "appearsIn": []
+    },
+    "getApplicationRoot": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the root for applications",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the root for applications</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4,
+          "index": 6104
+        },
+        "end": {
+          "line": 263,
+          "column": 5,
+          "index": 6245
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "application"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getProjectDir": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the project dir",
+          "     *",
+          "     * @returns String",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the project dir</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 270,
+          "column": 4,
+          "index": 6329
+        },
+        "end": {
+          "line": 272,
+          "column": 5,
+          "index": 6430
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "application"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "_getOutputRootUri": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the URI for the root of the output, relative to the application",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the URI for the root of the output, relative to the application</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 277,
+          "column": 4,
+          "index": 6532
+        },
+        "end": {
+          "line": 284,
+          "column": 5,
+          "index": 6783
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "application"
+        }
+      ],
+      "appearsIn": []
+    },
+    "addPathMapping": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a path mapping, where any reference to a file in `fromFile` is remapped to be",
+          "     * loaded via the `toUri.",
+          "     *",
+          "     * @param fromFile {String} the directory (or filename) to map",
+          "     * @param toUri {String} the URI to map to",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a path mapping, where any reference to a file in <code>fromFile</code> is remapped to be\n loaded via the `toUri.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "fromFile {String} the directory (or filename) to map",
+            "paramName": "fromFile",
+            "description": " the directory (or filename) to map",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "toUri {String} the URI to map to",
+            "paramName": "toUri",
+            "description": " the URI to map to",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 293,
+          "column": 4,
+          "index": 7047
+        },
+        "end": {
+          "line": 299,
+          "column": 5,
+          "index": 7256
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "fromFile",
+          "type": "string"
+        },
+        {
+          "name": "toUri",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getPathMapping": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a filename to a URI, taking into account mappings added via `addMapping`.  If there is",
+          "     * no mapping, null is returned",
+          "     *",
+          "     * @param filename {String} the filename to map",
+          "     * @return {String} the URI for the file, null if not found",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a filename to a URI, taking into account mappings added via <code>addMapping</code>.  If there is\n no mapping, null is returned</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} the filename to map",
+            "paramName": "filename",
+            "description": " the filename to map",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the URI for the file, null if not found",
+            "type": "string",
+            "description": "the URI for the file, null if not found"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 308,
+          "column": 4,
+          "index": 7541
+        },
+        "end": {
+          "line": 323,
+          "column": 5,
+          "index": 7982
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "mapToUri": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a filename to a URI, taking into account mappings added via `addMapping`.  If there is",
+          "     * no mapping, the filename can be modified to be relative to a given path (ie the directory where",
+          "     * the index.html is located)",
+          "     *",
+          "     * @param filename {String} the filename to map",
+          "     * @param relativeTo {String?} optional path that the filename needs to be relative to if there is no mapping",
+          "     * @return {String} the URI for the file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a filename to a URI, taking into account mappings added via <code>addMapping</code>.  If there is\n no mapping, the filename can be modified to be relative to a given path (ie the directory where\n the index.html is located)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "filename {String} the filename to map",
+            "paramName": "filename",
+            "description": " the filename to map",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "relativeTo {String?} optional path that the filename needs to be relative to if there is no mapping",
+            "paramName": "relativeTo",
+            "description": " optional path that the filename needs to be relative to if there is no mapping",
+            "optional": true,
+            "type": "String"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the URI for the file",
+            "type": "string",
+            "description": "the URI for the file"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 334,
+          "column": 4,
+          "index": 8463
+        },
+        "end": {
+          "line": 345,
+          "column": 5,
+          "index": 8721
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        },
+        {
+          "name": "relativeTo",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "generateApplication": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the application",
+          "     *",
+          "     * @param application {qx.tool.compiler.app.Application} the application",
+          "     * @param environment {Object} the environment",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Generates the application</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "application {qx.tool.compiler.app.Application} the application",
+            "paramName": "application",
+            "description": " the application",
+            "type": "qx.tool.compiler.app.Application"
+          },
+          {
+            "name": "@param",
+            "body": "environment {Object} the environment",
+            "paramName": "environment",
+            "description": " the environment",
+            "type": "Record<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 353,
+          "column": 4,
+          "index": 8912
+        },
+        "end": {
+          "line": 547,
+          "column": 5,
+          "index": 15341
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "application",
+          "type": "qx.tool.compiler.app.Application"
+        },
+        {
+          "name": "environment",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__writeDeprecatedWebFonts": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the fonts defined in provides.webfonts",
+          "     * @deprecated",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the fonts defined in provides.webfonts</p>"
+          }
+        ],
+        "@deprecated": [
+          {
+            "name": "@deprecated",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 553,
+          "column": 4,
+          "index": 15436
+        },
+        "end": {
+          "line": 625,
+          "column": 5,
+          "index": 17935
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "application"
+        },
+        {
+          "name": "appMeta"
+        },
+        {
+          "name": "assets"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__writeManifestFonts": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the fonts defined in provides.fonts",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the fonts defined in provides.fonts</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 630,
+          "column": 4,
+          "index": 18008
+        },
+        "end": {
+          "line": 713,
+          "column": 5,
+          "index": 20768
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "application"
+        },
+        {
+          "name": "appMeta"
+        },
+        {
+          "name": "assets"
+        },
+        {
+          "name": "bootPackage"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_writeTranslations": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles the output of translations and locales",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles the output of translations and locales</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 718,
+          "column": 4,
+          "index": 20845
+        },
+        "end": {
+          "line": 746,
+          "column": 5,
+          "index": 21664
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_transformLocales": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transform method for locales property; ensures that all locales are case correct, ie",
+          "     * have the form aa_BB (for example \"en_GB\" is correct but \"en_gb\" is invalid)",
+          "     *",
+          "     * @param value {String[]} array of locale IDs",
+          "     * @return {String[]} the modified array",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transform method for locales property; ensures that all locales are case correct, ie\n have the form aa<em>BB (for example \"en</em>GB\" is correct but \"en_gb\" is invalid)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {String[]} array of locale IDs",
+            "paramName": "value",
+            "description": " array of locale IDs",
+            "type": "String[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} the modified array",
+            "type": "String[]",
+            "description": "the modified array"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 755,
+          "column": 4,
+          "index": 21965
+        },
+        "end": {
+          "line": 768,
+          "column": 5,
+          "index": 22338
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "_writeLocales": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the required locale CLDR data, incorporating inheritance.  Note that locales in CLDR can",
+          "     * have a \"parent locale\", where the locale inherits all settings from the parent except where explicitly",
+          "     * set in the locale.  This is in addition to the inheritance between language and locale, eg where \"en_GB\"",
+          "     * overrides settings from \"en\".  Qooxdoo client understands that if a setting is not provided in",
+          "     * \"en_GB\" it must look to \"en\", but it does not understand the \"parent locale\" inheritance, so this",
+          "     * method must flatten the \"parent locale\" inheritance.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the required locale CLDR data, incorporating inheritance.  Note that locales in CLDR can\n have a \"parent locale\", where the locale inherits all settings from the parent except where explicitly\n set in the locale.  This is in addition to the inheritance between language and locale, eg where \"en<em>GB\"\n overrides settings from \"en\".  Qooxdoo client understands that if a setting is not provided in\n \"en</em>GB\" it must look to \"en\", but it does not understand the \"parent locale\" inheritance, so this\n method must flatten the \"parent locale\" inheritance.</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 778,
+          "column": 4,
+          "index": 22953
+        },
+        "end": {
+          "line": 820,
+          "column": 5,
+          "index": 24270
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_writeAllTranslations": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes all translations",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes all translations</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 825,
+          "column": 4,
+          "index": 24324
+        },
+        "end": {
+          "line": 858,
+          "column": 5,
+          "index": 25595
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_writeRequiredTranslations": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes only those translations which are actually required",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes only those translations which are actually required</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 863,
+          "column": 4,
+          "index": 25684
+        },
+        "end": {
+          "line": 923,
+          "column": 5,
+          "index": 27862
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_writeApplication": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the application",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the application</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 928,
+          "column": 4,
+          "index": 27915
+        },
+        "end": {
+          "line": 994,
+          "column": 5,
+          "index": 29940
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_writeIndexHtml": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called to generate index.html",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called to generate index.html</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 999,
+          "column": 4,
+          "index": 30000
+        },
+        "end": {
+          "line": 1140,
+          "column": 5,
+          "index": 34814
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getAppMeta": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1142,
+          "column": 4,
+          "index": 34821
+        },
+        "end": {
+          "line": 1144,
+          "column": 5,
+          "index": 34870
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

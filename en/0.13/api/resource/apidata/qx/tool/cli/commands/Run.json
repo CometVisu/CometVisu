@@ -1,0 +1,120 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172178,
+  "lastModifiedIso": "2024-06-01T09:46:12.178Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Run.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 576
+    },
+    "end": {
+      "line": 187,
+      "column": 3,
+      "index": 5353
+    }
+  },
+  "className": "qx.tool.cli.commands.Run",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Runs a server application",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Runs a server application</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Compile",
+  "statics": {
+    "YARGS_BUILDER": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 680
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1082
+        }
+      },
+      "appearsIn": [
+        "qx.tool.cli.commands.Compile"
+      ]
+    },
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1089
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1457
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.tool.cli.commands.Compile"
+      ]
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1513
+        },
+        "end": {
+          "line": 166,
+          "column": 5,
+          "index": 4599
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Compile",
+      "appearsIn": [
+        "qx.tool.cli.commands.Compile",
+        "qx.tool.cli.commands.Command"
+      ]
+    }
+  },
+  "properties": {}
+}

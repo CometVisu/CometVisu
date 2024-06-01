@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "log",
+    "fixture",
+    "ClassA",
+    "members",
+    "_applyOldProperty",
+    "ClassB1",
+    "superclass",
+    "prototype",
+    "call",
+    "_callCountApplyOldProperty",
+    "_applyNewProperty",
+    "_callCountApplyNewProperty"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/log/fixture/ClassB1.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qx.test.log.fixture.ClassB1\", {\n  extend: qx.test.log.fixture.ClassA,\n\n  members: {\n    _applyOldProperty() {\n      super._applyOldProperty();\n\n      this._callCountApplyOldProperty++;\n    },\n\n    _applyNewProperty() {\n      super._applyNewProperty();\n\n      this._callCountApplyNewProperty++;\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,6BAA6B,EAAE;IAC7CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,GAAG,CAACC,OAAO,CAACC,MAAM;IAElCC,OAAO,EAAE;MACPC,iBAAiB,WAAAA,kBAAA,EAAG;QAClBZ,EAAA,CAAAO,IAAA,CAAAC,GAAA,CAAAC,OAAA,CAAAI,OAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAH,iBAAA,CAAAI,IAAA;QAEA,IAAI,CAACC,0BAA0B,EAAE;MACnC,CAAC;MAEDC,iBAAiB,WAAAA,kBAAA,EAAG;QAClBlB,EAAA,CAAAO,IAAA,CAAAC,GAAA,CAAAC,OAAA,CAAAI,OAAA,CAAAC,UAAA,CAAAC,SAAA,CAAAG,iBAAA,CAAAF,IAAA;QAEA,IAAI,CAACG,0BAA0B,EAAE;MACnC;IACF;EACF,CAAC,CAAC;EAhBFnB,EAAE,CAACO,IAAI,CAACC,GAAG,CAACC,OAAO,CAACI,OAAO,CAACV,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

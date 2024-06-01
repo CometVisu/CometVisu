@@ -1,0 +1,52 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "mobile",
+    "MobileTestCase",
+    "members",
+    "testConstruct",
+    "radio1",
+    "ui",
+    "form",
+    "RadioButton",
+    "radio2",
+    "radio3",
+    "group",
+    "RadioGroup",
+    "getRoot",
+    "add",
+    "assertEquals",
+    "getValue",
+    "getItems",
+    "length",
+    "destroy",
+    "dispose",
+    "testValue",
+    "setAllowEmptySelection",
+    "hasCssClass",
+    "setValue",
+    "testEnabled",
+    "setEnabled",
+    "getEnabled",
+    "bom",
+    "element",
+    "has",
+    "getContainerElement"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/mobile/form/RadioButton.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.mobile.form.RadioButton\", {\n  extend: qx.test.mobile.MobileTestCase,\n\n  members: {\n    testConstruct() {\n      var radio1 = new qx.ui.mobile.form.RadioButton();\n      var radio2 = new qx.ui.mobile.form.RadioButton();\n      var radio3 = new qx.ui.mobile.form.RadioButton();\n      var group = new qx.ui.mobile.form.RadioGroup(radio1, radio2, radio3);\n\n      this.getRoot().add(radio1);\n      this.getRoot().add(radio2);\n      this.getRoot().add(radio3);\n\n      // Verify: allow empty selection can only be false in this case,\n      // so radio1 has to be true.\n      this.assertEquals(\n        true,\n        radio1.getValue(),\n        \"Radio1 is expected to be true.\"\n      );\n\n      this.assertEquals(\n        false,\n        radio2.getValue(),\n        \"Radio2 is expected to be false.\"\n      );\n\n      this.assertEquals(\n        false,\n        radio3.getValue(),\n        \"Radio3 is expected to be false.\"\n      );\n\n      this.assertEquals(3, group.getItems().length);\n\n      // Clean up tests\n      radio1.destroy();\n      radio2.destroy();\n      radio3.destroy();\n      group.dispose();\n    },\n\n    testValue() {\n      var radio1 = new qx.ui.mobile.form.RadioButton();\n      var radio2 = new qx.ui.mobile.form.RadioButton();\n      var radio3 = new qx.ui.mobile.form.RadioButton();\n\n      var group = new qx.ui.mobile.form.RadioGroup();\n      group.setAllowEmptySelection(true);\n      group.add(radio1, radio2, radio3);\n\n      this.getRoot().add(radio1);\n      this.getRoot().add(radio2);\n      this.getRoot().add(radio3);\n\n      // Verify: initial all radios buttons should be disabled.\n      this.assertEquals(false, radio1.getValue());\n      this.assertEquals(false, radio2.getValue());\n      this.assertEquals(false, radio3.getValue());\n\n      this.assertEquals(false, radio1.hasCssClass(\"checked\"));\n      this.assertEquals(false, radio2.hasCssClass(\"checked\"));\n      this.assertEquals(false, radio3.hasCssClass(\"checked\"));\n\n      // Radio 1 enabled\n      radio1.setValue(true);\n\n      // Verify\n      this.assertEquals(true, radio1.getValue());\n      this.assertEquals(true, radio1.hasCssClass(\"checked\"));\n      this.assertEquals(false, radio2.getValue());\n      this.assertEquals(false, radio3.getValue());\n\n      // Radio 3 enabled\n      radio3.setValue(true);\n\n      // Verify\n      this.assertEquals(true, radio3.getValue());\n      this.assertEquals(false, radio2.getValue());\n      this.assertEquals(false, radio1.getValue());\n\n      // Clean up tests\n      radio1.destroy();\n      radio2.destroy();\n      radio3.destroy();\n      group.dispose();\n    },\n\n    testEnabled() {\n      var radio1 = new qx.ui.mobile.form.RadioButton();\n      this.getRoot().add(radio1);\n\n      radio1.setEnabled(false);\n\n      this.assertEquals(false, radio1.getEnabled());\n      this.assertEquals(\n        true,\n        qx.bom.element.Class.has(radio1.getContainerElement(), \"disabled\")\n      );\n\n      radio1.destroy();\n    }\n  }\n});\n"
+  ],
+  "mappings": "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",
+  "ignoreList": []
+}

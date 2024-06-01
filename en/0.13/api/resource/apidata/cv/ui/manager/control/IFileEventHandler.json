@@ -1,36 +1,39 @@
 {
-  "className": "cv.ui.manager.control.IFileEventHandler",
-  "packageName": "cv.ui.manager.control",
-  "name": "IFileEventHandler",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 835
-      },
-      "end": {
-        "line": 32,
-        "column": 3,
-        "index": 1070
-      }
+  "version": 0.3,
+  "lastModified": 1717235105606,
+  "lastModifiedIso": "2024-06-01T09:45:05.606Z",
+  "classFilename": "../../source/class/cv/ui/manager/control/IFileEventHandler.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 835
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 32,
+      "column": 3,
+      "index": 1070
     }
   },
-  "type": "interface",
+  "className": "cv.ui.manager.control.IFileEventHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
   "members": {
     "_handleFileEvent": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 30,
@@ -44,8 +47,14 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

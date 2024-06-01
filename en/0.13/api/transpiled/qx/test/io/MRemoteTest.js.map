@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Mixin",
+    "define",
+    "members",
+    "getUrl",
+    "path",
+    "util",
+    "ResourceManager",
+    "getInstance",
+    "toUri",
+    "isLocal",
+    "window",
+    "location",
+    "protocol",
+    "needsPHPWarning",
+    "warn",
+    "test",
+    "io",
+    "MRemoteTest"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/io/MRemoteTest.js"
+  ],
+  "sourcesContent": [
+    "qx.Mixin.define(\"qx.test.io.MRemoteTest\", {\n  members: {\n    getUrl(path) {\n      return qx.util.ResourceManager.getInstance().toUri(path);\n    },\n\n    isLocal() {\n      return window.location.protocol == \"file:\";\n    },\n\n    needsPHPWarning() {\n      this.warn(\n        \"This test can only be run from a web server with PHP support.\"\n      );\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,wBAAwB,EAAE;IACxCC,OAAO,EAAE;MACPC,MAAM,WAAAA,OAACC,IAAI,EAAE;QACX,OAAOR,EAAE,CAACS,IAAI,CAACC,eAAe,CAACC,WAAW,CAAC,CAAC,CAACC,KAAK,CAACJ,IAAI,CAAC;MAC1D,CAAC;MAEDK,OAAO,WAAAA,QAAA,EAAG;QACR,OAAOC,MAAM,CAACC,QAAQ,CAACC,QAAQ,IAAI,OAAO;MAC5C,CAAC;MAEDC,eAAe,WAAAA,gBAAA,EAAG;QAChB,IAAI,CAACC,IAAI,CACP,+DACF,CAAC;MACH;IACF;EACF,CAAC,CAAC;EAhBFlB,EAAE,CAACmB,IAAI,CAACC,EAAE,CAACC,WAAW,CAAClB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

@@ -1,0 +1,247 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169418,
+  "lastModifiedIso": "2024-06-01T09:46:09.418Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/BootJs.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 860
+    },
+    "end": {
+      "line": 205,
+      "column": 3,
+      "index": 6041
+    }
+  },
+  "className": "qx.tool.compiler.targets.meta.BootJs",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Represents a \"index.js\" that is generated as part of a compile",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Represents a \"index.js\" that is generated as part of a compile</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "appMeta"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 985
+      },
+      "end": {
+        "line": 36,
+        "column": 3,
+        "index": 1134
+      }
+    }
+  },
+  "properties": {
+    "needsWriteToDisk": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1157
+        },
+        "end": {
+          "line": 42,
+          "column": 5,
+          "index": 1219
+        }
+      },
+      "json": {
+        "init": true,
+        "refine": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    }
+  },
+  "members": {
+    "__embeddedJs": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1243
+        },
+        "end": {
+          "line": 46,
+          "column": 22,
+          "index": 1261
+        }
+      },
+      "appearsIn": []
+    },
+    "__sourceMapOffsets": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1267
+        },
+        "end": {
+          "line": 47,
+          "column": 28,
+          "index": 1291
+        }
+      },
+      "appearsIn": []
+    },
+    "addEmbeddedJs": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds Javascript which is to be added to the end of the index.js, just before the app",
+          "     * is finalised",
+          "     *",
+          "     * @param jsMeta {AbstractJavascriptMeta} the jaavscript to add",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds Javascript which is to be added to the end of the index.js, just before the app\n is finalised</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "jsMeta {AbstractJavascriptMeta} the jaavscript to add",
+            "paramName": "jsMeta",
+            "description": " the jaavscript to add",
+            "type": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1501
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1700
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "jsMeta",
+          "type": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+        }
+      ],
+      "appearsIn": []
+    },
+    "writeSourceCodeToStream": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1739
+        },
+        "end": {
+          "line": 180,
+          "column": 5,
+          "index": 5401
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ws"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    },
+    "getSourceMap": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 185,
+          "column": 4,
+          "index": 5440
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 6033
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    }
+  },
+  "statics": {}
+}

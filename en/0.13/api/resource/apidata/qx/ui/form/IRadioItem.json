@@ -1,67 +1,74 @@
 {
-  "className": "qx.ui.form.IRadioItem",
-  "packageName": "qx.ui.form",
-  "name": "IRadioItem",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 643
-      },
-      "end": {
-        "line": 74,
-        "column": 3,
-        "index": 1959
-      }
+  "version": 0.3,
+  "lastModified": 1717235171438,
+  "lastModifiedIso": "2024-06-01T09:46:11.438Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/IRadioItem.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 620
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Each object, which should be managed by a {@link RadioGroup} have to\n implement this interface.</p>"
-        }
-      ]
+    "end": {
+      "line": 74,
+      "column": 3,
+      "index": 1886
     }
   },
-  "type": "interface",
+  "className": "qx.ui.form.IRadioItem",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Each object, which should be managed by a {@link RadioGroup} have to",
+      " * implement this interface.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Each object, which should be managed by a {@link RadioGroup} have to\n implement this interface.</p>"
+      }
+    ]
+  },
   "events": {
     "changeValue": {
-      "type": "event",
-      "name": "changeValue",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": null,
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fired when the item was checked or unchecked "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired when the item was checked or unchecked</p>"
           }
         ]
+      },
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 922
+        },
+        "end": {
+          "line": 33,
+          "column": 37,
+          "index": 955
+        }
       }
     }
   },
   "members": {
     "setValue": {
-      "location": {
-        "start": {
-          "line": 48,
-          "column": 4,
-          "index": 1337
-        },
-        "end": {
-          "line": 48,
-          "column": 22,
-          "index": 1355
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set whether the item is checked",
+          "     *",
+          "     * @param value {Boolean} whether the item should be checked",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -74,27 +81,41 @@
             "body": "value {Boolean} whether the item should be checked",
             "paramName": "value",
             "description": " whether the item should be checked",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 55,
+          "line": 48,
           "column": 4,
-          "index": 1484
+          "index": 1290
         },
         "end": {
-          "line": 55,
-          "column": 17,
-          "index": 1497
+          "line": 48,
+          "column": 22,
+          "index": 1308
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get whether the item is checked",
+          "     *",
+          "     * @return {Boolean} whether the item it checked",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -105,28 +126,41 @@
           {
             "name": "@return",
             "body": "{Boolean} whether the item it checked",
-            "type": "Boolean",
-            "description": " whether the item it checked"
+            "type": "boolean",
+            "description": "whether the item it checked"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setGroup": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 63,
+          "line": 55,
           "column": 4,
-          "index": 1687
+          "index": 1430
         },
         "end": {
-          "line": 65,
-          "column": 5,
-          "index": 1769
+          "line": 55,
+          "column": 17,
+          "index": 1443
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setGroup": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the radiogroup, which manages this item",
+          "     *",
+          "     * @param value {qx.ui.form.RadioGroup} The radiogroup, which should",
+          "     *     manage the item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -143,23 +177,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getGroup": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 63,
           "column": 4,
-          "index": 1936
+          "index": 1625
         },
         "end": {
-          "line": 72,
-          "column": 17,
-          "index": 1949
+          "line": 65,
+          "column": 5,
+          "index": 1705
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "qx.ui.form.RadioGroup"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getGroup": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the radiogroup, which manages this item",
+          "     *",
+          "     * @return {qx.ui.form.RadioGroup} The radiogroup, which manages the item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -171,13 +219,31 @@
             "name": "@return",
             "body": "{qx.ui.form.RadioGroup} The radiogroup, which manages the item.",
             "type": "qx.ui.form.RadioGroup",
-            "description": " The radiogroup, which manages the item."
+            "description": "The radiogroup, which manages the item."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1865
+        },
+        "end": {
+          "line": 72,
+          "column": 17,
+          "index": 1878
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.form.RadioGroup"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

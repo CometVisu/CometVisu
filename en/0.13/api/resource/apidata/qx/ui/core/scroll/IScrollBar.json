@@ -1,65 +1,86 @@
 {
-  "className": "qx.ui.core.scroll.IScrollBar",
-  "packageName": "qx.ui.core.scroll",
-  "name": "IScrollBar",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 570
-      },
-      "end": {
-        "line": 99,
-        "column": 3,
-        "index": 2771
-      }
+  "version": 0.3,
+  "lastModified": 1717235171450,
+  "lastModifiedIso": "2024-06-01T09:46:11.450Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/scroll/IScrollBar.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 549
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>All widget used as scrollbars must implement this interface.</p>"
-        }
-      ]
+    "end": {
+      "line": 99,
+      "column": 3,
+      "index": 2673
     }
   },
-  "type": "interface",
+  "className": "qx.ui.core.scroll.IScrollBar",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * All widget used as scrollbars must implement this interface.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>All widget used as scrollbars must implement this interface.</p>"
+      }
+    ]
+  },
   "events": {
     "scroll": {
-      "type": "event",
-      "name": "scroll",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": null,
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fired if the user scroll "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired if the user scroll</p>"
           }
         ]
+      },
+      "location": {
+        "start": {
+          "line": 25,
+          "column": 4,
+          "index": 655
+        },
+        "end": {
+          "line": 25,
+          "column": 32,
+          "index": 683
+        }
       }
     },
     "scrollAnimationEnd": {
-      "type": "event",
-      "name": "scrollAnimationEnd",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": null,
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "* Fired as soon as the scroll animation ended. "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired as soon as the scroll animation ended.</p>"
           }
         ]
+      },
+      "location": {
+        "start": {
+          "line": 27,
+          "column": 4,
+          "index": 745
+        },
+        "end": {
+          "line": 27,
+          "column": 45,
+          "index": 786
+        }
       }
     }
   },
@@ -69,15 +90,21 @@
         "start": {
           "line": 34,
           "column": 4,
-          "index": 896
+          "index": 863
         },
         "end": {
           "line": 34,
           "column": 19,
-          "index": 911
+          "index": 878
         }
       },
+      "json": {},
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The scroll bar orientation",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -85,23 +112,29 @@
           }
         ]
       },
-      "name": "orientation",
-      "propertyType": "new"
+      "appearsIn": []
     },
     "maximum": {
       "location": {
         "start": {
           "line": 40,
           "column": 4,
-          "index": 1026
+          "index": 987
         },
         "end": {
           "line": 40,
           "column": 15,
-          "index": 1037
+          "index": 998
         }
       },
+      "json": {},
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximum value (difference between available size and",
+          "     * content size).",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -109,23 +142,33 @@
           }
         ]
       },
-      "name": "maximum",
-      "propertyType": "new"
+      "appearsIn": []
     },
     "position": {
       "location": {
         "start": {
           "line": 50,
           "column": 4,
-          "index": 1364
+          "index": 1315
         },
         "end": {
           "line": 50,
           "column": 16,
-          "index": 1376
+          "index": 1327
         }
       },
+      "json": {},
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Position of the scrollbar (which means the scroll left/top of the",
+          "     * attached area's pane)",
+          "     *",
+          "     * Strictly validates according to {@link #maximum}.",
+          "     * Does not apply any correction to the incoming value. If you depend",
+          "     * on this, please use {@link #scrollTo} instead.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -133,23 +176,29 @@
           }
         ]
       },
-      "name": "position",
-      "propertyType": "new"
+      "appearsIn": []
     },
     "knobFactor": {
       "location": {
         "start": {
           "line": 56,
           "column": 4,
-          "index": 1520
+          "index": 1465
         },
         "end": {
           "line": 56,
           "column": 18,
-          "index": 1534
+          "index": 1479
         }
       },
+      "json": {},
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factor to apply to the width/height of the knob in relation",
+          "     * to the dimension of the underlying area.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -157,25 +206,23 @@
           }
         ]
       },
-      "name": "knobFactor",
-      "propertyType": "new"
+      "appearsIn": []
     }
   },
   "members": {
     "scrollTo": {
-      "location": {
-        "start": {
-          "line": 69,
-          "column": 4,
-          "index": 1903
-        },
-        "end": {
-          "line": 71,
-          "column": 5,
-          "index": 1976
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls to the given position.",
+          "     *",
+          "     * This method automatically corrects the given position to respect",
+          "     * the {@link #maximum}.",
+          "     *",
+          "     * @param position {Integer} Scroll to this position. Must be greater zero.",
+          "     * @param duration {Number} The time in milliseconds the slide to should take.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -195,27 +242,49 @@
             "body": "duration {Number} The time in milliseconds the slide to should take.",
             "paramName": "duration",
             "description": " The time in milliseconds the slide to should take.",
-            "type": "Number"
+            "type": "number"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "scrollBy": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 69,
           "column": 4,
-          "index": 2297
+          "index": 1835
         },
         "end": {
-          "line": 84,
+          "line": 71,
           "column": 5,
-          "index": 2366
+          "index": 1906
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "position",
+          "type": "Integer"
+        },
+        {
+          "name": "duration",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "scrollBy": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls by the given offset.",
+          "     *",
+          "     * This method automatically corrects the given position to respect",
+          "     * the {@link #maximum}.",
+          "     *",
+          "     * @param offset {Integer} Scroll by this offset",
+          "     * @param duration {Number} The time in milliseconds the slide to should take.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -235,27 +304,49 @@
             "body": "duration {Number} The time in milliseconds the slide to should take.",
             "paramName": "duration",
             "description": " The time in milliseconds the slide to should take.",
-            "type": "Number"
+            "type": "number"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "scrollBySteps": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 95,
+          "line": 82,
           "column": 4,
-          "index": 2689
+          "index": 2216
         },
         "end": {
-          "line": 97,
+          "line": 84,
           "column": 5,
-          "index": 2761
+          "index": 2283
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "offset",
+          "type": "Integer"
+        },
+        {
+          "name": "duration",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "scrollBySteps": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls by the given number of steps.",
+          "     *",
+          "     * This method automatically corrects the given position to respect",
+          "     * the {@link #maximum}.",
+          "     *",
+          "     * @param steps {Integer} Number of steps",
+          "     * @param duration {Number} The time in milliseconds the slide to should take.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -275,277 +366,36 @@
             "body": "duration {Number} The time in milliseconds the slide to should take.",
             "paramName": "duration",
             "description": " The time in milliseconds the slide to should take.",
-            "type": "Number"
+            "type": "number"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getOrientation": {
-      "type": "function",
-      "name": "getOrientation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
       "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>orientation</code>.\n\nFor further details take a look at the property definition: {@link #orientation}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for orientation"
-          }
-        ]
-      }
-    },
-    "setOrientation": {
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2595
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2665
+        }
+      },
       "type": "function",
-      "name": "setOrientation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>orientation</code>.\n\nFor further details take a look at the property definition: {@link #orientation}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for orientation"
-          }
-        ]
-      }
-    },
-    "resetOrientation": {
-      "type": "function",
-      "name": "resetOrientation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>orientation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #orientation}."
-          }
-        ]
-      }
-    },
-    "getMaximum": {
-      "type": "function",
-      "name": "getMaximum",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maximum</code>.\n\nFor further details take a look at the property definition: {@link #maximum}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for maximum"
-          }
-        ]
-      }
-    },
-    "setMaximum": {
-      "type": "function",
-      "name": "setMaximum",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maximum</code>.\n\nFor further details take a look at the property definition: {@link #maximum}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for maximum"
-          }
-        ]
-      }
-    },
-    "resetMaximum": {
-      "type": "function",
-      "name": "resetMaximum",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maximum</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maximum}."
-          }
-        ]
-      }
-    },
-    "getPosition": {
-      "type": "function",
-      "name": "getPosition",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>position</code>.\n\nFor further details take a look at the property definition: {@link #position}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for position"
-          }
-        ]
-      }
-    },
-    "setPosition": {
-      "type": "function",
-      "name": "setPosition",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>position</code>.\n\nFor further details take a look at the property definition: {@link #position}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for position"
-          }
-        ]
-      }
-    },
-    "resetPosition": {
-      "type": "function",
-      "name": "resetPosition",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>position</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #position}."
-          }
-        ]
-      }
-    },
-    "getKnobFactor": {
-      "type": "function",
-      "name": "getKnobFactor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>knobFactor</code>.\n\nFor further details take a look at the property definition: {@link #knobFactor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for knobFactor"
-          }
-        ]
-      }
-    },
-    "setKnobFactor": {
-      "type": "function",
-      "name": "setKnobFactor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>knobFactor</code>.\n\nFor further details take a look at the property definition: {@link #knobFactor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for knobFactor"
-          }
-        ]
-      }
-    },
-    "resetKnobFactor": {
-      "type": "function",
-      "name": "resetKnobFactor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>knobFactor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #knobFactor}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "steps",
+          "type": "Integer"
+        },
+        {
+          "name": "duration",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

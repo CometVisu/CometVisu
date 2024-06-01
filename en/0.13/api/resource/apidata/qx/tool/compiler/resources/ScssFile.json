@@ -1,0 +1,396 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172214,
+  "lastModifiedIso": "2024-06-01T09:46:12.214Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/resources/ScssFile.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 36,
+      "column": 0,
+      "index": 974
+    },
+    "end": {
+      "line": 358,
+      "column": 3,
+      "index": 9799
+    }
+  },
+  "className": "qx.tool.compiler.resources.ScssFile",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * @ignore(process)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "process"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "target"
+      },
+      {
+        "name": "library"
+      },
+      {
+        "name": "filename"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 39,
+        "column": 2,
+        "index": 1060
+      },
+      "end": {
+        "line": 46,
+        "column": 3,
+        "index": 1260
+      }
+    }
+  },
+  "properties": {
+    "file": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1283
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1368
+        }
+      },
+      "json": {
+        "nullable": false,
+        "check": "String",
+        "event": "changeFile"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "themeFile": {
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1375
+        },
+        "end": {
+          "line": 58,
+          "column": 5,
+          "index": 1435
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__library": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1459
+        },
+        "end": {
+          "line": 62,
+          "column": 19,
+          "index": 1474
+        }
+      },
+      "appearsIn": []
+    },
+    "__filename": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1480
+        },
+        "end": {
+          "line": 63,
+          "column": 20,
+          "index": 1496
+        }
+      },
+      "appearsIn": []
+    },
+    "__outputDir": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 64,
+          "column": 4,
+          "index": 1502
+        },
+        "end": {
+          "line": 64,
+          "column": 21,
+          "index": 1519
+        }
+      },
+      "appearsIn": []
+    },
+    "__absLocations": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 65,
+          "column": 4,
+          "index": 1525
+        },
+        "end": {
+          "line": 65,
+          "column": 24,
+          "index": 1545
+        }
+      },
+      "appearsIn": []
+    },
+    "__sourceFiles": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1551
+        },
+        "end": {
+          "line": 66,
+          "column": 23,
+          "index": 1570
+        }
+      },
+      "appearsIn": []
+    },
+    "__importAs": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1576
+        },
+        "end": {
+          "line": 67,
+          "column": 20,
+          "index": 1592
+        }
+      },
+      "appearsIn": []
+    },
+    "compile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compiles the SCSS, returns a list of files that were imported)",
+          "     *",
+          "     * @param outputFilename {String} output",
+          "     * @return {String[]} dependent files",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compiles the SCSS, returns a list of files that were imported)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "outputFilename {String} output",
+            "paramName": "outputFilename",
+            "description": " output",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]} dependent files",
+            "type": "String[]",
+            "description": "dependent files"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1779
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 3997
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "outputFilename",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "_analyseFilename": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 4004
+        },
+        "end": {
+          "line": 207,
+          "column": 5,
+          "index": 5430
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url"
+        },
+        {
+          "name": "currentFilename"
+        }
+      ],
+      "appearsIn": []
+    },
+    "reloadSource": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 5437
+        },
+        "end": {
+          "line": 213,
+          "column": 5,
+          "index": 5591
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        }
+      ],
+      "appearsIn": []
+    },
+    "loadSource": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 215,
+          "column": 4,
+          "index": 5598
+        },
+        "end": {
+          "line": 323,
+          "column": 5,
+          "index": 8905
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        },
+        {
+          "name": "library"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSourceFilenames": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 325,
+          "column": 4,
+          "index": 8912
+        },
+        "end": {
+          "line": 327,
+          "column": 5,
+          "index": 8986
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__qooxdooUrlImpl": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 329,
+          "column": 4,
+          "index": 8993
+        },
+        "end": {
+          "line": 356,
+          "column": 5,
+          "index": 9791
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "$filename"
+        },
+        {
+          "name": "$url"
+        },
+        {
+          "name": "done"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

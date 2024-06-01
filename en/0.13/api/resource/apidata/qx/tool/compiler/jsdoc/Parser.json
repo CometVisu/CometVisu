@@ -1,0 +1,164 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171966,
+  "lastModifiedIso": "2024-06-01T09:46:11.966Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/jsdoc/Parser.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 769
+    },
+    "end": {
+      "line": 189,
+      "column": 3,
+      "index": 5597
+    }
+  },
+  "className": "qx.tool.compiler.jsdoc.Parser",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * JSDoc Parser",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>JSDoc Parser</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "statics": {
+    "parseComment": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses a JSDoc comment, returns an object where the keys are the name of the JSDoc (eg \"@description\")",
+          "     * and the value are an array of objects, one for each entry that was found.  The individual entries",
+          "     * consist of the name, the body of the JSDoc entry, and optional, key-specific parsed data (where supported)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Parses a JSDoc comment, returns an object where the keys are the name of the JSDoc (eg \"@description\")\n and the value are an array of objects, one for each entry that was found.  The individual entries\n consist of the name, the body of the JSDoc entry, and optional, key-specific parsed data (where supported)</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1209
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 4218
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "comment"
+        }
+      ],
+      "appearsIn": []
+    },
+    "parseJsDoc": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @param {*} jsdoc POJO",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} jsdoc POJO",
+            "paramName": "jsdoc",
+            "description": "POJO",
+            "type": "*"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 4277
+        },
+        "end": {
+          "line": 148,
+          "column": 5,
+          "index": 4508
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "jsdoc",
+          "type": "*"
+        },
+        {
+          "name": "typeResolver"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__PARSERS": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 150,
+          "column": 4,
+          "index": 4515
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 4841
+        }
+      },
+      "appearsIn": []
+    },
+    "getTypeExpression": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 4848
+        },
+        "end": {
+          "line": 187,
+          "column": 5,
+          "index": 5589
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "text"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

@@ -354,7 +354,7 @@
        *
        * @param searchElement {var} Element which is checked for.
        * @param fromIndex {Number} Index to start search from
-       * @return {bool} true if element is included
+       * @return {boolean} true if element is included
        */
       includes: function includes(searchElement, fromIndex) {
         if (this == null) {
@@ -430,4 +430,4 @@
   qx.lang.normalize.Array.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Array.js.map?dt=1709410154685
+//# sourceMappingURL=Array.js.map?dt=1717235383790

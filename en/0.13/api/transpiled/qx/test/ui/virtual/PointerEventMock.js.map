@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "event",
+    "type",
+    "Pointer",
+    "construct",
+    "config",
+    "constructor",
+    "call",
+    "setType",
+    "__config",
+    "members",
+    "clone",
+    "getDocumentLeft",
+    "documentLeft",
+    "getDocumentTop",
+    "documentTop",
+    "destruct",
+    "test",
+    "ui",
+    "virtual",
+    "PointerEventMock"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/virtual/PointerEventMock.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2008 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n   * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.ui.virtual.PointerEventMock\", {\n  extend: qx.event.type.Pointer,\n\n  construct(type, config) {\n    super();\n    this.setType(type);\n    this.__config = config;\n  },\n\n  members: {\n    clone() {\n      return this;\n    },\n\n    getDocumentLeft() {\n      return this.__config.documentLeft || 0;\n    },\n\n    getDocumentTop() {\n      return this.__config.documentTop || 0;\n    }\n  },\n\n  destruct() {\n    this.__config = null;\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,qCAAqC,EAAE;IACrDC,MAAM,EAAEN,EAAE,CAACO,KAAK,CAACC,IAAI,CAACC,OAAO;IAE7BC,SAAS,WAAAA,UAACF,IAAI,EAAEG,MAAM,EAAE;MACtBX,EAAA,CAAAO,KAAA,CAAAC,IAAA,CAAAC,OAAA,CAAAG,WAAA,CAAAC,IAAA;MACA,IAAI,CAACC,OAAO,CAACN,IAAI,CAAC;MAClB,IAAI,CAACO,SAAQ,GAAGJ,MAAM;IACxB,CAAC;IAEDK,OAAO,EAAE;MACPC,KAAK,WAAAA,MAAA,EAAG;QACN,OAAO,IAAI;MACb,CAAC;MAEDC,eAAe,WAAAA,gBAAA,EAAG;QAChB,OAAO,IAAI,CAACH,SAAQ,CAACI,YAAY,IAAI,CAAC;MACxC,CAAC;MAEDC,cAAc,WAAAA,eAAA,EAAG;QACf,OAAO,IAAI,CAACL,SAAQ,CAACM,WAAW,IAAI,CAAC;MACvC;IACF,CAAC;IAEDC,QAAQ,WAAAA,SAAA,EAAG;MACT,IAAI,CAACP,SAAQ,GAAG,IAAI;IACtB;EACF,CAAC,CAAC;EA5CFf,EAAE,CAACuB,IAAI,CAACC,EAAE,CAACC,OAAO,CAACC,gBAAgB,CAACvB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

@@ -1144,6 +1144,7 @@
       listitem: {
         alias: "atom",
         style: function style(states) {
+          var useSelectionState = !states.readonly && states.selected;
           var padding = [3, 5, 3, 5];
           if (states.lead) {
             padding = [2, 4, 2, 4];
@@ -1152,7 +1153,7 @@
             padding[2] -= 2;
           }
           var backgroundColor;
-          if (states.selected) {
+          if (useSelectionState) {
             backgroundColor = "background-selected";
             if (states.disabled) {
               backgroundColor += "-disabled";
@@ -1162,7 +1163,7 @@
             gap: 4,
             padding: padding,
             backgroundColor: backgroundColor,
-            textColor: states.selected ? "text-selected" : undefined,
+            textColor: useSelectionState ? "text-selected" : undefined,
             decorator: states.lead ? "lead-item" : states.dragover ? "dragover" : undefined,
             opacity: states.drag ? 0.5 : undefined
           };
@@ -2200,4 +2201,4 @@
   qx.theme.simple.Appearance.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Appearance.js.map?dt=1709410156940
+//# sourceMappingURL=Appearance.js.map?dt=1717235398419

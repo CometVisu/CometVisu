@@ -1,0 +1,53 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "members",
+    "createTable",
+    "table",
+    "ui",
+    "Table",
+    "model",
+    "Filtered",
+    "data",
+    "a",
+    "getTableModel",
+    "setColumns",
+    "setDataAsMapArray",
+    "testBetween",
+    "addBetweenFilter",
+    "applyFilters",
+    "assertIdentical",
+    "getRowCount",
+    "getDataAsMapArray",
+    "listA",
+    "forEach",
+    "obj",
+    "push",
+    "assertNotInArray",
+    "assertInArray",
+    "destroy",
+    "testNotBetween",
+    "testNumericFilter",
+    "addNumericFilter",
+    "resetHiddenRows",
+    "test"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/ui/table/model/Filtered.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2009 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * William Oprandi (woprandi)\n\n************************************************************************ */\nqx.Class.define(\"qx.test.ui.table.model.Filtered\", {\n  extend: qx.dev.unit.TestCase,\n  members: {\n    createTable() {\n      var table = new qx.ui.table.Table(new qx.ui.table.model.Filtered());\n      var data = [\n        {\n          a: 1\n        },\n\n        {\n          a: 2\n        },\n\n        {\n          a: 3\n        },\n\n        {\n          a: 4\n        },\n\n        {\n          a: 5\n        },\n\n        {\n          a: 6\n        },\n\n        {\n          a: 7\n        },\n\n        {\n          a: 8\n        },\n\n        {\n          a: 9\n        },\n\n        {\n          a: 10\n        }\n      ];\n\n      table.getTableModel().setColumns([\"a\"]);\n      table.getTableModel().setDataAsMapArray(data);\n      return table;\n    },\n\n    testBetween() {\n      var table = this.createTable();\n      var model = table.getTableModel();\n\n      model.addBetweenFilter(\"!between\", 4, 6, \"a\");\n      model.applyFilters();\n\n      this.assertIdentical(3, model.getRowCount());\n\n      var data = model.getDataAsMapArray();\n      var listA = [];\n\n      data.forEach(function (obj) {\n        listA.push(obj.a);\n      });\n\n      this.assertNotInArray(3, listA);\n      this.assertInArray(4, listA);\n      this.assertInArray(5, listA);\n      this.assertInArray(6, listA);\n      this.assertNotInArray(7, listA);\n\n      table.destroy();\n    },\n\n    testNotBetween() {\n      var table = this.createTable();\n      var model = table.getTableModel();\n\n      model.addBetweenFilter(\"between\", 2, 8, \"a\");\n      model.applyFilters();\n\n      var data = table.getTableModel().getDataAsMapArray();\n      var listA = [];\n\n      data.forEach(function (obj) {\n        listA.push(obj.a);\n      });\n\n      this.assertNotInArray(3, listA);\n      this.assertNotInArray(7, listA);\n      this.assertInArray(1, listA);\n      this.assertInArray(9, listA);\n\n      table.destroy();\n    },\n\n    testNumericFilter() {\n      var table = this.createTable();\n      var model = table.getTableModel();\n\n      model.addNumericFilter(\"==\", 8, \"a\");\n      model.applyFilters();\n\n      this.assertIdentical(9, model.getRowCount());\n\n      model.resetHiddenRows();\n\n      model.addNumericFilter(\"<\", 4, \"a\");\n      model.applyFilters();\n\n      this.assertIdentical(7, model.getRowCount());\n\n      model.resetHiddenRows();\n\n      model.addNumericFilter(\">=\", 9, \"a\");\n      model.applyFilters();\n\n      this.assertIdentical(8, model.getRowCount());\n\n      model.resetHiddenRows();\n\n      model.addNumericFilter(\"!=\", 1, \"a\");\n      model.applyFilters();\n\n      this.assertIdentical(1, model.getRowCount());\n\n      table.destroy();\n    }\n  }\n});\n"
+  ],
+  "mappings": "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",
+  "ignoreList": []
+}

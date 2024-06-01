@@ -1,49 +1,45 @@
 {
-  "className": "qx.event.util.Keyboard",
-  "packageName": "qx.event.util",
-  "name": "Keyboard",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 637
-      },
-      "end": {
-        "line": 278,
-        "column": 3,
-        "index": 8227
-      }
+  "version": 0.3,
+  "lastModified": 1717235171526,
+  "lastModifiedIso": "2024-06-01T09:46:11.526Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/util/Keyboard.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 614
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Utilities for working with character codes and key identifiers</p>"
-        }
-      ]
+    "end": {
+      "line": 278,
+      "column": 3,
+      "index": 7950
     }
   },
-  "type": "class",
+  "className": "qx.event.util.Keyboard",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Utilities for working with character codes and key identifiers",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Utilities for working with character codes and key identifiers</p>"
+      }
+    ]
+  },
   "statics": {
     "specialCharCodeMap": {
-      "location": {
-        "start": {
-          "line": 37,
-          "column": 4,
-          "index": 1065
-        },
-        "end": {
-          "line": 46,
-          "column": 5,
-          "index": 1438
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} maps the charcodes of special printable keys to key identifiers",
+          "     *",
+          "     * @lint ignoreReferenceField(specialCharCodeMap)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,23 +59,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "numpadToCharCode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 53,
+          "line": 37,
           "column": 4,
-          "index": 1606
+          "index": 1029
         },
         "end": {
-          "line": 69,
+          "line": 46,
           "column": 5,
-          "index": 2092
+          "index": 1393
         }
       },
+      "appearsIn": []
+    },
+    "numpadToCharCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} maps the keycodes of the numpad keys to the right charcodes",
+          "     *",
+          "     * @lint ignoreReferenceField(numpadToCharCode)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -99,23 +102,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "keyCodeToIdentifierMap": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 76,
+          "line": 53,
           "column": 4,
-          "index": 2265
+          "index": 1554
         },
         "end": {
-          "line": 119,
+          "line": 69,
           "column": 5,
-          "index": 3933
+          "index": 2024
         }
       },
+      "appearsIn": []
+    },
+    "keyCodeToIdentifierMap": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} maps the keycodes of non printable keys to key identifiers",
+          "     *",
+          "     * @lint ignoreReferenceField(keyCodeToIdentifierMap)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -135,23 +145,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "charCodeA": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 122,
+          "line": 76,
           "column": 4,
-          "index": 3978
+          "index": 2190
         },
         "end": {
-          "line": 122,
-          "column": 32,
-          "index": 4006
+          "line": 119,
+          "column": 5,
+          "index": 3815
         }
       },
+      "appearsIn": []
+    },
+    "charCodeA": {
       "jsdoc": {
+        "raw": [
+          "* char code for capital A "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -159,23 +172,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "charCodeZ": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 124,
+          "line": 122,
           "column": 4,
-          "index": 4049
+          "index": 3857
         },
         "end": {
-          "line": 124,
+          "line": 122,
           "column": 32,
-          "index": 4077
+          "index": 3885
         }
       },
+      "appearsIn": []
+    },
+    "charCodeZ": {
       "jsdoc": {
+        "raw": [
+          "* char code for capital Z "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -183,23 +199,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "charCode0": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 126,
+          "line": 124,
           "column": 4,
-          "index": 4112
+          "index": 3926
         },
         "end": {
-          "line": 126,
+          "line": 124,
           "column": 32,
-          "index": 4140
+          "index": 3954
         }
       },
+      "appearsIn": []
+    },
+    "charCode0": {
       "jsdoc": {
+        "raw": [
+          "* char code for 0 "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -207,23 +226,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "charCode9": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 128,
+          "line": 126,
           "column": 4,
-          "index": 4175
+          "index": 3987
         },
         "end": {
-          "line": 128,
+          "line": 126,
           "column": 32,
-          "index": 4203
+          "index": 4015
         }
       },
+      "appearsIn": []
+    },
+    "charCode9": {
       "jsdoc": {
+        "raw": [
+          "* char code for 9 "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -231,23 +253,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "keyCodeToIdentifier": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 136,
+          "line": 128,
           "column": 4,
-          "index": 4385
+          "index": 4048
         },
         "end": {
-          "line": 152,
-          "column": 5,
-          "index": 4857
+          "line": 128,
+          "column": 32,
+          "index": 4076
         }
       },
+      "appearsIn": []
+    },
+    "keyCodeToIdentifier": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * converts a keyboard code to the corresponding identifier",
+          "     *",
+          "     * @param keyCode {Integer} key code",
+          "     * @return {String} key identifier",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -267,28 +297,46 @@
           {
             "name": "@return",
             "body": "{String} key identifier",
-            "type": "String",
-            "description": " key identifier"
+            "type": "string",
+            "description": "key identifier"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "charCodeToIdentifier": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 160,
+          "line": 136,
           "column": 4,
-          "index": 5046
+          "index": 4250
         },
         "end": {
-          "line": 165,
+          "line": 152,
           "column": 5,
-          "index": 5210
+          "index": 4706
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "keyCode",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "charCodeToIdentifier": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * converts a character code to the corresponding identifier",
+          "     *",
+          "     * @param charCode {String} character code",
+          "     * @return {String} key identifier",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -301,35 +349,53 @@
             "body": "charCode {String} character code",
             "paramName": "charCode",
             "description": " character code",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} key identifier",
-            "type": "String",
-            "description": " key identifier"
+            "type": "string",
+            "description": "key identifier"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isIdentifiableKeyCode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 173,
+          "line": 160,
           "column": 4,
-          "index": 5475
+          "index": 4887
         },
         "end": {
-          "line": 199,
+          "line": 165,
           "column": 5,
-          "index": 6079
+          "index": 5046
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "charCode",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "isIdentifiableKeyCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check whether the keycode can be reliably detected in keyup/keydown events",
+          "     *",
+          "     * @param keyCode {String} key code to check.",
+          "     * @return {Boolean} Whether the keycode can be reliably detected in keyup/keydown events.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -342,35 +408,53 @@
             "body": "keyCode {String} key code to check.",
             "paramName": "keyCode",
             "description": " key code to check.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether the keycode can be reliably detected in keyup/keydown events.",
-            "type": "Boolean",
-            "description": " Whether the keycode can be reliably detected in keyup/keydown events."
+            "type": "boolean",
+            "description": "Whether the keycode can be reliably detected in keyup/keydown events."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isNonPrintableKeyCode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 207,
+          "line": 173,
           "column": 4,
-          "index": 6309
+          "index": 5303
         },
         "end": {
-          "line": 209,
+          "line": 199,
           "column": 5,
-          "index": 6415
+          "index": 5881
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "keyCode",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isNonPrintableKeyCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether the keyCode represents a non printable key",
+          "     *",
+          "     * @param keyCode {String} key code to check.",
+          "     * @return {Boolean} Whether the keyCode represents a non printable key.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -383,35 +467,53 @@
             "body": "keyCode {String} key code to check.",
             "paramName": "keyCode",
             "description": " key code to check.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether the keyCode represents a non printable key.",
-            "type": "Boolean",
-            "description": " Whether the keyCode represents a non printable key."
+            "type": "boolean",
+            "description": "Whether the keyCode represents a non printable key."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isValidKeyIdentifier": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 217,
+          "line": 207,
           "column": 4,
-          "index": 6647
+          "index": 6103
         },
         "end": {
-          "line": 245,
+          "line": 209,
           "column": 5,
-          "index": 7244
+          "index": 6207
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "keyCode",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isValidKeyIdentifier": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether a given string is a valid keyIdentifier",
+          "     *",
+          "     * @param keyIdentifier {String} The key identifier.",
+          "     * @return {Boolean} whether the given string is a valid keyIdentifier",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -424,35 +526,53 @@
             "body": "keyIdentifier {String} The key identifier.",
             "paramName": "keyIdentifier",
             "description": " The key identifier.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the given string is a valid keyIdentifier",
-            "type": "Boolean",
-            "description": " whether the given string is a valid keyIdentifier"
+            "type": "boolean",
+            "description": "whether the given string is a valid keyIdentifier"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isPrintableKeyIdentifier": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 253,
+          "line": 217,
           "column": 4,
-          "index": 7486
+          "index": 6431
         },
         "end": {
-          "line": 259,
+          "line": 245,
           "column": 5,
-          "index": 7696
+          "index": 7000
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "keyIdentifier",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isPrintableKeyIdentifier": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks whether a given string is a printable keyIdentifier.",
+          "     *",
+          "     * @param keyIdentifier {String} The key identifier.",
+          "     * @return {Boolean} whether the given string is a printable keyIdentifier.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -465,35 +585,44 @@
             "body": "keyIdentifier {String} The key identifier.",
             "paramName": "keyIdentifier",
             "description": " The key identifier.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the given string is a printable keyIdentifier.",
-            "type": "Boolean",
-            "description": " whether the given string is a printable keyIdentifier."
+            "type": "boolean",
+            "description": "whether the given string is a printable keyIdentifier."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 262,
-        "column": 2,
-        "index": 7708
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 253,
+          "column": 4,
+          "index": 7234
+        },
+        "end": {
+          "line": 259,
+          "column": 5,
+          "index": 7438
+        }
       },
-      "end": {
-        "line": 277,
-        "column": 3,
-        "index": 8222
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "keyIdentifier",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

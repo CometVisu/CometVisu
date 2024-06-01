@@ -1,65 +1,73 @@
 {
-  "className": "qx.xml.Element",
-  "packageName": "qx.xml",
-  "name": "Element",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 36,
-        "column": 0,
-        "index": 1138
-      },
-      "end": {
-        "line": 365,
-        "column": 3,
-        "index": 12129
-      }
+  "version": 0.3,
+  "lastModified": 1717235170366,
+  "lastModifiedIso": "2024-06-01T09:46:10.366Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/xml/Element.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 36,
+      "column": 0,
+      "index": 1103
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Cross browser XML Element API\n API to select, query and serialize XML elements.\n Further information:</p>\n<ul>\n<li><a href=\"https://developer.mozilla.org/en-US/docs/Parsing_and_serializing_XML\">MDN Parsing and Serializing XML</a>\nPlease note that nodes selected using the <code>selectSingleNode()</code> and\n<code>selectNodes()</code> methods remain in their document context so\n<code>qx.xml.Element.selectNodes(foo,\nwill search the entire document for any nodes named \"bar\", not just the\n<code>foo</code> node.</li>\n</ul>"
-        }
-      ]
+    "end": {
+      "line": 365,
+      "column": 3,
+      "index": 11765
     }
   },
-  "type": "class",
+  "className": "qx.xml.Element",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Cross browser XML Element API",
+      " *",
+      " * API to select, query and serialize XML elements.",
+      " *",
+      " * Further information:",
+      " *",
+      " * * <a href=\"https://developer.mozilla.org/en-US/docs/Parsing_and_serializing_XML\">MDN Parsing and Serializing XML</a>",
+      " *",
+      " * Please note that nodes selected using the <code>selectSingleNode()</code> and",
+      " * <code>selectNodes()</code> methods remain in their document context so",
+      " * <code>qx.xml.Element.selectNodes(foo, \"//bar\");</code>",
+      " * will search the entire document for any nodes named \"bar\", not just the",
+      " * <code>foo</code> node.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Cross browser XML Element API\n API to select, query and serialize XML elements.\n Further information:</p>\n<ul>\n<li><a href=\"https://developer.mozilla.org/en-US/docs/Parsing_and_serializing_XML\">MDN Parsing and Serializing XML</a>\nPlease note that nodes selected using the <code>selectSingleNode()</code> and\n<code>selectNodes()</code> methods remain in their document context so\n<code>qx.xml.Element.selectNodes(foo,\nwill search the entire document for any nodes named \"bar\", not just the\n<code>foo</code> node.</li>\n</ul>"
+      }
+    ]
+  },
   "statics": {
     "__xpe": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 38,
           "column": 4,
-          "index": 1193
+          "index": 1156
         },
         "end": {
           "line": 38,
           "column": 15,
-          "index": 1204
+          "index": 1167
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "XML_SERIALIZER": {
-      "location": {
-        "start": {
-          "line": 44,
-          "column": 4,
-          "index": 1355
-        },
-        "end": {
-          "line": 44,
-          "column": 25,
-          "index": 1376
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Boolean} <code>true</code> if the native XMLSerializer should be used,",
+          "     * <code>false</code> otherwise.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -73,23 +81,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "serialize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 44,
           "column": 4,
-          "index": 1678
+          "index": 1312
         },
         "end": {
-          "line": 62,
-          "column": 5,
-          "index": 1979
+          "line": 44,
+          "column": 25,
+          "index": 1333
         }
       },
+      "appearsIn": []
+    },
+    "serialize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The subtree rooted by the specified element or document is serialized to a string.",
+          "     *",
+          "     * @param element {Element | Document} The root of the subtree to be serialized. This could be any node, including a Document.",
+          "     * @return {String} Serialized subtree",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -112,28 +128,51 @@
           {
             "name": "@return",
             "body": "{String} Serialized subtree",
-            "type": "qx.xml.String",
-            "description": " Serialized subtree"
+            "type": "string",
+            "description": "Serialized subtree"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "selectSingleNode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 52,
           "column": 4,
-          "index": 2328
+          "index": 1627
         },
         "end": {
-          "line": 135,
+          "line": 62,
           "column": 5,
-          "index": 4102
+          "index": 1918
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": [
+            "Element",
+            "Document"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "selectSingleNode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Selects the first XmlNode that matches the XPath expression.",
+          "     *",
+          "     * @param element {Element | Document} root element for the search",
+          "     * @param query {String} XPath query",
+          "     * @param namespaces {Map} optional map of prefixes and their namespace URIs",
+          "     * @return {Element} first matching element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -156,14 +195,14 @@
             "body": "query {String} XPath query",
             "paramName": "query",
             "description": " XPath query",
-            "type": "qx.xml.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "namespaces {Map} optional map of prefixes and their namespace URIs",
             "paramName": "namespaces",
             "description": " optional map of prefixes and their namespace URIs",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
@@ -171,27 +210,58 @@
             "name": "@return",
             "body": "{Element} first matching element",
             "type": "qx.xml.Element",
-            "description": " first matching element"
+            "description": "first matching element"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "selectNodes": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 145,
+          "line": 72,
           "column": 4,
-          "index": 4450
+          "index": 2257
         },
         "end": {
-          "line": 215,
+          "line": 135,
           "column": 5,
-          "index": 6364
+          "index": 3968
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": [
+            "Element",
+            "Document"
+          ]
+        },
+        {
+          "name": "query",
+          "type": "string"
+        },
+        {
+          "name": "namespaces",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.xml.Element"
+      },
+      "appearsIn": []
+    },
+    "selectNodes": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Selects a list of nodes matching the XPath expression.",
+          "     *",
+          "     * @param element {Element | Document} root element for the search",
+          "     * @param query {String} XPath query",
+          "     * @param namespaces {Map} optional map of prefixes and their namespace URIs",
+          "     * @return {Element[]} List of matching elements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -214,14 +284,14 @@
             "body": "query {String} XPath query",
             "paramName": "query",
             "description": " XPath query",
-            "type": "qx.xml.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "namespaces {Map} optional map of prefixes and their namespace URIs",
             "paramName": "namespaces",
             "description": " optional map of prefixes and their namespace URIs",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
@@ -229,27 +299,64 @@
             "name": "@return",
             "body": "{Element[]} List of matching elements",
             "type": "Element[]",
-            "description": " List of matching elements"
+            "description": "List of matching elements"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getElementsByTagNameNS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 231,
+          "line": 145,
           "column": 4,
-          "index": 7200
+          "index": 4306
         },
         "end": {
-          "line": 252,
+          "line": 215,
           "column": 5,
-          "index": 7907
+          "index": 6150
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": [
+            "Element",
+            "Document"
+          ]
+        },
+        {
+          "name": "query",
+          "type": "string"
+        },
+        {
+          "name": "namespaces",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Element[]"
+      },
+      "appearsIn": []
+    },
+    "getElementsByTagNameNS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of elements with the given tag name belonging to the given namespace",
+          "     *",
+          "     * (See",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/DOM/element.getElementsByTagNameNS\">MDN",
+          "     * Reference</a>).",
+          "     *",
+          "     * @param element {Element | Document} the element from where the search should start.",
+          "     *       Note that only the descendants of this element are included in the search, not the node itself.",
+          "     * @param namespaceURI {var} is the namespace URI of elements to look for . For example, if you need to look",
+          "     *       for XHTML elements, use the XHTML namespace URI, <tt>http://www.w3.org/1999/xhtml/</tt>.",
+          "     * @param tagname {String} the tagname to look for",
+          "     * @return {Element[]} a list of found elements in the order they appear in the tree.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -279,7 +386,7 @@
             "body": "tagname {String} the tagname to look for",
             "paramName": "tagname",
             "description": " the tagname to look for",
-            "type": "qx.xml.String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -287,27 +394,57 @@
             "name": "@return",
             "body": "{Element[]} a list of found elements in the order they appear in the tree.",
             "type": "Element[]",
-            "description": " a list of found elements in the order they appear in the tree."
+            "description": "a list of found elements in the order they appear in the tree."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSingleNodeText": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 261,
+          "line": 231,
           "column": 4,
-          "index": 8265
+          "index": 6970
         },
         "end": {
-          "line": 264,
+          "line": 252,
           "column": 5,
-          "index": 8405
+          "index": 7656
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": [
+            "Element",
+            "Document"
+          ]
+        },
+        {
+          "name": "namespaceURI",
+          "type": "var"
+        },
+        {
+          "name": "tagname",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Element[]"
+      },
+      "appearsIn": []
+    },
+    "getSingleNodeText": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Selects the first XmlNode that matches the XPath expression and returns the text content of the element",
+          "     *",
+          "     * @param element {Element|Document} root element for the search",
+          "     * @param query {String}  XPath query",
+          "     * @return {String} the joined text content of the found element or null if not appropriate.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -330,35 +467,64 @@
             "body": "query {String}  XPath query",
             "paramName": "query",
             "description": "  XPath query",
-            "type": "qx.xml.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the joined text content of the found element or null if not appropriate.",
-            "type": "qx.xml.String",
-            "description": " the joined text content of the found element or null if not appropriate."
+            "type": "string",
+            "description": "the joined text content of the found element or null if not appropriate."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setAttributeNS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 276,
+          "line": 261,
           "column": 4,
-          "index": 8827
+          "index": 8005
         },
         "end": {
-          "line": 286,
+          "line": 264,
           "column": 5,
-          "index": 9312
+          "index": 8142
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": [
+            "Element",
+            "Document"
+          ]
+        },
+        {
+          "name": "query",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setAttributeNS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds or sets an attribute with the given namespace on a node",
+          "     *",
+          "     * @param document {Document} The node's parent document, created e.g. by",
+          "     * {@link qx.xml.Document#create}",
+          "     * @param element {Element} XML/DOM element to modify",
+          "     * @param namespaceUri {String} Namespace URI",
+          "     * @param name {String} Attribute name",
+          "     * @param value {String} Attribute value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -385,41 +551,74 @@
             "body": "namespaceUri {String} Namespace URI",
             "paramName": "namespaceUri",
             "description": " Namespace URI",
-            "type": "qx.xml.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "name {String} Attribute name",
             "paramName": "name",
             "description": " Attribute name",
-            "type": "qx.xml.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "value {String} Attribute value",
             "paramName": "value",
             "description": " Attribute value",
-            "type": "qx.xml.String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAttributeNS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 296,
+          "line": 276,
           "column": 4,
-          "index": 9653
+          "index": 8552
         },
         "end": {
-          "line": 315,
+          "line": 286,
           "column": 5,
-          "index": 10342
+          "index": 9027
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "document",
+          "type": "qx.xml.Document"
+        },
+        {
+          "name": "element",
+          "type": "qx.xml.Element"
+        },
+        {
+          "name": "namespaceUri",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAttributeNS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the value of the attribute with the given namespace and name",
+          "     *",
+          "     * @param element {Element} XML/DOM element to modify",
+          "     * @param namespaceUri {String} Namespace URI",
+          "     * @param name {String} Attribute name",
+          "     * @return {String} the value of the attribute, empty string if not found",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -439,42 +638,74 @@
             "body": "namespaceUri {String} Namespace URI",
             "paramName": "namespaceUri",
             "description": " Namespace URI",
-            "type": "qx.xml.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "name {String} Attribute name",
             "paramName": "name",
             "description": " Attribute name",
-            "type": "qx.xml.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} the value of the attribute, empty string if not found",
-            "type": "qx.xml.String",
-            "description": " the value of the attribute, empty string if not found"
+            "type": "string",
+            "description": "the value of the attribute, empty string if not found"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createSubElementNS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 329,
+          "line": 296,
           "column": 4,
-          "index": 10855
+          "index": 9358
         },
         "end": {
-          "line": 347,
+          "line": 315,
           "column": 5,
-          "index": 11638
+          "index": 10028
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.xml.Element"
+        },
+        {
+          "name": "namespaceUri",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "createSubElementNS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an element with the given namespace and appends it to an existing",
+          "     * element",
+          "     *",
+          "     * @param document {Document} The node's parent document, created e.g. by",
+          "     * {@link qx.xml.Document#create}",
+          "     * @param parent {Element} The parent element for the new sub-element",
+          "     * @param name {String} The new element's name",
+          "     * @param namespaceUri {String} Namespace URI for the new element",
+          "     *",
+          "     * @return {Element} The newly created sub-element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -501,14 +732,14 @@
             "body": "name {String} The new element's name",
             "paramName": "name",
             "description": " The new element's name",
-            "type": "qx.xml.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "namespaceUri {String} Namespace URI for the new element",
             "paramName": "namespaceUri",
             "description": " Namespace URI for the new element",
-            "type": "qx.xml.String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -516,28 +747,48 @@
             "name": "@return",
             "body": "{Element} The newly created sub-element",
             "type": "qx.xml.Element",
-            "description": " The newly created sub-element"
+            "description": "The newly created sub-element"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 329,
+          "column": 4,
+          "index": 10527
+        },
+        "end": {
+          "line": 347,
+          "column": 5,
+          "index": 11292
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "document",
+          "type": "qx.xml.Document"
+        },
+        {
+          "name": "parent",
+          "type": "qx.xml.Element"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "namespaceUri",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.xml.Element"
+      },
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 356,
-        "column": 2,
-        "index": 11838
-      },
-      "end": {
-        "line": 364,
-        "column": 3,
-        "index": 12124
-      }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

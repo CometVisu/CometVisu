@@ -1,49 +1,64 @@
 {
-  "className": "qx.util.Permutation",
-  "packageName": "qx.util",
-  "name": "Permutation",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 4,
-        "column": 0,
-        "index": 46
-      },
-      "end": {
-        "line": 63,
-        "column": 3,
-        "index": 1708
-      }
+  "version": 0.3,
+  "lastModified": 1717235171990,
+  "lastModifiedIso": "2024-06-01T09:46:11.990Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/Permutation.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 4,
+      "column": 0,
+      "index": 43
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Generate permutations of a map.</p>"
-        }
-      ]
+    "end": {
+      "line": 63,
+      "column": 3,
+      "index": 1646
     }
   },
-  "type": "class",
+  "className": "qx.util.Permutation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Generate permutations of a map.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Generate permutations of a map.</p>"
+      }
+    ]
+  },
   "statics": {
     "permute": {
-      "location": {
-        "start": {
-          "line": 30,
-          "column": 4,
-          "index": 910
-        },
-        "end": {
-          "line": 61,
-          "column": 5,
-          "index": 1698
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The first parameter is a map with array values. This function computes",
+          "     * all combinations of the array values and call the callback for each",
+          "     * combination.",
+          "     *",
+          "     * e.g. a value of",
+          "     * <pre class=\"javascript\">",
+          "     *   {",
+          "     *     a: [1, 2],",
+          "     *     b: [\"a\", \"b\"]",
+          "     *   }",
+          "     * </pre>",
+          "     * would call the callback for each of these maps:",
+          "     * <pre class=\"javascript\">",
+          "     *  { a: 1, b: \"a\" },",
+          "     *  { a: 1, b: \"b\" },",
+          "     *  { a: 2, b: \"a\" },",
+          "     *  { a: 2, b: \"b\" }",
+          "     * </pre>",
+          "     *",
+          "     * @param options {Map} map with array values to generate the permutations of",
+          "     * @param callback {Function} This callback is called for each permuted map",
+          "     * @param context {Object} The callback's <code>this</code> context.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,27 +71,55 @@
             "body": "options {Map} map with array values to generate the permutations of",
             "paramName": "options",
             "description": " map with array values to generate the permutations of",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "callback {Function} This callback is called for each permuted map",
             "paramName": "callback",
             "description": " This callback is called for each permuted map",
-            "type": "qx.util.Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "context {Object} The callback's <code>this</code> context.",
             "paramName": "context",
             "description": " The callback's <code>this</code> context.",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 881
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1638
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "options",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

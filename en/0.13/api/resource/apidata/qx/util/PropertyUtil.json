@@ -1,49 +1,51 @@
 {
-  "className": "qx.util.PropertyUtil",
-  "packageName": "qx.util",
-  "name": "PropertyUtil",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 702
-      },
-      "end": {
-        "line": 205,
-        "column": 3,
-        "index": 6345
-      }
+  "version": 0.3,
+  "lastModified": 1717235172066,
+  "lastModifiedIso": "2024-06-01T09:46:12.066Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/util/PropertyUtil.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 678
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A helper class for accessing the property system directly.\n This class is rather to be used internally. For all regular usage of the\n property system the default API should be sufficient.</p>"
-        }
-      ]
+    "end": {
+      "line": 205,
+      "column": 3,
+      "index": 6141
     }
   },
-  "type": "class",
+  "className": "qx.util.PropertyUtil",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A helper class for accessing the property system directly.",
+      " *",
+      " * This class is rather to be used internally. For all regular usage of the",
+      " * property system the default API should be sufficient.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A helper class for accessing the property system directly.\n This class is rather to be used internally. For all regular usage of the\n property system the default API should be sufficient.</p>"
+      }
+    ]
+  },
   "statics": {
     "getProperties": {
-      "location": {
-        "start": {
-          "line": 35,
-          "column": 4,
-          "index": 1061
-        },
-        "end": {
-          "line": 37,
-          "column": 5,
-          "index": 1124
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the property map of the given class",
+          "     *",
+          "     * @param clazz {Class} a qooxdoo class",
+          "     * @return {Map} A properties map as defined in {@link qx.Class#define}",
+          "     *   including the properties of included mixins and not including refined",
+          "     *   properties.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,28 +65,49 @@
           {
             "name": "@return",
             "body": "{Map} A properties map as defined in {@link qx.Class#define}\n   including the properties of included mixins and not including refined\n   properties.",
-            "type": "Map",
-            "description": " A properties map as defined in {@link qx.Class#define}\n   including the properties of included mixins and not including refined\n   properties."
+            "type": "Map<any, any>",
+            "description": "A properties map as defined in {@link qx.Class#define}\n   including the properties of included mixins and not including refined\n   properties."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAllProperties": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 48,
+          "line": 35,
           "column": 4,
-          "index": 1492
+          "index": 1027
         },
         "end": {
-          "line": 60,
+          "line": 37,
           "column": 5,
-          "index": 1938
+          "index": 1088
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getAllProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the property map of the given class including the properties of all",
+          "     * superclasses!",
+          "     *",
+          "     * @param clazz {Class} a qooxdoo class",
+          "     * @return {Map} The properties map as defined in {@link qx.Class#define}",
+          "     *   including the properties of included mixins of the current class and",
+          "     *   all superclasses.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,28 +127,47 @@
           {
             "name": "@return",
             "body": "{Map} The properties map as defined in {@link qx.Class#define}\n   including the properties of included mixins of the current class and\n   all superclasses.",
-            "type": "Map",
-            "description": " The properties map as defined in {@link qx.Class#define}\n   including the properties of included mixins of the current class and\n   all superclasses."
+            "type": "Map<any, any>",
+            "description": "The properties map as defined in {@link qx.Class#define}\n   including the properties of included mixins of the current class and\n   all superclasses."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getUserValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 48,
           "column": 4,
-          "index": 2372
+          "index": 1445
         },
         "end": {
-          "line": 77,
+          "line": 60,
           "column": 5,
-          "index": 2463
+          "index": 1879
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getUserValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the user value of the given property",
+          "     *",
+          "     * @param object {Object} The object to access",
+          "     * @param propertyName {String} The name of the property",
+          "     * @return {var} The user value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -138,14 +180,14 @@
             "body": "object {Object} The object to access",
             "paramName": "object",
             "description": " The object to access",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -153,27 +195,50 @@
             "name": "@return",
             "body": "{var} The user value",
             "type": "var",
-            "description": " The user value"
+            "description": "The user value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setUserValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 86,
+          "line": 75,
           "column": 4,
-          "index": 2706
+          "index": 2298
         },
         "end": {
-          "line": 88,
+          "line": 77,
           "column": 5,
-          "index": 2805
+          "index": 2387
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "setUserValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the user value of the given property",
+          "     *",
+          "     * @param object {Object} The object to access",
+          "     * @param propertyName {String} The name of the property",
+          "     * @param value {var} The value to set",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -186,14 +251,14 @@
             "body": "object {Object} The object to access",
             "paramName": "object",
             "description": " The object to access",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -204,23 +269,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "deleteUserValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 96,
+          "line": 86,
           "column": 4,
-          "index": 3007
+          "index": 2621
         },
         "end": {
-          "line": 98,
+          "line": 88,
           "column": 5,
-          "index": 3101
+          "index": 2718
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "deleteUserValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deletes the user value of the given property",
+          "     *",
+          "     * @param object {Object} The object to access",
+          "     * @param propertyName {String} The name of the property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -233,34 +321,54 @@
             "body": "object {Object} The object to access",
             "paramName": "object",
             "description": " The object to access",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getInitValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 113,
+          "line": 96,
           "column": 4,
-          "index": 3535
+          "index": 2912
         },
         "end": {
-          "line": 115,
+          "line": 98,
           "column": 5,
-          "index": 3626
+          "index": 3004
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getInitValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the init value of the given property",
+          "     *",
+          "     * @param object {Object} The object to access",
+          "     * @param propertyName {String} The name of the property",
+          "     * @return {var} The init value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -273,14 +381,14 @@
             "body": "object {Object} The object to access",
             "paramName": "object",
             "description": " The object to access",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -288,27 +396,50 @@
             "name": "@return",
             "body": "{var} The init value",
             "type": "var",
-            "description": " The init value"
+            "description": "The init value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setInitValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 124,
+          "line": 113,
           "column": 4,
-          "index": 3869
+          "index": 3423
         },
         "end": {
-          "line": 126,
+          "line": 115,
           "column": 5,
-          "index": 3968
+          "index": 3512
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "setInitValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the init value of the given property",
+          "     *",
+          "     * @param object {Object} The object to access",
+          "     * @param propertyName {String} The name of the property",
+          "     * @param value {var} The value to set",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -321,14 +452,14 @@
             "body": "object {Object} The object to access",
             "paramName": "object",
             "description": " The object to access",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -339,23 +470,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "deleteInitValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 134,
+          "line": 124,
           "column": 4,
-          "index": 4170
+          "index": 3746
         },
         "end": {
-          "line": 136,
+          "line": 126,
           "column": 5,
-          "index": 4264
+          "index": 3843
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "deleteInitValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deletes the init value of the given property",
+          "     *",
+          "     * @param object {Object} The object to access",
+          "     * @param propertyName {String} The name of the property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -368,34 +522,54 @@
             "body": "object {Object} The object to access",
             "paramName": "object",
             "description": " The object to access",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getThemeValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 151,
+          "line": 134,
           "column": 4,
-          "index": 4701
+          "index": 4037
         },
         "end": {
-          "line": 153,
+          "line": 136,
           "column": 5,
-          "index": 4794
+          "index": 4129
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getThemeValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the theme value of the given property",
+          "     *",
+          "     * @param object {Object} The object to access",
+          "     * @param propertyName {String} The name of the property",
+          "     * @return {var} The theme value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -408,14 +582,14 @@
             "body": "object {Object} The object to access",
             "paramName": "object",
             "description": " The object to access",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -423,27 +597,50 @@
             "name": "@return",
             "body": "{var} The theme value",
             "type": "var",
-            "description": " The theme value"
+            "description": "The theme value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setThemeValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 162,
+          "line": 151,
           "column": 4,
-          "index": 5038
+          "index": 4551
         },
         "end": {
-          "line": 164,
+          "line": 153,
           "column": 5,
-          "index": 5139
+          "index": 4642
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "setThemeValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the theme value of the given property",
+          "     *",
+          "     * @param object {Object} The object to access",
+          "     * @param propertyName {String} The name of the property",
+          "     * @param value {var} The value to set",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -456,14 +653,14 @@
             "body": "object {Object} The object to access",
             "paramName": "object",
             "description": " The object to access",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -474,23 +671,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "deleteThemeValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 172,
+          "line": 162,
           "column": 4,
-          "index": 5342
+          "index": 4877
         },
         "end": {
-          "line": 174,
+          "line": 164,
           "column": 5,
-          "index": 5438
+          "index": 4976
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "deleteThemeValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Deletes the theme value of the given property",
+          "     *",
+          "     * @param object {Object} The object to access",
+          "     * @param propertyName {String} The name of the property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -503,34 +723,54 @@
             "body": "object {Object} The object to access",
             "paramName": "object",
             "description": " The object to access",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setThemed": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 189,
+          "line": 172,
           "column": 4,
-          "index": 5861
+          "index": 5171
         },
         "end": {
-          "line": 192,
+          "line": 174,
           "column": 5,
-          "index": 6009
+          "index": 5265
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setThemed": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a themed property",
+          "     *",
+          "     * @param object {Object} The object to access",
+          "     * @param propertyName {String} The name of the property",
+          "     * @param value {var} The value to set",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -543,14 +783,14 @@
             "body": "object {Object} The object to access",
             "paramName": "object",
             "description": " The object to access",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -561,23 +801,46 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetThemed": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 200,
+          "line": 189,
           "column": 4,
-          "index": 6191
+          "index": 5673
         },
         "end": {
-          "line": 203,
+          "line": 192,
           "column": 5,
-          "index": 6335
+          "index": 5818
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetThemed": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets a themed property",
+          "     *",
+          "     * @param object {Object} The object to access",
+          "     * @param propertyName {String} The name of the property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -590,20 +853,44 @@
             "body": "object {Object} The object to access",
             "paramName": "object",
             "description": " The object to access",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "propertyName {String} The name of the property",
             "paramName": "propertyName",
             "description": " The name of the property",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 200,
+          "column": 4,
+          "index": 5992
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 6133
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

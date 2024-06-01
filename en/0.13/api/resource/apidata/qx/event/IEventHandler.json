@@ -1,49 +1,44 @@
 {
-  "className": "qx.event.IEventHandler",
-  "packageName": "qx.event",
-  "name": "IEventHandler",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 639
-      },
-      "end": {
-        "line": 81,
-        "column": 3,
-        "index": 2882
-      }
+  "version": 0.3,
+  "lastModified": 1717235171222,
+  "lastModifiedIso": "2024-06-01T09:46:11.222Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/IEventHandler.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 615
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Event handler Interface.\n All custom event handler like mouse or keyboard event handler must implement\n this interface.</p>"
-        }
-      ]
+    "end": {
+      "line": 81,
+      "column": 3,
+      "index": 2802
     }
   },
-  "type": "interface",
+  "className": "qx.event.IEventHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Event handler Interface.",
+      " *",
+      " * All custom event handler like mouse or keyboard event handler must implement",
+      " * this interface.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Event handler Interface.\n All custom event handler like mouse or keyboard event handler must implement\n this interface.</p>"
+      }
+    ]
+  },
   "statics": {
     "TARGET_DOMNODE": {
-      "location": {
-        "start": {
-          "line": 28,
-          "column": 4,
-          "index": 770
-        },
-        "end": {
-          "line": 28,
-          "column": 21,
-          "index": 787
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} The event target must be a dom node "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +52,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "TARGET_WINDOW": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 31,
+          "line": 28,
           "column": 4,
-          "index": 865
+          "index": 743
         },
         "end": {
-          "line": 31,
-          "column": 20,
-          "index": 881
+          "line": 28,
+          "column": 21,
+          "index": 760
         }
       },
+      "appearsIn": []
+    },
+    "TARGET_WINDOW": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} The event target must be a window object "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,23 +85,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "TARGET_OBJECT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 34,
+          "line": 31,
           "column": 4,
-          "index": 960
+          "index": 835
         },
         "end": {
-          "line": 34,
+          "line": 31,
           "column": 20,
-          "index": 976
+          "index": 851
         }
       },
+      "appearsIn": []
+    },
+    "TARGET_OBJECT": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} The event target must be a qooxdoo object "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,23 +118,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "TARGET_DOCUMENT": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 37,
+          "line": 34,
           "column": 4,
-          "index": 1054
+          "index": 927
         },
         "end": {
-          "line": 37,
-          "column": 22,
-          "index": 1072
+          "line": 34,
+          "column": 20,
+          "index": 943
         }
       },
+      "appearsIn": []
+    },
+    "TARGET_DOCUMENT": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} The event target must be a document node "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -147,25 +151,40 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1018
+        },
+        "end": {
+          "line": 37,
+          "column": 22,
+          "index": 1036
+        }
+      },
+      "appearsIn": []
     }
   },
   "members": {
     "canHandleEvent": {
-      "location": {
-        "start": {
-          "line": 54,
-          "column": 4,
-          "index": 1766
-        },
-        "end": {
-          "line": 54,
-          "column": 35,
-          "index": 1797
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the event handler can handle events of the given type. If the",
+          "     * event handler class has a static variable called <code>IGNORE_CAN_HANDLE</code>",
+          "     * with the value <code>true</code> this function is not called. Whether the",
+          "     * handler can handle the event is them only determined by the static variables",
+          "     * <code>SUPPORTED_TYPES</code> and <code>TARGET_CHECK</code>.",
+          "     *",
+          "     * @param target {var} The target to, which the event handler should",
+          "     *     be attached",
+          "     * @param type {String} event type",
+          "     * @return {Boolean} Whether the event handler can handle events of the",
+          "     *     given type.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -185,35 +204,61 @@
             "body": "type {String} event type",
             "paramName": "type",
             "description": " event type",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Whether the event handler can handle events of the\n     given type.",
-            "type": "Boolean",
-            "description": " Whether the event handler can handle events of the\n     given type."
+            "type": "boolean",
+            "description": "Whether the event handler can handle events of the\n     given type."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "registerEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 66,
+          "line": 54,
           "column": 4,
-          "index": 2259
+          "index": 1713
         },
         "end": {
-          "line": 66,
-          "column": 43,
-          "index": 2298
+          "line": 54,
+          "column": 35,
+          "index": 1744
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "var"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "registerEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called each time an event listener, for one of the",
+          "     * supported events, is added using {@link qx.event.Manager#addListener}.",
+          "     *",
+          "     * @param target {var} The target to, which the event handler should",
+          "     *     be attached",
+          "     * @param type {String} event type",
+          "     * @param capture {Boolean} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -233,34 +278,62 @@
             "body": "type {String} event type",
             "paramName": "type",
             "description": " event type",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
             "paramName": "capture",
             "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "unregisterEvent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 79,
+          "line": 66,
           "column": 4,
-          "index": 2831
+          "index": 2194
         },
         "end": {
-          "line": 79,
-          "column": 45,
-          "index": 2872
+          "line": 66,
+          "column": 43,
+          "index": 2233
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "var"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "capture",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unregisterEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This method is called each time an event listener, for one of the",
+          "     * supported events, is removed by using {@link qx.event.Manager#removeListener}",
+          "     * and no other event listener is listening on this type.",
+          "     *",
+          "     * @param target {var} The target from, which the event handler should",
+          "     *     be removed",
+          "     * @param type {String} event type",
+          "     * @param capture {Boolean} Whether to attach the event to the",
+          "     *         capturing phase or the bubbling phase of the event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -280,20 +353,47 @@
             "body": "type {String} event type",
             "paramName": "type",
             "description": " event type",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "capture {Boolean} Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
             "paramName": "capture",
             "description": " Whether to attach the event to the\n         capturing phase or the bubbling phase of the event.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2753
+        },
+        "end": {
+          "line": 79,
+          "column": 45,
+          "index": 2794
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "target",
+          "type": "var"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "capture",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

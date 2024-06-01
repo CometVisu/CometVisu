@@ -43,19 +43,19 @@
       /**
        * process.stdout
        */
-      __P_284_0: null,
+      __P_285_0: null,
       /**
        * process.stderr
        */
-      __P_284_1: null,
+      __P_285_1: null,
       /**
        * Whether to use color codes
        */
-      __P_284_2: false,
+      __P_285_2: false,
       /**
        * Which ANSI color codes to use for which log level
        */
-      __P_284_3: {
+      __P_285_3: {
         debug: "\x1B[38;5;3m",
         // yellow
         info: "\x1B[38;5;12m",
@@ -72,7 +72,7 @@
        */
       setUseColors: function setUseColors(value) {
         qx.core.Assert.assertBoolean(value);
-        this.__P_284_2 = value;
+        this.__P_285_2 = value;
       },
       /**
        * Writes a message to the shell. Errors will be sent to STDERR, everything
@@ -82,13 +82,13 @@
        * @param level {String} Log level. One of "debug", "info", "warn", "error"
        */
       log: function log(logMessage, level) {
-        if (this.__P_284_2 && this.__P_284_3[level]) {
-          logMessage = this.__P_284_3[level] + logMessage + this.__P_284_3.reset;
+        if (this.__P_285_2 && this.__P_285_3[level]) {
+          logMessage = this.__P_285_3[level] + logMessage + this.__P_285_3.reset;
         }
         if (level === "error") {
-          this.__P_284_1.write(logMessage + "\n");
+          this.__P_285_1.write(logMessage + "\n");
         } else {
-          this.__P_284_0.write(logMessage + "\n");
+          this.__P_285_0.write(logMessage + "\n");
         }
       },
       /**
@@ -147,8 +147,8 @@
      */
     defer: function defer(statics) {
       if (typeof process !== "undefined") {
-        statics.__P_284_0 = process.stdout;
-        statics.__P_284_1 = process.stderr;
+        statics.__P_285_0 = process.stdout;
+        statics.__P_285_1 = process.stderr;
         qx.log.Logger.register(statics);
       }
     }
@@ -156,4 +156,4 @@
   qx.log.appender.NodeConsole.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=NodeConsole.js.map?dt=1709410155115
+//# sourceMappingURL=NodeConsole.js.map?dt=1717235384238

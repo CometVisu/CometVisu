@@ -1,49 +1,57 @@
 {
-  "className": "qx.ui.table.ICellEditorFactory",
-  "packageName": "qx.ui.table",
-  "name": "ICellEditorFactory",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 556
-      },
-      "end": {
-        "line": 57,
-        "column": 3,
-        "index": 1761
-      }
+  "version": 0.3,
+  "lastModified": 1717235171182,
+  "lastModifiedIso": "2024-06-01T09:46:11.182Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/ICellEditorFactory.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 535
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A factory creating widgets to use for editing table cells.</p>"
-        }
-      ]
+    "end": {
+      "line": 57,
+      "column": 3,
+      "index": 1705
     }
   },
-  "type": "interface",
+  "className": "qx.ui.table.ICellEditorFactory",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A factory creating widgets to use for editing table cells.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A factory creating widgets to use for editing table cells.</p>"
+      }
+    ]
+  },
   "members": {
     "createCellEditor": {
-      "location": {
-        "start": {
-          "line": 41,
-          "column": 4,
-          "index": 1353
-        },
-        "end": {
-          "line": 43,
-          "column": 5,
-          "index": 1408
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a cell editor.",
+          "     *",
+          "     * The cellInfo map contains the following properties:",
+          "     * <ul>",
+          "     * <li>value (var): the cell's value.</li>",
+          "     * <li>row (int): the model index of the row the cell belongs to.</li>",
+          "     * <li>col (int): the model index of the column the cell belongs to.</li>",
+          "     * <li>xPos (int): the x position of the cell in the table pane.</li>",
+          "     * <li>table (qx.ui.table.Table) reference to the table, the cell belongs to. </li>",
+          "     * </ul>",
+          "     *",
+          "     * @abstract",
+          "     * @param cellInfo {Map} A map containing the information about the cell to",
+          "     *      create.",
+          "     * @return {qx.ui.core.Widget} the widget that should be used as cell editor.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -62,7 +70,7 @@
             "body": "cellInfo {Map} A map containing the information about the cell to\n      create.",
             "paramName": "cellInfo",
             "description": " A map containing the information about the cell to\n      create.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
@@ -70,27 +78,47 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget} the widget that should be used as cell editor.",
             "type": "qx.ui.core.Widget",
-            "description": " the widget that should be used as cell editor."
+            "description": "the widget that should be used as cell editor."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCellEditorValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 53,
+          "line": 41,
           "column": 4,
-          "index": 1692
+          "index": 1313
         },
         "end": {
-          "line": 55,
+          "line": 43,
           "column": 5,
-          "index": 1751
+          "index": 1366
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "cellInfo",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
+    },
+    "getCellEditorValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current value of a cell editor.",
+          "     *",
+          "     * @abstract",
+          "     * @param cellEditor {qx.ui.core.Widget} The cell editor formally created by",
+          "     *      {@link #createCellEditor}.",
+          "     * @return {var} the current value from the editor.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,13 +145,36 @@
             "name": "@return",
             "body": "{var} the current value from the editor.",
             "type": "var",
-            "description": " the current value from the editor."
+            "description": "the current value from the editor."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1640
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1697
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "cellEditor",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

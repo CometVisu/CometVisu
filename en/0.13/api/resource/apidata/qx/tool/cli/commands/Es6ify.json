@@ -1,0 +1,80 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235170410,
+  "lastModifiedIso": "2024-06-01T09:46:10.410Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Es6ify.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 607
+    },
+    "end": {
+      "line": 177,
+      "column": 3,
+      "index": 4599
+    }
+  },
+  "className": "qx.tool.cli.commands.Es6ify",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Migrates code to ES6 (partially)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Migrates code to ES6 (partially)</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Command",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 713
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1665
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 71,
+          "column": 4,
+          "index": 1689
+        },
+        "end": {
+          "line": 175,
+          "column": 5,
+          "index": 4591
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    }
+  },
+  "properties": {}
+}

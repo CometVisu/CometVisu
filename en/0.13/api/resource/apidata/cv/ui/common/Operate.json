@@ -1,49 +1,46 @@
 {
-  "className": "cv.ui.common.Operate",
-  "packageName": "cv.ui.common",
-  "name": "Operate",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 956
-      },
-      "end": {
-        "line": 118,
-        "column": 3,
-        "index": 4229
-      }
+  "version": 0.3,
+  "lastModified": 1717235105606,
+  "lastModifiedIso": "2024-06-01T09:45:05.606Z",
+  "classFilename": "../../source/class/cv/ui/common/Operate.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 956
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Provides methods for widgets that can be controlled by the user.\n Usually this operation includes sending values to the backend.</p>"
-        }
-      ]
+    "end": {
+      "line": 118,
+      "column": 3,
+      "index": 4229
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.common.Operate",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Provides methods for widgets that can be controlled by the user.",
+      " * Usually this operation includes sending values to the backend.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Provides methods for widgets that can be controlled by the user.\n Usually this operation includes sending values to the backend.</p>"
+      }
+    ]
+  },
   "members": {
     "action": {
-      "location": {
-        "start": {
-          "line": 36,
-          "column": 4,
-          "index": 1291
-        },
-        "end": {
-          "line": 49,
-          "column": 5,
-          "index": 1675
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Action performed when the widget got clicked, sends data to the backend",
+          "     *",
+          "     * @param event {Event} tap event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,23 +57,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "downaction": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 55,
+          "line": 36,
           "column": 4,
-          "index": 1778
+          "index": 1291
         },
         "end": {
-          "line": 62,
+          "line": 49,
           "column": 5,
-          "index": 1947
+          "index": 1675
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "downaction": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles pointerdown events",
+          "     * @param event {Event} pointerdown event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -93,23 +103,44 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "sendToBackend": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 76,
+          "line": 55,
           "column": 4,
-          "index": 2594
+          "index": 1778
         },
         "end": {
-          "line": 116,
+          "line": 62,
           "column": 5,
-          "index": 4221
+          "index": 1947
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "sendToBackend": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Send the given value to all writeable addresses known to this widget",
+          "     *",
+          "     * @param value {var} value to send",
+          "     * @param filter {Function} optional filter function for addresses",
+          "     * @param currentBusValues {Object} optional: the (assumed) last encoded values",
+          "     *          that were sent on the bus. When the encoding of the new value",
+          "     *          to send is equal to the currentBusValues a transmission will",
+          "     *          be suppressed. The object is a hash with the encoding as a key",
+          "     *          for the encoded value",
+          "     * @return the object/hash of encoded values that were sent last time",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -129,14 +160,14 @@
             "body": "filter {Function} optional filter function for addresses",
             "paramName": "filter",
             "description": " optional filter function for addresses",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "currentBusValues {Object} optional: the (assumed) last encoded values\n          that were sent on the bus. When the encoding of the new value\n          to send is equal to the currentBusValues a transmission will\n          be suppressed. The object is a hash with the encoding as a key\n          for the encoded value",
             "paramName": "currentBusValues",
             "description": " optional: the (assumed) last encoded values\n          that were sent on the bus. When the encoding of the new value\n          to send is equal to the currentBusValues a transmission will\n          be suppressed. The object is a hash with the encoding as a key\n          for the encoded value",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ],
         "@return": [
@@ -146,9 +177,38 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 2594
+        },
+        "end": {
+          "line": 116,
+          "column": 5,
+          "index": 4221
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "filter",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "currentBusValues",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

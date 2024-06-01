@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "core",
+    "Object",
+    "members",
+    "foo_base",
+    "a",
+    "b",
+    "c",
+    "test",
+    "performance",
+    "Base"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/performance/Base.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qx.test.performance.Base\", {\n  extend: qx.core.Object,\n\n  members: {\n    foo_base(a, b, c) {}\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0BAA0B,EAAE;IAC1CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM;IAEtBC,OAAO,EAAE;MACPC,QAAQ,WAAAA,SAACC,CAAC,EAAEC,CAAC,EAAEC,CAAC,EAAE,CAAC;IACrB;EACF,CAAC,CAAC;EANFb,EAAE,CAACc,IAAI,CAACC,WAAW,CAACC,IAAI,CAACb,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

@@ -1,0 +1,133 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172622,
+  "lastModifiedIso": "2024-06-01T09:46:12.622Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/Uglify.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 822
+    },
+    "end": {
+      "line": 149,
+      "column": 3,
+      "index": 3983
+    }
+  },
+  "className": "qx.tool.compiler.targets.meta.Uglify",
+  "jsdoc": null,
+  "superClass": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "appMeta"
+      },
+      {
+        "name": "jsMeta"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 36,
+        "column": 2,
+        "index": 1104
+      },
+      "end": {
+        "line": 39,
+        "column": 3,
+        "index": 1206
+      }
+    }
+  },
+  "properties": {
+    "needsWriteToDisk": {
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1229
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1291
+        }
+      },
+      "json": {
+        "init": true,
+        "refine": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    }
+  },
+  "members": {
+    "__jsMeta": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1315
+        },
+        "end": {
+          "line": 49,
+          "column": 18,
+          "index": 1329
+        }
+      },
+      "appearsIn": []
+    },
+    "writeSourceCodeToStream": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1368
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 3975
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ws"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    }
+  },
+  "statics": {}
+}

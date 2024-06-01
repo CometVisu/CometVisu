@@ -1,49 +1,59 @@
 {
-  "className": "qx.ui.table.IRowRenderer",
-  "packageName": "qx.ui.table",
-  "name": "IRowRenderer",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 527
-      },
-      "end": {
-        "line": 68,
-        "column": 3,
-        "index": 2267
-      }
+  "version": 0.3,
+  "lastModified": 1717235171442,
+  "lastModifiedIso": "2024-06-01T09:46:11.442Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/IRowRenderer.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 506
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Interface for a row renderer.</p>"
-        }
-      ]
+    "end": {
+      "line": 68,
+      "column": 3,
+      "index": 2200
     }
   },
-  "type": "interface",
+  "className": "qx.ui.table.IRowRenderer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Interface for a row renderer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Interface for a row renderer.</p>"
+      }
+    ]
+  },
   "members": {
     "updateDataRowElement": {
-      "location": {
-        "start": {
-          "line": 43,
-          "column": 4,
-          "index": 1404
-        },
-        "end": {
-          "line": 43,
-          "column": 48,
-          "index": 1448
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates a data row.",
+          "     *",
+          "     * The rowInfo map contains the following properties:",
+          "     * <ul>",
+          "     * <li>rowData (var): contains the row data for the row.",
+          "     *   The kind of this object depends on the table model, see",
+          "     *   {@link ITableModel#getRowData()}</li>",
+          "     * <li>row (int): the model index of the row.</li>",
+          "     * <li>selected (boolean): whether a cell in this row is selected.</li>",
+          "     * <li>focusedRow (boolean): whether the focused cell is in this row.</li>",
+          "     * <li>table (qx.ui.table.Table): the table the row belongs to.</li>",
+          "     * </ul>",
+          "     *",
+          "     * @abstract",
+          "     * @param rowInfo {Map} A map containing the information about the row to",
+          "     *      update.",
+          "     * @param rowElement {Element} the DOM element that renders the data row.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -62,7 +72,7 @@
             "body": "rowInfo {Map} A map containing the information about the row to\n      update.",
             "paramName": "rowInfo",
             "description": " A map containing the information about the row to\n      update.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -73,23 +83,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRowHeightStyle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 50,
+          "line": 43,
           "column": 4,
-          "index": 1627
+          "index": 1362
         },
         "end": {
-          "line": 50,
-          "column": 32,
-          "index": 1655
+          "line": 43,
+          "column": 48,
+          "index": 1406
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "rowInfo",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "rowElement",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getRowHeightStyle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the row's height CSS style taking the box model into account",
+          "     *",
+          "     * @param height {Integer} The row's (border-box) height in pixel",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -106,23 +134,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createRowStyle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 58,
+          "line": 50,
           "column": 4,
-          "index": 1929
+          "index": 1578
         },
         "end": {
-          "line": 58,
-          "column": 30,
-          "index": 1955
+          "line": 50,
+          "column": 32,
+          "index": 1606
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createRowStyle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create a style string, which will be set as the style property of the row.",
+          "     *",
+          "     * @param rowInfo {Map} A map containing the information about the row to",
+          "     *      update. See {@link #updateDataRowElement} for more information.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -135,27 +178,42 @@
             "body": "rowInfo {Map} A map containing the information about the row to\n      update. See {@link #updateDataRowElement} for more information.",
             "paramName": "rowInfo",
             "description": " A map containing the information about the row to\n      update. See {@link #updateDataRowElement} for more information.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRowClass": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 66,
+          "line": 58,
           "column": 4,
-          "index": 2234
+          "index": 1872
         },
         "end": {
-          "line": 66,
-          "column": 27,
-          "index": 2257
+          "line": 58,
+          "column": 30,
+          "index": 1898
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "rowInfo",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getRowClass": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create a HTML class string, which will be set as the class property of the row.",
+          "     *",
+          "     * @param rowInfo {Map} A map containing the information about the row to",
+          "     *      update. See {@link #updateDataRowElement} for more information.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -168,13 +226,33 @@
             "body": "rowInfo {Map} A map containing the information about the row to\n      update. See {@link #updateDataRowElement} for more information.",
             "paramName": "rowInfo",
             "description": " A map containing the information about the row to\n      update. See {@link #updateDataRowElement} for more information.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 2169
+        },
+        "end": {
+          "line": 66,
+          "column": 27,
+          "index": 2192
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "rowInfo",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

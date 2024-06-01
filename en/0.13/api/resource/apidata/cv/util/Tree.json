@@ -1,51 +1,78 @@
 {
-  "className": "cv.util.Tree",
-  "packageName": "cv.util",
-  "name": "Tree",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 30,
-        "column": 0,
-        "index": 915
-      },
-      "end": {
-        "line": 215,
-        "column": 3,
-        "index": 6064
-      }
+  "version": 0.3,
+  "lastModified": 1717235105618,
+  "lastModifiedIso": "2024-06-01T09:45:05.618Z",
+  "classFilename": "../../source/class/cv/util/Tree.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 30,
+      "column": 0,
+      "index": 915
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Helper methods for the widget/dom tree</p><div class=\"authors\"><label>Author:</label> tobiasb</div><div class=\"since\"><label>Since:</label> 2016</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "tobiasb"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2016"
-        }
-      ]
+    "end": {
+      "line": 215,
+      "column": 3,
+      "index": 6064
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.util.Tree",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Helper methods for the widget/dom tree",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Helper methods for the widget/dom tree</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "isChildOf": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if child is a child of parent",
+          "     * @param child {Node}",
+          "     * @param parent {Node}",
+          "     * @return {boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if child is a child of parent</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "child {Node}",
+            "paramName": "child",
+            "type": "Node"
+          },
+          {
+            "name": "@param",
+            "body": "parent {Node}",
+            "paramName": "parent",
+            "type": "Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 45,
@@ -58,36 +85,39 @@
           "index": 1399
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "Node"
+        },
+        {
+          "name": "parent",
+          "type": "Node"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getChildWidgets": {
       "jsdoc": {
+        "raw": [
+          "",
+          "     * *********************************************************",
+          "     * Widget tree helper functions",
+          "     * ********************************************************",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Checks if child is a child of parent</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "child {Node}"
-          },
-          {
-            "name": "@param",
-            "body": "parent {Node}"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{boolean}",
-            "type": "boolean",
-            "description": ""
+            "body": "<pre><code>***************************************************\n</code></pre>\n<p>Widget tree helper functions\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em></p>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getChildWidgets": {
+      "access": "public",
       "location": {
         "start": {
           "line": 57,
@@ -100,31 +130,28 @@
           "index": 1745
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>***************************************************\n</code></pre>\n<p>Widget tree helper functions\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em></p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "widget"
+        },
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": []
     },
     "getParentWidget": {
-      "location": {
-        "start": {
-          "line": 70,
-          "column": 4,
-          "index": 2049
-        },
-        "end": {
-          "line": 79,
-          "column": 5,
-          "index": 2311
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the parent widget with optional type filter",
+          "     *",
+          "     * @param widget {cv.ui.structure.pure.AbstractWidget} start traversing up the with this widget",
+          "     * @param type {String?} only return parent of this type",
+          "     * @return {cv.ui.structure.pure.AbstractWidget|null}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -157,10 +184,53 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2049
+        },
+        "end": {
+          "line": 79,
+          "column": 5,
+          "index": 2311
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "widget",
+          "type": "cv.ui.structure.pure.AbstractWidget"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "cv.ui.structure.pure.AbstractWidget|null"
+      },
+      "appearsIn": []
     },
     "getParentPageData": {
+      "jsdoc": {
+        "raw": [
+          "",
+          "     * *********************************************************",
+          "     * Widget data tree helper functions",
+          "     * ********************************************************",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<pre><code>***************************************************\n</code></pre>\n<p>Widget data tree helper functions\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em></p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 86,
@@ -173,18 +243,47 @@
           "index": 3195
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "path"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getParentData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the data for the parent entry of the given path",
+          "     * @param path {String}",
+          "     * @return {var}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<pre><code>***************************************************\n</code></pre>\n<p>Widget data tree helper functions\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em></p>"
+            "body": "<p>Returns the data for the parent entry of the given path</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "path {String}",
+            "paramName": "path",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var}",
+            "type": "var",
+            "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getParentData": {
+      "access": "public",
       "location": {
         "start": {
           "line": 114,
@@ -197,32 +296,35 @@
           "index": 4127
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "path",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "getChildElements": {
       "jsdoc": {
+        "raw": [
+          "",
+          "     * *********************************************************",
+          "     * DOM-Element tree helper functions",
+          "     * ********************************************************",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Returns the data for the parent entry of the given path</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "path {String}"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var}",
-            "type": "var",
-            "description": ""
+            "body": "<pre><code>***************************************************\n</code></pre>\n<p>DOM-Element tree helper functions\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em></p>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getChildElements": {
+      "access": "public",
       "location": {
         "start": {
           "line": 152,
@@ -235,18 +337,20 @@
           "index": 4624
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<pre><code>***************************************************\n</code></pre>\n<p>DOM-Element tree helper functions\n    <strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong><strong><em></em></em></strong><strong><em><em></em></strong></em></p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element"
+        },
+        {
+          "name": "selector"
+        }
+      ],
+      "appearsIn": []
     },
     "getParentPage": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 163,
@@ -260,9 +364,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
     },
     "getParentGroup": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 167,
@@ -276,9 +387,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element"
+        }
+      ],
+      "appearsIn": []
     },
     "getParent": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 171,
@@ -292,9 +410,25 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element"
+        },
+        {
+          "name": "until"
+        },
+        {
+          "name": "selector"
+        },
+        {
+          "name": "limit"
+        }
+      ],
+      "appearsIn": []
     },
     "getClosest": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 198,
@@ -308,8 +442,17 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "elem"
+        },
+        {
+          "name": "selector"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

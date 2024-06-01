@@ -1,55 +1,54 @@
 {
-  "className": "qx.locale.Date",
-  "packageName": "qx.locale",
-  "name": "Date",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 711
-      },
-      "end": {
-        "line": 501,
-        "column": 3,
-        "index": 15518
-      }
+  "version": 0.3,
+  "lastModified": 1717235169850,
+  "lastModifiedIso": "2024-06-01T09:46:09.850Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/locale/Date.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 685
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Static class that provides localized date information (like names of week\n days, AM/PM markers, start of week, etc.).</p>"
-        }
-      ],
-      "@cldr": [
-        {
-          "name": "@cldr",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 501,
+      "column": 3,
+      "index": 15018
     }
   },
-  "type": "class",
+  "className": "qx.locale.Date",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Static class that provides localized date information (like names of week",
+      " * days, AM/PM markers, start of week, etc.).",
+      " *",
+      " * @cldr()",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Static class that provides localized date information (like names of week\n days, AM/PM markers, start of week, etc.).</p>"
+      }
+    ],
+    "@cldr": [
+      {
+        "name": "@cldr",
+        "body": ""
+      }
+    ]
+  },
   "statics": {
     "__mgr": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 851
-        },
-        "end": {
-          "line": 34,
-          "column": 42,
-          "index": 889
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reference to the locale manager.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,23 +62,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "getAmMarker": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 42,
+          "line": 34,
           "column": 4,
-          "index": 1072
+          "index": 818
         },
         "end": {
-          "line": 44,
-          "column": 5,
-          "index": 1158
+          "line": 34,
+          "column": 42,
+          "index": 856
         }
       },
+      "appearsIn": []
+    },
+    "getAmMarker": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get AM marker for time definitions",
+          "     *",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {String} translated AM marker.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -92,35 +99,53 @@
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} translated AM marker.",
-            "type": "qx.locale.String",
-            "description": " translated AM marker."
+            "type": "string",
+            "description": "translated AM marker."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPmMarker": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 42,
           "column": 4,
-          "index": 1341
+          "index": 1031
         },
         "end": {
-          "line": 54,
+          "line": 44,
           "column": 5,
-          "index": 1427
+          "index": 1115
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getPmMarker": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get PM marker for time definitions",
+          "     *",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {String} translated PM marker.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -133,35 +158,59 @@
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} translated PM marker.",
-            "type": "qx.locale.String",
-            "description": " translated PM marker."
+            "type": "string",
+            "description": "translated PM marker."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDayNames": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 68,
+          "line": 52,
           "column": 4,
-          "index": 2034
+          "index": 1290
         },
         "end": {
-          "line": 95,
+          "line": 54,
           "column": 5,
-          "index": 2920
+          "index": 1374
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getDayNames": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return localized names of day names",
+          "     *",
+          "     * @param length {String} format of the day names.",
+          "     *       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
+          "     * @param locale {String} optional locale to be used",
+          "     * @param context {String} (default: \"format\") intended context.",
+          "     *       Possible values: \"format\", \"stand-alone\"",
+          "     * @param withFallback {Boolean?} if true, the previous parameter's other value is tried",
+          "     * in order to find a localized name for the day",
+          "     * @return {String[]} array of localized day names starting with sunday.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -174,21 +223,21 @@
             "body": "length {String} format of the day names.\n       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
             "paramName": "length",
             "description": " format of the day names.\n       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "context {String} (default: \"format\") intended context.\n       Possible values: \"format\", \"stand-alone\"",
             "paramName": "context",
             "description": " (default: \"format\") intended context.\n       Possible values: \"format\", \"stand-alone\"",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -204,27 +253,65 @@
             "name": "@return",
             "body": "{String[]} array of localized day names starting with sunday.",
             "type": "String[]",
-            "description": " array of localized day names starting with sunday."
+            "description": "array of localized day names starting with sunday."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDayName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 110,
+          "line": 68,
           "column": 4,
-          "index": 3562
+          "index": 1967
         },
         "end": {
-          "line": 131,
+          "line": 95,
           "column": 5,
-          "index": 4385
+          "index": 2826
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "length",
+          "type": "string"
+        },
+        {
+          "name": "locale",
+          "type": "string"
+        },
+        {
+          "name": "context",
+          "type": "string"
+        },
+        {
+          "name": "withFallback",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getDayName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return localized name of a week day name",
+          "     *",
+          "     * @param length {String} format of the day name.",
+          "     *       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
+          "     * @param day {Integer} day number. 0=sunday, 1=monday, ...",
+          "     * @param locale {String} optional locale to be used",
+          "     * @param context {String} (default: \"format\") intended context.",
+          "     *       Possible values: \"format\", \"stand-alone\"",
+          "     * @param withFallback {Boolean?} if true, the previous parameter's other value is tried",
+          "     * in order to find a localized name for the day",
+          "     * @return {String} localized day name",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -237,7 +324,7 @@
             "body": "length {String} format of the day name.\n       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
             "paramName": "length",
             "description": " format of the day name.\n       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -251,14 +338,14 @@
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "context {String} (default: \"format\") intended context.\n       Possible values: \"format\", \"stand-alone\"",
             "paramName": "context",
             "description": " (default: \"format\") intended context.\n       Possible values: \"format\", \"stand-alone\"",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -273,28 +360,69 @@
           {
             "name": "@return",
             "body": "{String} localized day name",
-            "type": "qx.locale.String",
-            "description": " localized day name"
+            "type": "string",
+            "description": "localized day name"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getMonthNames": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 145,
+          "line": 110,
           "column": 4,
-          "index": 5001
+          "index": 3453
         },
         "end": {
-          "line": 170,
+          "line": 131,
           "column": 5,
-          "index": 5811
+          "index": 4255
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "length",
+          "type": "string"
+        },
+        {
+          "name": "day",
+          "type": "Integer"
+        },
+        {
+          "name": "locale",
+          "type": "string"
+        },
+        {
+          "name": "context",
+          "type": "string"
+        },
+        {
+          "name": "withFallback",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getMonthNames": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return localized names of month names",
+          "     *",
+          "     * @param length {String} format of the month names.",
+          "     *       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
+          "     * @param locale {String} optional locale to be used",
+          "     * @param context {String} (default: \"format\") intended context.",
+          "     *       Possible values: \"format\", \"stand-alone\"",
+          "     * @param withFallback {Boolean?} if true, the previous parameter's other value is tried",
+          "     * in order to find a localized name for the month",
+          "     * @return {String[]} array of localized month names starting with january.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -307,21 +435,21 @@
             "body": "length {String} format of the month names.\n       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
             "paramName": "length",
             "description": " format of the month names.\n       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "context {String} (default: \"format\") intended context.\n       Possible values: \"format\", \"stand-alone\"",
             "paramName": "context",
             "description": " (default: \"format\") intended context.\n       Possible values: \"format\", \"stand-alone\"",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -337,27 +465,65 @@
             "name": "@return",
             "body": "{String[]} array of localized month names starting with january.",
             "type": "String[]",
-            "description": " array of localized month names starting with january."
+            "description": "array of localized month names starting with january."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getMonthName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 185,
+          "line": 145,
           "column": 4,
-          "index": 6465
+          "index": 4857
         },
         "end": {
-          "line": 202,
+          "line": 170,
           "column": 5,
-          "index": 7131
+          "index": 5642
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "length",
+          "type": "string"
+        },
+        {
+          "name": "locale",
+          "type": "string"
+        },
+        {
+          "name": "context",
+          "type": "string"
+        },
+        {
+          "name": "withFallback",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getMonthName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return localized name of a month",
+          "     *",
+          "     * @param length {String} format of the month names.",
+          "     *       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
+          "     * @param month {Integer} index of the month. 0=january, 1=february, ...",
+          "     * @param locale {String} optional locale to be used",
+          "     * @param context {String} (default: \"format\") intended context.",
+          "     *       Possible values: \"format\", \"stand-alone\"",
+          "     * @param withFallback {Boolean?} if true, the previous parameter's other value is tried",
+          "     * in order to find a localized name for the month",
+          "     * @return {String} localized month name",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -370,7 +536,7 @@
             "body": "length {String} format of the month names.\n       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
             "paramName": "length",
             "description": " format of the month names.\n       Possible values: \"abbreviated\", \"narrow\", \"wide\"",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -384,14 +550,14 @@
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "context {String} (default: \"format\") intended context.\n       Possible values: \"format\", \"stand-alone\"",
             "paramName": "context",
             "description": " (default: \"format\") intended context.\n       Possible values: \"format\", \"stand-alone\"",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -406,28 +572,65 @@
           {
             "name": "@return",
             "body": "{String} localized month name",
-            "type": "qx.locale.String",
-            "description": " localized month name"
+            "type": "string",
+            "description": "localized month name"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDateFormat": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 212,
+          "line": 185,
           "column": 4,
-          "index": 7494
+          "index": 6281
         },
         "end": {
-          "line": 219,
+          "line": 202,
           "column": 5,
-          "index": 7770
+          "index": 6930
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "length",
+          "type": "string"
+        },
+        {
+          "name": "month",
+          "type": "Integer"
+        },
+        {
+          "name": "locale",
+          "type": "string"
+        },
+        {
+          "name": "context",
+          "type": "string"
+        },
+        {
+          "name": "withFallback",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getDateFormat": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return localized date format string to be used with {@link qx.util.format.DateFormat}.",
+          "     *",
+          "     * @param size {String} format of the date format.",
+          "     *      Possible values: \"short\", \"medium\", \"long\", \"full\"",
+          "     * @param locale {String?} optional locale to be used",
+          "     * @return {String} localized date format string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -440,7 +643,7 @@
             "body": "size {String} format of the date format.\n      Possible values: \"short\", \"medium\", \"long\", \"full\"",
             "paramName": "size",
             "description": " format of the date format.\n      Possible values: \"short\", \"medium\", \"long\", \"full\"",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -455,28 +658,58 @@
           {
             "name": "@return",
             "body": "{String} localized date format string",
-            "type": "qx.locale.String",
-            "description": " localized date format string"
+            "type": "string",
+            "description": "localized date format string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDateTimeFormat": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 234,
+          "line": 212,
           "column": 4,
-          "index": 8534
+          "index": 7283
         },
         "end": {
-          "line": 243,
+          "line": 219,
           "column": 5,
-          "index": 8829
+          "index": 7552
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "size",
+          "type": "string"
+        },
+        {
+          "name": "locale",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getDateTimeFormat": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Try to localize a date/time format string. For format string possibilities see",
+          "     * <a href=\"http://cldr.unicode.org/translation/date-time\">Date/Time Symbol reference</a>",
+          "     * at CLDR - Unicode Common Locale Data Repository.",
+          "     *",
+          "     * If no localization is available take the fallback format string.",
+          "     *",
+          "     * @param canonical {String} format string containing only field information, and in a canonical order.",
+          "     *       Examples are \"yyyyMMMM\" for year + full month, or \"MMMd\" for abbreviated month + day.",
+          "     * @param fallback {String} fallback format string if no localized version is found",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {String} best matching format string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -489,49 +722,77 @@
             "body": "canonical {String} format string containing only field information, and in a canonical order.\n       Examples are \"yyyyMMMM\" for year + full month, or \"MMMd\" for abbreviated month + day.",
             "paramName": "canonical",
             "description": " format string containing only field information, and in a canonical order.\n       Examples are \"yyyyMMMM\" for year + full month, or \"MMMd\" for abbreviated month + day.",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "fallback {String} fallback format string if no localized version is found",
             "paramName": "fallback",
             "description": " fallback format string if no localized version is found",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} best matching format string",
-            "type": "qx.locale.String",
-            "description": " best matching format string"
+            "type": "string",
+            "description": "best matching format string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTimeFormat": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 253,
+          "line": 234,
           "column": 4,
-          "index": 9192
+          "index": 8301
         },
         "end": {
-          "line": 279,
+          "line": 243,
           "column": 5,
-          "index": 9997
+          "index": 8587
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "canonical",
+          "type": "string"
+        },
+        {
+          "name": "fallback",
+          "type": "string"
+        },
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getTimeFormat": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return localized time format string to be used with {@link qx.util.format.DateFormat}.",
+          "     *",
+          "     * @param size {String} format of the time pattern.",
+          "     *      Possible values: \"short\", \"medium\", \"long\", \"full\"",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {String} localized time format string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -544,42 +805,66 @@
             "body": "size {String} format of the time pattern.\n      Possible values: \"short\", \"medium\", \"long\", \"full\"",
             "paramName": "size",
             "description": " format of the time pattern.\n      Possible values: \"short\", \"medium\", \"long\", \"full\"",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} localized time format string",
-            "type": "qx.locale.String",
-            "description": " localized time format string"
+            "type": "string",
+            "description": "localized time format string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getWeekStart": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 289,
+          "line": 253,
           "column": 4,
-          "index": 10305
+          "index": 8940
         },
         "end": {
-          "line": 362,
+          "line": 279,
           "column": 5,
-          "index": 11618
+          "index": 9719
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "size",
+          "type": "string"
+        },
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getWeekStart": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the day the week starts with",
+          "     *",
+          "     * Reference: Common Locale Data Repository (cldr) supplementalData.xml",
+          "     *",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {Integer} index of the first day of the week. 0=sunday, 1=monday, ...",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -592,7 +877,7 @@
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -600,27 +885,47 @@
             "name": "@return",
             "body": "{Integer} index of the first day of the week. 0=sunday, 1=monday, ...",
             "type": "Integer",
-            "description": " index of the first day of the week. 0=sunday, 1=monday, ..."
+            "description": "index of the first day of the week. 0=sunday, 1=monday, ..."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getWeekendStart": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 372,
+          "line": 289,
           "column": 4,
-          "index": 11932
+          "index": 10017
         },
         "end": {
-          "line": 400,
+          "line": 362,
           "column": 5,
-          "index": 12541
+          "index": 11257
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getWeekendStart": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the day the weekend starts with",
+          "     *",
+          "     * Reference: Common Locale Data Repository (cldr) supplementalData.xml",
+          "     *",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {Integer} index of the first day of the weekend. 0=sunday, 1=monday, ...",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -633,7 +938,7 @@
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -641,27 +946,47 @@
             "name": "@return",
             "body": "{Integer} index of the first day of the weekend. 0=sunday, 1=monday, ...",
             "type": "Integer",
-            "description": " index of the first day of the weekend. 0=sunday, 1=monday, ..."
+            "description": "index of the first day of the weekend. 0=sunday, 1=monday, ..."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getWeekendEnd": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 410,
+          "line": 372,
           "column": 4,
-          "index": 12852
+          "index": 11561
         },
         "end": {
-          "line": 439,
+          "line": 400,
           "column": 5,
-          "index": 13455
+          "index": 12142
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "getWeekendEnd": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return the day the weekend ends with",
+          "     *",
+          "     * Reference: Common Locale Data Repository (cldr) supplementalData.xml",
+          "     *",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {Integer} index of the last day of the weekend. 0=sunday, 1=monday, ...",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -674,7 +999,7 @@
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -682,27 +1007,46 @@
             "name": "@return",
             "body": "{Integer} index of the last day of the weekend. 0=sunday, 1=monday, ...",
             "type": "Integer",
-            "description": " index of the last day of the weekend. 0=sunday, 1=monday, ..."
+            "description": "index of the last day of the weekend. 0=sunday, 1=monday, ..."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isWeekend": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 448,
+          "line": 410,
           "column": 4,
-          "index": 13755
+          "index": 12443
         },
         "end": {
-          "line": 457,
+          "line": 439,
           "column": 5,
-          "index": 14097
+          "index": 13017
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "isWeekend": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns whether a certain day of week belongs to the week end.",
+          "     *",
+          "     * @param day {Integer} index of the day. 0=sunday, 1=monday, ...",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {Boolean} whether the given day is a weekend day",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -722,35 +1066,57 @@
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} whether the given day is a weekend day",
-            "type": "Boolean",
-            "description": " whether the given day is a weekend day"
+            "type": "boolean",
+            "description": "whether the given day is a weekend day"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_getTerritory": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 465,
+          "line": 448,
           "column": 4,
-          "index": 14258
+          "index": 13308
         },
         "end": {
-          "line": 473,
+          "line": 457,
           "column": 5,
-          "index": 14508
+          "index": 13641
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "day",
+          "type": "Integer"
+        },
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_getTerritory": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Extract the territory part from a locale",
+          "     *",
+          "     * @param locale {String} the locale",
+          "     * @return {String} territory",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -763,35 +1129,59 @@
             "body": "locale {String} the locale",
             "paramName": "locale",
             "description": " the locale",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} territory",
-            "type": "qx.locale.String",
-            "description": " territory"
+            "type": "string",
+            "description": "territory"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__localizeWithFallback": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 487,
+          "line": 465,
           "column": 4,
-          "index": 15099
+          "index": 13794
         },
         "end": {
-          "line": 499,
+          "line": 473,
           "column": 5,
-          "index": 15508
+          "index": 14036
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__localizeWithFallback": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Provide localization (CLDR) data with fallback between \"format\" and \"stand-alone\" contexts.",
+          "     * It is used in {@link #getDayName} and {@link #getMonthName} methods.",
+          "     *",
+          "     * @param context {String} intended context.",
+          "     *       Possible values: \"format\", \"stand-alone\".",
+          "     * @param fallbackContext {String} the context used in case no localization is found for the key.",
+          "     * @param key {String} message id (may contain format strings)",
+          "     * @param locale {String} the locale",
+          "     * @return {String} localized name for the key",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -804,42 +1194,77 @@
             "body": "context {String} intended context.\n       Possible values: \"format\", \"stand-alone\".",
             "paramName": "context",
             "description": " intended context.\n       Possible values: \"format\", \"stand-alone\".",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "fallbackContext {String} the context used in case no localization is found for the key.",
             "paramName": "fallbackContext",
             "description": " the context used in case no localization is found for the key.",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "key {String} message id (may contain format strings)",
             "paramName": "key",
             "description": " message id (may contain format strings)",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "locale {String} the locale",
             "paramName": "locale",
             "description": " the locale",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} localized name for the key",
-            "type": "qx.locale.String",
-            "description": " localized name for the key"
+            "type": "string",
+            "description": "localized name for the key"
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 487,
+          "column": 4,
+          "index": 14613
+        },
+        "end": {
+          "line": 499,
+          "column": 5,
+          "index": 15010
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "context",
+          "type": "string"
+        },
+        {
+          "name": "fallbackContext",
+          "type": "string"
+        },
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -1,0 +1,170 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172070,
+  "lastModifiedIso": "2024-06-01T09:46:12.070Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/package/Publish.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 760
+    },
+    "end": {
+      "line": 575,
+      "column": 3,
+      "index": 17724
+    }
+  },
+  "className": "qx.tool.cli.commands.package.Publish",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Publishes a release on GitHub",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Publishes a release on GitHub</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Package",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 876
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 3406
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.tool.cli.commands.Package"
+      ]
+    }
+  },
+  "events": {
+    "beforeCommit": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired before commit happens. Data is an object with",
+          "     *   version: new_version,",
+          "     *   argv: this.argv",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired before commit happens. Data is an object with\n   version: new_version,\n   argv: this.argv</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 134,
+          "column": 4,
+          "index": 3560
+        },
+        "end": {
+          "line": 134,
+          "column": 38,
+          "index": 3594
+        }
+      }
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Publishes a new release of the package on GitHub, by executing the following steps:",
+          "     *",
+          "     * 1. In Manifest.json, update the qooxdoo-range value to include the version of the qooxdoo",
+          "     *    framework (As per package.json).",
+          "     * 2. In Manifest.json, based the given options, increment the version number (patch,",
+          "     *    feature, breaking).",
+          "     * 3. Create a release with the tag vX.Y.Z according to the current version.",
+          "     * 4. Add \"qooxdoo-package\" to the list of GitHub topics.",
+          "     *",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Publishes a new release of the package on GitHub, by executing the following steps:</p>\n<ol>\n<li>In Manifest.json, update the qooxdoo-range value to include the version of the qooxdoo\nframework (As per package.json).</li>\n<li>In Manifest.json, based the given options, increment the version number (patch,\nfeature, breaking).</li>\n<li>Create a release with the tag vX.Y.Z according to the current version.</li>\n<li>Add \"qooxdoo-package\" to the list of GitHub topics.</li>\n</ol>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 149,
+          "column": 4,
+          "index": 4142
+        },
+        "end": {
+          "line": 495,
+          "column": 5,
+          "index": 15202
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "__createIndexFile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a qooxdoo.json file with paths to Manifest.json files in this repository",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a qooxdoo.json file with paths to Manifest.json files in this repository</p>"
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 501,
+          "column": 4,
+          "index": 15329
+        },
+        "end": {
+          "line": 573,
+          "column": 8,
+          "index": 17716
+        }
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

@@ -1,61 +1,64 @@
 {
-  "className": "qx.bom.element.AnimationJs",
-  "packageName": "qx.bom.element",
-  "name": "AnimationJs",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 31,
-        "column": 0,
-        "index": 996
-      },
-      "end": {
-        "line": 581,
-        "column": 3,
-        "index": 19295
-      }
+  "version": 0.3,
+  "lastModified": 1717235168870,
+  "lastModifiedIso": "2024-06-01T09:46:08.870Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/AnimationJs.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 31,
+      "column": 0,
+      "index": 966
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class offers the same API as the CSS3 animation layer in\n {@link qx.bom.element.AnimationCss} but uses JavaScript to fake the behavior.\n {@link qx.bom.element.Animation} is the class, which takes care of the\n feature detection for CSS animations and decides which implementation\n (CSS or JavaScript) should be used. Most likely, this implementation should\n be the one to use.</p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.bom.element.Style.*"
-        }
-      ],
-      "@use": [
-        {
-          "name": "@use",
-          "body": "qx.bom.element.AnimationJs#play"
-        }
-      ]
+    "end": {
+      "line": 581,
+      "column": 3,
+      "index": 18715
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.AnimationJs",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class offers the same API as the CSS3 animation layer in",
+      " * {@link qx.bom.element.AnimationCss} but uses JavaScript to fake the behavior.",
+      " *",
+      " * {@link qx.bom.element.Animation} is the class, which takes care of the",
+      " * feature detection for CSS animations and decides which implementation",
+      " * (CSS or JavaScript) should be used. Most likely, this implementation should",
+      " * be the one to use.",
+      " *",
+      " * @ignore(qx.bom.element.Style.*)",
+      " * @use(qx.bom.element.AnimationJs#play)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class offers the same API as the CSS3 animation layer in\n {@link qx.bom.element.AnimationCss} but uses JavaScript to fake the behavior.\n {@link qx.bom.element.Animation} is the class, which takes care of the\n feature detection for CSS animations and decides which implementation\n (CSS or JavaScript) should be used. Most likely, this implementation should\n be the one to use.</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.bom.element.Style.*"
+      }
+    ],
+    "@use": [
+      {
+        "name": "@use",
+        "body": "qx.bom.element.AnimationJs#play"
+      }
+    ]
+  },
   "statics": {
     "__maxStepTime": {
-      "location": {
-        "start": {
-          "line": 36,
-          "column": 4,
-          "index": 1131
-        },
-        "end": {
-          "line": 36,
-          "column": 21,
-          "index": 1148
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The maximal time a frame should take.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,23 +66,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__units": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 41,
+          "line": 36,
           "column": 4,
-          "index": 1208
+          "index": 1096
         },
         "end": {
-          "line": 41,
-          "column": 66,
-          "index": 1270
+          "line": 36,
+          "column": 21,
+          "index": 1113
         }
       },
+      "appearsIn": []
+    },
+    "__units": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The supported CSS units.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,23 +95,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__transitionKeys": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 44,
+          "line": 41,
           "column": 4,
-          "index": 1321
+          "index": 1168
         },
         "end": {
-          "line": 49,
-          "column": 5,
-          "index": 1430
+          "line": 41,
+          "column": 66,
+          "index": 1230
         }
       },
+      "appearsIn": []
+    },
+    "__transitionKeys": {
       "jsdoc": {
+        "raw": [
+          "* The used keys for transforms. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -111,23 +122,35 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "animate": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 61,
+          "line": 44,
           "column": 4,
-          "index": 1930
+          "index": 1278
         },
         "end": {
-          "line": 63,
+          "line": 49,
           "column": 5,
-          "index": 2022
+          "index": 1382
         }
       },
+      "appearsIn": []
+    },
+    "animate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This is the main function to start the animation. For further details,",
+          "     * take a look at the documentation of the wrapper",
+          "     * {@link qx.bom.element.Animation}.",
+          "     * @param el {Element} The element to animate.",
+          "     * @param desc {Map} Animation description.",
+          "     * @param duration {Integer?} The duration of the animation which will",
+          "     *   override the duration given in the description.",
+          "     * @return {qx.bom.element.AnimationHandle} The handle.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -147,7 +170,7 @@
             "body": "desc {Map} Animation description.",
             "paramName": "desc",
             "description": " Animation description.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -163,27 +186,58 @@
             "name": "@return",
             "body": "{qx.bom.element.AnimationHandle} The handle.",
             "type": "qx.bom.element.AnimationHandle",
-            "description": " The handle."
+            "description": "The handle."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "animateReverse": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 61,
           "column": 4,
-          "index": 2539
+          "index": 1870
         },
         "end": {
-          "line": 77,
+          "line": 63,
           "column": 5,
-          "index": 2637
+          "index": 1960
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "desc",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "duration",
+          "type": "Integer",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.element.AnimationHandle"
+      },
+      "appearsIn": []
+    },
+    "animateReverse": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This is the main function to start the animation in reversed mode.",
+          "     * For further details, take a look at the documentation of the wrapper",
+          "     * {@link qx.bom.element.Animation}.",
+          "     * @param el {Element} The element to animate.",
+          "     * @param desc {Map} Animation description.",
+          "     * @param duration {Integer?} The duration of the animation which will",
+          "     *   override the duration given in the description.",
+          "     * @return {qx.bom.element.AnimationHandle} The handle.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -203,7 +257,7 @@
             "body": "desc {Map} Animation description.",
             "paramName": "desc",
             "description": " Animation description.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -219,27 +273,59 @@
             "name": "@return",
             "body": "{qx.bom.element.AnimationHandle} The handle.",
             "type": "qx.bom.element.AnimationHandle",
-            "description": " The handle."
+            "description": "The handle."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_animate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 90,
+          "line": 75,
           "column": 4,
-          "index": 3139
+          "index": 2465
         },
         "end": {
-          "line": 145,
+          "line": 77,
           "column": 5,
-          "index": 4561
+          "index": 2561
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "desc",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "duration",
+          "type": "Integer",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.element.AnimationHandle"
+      },
+      "appearsIn": []
+    },
+    "_animate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper to start the animation, either in reversed order or not.",
+          "     *",
+          "     * @param el {Element} The element to animate.",
+          "     * @param desc {Map} Animation description.",
+          "     * @param duration {Integer?} The duration of the animation which will",
+          "     *   override the duration given in the description.",
+          "     * @param reverse {Boolean} <code>true</code>, if the animation should be",
+          "     *   reversed.",
+          "     * @return {qx.bom.element.AnimationHandle} The handle.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -259,7 +345,7 @@
             "body": "desc {Map} Animation description.",
             "paramName": "desc",
             "description": " Animation description.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -274,7 +360,7 @@
             "body": "reverse {Boolean} <code>true</code>, if the animation should be\n   reversed.",
             "paramName": "reverse",
             "description": " <code>true</code>, if the animation should be\n   reversed.",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
@@ -282,27 +368,58 @@
             "name": "@return",
             "body": "{qx.bom.element.AnimationHandle} The handle.",
             "type": "qx.bom.element.AnimationHandle",
-            "description": " The handle."
+            "description": "The handle."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__normalizeKeyFrames": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 153,
+          "line": 90,
           "column": 4,
-          "index": 4792
+          "index": 3050
         },
         "end": {
-          "line": 199,
+          "line": 145,
           "column": 5,
-          "index": 6511
+          "index": 4417
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "desc",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "duration",
+          "type": "Integer",
+          "optional": true
+        },
+        {
+          "name": "reverse",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.element.AnimationHandle"
+      },
+      "appearsIn": []
+    },
+    "__normalizeKeyFrames": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Try to normalize the keyFrames by adding the default / set values of the",
+          "     * element.",
+          "     * @param keyFrames {Map} The map of key frames.",
+          "     * @param el {Element} The element to animate.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -315,7 +432,7 @@
             "body": "keyFrames {Map} The map of key frames.",
             "paramName": "keyFrames",
             "description": " The map of key frames.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -326,23 +443,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__normalizeKeyFrameTransforms": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 207,
+          "line": 153,
           "column": 4,
-          "index": 6768
+          "index": 4640
         },
         "end": {
-          "line": 227,
+          "line": 199,
           "column": 5,
-          "index": 7405
+          "index": 6313
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "keyFrames",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "el",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__normalizeKeyFrameTransforms": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for transform keys and returns a cloned frame",
+          "     * with the right transform style set.",
+          "     * @param frame {Map} A single key frame of the description.",
+          "     * @return {Map} A modified clone of the given frame.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -355,35 +491,61 @@
             "body": "frame {Map} A single key frame of the description.",
             "paramName": "frame",
             "description": " A single key frame of the description.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Map} A modified clone of the given frame.",
-            "type": "Map",
-            "description": " A modified clone of the given frame."
+            "type": "Map<any, any>",
+            "description": "A modified clone of the given frame."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__calculateDelta": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 243,
+          "line": 207,
           "column": 4,
-          "index": 8177
+          "index": 6562
         },
         "end": {
-          "line": 345,
+          "line": 227,
           "column": 5,
-          "index": 11857
+          "index": 7179
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "frame",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__calculateDelta": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Precalculation of the delta which will be applied during the animation.",
+          "     * The whole deltas will be calculated prior to the animation and stored",
+          "     * in a single array. This method takes care of that calculation.",
+          "     *",
+          "     * @param steps {Integer} The amount of steps to take to the end of the",
+          "     *   animation.",
+          "     * @param stepTime {Integer} The amount of milliseconds each step takes.",
+          "     * @param keys {Array} Ordered list of keys in the key frames map.",
+          "     * @param keyFrames {Map} The map of key frames.",
+          "     * @param duration {Integer} Time in milliseconds the animation should take.",
+          "     * @param timing {String} The given timing function.",
+          "     * @return {Array} An array containing the animation deltas.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -410,14 +572,14 @@
             "body": "keys {Array} Ordered list of keys in the key frames map.",
             "paramName": "keys",
             "description": " Ordered list of keys in the key frames map.",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
             "body": "keyFrames {Map} The map of key frames.",
             "paramName": "keyFrames",
             "description": " The map of key frames.",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
@@ -431,35 +593,73 @@
             "body": "timing {String} The given timing function.",
             "paramName": "timing",
             "description": " The given timing function.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} An array containing the animation deltas.",
-            "type": "Array",
-            "description": " An array containing the animation deltas."
+            "type": "Array<any>",
+            "description": "An array containing the animation deltas."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getUnit": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 353,
+          "line": 243,
           "column": 4,
-          "index": 12062
+          "index": 7935
         },
         "end": {
-          "line": 355,
+          "line": 345,
           "column": 5,
-          "index": 12161
+          "index": 11513
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "steps",
+          "type": "Integer"
+        },
+        {
+          "name": "stepTime",
+          "type": "Integer"
+        },
+        {
+          "name": "keys",
+          "type": "Array<any>"
+        },
+        {
+          "name": "keyFrames",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "duration",
+          "type": "Integer"
+        },
+        {
+          "name": "timing",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
+    },
+    "__getUnit": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Ties to parse out the unit of the given value.",
+          "     *",
+          "     * @param item {String} A CSS value including its unit.",
+          "     * @return {String} The unit of the given value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -472,35 +672,56 @@
             "body": "item {String} A CSS value including its unit.",
             "paramName": "item",
             "description": " A CSS value including its unit.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The unit of the given value.",
-            "type": "String",
-            "description": " The unit of the given value."
+            "type": "string",
+            "description": "The unit of the given value."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getNextValue": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 366,
+          "line": 353,
           "column": 4,
-          "index": 12595
+          "index": 11710
         },
         "end": {
-          "line": 373,
+          "line": 355,
           "column": 5,
-          "index": 12873
+          "index": 11807
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__getNextValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the next value based on the given arguments.",
+          "     *",
+          "     * @param nextItem {String} The CSS value of the next frame",
+          "     * @param lastItem {String} The CSS value of the last frame",
+          "     * @param timing {String} The timing used for the calculation",
+          "     * @param x {Number} The x position of the animation on the time axis",
+          "     * @return {String} The calculated value including its unit.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -513,56 +734,88 @@
             "body": "nextItem {String} The CSS value of the next frame",
             "paramName": "nextItem",
             "description": " The CSS value of the next frame",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "lastItem {String} The CSS value of the last frame",
             "paramName": "lastItem",
             "description": " The CSS value of the last frame",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "timing {String} The timing used for the calculation",
             "paramName": "timing",
             "description": " The timing used for the calculation",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "x {Number} The x position of the animation on the time axis",
             "paramName": "x",
             "description": " The x position of the animation on the time axis",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The calculated value including its unit.",
-            "type": "String",
-            "description": " The calculated value including its unit."
+            "type": "string",
+            "description": "The calculated value including its unit."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "play": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 383,
+          "line": 366,
           "column": 4,
-          "index": 13200
+          "index": 12230
         },
         "end": {
-          "line": 428,
+          "line": 373,
           "column": 5,
-          "index": 14714
+          "index": 12501
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "nextItem",
+          "type": "string"
+        },
+        {
+          "name": "lastItem",
+          "type": "string"
+        },
+        {
+          "name": "timing",
+          "type": "string"
+        },
+        {
+          "name": "x",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "play": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for the {@link qx.bom.element.AnimationHandle} to play",
+          "     * the animation.",
+          "     * @internal",
+          "     * @param handle {qx.bom.element.AnimationHandle} The hand which",
+          "     *   represents the animation.",
+          "     * @return {qx.bom.element.AnimationHandle} The handle for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -589,27 +842,47 @@
             "name": "@return",
             "body": "{qx.bom.element.AnimationHandle} The handle for chaining.",
             "type": "qx.bom.element.AnimationHandle",
-            "description": " The handle for chaining."
+            "description": "The handle for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "pause": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 439,
+          "line": 383,
           "column": 4,
-          "index": 15044
+          "index": 12818
         },
         "end": {
-          "line": 445,
+          "line": 428,
           "column": 5,
-          "index": 15201
+          "index": 14287
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "handle",
+          "type": "qx.bom.element.AnimationHandle"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.element.AnimationHandle"
+      },
+      "appearsIn": []
+    },
+    "pause": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for the {@link qx.bom.element.AnimationHandle} to pause",
+          "     * the animation.",
+          "     * @internal",
+          "     * @param handle {qx.bom.element.AnimationHandle} The hand which",
+          "     *   represents the animation.",
+          "     * @return {qx.bom.element.AnimationHandle} The handle for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -636,27 +909,47 @@
             "name": "@return",
             "body": "{qx.bom.element.AnimationHandle} The handle for chaining.",
             "type": "qx.bom.element.AnimationHandle",
-            "description": " The handle for chaining."
+            "description": "The handle for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "stop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 455,
+          "line": 439,
           "column": 4,
-          "index": 15528
+          "index": 14606
         },
         "end": {
-          "line": 498,
+          "line": 445,
           "column": 5,
-          "index": 16658
+          "index": 14757
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "handle",
+          "type": "qx.bom.element.AnimationHandle"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.element.AnimationHandle"
+      },
+      "appearsIn": []
+    },
+    "stop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal helper for the {@link qx.bom.element.AnimationHandle} to stop",
+          "     * the animation.",
+          "     * @internal",
+          "     * @param handle {qx.bom.element.AnimationHandle} The hand which",
+          "     *   represents the animation.",
+          "     * @return {qx.bom.element.AnimationHandle} The handle for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -683,27 +976,46 @@
             "name": "@return",
             "body": "{qx.bom.element.AnimationHandle} The handle for chaining.",
             "type": "qx.bom.element.AnimationHandle",
-            "description": " The handle for chaining."
+            "description": "The handle for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__applyRepeat": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 507,
+          "line": 455,
           "column": 4,
-          "index": 17019
+          "index": 15074
         },
         "end": {
-          "line": 515,
+          "line": 498,
           "column": 5,
-          "index": 17230
+          "index": 16161
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "handle",
+          "type": "qx.bom.element.AnimationHandle"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.element.AnimationHandle"
+      },
+      "appearsIn": []
+    },
+    "__applyRepeat": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes care of the repeat key of the description.",
+          "     * @param steps {Integer} The number of steps one iteration would take.",
+          "     * @param repeat {Integer|String} It can be either a number how often the",
+          "     * animation should be repeated or the string 'infinite'.",
+          "     * @return {Integer} The number of steps to animate.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -734,27 +1046,51 @@
             "name": "@return",
             "body": "{Integer} The number of steps to animate.",
             "type": "Integer",
-            "description": " The number of steps to animate."
+            "description": "The number of steps to animate."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__applyStyles": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 522,
+          "line": 507,
           "column": 4,
-          "index": 17453
+          "index": 16513
         },
         "end": {
-          "line": 543,
+          "line": 515,
           "column": 5,
-          "index": 18128
+          "index": 16716
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "steps",
+          "type": "Integer"
+        },
+        {
+          "name": "repeat",
+          "type": [
+            "Integer",
+            "String"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__applyStyles": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Central method to apply css styles and element properties.",
+          "     * @param el {Element} The DOM element to apply the styles.",
+          "     * @param styles {Map} A map containing styles and values.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -774,27 +1110,46 @@
             "body": "styles {Map} A map containing styles and values.",
             "paramName": "styles",
             "description": " A map containing styles and values.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getStepTime": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 551,
+          "line": 522,
           "column": 4,
-          "index": 18430
+          "index": 16932
         },
         "end": {
-          "line": 563,
+          "line": 543,
           "column": 5,
-          "index": 18822
+          "index": 17586
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "el",
+          "type": "Element"
+        },
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getStepTime": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dynamic calculation of the steps time considering a max step time.",
+          "     * @param duration {Number} The duration of the animation.",
+          "     * @param keys {Array} An array containing the ordered set of key frame keys.",
+          "     * @return {Integer} The best suited step time.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -807,14 +1162,14 @@
             "body": "duration {Number} The duration of the animation.",
             "paramName": "duration",
             "description": " The duration of the animation.",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
             "body": "keys {Array} An array containing the ordered set of key frame keys.",
             "paramName": "keys",
             "description": " An array containing the ordered set of key frame keys.",
-            "type": "Array"
+            "type": "Array<any>"
           }
         ],
         "@return": [
@@ -822,27 +1177,48 @@
             "name": "@return",
             "body": "{Integer} The best suited step time.",
             "type": "Integer",
-            "description": " The best suited step time."
+            "description": "The best suited step time."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getOrderedKeys": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 570,
+          "line": 551,
           "column": 4,
-          "index": 19020
+          "index": 17880
         },
         "end": {
-          "line": 579,
+          "line": 563,
           "column": 5,
-          "index": 19285
+          "index": 18260
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "duration",
+          "type": "number"
+        },
+        {
+          "name": "keys",
+          "type": "Array<any>"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "__getOrderedKeys": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper which returns the ordered keys of the key frame map.",
+          "     * @param keyFrames {Map} The map of key frames.",
+          "     * @return {Array} An ordered list of keys.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -855,21 +1231,44 @@
             "body": "keyFrames {Map} The map of key frames.",
             "paramName": "keyFrames",
             "description": " The map of key frames.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Array} An ordered list of keys.",
-            "type": "Array",
-            "description": " An ordered list of keys."
+            "type": "Array<any>",
+            "description": "An ordered list of keys."
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 570,
+          "column": 4,
+          "index": 18451
+        },
+        "end": {
+          "line": 579,
+          "column": 5,
+          "index": 18707
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "keyFrames",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

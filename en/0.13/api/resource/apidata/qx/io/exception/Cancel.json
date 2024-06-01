@@ -1,65 +1,60 @@
 {
-  "className": "qx.io.exception.Cancel",
-  "packageName": "qx.io.exception",
-  "name": "Cancel",
-  "superClass": "qx.io.exception.Exception",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 557
-      },
-      "end": {
-        "line": 33,
-        "column": 3,
-        "index": 833
-      }
+  "version": 0.3,
+  "lastModified": 1717235169506,
+  "lastModifiedIso": "2024-06-01T09:46:09.506Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/exception/Cancel.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 536
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A class for representing a user-initiated cancellation of a request.</p>"
-        }
-      ]
+    "end": {
+      "line": 33,
+      "column": 3,
+      "index": 801
     }
   },
-  "type": "class",
+  "className": "qx.io.exception.Cancel",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *  A class for representing a user-initiated cancellation of a request.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A class for representing a user-initiated cancellation of a request.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.io.exception.Exception",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "message"
+      },
+      {
+        "name": "data"
+      }
+    ],
     "location": {
       "start": {
         "line": 30,
         "column": 2,
-        "index": 733
+        "index": 704
       },
       "end": {
         "line": 32,
         "column": 3,
-        "index": 828
+        "index": 797
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Constructor</p>"
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "message {String}"
-        },
-        {
-          "name": "@param",
-          "body": "data {*|null}"
-        }
-      ]
     }
   },
-  "descendants": []
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

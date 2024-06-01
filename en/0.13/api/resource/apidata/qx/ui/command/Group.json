@@ -1,45 +1,49 @@
 {
-  "className": "qx.ui.command.Group",
-  "packageName": "qx.ui.command",
-  "name": "Group",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 14,
-        "column": 0,
-        "index": 337
-      },
-      "end": {
-        "line": 167,
-        "column": 3,
-        "index": 4183
-      }
+  "version": 0.3,
+  "lastModified": 1717235171090,
+  "lastModifiedIso": "2024-06-01T09:46:11.090Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/command/Group.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 14,
+      "column": 0,
+      "index": 324
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Registrar for commands to be able to group them.</p>"
-        }
-      ]
+    "end": {
+      "line": 167,
+      "column": 3,
+      "index": 4017
     }
   },
-  "type": "class",
+  "className": "qx.ui.command.Group",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Registrar for commands to be able to group them.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Registrar for commands to be able to group them.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 17,
         "column": 2,
-        "index": 410
+        "index": 394
       },
       "end": {
         "line": 20,
         "column": 3,
-        "index": 464
+        "index": 445
       }
     }
   },
@@ -49,15 +53,25 @@
         "start": {
           "line": 26,
           "column": 4,
-          "index": 564
+          "index": 539
         },
         "end": {
           "line": 30,
           "column": 5,
-          "index": 653
+          "index": 624
         }
       },
+      "json": {
+        "init": true,
+        "check": "Boolean",
+        "apply": "_applyActive"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Activates or deactivates all commands in group.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -65,97 +79,66 @@
           }
         ]
       },
-      "name": "active",
-      "propertyType": "new",
-      "apply": "_applyActive",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "_cmds": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 34,
           "column": 4,
-          "index": 681
+          "index": 648
         },
         "end": {
           "line": 34,
           "column": 15,
-          "index": 692
+          "index": 659
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_applyActive": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 37,
           "column": 4,
-          "index": 724
+          "index": 688
         },
         "end": {
           "line": 41,
           "column": 5,
-          "index": 847
+          "index": 807
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "active"
-      ]
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "add": {
-      "location": {
-        "start": {
-          "line": 57,
-          "column": 4,
-          "index": 1332
-        },
-        "end": {
-          "line": 86,
-          "column": 5,
-          "index": 2171
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a command with a key to the group.",
+          "     *",
+          "     * @param key {String} Key to be able to addresses the command",
+          "     * @param command {qx.ui.command.Command} Command",
+          "     *",
+          "     * @return {Boolean} <code>false</code> if key already added before",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -168,7 +151,7 @@
             "body": "key {String} Key to be able to addresses the command",
             "paramName": "key",
             "description": " Key to be able to addresses the command",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -182,28 +165,51 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>false</code> if key already added before",
-            "type": "Boolean",
-            "description": " <code>false</code> if key already added before"
+            "type": "boolean",
+            "description": "<code>false</code> if key already added before"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "get": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 95,
+          "line": 57,
           "column": 4,
-          "index": 2392
+          "index": 1276
         },
         "end": {
-          "line": 115,
+          "line": 86,
           "column": 5,
-          "index": 2901
+          "index": 2086
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "command",
+          "type": "qx.ui.command.Command"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "get": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a command by key.",
+          "     *",
+          "     * @param key {String} Key which addresses the command",
+          "     *",
+          "     * @return {qx.ui.command.Command|null} Corresponding command instance or null",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -216,7 +222,7 @@
             "body": "key {String} Key which addresses the command",
             "paramName": "key",
             "description": " Key which addresses the command",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -224,12 +230,33 @@
             "name": "@return",
             "body": "{qx.ui.command.Command|null} Corresponding command instance or null",
             "type": "qx.ui.command.Command|null",
-            "description": " Corresponding command instance or null"
+            "description": "Corresponding command instance or null"
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 95,
+          "column": 4,
+          "index": 2298
+        },
+        "end": {
+          "line": 115,
+          "column": 5,
+          "index": 2787
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.command.Command|null"
+      },
       "overriddenFrom": "qx.core.Object",
       "appearsIn": [
         "qx.core.Object",
@@ -237,19 +264,16 @@
       ]
     },
     "has": {
-      "location": {
-        "start": {
-          "line": 124,
-          "column": 4,
-          "index": 3148
-        },
-        "end": {
-          "line": 130,
-          "column": 5,
-          "index": 3327
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns true if a command is registered by key.",
+          "     *",
+          "     * @param key {String} Key which addresses the command",
+          "     *",
+          "     * @return {Boolean} Returns <code>true</code> if a command is registered by a key",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -262,35 +286,54 @@
             "body": "key {String} Key which addresses the command",
             "paramName": "key",
             "description": " Key which addresses the command",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} Returns <code>true</code> if a command is registered by a key",
-            "type": "Boolean",
-            "description": " Returns <code>true</code> if a command is registered by a key"
+            "type": "boolean",
+            "description": "Returns <code>true</code> if a command is registered by a key"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "remove": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 139,
+          "line": 124,
           "column": 4,
-          "index": 3580
+          "index": 3025
         },
         "end": {
-          "line": 161,
+          "line": 130,
           "column": 5,
-          "index": 4125
+          "index": 3198
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a command by key from group. Returns the command.",
+          "     *",
+          "     * @param key {String} Key which addresses the command",
+          "     *",
+          "     * @return {qx.ui.command.Command|null} Corresponding command instance or null",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -303,7 +346,7 @@
             "body": "key {String} Key which addresses the command",
             "paramName": "key",
             "description": " Key which addresses the command",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -311,255 +354,51 @@
             "name": "@return",
             "body": "{qx.ui.command.Command|null} Corresponding command instance or null",
             "type": "qx.ui.command.Command|null",
-            "description": " Corresponding command instance or null"
+            "description": "Corresponding command instance or null"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 139,
+          "column": 4,
+          "index": 3442
+        },
+        "end": {
+          "line": 161,
+          "column": 5,
+          "index": 3965
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getActive": {
-      "type": "function",
-      "name": "getActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>active</code>.\n\nFor further details take a look at the property definition: {@link #active}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for active"
-          }
-        ]
-      }
-    },
-    "isActive": {
-      "type": "function",
-      "name": "isActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>active</code>.\n\nFor further details take a look at the property definition: {@link #active}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for active"
-          }
-        ]
-      }
-    },
-    "setActive": {
-      "type": "function",
-      "name": "setActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>active</code>.\n\nFor further details take a look at the property definition: {@link #active}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for active"
-          }
-        ]
-      }
-    },
-    "resetActive": {
-      "type": "function",
-      "name": "resetActive",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>active</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #active}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.command.Command|null"
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 164,
         "column": 2,
-        "index": 4137
+        "index": 3974
       },
       "end": {
         "line": 166,
         "column": 3,
-        "index": 4178
+        "index": 4013
       }
     }
   },
-  "descendants": []
+  "statics": {}
 }

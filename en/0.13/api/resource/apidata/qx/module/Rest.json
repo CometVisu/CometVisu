@@ -1,55 +1,60 @@
 {
-  "className": "qx.module.Rest",
-  "packageName": "qx.module",
-  "name": "Rest",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 694
-      },
-      "end": {
-        "line": 45,
-        "column": 3,
-        "index": 1350
-      }
+  "version": 0.3,
+  "lastModified": 1717235172146,
+  "lastModifiedIso": "2024-06-01T09:46:12.146Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/Rest.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 669
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This modules eases the communication with a RESTful web service by providing\n a client-side wrapper of a REST resource.\n See {@link qx.bom.rest.Resource}.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "IO"
-        }
-      ]
+    "end": {
+      "line": 45,
+      "column": 3,
+      "index": 1306
     }
   },
-  "type": "class",
+  "className": "qx.module.Rest",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This modules eases the communication with a RESTful web service by providing",
+      " * a client-side wrapper of a REST resource.",
+      " *",
+      " * See {@link qx.bom.rest.Resource}.",
+      " *",
+      " * @group (IO)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This modules eases the communication with a RESTful web service by providing\n a client-side wrapper of a REST resource.\n See {@link qx.bom.rest.Resource}.</p>"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "IO"
+      }
+    ]
+  },
   "statics": {
     "resource": {
-      "location": {
-        "start": {
-          "line": 37,
-          "column": 4,
-          "index": 1192
-        },
-        "end": {
-          "line": 39,
-          "column": 5,
-          "index": 1275
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @param description {Map?} Each key of the map is interpreted as",
+          "     *  <code>action</code> name. The value associated to the key must be a map",
+          "     *  with the properties <code>method</code> and <code>url</code>.",
+          "     *  <code>check</code> is optional. Also see {@link qx.bom.rest.Resource#map}.",
+          "     *",
+          "     * @attachStatic {qxWeb, rest.resource}",
+          "     * @return {qx.bom.rest.Resource} The resource object.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -77,27 +82,37 @@
             "name": "@return",
             "body": "{qx.bom.rest.Resource} The resource object.",
             "type": "qx.bom.rest.Resource",
-            "description": " The resource object."
+            "description": "The resource object."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 42,
-        "column": 2,
-        "index": 1287
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1156
+        },
+        "end": {
+          "line": 39,
+          "column": 5,
+          "index": 1237
+        }
       },
-      "end": {
-        "line": 44,
-        "column": 3,
-        "index": 1345
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "description",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.rest.Resource"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

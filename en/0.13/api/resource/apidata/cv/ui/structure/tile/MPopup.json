@@ -1,35 +1,38 @@
 {
-  "className": "cv.ui.structure.tile.MPopup",
-  "packageName": "cv.ui.structure.tile",
-  "name": "MPopup",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 952
-      },
-      "end": {
-        "line": 134,
-        "column": 3,
-        "index": 4161
-      }
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/MPopup.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 952
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Handles cv-popup children and some general popup tasks, like global registration and close on click outside, modal blocker etc.</p>"
-        }
-      ]
+    "end": {
+      "line": 134,
+      "column": 3,
+      "index": 4161
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.structure.tile.MPopup",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Handles cv-popup children and some general popup tasks, like global registration and close on click outside, modal blocker etc.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Handles cv-popup children and some general popup tasks, like global registration and close on click outside, modal blocker etc.</p>"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 30,
@@ -41,11 +44,12 @@
         "column": 3,
         "index": 1212
       }
-    },
-    "jsdoc": {}
+    }
   },
   "statics": {
     "openedPopups": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 39,
@@ -58,12 +62,13 @@
           "index": 1369
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
   "events": {
     "closed": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
       "location": {
         "start": {
           "line": 43,
@@ -75,13 +80,13 @@
           "column": 33,
           "index": 1421
         }
-      },
-      "name": "closed",
-      "type": "qx.event.type.Event"
+      }
     }
   },
   "members": {
     "_childPopup": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 52,
@@ -94,10 +99,11 @@
           "index": 1584
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_onPointerDownBounded": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 53,
@@ -110,10 +116,11 @@
           "index": 1617
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_initPopupChild": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 55,
@@ -127,9 +134,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_openPopupChild": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 75,
@@ -143,9 +153,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_closePopupChild": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 83,
@@ -159,9 +172,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "registerModalPopup": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 90,
@@ -175,9 +191,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "unregisterModalPopup": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 103,
@@ -191,9 +210,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "_onPointerDown": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 114,
@@ -207,10 +229,17 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "ev"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 129,
@@ -222,8 +251,7 @@
         "column": 3,
         "index": 4157
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": []
+  "properties": {}
 }

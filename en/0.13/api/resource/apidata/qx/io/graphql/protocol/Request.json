@@ -1,55 +1,70 @@
 {
-  "className": "qx.io.graphql.protocol.Request",
-  "packageName": "qx.io.graphql.protocol",
-  "name": "Request",
-  "superClass": "qx.io.graphql.protocol.Message",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 765
-      },
-      "end": {
-        "line": 93,
-        "column": 3,
-        "index": 2564
-      }
+  "version": 0.3,
+  "lastModified": 1717235172106,
+  "lastModifiedIso": "2024-06-01T09:46:12.106Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/graphql/protocol/Request.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 741
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>An Object modelling a GraphQL request based on the GraphQL language\n (see http://spec.graphql.org/draft/#sec-Language) usually sent as JSON via\n a HTTP request (https://graphql.org/learn/serving-over-http)</p>"
-        }
-      ],
-      "@experimental": [
-        {
-          "name": "@experimental",
-          "body": "The API might change. Feedback is appreciated."
-        }
-      ]
+    "end": {
+      "line": 93,
+      "column": 3,
+      "index": 2472
     }
   },
-  "type": "class",
+  "className": "qx.io.graphql.protocol.Request",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * An Object modelling a GraphQL request based on the GraphQL language",
+      " * (see http://spec.graphql.org/draft/#sec-Language) usually sent as JSON via",
+      " * a HTTP request (https://graphql.org/learn/serving-over-http)",
+      " * @experimental The API might change. Feedback is appreciated.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>An Object modelling a GraphQL request based on the GraphQL language\n (see http://spec.graphql.org/draft/#sec-Language) usually sent as JSON via\n a HTTP request (https://graphql.org/learn/serving-over-http)</p>"
+      }
+    ],
+    "@experimental": [
+      {
+        "name": "@experimental",
+        "body": "The API might change. Feedback is appreciated."
+      }
+    ]
+  },
+  "superClass": "qx.io.graphql.protocol.Message",
   "properties": {
     "operationName": {
       "location": {
         "start": {
           "line": 31,
           "column": 4,
-          "index": 1005
+          "index": 975
         },
         "end": {
           "line": 35,
           "column": 5,
-          "index": 1111
+          "index": 1077
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeOperationName"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * An optional field that only needs to be provided if multiple operations are present in the query",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,27 +72,33 @@
           }
         ]
       },
-      "name": "operationName",
-      "propertyType": "new",
-      "event": "changeOperationName",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "query": {
       "location": {
         "start": {
           "line": 40,
           "column": 4,
-          "index": 1216
+          "index": 1177
         },
         "end": {
           "line": 45,
           "column": 5,
-          "index": 1324
+          "index": 1280
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": false,
+        "init": "",
+        "event": "changeQuery"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The query as a string which will be parsed and executed on the server",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -85,29 +106,34 @@
           }
         ]
       },
-      "name": "query",
-      "propertyType": "new",
-      "event": "changeQuery",
-      "nullable": false,
-      "init": "",
-      "allowNull": false,
-      "check": "String",
-      "defaultValue": ""
+      "appearsIn": []
     },
     "variables": {
       "location": {
         "start": {
           "line": 50,
           "column": 4,
-          "index": 1420
+          "index": 1371
         },
         "end": {
           "line": 56,
           "column": 5,
-          "index": 1606
+          "index": 1551
         }
       },
+      "json": {
+        "check": "qx.core.Object",
+        "nullable": true,
+        "event": "changeVariables",
+        "transform": "_transformVariables",
+        "validate": "_validateVariables"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * A qooxdoo object that maps variable names to variable values",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -115,78 +141,77 @@
           }
         ]
       },
-      "name": "variables",
-      "propertyType": "new",
-      "event": "changeVariables",
-      "nullable": true,
-      "transform": "_transformVariables",
-      "allowNull": true,
-      "check": "qx.core.Object"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          " overriden"
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1592
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1684
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.io.graphql.protocol.Message",
+      "appearsIn": [
+        "qx.io.graphql.protocol.Message",
+        "qx.core.Object",
+        "qx.data.MBinding",
+        "qx.core.MLogging",
+        "qx.core.MEvent",
+        "qx.core.MProperty",
+        "qx.core.MObjectId",
+        "qx.core.MAssert"
+      ]
+    },
     "_jsonReplacer": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 65,
           "column": 4,
-          "index": 1755
+          "index": 1691
         },
         "end": {
           "line": 71,
           "column": 5,
-          "index": 1979
+          "index": 1909
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "key"
+        },
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "_transformVariables": {
-      "location": {
-        "start": {
-          "line": 77,
-          "column": 4,
-          "index": 2130
-        },
-        "end": {
-          "line": 83,
-          "column": 5,
-          "index": 2321
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transforms the variables object to a qooxdoo model. Called automaticaly",
+          "     * when the variables property is set.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -194,361 +219,50 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2054
+        },
+        "end": {
+          "line": 83,
+          "column": 5,
+          "index": 2239
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": []
     },
     "_validateVariables": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 85,
           "column": 4,
-          "index": 2330
+          "index": 2246
         },
         "end": {
           "line": 91,
           "column": 5,
-          "index": 2554
+          "index": 2464
         }
       },
       "type": "function",
-      "access": "protected"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.io.graphql.protocol.Message",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.io.graphql.protocol.Message",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.io.graphql.protocol.Message",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.io.graphql.protocol.Message",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.io.graphql.protocol.Message",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.io.graphql.protocol.Message",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getOperationName": {
-      "type": "function",
-      "name": "getOperationName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>operationName</code>.\n\nFor further details take a look at the property definition: {@link #operationName}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for operationName"
-          }
-        ]
-      }
-    },
-    "setOperationName": {
-      "type": "function",
-      "name": "setOperationName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>operationName</code>.\n\nFor further details take a look at the property definition: {@link #operationName}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for operationName"
-          }
-        ]
-      }
-    },
-    "resetOperationName": {
-      "type": "function",
-      "name": "resetOperationName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>operationName</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #operationName}."
-          }
-        ]
-      }
-    },
-    "getQuery": {
-      "type": "function",
-      "name": "getQuery",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>query</code>.\n\nFor further details take a look at the property definition: {@link #query}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for query"
-          }
-        ]
-      }
-    },
-    "setQuery": {
-      "type": "function",
-      "name": "setQuery",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>query</code>.\n\nFor further details take a look at the property definition: {@link #query}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for query"
-          }
-        ]
-      }
-    },
-    "resetQuery": {
-      "type": "function",
-      "name": "resetQuery",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>query</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #query}."
-          }
-        ]
-      }
-    },
-    "getVariables": {
-      "type": "function",
-      "name": "getVariables",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>variables</code>.\n\nFor further details take a look at the property definition: {@link #variables}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for variables"
-          }
-        ]
-      }
-    },
-    "setVariables": {
-      "type": "function",
-      "name": "setVariables",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>variables</code>.\n\nFor further details take a look at the property definition: {@link #variables}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for variables"
-          }
-        ]
-      }
-    },
-    "resetVariables": {
-      "type": "function",
-      "name": "resetVariables",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>variables</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #variables}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

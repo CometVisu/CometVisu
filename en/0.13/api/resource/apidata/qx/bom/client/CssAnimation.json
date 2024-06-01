@@ -1,61 +1,75 @@
 {
-  "className": "qx.bom.client.CssAnimation",
-  "packageName": "qx.bom.client",
-  "name": "CssAnimation",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 676
-      },
-      "end": {
-        "line": 213,
-        "column": 3,
-        "index": 6784
-      }
+  "version": 0.3,
+  "lastModified": 1717235169818,
+  "lastModifiedIso": "2024-06-01T09:46:09.818Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/CssAnimation.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 650
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Responsible for checking all relevant animation properties.\n Spec: http://www.w3.org/TR/css3-animations/</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.bom.Stylesheet"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 213,
+      "column": 3,
+      "index": 6572
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.CssAnimation",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Responsible for checking all relevant animation properties.",
+      " *",
+      " * Spec: http://www.w3.org/TR/css3-animations/",
+      " *",
+      " * @require(qx.bom.Stylesheet)",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Responsible for checking all relevant animation properties.\n Spec: http://www.w3.org/TR/css3-animations/</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.bom.Stylesheet"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "statics": {
     "getSupport": {
-      "location": {
-        "start": {
-          "line": 47,
-          "column": 4,
-          "index": 1591
-        },
-        "end": {
-          "line": 61,
-          "column": 5,
-          "index": 2201
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Main check method which returns an object if CSS animations are",
+          "     * supported. This object contains all necessary keys to work with CSS",
+          "     * animations.",
+          "     * <ul>",
+          "     *  <li><code>name</code> The name of the css animation style</li>",
+          "     *  <li><code>play-state</code> The name of the play-state style</li>",
+          "     *  <li><code>start-event</code> The name of the start event</li>",
+          "     *  <li><code>iteration-event</code> The name of the iteration event</li>",
+          "     *  <li><code>end-event</code> The name of the end event</li>",
+          "     *  <li><code>fill-mode</code> The fill-mode style</li>",
+          "     *  <li><code>keyframes</code> The name of the keyframes selector.</li>",
+          "     * </ul>",
+          "     *",
+          "     * @internal",
+          "     * @return {Object|null} The described object or null, if animations are",
+          "     *   not supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -73,27 +87,40 @@
             "name": "@return",
             "body": "{Object|null} The described object or null, if animations are\n   not supported.",
             "type": "Object|null",
-            "description": " The described object or null, if animations are\n   not supported."
+            "description": "The described object or null, if animations are\n   not supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getFillMode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 69,
+          "line": 47,
           "column": 4,
-          "index": 2404
+          "index": 1545
         },
         "end": {
-          "line": 71,
+          "line": 61,
           "column": 5,
-          "index": 2491
+          "index": 2141
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Object|null"
+      },
+      "appearsIn": []
+    },
+    "getFillMode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for the 'animation-fill-mode' CSS style.",
+          "     * @internal",
+          "     * @return {String|null} The name of the style or null, if the style is",
+          "     *   not supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -111,27 +138,40 @@
             "name": "@return",
             "body": "{String|null} The name of the style or null, if the style is\n   not supported.",
             "type": "String|null",
-            "description": " The name of the style or null, if the style is\n   not supported."
+            "description": "The name of the style or null, if the style is\n   not supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getPlayState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 79,
+          "line": 69,
           "column": 4,
-          "index": 2695
+          "index": 2336
         },
         "end": {
-          "line": 81,
+          "line": 71,
           "column": 5,
-          "index": 2784
+          "index": 2421
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getPlayState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for the 'animation-play-state' CSS style.",
+          "     * @internal",
+          "     * @return {String|null} The name of the style or null, if the style is",
+          "     *   not supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -149,27 +189,40 @@
             "name": "@return",
             "body": "{String|null} The name of the style or null, if the style is\n   not supported.",
             "type": "String|null",
-            "description": " The name of the style or null, if the style is\n   not supported."
+            "description": "The name of the style or null, if the style is\n   not supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 89,
+          "line": 79,
           "column": 4,
-          "index": 2986
+          "index": 2617
         },
         "end": {
-          "line": 91,
+          "line": 81,
           "column": 5,
-          "index": 3061
+          "index": 2704
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for the style name used for animations.",
+          "     * @internal",
+          "     * @return {String|null} The name of the style or null, if the style is",
+          "     *   not supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -187,27 +240,39 @@
             "name": "@return",
             "body": "{String|null} The name of the style or null, if the style is\n   not supported.",
             "type": "String|null",
-            "description": " The name of the style or null, if the style is\n   not supported."
+            "description": "The name of the style or null, if the style is\n   not supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAnimationStart": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 98,
+          "line": 89,
           "column": 4,
-          "index": 3208
+          "index": 2898
         },
         "end": {
-          "line": 112,
+          "line": 91,
           "column": 5,
-          "index": 3717
+          "index": 2971
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getAnimationStart": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for the event name of animation start.",
+          "     * @internal",
+          "     * @return {String} The name of the event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -224,28 +289,90 @@
           {
             "name": "@return",
             "body": "{String} The name of the event.",
-            "type": "String",
-            "description": " The name of the event."
+            "type": "string",
+            "description": "The name of the event."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 98,
+          "column": 4,
+          "index": 3111
+        },
+        "end": {
+          "line": 112,
+          "column": 5,
+          "index": 3606
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     },
     "getAnimationIteration": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for the event name of animation end.",
+          "     * @internal",
+          "     * @return {String} The name of the event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks for the event name of animation end.</p>"
+          }
+        ],
+        "@internal": [
+          {
+            "name": "@internal",
+            "body": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The name of the event.",
+            "type": "string",
+            "description": "The name of the event."
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 119,
           "column": 4,
-          "index": 3862
+          "index": 3744
         },
         "end": {
           "line": 133,
           "column": 5,
-          "index": 4403
+          "index": 4271
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAnimationEnd": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for the event name of animation end.",
+          "     * @internal",
+          "     * @return {String} The name of the event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -262,66 +389,41 @@
           {
             "name": "@return",
             "body": "{String} The name of the event.",
-            "type": "String",
-            "description": " The name of the event."
+            "type": "string",
+            "description": "The name of the event."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAnimationEnd": {
+      "access": "public",
       "location": {
         "start": {
           "line": 140,
           "column": 4,
-          "index": 4548
+          "index": 4409
         },
         "end": {
           "line": 154,
           "column": 5,
-          "index": 5041
+          "index": 4888
         }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Checks for the event name of animation end.</p>"
-          }
-        ],
-        "@internal": [
-          {
-            "name": "@internal",
-            "body": ""
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{String} The name of the event.",
-            "type": "String",
-            "description": " The name of the event."
-          }
-        ]
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     },
     "getKeyFrames": {
-      "location": {
-        "start": {
-          "line": 162,
-          "column": 4,
-          "index": 5271
-        },
-        "end": {
-          "line": 180,
-          "column": 5,
-          "index": 5864
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks what selector should be used to add keyframes to stylesheets.",
+          "     * @internal",
+          "     * @return {String|null} The name of the selector or null, if the selector",
+          "     *   is not supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -339,27 +441,40 @@
             "name": "@return",
             "body": "{String|null} The name of the selector or null, if the selector\n   is not supported.",
             "type": "String|null",
-            "description": " The name of the selector or null, if the selector\n   is not supported."
+            "description": "The name of the selector or null, if the selector\n   is not supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRequestAnimationFrame": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 188,
+          "line": 162,
           "column": 4,
-          "index": 6097
+          "index": 5110
         },
         "end": {
-          "line": 203,
+          "line": 180,
           "column": 5,
-          "index": 6564
+          "index": 5685
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getRequestAnimationFrame": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks for the requestAnimationFrame method and return the prefixed name.",
+          "     * @internal",
+          "     * @return {String|null} A string the method name or null, if the method",
+          "     *   is not supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -377,27 +492,31 @@
             "name": "@return",
             "body": "{String|null} A string the method name or null, if the method\n   is not supported.",
             "type": "String|null",
-            "description": " A string the method name or null, if the method\n   is not supported."
+            "description": "A string the method name or null, if the method\n   is not supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 206,
-        "column": 2,
-        "index": 6576
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 5910
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 6362
+        }
       },
-      "end": {
-        "line": 212,
-        "column": 3,
-        "index": 6779
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

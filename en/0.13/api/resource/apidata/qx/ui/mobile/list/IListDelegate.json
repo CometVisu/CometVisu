@@ -1,49 +1,56 @@
 {
-  "className": "qx.ui.mobile.list.IListDelegate",
-  "packageName": "qx.ui.mobile.list",
-  "name": "IListDelegate",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 32,
-        "column": 0,
-        "index": 1133
-      },
-      "end": {
-        "line": 51,
-        "column": 3,
-        "index": 1857
-      }
+  "version": 0.3,
+  "lastModified": 1717235171254,
+  "lastModifiedIso": "2024-06-01T09:46:11.254Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/list/IListDelegate.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 32,
+      "column": 0,
+      "index": 1102
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Objects which are used as delegates for the {@link qx.ui.mobile.list.List#delegate} may\n implement any of the methods described in this interface. The delegate does\n not need to implement all the methods of this interface. If a method is not\n implemented the {@link qx.ui.mobile.list.provider.Provider} provides a default\n implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n actually implemented.</p>"
-        }
-      ]
+    "end": {
+      "line": 51,
+      "column": 3,
+      "index": 1807
     }
   },
-  "type": "interface",
+  "className": "qx.ui.mobile.list.IListDelegate",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Objects which are used as delegates for the {@link qx.ui.mobile.list.List#delegate} may",
+      " * implement any of the methods described in this interface. The delegate does",
+      " * not need to implement all the methods of this interface. If a method is not",
+      " * implemented the {@link qx.ui.mobile.list.provider.Provider} provides a default",
+      " * implementation.",
+      " *",
+      " * Note: This interface is meant to document the delegate but should not be",
+      " * listed in the <code>implement</code> key of a class unless all methods are",
+      " * actually implemented.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Objects which are used as delegates for the {@link qx.ui.mobile.list.List#delegate} may\n implement any of the methods described in this interface. The delegate does\n not need to implement all the methods of this interface. If a method is not\n implemented the {@link qx.ui.mobile.list.provider.Provider} provides a default\n implementation.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n actually implemented.</p>"
+      }
+    ]
+  },
   "members": {
     "configureItem": {
-      "location": {
-        "start": {
-          "line": 42,
-          "column": 4,
-          "index": 1611
-        },
-        "end": {
-          "line": 42,
-          "column": 37,
-          "index": 1644
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Configure the list item renderer with the given data. Mandatory method.",
+          "     * At least this method has to be defined for the delegate.",
+          "     *",
+          "     * @param item {qx.ui.mobile.list.renderer.Abstract} Instance of list item renderer to modify",
+          "     * @param data {var} The data of the row. Can be used to configure the given item.",
+          "     * @param row {Integer} The row index.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -74,23 +81,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createItemRenderer": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 42,
           "column": 4,
-          "index": 1824
+          "index": 1570
         },
         "end": {
-          "line": 49,
-          "column": 27,
-          "index": 1847
+          "line": 42,
+          "column": 37,
+          "index": 1603
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "item",
+          "type": "qx.ui.mobile.list.renderer.Abstract"
+        },
+        {
+          "name": "data",
+          "type": "var"
+        },
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "createItemRenderer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an instance of the item renderer to use.",
+          "     *",
+          "     * @return {qx.ui.mobile.list.renderer.Abstract} An instance of the item renderer.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -102,13 +131,31 @@
             "name": "@return",
             "body": "{qx.ui.mobile.list.renderer.Abstract} An instance of the item renderer.",
             "type": "qx.ui.mobile.list.renderer.Abstract",
-            "description": " An instance of the item renderer."
+            "description": "An instance of the item renderer."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1776
+        },
+        "end": {
+          "line": 49,
+          "column": 27,
+          "index": 1799
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.list.renderer.Abstract"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

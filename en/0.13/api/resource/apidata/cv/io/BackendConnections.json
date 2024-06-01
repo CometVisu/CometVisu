@@ -1,39 +1,41 @@
 {
-  "className": "cv.io.BackendConnections",
-  "packageName": "cv.io",
-  "name": "BackendConnections",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 876
-      },
-      "end": {
-        "line": 469,
-        "column": 3,
-        "index": 15772
-      }
+  "version": 0.3,
+  "lastModified": 1717235105598,
+  "lastModifiedIso": "2024-06-01T09:45:05.598Z",
+  "classFilename": "../../source/class/cv/io/BackendConnections.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 876
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Global factory for backend connections.</p>"
-        }
-      ]
+    "end": {
+      "line": 469,
+      "column": 3,
+      "index": 15772
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.io.BackendConnections",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Global factory for backend connections.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Global factory for backend connections.</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "__clients": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 31,
@@ -46,10 +48,11 @@
           "index": 1092
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__activeChangedTimer": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 32,
@@ -62,10 +65,11 @@
           "index": 1124
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__disconnectTimer": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 33,
@@ -78,10 +82,11 @@
           "index": 1153
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__hasBeenConnected": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 34,
@@ -94,10 +99,11 @@
           "index": 1184
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__activeChangeListenerId": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 35,
@@ -110,10 +116,11 @@
           "index": 1220
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__classListeners": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 36,
@@ -126,10 +133,11 @@
           "index": 1246
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__clientClasses": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 37,
@@ -142,10 +150,11 @@
           "index": 1271
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "addClassLoadedListener": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 39,
@@ -159,9 +168,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "className"
+        },
+        {
+          "name": "callback"
+        }
+      ],
+      "appearsIn": []
     },
     "registerClientClass": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 49,
@@ -175,9 +194,19 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "Clazz"
+        }
+      ],
+      "appearsIn": []
     },
     "isRegistered": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 60,
@@ -191,9 +220,29 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
     },
     "initBackendClients": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initialize all {@link cv.io.IClient} clients for backend communication,",
+          "     * return the default one (for backwards compability)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Initialize all {@link cv.io.IClient} clients for backend communication,\n return the default one (for backwards compability)</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 68,
@@ -206,18 +255,13 @@
           "index": 4662
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Initialize all {@link cv.io.IClient} clients for backend communication,\n return the default one (for backwards compability)</p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "addBackendClient": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 141,
@@ -231,9 +275,25 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "type"
+        },
+        {
+          "name": "backendUrl"
+        },
+        {
+          "name": "source"
+        }
+      ],
+      "appearsIn": []
     },
     "removeClient": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 206,
@@ -247,22 +307,22 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "client"
+        }
+      ],
+      "appearsIn": []
     },
     "hasClient": {
-      "location": {
-        "start": {
-          "line": 220,
-          "column": 4,
-          "index": 7373
-        },
-        "end": {
-          "line": 222,
-          "column": 5,
-          "index": 7469
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if a backend by that name is already registered",
+          "     * @param name {String} name of the backend",
+          "     * @return {boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -275,7 +335,7 @@
             "body": "name {String} name of the backend",
             "paramName": "name",
             "description": " name of the backend",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -287,23 +347,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getClient": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 229,
+          "line": 220,
           "column": 4,
-          "index": 7714
+          "index": 7373
         },
         "end": {
-          "line": 248,
+          "line": 222,
           "column": 5,
-          "index": 8405
+          "index": 7469
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getClient": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the backend client by name, if the name is not set the default backend is used.",
+          "     * Usually that is the backend client created by initBackendClients().",
+          "     * @param backendName {String?} name of the backend",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -321,10 +398,32 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4,
+          "index": 7714
+        },
+        "end": {
+          "line": 248,
+          "column": 5,
+          "index": 8405
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "backendName",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
     },
     "getClientByType": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 250,
@@ -338,9 +437,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "type"
+        }
+      ],
+      "appearsIn": []
     },
     "getClients": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 267,
@@ -354,9 +460,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "initSystemBackend": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 271,
@@ -370,9 +479,24 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "startInitialRequests": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Start retrieving data from backend",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Start retrieving data from backend</p>"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 286,
@@ -385,18 +509,13 @@
           "index": 9512
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Start retrieving data from backend</p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "startInitialRequest": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 292,
@@ -410,9 +529,16 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
     },
     "_onActiveChanged": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 304,
@@ -426,9 +552,12 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_checkBackendConnection": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 356,
@@ -442,9 +571,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
     },
     "_updateClientScope": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 396,
@@ -458,9 +594,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "name"
+        }
+      ],
+      "appearsIn": []
     },
     "_handleClientError": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 406,
@@ -474,8 +617,17 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "errorCode"
+        },
+        {
+          "name": "varargs"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

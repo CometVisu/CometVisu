@@ -1,220 +1,206 @@
 {
-  "className": "qx.io.part.Package",
-  "packageName": "qx.io.part",
-  "name": "Package",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 701
-      },
-      "end": {
-        "line": 261,
-        "column": 3,
-        "index": 7354
-      }
+  "version": 0.3,
+  "lastModified": 1717235171942,
+  "lastModifiedIso": "2024-06-01T09:46:11.942Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/part/Package.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 675
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The Package wraps a list of related script URLs, which are required by one\n or more parts.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.util.ResourceManager"
-        }
-      ]
+    "end": {
+      "line": 261,
+      "column": 3,
+      "index": 7094
     }
   },
-  "type": "class",
+  "className": "qx.io.part.Package",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Package wraps a list of related script URLs, which are required by one",
+      " * or more parts.",
+      " *",
+      " * @internal",
+      " * @ignore(qx.util.ResourceManager)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Package wraps a list of related script URLs, which are required by one\n or more parts.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.util.ResourceManager"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "urls"
+      },
+      {
+        "name": "id"
+      },
+      {
+        "name": "loaded"
+      }
+    ],
     "location": {
       "start": {
         "line": 33,
         "column": 2,
-        "index": 933
+        "index": 901
       },
       "end": {
         "line": 37,
         "column": 3,
-        "index": 1075
+        "index": 1039
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "urls {String[]} A list of script URLs",
-          "paramName": "urls",
-          "description": " A list of script URLs",
-          "type": "String[]"
-        },
-        {
-          "name": "@param",
-          "body": "id {var} Unique package hash key",
-          "paramName": "id",
-          "description": " Unique package hash key",
-          "type": "var"
-        },
-        {
-          "name": "@param",
-          "body": "loaded {Boolean?false} Whether the package is already loaded",
-          "paramName": "loaded",
-          "description": " Whether the package is already loaded",
-          "optional": true,
-          "defaultValue": "false",
-          "type": "Boolean"
-        }
-      ]
     }
   },
   "members": {
     "__readyState": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 40,
           "column": 4,
-          "index": 1098
+          "index": 1059
         },
         "end": {
           "line": 40,
           "column": 22,
-          "index": 1116
+          "index": 1077
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__urls": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 41,
           "column": 4,
-          "index": 1123
+          "index": 1083
         },
         "end": {
           "line": 41,
           "column": 16,
-          "index": 1135
+          "index": 1095
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__id": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 42,
           "column": 4,
-          "index": 1142
+          "index": 1101
         },
         "end": {
           "line": 42,
           "column": 14,
-          "index": 1152
+          "index": 1111
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__closure": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 43,
           "column": 4,
-          "index": 1159
+          "index": 1117
         },
         "end": {
           "line": 43,
           "column": 19,
-          "index": 1174
+          "index": 1132
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__loadWithClosure": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 44,
           "column": 4,
-          "index": 1181
+          "index": 1138
         },
         "end": {
           "line": 44,
           "column": 27,
-          "index": 1204
+          "index": 1161
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__timeoutId": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 45,
           "column": 4,
-          "index": 1211
+          "index": 1167
         },
         "end": {
           "line": 45,
           "column": 21,
-          "index": 1228
+          "index": 1184
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__notifyPackageResult": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 46,
           "column": 4,
-          "index": 1235
+          "index": 1190
         },
         "end": {
           "line": 46,
           "column": 31,
-          "index": 1262
+          "index": 1217
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getId": {
-      "location": {
-        "start": {
-          "line": 53,
-          "column": 4,
-          "index": 1365
-        },
-        "end": {
-          "line": 55,
-          "column": 5,
-          "index": 1406
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the package ID.",
+          "     *",
+          "     * @return {String} The package id",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -225,28 +211,50 @@
           {
             "name": "@return",
             "body": "{String} The package id",
-            "type": "String",
-            "description": " The package id"
+            "type": "string",
+            "description": "The package id"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getReadyState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 53,
           "column": 4,
-          "index": 1960
+          "index": 1313
         },
         "end": {
-          "line": 74,
+          "line": 55,
           "column": 5,
-          "index": 2017
+          "index": 1352
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getReadyState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the ready state of the package. The value is one of",
+          "     * <ul>",
+          "     * <li>",
+          "     *   <b>initialized</b>: The package is initialized. The {@link #load}",
+          "     *   method has not yet been called",
+          "     * </li>",
+          "     * <li><b>loading</b>: The package is still loading.</li>",
+          "     * <li><b>complete</b>: The package has been loaded successfully</li>",
+          "     * <li><b>cached</b>: The package is loaded but is not executed",
+          "     *   (for closure parts)</li>",
+          "     * </li>",
+          "     *",
+          "     * @return {String} The ready state.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -257,28 +265,41 @@
           {
             "name": "@return",
             "body": "{String} The ready state.",
-            "type": "String",
-            "description": " The ready state."
+            "type": "string",
+            "description": "The ready state."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getUrls": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 82,
+          "line": 72,
           "column": 4,
-          "index": 2185
+          "index": 1889
         },
         "end": {
-          "line": 84,
+          "line": 74,
           "column": 5,
-          "index": 2230
+          "index": 1944
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getUrls": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the urlsstored stored in the package.",
+          "     *",
+          "     * @internal",
+          "     * @return {String[]} An array of urls of this package.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -296,27 +317,40 @@
             "name": "@return",
             "body": "{String[]} An array of urls of this package.",
             "type": "String[]",
-            "description": " An array of urls of this package."
+            "description": "An array of urls of this package."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "saveClosure": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 92,
+          "line": 82,
           "column": 4,
-          "index": 2478
+          "index": 2104
         },
         "end": {
-          "line": 106,
+          "line": 84,
           "column": 5,
-          "index": 2824
+          "index": 2147
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "saveClosure": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method for storing the closure for this package. This is only relevant",
+          "     * if a {@link qx.io.part.ClosurePart} is used.",
+          "     *",
+          "     * @param closure {Function} The code of this package wrapped in a closure.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -329,27 +363,40 @@
             "body": "closure {Function} The code of this package wrapped in a closure.",
             "paramName": "closure",
             "description": " The code of this package wrapped in a closure.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "execute": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 112,
+          "line": 92,
           "column": 4,
-          "index": 2963
+          "index": 2387
         },
         "end": {
-          "line": 123,
+          "line": 106,
           "column": 5,
-          "index": 3279
+          "index": 2719
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "closure",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": []
+    },
+    "execute": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Executes the stored closure. This is only relevant if a",
+          "     * {@link qx.io.part.ClosurePart} is used.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -357,23 +404,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "loadClosure": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 133,
+          "line": 112,
           "column": 4,
-          "index": 3618
+          "index": 2852
         },
         "end": {
-          "line": 159,
+          "line": 123,
           "column": 5,
-          "index": 4319
+          "index": 3157
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "loadClosure": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load method if the package loads a closure. This is only relevant if a",
+          "     * {@link qx.io.part.ClosurePart} is used.",
+          "     *",
+          "     * @param notifyPackageResult {Function} The callback if all scripts are",
+          "     *   done loading in this package.",
+          "     * @param self {Object?} The context of the callback.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -386,7 +445,7 @@
             "body": "notifyPackageResult {Function} The callback if all scripts are\n   done loading in this package.",
             "paramName": "notifyPackageResult",
             "description": " The callback if all scripts are\n   done loading in this package.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -398,23 +457,44 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "load": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 168,
+          "line": 133,
           "column": 4,
-          "index": 4589
+          "index": 3486
         },
         "end": {
-          "line": 190,
+          "line": 159,
           "column": 5,
-          "index": 5142
+          "index": 4161
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "notifyPackageResult",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "load": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Load the part's script URLs in the correct order.",
+          "     *",
+          "     * @param notifyPackageResult {Function} The callback if all scripts are",
+          "     *   done loading in this package.",
+          "     * @param self {Object?} The context of the callback.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -427,7 +507,7 @@
             "body": "notifyPackageResult {Function} The callback if all scripts are\n   done loading in this package.",
             "paramName": "notifyPackageResult",
             "description": " The callback if all scripts are\n   done loading in this package.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -439,23 +519,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__loadScriptList": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 200,
+          "line": 168,
           "column": 4,
-          "index": 5494
+          "index": 4422
         },
         "end": {
-          "line": 250,
+          "line": 190,
           "column": 5,
-          "index": 7044
+          "index": 4953
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "notifyPackageResult",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "__loadScriptList": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Loads a list of scripts in the correct order.",
+          "     *",
+          "     * @param urlList {String[]} List of script urls",
+          "     * @param callback {Function} Function to execute on completion",
+          "     * @param errBack {Function} Function to execute on error",
+          "     * @param self {Object?window} Context to execute the given function in",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -475,14 +577,14 @@
             "body": "callback {Function} Function to execute on completion",
             "paramName": "callback",
             "description": " Function to execute on completion",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
             "body": "errBack {Function} Function to execute on error",
             "paramName": "errBack",
             "description": " Function to execute on error",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -495,23 +597,53 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__importPackageData": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 259,
+          "line": 200,
           "column": 4,
-          "index": 7294
+          "index": 5295
         },
         "end": {
-          "line": 259,
-          "column": 54,
-          "index": 7344
+          "line": 250,
+          "column": 5,
+          "index": 6795
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "urlList",
+          "type": "String[]"
+        },
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "errBack",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true,
+          "defaultValue": "window"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__importPackageData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Import the data of a package. The function is defined in the loader",
+          "     * script.",
+          "     *",
+          "     * @signature function(packageData)",
+          "     * @param packageData {Map} Map of package data categories (\"resources\",...)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -530,13 +662,26 @@
             "body": "packageData {Map} Map of package data categories (\"resources\",...)",
             "paramName": "packageData",
             "description": " Map of package data categories (\"resources\",...)",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 259,
+          "column": 4,
+          "index": 7036
+        },
+        "end": {
+          "line": 259,
+          "column": 54,
+          "index": 7086
+        }
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

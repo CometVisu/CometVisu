@@ -1,0 +1,842 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172242,
+  "lastModifiedIso": "2024-06-01T09:46:12.242Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/html/Serializer.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 927
+    },
+    "end": {
+      "line": 316,
+      "column": 3,
+      "index": 8341
+    }
+  },
+  "className": "qx.html.Serializer",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Controls serializing the VDOM in `qx.html.*` into an HTML string.",
+      " *",
+      " * The principal task here is to write the HTML with QxObjectIds, in a form which allows",
+      " * the DOM that the browser parsed to be connected to the instances of `qx.html.Node`",
+      " * that are created by the Javascript on the client.",
+      " *",
+      " * In other words, the DOM which is created by this HTML will be passed to `qx.html.Element.useNode`",
+      " * on the client.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Controls serializing the VDOM in <code>qx.html.*</code> into an HTML string.\n The principal task here is to write the HTML with QxObjectIds, in a form which allows\n the DOM that the browser parsed to be connected to the instances of <code>qx.html.Node</code>\n that are created by the Javascript on the client.\n In other words, the DOM which is created by this HTML will be passed to <code>qx.html.Element.useNode</code>\n on the client.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 2,
+        "index": 1025
+      },
+      "end": {
+        "line": 40,
+        "column": 3,
+        "index": 1138
+      }
+    }
+  },
+  "properties": {
+    "prettyPrint": {
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1238
+        },
+        "end": {
+          "line": 48,
+          "column": 5,
+          "index": 1353
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "nullable": false
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to pretty print (default is whatever qx.cdebug is set to) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to pretty print (default is whatever qx.cdebug is set to)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__output": {
+      "jsdoc": {
+        "raw": [
+          "* @type{String} the HTML being built up "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} the HTML being built up"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1426
+        },
+        "end": {
+          "line": 53,
+          "column": 18,
+          "index": 1440
+        }
+      },
+      "appearsIn": []
+    },
+    "__objectStack": {
+      "jsdoc": {
+        "raw": [
+          "* @type{qx.html.Node[]} the stack of objects being written "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{qx.html.Node[]} the stack of objects being written"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1515
+        },
+        "end": {
+          "line": 56,
+          "column": 23,
+          "index": 1534
+        }
+      },
+      "appearsIn": []
+    },
+    "__tagDataStack": {
+      "jsdoc": {
+        "raw": [
+          "* @type{TagData[]} the stack of elements being written "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{TagData[]} the stack of elements being written"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 2123
+        },
+        "end": {
+          "line": 70,
+          "column": 24,
+          "index": 2143
+        }
+      },
+      "appearsIn": []
+    },
+    "__currentTagName": {
+      "jsdoc": {
+        "raw": [
+          "* @type{String?} the current tag name "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String?} the current tag name"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2197
+        },
+        "end": {
+          "line": 73,
+          "column": 26,
+          "index": 2219
+        }
+      },
+      "appearsIn": []
+    },
+    "write": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes to the output",
+          "     * @param  {var[]} args array of values to convert to strings and output",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes to the output</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{var[]} args array of values to convert to strings and output",
+            "paramName": "args",
+            "description": "array of values to convert to strings and output",
+            "type": "var[]"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2347
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 2407
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "appearsIn": []
+    },
+    "openTag": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called when an open tag needs to be emitted",
+          "     *",
+          "     * @param {String} tagName",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called when an open tag needs to be emitted</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} tagName",
+            "paramName": "tagName",
+            "description": "",
+            "type": "string"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2519
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2715
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "tagName",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "rawTextInBody": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called to add plain text into the output",
+          "     * @param {String?} text",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called to add plain text into the output</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String?} text",
+            "paramName": "text",
+            "description": "",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 2815
+        },
+        "end": {
+          "line": 106,
+          "column": 5,
+          "index": 2949
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "text",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "closeTag": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called to close the current tag",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called to close the current tag</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 111,
+          "column": 4,
+          "index": 3011
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 3088
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "setAttribute": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an attribute to the current tag; cannot be done if body or children have been output",
+          "     *",
+          "     * @param {String} key the attribute name",
+          "     * @param {String?} value teh attribite value, if null the attribute will be deleted",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds an attribute to the current tag; cannot be done if body or children have been output</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} key the attribute name",
+            "paramName": "key",
+            "description": "the attribute name",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{String?} value teh attribite value, if null the attribute will be deleted",
+            "paramName": "value",
+            "description": "teh attribite value, if null the attribute will be deleted",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 122,
+          "column": 4,
+          "index": 3350
+        },
+        "end": {
+          "line": 131,
+          "column": 5,
+          "index": 3622
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "__peekTagData": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Looks for the current tag",
+          "     *",
+          "     * @returns {TagData}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Looks for the current tag</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{TagData}",
+            "type": "TagData",
+            "description": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 3711
+        },
+        "end": {
+          "line": 140,
+          "column": 5,
+          "index": 3800
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "TagData"
+      },
+      "appearsIn": []
+    },
+    "__flush": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flushes the tag into the output.  This will prevent further attributes etc from being emitted",
+          "     * and if `closeTag` is true then the tag is closed.  Handles self closing tags and indentation",
+          "     *",
+          "     * @param {Boolean} closeTag if we are flushing because the tag is being closed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Flushes the tag into the output.  This will prevent further attributes etc from being emitted\n and if <code>closeTag</code> is true then the tag is closed.  Handles self closing tags and indentation</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Boolean} closeTag if we are flushing because the tag is being closed",
+            "paramName": "closeTag",
+            "description": "if we are flushing because the tag is being closed",
+            "type": "boolean"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 148,
+          "column": 4,
+          "index": 4115
+        },
+        "end": {
+          "line": 199,
+          "column": 5,
+          "index": 5555
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "closeTag",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "clear": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Erases all output",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Erases all output</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 204,
+          "column": 4,
+          "index": 5603
+        },
+        "end": {
+          "line": 206,
+          "column": 5,
+          "index": 5644
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getOutput": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Provides the accumulated output",
+          "     *",
+          "     * @returns {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Provides the accumulated output</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 213,
+          "column": 4,
+          "index": 5738
+        },
+        "end": {
+          "line": 215,
+          "column": 5,
+          "index": 5785
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "pushQxObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pushes the QxObject onto the stack",
+          "     *",
+          "     * @param {qx.core.Object} obj",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pushes the QxObject onto the stack</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.core.Object} obj",
+            "paramName": "obj",
+            "description": "",
+            "type": "qx.core.Object"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4,
+          "index": 5892
+        },
+        "end": {
+          "line": 224,
+          "column": 5,
+          "index": 5953
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "qx.core.Object"
+        }
+      ],
+      "appearsIn": []
+    },
+    "popQxObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pops the topmost QxObject from the stack",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pops the topmost QxObject from the stack</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 229,
+          "column": 4,
+          "index": 6024
+        },
+        "end": {
+          "line": 231,
+          "column": 5,
+          "index": 6077
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "peekQxObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Peeks the QxObject stack",
+          "     *",
+          "     * @returns {qx.core.Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Peeks the QxObject stack</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{qx.core.Object}",
+            "type": "qx.core.Object",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 6172
+        },
+        "end": {
+          "line": 240,
+          "column": 5,
+          "index": 6266
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.core.Object"
+      },
+      "appearsIn": []
+    },
+    "getQxObjectIdFor": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculates a Qx Object ID which is either relative to the root most element,",
+          "     * or is relative to it's owner.  This tries to be as concise as possible so that",
+          "     * the output HTML is as readable as possible",
+          "     *",
+          "     * The return is null if the object does not have an ID",
+          "     *",
+          "     * @param {qx.html.Element} target",
+          "     * @returns {String?}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calculates a Qx Object ID which is either relative to the root most element,\n or is relative to it's owner.  This tries to be as concise as possible so that\n the output HTML is as readable as possible\n The return is null if the object does not have an ID</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{qx.html.Element} target",
+            "paramName": "target",
+            "description": "",
+            "type": "qx.html.Element"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String?}",
+            "type": "String?",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 252,
+          "column": 4,
+          "index": 6648
+        },
+        "end": {
+          "line": 284,
+          "column": 5,
+          "index": 7807
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.html.Element"
+        }
+      ],
+      "returnType": {
+        "type": "String?"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "__SELF_CLOSING_TAGS": {
+      "jsdoc": {
+        "raw": [
+          "* @type{Dictionary<String,Boolean>} list of self closing tags, in lowercase "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{Dictionary<String,Boolean>} list of self closing tags, in lowercase"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 289,
+          "column": 4,
+          "index": 7916
+        },
+        "end": {
+          "line": 289,
+          "column": 29,
+          "index": 7941
+        }
+      },
+      "appearsIn": []
+    }
+  }
+}

@@ -1,36 +1,40 @@
 {
-  "className": "com.zenesis.qx.upload.MParameters",
-  "packageName": "com.zenesis.qx.upload",
-  "name": "MParameters",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 841
-      },
-      "end": {
-        "line": 68,
-        "column": 3,
-        "index": 1875
-      }
+  "version": 0.3,
+  "lastModified": 1646967780000,
+  "lastModifiedIso": "2022-03-11T03:03:00.000Z",
+  "classFilename": "../../qx_packages/johnspackman_UploadMgr_v2_0_0/source/class/com/zenesis/qx/upload/MParameters.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 841
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin adds get/setParam methods used by UploadManager, AbstractHandler,\n and UploadButton</p>"
-        }
-      ]
+    "end": {
+      "line": 68,
+      "column": 3,
+      "index": 1875
     }
   },
-  "type": "mixin",
+  "className": "com.zenesis.qx.upload.MParameters",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin adds get/setParam methods used by UploadManager, AbstractHandler,",
+      " * and UploadButton",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin adds get/setParam methods used by UploadManager, AbstractHandler,\n and UploadButton</p>"
+      }
+    ]
+  },
   "members": {
     "__params": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 30,
@@ -43,23 +47,21 @@
           "index": 927
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "setParam": {
-      "location": {
-        "start": {
-          "line": 41,
-          "column": 4,
-          "index": 1206
-        },
-        "end": {
-          "line": 45,
-          "column": 5,
-          "index": 1390
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a parameter value to be sent with the file",
+          "     *",
+          "     * @param name",
+          "     *          {String} name of the parameter",
+          "     * @param value",
+          "     *          {String} the value of the parameter, or null to delete a",
+          "     *          previous parameter",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -72,34 +74,53 @@
             "body": "name\n          {String} name of the parameter",
             "paramName": "name",
             "description": " name of the parameter",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "value\n          {String} the value of the parameter, or null to delete a\n          previous parameter",
             "paramName": "value",
             "description": " the value of the parameter, or null to delete a\n          previous parameter",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getParam": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 53,
+          "line": 41,
           "column": 4,
-          "index": 1554
+          "index": 1206
         },
         "end": {
-          "line": 55,
+          "line": 45,
           "column": 5,
-          "index": 1627
+          "index": 1390
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getParam": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a parameter value to be sent with the file",
+          "     *",
+          "     * @param name {String} Name of the parameter",
+          "     * @returns {Boolean}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -112,22 +133,68 @@
             "body": "name {String} Name of the parameter",
             "paramName": "name",
             "description": " Name of the parameter",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean}",
-            "type": "Boolean",
+            "type": "boolean",
             "description": ""
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1554
+        },
+        "end": {
+          "line": 55,
+          "column": 5,
+          "index": 1627
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     },
     "getParamNames": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of parameter names",
+          "     *",
+          "     * @returns {Array}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of parameter names</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Array}",
+            "type": "Array<any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 62,
@@ -140,25 +207,14 @@
           "index": 1865
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Returns a list of parameter names</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Array}",
-            "type": "Array",
-            "description": ""
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

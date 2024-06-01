@@ -1,0 +1,1120 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169794,
+  "lastModifiedIso": "2024-06-01T09:46:09.794Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/Console.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 909
+    },
+    "end": {
+      "line": 431,
+      "column": 3,
+      "index": 13834
+    }
+  },
+  "className": "qx.tool.compiler.Console",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Console handles output of compiler messages for the end user (i.e. not debugging output).",
+      " * The output is based around message IDs, which relate to translatable strings, plus arguments.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Console handles output of compiler messages for the end user (i.e. not debugging output).\n The output is based around message IDs, which relate to translatable strings, plus arguments.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "properties": {
+    "verbose": {
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 1048
+        },
+        "end": {
+          "line": 35,
+          "column": 5,
+          "index": 1106
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether verbose logging is enabled "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether verbose logging is enabled</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "machineReadable": {
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 1191
+        },
+        "end": {
+          "line": 41,
+          "column": 5,
+          "index": 1257
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to output all messages as machine readable data structures "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to output all messages as machine readable data structures</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "writer": {
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1502
+        },
+        "end": {
+          "line": 53,
+          "column": 5,
+          "index": 1581
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Function"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Function that is used to output console messages; called with:",
+          "     *   str {String} complete message to output",
+          "     *   msgId {String} original message ID",
+          "     *   ...args {Object...} original arguments to message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Function that is used to output console messages; called with:\n   str {String} complete message to output\n   msgId {String} original message ID\n   …args {Object…} original arguments to message</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "colorOn": {
+      "location": {
+        "start": {
+          "line": 56,
+          "column": 4,
+          "index": 1632
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1709
+        }
+      },
+      "json": {
+        "init": "",
+        "nullable": false,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Colour prefix for console output "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Colour prefix for console output</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "print": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Prints the message",
+          "     *",
+          "     * @param msgId {String} translatable message ID",
+          "     * @param args {Object...} arguments",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prints the message</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "msgId {String} translatable message ID",
+            "paramName": "msgId",
+            "description": " translatable message ID",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "args {Object...} arguments",
+            "paramName": "args",
+            "description": " arguments",
+            "type": "Object..."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1876
+        },
+        "end": {
+          "line": 93,
+          "column": 5,
+          "index": 2498
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "msgId",
+          "type": "string"
+        },
+        {
+          "name": "...args"
+        }
+      ],
+      "appearsIn": []
+    },
+    "decode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Decodes the message ID and arguments into a string to be presented in the output",
+          "     *",
+          "     * @param msgId {String} translatable message ID",
+          "     * @param args {Object...} arguments",
+          "     * @return {String} complete message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decodes the message ID and arguments into a string to be presented in the output</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "msgId {String} translatable message ID",
+            "paramName": "msgId",
+            "description": " translatable message ID",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "args {Object...} arguments",
+            "paramName": "args",
+            "description": " arguments",
+            "type": "Object..."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} complete message",
+            "type": "string",
+            "description": "complete message"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2751
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 3017
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "msgId",
+          "type": "string"
+        },
+        {
+          "name": "...args"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getMessageType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the type of the message, eg error, warning, etc",
+          "     *",
+          "     * @param msgId {String} the message ID to lookup",
+          "     * @return {String} the type of message, can be one of \"message\" (default) or \"error\", \"warning\"",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the type of the message, eg error, warning, etc</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "msgId {String} the message ID to lookup",
+            "paramName": "msgId",
+            "description": " the message ID to lookup",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} the type of message, can be one of \"message\" (default) or \"error\", \"warning\"",
+            "type": "string",
+            "description": "the type of message, can be one of \"message\" (default) or \"error\", \"warning\""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3265
+        },
+        "end": {
+          "line": 121,
+          "column": 5,
+          "index": 3391
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "msgId",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "log": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.log equivalent, with colorization",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.log equivalent, with colorization</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 126,
+          "column": 4,
+          "index": 3463
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3538
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "appearsIn": []
+    },
+    "debug": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.debug equivalent, with colorization",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.debug equivalent, with colorization</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 3612
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3691
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MLogging"
+      ]
+    },
+    "info": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.info equivalent, with colorization",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.info equivalent, with colorization</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 140,
+          "column": 4,
+          "index": 3764
+        },
+        "end": {
+          "line": 142,
+          "column": 5,
+          "index": 3841
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MLogging"
+      ]
+    },
+    "trace": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.warn equivalent, with colorization, only operates if `verbose` is true",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.warn equivalent, with colorization, only operates if <code>verbose</code> is true</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 147,
+          "column": 4,
+          "index": 3950
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4068
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MLogging"
+      ]
+    },
+    "warn": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.warn equivalent, with colorization",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.warn equivalent, with colorization</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 156,
+          "column": 4,
+          "index": 4141
+        },
+        "end": {
+          "line": 158,
+          "column": 5,
+          "index": 4218
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MLogging"
+      ]
+    },
+    "error": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.error equivalent, with colorization",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.error equivalent, with colorization</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 163,
+          "column": 4,
+          "index": 4292
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 4371
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "overriddenFrom": "qx.core.Object",
+      "appearsIn": [
+        "qx.core.Object",
+        "qx.core.MLogging"
+      ]
+    }
+  },
+  "statics": {
+    "__INSTANCE": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 287,
+          "column": 4,
+          "index": 9994
+        },
+        "end": {
+          "line": 287,
+          "column": 20,
+          "index": 10010
+        }
+      },
+      "appearsIn": []
+    },
+    "getInstance": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the singleton instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the singleton instance</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 292,
+          "column": 4,
+          "index": 10071
+        },
+        "end": {
+          "line": 297,
+          "column": 5,
+          "index": 10218
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "print": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Prints the message",
+          "     *",
+          "     * @param args {Object...} arguments",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prints the message</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "args {Object...} arguments",
+            "paramName": "args",
+            "description": " arguments",
+            "type": "Object..."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 304,
+          "column": 4,
+          "index": 10315
+        },
+        "end": {
+          "line": 306,
+          "column": 5,
+          "index": 10385
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "appearsIn": []
+    },
+    "decode": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Decodes the message ID and arguments into a string to be presented in the output",
+          "     *",
+          "     * @param args {Object...} arguments",
+          "     * @return {String} complete message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decodes the message ID and arguments into a string to be presented in the output</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "args {Object...} arguments",
+            "paramName": "args",
+            "description": " arguments",
+            "type": "Object..."
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} complete message",
+            "type": "string",
+            "description": "complete message"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 314,
+          "column": 4,
+          "index": 10585
+        },
+        "end": {
+          "line": 316,
+          "column": 5,
+          "index": 10657
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "log": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.log equivalent, with colorization",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.log equivalent, with colorization</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 321,
+          "column": 4,
+          "index": 10729
+        },
+        "end": {
+          "line": 323,
+          "column": 5,
+          "index": 10795
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "appearsIn": []
+    },
+    "debug": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.debug equivalent, with colorization",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.debug equivalent, with colorization</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 4,
+          "index": 10869
+        },
+        "end": {
+          "line": 330,
+          "column": 5,
+          "index": 10939
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "appearsIn": []
+    },
+    "info": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.info equivalent, with colorization",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.info equivalent, with colorization</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 335,
+          "column": 4,
+          "index": 11012
+        },
+        "end": {
+          "line": 337,
+          "column": 5,
+          "index": 11080
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "appearsIn": []
+    },
+    "warn": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.warn equivalent, with colorization",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.warn equivalent, with colorization</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 342,
+          "column": 4,
+          "index": 11153
+        },
+        "end": {
+          "line": 344,
+          "column": 5,
+          "index": 11221
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "appearsIn": []
+    },
+    "trace": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.warn equivalent, with colorization, only operates if `verbose` is true",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.warn equivalent, with colorization, only operates if <code>verbose</code> is true</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 349,
+          "column": 4,
+          "index": 11330
+        },
+        "end": {
+          "line": 351,
+          "column": 5,
+          "index": 11400
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "appearsIn": []
+    },
+    "error": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * console.error equivalent, with colorization",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>console.error equivalent, with colorization</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 356,
+          "column": 4,
+          "index": 11474
+        },
+        "end": {
+          "line": 358,
+          "column": 5,
+          "index": 11544
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "...args"
+        }
+      ],
+      "appearsIn": []
+    },
+    "MESSAGE_IDS": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message strings for markers, ie errors and warnings.  The strings are stored as statics",
+          "     * here, but that's because the CLI is currently assembled by hand and therefore does not",
+          "     * support translations.  When the CLI is itself compiled by `qx compile`, these strings",
+          "     * will move into translation files.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Message strings for markers, ie errors and warnings.  The strings are stored as statics\n here, but that's because the CLI is currently assembled by hand and therefore does not\n support translations.  When the CLI is itself compiled by <code>qx compile</code>, these strings\n will move into translation files.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 366,
+          "column": 4,
+          "index": 11890
+        },
+        "end": {
+          "line": 366,
+          "column": 19,
+          "index": 11905
+        }
+      },
+      "appearsIn": []
+    },
+    "addMessageIds": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds message IDs; this is a method because it allows other components (eg qxoodoo-cli) to",
+          "     * use it",
+          "     *",
+          "     * @param obj {Object} map of id strings to message text",
+          "     * @param type {String?} the type of message, can be one of \"message\" (default) or \"error\", \"warning\"",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds message IDs; this is a method because it allows other components (eg qxoodoo-cli) to\n use it</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object} map of id strings to message text",
+            "paramName": "obj",
+            "description": " map of id strings to message text",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "type {String?} the type of message, can be one of \"message\" (default) or \"error\", \"warning\"",
+            "paramName": "type",
+            "description": " the type of message, can be one of \"message\" (default) or \"error\", \"warning\"",
+            "optional": true,
+            "type": "String"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 375,
+          "column": 4,
+          "index": 12213
+        },
+        "end": {
+          "line": 383,
+          "column": 5,
+          "index": 12405
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
+    },
+    "decodeMarker": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Decodes a marker into a String description",
+          "     * @param marker {Map} containing:",
+          "     *    msgId {String}",
+          "     *    start {Map} containing:",
+          "     *        line {Integer}",
+          "     *        column? {Integer}",
+          "     *    end? {Map} containing:",
+          "     *        line {Integer}",
+          "     *        column? {Integer}",
+          "     *    args? {Object[]}",
+          "     * @param showPosition {Boolean?} whether to include line/column info (default is true)",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Decodes a marker into a String description</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "marker {Map} containing:\n    msgId {String}\n    start {Map} containing:\n        line {Integer}\n        column? {Integer}\n    end? {Map} containing:\n        line {Integer}\n        column? {Integer}\n    args? {Object[]}",
+            "paramName": "marker",
+            "description": " containing:\n    msgId {String}\n    start {Map} containing:\n        line {Integer}\n        column? {Integer}\n    end? {Map} containing:\n        line {Integer}\n        column? {Integer}\n    args? {Object[]}",
+            "type": "Map<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "showPosition {Boolean?} whether to include line/column info (default is true)",
+            "paramName": "showPosition",
+            "description": " whether to include line/column info (default is true)",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 399,
+          "column": 4,
+          "index": 12874
+        },
+        "end": {
+          "line": 429,
+          "column": 5,
+          "index": 13826
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "marker",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "showPosition",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  }
+}

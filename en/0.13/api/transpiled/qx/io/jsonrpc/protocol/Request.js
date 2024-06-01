@@ -45,12 +45,12 @@
       /**
        * Static counter for all request ids
        */
-      __P_255_0: 0,
+      __P_256_0: 0,
       getCurrentId: function getCurrentId() {
-        return qx.io.jsonrpc.protocol.Request.__P_255_0;
+        return qx.io.jsonrpc.protocol.Request.__P_256_0;
       },
       resetId: function resetId() {
-        qx.io.jsonrpc.protocol.Request.__P_255_0 = 0;
+        qx.io.jsonrpc.protocol.Request.__P_256_0 = 0;
       }
     },
     properties: {
@@ -74,21 +74,21 @@
     construct: function construct(method, params, id) {
       qx.io.jsonrpc.protocol.Notification.constructor.call(this, method, params);
       if (id === undefined) {
-        id = ++qx.io.jsonrpc.protocol.Request.__P_255_0;
+        id = ++qx.io.jsonrpc.protocol.Request.__P_256_0;
       }
       this.set({
         id: id
       });
-      this.__P_255_1 = new qx.Promise();
+      this.__P_256_1 = new qx.Promise();
     },
     members: {
-      __P_255_1: null,
+      __P_256_1: null,
       /**
        * Getter for promise which resolves with the result to the request
        * @return {qx.Promise}
        */
       getPromise: function getPromise() {
-        return this.__P_255_1;
+        return this.__P_256_1;
       },
       /**
        * Determines how an exception during transport is handled. Standard
@@ -109,4 +109,4 @@
   qx.io.jsonrpc.protocol.Request.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Request.js.map?dt=1709410153385
+//# sourceMappingURL=Request.js.map?dt=1717235382411

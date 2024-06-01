@@ -1,55 +1,51 @@
 {
-  "className": "qx.bom.Iframe",
-  "packageName": "qx.bom",
-  "name": "Iframe",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 715
-      },
-      "end": {
-        "line": 213,
-        "column": 3,
-        "index": 6446
-      }
+  "version": 0.3,
+  "lastModified": 1717235171230,
+  "lastModifiedIso": "2024-06-01T09:46:11.230Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Iframe.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 689
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Cross browser abstractions to work with iframes.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.event.handler.Iframe"
-        }
-      ]
+    "end": {
+      "line": 213,
+      "column": 3,
+      "index": 6234
     }
   },
-  "type": "class",
+  "className": "qx.bom.Iframe",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Cross browser abstractions to work with iframes.",
+      " *",
+      " * @require(qx.event.handler.Iframe)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Cross browser abstractions to work with iframes.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.event.handler.Iframe"
+      }
+    ]
+  },
   "statics": {
     "DEFAULT_ATTRIBUTES": {
-      "location": {
-        "start": {
-          "line": 38,
-          "column": 4,
-          "index": 1046
-        },
-        "end": {
-          "line": 47,
-          "column": 5,
-          "index": 1253
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Default attributes for creation {@link #create}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,23 +59,35 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "create": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 59,
+          "line": 38,
           "column": 4,
-          "index": 1648
+          "index": 1009
         },
         "end": {
-          "line": 77,
+          "line": 47,
           "column": 5,
-          "index": 2254
+          "index": 1207
         }
       },
+      "appearsIn": []
+    },
+    "create": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates an DOM element.",
+          "     *",
+          "     * Attributes may be given directly with this call. This is critical",
+          "     * for some attributes e.g. name, type, ... in many clients.",
+          "     *",
+          "     * @param attributes {Map?null} Map of attributes to apply",
+          "     * @param win {Window?null} Window to create the element for",
+          "     * @return {Element} The created iframe node",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -111,27 +119,54 @@
             "name": "@return",
             "body": "{Element} The created iframe node",
             "type": "qx.bom.Element",
-            "description": " The created iframe node"
+            "description": "The created iframe node"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getWindow": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 86,
+          "line": 59,
           "column": 4,
-          "index": 2507
+          "index": 1590
         },
         "end": {
-          "line": 92,
+          "line": 77,
           "column": 5,
-          "index": 2637
+          "index": 2178
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "attributes",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "win",
+          "type": "Window",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "getWindow": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the DOM window object of an iframe.",
+          "     *",
+          "     * @param iframe {Element} DOM element of the iframe.",
+          "     * @return {Window?null} The DOM window object of the iframe or null.",
+          "     * @signature function(iframe)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -152,7 +187,7 @@
             "name": "@return",
             "body": "{Window?null} The DOM window object of the iframe or null.",
             "type": "Window?null",
-            "description": " The DOM window object of the iframe or null."
+            "description": "The DOM window object of the iframe or null."
           }
         ],
         "@signature": [
@@ -162,23 +197,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDocument": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 100,
+          "line": 86,
           "column": 4,
-          "index": 2847
+          "index": 2422
         },
         "end": {
-          "line": 115,
+          "line": 92,
           "column": 5,
-          "index": 3196
+          "index": 2546
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "iframe",
+          "type": "qx.bom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "Window?null"
+      },
+      "appearsIn": []
+    },
+    "getDocument": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the DOM document object of an iframe.",
+          "     *",
+          "     * @param iframe {Element} DOM element of the iframe.",
+          "     * @return {Document} The DOM document object of the iframe.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -199,27 +252,45 @@
             "name": "@return",
             "body": "{Document} The DOM document object of the iframe.",
             "type": "qx.bom.Document",
-            "description": " The DOM document object of the iframe."
+            "description": "The DOM document object of the iframe."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getBody": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 123,
+          "line": 100,
           "column": 4,
-          "index": 3426
+          "index": 2748
         },
         "end": {
-          "line": 130,
+          "line": 115,
           "column": 5,
-          "index": 3627
+          "index": 3082
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "iframe",
+          "type": "qx.bom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Document"
+      },
+      "appearsIn": []
+    },
+    "getBody": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the HTML body element of the iframe.",
+          "     *",
+          "     * @param iframe {Element} DOM element of the iframe.",
+          "     * @return {Element} The DOM node of the <code>body</code> element of the iframe.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -240,27 +311,46 @@
             "name": "@return",
             "body": "{Element} The DOM node of the <code>body</code> element of the iframe.",
             "type": "qx.bom.Element",
-            "description": " The DOM node of the <code>body</code> element of the iframe."
+            "description": "The DOM node of the <code>body</code> element of the iframe."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setSource": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 139,
+          "line": 123,
           "column": 4,
-          "index": 3865
+          "index": 3304
         },
         "end": {
-          "line": 178,
+          "line": 130,
           "column": 5,
-          "index": 5485
+          "index": 3498
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "iframe",
+          "type": "qx.bom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "setSource": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets iframe's source attribute to given value",
+          "     *",
+          "     * @param iframe {Element} DOM element of the iframe.",
+          "     * @param source {String} URL to be set.",
+          "     * @signature function(iframe, source)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -280,7 +370,7 @@
             "body": "source {String} URL to be set.",
             "paramName": "source",
             "description": " URL to be set.",
-            "type": "qx.bom.String"
+            "type": "string"
           }
         ],
         "@signature": [
@@ -290,23 +380,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "queryCurrentUrl": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 186,
+          "line": 139,
           "column": 4,
-          "index": 5734
+          "index": 3727
         },
         "end": {
-          "line": 196,
+          "line": 178,
           "column": 5,
-          "index": 5951
+          "index": 5308
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "iframe",
+          "type": "qx.bom.Element"
+        },
+        {
+          "name": "source",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "queryCurrentUrl": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current (served) URL inside the iframe",
+          "     *",
+          "     * @param iframe {Element} DOM element of the iframe.",
+          "     * @return {String} Returns the location href or null (if a query is not possible/allowed)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -326,28 +435,45 @@
           {
             "name": "@return",
             "body": "{String} Returns the location href or null (if a query is not possible/allowed)",
-            "type": "qx.bom.String",
-            "description": " Returns the location href or null (if a query is not possible/allowed)"
+            "type": "string",
+            "description": "Returns the location href or null (if a query is not possible/allowed)"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__rememberUrl": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 203,
+          "line": 186,
           "column": 4,
-          "index": 6084
+          "index": 5549
         },
         "end": {
-          "line": 211,
+          "line": 196,
           "column": 5,
-          "index": 6436
+          "index": 5756
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "iframe",
+          "type": "qx.bom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "__rememberUrl": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Remember actual URL of iframe.",
+          "     *",
+          "     * @param iframe {Element} DOM element of the iframe.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -364,9 +490,29 @@
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 203,
+          "column": 4,
+          "index": 5882
+        },
+        "end": {
+          "line": 211,
+          "column": 5,
+          "index": 6226
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "iframe",
+          "type": "qx.bom.Element"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

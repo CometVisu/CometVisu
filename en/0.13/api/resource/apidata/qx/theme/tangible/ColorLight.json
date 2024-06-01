@@ -1,33 +1,37 @@
 {
-  "className": "qx.theme.tangible.ColorLight",
-  "packageName": "qx.theme.tangible",
-  "name": "ColorLight",
-  "superClass": "qx.theme.tangible.ColorEngine",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 551
-      },
-      "end": {
-        "line": 32,
-        "column": 3,
-        "index": 785
-      }
+  "version": 0.3,
+  "lastModified": 1717235169714,
+  "lastModifiedIso": "2024-06-01T09:46:09.714Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/tangible/ColorLight.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 529
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Simple color theme</p>"
-        }
-      ]
+    "end": {
+      "line": 32,
+      "column": 3,
+      "index": 754
     }
   },
-  "type": "theme",
-  "descendants": []
+  "className": "qx.theme.tangible.ColorLight",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Simple color theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Simple color theme</p>"
+      }
+    ]
+  },
+  "superClass": "qx.theme.tangible.ColorEngine",
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

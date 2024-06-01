@@ -1,0 +1,113 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172214,
+  "lastModifiedIso": "2024-06-01T09:46:12.214Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/resources/ScssIncludeConverter.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 721
+    },
+    "end": {
+      "line": 45,
+      "column": 3,
+      "index": 1319
+    }
+  },
+  "className": "qx.tool.compiler.resources.ScssIncludeConverter",
+  "jsdoc": null,
+  "superClass": "qx.tool.compiler.resources.ResourceConverter",
+  "members": {
+    "matches": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 864
+        },
+        "end": {
+          "line": 32,
+          "column": 5,
+          "index": 994
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.resources.AbstractMatcher",
+      "appearsIn": [
+        "qx.tool.compiler.resources.AbstractMatcher"
+      ]
+    },
+    "isDoNotCopy": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 1001
+        },
+        "end": {
+          "line": 39,
+          "column": 5,
+          "index": 1153
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.resources.ResourceConverter",
+      "appearsIn": [
+        "qx.tool.compiler.resources.ResourceConverter"
+      ]
+    },
+    "convert": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1160
+        },
+        "end": {
+          "line": 43,
+          "column": 5,
+          "index": 1311
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target"
+        },
+        {
+          "name": "asset"
+        },
+        {
+          "name": "srcFilename"
+        },
+        {
+          "name": "destFilename"
+        },
+        {
+          "name": "isThemeFile"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

@@ -1,49 +1,50 @@
 {
-  "className": "qx.locale.Key",
-  "packageName": "qx.locale",
-  "name": "Key",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 659
-      },
-      "end": {
-        "line": 141,
-        "column": 3,
-        "index": 5751
-      }
+  "version": 0.3,
+  "lastModified": 1717235171522,
+  "lastModifiedIso": "2024-06-01T09:46:11.522Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/locale/Key.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 635
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Static class, which contains functionality to localize the names of keyboard keys.</p>"
-        }
-      ]
+    "end": {
+      "line": 141,
+      "column": 3,
+      "index": 5611
     }
   },
-  "type": "class",
+  "className": "qx.locale.Key",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Static class, which contains functionality to localize the names of keyboard keys.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Static class, which contains functionality to localize the names of keyboard keys.</p>"
+      }
+    ]
+  },
   "statics": {
     "getKeyName": {
-      "location": {
-        "start": {
-          "line": 43,
-          "column": 4,
-          "index": 1329
-        },
-        "end": {
-          "line": 67,
-          "column": 5,
-          "index": 2059
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return localized name of a key identifier",
+          "     * {@link qx.event.type.KeySequence}",
+          "     *",
+          "     * @param size {String} format of the key identifier.",
+          "     *       Possible values: \"short\", \"full\"",
+          "     * @param keyIdentifier {String} key identifier to translate {@link qx.event.type.KeySequence}",
+          "     * @param locale {String} optional locale to be used",
+          "     * @return {String} localized key name",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,50 +57,66 @@
             "body": "size {String} format of the key identifier.\n       Possible values: \"short\", \"full\"",
             "paramName": "size",
             "description": " format of the key identifier.\n       Possible values: \"short\", \"full\"",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "keyIdentifier {String} key identifier to translate {@link qx.event.type.KeySequence}",
             "paramName": "keyIdentifier",
             "description": " key identifier to translate {@link qx.event.type.KeySequence}",
-            "type": "qx.locale.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "locale {String} optional locale to be used",
             "paramName": "locale",
             "description": " optional locale to be used",
-            "type": "qx.locale.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} localized key name",
-            "type": "qx.locale.String",
-            "description": " localized key name"
+            "type": "string",
+            "description": "localized key name"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1287
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1993
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "size",
+          "type": "string"
+        },
+        {
+          "name": "keyIdentifier",
+          "type": "string"
+        },
+        {
+          "name": "locale",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 76,
-        "column": 2,
-        "index": 2259
-      },
-      "end": {
-        "line": 140,
-        "column": 3,
-        "index": 5746
-      }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

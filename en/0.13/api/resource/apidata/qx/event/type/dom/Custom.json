@@ -1,152 +1,124 @@
 {
-  "className": "qx.event.type.dom.Custom",
-  "packageName": "qx.event.type.dom",
-  "name": "Custom",
-  "superClass": "Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 580
-      },
-      "end": {
-        "line": 130,
-        "column": 3,
-        "index": 3609
-      }
+  "version": 0.3,
+  "lastModified": 1717235169826,
+  "lastModifiedIso": "2024-06-01T09:46:09.826Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/type/dom/Custom.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 558
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Cross-browser custom UI event</p>"
-        }
-      ]
+    "end": {
+      "line": 130,
+      "column": 3,
+      "index": 3480
     }
   },
-  "type": "class",
+  "className": "qx.event.type.dom.Custom",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Cross-browser custom UI event",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Cross-browser custom UI event</p>"
+      }
+    ]
+  },
+  "superClass": "Object",
   "statics": {
     "PROPERTIES": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 27,
           "column": 4,
-          "index": 670
+          "index": 644
         },
         "end": {
           "line": 30,
           "column": 5,
-          "index": 737
+          "index": 708
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "type"
+      },
+      {
+        "name": "domEvent"
+      },
+      {
+        "name": "customProps"
+      }
+    ],
     "location": {
       "start": {
         "line": 39,
         "column": 2,
-        "index": 1022
+        "index": 984
       },
       "end": {
         "line": 72,
         "column": 3,
-        "index": 2041
+        "index": 1970
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "type {String} event type",
-          "paramName": "type",
-          "description": " event type",
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "domEvent {Event} Native event that will be used as a template for the new event",
-          "paramName": "domEvent",
-          "description": " Native event that will be used as a template for the new event",
-          "type": "Event"
-        },
-        {
-          "name": "@param",
-          "body": "customProps {Map} Map of event properties (will override the domEvent's values)",
-          "paramName": "customProps",
-          "description": " Map of event properties (will override the domEvent's values)",
-          "type": "Map"
-        }
-      ],
-      "@return": [
-        {
-          "name": "@return",
-          "body": "{Event} event object",
-          "type": "Event",
-          "description": " event object"
-        }
-      ]
     }
   },
   "members": {
     "_type": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 75,
           "column": 4,
-          "index": 2064
+          "index": 1990
         },
         "end": {
           "line": 75,
           "column": 15,
-          "index": 2075
+          "index": 2001
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_event": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 76,
           "column": 4,
-          "index": 2082
+          "index": 2007
         },
         "end": {
           "line": 76,
           "column": 16,
-          "index": 2094
+          "index": 2019
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_createEvent": {
-      "location": {
-        "start": {
-          "line": 82,
-          "column": 4,
-          "index": 2196
-        },
-        "end": {
-          "line": 95,
-          "column": 5,
-          "index": 2656
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a custom event object",
+          "     * @return {Event} event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -158,27 +130,40 @@
             "name": "@return",
             "body": "{Event} event object",
             "type": "Event",
-            "description": " event object"
+            "description": "event object"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_initEvent": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 103,
+          "line": 82,
           "column": 4,
-          "index": 2917
+          "index": 2115
         },
         "end": {
-          "line": 128,
+          "line": 95,
           "column": 5,
-          "index": 3599
+          "index": 2562
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
+    },
+    "_initEvent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes a custom event",
+          "     *",
+          "     * @param domEvent {Event} Native event that will be used as a template for the new event",
+          "     * @param customProps {Map?} Map of event properties (will override the domEvent's values)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -203,11 +188,33 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 103,
+          "column": 4,
+          "index": 2815
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 3472
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        },
+        {
+          "name": "customProps",
+          "type": "Map",
+          "optional": true
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": [
-    "qx.event.type.dom.Pointer"
-  ]
+  "properties": {}
 }

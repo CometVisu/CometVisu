@@ -1,0 +1,191 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172018,
+  "lastModifiedIso": "2024-06-01T09:46:12.018Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/meta/PolyfillJs.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 863
+    },
+    "end": {
+      "line": 78,
+      "column": 3,
+      "index": 1940
+    }
+  },
+  "className": "qx.tool.compiler.targets.meta.PolyfillJs",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Represents a \"polyfill.js\" that is generated as part of a compile",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Represents a \"polyfill.js\" that is generated as part of a compile</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "appMeta"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 992
+      },
+      "end": {
+        "line": 34,
+        "column": 3,
+        "index": 1082
+      }
+    }
+  },
+  "properties": {
+    "needsWriteToDisk": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1105
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1167
+        }
+      },
+      "json": {
+        "init": true,
+        "refine": true
+      },
+      "jsdoc": null,
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    }
+  },
+  "members": {
+    "writeSourceCodeToStream": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1224
+        },
+        "end": {
+          "line": 60,
+          "column": 5,
+          "index": 1586
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ws"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    },
+    "__write": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1593
+        },
+        "end": {
+          "line": 69,
+          "column": 5,
+          "index": 1845
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "srcFilename"
+        },
+        {
+          "name": "ws"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSourceMap": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1885
+        },
+        "end": {
+          "line": 76,
+          "column": 5,
+          "index": 1932
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.compiler.targets.meta.AbstractJavascriptMeta",
+      "appearsIn": [
+        "qx.tool.compiler.targets.meta.AbstractJavascriptMeta"
+      ]
+    }
+  },
+  "statics": {}
+}

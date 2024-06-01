@@ -1,54 +1,76 @@
 {
-  "className": "qx.lang.normalize.Error",
-  "packageName": "qx.lang.normalize",
-  "name": "Error",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 756
-      },
-      "end": {
-        "line": 59,
-        "column": 3,
-        "index": 1684
-      }
+  "version": 0.3,
+  "lastModified": 1717235170402,
+  "lastModifiedIso": "2024-06-01T09:46:10.402Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/normalize/Error.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 731
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is responsible for the normalization of the native 'Error' object.\n It contains a simple bugfix for toString which might not print out the proper\n error message.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Polyfill"
-        }
-      ]
+    "end": {
+      "line": 59,
+      "column": 3,
+      "index": 1626
     }
   },
-  "type": "class",
-  "statics": {},
-  "defer": {
-    "location": {
-      "start": {
-        "line": 53,
-        "column": 2,
-        "index": 1516
+  "className": "qx.lang.normalize.Error",
+  "jsdoc": {
+    "raw": [
+      " eslint-disable no-extend-native "
+    ]
+  },
+  "statics": {
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a string representation of the Error object.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Error/toString\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.11.4.4\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @return {String} Error message",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a string representation of the Error object.\n <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Error/toString\">MDN documentation</a> |\n <a href=\"http://es5.github.com/#x15.11.4.4\">Annotated ES5 Spec</a></p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} Error message",
+            "type": "string",
+            "description": "Error message"
+          }
+        ]
       },
-      "end": {
-        "line": 58,
-        "column": 3,
-        "index": 1679
-      }
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 36,
+          "column": 4,
+          "index": 1132
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1455
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

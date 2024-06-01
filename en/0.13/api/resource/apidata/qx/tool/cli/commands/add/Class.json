@@ -1,0 +1,98 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169602,
+  "lastModifiedIso": "2024-06-01T09:46:09.602Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/add/Class.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 42,
+      "column": 0,
+      "index": 1653
+    },
+    "end": {
+      "line": 223,
+      "column": 3,
+      "index": 7381
+    }
+  },
+  "className": "qx.tool.cli.commands.add.Class",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Add a new class file to the current project, based on a template.",
+      " *",
+      " * Syntax: `qx add class <classname> [--type=template_name] [--extend=extended_class] [--import] [--from-pkg=package_name]`",
+      " * If omitted, `--type` defaults to \"default\". The path to the template file will be calculated as follows:",
+      " * 1. transform template_name to ${template_name}.tmpl.js",
+      " * 2. check if this file exists in the \"templates/class\" folder",
+      " *    a. of a package, if the --from-pkg paramater wass passed (not implemented)",
+      " *    b. otherwise, of the current project",
+      " *    c. finally, of the CLI library",
+      " *",
+      " * If the --import flag is set, copy the template to the templates/class folder of the current project,",
+      " * so it can be customized and used instead of the one shipped with the CLI.",
+      " *",
+      " * If you place a file named `header.js` in the root of your project, this header will be used verbatim",
+      " * as the ${header} template variable instead of the generic header template, which is populated with",
+      " * information from Manifest.json",
+      " *",
+      " * (Package support is not yet implemented)",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Add a new class file to the current project, based on a template.\n Syntax: <code>qx add class &lt;classname&gt; [--type=template_name] [--extend=extended_class] [--import] [--from-pkg=package_name]</code>\n If omitted, <code>--type</code> defaults to \"default\". The path to the template file will be calculated as follows:</p>\n<ol>\n<li>transform template<em>name to ${template</em>name}.tmpl.js</li>\n<li>check if this file exists in the \"templates/class\" folder\na. of a package, if the --from-pkg paramater wass passed (not implemented)\nb. otherwise, of the current project\nc. finally, of the CLI library\nIf the --import flag is set, copy the template to the templates/class folder of the current project,\nso it can be customized and used instead of the one shipped with the CLI.\nIf you place a file named <code>header.js</code> in the root of your project, this header will be used verbatim\nas the ${header} template variable instead of the generic header template, which is populated with\ninformation from Manifest.json\n(Package support is not yet implemented)</li>\n</ol>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Command",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 45,
+          "column": 4,
+          "index": 1762
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2527
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2551
+        },
+        "end": {
+          "line": 221,
+          "column": 5,
+          "index": 7373
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    }
+  },
+  "properties": {}
+}

@@ -1,103 +1,87 @@
 {
-  "className": "qx.core.AssertionError",
-  "packageName": "qx.core",
-  "name": "AssertionError",
-  "superClass": "qx.type.BaseError",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 590
-      },
-      "end": {
-        "line": 59,
-        "column": 3,
-        "index": 1611
-      }
+  "version": 0.3,
+  "lastModified": 1717235169202,
+  "lastModifiedIso": "2024-06-01T09:46:09.202Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/AssertionError.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 568
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Assertion errors are thrown if an assertion in {@link qx.core.Assert}\n fails.</p>"
-        }
-      ]
+    "end": {
+      "line": 59,
+      "column": 3,
+      "index": 1553
     }
   },
-  "type": "class",
+  "className": "qx.core.AssertionError",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Assertion errors are thrown if an assertion in {@link qx.core.Assert}",
+      " * fails.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Assertion errors are thrown if an assertion in {@link qx.core.Assert}\n fails.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.type.BaseError",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "comment"
+      },
+      {
+        "name": "failMessage"
+      }
+    ],
     "location": {
       "start": {
         "line": 36,
         "column": 2,
-        "index": 1021
+        "index": 986
       },
       "end": {
         "line": 39,
         "column": 3,
-        "index": 1171
+        "index": 1133
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "comment {String} Comment passed to the assertion call",
-          "paramName": "comment",
-          "description": " Comment passed to the assertion call",
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "failMessage {String} Fail message provided by the assertion",
-          "paramName": "failMessage",
-          "description": " Fail message provided by the assertion",
-          "type": "String"
-        }
-      ]
     }
   },
   "members": {
     "__trace": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 48,
           "column": 4,
-          "index": 1384
+          "index": 1337
         },
         "end": {
           "line": 48,
           "column": 17,
-          "index": 1397
+          "index": 1350
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getStackTrace": {
-      "location": {
-        "start": {
-          "line": 55,
-          "column": 4,
-          "index": 1549
-        },
-        "end": {
-          "line": 57,
-          "column": 5,
-          "index": 1601
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stack trace of the error",
+          "     *",
+          "     * @return {String[]} The stack trace of the location the exception was thrown",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -109,13 +93,31 @@
             "name": "@return",
             "body": "{String[]} The stack trace of the location the exception was thrown",
             "type": "String[]",
-            "description": " The stack trace of the location the exception was thrown"
+            "description": "The stack trace of the location the exception was thrown"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1495
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1545
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

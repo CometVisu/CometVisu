@@ -1,0 +1,1639 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169066,
+  "lastModifiedIso": "2024-06-01T09:46:09.066Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/app/Application.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 739
+    },
+    "end": {
+      "line": 1047,
+      "column": 3,
+      "index": 28639
+    }
+  },
+  "className": "qx.tool.compiler.app.Application",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "classname"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 908
+      },
+      "end": {
+        "line": 46,
+        "column": 3,
+        "index": 1293
+      }
+    }
+  },
+  "properties": {
+    "type": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1463
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1568
+        }
+      },
+      "json": {
+        "init": "browser",
+        "check": [
+          "browser",
+          "rhino",
+          "node"
+        ],
+        "apply": "_applyType"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The type of application to generate; note that changing this will change the `loaderTemplate`",
+          "     * and `theme` properties",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The type of application to generate; note that changing this will change the <code>loaderTemplate</code>\n and <code>theme</code> properties</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "environment": {
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1623
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1682
+        }
+      },
+      "json": {
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Environment property map",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Environment property map</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "analyser": {
+      "location": {
+        "start": {
+          "line": 70,
+          "column": 4,
+          "index": 1734
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 1790
+        }
+      },
+      "json": {
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The Analyser instance",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The Analyser instance</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "theme": {
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 1851
+        },
+        "end": {
+          "line": 81,
+          "column": 5,
+          "index": 1918
+        }
+      },
+      "json": {
+        "init": "qx.theme.Simple",
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Application theme (class name)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Application theme (class name)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "name": {
+      "location": {
+        "start": {
+          "line": 86,
+          "column": 4,
+          "index": 2033
+        },
+        "end": {
+          "line": 90,
+          "column": 5,
+          "index": 2112
+        }
+      },
+      "json": {
+        "init": "index",
+        "nullable": false,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of the application, used for script directory file unless outputPath is set",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of the application, used for script directory file unless outputPath is set</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "title": {
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2268
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2344
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The human readable, customer facing title of the application - it's used to customise the title",
+          "     * of the index.html page",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The human readable, customer facing title of the application - it's used to customise the title\n of the index.html page</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "description": {
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2495
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 2577
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The human readable, customer facing description of the application - it's used to list applications",
+          "     * in `qx serve`",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The human readable, customer facing description of the application - it's used to list applications\n in <code>qx serve</code></p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "outputPath": {
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 2657
+        },
+        "end": {
+          "line": 119,
+          "column": 5,
+          "index": 2738
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Output path, relative to the target's output path",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Output path, relative to the target's output path</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "bootPath": {
+      "location": {
+        "start": {
+          "line": 124,
+          "column": 4,
+          "index": 2816
+        },
+        "end": {
+          "line": 128,
+          "column": 5,
+          "index": 2895
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Boot path, relative to the target's output path",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Boot path, relative to the target's output path</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "templatePath": {
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 2939
+        },
+        "end": {
+          "line": 138,
+          "column": 5,
+          "index": 3048
+        }
+      },
+      "json": {
+        "init": "",
+        "nullable": false,
+        "check": "String",
+        "apply": "_applyType"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * template path",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>template path</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "publish": {
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3168
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 3225
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether this app is to be published (e.g. in the PackageBrowser).",
+          "     * Default is true.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether this app is to be published (e.g. in the PackageBrowser).\n Default is true.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "deploy": {
+      "location": {
+        "start": {
+          "line": 153,
+          "column": 4,
+          "index": 3314
+        },
+        "end": {
+          "line": 156,
+          "column": 5,
+          "index": 3370
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether this app is to be deployed",
+          "     * Default is true.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether this app is to be deployed\n Default is true.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "standalone": {
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 3501
+        },
+        "end": {
+          "line": 165,
+          "column": 5,
+          "index": 3561
+        }
+      },
+      "json": {
+        "check": "Boolean",
+        "init": true
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether this app can run on its own (true, default) or is part of another",
+          "     * application (false)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether this app can run on its own (true, default) or is part of another\n application (false)</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "include": {
+      "location": {
+        "start": {
+          "line": 170,
+          "column": 4,
+          "index": 3625
+        },
+        "end": {
+          "line": 174,
+          "column": 5,
+          "index": 3722
+        }
+      },
+      "json": {
+        "nullable": false,
+        "check": "Array",
+        "transform": "__transformArray"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Classes to include with the build",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Classes to include with the build</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "exclude": {
+      "location": {
+        "start": {
+          "line": 179,
+          "column": 4,
+          "index": 3785
+        },
+        "end": {
+          "line": 183,
+          "column": 5,
+          "index": 3882
+        }
+      },
+      "json": {
+        "nullable": false,
+        "check": "Array",
+        "transform": "__transformArray"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Classes to exclude when building",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Classes to exclude when building</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "bundleInclude": {
+      "location": {
+        "start": {
+          "line": 188,
+          "column": 4,
+          "index": 3966
+        },
+        "end": {
+          "line": 193,
+          "column": 5,
+          "index": 4086
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Array",
+        "transform": "__transformArray"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Classes to bundle together for delivery to the client",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Classes to bundle together for delivery to the client</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "bundleExclude": {
+      "location": {
+        "start": {
+          "line": 198,
+          "column": 4,
+          "index": 4181
+        },
+        "end": {
+          "line": 203,
+          "column": 5,
+          "index": 4301
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Array",
+        "transform": "__transformArray"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Classes to exclude from bundling together for delivery to client",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Classes to exclude from bundling together for delivery to client</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "loaderTemplate": {
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 4439
+        },
+        "end": {
+          "line": 212,
+          "column": 5,
+          "index": 4507
+        }
+      },
+      "json": {
+        "nullable": false,
+        "check": "String"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Template file used to create index.js; note that this is changed when the `type` property",
+          "     * is changed",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Template file used to create index.js; note that this is changed when the <code>type</code> property\n is changed</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "writeIndexHtmlToRoot": {
+      "location": {
+        "start": {
+          "line": 217,
+          "column": 4,
+          "index": 4588
+        },
+        "end": {
+          "line": 220,
+          "column": 5,
+          "index": 4659
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Writes the index.html into root instead of app dir",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Writes the index.html into root instead of app dir</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "localModules": {
+      "location": {
+        "start": {
+          "line": 231,
+          "column": 4,
+          "index": 5189
+        },
+        "end": {
+          "line": 234,
+          "column": 5,
+          "index": 5250
+        }
+      },
+      "json": {
+        "check": "Object"
+      },
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Map specifying local modules to include in the build. Local modules are",
+          "     * always included in the compiled output, regardless of application type",
+          "     * (node, browser, etc.). Each member of the map has a key that is the",
+          "     * name of the module to be `require`d in code. The value is the path to",
+          "     * the module to be included. The path must begin with \"./\", and is",
+          "     * relative to the directory containing compile.json. The module may be",
+          "     * either a CommonJS module or an ES6 module.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Map specifying local modules to include in the build. Local modules are\n always included in the compiled output, regardless of application type\n (node, browser, etc.). Each member of the map has a key that is the\n name of the module to be <code>require</code>d in code. The value is the path to\n the module to be included. The path must begin with \"./\", and is\n relative to the directory containing compile.json. The module may be\n either a CommonJS module or an ES6 module.</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__loadDeps": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 238,
+          "column": 4,
+          "index": 5274
+        },
+        "end": {
+          "line": 238,
+          "column": 20,
+          "index": 5290
+        }
+      },
+      "appearsIn": []
+    },
+    "__parts": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 239,
+          "column": 4,
+          "index": 5296
+        },
+        "end": {
+          "line": 239,
+          "column": 17,
+          "index": 5309
+        }
+      },
+      "appearsIn": []
+    },
+    "__requiredLibs": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 240,
+          "column": 4,
+          "index": 5315
+        },
+        "end": {
+          "line": 240,
+          "column": 24,
+          "index": 5335
+        }
+      },
+      "appearsIn": []
+    },
+    "__fatalCompileErrors": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 241,
+          "column": 4,
+          "index": 5341
+        },
+        "end": {
+          "line": 241,
+          "column": 30,
+          "index": 5367
+        }
+      },
+      "appearsIn": []
+    },
+    "__classes": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 242,
+          "column": 4,
+          "index": 5373
+        },
+        "end": {
+          "line": 242,
+          "column": 19,
+          "index": 5388
+        }
+      },
+      "appearsIn": []
+    },
+    "__partsDeps": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 243,
+          "column": 4,
+          "index": 5394
+        },
+        "end": {
+          "line": 243,
+          "column": 21,
+          "index": 5411
+        }
+      },
+      "appearsIn": []
+    },
+    "isBrowserApp": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if the application is for browser",
+          "     *",
+          "     * @returns boolean",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Checks if the application is for browser</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 250,
+          "column": 4,
+          "index": 5513
+        },
+        "end": {
+          "line": 252,
+          "column": 5,
+          "index": 5578
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "calcDependencies": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculates the dependencies of the classes to create a load order",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calculates the dependencies of the classes to create a load order</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 257,
+          "column": 4,
+          "index": 5674
+        },
+        "end": {
+          "line": 628,
+          "column": 5,
+          "index": 16706
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getFatalCompileErrors": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets a list of class names that this Application requires which have fatal compile errors",
+          "     *",
+          "     * @return {String[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a list of class names that this Application requires which have fatal compile errors</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]}",
+            "type": "String[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 635,
+          "column": 4,
+          "index": 16859
+        },
+        "end": {
+          "line": 637,
+          "column": 5,
+          "index": 16930
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getUris": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets a list of URIs for classes that are required, in load order",
+          "     *",
+          "     * @returns {String[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a list of URIs for classes that are required, in load order</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]}",
+            "type": "String[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 644,
+          "column": 4,
+          "index": 17059
+        },
+        "end": {
+          "line": 657,
+          "column": 5,
+          "index": 17388
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getDependencies": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets a list of classnames that are required, in load order",
+          "     *",
+          "     * @returns {String[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets a list of classnames that are required, in load order</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]}",
+            "type": "String[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 664,
+          "column": 4,
+          "index": 17511
+        },
+        "end": {
+          "line": 666,
+          "column": 5,
+          "index": 17566
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getPartsDependencies": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the parts dependencies structures",
+          "     *",
+          "     * @returns {Object[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the parts dependencies structures</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object[]}",
+            "type": "Object[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 673,
+          "column": 4,
+          "index": 17669
+        },
+        "end": {
+          "line": 675,
+          "column": 5,
+          "index": 17730
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Object[]"
+      },
+      "appearsIn": []
+    },
+    "getRequiredLibraries": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of library names which are required by the application",
+          "     *",
+          "     * @returns {String[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of library names which are required by the application</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]}",
+            "type": "String[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 682,
+          "column": 4,
+          "index": 17864
+        },
+        "end": {
+          "line": 684,
+          "column": 5,
+          "index": 17928
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getAssetUris": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of all of the assets required by all classes",
+          "     * @param target {qx.tool.compiler.targets.Target} the current target",
+          "     * @param resManager  {qx.tool.compiler.resources.Manager} the resource manager",
+          "     * @param environment {Map} environment",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of all of the assets required by all classes</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "target {qx.tool.compiler.targets.Target} the current target",
+            "paramName": "target",
+            "description": " the current target",
+            "type": "qx.tool.compiler.targets.Target"
+          },
+          {
+            "name": "@param",
+            "body": "resManager  {qx.tool.compiler.resources.Manager} the resource manager",
+            "paramName": "resManager",
+            "description": " the resource manager",
+            "type": "qx.tool.compiler.resources.Manager"
+          },
+          {
+            "name": "@param",
+            "body": "environment {Map} environment",
+            "paramName": "environment",
+            "description": " environment",
+            "type": "Map<any, any>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 692,
+          "column": 4,
+          "index": 18220
+        },
+        "end": {
+          "line": 834,
+          "column": 5,
+          "index": 22534
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "target",
+          "type": "qx.tool.compiler.targets.Target"
+        },
+        {
+          "name": "resManager",
+          "type": "qx.tool.compiler.resources.Manager"
+        },
+        {
+          "name": "environment",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getFonts": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of fonts required by the application, where the font is detailed in Manifest.json",
+          "     * in `provides.fonts`",
+          "     *",
+          "     * @returns {String[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of fonts required by the application, where the font is detailed in Manifest.json\n in <code>provides.fonts</code></p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]}",
+            "type": "String[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 842,
+          "column": 4,
+          "index": 22722
+        },
+        "end": {
+          "line": 853,
+          "column": 5,
+          "index": 23093
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "getClassName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the class name for the application",
+          "     * @returns {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the class name for the application</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 859,
+          "column": 4,
+          "index": 23191
+        },
+        "end": {
+          "line": 861,
+          "column": 5,
+          "index": 23245
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getRequiredClasses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the classes required for the application",
+          "     * @returns {String[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the classes required for the application</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String[]}",
+            "type": "String[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 867,
+          "column": 4,
+          "index": 23351
+        },
+        "end": {
+          "line": 882,
+          "column": 5,
+          "index": 24031
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "addPart": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a part",
+          "     * @param part {Part} the part to add",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Adds a part</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "part {Part} the part to add",
+            "paramName": "part",
+            "description": " the part to add",
+            "type": "qx.tool.compiler.app.Part"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 888,
+          "column": 4,
+          "index": 24115
+        },
+        "end": {
+          "line": 893,
+          "column": 5,
+          "index": 24229
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "part",
+          "type": "qx.tool.compiler.app.Part"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getParts": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the parts, or null if there are none defined",
+          "     * @return {Part[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the parts, or null if there are none defined</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Part[]}",
+            "type": "Part[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 899,
+          "column": 4,
+          "index": 24336
+        },
+        "end": {
+          "line": 901,
+          "column": 5,
+          "index": 24387
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Part[]"
+      },
+      "appearsIn": []
+    },
+    "getCalculatedEnvironment": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a dynamically calculated version of the application environment, which",
+          "     * is defaults or dynamic values plus the `environment` property",
+          "     *",
+          "     * @return {Map} The environment settings",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a dynamically calculated version of the application environment, which\n is defaults or dynamic values plus the <code>environment</code> property</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} The environment settings",
+            "type": "Map<any, any>",
+            "description": "The environment settings"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 909,
+          "column": 4,
+          "index": 24618
+        },
+        "end": {
+          "line": 919,
+          "column": 5,
+          "index": 24921
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__expandClassnames": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Expands a list of class names including wildcards (eg \"qx.ui.*\") into an",
+          "     * exhaustive list without wildcards",
+          "     * @param names {String[]}",
+          "     * @return String[]",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Expands a list of class names including wildcards (eg \"qx.ui.*\") into an\n exhaustive list without wildcards</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "names {String[]}",
+            "paramName": "names",
+            "type": "String[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "String[]"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 927,
+          "column": 4,
+          "index": 25120
+        },
+        "end": {
+          "line": 964,
+          "column": 5,
+          "index": 26318
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "names",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "_applyType": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply for `type` property",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply for <code>type</code> property</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 969,
+          "column": 4,
+          "index": 26374
+        },
+        "end": {
+          "line": 977,
+          "column": 5,
+          "index": 26585
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__transformArray": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transforms values to make sure that they are an array (and never null)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transforms values to make sure that they are an array (and never null)</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 982,
+          "column": 4,
+          "index": 26686
+        },
+        "end": {
+          "line": 990,
+          "column": 5,
+          "index": 26860
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "statics": {
+    "createWildcardMatchFunction": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a function that can perform a wildcard match to compare against a function;",
+          "     * the function returns `null` if no match, `\"exact\"` for an exact match, or a number",
+          "     * to indicating the number of segments in the package (eg `qx.util.*` will match",
+          "     * `qx.util.format.DateFormat` will return 2 because there is `qx` and `util`)",
+          "     *",
+          "     * @param include {String[]} the wildcard specs to include",
+          "     * @param exclude {String[]} the wildcard specs to exclude",
+          "     * @return {Function}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates a function that can perform a wildcard match to compare against a function;\n the function returns <code>null</code> if no match, <code>\"exact\"</code> for an exact match, or a number\n to indicating the number of segments in the package (eg <code>qx.util.*</code> will match\n <code>qx.util.format.DateFormat</code> will return 2 because there is <code>qx</code> and <code>util</code>)</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "include {String[]} the wildcard specs to include",
+            "paramName": "include",
+            "description": " the wildcard specs to include",
+            "type": "String[]"
+          },
+          {
+            "name": "@param",
+            "body": "exclude {String[]} the wildcard specs to exclude",
+            "paramName": "exclude",
+            "description": " the wildcard specs to exclude",
+            "type": "String[]"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Function}",
+            "type": "((...args: any[]) => any)",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1004,
+          "column": 4,
+          "index": 27409
+        },
+        "end": {
+          "line": 1045,
+          "column": 5,
+          "index": 28631
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "include",
+          "type": "String[]"
+        },
+        {
+          "name": "exclude",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    }
+  }
+}

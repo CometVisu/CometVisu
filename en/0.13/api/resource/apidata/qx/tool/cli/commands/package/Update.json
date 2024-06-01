@@ -1,0 +1,219 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172626,
+  "lastModifiedIso": "2024-06-01T09:46:12.626Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/package/Update.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 850
+    },
+    "end": {
+      "line": 439,
+      "column": 3,
+      "index": 13836
+    }
+  },
+  "className": "qx.tool.cli.commands.package.Update",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Updates the local cache with information of available library packages",
+      " * @ignore(github.*)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Updates the local cache with information of available library packages</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "github.*"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Package",
+  "statics": {
+    "getYargsCommand": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 965
+        },
+        "end": {
+          "line": 73,
+          "column": 5,
+          "index": 2098
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.tool.cli.commands.Package"
+      ]
+    }
+  },
+  "members": {
+    "__names": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2122
+        },
+        "end": {
+          "line": 77,
+          "column": 17,
+          "index": 2135
+        }
+      },
+      "appearsIn": []
+    },
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the cache with information from GitHub.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the cache with information from GitHub.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 82,
+          "column": 4,
+          "index": 2213
+        },
+        "end": {
+          "line": 152,
+          "column": 5,
+          "index": 4255
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "updateFromRepository": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Update the package cache from the nightly cron job",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Update the package cache from the nightly cron job</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 158,
+          "column": 4,
+          "index": 4367
+        },
+        "end": {
+          "line": 171,
+          "column": 5,
+          "index": 4823
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    },
+    "updateFromGitHubAPI": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the package cache from the GitHub Api",
+          "     * @param {String} token",
+          "     * @return {Promise<void>}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Updates the package cache from the GitHub Api</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} token",
+            "paramName": "token",
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Promise<void>}",
+            "type": "Promise<void>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 178,
+          "column": 4,
+          "index": 4959
+        },
+        "end": {
+          "line": 437,
+          "column": 5,
+          "index": 13828
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "token",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Promise<void>"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

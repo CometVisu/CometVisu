@@ -1,0 +1,168 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171978,
+  "lastModifiedIso": "2024-06-01T09:46:11.978Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/app/Part.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 958
+    },
+    "end": {
+      "line": 68,
+      "column": 3,
+      "index": 1578
+    }
+  },
+  "className": "qx.tool.compiler.app.Part",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Code is divided up into Parts, where each is a non-overlapping set of URIs for segmented",
+      " * loading; the Part can support specific attributes, such as whether to be combined into",
+      " * one file for the boot loader, whether to be minified, etc",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Code is divided up into Parts, where each is a non-overlapping set of URIs for segmented\n loading; the Part can support specific attributes, such as whether to be combined into\n one file for the boot loader, whether to be minified, etc</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "name"
+      },
+      {
+        "name": "include"
+      },
+      {
+        "name": "exclude"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 31,
+        "column": 2,
+        "index": 1034
+      },
+      "end": {
+        "line": 38,
+        "column": 3,
+        "index": 1180
+      }
+    }
+  },
+  "properties": {
+    "name": {
+      "location": {
+        "start": {
+          "line": 41,
+          "column": 4,
+          "index": 1203
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1261
+        }
+      },
+      "json": {
+        "nullable": false,
+        "check": "String"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "combine": {
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1268
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1349
+        }
+      },
+      "json": {
+        "init": false,
+        "nullable": false,
+        "check": "Boolean"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "minify": {
+      "location": {
+        "start": {
+          "line": 52,
+          "column": 4,
+          "index": 1356
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1436
+        }
+      },
+      "json": {
+        "init": false,
+        "nullable": false,
+        "check": "Boolean"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "include": {
+      "location": {
+        "start": {
+          "line": 58,
+          "column": 4,
+          "index": 1443
+        },
+        "end": {
+          "line": 61,
+          "column": 5,
+          "index": 1503
+        }
+      },
+      "json": {
+        "nullable": false,
+        "check": "Array"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    },
+    "exclude": {
+      "location": {
+        "start": {
+          "line": 63,
+          "column": 4,
+          "index": 1510
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 1570
+        }
+      },
+      "json": {
+        "nullable": false,
+        "check": "Array"
+      },
+      "jsdoc": null,
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "statics": {}
+}

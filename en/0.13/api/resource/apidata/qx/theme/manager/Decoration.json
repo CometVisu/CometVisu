@@ -1,54 +1,50 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235169914,
+  "lastModifiedIso": "2024-06-01T09:46:09.914Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/manager/Decoration.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 650
+    },
+    "end": {
+      "line": 344,
+      "column": 3,
+      "index": 9194
+    }
+  },
   "className": "qx.theme.manager.Decoration",
-  "packageName": "qx.theme.manager",
-  "name": "Decoration",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Manager for decoration themes",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Manager for decoration themes\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ]
+  },
+  "isSingleton": true,
+  "abstract": false,
   "superClass": "qx.core.Object",
   "interfaces": [
     "qx.core.IDisposable"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 676
-      },
-      "end": {
-        "line": 344,
-        "column": 3,
-        "index": 9537
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Manager for decoration themes\n NOTE: Instances of this class must be disposed of after use</p>"
-        }
-      ]
-    }
-  },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": false,
-  "isSingleton": true,
   "statics": {
     "CSS_CLASSNAME_PREFIX": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 882
-        },
-        "end": {
-          "line": 34,
-          "column": 31,
-          "index": 909
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* The prefix for all created CSS classes"
+        ],
         "@description": [
           {
             "name": "@description",
@@ -56,21 +52,35 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 849
+        },
+        "end": {
+          "line": 34,
+          "column": 31,
+          "index": 876
+        }
+      },
+      "appearsIn": []
     }
   },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 37,
         "column": 2,
-        "index": 921
+        "index": 885
       },
       "end": {
         "line": 43,
         "column": 3,
-        "index": 1121
+        "index": 1079
       }
     }
   },
@@ -80,15 +90,24 @@
         "start": {
           "line": 53,
           "column": 4,
-          "index": 1378
+          "index": 1326
         },
         "end": {
           "line": 58,
           "column": 5,
-          "index": 1496
+          "index": 1439
         }
       },
+      "json": {
+        "check": "Theme",
+        "nullable": true,
+        "apply": "_applyTheme",
+        "event": "changeTheme"
+      },
       "jsdoc": {
+        "raw": [
+          "* Selected decoration theme "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -96,110 +115,70 @@
           }
         ]
       },
-      "name": "theme",
-      "propertyType": "new",
-      "event": "changeTheme",
-      "apply": "_applyTheme",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Theme"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "__dynamic": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 68,
           "column": 4,
-          "index": 1714
+          "index": 1647
         },
         "end": {
           "line": 68,
           "column": 19,
-          "index": 1729
+          "index": 1662
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__rules": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 69,
           "column": 4,
-          "index": 1736
+          "index": 1668
         },
         "end": {
           "line": 69,
           "column": 17,
-          "index": 1749
+          "index": 1681
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__legacyIe": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 70,
           "column": 4,
-          "index": 1756
+          "index": 1687
         },
         "end": {
           "line": 70,
           "column": 21,
-          "index": 1773
+          "index": 1704
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "getCssClassName": {
-      "location": {
-        "start": {
-          "line": 77,
-          "column": 4,
-          "index": 2005
-        },
-        "end": {
-          "line": 84,
-          "column": 5,
-          "index": 2251
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the name which will be / is used as css class name.",
+          "     * @param value {String|qx.ui.decoration.IDecorator} The decorator string or instance.",
+          "     * @return {String} The css class name.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -222,28 +201,49 @@
           {
             "name": "@return",
             "body": "{String} The css class name.",
-            "type": "String",
-            "description": " The css class name."
+            "type": "string",
+            "description": "The css class name."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addCssClass": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 92,
+          "line": 77,
           "column": 4,
-          "index": 2554
+          "index": 1929
         },
         "end": {
-          "line": 147,
+          "line": 84,
           "column": 5,
-          "index": 4294
+          "index": 2168
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "qx.ui.decoration.IDecorator"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "addCssClass": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a css class to the global stylesheet for the given decorator.",
+          "     * This includes resolving the decorator if it's a string.",
+          "     * @param value {String|qx.ui.decoration.IDecorator} The decorator string or instance.",
+          "     * @return {String} the css class name.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -266,28 +266,47 @@
           {
             "name": "@return",
             "body": "{String} the css class name.",
-            "type": "String",
-            "description": " the css class name."
+            "type": "string",
+            "description": "the css class name."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeAllCssClasses": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 153,
+          "line": 92,
           "column": 4,
-          "index": 4429
+          "index": 2463
         },
         "end": {
-          "line": 160,
+          "line": 147,
           "column": 5,
-          "index": 4685
+          "index": 4148
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "String",
+            "qx.ui.decoration.IDecorator"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "removeAllCssClasses": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes all previously by {@link #addCssClass} created CSS rule from",
+          "     * the global stylesheet.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -295,23 +314,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resolve": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 168,
+          "line": 153,
           "column": 4,
-          "index": 4932
+          "index": 4277
         },
         "end": {
-          "line": 222,
+          "line": 160,
           "column": 5,
-          "index": 6334
+          "index": 4526
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "resolve": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the dynamically interpreted result for the incoming value",
+          "     *",
+          "     * @param value {String} dynamically interpreted idenfier",
+          "     * @return {var} return the (translated) result of the incoming value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -324,7 +353,7 @@
             "body": "value {String} dynamically interpreted idenfier",
             "paramName": "value",
             "description": " dynamically interpreted idenfier",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -332,27 +361,46 @@
             "name": "@return",
             "body": "{var} return the (translated) result of the incoming value",
             "type": "var",
-            "description": " return the (translated) result of the incoming value"
+            "description": "return the (translated) result of the incoming value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isValidPropertyValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 231,
+          "line": 168,
           "column": 4,
-          "index": 6625
+          "index": 4765
         },
         "end": {
-          "line": 240,
+          "line": 222,
           "column": 5,
-          "index": 6934
+          "index": 6113
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "isValidPropertyValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given value is valid for being used in a property",
+          "     * with the 'check' configured to 'Decorator'.",
+          "     *",
+          "     * @param value {var} Incoming value",
+          "     * @return {Boolean} Whether the value is valid for being used in a Decorator property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -372,28 +420,46 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the value is valid for being used in a Decorator property",
-            "type": "Boolean",
-            "description": " Whether the value is valid for being used in a Decorator property"
+            "type": "boolean",
+            "description": "Whether the value is valid for being used in a Decorator property"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isDynamic": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 248,
+          "line": 231,
           "column": 4,
-          "index": 7177
+          "index": 6395
         },
         "end": {
-          "line": 259,
+          "line": 240,
           "column": 5,
-          "index": 7390
+          "index": 6695
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isDynamic": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether a value is interpreted dynamically",
+          "     *",
+          "     * @param value {String} dynamically interpreted identifier",
+          "     * @return {Boolean} returns <code>true</code> if the value is interpreted dynamically",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -406,35 +472,54 @@
             "body": "value {String} dynamically interpreted identifier",
             "paramName": "value",
             "description": " dynamically interpreted identifier",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} returns <code>true</code> if the value is interpreted dynamically",
-            "type": "Boolean",
-            "description": " returns <code>true</code> if the value is interpreted dynamically"
+            "type": "boolean",
+            "description": "returns <code>true</code> if the value is interpreted dynamically"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isCached": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 268,
+          "line": 248,
           "column": 4,
-          "index": 7645
+          "index": 6930
         },
         "end": {
-          "line": 272,
+          "line": 259,
           "column": 5,
-          "index": 7783
+          "index": 7132
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isCached": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given decorator is cached",
+          "     *",
+          "     * @param decorator {String|qx.ui.decoration.IDecorator} The decorator to check",
+          "     * @return {Boolean} <code>true</code> if the decorator is cached",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -457,8 +542,8 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the decorator is cached",
-            "type": "Boolean",
-            "description": " <code>true</code> if the decorator is cached"
+            "type": "boolean",
+            "description": "<code>true</code> if the decorator is cached"
           }
         ],
         "@internal": [
@@ -468,43 +553,71 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 268,
+          "column": 4,
+          "index": 7378
+        },
+        "end": {
+          "line": 272,
+          "column": 5,
+          "index": 7512
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "decorator",
+          "type": [
+            "String",
+            "qx.ui.decoration.IDecorator"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     },
     "_applyTheme": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 275,
           "column": 4,
-          "index": 7815
+          "index": 7541
         },
         "end": {
           "line": 295,
           "column": 5,
-          "index": 8306
+          "index": 8012
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "theme"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "clear": {
-      "location": {
-        "start": {
-          "line": 300,
-          "column": 4,
-          "index": 8412
-        },
-        "end": {
-          "line": 316,
-          "column": 5,
-          "index": 8875
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears internal caches and removes all previously created CSS classes.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -512,23 +625,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "refresh": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 322,
+          "line": 300,
           "column": 4,
-          "index": 8995
+          "index": 8113
         },
         "end": {
-          "line": 332,
+          "line": 316,
           "column": 5,
-          "index": 9291
+          "index": 8560
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "refresh": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Refreshes all decorator by clearing internal caches and re applying",
+          "     * aliases.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -536,228 +657,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 322,
+          "column": 4,
+          "index": 8674
+        },
+        "end": {
+          "line": 332,
+          "column": 5,
+          "index": 8960
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getTheme": {
-      "type": "function",
-      "name": "getTheme",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>theme</code>.\n\nFor further details take a look at the property definition: {@link #theme}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Theme",
-            "desc": "Returns the value for theme"
-          }
-        ]
-      }
-    },
-    "setTheme": {
-      "type": "function",
-      "name": "setTheme",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>theme</code>.\n\nFor further details take a look at the property definition: {@link #theme}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Theme",
-            "paramName": "value",
-            "desc": "Value for theme"
-          }
-        ]
-      }
-    },
-    "resetTheme": {
-      "type": "function",
-      "name": "resetTheme",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>theme</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #theme}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 341,
         "column": 2,
-        "index": 9496
+        "index": 9156
       },
       "end": {
         "line": 343,
         "column": 3,
-        "index": 9532
+        "index": 9190
       }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+    }
+  }
 }

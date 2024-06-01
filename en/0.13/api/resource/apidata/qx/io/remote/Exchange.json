@@ -1,53 +1,69 @@
 {
+  "version": 0.3,
+  "lastModified": 1645577566000,
+  "lastModifiedIso": "2022-02-23T00:52:46.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_deprecated_qx_io_remote_v1_0_2/source/class/qx/io/remote/Exchange.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 916
+    },
+    "end": {
+      "line": 1002,
+      "column": 3,
+      "index": 27498
+    }
+  },
   "className": "qx.io.remote.Exchange",
-  "packageName": "qx.io.remote",
-  "name": "Exchange",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Transport layer to control which transport class (XmlHttp, Iframe or Script)",
+      " * can be used.",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " * @use(qx.io.remote.transport.Iframe)",
+      " * @use(qx.io.remote.transport.Script)",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Transport layer to control which transport class (XmlHttp, Iframe or Script)\n can be used.\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ],
+    "@use": [
+      {
+        "name": "@use",
+        "body": "qx.io.remote.transport.Iframe"
+      },
+      {
+        "name": "@use",
+        "body": "qx.io.remote.transport.Script"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "superClass": "qx.core.Object",
   "interfaces": [
     "qx.core.IDisposable"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 34,
-        "column": 0,
-        "index": 916
-      },
-      "end": {
-        "line": 1002,
-        "column": 3,
-        "index": 27498
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Transport layer to control which transport class (XmlHttp, Iframe or Script)\n can be used.\n NOTE: Instances of this class must be disposed of after use</p>"
-        }
-      ],
-      "@use": [
-        {
-          "name": "@use",
-          "body": "qx.io.remote.transport.Iframe"
-        },
-        {
-          "name": "@use",
-          "body": "qx.io.remote.transport.Script"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "vRequest"
+      }
+    ],
     "location": {
       "start": {
         "line": 49,
@@ -59,27 +75,22 @@
         "column": 3,
         "index": 1416
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Constructor method.</p>"
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "vRequest {qx.io.remote.Request} request object",
-          "paramName": "vRequest",
-          "description": " request object",
-          "type": "qx.io.remote.Request"
-        }
-      ]
     }
   },
   "events": {
     "sending": {
+      "type": "qx.event.type.Event",
+      "jsdoc": {
+        "raw": [
+          "* Fired whenever a request is send "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired whenever a request is send</p>"
+          }
+        ]
+      },
       "location": {
         "start": {
           "line": 64,
@@ -91,19 +102,21 @@
           "column": 34,
           "index": 1692
         }
-      },
+      }
+    },
+    "receiving": {
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "* Fired whenever a request is received "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired whenever a request is send</p>"
+            "body": "<p>Fired whenever a request is received</p>"
           }
         ]
       },
-      "name": "sending",
-      "type": "qx.event.type.Event"
-    },
-    "receiving": {
       "location": {
         "start": {
           "line": 67,
@@ -115,19 +128,21 @@
           "column": 36,
           "index": 1779
         }
-      },
+      }
+    },
+    "completed": {
+      "type": "qx.io.remote.Response",
       "jsdoc": {
+        "raw": [
+          "* Fired whenever a request is completed "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired whenever a request is received</p>"
+            "body": "<p>Fired whenever a request is completed</p>"
           }
         ]
       },
-      "name": "receiving",
-      "type": "qx.event.type.Event"
-    },
-    "completed": {
       "location": {
         "start": {
           "line": 70,
@@ -139,19 +154,21 @@
           "column": 38,
           "index": 1869
         }
-      },
+      }
+    },
+    "aborted": {
+      "type": "qx.event.type.Event",
       "jsdoc": {
+        "raw": [
+          "* Fired whenever a request is aborted "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired whenever a request is completed</p>"
+            "body": "<p>Fired whenever a request is aborted</p>"
           }
         ]
       },
-      "name": "completed",
-      "type": "qx.io.remote.Response"
-    },
-    "aborted": {
       "location": {
         "start": {
           "line": 73,
@@ -163,19 +180,21 @@
           "column": 34,
           "index": 1953
         }
-      },
+      }
+    },
+    "failed": {
+      "type": "qx.io.remote.Response",
       "jsdoc": {
+        "raw": [
+          "* Fired whenever a request has failed "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired whenever a request is aborted</p>"
+            "body": "<p>Fired whenever a request has failed</p>"
           }
         ]
       },
-      "name": "aborted",
-      "type": "qx.event.type.Event"
-    },
-    "failed": {
       "location": {
         "start": {
           "line": 76,
@@ -187,19 +206,21 @@
           "column": 35,
           "index": 2038
         }
-      },
+      }
+    },
+    "timeout": {
+      "type": "qx.io.remote.Response",
       "jsdoc": {
+        "raw": [
+          "* Fired whenever a request has timed out "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Fired whenever a request has failed</p>"
+            "body": "<p>Fired whenever a request has timed out</p>"
           }
         ]
       },
-      "name": "failed",
-      "type": "qx.io.remote.Response"
-    },
-    "timeout": {
       "location": {
         "start": {
           "line": 79,
@@ -211,34 +232,19 @@
           "column": 36,
           "index": 2127
         }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Fired whenever a request has timed out</p>"
-          }
-        ]
-      },
-      "name": "timeout",
-      "type": "qx.io.remote.Response"
+      }
     }
   },
   "statics": {
     "typesOrder": {
-      "location": {
-        "start": {
-          "line": 104,
-          "column": 4,
-          "index": 2818
-        },
-        "end": {
-          "line": 108,
-          "column": 5,
-          "index": 2955
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Predefined order of types.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -252,23 +258,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "typesReady": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 115,
+          "line": 104,
           "column": 4,
-          "index": 3039
+          "index": 2818
         },
         "end": {
-          "line": 115,
-          "column": 21,
-          "index": 3056
+          "line": 108,
+          "column": 5,
+          "index": 2955
         }
       },
+      "appearsIn": []
+    },
+    "typesReady": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Marker for initialized types.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -282,23 +295,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "typesAvailable": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 122,
+          "line": 115,
           "column": 4,
-          "index": 3138
+          "index": 3039
         },
         "end": {
-          "line": 122,
-          "column": 22,
-          "index": 3156
+          "line": 115,
+          "column": 21,
+          "index": 3056
         }
       },
+      "appearsIn": []
+    },
+    "typesAvailable": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Map of all available types.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -312,23 +332,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "typesSupported": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 129,
+          "line": 122,
           "column": 4,
-          "index": 3238
+          "index": 3138
         },
         "end": {
-          "line": 129,
+          "line": 122,
           "column": 22,
-          "index": 3256
+          "index": 3156
         }
       },
+      "appearsIn": []
+    },
+    "typesSupported": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Map of all supported types.",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -342,23 +369,32 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "registerType": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 138,
+          "line": 129,
           "column": 4,
-          "index": 3463
+          "index": 3238
         },
         "end": {
-          "line": 140,
-          "column": 5,
-          "index": 3554
+          "line": 129,
+          "column": 22,
+          "index": 3256
         }
       },
+      "appearsIn": []
+    },
+    "registerType": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers a transport type.",
+          "     * At the moment one out of XmlHttp, Iframe or Script.",
+          "     *",
+          "     * @param vClass {Object} transport class",
+          "     * @param vId {String} unique id",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -371,34 +407,53 @@
             "body": "vClass {Object} transport class",
             "paramName": "vClass",
             "description": " transport class",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "vId {String} unique id",
             "paramName": "vId",
             "description": " unique id",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "initTypes": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 148,
+          "line": 138,
           "column": 4,
-          "index": 3761
+          "index": 3463
         },
         "end": {
-          "line": 166,
+          "line": 140,
           "column": 5,
-          "index": 4324
+          "index": 3554
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "vClass",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "vId",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "initTypes": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes the available type of transport classes and",
+          "     * checks for the supported ones.",
+          "     *",
+          "     * @throws {Error} an error if no supported transport type is available",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -414,23 +469,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "canHandle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 178,
+          "line": 148,
           "column": 4,
-          "index": 4762
+          "index": 3761
         },
         "end": {
-          "line": 190,
+          "line": 166,
           "column": 5,
-          "index": 5037
+          "index": 4324
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "canHandle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks which supported transport class can handle the request with the",
+          "     * given content type.",
+          "     *",
+          "     * @param vImpl {Object} transport implementation",
+          "     * @param vNeeds {Map} requirements for the request like e.g. \"cross-domain\"",
+          "     * @param vResponseType {String} content type",
+          "     * @return {Boolean} <code>true</code> if the transport implementation supports",
+          "     * the request's requirements",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -443,49 +512,89 @@
             "body": "vImpl {Object} transport implementation",
             "paramName": "vImpl",
             "description": " transport implementation",
-            "type": "Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "vNeeds {Map} requirements for the request like e.g. \"cross-domain\"",
             "paramName": "vNeeds",
             "description": " requirements for the request like e.g. \"cross-domain\"",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "vResponseType {String} content type",
             "paramName": "vResponseType",
             "description": " content type",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the transport implementation supports\n the request's requirements",
-            "type": "Boolean",
-            "description": " <code>true</code> if the transport implementation supports\n the request's requirements"
+            "type": "boolean",
+            "description": "<code>true</code> if the transport implementation supports\n the request's requirements"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_nativeMap": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 218,
+          "line": 178,
           "column": 4,
-          "index": 6041
+          "index": 4762
         },
         "end": {
-          "line": 224,
+          "line": 190,
           "column": 5,
-          "index": 6167
+          "index": 5037
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "vImpl",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "vNeeds",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "vResponseType",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_nativeMap": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * http://msdn.microsoft.com/en-us/library/ie/ms534359%28v=vs.85%29.aspx",
+          "     *",
+          "     * 0: UNINITIALIZED",
+          "     * The object has been created, but not initialized (the open method has not been called).",
+          "     *",
+          "     * 1: LOADING",
+          "     * The object has been created, but the send method has not been called.",
+          "     *",
+          "     * 2: LOADED",
+          "     * The send method has been called, but the status and headers are not yet available.",
+          "     *",
+          "     * 3: INTERACTIVE",
+          "     * Some data has been received. Calling the responseBody and responseText properties at this state to obtain partial results will return an error, because status and response headers are not fully available.",
+          "     *",
+          "     * 4: COMPLETED",
+          "     * All the data has been received, and the complete data is available in the",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -499,23 +608,33 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "wasSuccessful": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 240,
+          "line": 218,
           "column": 4,
-          "index": 6727
+          "index": 6041
         },
         "end": {
-          "line": 376,
+          "line": 224,
           "column": 5,
-          "index": 11220
+          "index": 6167
         }
       },
+      "appearsIn": []
+    },
+    "wasSuccessful": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called from the transport class when a request was completed.",
+          "     *",
+          "     * @param vStatusCode {Integer} status code of the request",
+          "     * @param vReadyState {String} readystate of the request",
+          "     * @param vIsLocal {Boolean} whether the request is a local one",
+          "     * @return {Boolean | var} Returns boolean value depending on the status code",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -535,14 +654,14 @@
             "body": "vReadyState {String} readystate of the request",
             "paramName": "vReadyState",
             "description": " readystate of the request",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "vIsLocal {Boolean} whether the request is a local one",
             "paramName": "vIsLocal",
             "description": " whether the request is a local one",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ],
         "@return": [
@@ -550,27 +669,53 @@
             "name": "@return",
             "body": "{Boolean | var} Returns boolean value depending on the status code",
             "type": "Boolean | var",
-            "description": " Returns boolean value depending on the status code"
+            "description": "Returns boolean value depending on the status code"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "statusCodeToString": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 384,
+          "line": 240,
           "column": 4,
-          "index": 11405
+          "index": 6727
         },
         "end": {
-          "line": 522,
+          "line": 376,
           "column": 5,
-          "index": 14307
+          "index": 11220
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "vStatusCode",
+          "type": "Integer"
+        },
+        {
+          "name": "vReadyState",
+          "type": "string"
+        },
+        {
+          "name": "vIsLocal",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "Boolean | var"
+      },
+      "appearsIn": []
+    },
+    "statusCodeToString": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Status code to string conversion",
+          "     *",
+          "     * @param vStatusCode {Integer} request status code",
+          "     * @return {String} String presentation of status code",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -590,13 +735,35 @@
           {
             "name": "@return",
             "body": "{String} String presentation of status code",
-            "type": "String",
-            "description": " String presentation of status code"
+            "type": "string",
+            "description": "String presentation of status code"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 384,
+          "column": 4,
+          "index": 11405
+        },
+        "end": {
+          "line": 522,
+          "column": 5,
+          "index": 14307
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "vStatusCode",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     }
   },
   "properties": {
@@ -613,7 +780,14 @@
           "index": 14653
         }
       },
+      "json": {
+        "check": "qx.io.remote.Request",
+        "nullable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Set the request to send with this transport. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -621,11 +795,7 @@
           }
         ]
       },
-      "name": "request",
-      "propertyType": "new",
-      "nullable": true,
-      "allowNull": true,
-      "check": "qx.io.remote.Request"
+      "appearsIn": []
     },
     "implementation": {
       "location": {
@@ -640,7 +810,20 @@
           "index": 15020
         }
       },
+      "json": {
+        "check": "qx.io.remote.transport.Abstract",
+        "nullable": true,
+        "apply": "_applyImplementation"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the implementation to use to send the request with.",
+          "     *",
+          "     *  The implementation should be a subclass of qx.io.remote.transport.Abstract and",
+          "     *  must implement all methods in the transport API.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -648,12 +831,7 @@
           }
         ]
       },
-      "name": "implementation",
-      "propertyType": "new",
-      "apply": "_applyImplementation",
-      "nullable": true,
-      "allowNull": true,
-      "check": "qx.io.remote.transport.Abstract"
+      "appearsIn": []
     },
     "state": {
       "location": {
@@ -668,7 +846,24 @@
           "index": 15335
         }
       },
+      "json": {
+        "check": [
+          "configured",
+          "sending",
+          "receiving",
+          "completed",
+          "aborted",
+          "timeout",
+          "failed"
+        ],
+        "init": "configured",
+        "event": "changeState",
+        "apply": "_applyState"
+      },
       "jsdoc": {
+        "raw": [
+          "* Current state of the transport layer. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -676,57 +871,42 @@
           }
         ]
       },
-      "name": "state",
-      "propertyType": "new",
-      "event": "changeState",
-      "apply": "_applyState",
-      "init": "configured",
-      "possibleValues": [
-        "configured",
-        "sending",
-        "receiving",
-        "completed",
-        "aborted",
-        "timeout",
-        "failed"
-      ],
-      "defaultValue": "configured"
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "send": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sends the request.",
+          "     *",
+          "     * @return {var | Boolean} Returns true if the request was sent.",
+          "     * @lint ignoreUnused(field)",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sends the request.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{var | Boolean} Returns true if the request was sent.",
+            "type": "var | Boolean",
+            "description": "Returns true if the request was sent."
+          }
+        ],
+        "@lint": [
+          {
+            "name": "@lint",
+            "body": "ignoreUnused(field)"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 586,
@@ -739,32 +919,30 @@
           "index": 18140
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var | Boolean"
+      },
+      "appearsIn": []
+    },
+    "abort": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Force the transport into the aborted (\"aborted\")",
+          "     *  state.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Sends the request.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{var | Boolean} Returns true if the request was sent.",
-            "type": "var | Boolean",
-            "description": " Returns true if the request was sent."
-          }
-        ],
-        "@lint": [
-          {
-            "name": "@lint",
-            "body": "ignoreUnused(field)"
+            "body": "<p>Force the transport into the aborted (\"aborted\")\n  state.</p>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "abort": {
+      "access": "public",
       "location": {
         "start": {
           "line": 676,
@@ -777,18 +955,26 @@
           "index": 18847
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "timeout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Force the transport into the timeout state.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Force the transport into the aborted (\"aborted\")\n  state.</p>"
+            "body": "<p>Force the transport into the timeout state.</p>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "timeout": {
+      "access": "public",
       "location": {
         "start": {
           "line": 702,
@@ -801,18 +987,27 @@
           "index": 19708
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__disableRequestTimeout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Disables the timer of the request to prevent that the timer is expiring",
+          "     * even if the user handler (e.g. \"completed\") was already called.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Force the transport into the timeout state.</p>"
+            "body": "<p>Disables the timer of the request to prevent that the timer is expiring\n even if the user handler (e.g. \"completed\") was already called.</p>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__disableRequestTimeout": {
+      "access": "private",
       "location": {
         "start": {
           "line": 741,
@@ -825,31 +1020,19 @@
           "index": 20213
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Disables the timer of the request to prevent that the timer is expiring\n even if the user handler (e.g. \"completed\") was already called.</p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "_onsending": {
-      "location": {
-        "start": {
-          "line": 759,
-          "column": 4,
-          "index": 20532
-        },
-        "end": {
-          "line": 761,
-          "column": 5,
-          "index": 20585
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for \"sending\" event.",
+          "     *",
+          "     * @param e {qx.event.type.Event} event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -866,23 +1049,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onreceiving": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 768,
+          "line": 759,
           "column": 4,
-          "index": 20711
+          "index": 20532
         },
         "end": {
-          "line": 770,
+          "line": 761,
           "column": 5,
-          "index": 20768
+          "index": 20585
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onreceiving": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for \"receiving\" event.",
+          "     *",
+          "     * @param e {qx.event.type.Event} event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -899,23 +1096,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_oncompleted": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 777,
+          "line": 768,
           "column": 4,
-          "index": 20894
+          "index": 20711
         },
         "end": {
-          "line": 779,
+          "line": 770,
           "column": 5,
-          "index": 20951
+          "index": 20768
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_oncompleted": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for \"completed\" event.",
+          "     *",
+          "     * @param e {qx.event.type.Event} event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -932,23 +1143,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onabort": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 786,
+          "line": 777,
           "column": 4,
-          "index": 21073
+          "index": 20894
         },
         "end": {
-          "line": 788,
+          "line": 779,
           "column": 5,
-          "index": 21124
+          "index": 20951
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onabort": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for \"abort\" event.",
+          "     *",
+          "     * @param e {qx.event.type.Event} event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -965,23 +1190,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onfailed": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 795,
+          "line": 786,
           "column": 4,
-          "index": 21247
+          "index": 21073
         },
         "end": {
-          "line": 797,
+          "line": 788,
           "column": 5,
-          "index": 21298
+          "index": 21124
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onfailed": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for \"failed\" event.",
+          "     *",
+          "     * @param e {qx.event.type.Event} event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -998,23 +1237,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_ontimeout": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 804,
+          "line": 795,
           "column": 4,
-          "index": 21422
+          "index": 21247
         },
         "end": {
-          "line": 806,
+          "line": 797,
           "column": 5,
-          "index": 21475
+          "index": 21298
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_ontimeout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Event listener for \"timeout\" event.",
+          "     *",
+          "     * @param e {qx.event.type.Event} event object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1031,23 +1284,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_applyImplementation": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 820,
+          "line": 804,
           "column": 4,
-          "index": 21833
+          "index": 21422
         },
         "end": {
-          "line": 889,
+          "line": 806,
           "column": 5,
-          "index": 24406
+          "index": 21475
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "qx.event.type.Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyImplementation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply method for the implementation property.",
+          "     *",
+          "     * @param value {var} Current value",
+          "     * @param old {var} Previous value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1071,26 +1339,42 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
-      "applyFor": [
-        "implementation"
-      ]
-    },
-    "_applyState": {
       "location": {
         "start": {
-          "line": 897,
+          "line": 820,
           "column": 4,
-          "index": 24559
+          "index": 21833
         },
         "end": {
-          "line": 972,
+          "line": 889,
           "column": 5,
-          "index": 26836
+          "index": 24406
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "old",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_applyState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply method for the state property.",
+          "     *",
+          "     * @param value {var} Current value",
+          "     * @param old {var} Previous value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1114,350 +1398,36 @@
           }
         ]
       },
-      "type": "function",
       "access": "protected",
-      "applyFor": [
-        "state"
-      ]
-    },
-    "getQxOwner": {
+      "location": {
+        "start": {
+          "line": 897,
+          "column": 4,
+          "index": 24559
+        },
+        "end": {
+          "line": 972,
+          "column": 5,
+          "index": 26836
+        }
+      },
       "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getRequest": {
-      "type": "function",
-      "name": "getRequest",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>request</code>.\n\nFor further details take a look at the property definition: {@link #request}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.io.remote.Request",
-            "desc": "Returns the value for request"
-          }
-        ]
-      }
-    },
-    "setRequest": {
-      "type": "function",
-      "name": "setRequest",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>request</code>.\n\nFor further details take a look at the property definition: {@link #request}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.io.remote.Request",
-            "paramName": "value",
-            "desc": "Value for request"
-          }
-        ]
-      }
-    },
-    "resetRequest": {
-      "type": "function",
-      "name": "resetRequest",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>request</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #request}."
-          }
-        ]
-      }
-    },
-    "getImplementation": {
-      "type": "function",
-      "name": "getImplementation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>implementation</code>.\n\nFor further details take a look at the property definition: {@link #implementation}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.io.remote.transport.Abstract",
-            "desc": "Returns the value for implementation"
-          }
-        ]
-      }
-    },
-    "setImplementation": {
-      "type": "function",
-      "name": "setImplementation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>implementation</code>.\n\nFor further details take a look at the property definition: {@link #implementation}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.io.remote.transport.Abstract",
-            "paramName": "value",
-            "desc": "Value for implementation"
-          }
-        ]
-      }
-    },
-    "resetImplementation": {
-      "type": "function",
-      "name": "resetImplementation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>implementation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #implementation}."
-          }
-        ]
-      }
-    },
-    "getState": {
-      "type": "function",
-      "name": "getState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>state</code>.\n\nFor further details take a look at the property definition: {@link #state}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for state"
-          }
-        ]
-      }
-    },
-    "setState": {
-      "type": "function",
-      "name": "setState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>state</code>.\n\nFor further details take a look at the property definition: {@link #state}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for state"
-          }
-        ]
-      }
-    },
-    "resetState": {
-      "type": "function",
-      "name": "resetState",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>state</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #state}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        },
+        {
+          "name": "old",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 992,
@@ -1469,8 +1439,6 @@
         "column": 3,
         "index": 27493
       }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+    }
+  }
 }

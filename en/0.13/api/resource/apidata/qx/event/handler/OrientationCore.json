@@ -1,169 +1,158 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235171934,
+  "lastModifiedIso": "2024-06-01T09:46:11.934Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/event/handler/OrientationCore.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 41,
+      "column": 0,
+      "index": 993
+    },
+    "end": {
+      "line": 154,
+      "column": 3,
+      "index": 4154
+    }
+  },
   "className": "qx.event.handler.OrientationCore",
-  "packageName": "qx.event.handler",
-  "name": "OrientationCore",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Listens for native orientation change events",
+      " *",
+      " * NOTE: Instances of this class must be disposed of after use",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Listens for native orientation change events\n NOTE: Instances of this class must be disposed of after use</p>"
+      }
+    ]
+  },
   "superClass": "Object",
   "interfaces": [
     "qx.core.IDisposable"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 41,
-        "column": 0,
-        "index": 1033
-      },
-      "end": {
-        "line": 148,
-        "column": 3,
-        "index": 4157
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Listens for native orientation change events\n NOTE: Instances of this class must be disposed of after use</p>"
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "targetWindow"
+      },
+      {
+        "name": "emitter"
+      }
+    ],
     "location": {
       "start": {
         "line": 50,
         "column": 2,
-        "index": 1286
+        "index": 1237
       },
       "end": {
         "line": 54,
         "column": 3,
-        "index": 1427
+        "index": 1374
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "targetWindow {Window} DOM window object",
-          "paramName": "targetWindow",
-          "description": " DOM window object",
-          "type": "qx.event.handler.Window"
-        },
-        {
-          "name": "@param",
-          "body": "emitter {qx.event.Emitter} Event emitter object",
-          "paramName": "emitter",
-          "description": " Event emitter object",
-          "type": "qx.event.Emitter"
-        }
-      ]
     }
   },
   "members": {
     "__emitter": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 57,
           "column": 4,
-          "index": 1450
+          "index": 1394
         },
         "end": {
           "line": 57,
           "column": 19,
-          "index": 1465
+          "index": 1409
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_window": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 58,
           "column": 4,
-          "index": 1472
+          "index": 1415
         },
         "end": {
           "line": 58,
           "column": 17,
-          "index": 1485
+          "index": 1428
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_currentOrientation": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 59,
           "column": 4,
-          "index": 1492
+          "index": 1434
         },
         "end": {
           "line": 59,
           "column": 29,
+          "index": 1459
+        }
+      },
+      "appearsIn": []
+    },
+    "__onNativeWrapper": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 60,
+          "column": 4,
+          "index": 1465
+        },
+        "end": {
+          "line": 60,
+          "column": 27,
+          "index": 1488
+        }
+      },
+      "appearsIn": []
+    },
+    "__nativeEventType": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1494
+        },
+        "end": {
+          "line": 61,
+          "column": 27,
           "index": 1517
         }
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "__onNativeWrapper": {
-      "location": {
-        "start": {
-          "line": 60,
-          "column": 4,
-          "index": 1524
-        },
-        "end": {
-          "line": 60,
-          "column": 27,
-          "index": 1547
-        }
-      },
-      "type": "variable",
-      "access": "private"
-    },
-    "__nativeEventType": {
-      "location": {
-        "start": {
-          "line": 61,
-          "column": 4,
-          "index": 1554
-        },
-        "end": {
-          "line": 61,
-          "column": 27,
-          "index": 1577
-        }
-      },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_initObserver": {
-      "location": {
-        "start": {
-          "line": 72,
-          "column": 4,
-          "index": 1872
-        },
-        "end": {
-          "line": 90,
-          "column": 5,
-          "index": 2527
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Initializes the native orientation change event listeners.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -171,23 +160,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_stopObserver": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 101,
+          "line": 72,
           "column": 4,
-          "index": 2822
+          "index": 1801
         },
         "end": {
-          "line": 107,
+          "line": 90,
           "column": 5,
-          "index": 2986
+          "index": 2438
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_stopObserver": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Disconnects the native orientation change event listeners.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -195,23 +191,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onNative": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 121,
+          "line": 101,
           "column": 4,
-          "index": 3392
+          "index": 2722
         },
         "end": {
-          "line": 135,
+          "line": 107,
           "column": 5,
-          "index": 3858
+          "index": 2880
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onNative": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the native orientation change event.",
+          "     *",
+          "     * @signature function(domEvent)",
+          "     * @param domEvent {Event} The touch event from the browser.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -234,42 +240,78 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3272
+        },
+        "end": {
+          "line": 135,
+          "column": 5,
+          "index": 3724
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "domEvent",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
     },
     "dispose": {
-      "type": "function",
-      "name": "dispose",
-      "abstract": true,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.IDisposable",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * no-op implementation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Dispose this object</p>"
+            "body": "<p>no-op implementation.</p>"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 141,
+          "column": 4,
+          "index": 3856
+        },
+        "end": {
+          "line": 141,
+          "column": 16,
+          "index": 3868
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "qx.core.IDisposable"
+      ]
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
-        "line": 144,
+        "line": 150,
         "column": 2,
-        "index": 4063
+        "index": 4064
       },
       "end": {
-        "line": 147,
+        "line": 153,
         "column": 3,
-        "index": 4152
+        "index": 4150
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "abstract": true,
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

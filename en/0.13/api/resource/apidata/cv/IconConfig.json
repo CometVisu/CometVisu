@@ -1,52 +1,47 @@
 {
-  "className": "cv.IconConfig",
-  "packageName": "cv",
-  "name": "IconConfig",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 870
-      },
-      "end": {
-        "line": 1067,
-        "column": 3,
-        "index": 247282
-      }
+  "version": 0.3,
+  "lastModified": 1717235105594,
+  "lastModifiedIso": "2024-06-01T09:45:05.594Z",
+  "classFilename": "../../source/class/cv/IconConfig.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 870
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Static access to internal icon database.</p>"
-        }
-      ]
+    "end": {
+      "line": 1067,
+      "column": 3,
+      "index": 247282
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.IconConfig",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Static access to internal icon database.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Static access to internal icon database.</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "DB": {
-      "location": {
-        "start": {
-          "line": 40,
-          "column": 4,
-          "index": 1210
-        },
-        "end": {
-          "line": 1065,
-          "column": 5,
-          "index": 247274
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal database of the known icons.",
+          "     * Initially filled with the default icons.",
+          "     * @type {iconDB}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,9 +55,22 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 40,
+          "column": 4,
+          "index": 1210
+        },
+        "end": {
+          "line": 1065,
+          "column": 5,
+          "index": 247274
+        }
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

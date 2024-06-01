@@ -1,0 +1,40 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "version",
+    "Class",
+    "define",
+    "extend",
+    "tool",
+    "config",
+    "Abstract",
+    "type",
+    "statics",
+    "fileName",
+    "cli",
+    "commands",
+    "Package",
+    "lockfile",
+    "filename",
+    "validate",
+    "createIfNotExists",
+    "templateFunction",
+    "libraries",
+    "construct",
+    "constructor",
+    "call",
+    "Lockfile"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/tool/config/Lockfile.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2019 The qooxdoo developers\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Christian Boulanger (info@bibliograph.org, @cboulanger)\n\n************************************************************************ */\n\n/**\n * A model for the lockfile, which has a version, but no \"official\" schema (yet)\n */\nconst version = \"2.1.0\";\nqx.Class.define(\"qx.tool.config.Lockfile\", {\n  extend: qx.tool.config.Abstract,\n  type: \"singleton\",\n  statics: {\n    config: {\n      fileName: qx.tool.cli.commands.Package.lockfile.filename,\n      version,\n      validate: false,\n      createIfNotExists: true,\n      templateFunction: () => ({\n        libraries: [],\n        version\n      })\n    }\n  },\n\n  construct() {\n    super(this.self(arguments).config);\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;EACA,IAAMC,OAAO,GAAG,OAAO;EACvBJ,EAAE,CAACK,KAAK,CAACC,MAAM,CAAC,yBAAyB,EAAE;IACzCC,MAAM,EAAEP,EAAE,CAACQ,IAAI,CAACC,MAAM,CAACC,QAAQ;IAC/BC,IAAI,EAAE,WAAW;IACjBC,OAAO,EAAE;MACPH,MAAM,EAAE;QACNI,QAAQ,EAAEb,EAAE,CAACQ,IAAI,CAACM,GAAG,CAACC,QAAQ,CAACC,OAAO,CAACC,QAAQ,CAACC,QAAQ;QACxDd,OAAO,EAAPA,OAAO;QACPe,QAAQ,EAAE,KAAK;QACfC,iBAAiB,EAAE,IAAI;QACvBC,gBAAgB,EAAE,SAAAA,iBAAA;UAAA,OAAO;YACvBC,SAAS,EAAE,EAAE;YACblB,OAAO,EAAPA;UACF,CAAC;QAAA;MACH;IACF,CAAC;IAEDmB,SAAS,WAAAA,UAAA,EAAG;MACVvB,EAAA,CAAAQ,IAAA,CAAAC,MAAA,CAAAC,QAAA,CAAAc,WAAA,CAAAC,IAAA,OAAMzB,EAAA,CAAAQ,IAAA,CAAAC,MAAA,CAAAiB,QAAA,CAAqBjB,MAAM;IACnC;EACF,CAAC,CAAC;EAzCFT,EAAE,CAACQ,IAAI,CAACC,MAAM,CAACiB,QAAQ,CAACvB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

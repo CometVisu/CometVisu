@@ -1,61 +1,60 @@
 {
-  "className": "qx.module.event.Touch",
-  "packageName": "qx.module.event",
-  "name": "Touch",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 794
-      },
-      "end": {
-        "line": 56,
-        "column": 3,
-        "index": 1583
-      }
+  "version": 0.3,
+  "lastModified": 1717235172574,
+  "lastModifiedIso": "2024-06-01T09:46:12.574Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/Touch.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 768
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Normalization for touch events. For cross-device applications that\n support both mouse and touchscreen interaction, consider using\n <a href=\"#Pointer\">Pointer</a> and/or Gesture events (e.g. <a href=\"Tap\"></a>).</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Event_Normalization"
-        }
-      ]
+    "end": {
+      "line": 56,
+      "column": 3,
+      "index": 1528
     }
   },
-  "type": "class",
+  "className": "qx.module.event.Touch",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Normalization for touch events. For cross-device applications that",
+      " * support both mouse and touchscreen interaction, consider using",
+      " * <a href=\"#Pointer\">Pointer</a> and/or Gesture events (e.g. <a href=\"Tap\"></a>).",
+      " * @require(qx.module.Event)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Normalization for touch events. For cross-device applications that\n support both mouse and touchscreen interaction, consider using\n <a href=\"#Pointer\">Pointer</a> and/or Gesture events (e.g. <a href=\"Tap\"></a>).</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
   "statics": {
     "TYPES": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 923
-        },
-        "end": {
-          "line": 32,
-          "column": 48,
-          "index": 967
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of event types to be normalized",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,23 +62,35 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "normalize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 44,
+          "line": 32,
           "column": 4,
-          "index": 1330
+          "index": 892
         },
         "end": {
-          "line": 50,
-          "column": 5,
-          "index": 1471
+          "line": 32,
+          "column": 48,
+          "index": 936
         }
       },
+      "appearsIn": []
+    },
+    "normalize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the native event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element the listener was attached to",
+          "     * @param type {String} Event type",
+          "     * @return {Event} Normalized event object",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -106,7 +117,7 @@
             "body": "type {String} Event type",
             "paramName": "type",
             "description": " Event type",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -114,7 +125,7 @@
             "name": "@return",
             "body": "{Event} Normalized event object",
             "type": "Event",
-            "description": " Normalized event object"
+            "description": "Normalized event object"
           }
         ],
         "@internal": [
@@ -124,23 +135,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 53,
-        "column": 2,
-        "index": 1483
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 44,
+          "column": 4,
+          "index": 1287
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1422
+        }
       },
-      "end": {
-        "line": 55,
-        "column": 3,
-        "index": 1578
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

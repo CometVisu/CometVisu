@@ -1,55 +1,58 @@
 {
-  "className": "qx.bom.client.Html",
-  "packageName": "qx.bom.client",
-  "name": "Html",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 769
-      },
-      "end": {
-        "line": 537,
-        "column": 3,
-        "index": 15884
-      }
+  "version": 0.3,
+  "lastModified": 1717235171134,
+  "lastModifiedIso": "2024-06-01T09:46:11.134Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/Html.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 743
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Internal class which contains the checks used by {@link qx.core.Environment}.\n All checks in here are marked as internal which means you should never use\n them directly.\n This class should contain all checks about HTML.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 537,
+      "column": 3,
+      "index": 15348
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.Html",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Internal class which contains the checks used by {@link qx.core.Environment}.",
+      " * All checks in here are marked as internal which means you should never use",
+      " * them directly.",
+      " *",
+      " * This class should contain all checks about HTML.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Internal class which contains the checks used by {@link qx.core.Environment}.\n All checks in here are marked as internal which means you should never use\n them directly.\n This class should contain all checks about HTML.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "statics": {
     "getWebWorker": {
-      "location": {
-        "start": {
-          "line": 35,
-          "column": 4,
-          "index": 997
-        },
-        "end": {
-          "line": 37,
-          "column": 5,
-          "index": 1057
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports Web Workers.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if webworkers are supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -66,28 +69,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if webworkers are supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if webworkers are supported"
+            "type": "boolean",
+            "description": "<code>true</code> if webworkers are supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getFileReader": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 45,
+          "line": 35,
           "column": 4,
-          "index": 1232
+          "index": 963
         },
         "end": {
-          "line": 47,
+          "line": 37,
           "column": 5,
-          "index": 1297
+          "index": 1021
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getFileReader": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports File Readers",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if FileReaders are supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -104,28 +120,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if FileReaders are supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if FileReaders are supported"
+            "type": "boolean",
+            "description": "<code>true</code> if FileReaders are supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getGeoLocation": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 55,
+          "line": 45,
           "column": 4,
-          "index": 1469
+          "index": 1188
         },
         "end": {
-          "line": 57,
+          "line": 47,
           "column": 5,
-          "index": 1536
+          "index": 1251
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getGeoLocation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports Geo Location.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if geolocation supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -142,28 +171,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if geolocation supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if geolocation supported"
+            "type": "boolean",
+            "description": "<code>true</code> if geolocation supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAudio": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 65,
+          "line": 55,
           "column": 4,
-          "index": 1698
+          "index": 1415
         },
         "end": {
-          "line": 67,
+          "line": 57,
           "column": 5,
-          "index": 1778
+          "index": 1480
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getAudio": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports audio.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if audio is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -180,28 +222,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if audio is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if audio is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if audio is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAudioOgg": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 75,
+          "line": 65,
           "column": 4,
-          "index": 1938
+          "index": 1634
         },
         "end": {
-          "line": 81,
+          "line": 67,
           "column": 5,
-          "index": 2124
+          "index": 1712
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getAudioOgg": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client can play ogg audio format.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} \"\" or \"maybe\" or \"probably\"",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -218,28 +273,41 @@
           {
             "name": "@return",
             "body": "{String} \"\" or \"maybe\" or \"probably\"",
-            "type": "String",
-            "description": " \"\" or \"maybe\" or \"probably\""
+            "type": "string",
+            "description": "\"\" or \"maybe\" or \"probably\""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAudioMp3": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 89,
+          "line": 75,
           "column": 4,
-          "index": 2284
+          "index": 1864
         },
         "end": {
-          "line": 95,
+          "line": 81,
           "column": 5,
-          "index": 2471
+          "index": 2044
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAudioMp3": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client can play mp3 audio format.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} \"\" or \"maybe\" or \"probably\"",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -256,28 +324,41 @@
           {
             "name": "@return",
             "body": "{String} \"\" or \"maybe\" or \"probably\"",
-            "type": "String",
-            "description": " \"\" or \"maybe\" or \"probably\""
+            "type": "string",
+            "description": "\"\" or \"maybe\" or \"probably\""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAudioWav": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 103,
+          "line": 89,
           "column": 4,
-          "index": 2637
+          "index": 2196
         },
         "end": {
-          "line": 109,
+          "line": 95,
           "column": 5,
-          "index": 2825
+          "index": 2377
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAudioWav": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client can play wave audio wave format.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} \"\" or \"maybe\" or \"probably\"",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -294,28 +375,41 @@
           {
             "name": "@return",
             "body": "{String} \"\" or \"maybe\" or \"probably\"",
-            "type": "String",
-            "description": " \"\" or \"maybe\" or \"probably\""
+            "type": "string",
+            "description": "\"\" or \"maybe\" or \"probably\""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAudioAu": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 117,
+          "line": 103,
           "column": 4,
-          "index": 2984
+          "index": 2535
         },
         "end": {
-          "line": 123,
+          "line": 109,
           "column": 5,
-          "index": 3171
+          "index": 2717
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAudioAu": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client can play au audio format.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} \"\" or \"maybe\" or \"probably\"",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -332,28 +426,41 @@
           {
             "name": "@return",
             "body": "{String} \"\" or \"maybe\" or \"probably\"",
-            "type": "String",
-            "description": " \"\" or \"maybe\" or \"probably\""
+            "type": "string",
+            "description": "\"\" or \"maybe\" or \"probably\""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAudioAif": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 131,
+          "line": 117,
           "column": 4,
-          "index": 3331
+          "index": 2868
         },
         "end": {
-          "line": 137,
+          "line": 123,
           "column": 5,
-          "index": 3520
+          "index": 3049
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAudioAif": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client can play aif audio format.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} \"\" or \"maybe\" or \"probably\"",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -370,28 +477,41 @@
           {
             "name": "@return",
             "body": "{String} \"\" or \"maybe\" or \"probably\"",
-            "type": "String",
-            "description": " \"\" or \"maybe\" or \"probably\""
+            "type": "string",
+            "description": "\"\" or \"maybe\" or \"probably\""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getVideo": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 145,
+          "line": 131,
           "column": 4,
-          "index": 3682
+          "index": 3201
         },
         "end": {
-          "line": 147,
+          "line": 137,
           "column": 5,
-          "index": 3762
+          "index": 3384
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getVideo": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports video.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if video is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -408,28 +528,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if video is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if video is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if video is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getVideoOgg": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 155,
+          "line": 145,
           "column": 4,
-          "index": 3915
+          "index": 3538
         },
         "end": {
-          "line": 161,
+          "line": 147,
           "column": 5,
-          "index": 4126
+          "index": 3616
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getVideoOgg": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports ogg video.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} \"\" or \"maybe\" or \"probably\"",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -446,28 +579,41 @@
           {
             "name": "@return",
             "body": "{String} \"\" or \"maybe\" or \"probably\"",
-            "type": "String",
-            "description": " \"\" or \"maybe\" or \"probably\""
+            "type": "string",
+            "description": "\"\" or \"maybe\" or \"probably\""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getVideoH264": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 169,
+          "line": 155,
           "column": 4,
-          "index": 4279
+          "index": 3761
         },
         "end": {
-          "line": 175,
+          "line": 161,
           "column": 5,
-          "index": 4499
+          "index": 3966
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getVideoH264": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports mp4 video.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} \"\" or \"maybe\" or \"probably\"",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -484,28 +630,41 @@
           {
             "name": "@return",
             "body": "{String} \"\" or \"maybe\" or \"probably\"",
-            "type": "String",
-            "description": " \"\" or \"maybe\" or \"probably\""
+            "type": "string",
+            "description": "\"\" or \"maybe\" or \"probably\""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getVideoWebm": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 183,
+          "line": 169,
           "column": 4,
-          "index": 4653
+          "index": 4111
         },
         "end": {
-          "line": 189,
+          "line": 175,
           "column": 5,
-          "index": 4863
+          "index": 4325
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getVideoWebm": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports webm video.",
+          "     *",
+          "     * @internal",
+          "     * @return {String} \"\" or \"maybe\" or \"probably\"",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -522,28 +681,41 @@
           {
             "name": "@return",
             "body": "{String} \"\" or \"maybe\" or \"probably\"",
-            "type": "String",
-            "description": " \"\" or \"maybe\" or \"probably\""
+            "type": "string",
+            "description": "\"\" or \"maybe\" or \"probably\""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLocalStorage": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 197,
+          "line": 183,
           "column": 4,
-          "index": 5041
+          "index": 4471
         },
         "end": {
-          "line": 208,
+          "line": 189,
           "column": 5,
-          "index": 5490
+          "index": 4675
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getLocalStorage": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports local storage.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if local storage is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -560,28 +732,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if local storage is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if local storage is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if local storage is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSessionStorage": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 216,
+          "line": 197,
           "column": 4,
-          "index": 5672
+          "index": 4845
         },
         "end": {
-          "line": 227,
+          "line": 208,
           "column": 5,
-          "index": 6133
+          "index": 5283
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSessionStorage": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports session storage.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if session storage is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -598,28 +783,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if session storage is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if session storage is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if session storage is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getUserDataStorage": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 236,
+          "line": 216,
           "column": 4,
-          "index": 6366
+          "index": 5457
         },
         "end": {
-          "line": 250,
+          "line": 227,
           "column": 5,
-          "index": 6804
+          "index": 5907
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getUserDataStorage": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports user data to persist data. This is only",
+          "     * relevant for IE < 8.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if the user data is supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -636,28 +835,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the user data is supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if the user data is supported."
+            "type": "boolean",
+            "description": "<code>true</code> if the user data is supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getClassList": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 259,
+          "line": 236,
           "column": 4,
-          "index": 7054
+          "index": 6131
         },
         "end": {
-          "line": 265,
+          "line": 250,
           "column": 5,
-          "index": 7249
+          "index": 6555
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getClassList": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the browser supports CSS class lists.",
+          "     * https://developer.mozilla.org/en-US/docs/DOM/element.classList",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if class list is supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -674,28 +887,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if class list is supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if class list is supported."
+            "type": "boolean",
+            "description": "<code>true</code> if class list is supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getXPath": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 273,
+          "line": 259,
           "column": 4,
-          "index": 7408
+          "index": 6796
         },
         "end": {
-          "line": 275,
+          "line": 265,
           "column": 5,
-          "index": 7462
+          "index": 6985
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getXPath": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if XPath could be used.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if xpath is supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -712,28 +938,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if xpath is supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if xpath is supported."
+            "type": "boolean",
+            "description": "<code>true</code> if xpath is supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getXul": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 283,
+          "line": 273,
           "column": 4,
-          "index": 7617
+          "index": 7136
         },
         "end": {
-          "line": 294,
+          "line": 275,
           "column": 5,
-          "index": 7866
+          "index": 7188
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getXul": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if XUL could be used.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if XUL is supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -750,28 +989,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if XUL is supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if XUL is supported."
+            "type": "boolean",
+            "description": "<code>true</code> if XUL is supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSvg": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 302,
+          "line": 283,
           "column": 4,
-          "index": 8020
+          "index": 7335
         },
         "end": {
-          "line": 312,
+          "line": 294,
           "column": 5,
-          "index": 8366
+          "index": 7573
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSvg": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if SVG could be used",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if SVG is supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -788,28 +1040,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if SVG is supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if SVG is supported."
+            "type": "boolean",
+            "description": "<code>true</code> if SVG is supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getVml": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 320,
+          "line": 302,
           "column": 4,
-          "index": 8519
+          "index": 7719
         },
         "end": {
-          "line": 328,
+          "line": 312,
           "column": 5,
-          "index": 8858
+          "index": 8055
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getVml": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if VML is supported",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if VML is supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -826,28 +1091,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if VML is supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if VML is supported."
+            "type": "boolean",
+            "description": "<code>true</code> if VML is supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCanvas": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 336,
+          "line": 320,
           "column": 4,
-          "index": 9018
+          "index": 8200
         },
         "end": {
-          "line": 338,
+          "line": 328,
           "column": 5,
-          "index": 9087
+          "index": 8531
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getCanvas": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if canvas could be used",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if canvas is supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -864,28 +1142,44 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if canvas is supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if canvas is supported."
+            "type": "boolean",
+            "description": "<code>true</code> if canvas is supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDataUrl": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 349,
+          "line": 336,
           "column": 4,
-          "index": 9332
+          "index": 8683
         },
         "end": {
-          "line": 359,
+          "line": 338,
           "column": 5,
-          "index": 9758
+          "index": 8750
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getDataUrl": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Asynchronous check for using data urls.",
+          "     *",
+          "     * @internal",
+          "     * @param callback {Function} The function which should be executed as",
+          "     *   soon as the check is done.",
+          "     *",
+          "     * @ignore(Image)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -904,7 +1198,7 @@
             "body": "callback {Function} The function which should be executed as\n   soon as the check is done.",
             "paramName": "callback",
             "description": " The function which should be executed as\n   soon as the check is done.",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           }
         ],
         "@ignore": [
@@ -914,23 +1208,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDataset": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 367,
+          "line": 349,
           "column": 4,
-          "index": 9920
+          "index": 8984
         },
         "end": {
-          "line": 369,
+          "line": 359,
           "column": 5,
-          "index": 9991
+          "index": 9400
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getDataset": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if dataset could be used",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if dataset is supported.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -947,28 +1256,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if dataset is supported.",
-            "type": "Boolean",
-            "description": " <code>true</code> if dataset is supported."
+            "type": "boolean",
+            "description": "<code>true</code> if dataset is supported."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getContains": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 377,
+          "line": 367,
           "column": 4,
-          "index": 10156
+          "index": 9554
         },
         "end": {
-          "line": 380,
+          "line": 369,
           "column": 5,
-          "index": 10299
+          "index": 9623
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getContains": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for element.contains",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if element.contains is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -985,28 +1307,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if element.contains is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if element.contains is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if element.contains is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCompareDocumentPosition": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 388,
+          "line": 377,
           "column": 4,
-          "index": 10494
+          "index": 9780
         },
         "end": {
-          "line": 392,
+          "line": 380,
           "column": 5,
-          "index": 10637
+          "index": 9920
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getCompareDocumentPosition": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for element.compareDocumentPosition",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if element.compareDocumentPosition is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1023,28 +1358,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if element.compareDocumentPosition is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if element.compareDocumentPosition is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if element.compareDocumentPosition is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTextContent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 401,
+          "line": 388,
           "column": 4,
-          "index": 10864
+          "index": 10107
         },
         "end": {
-          "line": 404,
+          "line": 392,
           "column": 5,
-          "index": 10990
+          "index": 10246
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getTextContent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for element.textContent. Legacy IEs do not support this, use",
+          "     * innerText instead.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if textContent is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1061,28 +1410,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if textContent is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if textContent is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if textContent is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getFullScreen": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 412,
+          "line": 401,
           "column": 4,
-          "index": 11170
+          "index": 10464
         },
         "end": {
-          "line": 420,
+          "line": 404,
           "column": 5,
-          "index": 11402
+          "index": 10587
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getFullScreen": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the client supports the fullscreen API.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if fullscreen is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1099,28 +1461,41 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if fullscreen is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if fullscreen is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if fullscreen is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getConsole": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 428,
+          "line": 412,
           "column": 4,
-          "index": 11562
+          "index": 10759
         },
         "end": {
-          "line": 430,
+          "line": 420,
           "column": 5,
-          "index": 11636
+          "index": 10983
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getConsole": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for a console object.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if a console is available.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1137,28 +1512,42 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if a console is available.",
-            "type": "Boolean",
-            "description": " <code>true</code> if a console is available."
+            "type": "boolean",
+            "description": "<code>true</code> if a console is available."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getNaturalDimensions": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 439,
+          "line": 428,
           "column": 4,
-          "index": 11879
+          "index": 11135
         },
         "end": {
-          "line": 445,
+          "line": 430,
           "column": 5,
-          "index": 12080
+          "index": 11207
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getNaturalDimensions": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for the <code>naturalHeight</code> and <code>naturalWidth</code>",
+          "     * image element attributes.",
+          "     *",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if both attributes are supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1175,28 +1564,40 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if both attributes are supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if both attributes are supported"
+            "type": "boolean",
+            "description": "<code>true</code> if both attributes are supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getHistoryState": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 453,
+          "line": 439,
           "column": 4,
-          "index": 12263
+          "index": 11441
         },
         "end": {
-          "line": 459,
+          "line": 445,
           "column": 5,
-          "index": 12488
+          "index": 11636
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getHistoryState": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for HTML5 history manipulation support.",
+          "     * @internal",
+          "     * @return {Boolean} <code>true</code> if the HTML5 history API is supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1213,28 +1614,44 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the HTML5 history API is supported",
-            "type": "Boolean",
-            "description": " <code>true</code> if the HTML5 history API is supported"
+            "type": "boolean",
+            "description": "<code>true</code> if the HTML5 history API is supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSelection": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 470,
+          "line": 453,
           "column": 4,
-          "index": 12919
+          "index": 11811
         },
         "end": {
-          "line": 478,
+          "line": 459,
           "column": 5,
-          "index": 13150
+          "index": 12030
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the name of the native object/function used to access the",
+          "     * document's text selection.",
+          "     *",
+          "     * @return {String|null} <code>getSelection</code> if the standard window.getSelection",
+          "     * function is available; <code>selection</code> if the MS-proprietary",
+          "     * document.selection object is available; <code>null</code> if no known",
+          "     * text selection API is available.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1246,27 +1663,39 @@
             "name": "@return",
             "body": "{String|null} <code>getSelection</code> if the standard window.getSelection\n function is available; <code>selection</code> if the MS-proprietary\n document.selection object is available; <code>null</code> if no known\n text selection API is available.",
             "type": "String|null",
-            "description": " <code>getSelection</code> if the standard window.getSelection\n function is available; <code>selection</code> if the MS-proprietary\n document.selection object is available; <code>null</code> if no known\n text selection API is available."
+            "description": "<code>getSelection</code> if the standard window.getSelection\n function is available; <code>selection</code> if the MS-proprietary\n document.selection object is available; <code>null</code> if no known\n text selection API is available."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getIsEqualNode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 485,
+          "line": 470,
           "column": 4,
-          "index": 13316
+          "index": 12450
         },
         "end": {
-          "line": 487,
+          "line": 478,
           "column": 5,
-          "index": 13415
+          "index": 12673
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getIsEqualNode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Check for the isEqualNode DOM method.",
+          "     *",
+          "     * @return {Boolean} <code>true</code> if isEqualNode is supported by DOM nodes",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1277,28 +1706,32 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if isEqualNode is supported by DOM nodes",
-            "type": "Boolean",
-            "description": " <code>true</code> if isEqualNode is supported by DOM nodes"
+            "type": "boolean",
+            "description": "<code>true</code> if isEqualNode is supported by DOM nodes"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 490,
-        "column": 2,
-        "index": 13427
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 485,
+          "column": 4,
+          "index": 12832
+        },
+        "end": {
+          "line": 487,
+          "column": 5,
+          "index": 12929
+        }
       },
-      "end": {
-        "line": 536,
-        "column": 3,
-        "index": 15879
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

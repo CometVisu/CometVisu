@@ -1,0 +1,45 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "include",
+    "MMeasure",
+    "members",
+    "CREATE_ITERATIONS",
+    "testObjectCreate",
+    "objects",
+    "__objects",
+    "self",
+    "measure",
+    "i",
+    "push",
+    "core",
+    "Object",
+    "_disposeArray",
+    "testToHashCode",
+    "object",
+    "ObjectRegistry",
+    "toHashCode",
+    "length",
+    "clearHashCode",
+    "test",
+    "performance"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/performance/Object.js"
+  ],
+  "sourcesContent": [
+    "qx.Class.define(\"qx.test.performance.Object\", {\n  extend: qx.dev.unit.TestCase,\n  include: qx.dev.unit.MMeasure,\n\n  members: {\n    CREATE_ITERATIONS: 100000,\n\n    testObjectCreate() {\n      var objects = (this.__objects = []);\n      var self = this;\n      this.measure(\n        \"create qx.core.Object\",\n        function () {\n          for (var i = 0; i < self.CREATE_ITERATIONS; i++) {\n            objects.push(new qx.core.Object());\n          }\n        },\n        function () {\n          self._disposeArray(\"__objects\");\n        },\n        this.CREATE_ITERATIONS\n      );\n    },\n\n    testToHashCode() {\n      var objects = [];\n      var self = this;\n      this.measure(\n        \"toHashCode qx.core.Object\",\n        function () {\n          for (var i = 0; i < self.CREATE_ITERATIONS; i++) {\n            var object = {};\n            qx.core.ObjectRegistry.toHashCode(object);\n            objects.push(object);\n          }\n        },\n        function () {\n          for (var i = 0; i < objects.length; i++) {\n            qx.core.ObjectRegistry.clearHashCode(objects[i]);\n          }\n        },\n        this.CREATE_ITERATIONS\n      );\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhDH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,4BAA4B,EAAE;IAC5CC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAC5BC,OAAO,EAAEV,EAAE,CAACO,GAAG,CAACC,IAAI,CAACG,QAAQ;IAE7BC,OAAO,EAAE;MACPC,iBAAiB,EAAE,MAAM;MAEzBC,gBAAgB,WAAAA,iBAAA,EAAG;QACjB,IAAIC,OAAO,GAAI,IAAI,CAACC,SAAS,GAAG,EAAG;QACnC,IAAIC,IAAI,GAAG,IAAI;QACf,IAAI,CAACC,OAAO,CACV,uBAAuB,EACvB,YAAY;UACV,KAAK,IAAIC,CAAC,GAAG,CAAC,EAAEA,CAAC,GAAGF,IAAI,CAACJ,iBAAiB,EAAEM,CAAC,EAAE,EAAE;YAC/CJ,OAAO,CAACK,IAAI,CAAC,IAAIpB,EAAE,CAACqB,IAAI,CAACC,MAAM,CAAC,CAAC,CAAC;UACpC;QACF,CAAC,EACD,YAAY;UACVL,IAAI,CAACM,aAAa,CAAC,WAAW,CAAC;QACjC,CAAC,EACD,IAAI,CAACV,iBACP,CAAC;MACH,CAAC;MAEDW,cAAc,WAAAA,eAAA,EAAG;QACf,IAAIT,OAAO,GAAG,EAAE;QAChB,IAAIE,IAAI,GAAG,IAAI;QACf,IAAI,CAACC,OAAO,CACV,2BAA2B,EAC3B,YAAY;UACV,KAAK,IAAIC,CAAC,GAAG,CAAC,EAAEA,CAAC,GAAGF,IAAI,CAACJ,iBAAiB,EAAEM,CAAC,EAAE,EAAE;YAC/C,IAAIM,MAAM,GAAG,CAAC,CAAC;YACfzB,EAAE,CAACqB,IAAI,CAACK,cAAc,CAACC,UAAU,CAACF,MAAM,CAAC;YACzCV,OAAO,CAACK,IAAI,CAACK,MAAM,CAAC;UACtB;QACF,CAAC,EACD,YAAY;UACV,KAAK,IAAIN,CAAC,GAAG,CAAC,EAAEA,CAAC,GAAGJ,OAAO,CAACa,MAAM,EAAET,CAAC,EAAE,EAAE;YACvCnB,EAAE,CAACqB,IAAI,CAACK,cAAc,CAACG,aAAa,CAACd,OAAO,CAACI,CAAC,CAAC,CAAC;UAClD;QACF,CAAC,EACD,IAAI,CAACN,iBACP,CAAC;MACH;IACF;EACF,CAAC,CAAC;EA7CFb,EAAE,CAAC8B,IAAI,CAACC,WAAW,CAACT,MAAM,CAACnB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

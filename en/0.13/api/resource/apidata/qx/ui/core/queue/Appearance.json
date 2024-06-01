@@ -1,49 +1,42 @@
 {
-  "className": "qx.ui.core.queue.Appearance",
-  "packageName": "qx.ui.core.queue",
-  "name": "Appearance",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 634
-      },
-      "end": {
-        "line": 98,
-        "column": 3,
-        "index": 2757
-      }
+  "version": 0.3,
+  "lastModified": 1717235168938,
+  "lastModifiedIso": "2024-06-01T09:46:08.938Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/queue/Appearance.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 611
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The AppearanceQueue registers all widgets which are influences through\n state changes.</p>"
-        }
-      ]
+    "end": {
+      "line": 98,
+      "column": 3,
+      "index": 2660
     }
   },
-  "type": "class",
+  "className": "qx.ui.core.queue.Appearance",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The AppearanceQueue registers all widgets which are influences through",
+      " * state changes.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The AppearanceQueue registers all widgets which are influences through\n state changes.</p>"
+      }
+    ]
+  },
   "statics": {
     "__queue": {
-      "location": {
-        "start": {
-          "line": 27,
-          "column": 4,
-          "index": 785
-        },
-        "end": {
-          "line": 27,
-          "column": 15,
-          "index": 796
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Array} This contains all the queued widgets for the next flush. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +50,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__lookup": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 30,
+          "line": 27,
           "column": 4,
-          "index": 880
+          "index": 759
         },
         "end": {
-          "line": 30,
-          "column": 16,
-          "index": 892
+          "line": 27,
+          "column": 15,
+          "index": 770
         }
       },
+      "appearsIn": []
+    },
+    "__lookup": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} map of widgets by hash code which are in the queue "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,23 +83,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "remove": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 38,
+          "line": 30,
           "column": 4,
-          "index": 1117
+          "index": 851
         },
         "end": {
-          "line": 43,
-          "column": 5,
-          "index": 1303
+          "line": 30,
+          "column": 16,
+          "index": 863
         }
       },
+      "appearsIn": []
+    },
+    "remove": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clears the widget from the internal queue. Normally only used",
+          "     * during interims disposes of one or a few widgets.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} The widget to clear",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -120,23 +124,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "add": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 38,
           "column": 4,
-          "index": 1501
+          "index": 1080
         },
         "end": {
-          "line": 60,
+          "line": 43,
           "column": 5,
-          "index": 1748
+          "index": 1261
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "add": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a widget to the queue.",
+          "     *",
+          "     * Should only be used by {@link qx.ui.core.Widget}.",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} The widget to add.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -153,23 +173,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "has": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 68,
+          "line": 52,
           "column": 4,
-          "index": 1964
+          "index": 1450
         },
         "end": {
-          "line": 70,
+          "line": 60,
           "column": 5,
-          "index": 2036
+          "index": 1689
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "appearsIn": []
+    },
+    "has": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the given widget is already queued",
+          "     *",
+          "     * @param widget {qx.ui.core.Widget} The widget to check",
+          "     * @return {Boolean} <code>true</code> if the widget is queued",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -189,28 +224,45 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the widget is queued",
-            "type": "Boolean",
-            "description": " <code>true</code> if the widget is queued"
+            "type": "boolean",
+            "description": "<code>true</code> if the widget is queued"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "flush": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 77,
+          "line": 68,
           "column": 4,
-          "index": 2183
+          "index": 1897
         },
         "end": {
-          "line": 96,
+          "line": 70,
           "column": 5,
-          "index": 2747
+          "index": 1967
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "widget",
+          "type": "qx.ui.core.Widget"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "flush": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flushes the appearance queue.",
+          "     *",
+          "     * This is used exclusively by the {@link qx.ui.core.queue.Manager}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -218,9 +270,24 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 2107
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2652
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

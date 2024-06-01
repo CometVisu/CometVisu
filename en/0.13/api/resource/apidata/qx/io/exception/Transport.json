@@ -1,214 +1,238 @@
 {
-  "className": "qx.io.exception.Transport",
-  "packageName": "qx.io.exception",
-  "name": "Transport",
-  "superClass": "qx.io.exception.Exception",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 641
-      },
-      "end": {
-        "line": 38,
-        "column": 3,
-        "index": 1015
-      }
+  "version": 0.3,
+  "lastModified": 1717235172594,
+  "lastModifiedIso": "2024-06-01T09:46:12.594Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/io/exception/Transport.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 619
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A class for representing errors that occurred during the request transport.\n  In the context of HTTP requests, the error code is the HTTP error code.</p>"
-        }
-      ]
+    "end": {
+      "line": 38,
+      "column": 3,
+      "index": 978
     }
   },
-  "type": "class",
+  "className": "qx.io.exception.Transport",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *  A class for representing errors that occurred during the request transport.",
+      " *  In the context of HTTP requests, the error code is the HTTP error code.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A class for representing errors that occurred during the request transport.\n  In the context of HTTP requests, the error code is the HTTP error code.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.io.exception.Exception",
   "statics": {
     "TIMEOUT": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 26,
           "column": 4,
-          "index": 745
+          "index": 720
         },
         "end": {
           "line": 26,
           "column": 14,
-          "index": 755
+          "index": 730
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "ABORTED": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 27,
           "column": 4,
-          "index": 762
+          "index": 736
         },
         "end": {
           "line": 27,
           "column": 14,
-          "index": 772
+          "index": 746
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "NO_DATA": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 28,
           "column": 4,
-          "index": 779
+          "index": 752
         },
         "end": {
           "line": 28,
           "column": 14,
-          "index": 789
+          "index": 762
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "INVALID_MSG_DATA": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 29,
           "column": 4,
-          "index": 796
+          "index": 768
         },
         "end": {
           "line": 29,
           "column": 23,
-          "index": 815
+          "index": 787
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "CANCELLED": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 30,
           "column": 4,
-          "index": 822
+          "index": 793
         },
         "end": {
           "line": 30,
           "column": 16,
-          "index": 834
+          "index": 805
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "INVALID_URI": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 31,
           "column": 4,
-          "index": 841
+          "index": 811
         },
         "end": {
           "line": 31,
           "column": 18,
-          "index": 855
+          "index": 825
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "FAILED": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 32,
           "column": 4,
-          "index": 862
+          "index": 831
         },
         "end": {
           "line": 32,
           "column": 13,
-          "index": 871
+          "index": 840
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "INVALID_ID": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 33,
           "column": 4,
-          "index": 878
+          "index": 846
         },
         "end": {
           "line": 33,
           "column": 17,
-          "index": 891
+          "index": 859
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "INVALID_JSON": {
+      "jsdoc": {
+        "raw": [
+          " JSON-RPC"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 34,
           "column": 4,
-          "index": 910
+          "index": 877
         },
         "end": {
           "line": 34,
           "column": 19,
-          "index": 925
+          "index": 892
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "DUPLICATE_ID": {
+      "jsdoc": {
+        "raw": [
+          " JSON-RPC"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 35,
           "column": 4,
-          "index": 944
+          "index": 910
         },
         "end": {
           "line": 35,
           "column": 20,
-          "index": 960
+          "index": 926
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "UNKNOWN_ID": {
+      "jsdoc": {
+        "raw": [
+          " JSON-RPC"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 36,
           "column": 4,
-          "index": 979
+          "index": 944
         },
         "end": {
           "line": 36,
           "column": 18,
-          "index": 993
+          "index": 958
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

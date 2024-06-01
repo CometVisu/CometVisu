@@ -1,48 +1,55 @@
 {
-  "className": "cv.ui.structure.tile.elements.Address",
-  "packageName": "cv.ui.structure.tile.elements",
-  "name": "Address",
-  "superClass": "cv.ui.structure.tile.elements.AbstractCustomElement",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 937
-      },
-      "end": {
-        "line": 220,
-        "column": 3,
-        "index": 8070
-      }
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/elements/Address.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 937
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Address element that connect a widget/component to the backend.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 2022</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2022"
-        }
-      ]
+    "end": {
+      "line": 223,
+      "column": 3,
+      "index": 8108
     }
   },
-  "type": "class",
+  "className": "cv.ui.structure.tile.elements.Address",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Address element that connect a widget/component to the backend.",
+      " *",
+      " *  @author Tobias Bräutigam",
+      " *  @since 2022",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Address element that connect a widget/component to the backend.</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2022"
+      }
+    ]
+  },
+  "superClass": "cv.ui.structure.tile.elements.AbstractCustomElement",
   "members": {
     "__lastValue": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 35,
@@ -55,10 +62,11 @@
           "index": 1216
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__transformedValue": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 36,
@@ -71,10 +79,11 @@
           "index": 1246
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_stateUpdateTarget": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 37,
@@ -87,10 +96,11 @@
           "index": 1276
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "getAddress": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 39,
@@ -104,9 +114,12 @@
         }
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "_init": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 44,
@@ -114,32 +127,27 @@
           "index": 1358
         },
         "end": {
-          "line": 131,
+          "line": 134,
           "column": 5,
-          "index": 5035
+          "index": 5073
         }
       },
       "type": "function",
-      "access": "protected",
+      "params": [],
       "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
       "appearsIn": [
         "cv.ui.structure.tile.elements.AbstractCustomElement"
       ]
     },
     "fireStateUpdate": {
-      "location": {
-        "start": {
-          "line": 138,
-          "column": 4,
-          "index": 5252
-        },
-        "end": {
-          "line": 187,
-          "column": 5,
-          "index": 7457
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a 'stateUpdate' event with the transformed value and dispatches it to the <cv-address>-Element.",
+          "     * @param address {String} address",
+          "     * @param state {variant} state to send",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -152,7 +160,7 @@
             "body": "address {String} address",
             "paramName": "address",
             "description": " address",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -163,23 +171,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isRead": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 193,
+          "line": 141,
           "column": 4,
-          "index": 7543
+          "index": 5290
         },
         "end": {
-          "line": 195,
+          "line": 190,
           "column": 5,
-          "index": 7620
+          "index": 7495
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "type": "variant"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isRead": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @return {boolean} true if this is a read address",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -191,27 +216,38 @@
             "name": "@return",
             "body": "{boolean} true if this is a read address",
             "type": "boolean",
-            "description": " true if this is a read address"
+            "description": "true if this is a read address"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isWrite": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 201,
+          "line": 196,
           "column": 4,
-          "index": 7707
+          "index": 7581
         },
         "end": {
-          "line": 203,
+          "line": 198,
           "column": 5,
-          "index": 7784
+          "index": 7658
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isWrite": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     *",
+          "     * @return {boolean} true if this is a write address",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -223,277 +259,50 @@
             "name": "@return",
             "body": "{boolean} true if this is a write address",
             "type": "boolean",
-            "description": " true if this is a write address"
+            "description": "true if this is a write address"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 205,
+          "line": 204,
           "column": 4,
-          "index": 7791
+          "index": 7745
         },
         "end": {
-          "line": 207,
+          "line": 206,
           "column": 5,
-          "index": 7847
+          "index": 7822
         }
       },
       "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getConnected": {
-      "type": "function",
-      "name": "getConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>connected</code>.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for connected"
-          }
-        ]
-      }
-    },
-    "isConnected": {
-      "type": "function",
-      "name": "isConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>connected</code>.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for connected"
-          }
-        ]
-      }
-    },
-    "setConnected": {
-      "type": "function",
-      "name": "setConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>connected</code>.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for connected"
-          }
-        ]
-      }
-    },
-    "resetConnected": {
-      "type": "function",
-      "name": "resetConnected",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "cv.ui.structure.tile.elements.AbstractCustomElement",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>connected</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #connected}."
-          }
-        ]
-      }
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 210,
-        "column": 2,
-        "index": 7856
+      "params": [],
+      "returnType": {
+        "type": "boolean"
       },
-      "end": {
-        "line": 219,
-        "column": 3,
-        "index": 8066
-      }
+      "appearsIn": []
+    },
+    "getValue": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4,
+          "index": 7829
+        },
+        "end": {
+          "line": 210,
+          "column": 5,
+          "index": 7885
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": [
-    "cv.ui.structure.tile.elements.AddressGroup"
-  ]
+  "statics": {},
+  "properties": {}
 }

@@ -1,67 +1,75 @@
 {
-  "className": "qx.ui.form.IColorForm",
-  "packageName": "qx.ui.form",
-  "name": "IColorForm",
-  "superClass": "qx.ui.form.IField",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 627
-      },
-      "end": {
-        "line": 71,
-        "column": 3,
-        "index": 1832
-      }
+  "version": 0.3,
+  "lastModified": 1717235171186,
+  "lastModifiedIso": "2024-06-01T09:46:11.186Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/IColorForm.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 605
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Form interface for all form widgets which have boolean as their primary\n data type like a colorchooser.</p>"
-        }
-      ]
+    "end": {
+      "line": 71,
+      "column": 3,
+      "index": 1762
     }
   },
-  "type": "interface",
+  "className": "qx.ui.form.IColorForm",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Form interface for all form widgets which have boolean as their primary",
+      " * data type like a colorchooser.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Form interface for all form widgets which have boolean as their primary\n data type like a colorchooser.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.form.IField",
   "events": {
     "changeValue": {
-      "type": "event",
-      "name": "changeValue",
-      "abstract": true,
-      "mixin": false,
-      "access": "public",
-      "overriddenFrom": "qx.ui.form.IField",
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fired when the value was modified "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired when the value was modified</p>"
           }
         ]
+      },
+      "location": {
+        "start": {
+          "line": 34,
+          "column": 4,
+          "index": 926
+        },
+        "end": {
+          "line": 34,
+          "column": 37,
+          "index": 959
+        }
       }
     }
   },
   "members": {
     "setValue": {
-      "location": {
-        "start": {
-          "line": 55,
-          "column": 4,
-          "index": 1536
-        },
-        "end": {
-          "line": 57,
-          "column": 5,
-          "index": 1597
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the element's value.",
+          "     *",
+          "     * @param value {Color|null} The new value of the element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -81,27 +89,41 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 55,
+          "column": 4,
+          "index": 1482
+        },
+        "end": {
+          "line": 57,
+          "column": 5,
+          "index": 1541
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "Color",
+            "null"
+          ]
+        }
+      ],
       "overriddenFrom": "qx.ui.form.IField",
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     },
     "resetValue": {
-      "location": {
-        "start": {
-          "line": 62,
-          "column": 4,
-          "index": 1681
-        },
-        "end": {
-          "line": 62,
-          "column": 19,
-          "index": 1696
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the element's value to its initial value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -109,27 +131,35 @@
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1620
+        },
+        "end": {
+          "line": 62,
+          "column": 19,
+          "index": 1635
+        }
+      },
+      "type": "function",
+      "params": [],
       "overriddenFrom": "qx.ui.form.IField",
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     },
     "getValue": {
-      "location": {
-        "start": {
-          "line": 69,
-          "column": 4,
-          "index": 1809
-        },
-        "end": {
-          "line": 69,
-          "column": 17,
-          "index": 1822
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The element's user set value.",
+          "     *",
+          "     * @return {Color|null} The value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -141,17 +171,34 @@
             "name": "@return",
             "body": "{Color|null} The value.",
             "type": "Color|null",
-            "description": " The value."
+            "description": "The value."
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 69,
+          "column": 4,
+          "index": 1741
+        },
+        "end": {
+          "line": 69,
+          "column": 17,
+          "index": 1754
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Color|null"
+      },
       "overriddenFrom": "qx.ui.form.IField",
       "appearsIn": [
         "qx.ui.form.IField"
       ]
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

@@ -61,6 +61,7 @@
        * Sets the element's value.
        *
        * @param value {Boolean|null} The new value of the element.
+       * @return {Boolean|null}
        */
       setValue: function setValue(value) {
         return arguments.length == 1;
@@ -80,4 +81,4 @@
   qx.ui.form.IBooleanForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IBooleanForm.js.map?dt=1709410160027
+//# sourceMappingURL=IBooleanForm.js.map?dt=1717235410713

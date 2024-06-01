@@ -1,0 +1,268 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171582,
+  "lastModifiedIso": "2024-06-01T09:46:11.582Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/package/List.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 612
+    },
+    "end": {
+      "line": 642,
+      "column": 3,
+      "index": 20496
+    }
+  },
+  "className": "qx.tool.cli.commands.package.List",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Lists compatible packages",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Lists compatible packages</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.commands.Package",
+  "statics": {
+    "localPathRepoName": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The name of a \"fake\" repository containing libraries from local paths",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The name of a \"fake\" repository containing libraries from local paths</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 817
+        },
+        "end": {
+          "line": 31,
+          "column": 32,
+          "index": 845
+        }
+      },
+      "appearsIn": []
+    },
+    "getYargsCommand": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the yargs command data",
+          "     * @return {Object}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the yargs command data</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Object}",
+            "type": "Record<any, any>",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 930
+        },
+        "end": {
+          "line": 111,
+          "column": 5,
+          "index": 2998
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": [
+        "qx.tool.cli.commands.Package"
+      ]
+    }
+  },
+  "members": {
+    "process": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Lists library packages compatible with the current project",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Lists library packages compatible with the current project</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3104
+        },
+        "end": {
+          "line": 431,
+          "column": 5,
+          "index": 13064
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.commands.Command",
+      "appearsIn": [
+        "qx.tool.cli.commands.Command"
+      ]
+    },
+    "__repositories": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * compatibility indexes",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>compatibility indexes</p>"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 436,
+          "column": 4,
+          "index": 13116
+        },
+        "end": {
+          "line": 436,
+          "column": 24,
+          "index": 13136
+        }
+      },
+      "appearsIn": []
+    },
+    "__libraries": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 437,
+          "column": 4,
+          "index": 13142
+        },
+        "end": {
+          "line": 437,
+          "column": 21,
+          "index": 13159
+        }
+      },
+      "appearsIn": []
+    },
+    "__latestCompatible": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 438,
+          "column": 4,
+          "index": 13165
+        },
+        "end": {
+          "line": 438,
+          "column": 28,
+          "index": 13189
+        }
+      },
+      "appearsIn": []
+    },
+    "__createIndexes": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create compatibilty indexes of repositories and the contained libraries",
+          "     * @param qooxdoo_version {String} The qooxdoo version to check compatibiity with",
+          "     * @return {Number} The number of repositories containing compatible libraries",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Create compatibilty indexes of repositories and the contained libraries</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "qooxdoo_version {String} The qooxdoo version to check compatibiity with",
+            "paramName": "qooxdoo_version",
+            "description": " The qooxdoo version to check compatibiity with",
+            "type": "string"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Number} The number of repositories containing compatible libraries",
+            "type": "number",
+            "description": "The number of repositories containing compatible libraries"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 445,
+          "column": 4,
+          "index": 13460
+        },
+        "end": {
+          "line": 640,
+          "column": 5,
+          "index": 20488
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "qooxdoo_version",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    }
+  },
+  "properties": {}
+}

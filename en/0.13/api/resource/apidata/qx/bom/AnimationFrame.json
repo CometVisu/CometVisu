@@ -1,79 +1,100 @@
 {
-  "className": "qx.bom.AnimationFrame",
-  "packageName": "qx.bom",
-  "name": "AnimationFrame",
-  "superClass": "qx.event.Emitter",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 56,
-        "column": 0,
-        "index": 1670
-      },
-      "end": {
-        "line": 209,
-        "column": 3,
-        "index": 6632
-      }
+  "version": 0.3,
+  "lastModified": 1717235168862,
+  "lastModifiedIso": "2024-06-01T09:46:08.862Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/AnimationFrame.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 56,
+      "column": 0,
+      "index": 1615
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This is a cross browser wrapper for requestAnimationFrame. For further\n information about the feature, take a look at spec:\n http://www.w3.org/TR/animation-timing/\n This class offers two ways of using this feature. First, the plain\n API the spec describes.\n Here is a sample usage:\n </p>\n<pre class='javascript'>var start = Date.now();\n var cb = function(time) {\n   if (time >= start + duration) {\n\n   } else {\n     var timePassed = time - start;\n\n     qx.bom.AnimationFrame.request(cb, this);\n   }\n };\n qx.bom.AnimationFrame.request(cb, this);\n </pre>\n<p>Another way of using it is to use it as an instance emitting events.\n Here is a sample usage of that API:\n </p>\n<pre class='javascript'>var frame = new qx.bom.AnimationFrame();\n frame.on(\"end\", function() {\n\n }, this);\n frame.on(\"frame\", function(timePassed) {\n\n }, this);\n frame.startSequence(duration);\n </pre>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.Date"
-        }
-      ]
+    "end": {
+      "line": 209,
+      "column": 3,
+      "index": 6424
     }
   },
-  "type": "class",
+  "className": "qx.bom.AnimationFrame",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This is a cross browser wrapper for requestAnimationFrame. For further",
+      " * information about the feature, take a look at spec:",
+      " * http://www.w3.org/TR/animation-timing/",
+      " *",
+      " * This class offers two ways of using this feature. First, the plain",
+      " * API the spec describes.",
+      " *",
+      " * Here is a sample usage:",
+      " * <pre class='javascript'>var start = Date.now();",
+      " * var cb = function(time) {",
+      " *   if (time >= start + duration) {",
+      " *     // ... do some last tasks",
+      " *   } else {",
+      " *     var timePassed = time - start;",
+      " *     // ... calculate the current step and apply it",
+      " *     qx.bom.AnimationFrame.request(cb, this);",
+      " *   }",
+      " * };",
+      " * qx.bom.AnimationFrame.request(cb, this);",
+      " * </pre>",
+      " *",
+      " * Another way of using it is to use it as an instance emitting events.",
+      " *",
+      " * Here is a sample usage of that API:",
+      " * <pre class='javascript'>var frame = new qx.bom.AnimationFrame();",
+      " * frame.on(\"end\", function() {",
+      " *   // ... do some last tasks",
+      " * }, this);",
+      " * frame.on(\"frame\", function(timePassed) {",
+      " *   // ... calculate the current step and apply it",
+      " * }, this);",
+      " * frame.startSequence(duration);",
+      " * </pre>",
+      " *",
+      " * @require(qx.lang.normalize.Date)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This is a cross browser wrapper for requestAnimationFrame. For further\n information about the feature, take a look at spec:\n http://www.w3.org/TR/animation-timing/\n This class offers two ways of using this feature. First, the plain\n API the spec describes.\n Here is a sample usage:\n </p>\n<pre class='javascript'>var start = Date.now();\n var cb = function(time) {\n   if (time >= start + duration) {\n\n   } else {\n     var timePassed = time - start;\n\n     qx.bom.AnimationFrame.request(cb, this);\n   }\n };\n qx.bom.AnimationFrame.request(cb, this);\n </pre>\n<p>Another way of using it is to use it as an instance emitting events.\n Here is a sample usage of that API:\n </p>\n<pre class='javascript'>var frame = new qx.bom.AnimationFrame();\n frame.on(\"end\", function() {\n\n }, this);\n frame.on(\"frame\", function(timePassed) {\n\n }, this);\n frame.startSequence(duration);\n </pre>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.Date"
+      }
+    ]
+  },
+  "superClass": "qx.event.Emitter",
   "events": {
     "end": {
-      "location": {
-        "start": {
-          "line": 61,
-          "column": 4,
-          "index": 1820
-        },
-        "end": {
-          "line": 61,
-          "column": 18,
-          "index": 1834
-        }
-      },
+      "type": null,
       "jsdoc": {
+        "raw": [
+          "* Fired as soon as the animation has ended. "
+        ],
         "@description": [
           {
             "name": "@description",
             "body": "<p>Fired as soon as the animation has ended.</p>"
           }
         ]
-      },
-      "name": "end",
-      "type": "undefined"
+      }
     },
     "frame": {
-      "location": {
-        "start": {
-          "line": 67,
-          "column": 4,
-          "index": 1971
-        },
-        "end": {
-          "line": 67,
-          "column": 19,
-          "index": 1986
-        }
-      },
+      "type": "Number",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired on every frame having the passed time as value",
+          "     * (might be a float for higher precision).",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -81,41 +102,50 @@
           }
         ]
       },
-      "name": "frame",
-      "type": "Number"
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1905
+        },
+        "end": {
+          "line": 67,
+          "column": 19,
+          "index": 1920
+        }
+      }
     }
   },
   "members": {
     "__canceled": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 71,
           "column": 4,
-          "index": 2014
+          "index": 1944
         },
         "end": {
           "line": 71,
           "column": 21,
-          "index": 2031
+          "index": 1961
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "startSequence": {
-      "location": {
-        "start": {
-          "line": 81,
-          "column": 4,
-          "index": 2303
-        },
-        "end": {
-          "line": 106,
-          "column": 5,
-          "index": 3027
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Method used to start a series of animation frames. The series will end as",
+          "     * soon as the given duration is over.",
+          "     *",
+          "     * @param duration {Number} The duration the sequence should take.",
+          "     *",
+          "     * @ignore(performance.*)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -128,7 +158,7 @@
             "body": "duration {Number} The duration the sequence should take.",
             "paramName": "duration",
             "description": " The duration the sequence should take.",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@ignore": [
@@ -138,23 +168,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "cancelSequence": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 112,
+          "line": 81,
           "column": 4,
-          "index": 3154
+          "index": 2223
         },
         "end": {
-          "line": 114,
+          "line": 106,
           "column": 5,
-          "index": 3210
+          "index": 2922
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "duration",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "cancelSequence": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Cancels a started sequence of frames. It will do nothing if no",
+          "     * sequence is running.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -162,25 +205,32 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 112,
+          "column": 4,
+          "index": 3043
+        },
+        "end": {
+          "line": 114,
+          "column": 5,
+          "index": 3097
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     }
   },
   "statics": {
     "TIMEOUT": {
-      "location": {
-        "start": {
-          "line": 121,
-          "column": 4,
-          "index": 3329
-        },
-        "end": {
-          "line": 121,
-          "column": 15,
-          "index": 3340
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The default time in ms the timeout fallback implementation uses.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -188,23 +238,37 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "calculateTiming": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 135,
+          "line": 121,
           "column": 4,
-          "index": 3976
+          "index": 3209
         },
         "end": {
-          "line": 158,
-          "column": 5,
-          "index": 4920
+          "line": 121,
+          "column": 15,
+          "index": 3220
         }
       },
+      "appearsIn": []
+    },
+    "calculateTiming": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculation of the predefined timing functions. Approximation of the real",
+          "     * bezier curves has been used for easier calculation. This is good and close",
+          "     * enough for the predefined functions like <code>ease</code> or",
+          "     * <code>linear</code>.",
+          "     *",
+          "     * @param func {String} The defined timing function. One of the following values:",
+          "     *   <code>\"ease-in\"</code>, <code>\"ease-out\"</code>, <code>\"linear\"</code>,",
+          "     *   <code>\"ease-in-out\"</code>, <code>\"ease\"</code>.",
+          "     * @param x {Integer} The percent value of the function.",
+          "     * @return {Integer} The calculated value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -217,7 +281,7 @@
             "body": "func {String} The defined timing function. One of the following values:\n   <code>\"ease-in\"</code>, <code>\"ease-out\"</code>, <code>\"linear\"</code>,\n   <code>\"ease-in-out\"</code>, <code>\"ease\"</code>.",
             "paramName": "func",
             "description": " The defined timing function. One of the following values:\n   <code>\"ease-in\"</code>, <code>\"ease-out\"</code>, <code>\"linear\"</code>,\n   <code>\"ease-in-out\"</code>, <code>\"ease\"</code>.",
-            "type": "qx.bom.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -232,27 +296,54 @@
             "name": "@return",
             "body": "{Integer} The calculated value",
             "type": "Integer",
-            "description": " The calculated value"
+            "description": "The calculated value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "request": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 171,
+          "line": 135,
           "column": 4,
-          "index": 5567
+          "index": 3842
         },
         "end": {
-          "line": 192,
+          "line": 158,
           "column": 5,
-          "index": 6237
+          "index": 4763
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "func",
+          "type": "string"
+        },
+        {
+          "name": "x",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "request": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Request for an animation frame. If the native <code>requestAnimationFrame</code>",
+          "     * method is supported, it will be used. Otherwise, we use timeouts with a",
+          "     * 30ms delay. The HighResolutionTime will be used if supported but the time given",
+          "     * to the callback will still be a timestamp starting at 1 January 1970 00:00:00 UTC.",
+          "     *",
+          "     * @param callback {Function} The callback function which will get the current",
+          "     *   time as argument (which could be a float for higher precision).",
+          "     * @param context {var} The context of the callback.",
+          "     * @return {Number} The id of the request.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -265,7 +356,7 @@
             "body": "callback {Function} The callback function which will get the current\n   time as argument (which could be a float for higher precision).",
             "paramName": "callback",
             "description": " The callback function which will get the current\n   time as argument (which could be a float for higher precision).",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -279,42 +370,40 @@
           {
             "name": "@return",
             "body": "{Number} The id of the request.",
-            "type": "Number",
-            "description": " The id of the request."
+            "type": "number",
+            "description": "The id of the request."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 198,
-        "column": 2,
-        "index": 6299
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 171,
+          "column": 4,
+          "index": 5397
+        },
+        "end": {
+          "line": 192,
+          "column": 5,
+          "index": 6046
+        }
       },
-      "end": {
-        "line": 208,
-        "column": 3,
-        "index": 6627
-      }
-    },
-    "jsdoc": {
-      "@description": [
+      "type": "function",
+      "params": [
         {
-          "name": "@description",
-          "body": ""
+          "name": "callback",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "context",
+          "type": "var"
         }
       ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "performance.timing.*"
-        }
-      ]
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

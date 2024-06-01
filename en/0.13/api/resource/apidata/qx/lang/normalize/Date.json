@@ -1,61 +1,71 @@
 {
-  "className": "qx.lang.normalize.Date",
-  "packageName": "qx.lang.normalize",
-  "name": "Date",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 32,
-        "column": 0,
-        "index": 1031
-      },
-      "end": {
-        "line": 157,
-        "column": 3,
-        "index": 5525
-      }
+  "version": 0.3,
+  "lastModified": 1717235169846,
+  "lastModifiedIso": "2024-06-01T09:46:09.846Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/normalize/Date.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 32,
+      "column": 0,
+      "index": 1000
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is responsible for the normalization of the native 'Date' object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Polyfill"
-        }
-      ],
-      "@deprecated": [
-        {
-          "name": "@deprecated",
-          "body": "{7.0}\n  This normalizer handles Date.parse and Date.now. The former has\n  been standardized since IE version 3, and the latter, since IE\n  version 9, both ancient. There is no need for this normalizer any\n  longer."
-        }
-      ]
+    "end": {
+      "line": 157,
+      "column": 3,
+      "index": 5365
     }
   },
-  "type": "class",
+  "className": "qx.lang.normalize.Date",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is responsible for the normalization of the native 'Date' object.",
+      " * It checks if these methods are available and, if not, appends them to",
+      " * ensure compatibility in all browsers.",
+      " * For usage samples, check out the attached links.",
+      " *",
+      " * @group (Polyfill)",
+      " *",
+      " * @deprecated {7.0}",
+      " *  This normalizer handles Date.parse and Date.now. The former has",
+      " *  been standardized since IE version 3, and the latter, since IE",
+      " *  version 9, both ancient. There is no need for this normalizer any",
+      " *  longer.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is responsible for the normalization of the native 'Date' object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Polyfill"
+      }
+    ],
+    "@deprecated": [
+      {
+        "name": "@deprecated",
+        "body": "{7.0}\n  This normalizer handles Date.parse and Date.now. The former has\n  been standardized since IE version 3, and the latter, since IE\n  version 9, both ancient. There is no need for this normalizer any\n  longer."
+      }
+    ]
+  },
   "statics": {
     "now": {
-      "location": {
-        "start": {
-          "line": 42,
-          "column": 4,
-          "index": 1466
-        },
-        "end": {
-          "line": 44,
-          "column": 5,
-          "index": 1507
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the time elapsed since January 1, 1970 in milliseconds.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Date/now\">MDN documentation</a> |",
+          "     * <a href=\"http://es5.github.com/#x15.9.4.4\">Annotated ES5 Spec</a>",
+          "     *",
+          "     * @return {Integer} Milliseconds since the Unix Epoch",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -67,27 +77,50 @@
             "name": "@return",
             "body": "{Integer} Milliseconds since the Unix Epoch",
             "type": "Integer",
-            "description": " Milliseconds since the Unix Epoch"
+            "description": "Milliseconds since the Unix Epoch"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "parse": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 62,
+          "line": 42,
           "column": 4,
-          "index": 2390
+          "index": 1425
         },
         "end": {
-          "line": 139,
+          "line": 44,
           "column": 5,
-          "index": 5130
+          "index": 1464
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "parse": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Parses a string representation of a date and return number of",
+          "     * milliseconds since Epoch or NaN if string is unrecognized.",
+          "     *",
+          "     * <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse\">MDN documentation</a>",
+          "     *",
+          "     * Derived from <https://github.com/csnover/js-iso8601>: ©2011 Colin Snover",
+          "     * <http://zetafleet.com>, MIT license",
+          "     *",
+          "     * @param dateString {String} A string representing an RFC2822 or ISO 8601",
+          "     *   date (other formats may be used, but results may be unexpected).",
+          "     * @return {Number} A number representing the milliseconds elapsed",
+          "     *   since January 1, 1970, 00:00:00 UTC and the date obtained by parsing",
+          "     *   the given string representation of a date.",
+          "     *   If the argument doesn't represent a valid date, NaN is returned.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -100,35 +133,44 @@
             "body": "dateString {String} A string representing an RFC2822 or ISO 8601\n   date (other formats may be used, but results may be unexpected).",
             "paramName": "dateString",
             "description": " A string representing an RFC2822 or ISO 8601\n   date (other formats may be used, but results may be unexpected).",
-            "type": "qx.lang.normalize.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{Number|NaN} A number representing the milliseconds elapsed\n   since January 1, 1970, 00:00:00 UTC and the date obtained by parsing\n   the given string representation of a date.\n   If the argument doesn't represent a valid date, NaN is returned.",
-            "type": "Number|NaN",
-            "description": " A number representing the milliseconds elapsed\n   since January 1, 1970, 00:00:00 UTC and the date obtained by parsing\n   the given string representation of a date.\n   If the argument doesn't represent a valid date, NaN is returned."
+            "body": "{Number} A number representing the milliseconds elapsed\n   since January 1, 1970, 00:00:00 UTC and the date obtained by parsing\n   the given string representation of a date.\n   If the argument doesn't represent a valid date, NaN is returned.",
+            "type": "number",
+            "description": "A number representing the milliseconds elapsed\n   since January 1, 1970, 00:00:00 UTC and the date obtained by parsing\n   the given string representation of a date.\n   If the argument doesn't represent a valid date, NaN is returned."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 142,
-        "column": 2,
-        "index": 5142
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 2325
+        },
+        "end": {
+          "line": 139,
+          "column": 5,
+          "index": 4988
+        }
       },
-      "end": {
-        "line": 156,
-        "column": 3,
-        "index": 5520
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "dateString",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

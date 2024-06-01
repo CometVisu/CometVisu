@@ -1,50 +1,36 @@
 {
-  "className": "qx.theme.icon.Tango",
-  "packageName": "qx.theme.icon",
-  "name": "Tango",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 552
-      },
-      "end": {
-        "line": 27,
-        "column": 3,
-        "index": 662
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Tango icons</p>"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235172470,
+  "lastModifiedIso": "2024-06-01T09:46:12.470Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/icon/Tango.js",
   "type": "theme",
-  "aliases": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 2,
-        "index": 615
-      },
-      "end": {
-        "line": 26,
-        "column": 3,
-        "index": 657
-      }
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 531
     },
-    "aliasMap": {
-      "icon": "qx/icon/Tango"
+    "end": {
+      "line": 27,
+      "column": 3,
+      "index": 636
     }
   },
-  "descendants": []
+  "className": "qx.theme.icon.Tango",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Tango icons",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Tango icons</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

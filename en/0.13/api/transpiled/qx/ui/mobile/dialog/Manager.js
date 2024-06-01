@@ -129,10 +129,10 @@
               handler.call(scope);
             }
           };
-          var button = this.__P_403_0(button);
+          var button = this.__P_622_0(button);
           return navigator.notification.alert(text, callback, title, button);
         } else {
-          return this.__P_403_1(title, text, handler, scope, [button], qx.ui.mobile.dialog.Manager.MESSAGE_DIALOG);
+          return this.__P_622_1(title, text, handler, scope, [button], qx.ui.mobile.dialog.Manager.MESSAGE_DIALOG);
         }
       },
       /**
@@ -156,10 +156,10 @@
           var callback = function callback(index) {
             handler.call(scope, index - 1);
           };
-          var buttons = this.__P_403_0(buttons);
+          var buttons = this.__P_622_0(buttons);
           return navigator.notification.confirm(text, callback, title, buttons);
         } else {
-          return this.__P_403_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.MESSAGE_DIALOG);
+          return this.__P_622_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.MESSAGE_DIALOG);
         }
       },
       /**
@@ -177,7 +177,7 @@
        * @lint ignoreDeprecated(confirm)
        */
       input: function input(title, text, handler, scope, buttons) {
-        return this.__P_403_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.INPUT_DIALOG);
+        return this.__P_622_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.INPUT_DIALOG);
       },
       /**
        * Displays an error dialog. When the application is running in an PhoneGap
@@ -201,10 +201,10 @@
               handler.call(scope);
             }
           };
-          var button = this.__P_403_0(button);
+          var button = this.__P_622_0(button);
           return navigator.notification.alert(text, callback, title, button);
         } else {
-          return this.__P_403_1(title, text, handler, scope, button, qx.ui.mobile.dialog.Manager.ERROR_DIALOG);
+          return this.__P_622_1(title, text, handler, scope, button, qx.ui.mobile.dialog.Manager.ERROR_DIALOG);
         }
       },
       /**
@@ -229,10 +229,10 @@
               handler.call(scope);
             }
           };
-          var button = this.__P_403_0(button);
+          var button = this.__P_622_0(button);
           return navigator.notification.alert(text, callback, title, button);
         } else {
-          return this.__P_403_1(title, text, handler, scope, button, qx.ui.mobile.dialog.Manager.WARNING_DIALOG);
+          return this.__P_622_1(title, text, handler, scope, button, qx.ui.mobile.dialog.Manager.WARNING_DIALOG);
         }
       },
       /**
@@ -250,7 +250,7 @@
        * @lint ignoreDeprecated(confirm)
        */
       wait: function wait(title, text, handler, scope, buttons) {
-        return this.__P_403_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.WAITING_DIALOG);
+        return this.__P_622_1(title, text, handler, scope, buttons, qx.ui.mobile.dialog.Manager.WAITING_DIALOG);
       },
       /**
        * Processes the dialog buttons. Converts them to PhoneGap compatible strings.
@@ -259,7 +259,7 @@
        *     its title
        * @return {String} The concatenated, PhoneGap compatible, button string
        */
-      __P_403_0: function __P_403_0(buttons) {
+      __P_622_0: function __P_622_0(buttons) {
         if (buttons) {
           if (buttons instanceof Array) {
             buttons = buttons.join(",");
@@ -283,7 +283,7 @@
        * @return {qx.ui.mobile.dialog.Popup} The dialog widget
        * @param dialogType {Integer} One of the static dialog types.
        */
-      __P_403_1: function __P_403_1(title, text, handler, scope, buttons, dialogType) {
+      __P_622_1: function __P_622_1(title, text, handler, scope, buttons, dialogType) {
         var widget = new qx.ui.mobile.container.Composite(new qx.ui.mobile.layout.VBox().set({
           alignY: "middle"
         }));
@@ -362,4 +362,4 @@
   qx.ui.mobile.dialog.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1709410162931
+//# sourceMappingURL=Manager.js.map?dt=1717235413760

@@ -1,63 +1,89 @@
 {
-  "className": "qx.ui.mobile.control.Picker",
-  "packageName": "qx.ui.mobile.control",
-  "name": "Picker",
-  "superClass": "qx.ui.mobile.container.Composite",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 44,
-        "column": 0,
-        "index": 1522
-      },
-      "end": {
-        "line": 348,
-        "column": 3,
-        "index": 10171
-      }
+  "version": 0.3,
+  "lastModified": 1717235171994,
+  "lastModifiedIso": "2024-06-01T09:46:11.994Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/control/Picker.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 44,
+      "column": 0,
+      "index": 1479
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The picker widget gives the user the possibility to select a value out of an array\n of values. The picker widget can be added to a {@link qx.ui.mobile.dialog.Popup} or to any other container.\n The picker widget is able to display multiple picker slots, for letting the user choose\n several values at one time, in one single control.\n You can add an array with objects which contain the keys <code>title</code>, a <code>subtitle</code> or an <code>image</code> (all optional).\n </p>\n<pre>\n var picker = new qx.ui.mobile.control.Picker();\n picker.setHeight(200);\n picker.addListener(\"changeSelection\", function(evt) {\n   var data = evt.getData();\n },this);\n var slotData1 = [{title:\"Windows Phone\"}, {title:\"iOS\",subtitle:\"Version 7.1\"}, {title:\"Android\"}];\n var slotData2 = [{title:\"Tablet\"}, {title:\"Smartphone\"}, {title:\"Phablet\"}];\n picker.addSlot(new qx.data.Array(slotData1));\n picker.addSlot(new qx.data.Array(slotData2));\n </pre>"
-        }
-      ]
+    "end": {
+      "line": 348,
+      "column": 3,
+      "index": 9824
     }
   },
-  "type": "class",
+  "className": "qx.ui.mobile.control.Picker",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " * The picker widget gives the user the possibility to select a value out of an array",
+      " * of values. The picker widget can be added to a {@link qx.ui.mobile.dialog.Popup} or to any other container.",
+      " *",
+      " * The picker widget is able to display multiple picker slots, for letting the user choose",
+      " * several values at one time, in one single control.",
+      " *",
+      " * You can add an array with objects which contain the keys <code>title</code>, a <code>subtitle</code> or an <code>image</code> (all optional).",
+      " *",
+      " * <pre>",
+      " * var picker = new qx.ui.mobile.control.Picker();",
+      " * picker.setHeight(200);",
+      " * picker.addListener(\"changeSelection\", function(evt) {",
+      " *   var data = evt.getData();",
+      " * },this);",
+      " *",
+      " * var slotData1 = [{title:\"Windows Phone\"}, {title:\"iOS\",subtitle:\"Version 7.1\"}, {title:\"Android\"}];",
+      " * var slotData2 = [{title:\"Tablet\"}, {title:\"Smartphone\"}, {title:\"Phablet\"}];",
+      " *",
+      " * picker.addSlot(new qx.data.Array(slotData1));",
+      " * picker.addSlot(new qx.data.Array(slotData2));",
+      " * </pre>",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The picker widget gives the user the possibility to select a value out of an array\n of values. The picker widget can be added to a {@link qx.ui.mobile.dialog.Popup} or to any other container.\n The picker widget is able to display multiple picker slots, for letting the user choose\n several values at one time, in one single control.\n You can add an array with objects which contain the keys <code>title</code>, a <code>subtitle</code> or an <code>image</code> (all optional).\n </p>\n<pre>\n var picker = new qx.ui.mobile.control.Picker();\n picker.setHeight(200);\n picker.addListener(\"changeSelection\", function(evt) {\n   var data = evt.getData();\n },this);\n var slotData1 = [{title:\"Windows Phone\"}, {title:\"iOS\",subtitle:\"Version 7.1\"}, {title:\"Android\"}];\n var slotData2 = [{title:\"Tablet\"}, {title:\"Smartphone\"}, {title:\"Phablet\"}];\n picker.addSlot(new qx.data.Array(slotData1));\n picker.addSlot(new qx.data.Array(slotData2));\n </pre>"
+      }
+    ]
+  },
+  "superClass": "qx.ui.mobile.container.Composite",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 47,
         "column": 2,
-        "index": 1621
+        "index": 1575
       },
       "end": {
         "line": 55,
         "column": 3,
-        "index": 1828
+        "index": 1774
       }
     }
   },
   "events": {
     "changeSelection": {
-      "location": {
-        "start": {
-          "line": 67,
-          "column": 4,
-          "index": 2039
-        },
-        "end": {
-          "line": 67,
-          "column": 41,
-          "index": 2076
-        }
-      },
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired when the selection of a slot has changed.",
+          "     * Example:",
+          "     * <code> {",
+          "     *   index: 0,",
+          "     *   item: [Object],",
+          "     *   slot: 0",
+          "     * }</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -65,8 +91,18 @@
           }
         ]
       },
-      "name": "changeSelection",
-      "type": "qx.event.type.Data"
+      "location": {
+        "start": {
+          "line": 67,
+          "column": 4,
+          "index": 1973
+        },
+        "end": {
+          "line": 67,
+          "column": 41,
+          "index": 2010
+        }
+      }
     }
   },
   "properties": {
@@ -75,39 +111,56 @@
         "start": {
           "line": 72,
           "column": 4,
-          "index": 2126
+          "index": 2055
         },
         "end": {
           "line": 75,
           "column": 5,
-          "index": 2194
+          "index": 2120
         }
       },
-      "jsdoc": {},
-      "name": "defaultCssClass",
-      "propertyType": "new",
-      "refine": true,
-      "init": "picker",
-      "defaultValue": "picker",
-      "overriddenFrom": "qx.ui.mobile.core.Widget",
-      "appearsIn": {
-        "qx.ui.mobile.core.Widget": "class"
-      }
+      "json": {
+        "refine": true,
+        "init": "picker"
+      },
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "appearsIn": [
+        "qx.ui.mobile.core.Widget"
+      ]
     },
     "visibleItems": {
       "location": {
         "start": {
           "line": 80,
           "column": 4,
-          "index": 2290
+          "index": 2211
         },
         "end": {
           "line": 84,
           "column": 5,
-          "index": 2391
+          "index": 2308
         }
       },
+      "json": {
+        "init": 5,
+        "check": [
+          3,
+          5,
+          7,
+          9
+        ],
+        "apply": "_applyVisibleItems"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Controls how much visible items are shown inside the picker.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -115,32 +168,31 @@
           }
         ]
       },
-      "name": "visibleItems",
-      "propertyType": "new",
-      "apply": "_applyVisibleItems",
-      "init": 5,
-      "possibleValues": [
-        3,
-        5,
-        7,
-        9
-      ],
-      "defaultValue": 5
+      "appearsIn": []
     },
     "height": {
       "location": {
         "start": {
           "line": 89,
           "column": 4,
-          "index": 2454
+          "index": 2366
         },
         "end": {
           "line": 92,
           "column": 5,
-          "index": 2511
+          "index": 2420
         }
       },
+      "json": {
+        "init": 200,
+        "check": "Number"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Controls the picker height.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -148,92 +200,51 @@
           }
         ]
       },
-      "name": "height",
-      "propertyType": "new",
-      "init": 200,
-      "check": "Number",
-      "defaultValue": 200
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "_slots": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 96,
           "column": 4,
-          "index": 2539
+          "index": 2444
         },
         "end": {
           "line": 96,
           "column": 16,
-          "index": 2551
+          "index": 2456
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_pickerModel": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 97,
           "column": 4,
-          "index": 2558
+          "index": 2462
         },
         "end": {
           "line": 97,
           "column": 22,
-          "index": 2576
+          "index": 2480
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "_onAppear": {
-      "location": {
-        "start": {
-          "line": 102,
-          "column": 4,
-          "index": 2665
-        },
-        "end": {
-          "line": 109,
-          "column": 5,
-          "index": 2940
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for <code>appear</code> event of this widget.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -241,43 +252,58 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 102,
+          "column": 4,
+          "index": 2564
+        },
+        "end": {
+          "line": 109,
+          "column": 5,
+          "index": 2832
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_applyVisibleItems": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 112,
           "column": 4,
-          "index": 2972
+          "index": 2861
         },
         "end": {
           "line": 114,
           "column": 5,
-          "index": 3054
+          "index": 2941
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "visibleItems"
-      ]
+      "params": [
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "getModel": {
-      "location": {
-        "start": {
-          "line": 120,
-          "column": 4,
-          "index": 3225
-        },
-        "end": {
-          "line": 122,
-          "column": 5,
-          "index": 3277
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the internal used picker model which contains one or more picker slot models.",
+          "     * @return {qx.data.Array} the picker model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -289,27 +315,41 @@
             "name": "@return",
             "body": "{qx.data.Array} the picker model.",
             "type": "qx.data.Array",
-            "description": " the picker model."
+            "description": "the picker model."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_createPickerSlot": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 131,
+          "line": 120,
           "column": 4,
-          "index": 3652
+          "index": 3106
         },
         "end": {
-          "line": 187,
+          "line": 122,
           "column": 5,
-          "index": 5369
+          "index": 3156
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.data.Array"
+      },
+      "appearsIn": []
+    },
+    "_createPickerSlot": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a picker slot.",
+          "     * @param slotModel {qx.data.Array} the picker slot model.",
+          "     * @param slotIndex {Number} the index of this slot.",
+          "     * @param delegate {qx.ui.mobile.list.IListDelegate?null} the list delegate object for this slot list.",
+          "     * @return {qx.ui.mobile.container.Scroll} the picker slot as a scroll container.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -329,7 +369,7 @@
             "body": "slotIndex {Number} the index of this slot.",
             "paramName": "slotIndex",
             "description": " the index of this slot.",
-            "type": "Number"
+            "type": "number"
           },
           {
             "name": "@param",
@@ -346,27 +386,53 @@
             "name": "@return",
             "body": "{qx.ui.mobile.container.Scroll} the picker slot as a scroll container.",
             "type": "qx.ui.mobile.container.Scroll",
-            "description": " the picker slot as a scroll container."
+            "description": "the picker slot as a scroll container."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_createPlaceholderItem": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 193,
+          "line": 131,
           "column": 4,
-          "index": 5573
+          "index": 3522
         },
         "end": {
-          "line": 204,
+          "line": 187,
           "column": 5,
-          "index": 5963
+          "index": 5183
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "slotModel",
+          "type": "qx.data.Array"
+        },
+        {
+          "name": "slotIndex",
+          "type": "number"
+        },
+        {
+          "name": "delegate",
+          "type": "qx.ui.mobile.list.IListDelegate",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Scroll"
+      },
+      "appearsIn": []
+    },
+    "_createPlaceholderItem": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a placeholder list item, for making sure the selected item is vertically centered.",
+          "     * @return {qx.ui.mobile.container.Composite} the placeholder list item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -378,27 +444,38 @@
             "name": "@return",
             "body": "{qx.ui.mobile.container.Composite} the placeholder list item.",
             "type": "qx.ui.mobile.container.Composite",
-            "description": " the placeholder list item."
+            "description": "the placeholder list item."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_calcItemHeight": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 210,
+          "line": 193,
           "column": 4,
-          "index": 6095
+          "index": 5381
         },
         "end": {
-          "line": 212,
+          "line": 204,
           "column": 5,
-          "index": 6178
+          "index": 5760
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.mobile.container.Composite"
+      },
+      "appearsIn": []
+    },
+    "_calcItemHeight": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculates the item height of a picker item.",
+          "     * @return {Number} height of the picker item.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -409,28 +486,39 @@
           {
             "name": "@return",
             "body": "{Number} height of the picker item.",
-            "type": "Number",
-            "description": " height of the picker item."
+            "type": "number",
+            "description": "height of the picker item."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onChangeSelection": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 218,
+          "line": 210,
           "column": 4,
-          "index": 6333
+          "index": 5886
         },
         "end": {
-          "line": 225,
+          "line": 212,
           "column": 5,
-          "index": 6513
+          "index": 5967
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "_onChangeSelection": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for <code>changeSelection</code> event on picker list.",
+          "     * @param evt {qx.event.type.Data} the events data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -447,23 +535,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onWaypoint": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 231,
+          "line": 218,
           "column": 4,
-          "index": 6668
+          "index": 6116
         },
         "end": {
-          "line": 240,
+          "line": 225,
           "column": 5,
-          "index": 6967
+          "index": 6289
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onWaypoint": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for <code>waypoint</code> event on scroll container.",
+          "     * @param evt {qx.event.type.Data} the waypoint data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -480,23 +581,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "getSelectedIndex": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 247,
+          "line": 231,
           "column": 4,
-          "index": 7242
+          "index": 6438
         },
         "end": {
-          "line": 249,
+          "line": 240,
           "column": 5,
-          "index": 7338
+          "index": 6728
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "evt",
+          "type": "qx.event.type.Data"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSelectedIndex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Getter for the selectedIndex of a picker slot, identified by its index.",
+          "     * @param slotIndex {Integer} the index of the target picker slot.",
+          "     * @return {Integer} the index of the target picker slot, or null if slotIndex is unknown.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -517,27 +632,44 @@
             "name": "@return",
             "body": "{Integer} the index of the target picker slot, or null if slotIndex is unknown.",
             "type": "Integer",
-            "description": " the index of the target picker slot, or null if slotIndex is unknown."
+            "description": "the index of the target picker slot, or null if slotIndex is unknown."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setSelectedIndex": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 256,
+          "line": 247,
           "column": 4,
-          "index": 7587
+          "index": 6996
         },
         "end": {
-          "line": 262,
+          "line": 249,
           "column": 5,
-          "index": 7848
+          "index": 7090
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "slotIndex",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "setSelectedIndex": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Setter for the selectedIndex of a picker slot, identified by its index.",
+          "     * @param slotIndex {Integer} the index of the target picker slot.",
+          "     * @param selectedIndex {Integer} the selectedIndex of the slot.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -561,23 +693,40 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSlotCount": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 268,
+          "line": 256,
           "column": 4,
-          "index": 7985
+          "index": 7332
         },
         "end": {
-          "line": 270,
+          "line": 262,
           "column": 5,
-          "index": 8053
+          "index": 7587
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "slotIndex",
+          "type": "Integer"
+        },
+        {
+          "name": "selectedIndex",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getSlotCount": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the picker slot count, added to this picker.",
+          "     * @return {Integer} count of picker slots.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -589,27 +738,39 @@
             "name": "@return",
             "body": "{Integer} count of picker slots.",
             "type": "Integer",
-            "description": " count of picker slots."
+            "description": "count of picker slots."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addSlot": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 277,
+          "line": 268,
           "column": 4,
-          "index": 8311
+          "index": 7718
         },
         "end": {
-          "line": 300,
+          "line": 270,
           "column": 5,
-          "index": 8924
+          "index": 7784
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "addSlot": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an picker slot to the end of the array.",
+          "     * @param slotModel {qx.data.Array} the picker slot model to display.",
+          "     * @param delegate {qx.ui.mobile.list.IListDelegate?null} the list delegate object for this slot.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -635,23 +796,42 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removeSlot": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 306,
+          "line": 277,
           "column": 4,
-          "index": 9079
+          "index": 8035
         },
         "end": {
-          "line": 328,
+          "line": 300,
           "column": 5,
-          "index": 9751
+          "index": 8625
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "slotModel",
+          "type": "qx.data.Array"
+        },
+        {
+          "name": "delegate",
+          "type": "qx.ui.mobile.list.IListDelegate",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removeSlot": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the picker slot at the given slotIndex.",
+          "     * @param slotIndex {Integer} the index of the target picker slot.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -668,23 +848,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_onSlotDataChange": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 333,
+          "line": 306,
           "column": 4,
-          "index": 9878
+          "index": 8774
         },
         "end": {
-          "line": 340,
+          "line": 328,
           "column": 5,
-          "index": 10026
+          "index": 9424
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "slotIndex",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onSlotDataChange": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles the <code>changeBubble</code> and <codechange></code> event on a picker slot model.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -692,1334 +884,39 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 333,
+          "column": 4,
+          "index": 9546
+        },
+        "end": {
+          "line": 340,
+          "column": 5,
+          "index": 9687
+        }
+      },
       "type": "function",
-      "access": "protected"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getDefaultCssClass": {
-      "type": "function",
-      "name": "getDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for defaultCssClass"
-          }
-        ]
-      }
-    },
-    "setDefaultCssClass": {
-      "type": "function",
-      "name": "setDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>defaultCssClass</code>.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for defaultCssClass"
-          }
-        ]
-      }
-    },
-    "resetDefaultCssClass": {
-      "type": "function",
-      "name": "resetDefaultCssClass",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>defaultCssClass</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #defaultCssClass}."
-          }
-        ]
-      }
-    },
-    "getEnabled": {
-      "type": "function",
-      "name": "getEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "isEnabled": {
-      "type": "function",
-      "name": "isEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for enabled"
-          }
-        ]
-      }
-    },
-    "setEnabled": {
-      "type": "function",
-      "name": "setEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>enabled</code>.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for enabled"
-          }
-        ]
-      }
-    },
-    "resetEnabled": {
-      "type": "function",
-      "name": "resetEnabled",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>enabled</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #enabled}."
-          }
-        ]
-      }
-    },
-    "getName": {
-      "type": "function",
-      "name": "getName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for name"
-          }
-        ]
-      }
-    },
-    "setName": {
-      "type": "function",
-      "name": "setName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>name</code>.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for name"
-          }
-        ]
-      }
-    },
-    "resetName": {
-      "type": "function",
-      "name": "resetName",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>name</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #name}."
-          }
-        ]
-      }
-    },
-    "getAnonymous": {
-      "type": "function",
-      "name": "getAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "isAnonymous": {
-      "type": "function",
-      "name": "isAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for anonymous"
-          }
-        ]
-      }
-    },
-    "setAnonymous": {
-      "type": "function",
-      "name": "setAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>anonymous</code>.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for anonymous"
-          }
-        ]
-      }
-    },
-    "resetAnonymous": {
-      "type": "function",
-      "name": "resetAnonymous",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>anonymous</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #anonymous}."
-          }
-        ]
-      }
-    },
-    "getId": {
-      "type": "function",
-      "name": "getId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for id"
-          }
-        ]
-      }
-    },
-    "setId": {
-      "type": "function",
-      "name": "setId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>id</code>.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for id"
-          }
-        ]
-      }
-    },
-    "resetId": {
-      "type": "function",
-      "name": "resetId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>id</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #id}."
-          }
-        ]
-      }
-    },
-    "getVisibility": {
-      "type": "function",
-      "name": "getVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for visibility"
-          }
-        ]
-      }
-    },
-    "setVisibility": {
-      "type": "function",
-      "name": "setVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visibility</code>.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for visibility"
-          }
-        ]
-      }
-    },
-    "resetVisibility": {
-      "type": "function",
-      "name": "resetVisibility",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visibility</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibility}."
-          }
-        ]
-      }
-    },
-    "getActivatable": {
-      "type": "function",
-      "name": "getActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for activatable"
-          }
-        ]
-      }
-    },
-    "isActivatable": {
-      "type": "function",
-      "name": "isActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for activatable"
-          }
-        ]
-      }
-    },
-    "setActivatable": {
-      "type": "function",
-      "name": "setActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>activatable</code>.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for activatable"
-          }
-        ]
-      }
-    },
-    "resetActivatable": {
-      "type": "function",
-      "name": "resetActivatable",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>activatable</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #activatable}."
-          }
-        ]
-      }
-    },
-    "getRotation": {
-      "type": "function",
-      "name": "getRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for rotation"
-          }
-        ]
-      }
-    },
-    "setRotation": {
-      "type": "function",
-      "name": "setRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>rotation</code>.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for rotation"
-          }
-        ]
-      }
-    },
-    "resetRotation": {
-      "type": "function",
-      "name": "resetRotation",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>rotation</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #rotation}."
-          }
-        ]
-      }
-    },
-    "getTransformUnit": {
-      "type": "function",
-      "name": "getTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for transformUnit"
-          }
-        ]
-      }
-    },
-    "setTransformUnit": {
-      "type": "function",
-      "name": "setTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>transformUnit</code>.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for transformUnit"
-          }
-        ]
-      }
-    },
-    "resetTransformUnit": {
-      "type": "function",
-      "name": "resetTransformUnit",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>transformUnit</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #transformUnit}."
-          }
-        ]
-      }
-    },
-    "getScaleX": {
-      "type": "function",
-      "name": "getScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for scaleX"
-          }
-        ]
-      }
-    },
-    "setScaleX": {
-      "type": "function",
-      "name": "setScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>scaleX</code>.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for scaleX"
-          }
-        ]
-      }
-    },
-    "resetScaleX": {
-      "type": "function",
-      "name": "resetScaleX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>scaleX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleX}."
-          }
-        ]
-      }
-    },
-    "getScaleY": {
-      "type": "function",
-      "name": "getScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for scaleY"
-          }
-        ]
-      }
-    },
-    "setScaleY": {
-      "type": "function",
-      "name": "setScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>scaleY</code>.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for scaleY"
-          }
-        ]
-      }
-    },
-    "resetScaleY": {
-      "type": "function",
-      "name": "resetScaleY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>scaleY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #scaleY}."
-          }
-        ]
-      }
-    },
-    "getTranslateX": {
-      "type": "function",
-      "name": "getTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateX"
-          }
-        ]
-      }
-    },
-    "setTranslateX": {
-      "type": "function",
-      "name": "setTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateX</code>.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateX"
-          }
-        ]
-      }
-    },
-    "resetTranslateX": {
-      "type": "function",
-      "name": "resetTranslateX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateX}."
-          }
-        ]
-      }
-    },
-    "getTranslateY": {
-      "type": "function",
-      "name": "getTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateY"
-          }
-        ]
-      }
-    },
-    "setTranslateY": {
-      "type": "function",
-      "name": "setTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateY</code>.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateY"
-          }
-        ]
-      }
-    },
-    "resetTranslateY": {
-      "type": "function",
-      "name": "resetTranslateY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateY}."
-          }
-        ]
-      }
-    },
-    "getTranslateZ": {
-      "type": "function",
-      "name": "getTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for translateZ"
-          }
-        ]
-      }
-    },
-    "setTranslateZ": {
-      "type": "function",
-      "name": "setTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>translateZ</code>.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for translateZ"
-          }
-        ]
-      }
-    },
-    "resetTranslateZ": {
-      "type": "function",
-      "name": "resetTranslateZ",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.mobile.container.Composite",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>translateZ</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #translateZ}."
-          }
-        ]
-      }
-    },
-    "getVisibleItems": {
-      "type": "function",
-      "name": "getVisibleItems",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>visibleItems</code>.\n\nFor further details take a look at the property definition: {@link #visibleItems}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for visibleItems"
-          }
-        ]
-      }
-    },
-    "setVisibleItems": {
-      "type": "function",
-      "name": "setVisibleItems",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>visibleItems</code>.\n\nFor further details take a look at the property definition: {@link #visibleItems}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for visibleItems"
-          }
-        ]
-      }
-    },
-    "resetVisibleItems": {
-      "type": "function",
-      "name": "resetVisibleItems",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>visibleItems</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #visibleItems}."
-          }
-        ]
-      }
-    },
-    "getHeight": {
-      "type": "function",
-      "name": "getHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Number",
-            "desc": "Returns the value for height"
-          }
-        ]
-      }
-    },
-    "setHeight": {
-      "type": "function",
-      "name": "setHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Number",
-            "paramName": "value",
-            "desc": "Value for height"
-          }
-        ]
-      }
-    },
-    "resetHeight": {
-      "type": "function",
-      "name": "resetHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>height</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 343,
         "column": 2,
-        "index": 10038
+        "index": 9696
       },
       "end": {
         "line": 347,
         "column": 3,
-        "index": 10166
+        "index": 9820
       }
     }
   },
-  "descendants": []
+  "statics": {}
 }

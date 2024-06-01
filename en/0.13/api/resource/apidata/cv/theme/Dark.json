@@ -1,54 +1,37 @@
 {
-  "className": "cv.theme.Dark",
-  "packageName": "cv.theme",
-  "name": "Dark",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 986
-      },
-      "end": {
-        "line": 32,
-        "column": 3,
-        "index": 1213
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Basic theme for QX-UI relevant parts (should be seen as equivalent to designglobals.css, not design specific\n but something like the common sense of all designs)</p>"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/theme/Dark.js",
   "type": "theme",
-  "themeMeta": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 2,
-        "index": 1023
-      },
-      "end": {
-        "line": 31,
-        "column": 3,
-        "index": 1209
-      }
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 986
     },
-    "themeMetaMap": {
-      "color": "cv.theme.dark.Color",
-      "decoration": "cv.theme.dark.Decoration",
-      "font": "cv.theme.dark.Font",
-      "icon": "cv.theme.dark.Icon",
-      "appearance": "cv.theme.dark.Appearance"
+    "end": {
+      "line": 32,
+      "column": 3,
+      "index": 1213
     }
   },
-  "descendants": []
+  "className": "cv.theme.Dark",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Basic theme for QX-UI relevant parts (should be seen as equivalent to designglobals.css, not design specific",
+      " * but something like the common sense of all designs)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Basic theme for QX-UI relevant parts (should be seen as equivalent to designglobals.css, not design specific\n but something like the common sense of all designs)</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

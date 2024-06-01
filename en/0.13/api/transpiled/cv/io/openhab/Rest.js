@@ -54,25 +54,8 @@
       this.initialAddresses = [];
       this._type = type;
       this._backendUrl = backendUrl || '/rest/';
-      this.__P_531_0 = {};
-      this.__P_531_1 = {};
-    },
-    /*
-    ***********************************************
-      PROPERTIES
-    ***********************************************
-    */
-    properties: {
-      connected: {
-        check: 'Boolean',
-        init: false,
-        event: 'changeConnected'
-      },
-      server: {
-        check: 'String',
-        nullable: true,
-        event: 'changedServer'
-      }
+      this.__P_750_0 = {};
+      this.__P_750_1 = {};
     },
     /*
     ***********************************************
@@ -80,13 +63,13 @@
     ***********************************************
     */
     members: {
-      __P_531_2: null,
+      __P_750_2: null,
       _type: null,
       _backendUrl: null,
-      __P_531_3: null,
-      __P_531_0: null,
-      __P_531_1: null,
-      __P_531_4: null,
+      __P_750_3: null,
+      __P_750_0: null,
+      __P_750_1: null,
+      __P_750_4: null,
       getBackend: function getBackend() {
         return {};
       },
@@ -108,7 +91,7 @@
             params.push('serviceId=' + parts[0]);
           }
           if (map.start) {
-            var endTime = map.end ? this.__P_531_5(map.end) : new Date();
+            var endTime = map.end ? this.__P_750_5(map.end) : new Date();
             var startTime = new Date();
             var match = /^end-([\d]*)([\w]+)$/.exec(map.start);
             if (match) {
@@ -151,7 +134,7 @@
         }
         return null;
       },
-      __P_531_5: function __P_531_5(time) {
+      __P_750_5: function __P_750_5(time) {
         if (time === 'now') {
           return new Date();
         } else if (/^[\d]+$/.test(time)) {
@@ -190,8 +173,8 @@
        * @private
        */
       authorize: function authorize(req) {
-        if (this.__P_531_3) {
-          req.setRequestHeader('Authorization', this.__P_531_3);
+        if (this.__P_750_3) {
+          req.setRequestHeader('Authorization', this.__P_750_3);
         }
       },
       /**
@@ -205,7 +188,7 @@
         this.authorize(req);
         return req;
       },
-      __P_531_6: function __P_531_6(type, state) {
+      __P_750_6: function __P_750_6(type, state) {
         switch (type.toLowerCase()) {
           case 'decimal':
           case 'percent':
@@ -251,18 +234,18 @@
                 };
                 // register member addresses in model
                 model.addAddress(obj.name, null, _this.getName());
-                if (_this.__P_531_6(obj.type, obj.state)) {
+                if (_this.__P_750_6(obj.type, obj.state)) {
                   active++;
                   map[obj.name].active = true;
                 }
-                if (!Object.prototype.hasOwnProperty.call(_this.__P_531_1, obj.name)) {
-                  _this.__P_531_1[obj.name] = [entry.name];
+                if (!Object.prototype.hasOwnProperty.call(_this.__P_750_1, obj.name)) {
+                  _this.__P_750_1[obj.name] = [entry.name];
                 } else {
-                  _this.__P_531_1[obj.name].push(entry.name);
+                  _this.__P_750_1[obj.name].push(entry.name);
                 }
                 return map;
               });
-              _this.__P_531_0[entry.name] = {
+              _this.__P_750_0[entry.name] = {
                 members: map,
                 active: active
               };
@@ -275,7 +258,7 @@
             }
           }, _this);
           _this.update(update);
-          _this.__P_531_4 = addresses;
+          _this.__P_750_4 = addresses;
           _this.setDataReceived(true);
         });
         // Send request
@@ -325,10 +308,10 @@
         }
       },
       addSubscription: function addSubscription(address) {
-        if (!this.__P_531_4) {
-          this.__P_531_4 = [address];
-        } else if (!this.__P_531_4.includes(address)) {
-          this.__P_531_4.push(address);
+        if (!this.__P_750_4) {
+          this.__P_750_4 = [address];
+        } else if (!this.__P_750_4.includes(address)) {
+          this.__P_750_4.push(address);
         }
       },
       terminate: function terminate() {
@@ -355,15 +338,15 @@
             var change = JSON.parse(data.payload);
             update[item] = change.value;
             // check if this Item is part of any group
-            if (Object.prototype.hasOwnProperty.call(this.__P_531_1, item)) {
-              var groupNames = this.__P_531_1[item];
+            if (Object.prototype.hasOwnProperty.call(this.__P_750_1, item)) {
+              var groupNames = this.__P_750_1[item];
               groupNames.forEach(function (groupName) {
-                var group = _this2.__P_531_0[groupName];
+                var group = _this2.__P_750_0[groupName];
                 var active = 0;
                 group.members[item].state = change.value;
                 Object.keys(group.members).forEach(function (memberName) {
                   var member = group.members[memberName];
-                  if (_this2.__P_531_6(member.type, member.state)) {
+                  if (_this2.__P_750_6(member.type, member.state)) {
                     active++;
                     member.active = true;
                   } else {
@@ -403,7 +386,7 @@
         var _this3 = this;
         if (credentials && credentials.username) {
           // just saving the credentials for later use as we are using basic authentication
-          this.__P_531_3 = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
+          this.__P_750_3 = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
         }
         this.setDataReceived(false);
         // no login needed we just do a request to the if the backend is reachable
@@ -419,13 +402,13 @@
         req.send();
       },
       getLastError: function getLastError() {
-        return this.__P_531_2;
+        return this.__P_750_2;
       },
       restart: function restart(fullRestart) {
         if (fullRestart) {
           // re-read all states
-          if (this.__P_531_4) {
-            this.subscribe(this.__P_531_4);
+          if (this.__P_750_4) {
+            this.subscribe(this.__P_750_4);
           } else {
             this.debug('no subscribed addresses, skip reading all states.');
           }
@@ -511,4 +494,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1709410170116
+//# sourceMappingURL=Rest.js.map?dt=1717235421517

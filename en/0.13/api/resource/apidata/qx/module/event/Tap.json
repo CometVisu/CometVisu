@@ -1,85 +1,91 @@
 {
-  "className": "qx.module.event.Tap",
-  "packageName": "qx.module.event",
-  "name": "Tap",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 34,
-        "column": 0,
-        "index": 1441
-      },
-      "end": {
-        "line": 156,
-        "column": 3,
-        "index": 4918
-      }
+  "version": 0.3,
+  "lastModified": 1717235172474,
+  "lastModifiedIso": "2024-06-01T09:46:12.474Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/Tap.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 34,
+      "column": 0,
+      "index": 1408
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Normalization for tap gesture events. These gestures are based on <a href=\"#Pointer\">Pointer events</a>,\n meaning that they are available on all devices, no matter which input device type is used (e.g. mouse or\n touchscreen).</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.event.Tap#getViewportLeft"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.event.Tap#getViewportTop"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.event.Tap#getDocumentLeft"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.event.Tap#getDocumentTop"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.event.Tap#getScreenLeft"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.event.Tap#getScreenTop"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Event_Normalization"
-        }
-      ]
+    "end": {
+      "line": 156,
+      "column": 3,
+      "index": 4763
     }
   },
-  "type": "class",
+  "className": "qx.module.event.Tap",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Normalization for tap gesture events. These gestures are based on <a href=\"#Pointer\">Pointer events</a>,",
+      " * meaning that they are available on all devices, no matter which input device type is used (e.g. mouse or",
+      " * touchscreen).",
+      " *",
+      " * @require(qx.module.Event)",
+      " * @require(qx.module.event.Tap#getViewportLeft) // static code analysis - this method has to referenced",
+      " * @require(qx.module.event.Tap#getViewportTop) // static code analysis - this method has to referenced",
+      " * @require(qx.module.event.Tap#getDocumentLeft) // static code analysis - this method has to referenced",
+      " * @require(qx.module.event.Tap#getDocumentTop) // static code analysis - this method has to referenced",
+      " * @require(qx.module.event.Tap#getScreenLeft) // static code analysis - this method has to referenced",
+      " * @require(qx.module.event.Tap#getScreenTop) // static code analysis - this method has to referenced",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Normalization for tap gesture events. These gestures are based on <a href=\"#Pointer\">Pointer events</a>,\n meaning that they are available on all devices, no matter which input device type is used (e.g. mouse or\n touchscreen).</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.event.Tap#getViewportLeft"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.event.Tap#getViewportTop"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.event.Tap#getDocumentLeft"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.event.Tap#getDocumentTop"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.event.Tap#getScreenLeft"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.event.Tap#getScreenTop"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
   "statics": {
     "TYPES": {
-      "location": {
-        "start": {
-          "line": 39,
-          "column": 4,
-          "index": 1568
-        },
-        "end": {
-          "line": 39,
-          "column": 39,
-          "index": 1603
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of event types to be normalized",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,23 +93,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "BIND_METHODS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 46,
+          "line": 39,
           "column": 4,
-          "index": 1717
+          "index": 1530
         },
         "end": {
-          "line": 53,
-          "column": 5,
-          "index": 1887
+          "line": 39,
+          "column": 39,
+          "index": 1565
         }
       },
+      "appearsIn": []
+    },
+    "BIND_METHODS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List methods to be attached to gesture event",
+          "     * objects",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,23 +130,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "getViewportLeft": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 61,
+          "line": 46,
           "column": 4,
-          "index": 2079
+          "index": 1672
         },
         "end": {
-          "line": 63,
+          "line": 53,
           "column": 5,
-          "index": 2153
+          "index": 1835
         }
       },
+      "appearsIn": []
+    },
+    "getViewportLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the horizontal coordinate at which the event occurred relative",
+          "     * to the viewport.",
+          "     *",
+          "     * @return {Number} The horizontal contact position",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -144,28 +165,42 @@
           {
             "name": "@return",
             "body": "{Number} The horizontal contact position",
-            "type": "Number",
-            "description": " The horizontal contact position"
+            "type": "number",
+            "description": "The horizontal contact position"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getViewportTop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 61,
           "column": 4,
-          "index": 2371
+          "index": 2019
         },
         "end": {
-          "line": 74,
+          "line": 63,
           "column": 5,
-          "index": 2443
+          "index": 2091
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getViewportTop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical coordinate at which the event occurred relative",
+          "     * to the viewport.",
+          "     *",
+          "     * @return {Number} The vertical contact position",
+          "     * @signature function()",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -176,8 +211,8 @@
           {
             "name": "@return",
             "body": "{Number} The vertical contact position",
-            "type": "Number",
-            "description": " The vertical contact position"
+            "type": "number",
+            "description": "The vertical contact position"
           }
         ],
         "@signature": [
@@ -187,23 +222,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDocumentLeft": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 83,
+          "line": 72,
           "column": 4,
-          "index": 2730
+          "index": 2300
         },
         "end": {
-          "line": 85,
+          "line": 74,
           "column": 5,
-          "index": 2804
+          "index": 2370
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getDocumentLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the horizontal position at which the event occurred relative to the",
+          "     * left of the document. This property takes into account any scrolling of",
+          "     * the page.",
+          "     *",
+          "     * @return {Number} The horizontal contact position in the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -214,28 +263,42 @@
           {
             "name": "@return",
             "body": "{Number} The horizontal contact position in the document.",
-            "type": "Number",
-            "description": " The horizontal contact position in the document."
+            "type": "number",
+            "description": "The horizontal contact position in the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getDocumentTop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 94,
+          "line": 83,
           "column": 4,
-          "index": 3086
+          "index": 2648
         },
         "end": {
-          "line": 96,
+          "line": 85,
           "column": 5,
-          "index": 3158
+          "index": 2720
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getDocumentTop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical position at which the event occurred relative to the",
+          "     * top of the document. This property takes into account any scrolling of",
+          "     * the page.",
+          "     *",
+          "     * @return {Number} The vertical contact position in the document.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -246,28 +309,44 @@
           {
             "name": "@return",
             "body": "{Number} The vertical contact position in the document.",
-            "type": "Number",
-            "description": " The vertical contact position in the document."
+            "type": "number",
+            "description": "The vertical contact position in the document."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getScreenLeft": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 107,
+          "line": 94,
           "column": 4,
-          "index": 3533
+          "index": 2993
         },
         "end": {
-          "line": 109,
+          "line": 96,
           "column": 5,
-          "index": 3603
+          "index": 3063
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getScreenLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the horizontal coordinate at which the event occurred relative to",
+          "     * the origin of the screen coordinate system.",
+          "     *",
+          "     * Note: This value is usually not very useful unless you want to",
+          "     * position a native popup window at this coordinate.",
+          "     *",
+          "     * @return {Number} The horizontal contact position on the screen.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -278,28 +357,44 @@
           {
             "name": "@return",
             "body": "{Number} The horizontal contact position on the screen.",
-            "type": "Number",
-            "description": " The horizontal contact position on the screen."
+            "type": "number",
+            "description": "The horizontal contact position on the screen."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getScreenTop": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 120,
+          "line": 107,
           "column": 4,
-          "index": 3974
+          "index": 3427
         },
         "end": {
-          "line": 122,
+          "line": 109,
           "column": 5,
-          "index": 4042
+          "index": 3495
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "getScreenTop": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the vertical coordinate at which the event occurred relative to",
+          "     * the origin of the screen coordinate system.",
+          "     *",
+          "     * Note: This value is usually not very useful unless you want to",
+          "     * position a native popup window at this coordinate.",
+          "     *",
+          "     * @return {Number} The vertical contact position on the screen.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -310,28 +405,44 @@
           {
             "name": "@return",
             "body": "{Number} The vertical contact position on the screen.",
-            "type": "Number",
-            "description": " The vertical contact position on the screen."
+            "type": "number",
+            "description": "The vertical contact position on the screen."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "normalize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 133,
+          "line": 120,
           "column": 4,
-          "index": 4365
+          "index": 3855
         },
         "end": {
-          "line": 147,
+          "line": 122,
           "column": 5,
-          "index": 4773
+          "index": 3921
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "normalize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Manipulates the native event object, adding methods if they're not",
+          "     * already present",
+          "     *",
+          "     * @param event {Event} Native event object",
+          "     * @param element {Element} DOM element the listener was attached to",
+          "     * @return {Event} Normalized event object",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -359,7 +470,7 @@
             "name": "@return",
             "body": "{Event} Normalized event object",
             "type": "Event",
-            "description": " Normalized event object"
+            "description": "Normalized event object"
           }
         ],
         "@internal": [
@@ -369,23 +480,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 150,
-        "column": 2,
-        "index": 4785
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 133,
+          "column": 4,
+          "index": 4233
+        },
+        "end": {
+          "line": 147,
+          "column": 5,
+          "index": 4627
+        }
       },
-      "end": {
-        "line": 155,
-        "column": 3,
-        "index": 4913
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "event",
+          "type": "Event"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "returnType": {
+        "type": "Event"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

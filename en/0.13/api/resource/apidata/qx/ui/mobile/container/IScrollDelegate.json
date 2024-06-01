@@ -1,49 +1,51 @@
 {
-  "className": "qx.ui.mobile.container.IScrollDelegate",
-  "packageName": "qx.ui.mobile.container",
-  "name": "IScrollDelegate",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 940
-      },
-      "end": {
-        "line": 37,
-        "column": 3,
-        "index": 1264
-      }
+  "version": 0.3,
+  "lastModified": 1717235171450,
+  "lastModifiedIso": "2024-06-01T09:46:11.450Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/mobile/container/IScrollDelegate.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 913
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Objects which are used as delegates for the {@link qx.ui.mobile.container.Scroll#delegate} may\n implement any of the methods described in this interface. The delegate does\n not need to implement all the methods of this interface.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n actually implemented.</p>"
-        }
-      ]
+    "end": {
+      "line": 37,
+      "column": 3,
+      "index": 1228
     }
   },
-  "type": "interface",
+  "className": "qx.ui.mobile.container.IScrollDelegate",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Objects which are used as delegates for the {@link qx.ui.mobile.container.Scroll#delegate} may",
+      " * implement any of the methods described in this interface. The delegate does",
+      " * not need to implement all the methods of this interface.",
+      " *",
+      " * Note: This interface is meant to document the delegate but should not be",
+      " * listed in the <code>implement</code> key of a class unless all methods are",
+      " * actually implemented.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Objects which are used as delegates for the {@link qx.ui.mobile.container.Scroll#delegate} may\n implement any of the methods described in this interface. The delegate does\n not need to implement all the methods of this interface.\n Note: This interface is meant to document the delegate but should not be\n listed in the <code>implement</code> key of a class unless all methods are\n actually implemented.</p>"
+      }
+    ]
+  },
   "members": {
     "getScrollOffset": {
-      "location": {
-        "start": {
-          "line": 35,
-          "column": 4,
-          "index": 1234
-        },
-        "end": {
-          "line": 35,
-          "column": 24,
-          "index": 1254
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculates the scroll offset if container scrolls to a widget/element through <code>scrollToElement()|scrollToWidget()</code>.",
+          "     *",
+          "     * @return {Array} an array with x,y offset.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -54,14 +56,32 @@
           {
             "name": "@return",
             "body": "{Array} an array with x,y offset.",
-            "type": "Array",
-            "description": " an array with x,y offset."
+            "type": "Array<any>",
+            "description": "an array with x,y offset."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1200
+        },
+        "end": {
+          "line": 35,
+          "column": 24,
+          "index": 1220
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "Array<any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

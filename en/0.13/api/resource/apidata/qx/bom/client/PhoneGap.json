@@ -1,55 +1,56 @@
 {
-  "className": "qx.bom.client.PhoneGap",
-  "packageName": "qx.bom.client",
-  "name": "PhoneGap",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 746
-      },
-      "end": {
-        "line": 52,
-        "column": 3,
-        "index": 1479
-      }
+  "version": 0.3,
+  "lastModified": 1717235171990,
+  "lastModifiedIso": "2024-06-01T09:46:11.990Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/client/PhoneGap.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 720
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The purpose of this class is to contain all checks for PhoneGap/Cordova.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 52,
+      "column": 3,
+      "index": 1428
     }
   },
-  "type": "class",
+  "className": "qx.bom.client.PhoneGap",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The purpose of this class is to contain all checks for PhoneGap/Cordova.",
+      " *",
+      " * This class is used by {@link qx.core.Environment} and should not be used",
+      " * directly. Please check its class comment for details how to use it.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The purpose of this class is to contain all checks for PhoneGap/Cordova.\n This class is used by {@link qx.core.Environment} and should not be used\n directly. Please check its class comment for details how to use it.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "statics": {
     "getPhoneGap": {
-      "location": {
-        "start": {
-          "line": 34,
-          "column": 4,
-          "index": 964
-        },
-        "end": {
-          "line": 36,
-          "column": 5,
-          "index": 1068
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if PhoneGap/Cordova is available.",
+          "     * @return {Boolean} <code>true</code>, if it could be used.",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,8 +61,8 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if it could be used.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if it could be used."
+            "type": "boolean",
+            "description": "<code>true</code>, if it could be used."
           }
         ],
         "@internal": [
@@ -71,23 +72,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getNotification": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 43,
+          "line": 34,
           "column": 4,
-          "index": 1229
+          "index": 931
         },
         "end": {
-          "line": 45,
+          "line": 36,
           "column": 5,
-          "index": 1298
+          "index": 1033
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "getNotification": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Checks if notifications can be displayed.",
+          "     * @return {Boolean} <code>true</code>, if it could be used.",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -98,8 +111,8 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code>, if it could be used.",
-            "type": "Boolean",
-            "description": " <code>true</code>, if it could be used."
+            "type": "boolean",
+            "description": "<code>true</code>, if it could be used."
           }
         ],
         "@internal": [
@@ -109,23 +122,27 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 48,
-        "column": 2,
-        "index": 1310
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1187
+        },
+        "end": {
+          "line": 45,
+          "column": 5,
+          "index": 1254
+        }
       },
-      "end": {
-        "line": 51,
-        "column": 3,
-        "index": 1474
-      }
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

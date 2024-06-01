@@ -1,0 +1,91 @@
+{
+  "version": 0.3,
+  "lastModified": 1645588062000,
+  "lastModifiedIso": "2022-02-23T03:47:42.000Z",
+  "classFilename": "../../qx_packages/qooxdoo_qxl_dialog_v5_0_0/source/class/qxl/dialog/FormTag.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 18,
+      "column": 0,
+      "index": 361
+    },
+    "end": {
+      "line": 32,
+      "column": 3,
+      "index": 702
+    }
+  },
+  "className": "qxl.dialog.FormTag",
+  "jsdoc": {
+    "raw": [
+      " ************************************************************************",
+      "",
+      "   qooxdoo dialog library",
+      "",
+      "   http://qooxdoo.org/contrib/catalog/#Dialog",
+      "",
+      "   Copyright:",
+      "     2018 Derrell Lipman",
+      "",
+      "   License:",
+      "     MIT: https://opensource.org/licenses/MIT",
+      "",
+      "   Authors:",
+      "   *  Derrell Lipman",
+      "",
+      "************************************************************************ "
+    ]
+  },
+  "superClass": "qx.ui.container.Composite",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "layout"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 21,
+        "column": 2,
+        "index": 441
+      },
+      "end": {
+        "line": 23,
+        "column": 3,
+        "index": 510
+      }
+    }
+  },
+  "members": {
+    "_createContentElement": {
+      "jsdoc": {
+        "raw": [
+          " Instead of creating a <div> for the content element, use <form>"
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 28,
+          "column": 4,
+          "index": 619
+        },
+        "end": {
+          "line": 30,
+          "column": 5,
+          "index": 692
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.ui.core.Widget",
+      "appearsIn": [
+        "qx.ui.core.Widget"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

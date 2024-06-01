@@ -1,0 +1,39 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "mobile",
+    "MobileTestCase",
+    "members",
+    "testValue",
+    "label",
+    "ui",
+    "basic",
+    "Label",
+    "getRoot",
+    "add",
+    "assertString",
+    "getValue",
+    "assertEquals",
+    "getContentElement",
+    "innerHTML",
+    "assertEventFired",
+    "setValue",
+    "destroy"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/mobile/basic/Label.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Tino Butz (tbtz)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.mobile.basic.Label\", {\n  extend: qx.test.mobile.MobileTestCase,\n\n  members: {\n    testValue() {\n      var label = new qx.ui.mobile.basic.Label(\"affe\");\n      this.getRoot().add(label);\n\n      this.assertString(label.getValue());\n      this.assertEquals(label.getValue(), \"affe\");\n      this.assertEquals(label.getValue(), label.getContentElement().innerHTML);\n\n      this.assertEventFired(label, \"changeValue\", function () {\n        label.setValue(\"\");\n      });\n\n      this.assertEquals(label.getValue(), \"\");\n      this.assertEquals(label.getValue(), label.getContentElement().innerHTML);\n\n      label.destroy();\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,4BAA4B,EAAE;IAC5CC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,MAAM,CAACC,cAAc;IAErCC,OAAO,EAAE;MACPC,SAAS,WAAAA,UAAA,EAAG;QACV,IAAIC,KAAK,GAAG,IAAIZ,EAAE,CAACa,EAAE,CAACL,MAAM,CAACM,KAAK,CAACC,KAAK,CAAC,MAAM,CAAC;QAChD,IAAI,CAACC,OAAO,CAAC,CAAC,CAACC,GAAG,CAACL,KAAK,CAAC;QAEzB,IAAI,CAACM,YAAY,CAACN,KAAK,CAACO,QAAQ,CAAC,CAAC,CAAC;QACnC,IAAI,CAACC,YAAY,CAACR,KAAK,CAACO,QAAQ,CAAC,CAAC,EAAE,MAAM,CAAC;QAC3C,IAAI,CAACC,YAAY,CAACR,KAAK,CAACO,QAAQ,CAAC,CAAC,EAAEP,KAAK,CAACS,iBAAiB,CAAC,CAAC,CAACC,SAAS,CAAC;QAExE,IAAI,CAACC,gBAAgB,CAACX,KAAK,EAAE,aAAa,EAAE,YAAY;UACtDA,KAAK,CAACY,QAAQ,CAAC,EAAE,CAAC;QACpB,CAAC,CAAC;QAEF,IAAI,CAACJ,YAAY,CAACR,KAAK,CAACO,QAAQ,CAAC,CAAC,EAAE,EAAE,CAAC;QACvC,IAAI,CAACC,YAAY,CAACR,KAAK,CAACO,QAAQ,CAAC,CAAC,EAAEP,KAAK,CAACS,iBAAiB,CAAC,CAAC,CAACC,SAAS,CAAC;QAExEV,KAAK,CAACa,OAAO,CAAC,CAAC;MACjB;IACF;EACF,CAAC,CAAC;EAxCFzB,EAAE,CAACO,IAAI,CAACC,MAAM,CAACM,KAAK,CAACC,KAAK,CAACZ,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

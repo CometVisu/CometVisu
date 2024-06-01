@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "test",
+    "performance",
+    "decorator",
+    "AbstractDecorator",
+    "members",
+    "createDecorator",
+    "ui",
+    "decoration",
+    "Decorator",
+    "Single"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/performance/decorator/Single.js"
+  ],
+  "sourcesContent": [
+    "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2004-2010 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n     * Fabian Jakobs (fjakobs)\n\n************************************************************************ */\nqx.Class.define(\"qx.test.performance.decorator.Single\", {\n  extend: qx.test.performance.decorator.AbstractDecorator,\n\n  members: {\n    createDecorator() {\n      return new qx.ui.decoration.Decorator(5, \"solid\", \"red\");\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,sCAAsC,EAAE;IACtDC,MAAM,EAAEN,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,SAAS,CAACC,iBAAiB;IAEvDC,OAAO,EAAE;MACPC,eAAe,WAAAA,gBAAA,EAAG;QAChB,OAAO,IAAIZ,EAAE,CAACa,EAAE,CAACC,UAAU,CAACC,SAAS,CAAC,CAAC,EAAE,OAAO,EAAE,KAAK,CAAC;MAC1D;IACF;EACF,CAAC,CAAC;EA1BFf,EAAE,CAACO,IAAI,CAACC,WAAW,CAACC,SAAS,CAACO,MAAM,CAACb,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

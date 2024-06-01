@@ -73,13 +73,13 @@
       var testMode = false;
       if (typeof testMode === 'string' && testMode !== 'true') {
         this.setConnected(false);
-        this.__P_530_0 = new cv.data.Simulation(testMode, this);
+        this.__P_749_0 = new cv.data.Simulation(testMode, this);
       }
       this.addresses = [];
       var file = this._resources['simulation'];
       if (file) {
         this.setConnected(false);
-        this.__P_530_0 = new cv.data.Simulation(file, this);
+        this.__P_749_0 = new cv.data.Simulation(file, this);
       } else {
         this.addListener('resourcePathAdded', function (ev) {
           switch (ev.getData()) {
@@ -88,28 +88,12 @@
                 var _file = _this._resources['simulation'];
                 if (_file) {
                   _this.setConnected(false);
-                  _this.__P_530_0 = new cv.data.Simulation(_file, _this);
+                  _this.__P_749_0 = new cv.data.Simulation(_file, _this);
                 }
                 break;
               }
           }
         });
-      }
-    },
-    /*
-    ******************************************************
-      PROPERTIES
-    ******************************************************
-    */
-    properties: {
-      server: {
-        check: 'String',
-        init: 'Mockup'
-      },
-      connected: {
-        check: 'Boolean',
-        init: true,
-        event: 'changeConnected'
       }
     },
     /*
@@ -120,8 +104,8 @@
     members: {
       backendName: 'mockup',
       addresses: null,
-      __P_530_1: null,
-      __P_530_0: null,
+      __P_749_1: null,
+      __P_749_0: null,
       getType: function getType() {
         return this.backendName;
       },
@@ -139,8 +123,8 @@
       login: function login(loginOnly, credentials, callback, context) {
         var _this2 = this;
         if (callback) {
-          if (this.__P_530_0 && !this.__P_530_0.isInitialized()) {
-            this.__P_530_0.addListenerOnce('changeInitialized', function () {
+          if (this.__P_749_0 && !this.__P_749_0.isInitialized()) {
+            this.__P_749_0.addListenerOnce('changeInitialized', function () {
               _this2.setConnected(true);
               _this2.debug('(delayed) logged in to mockup client');
               callback.call(context);
@@ -158,8 +142,8 @@
        */
       subscribe: function subscribe(addresses) {
         this.addresses = addresses ? addresses : [];
-        if (this.__P_530_0) {
-          this.__P_530_0.prepareTestData(this.addresses);
+        if (this.__P_749_0) {
+          this.__P_749_0.prepareTestData(this.addresses);
         }
       },
       addSubscription: function addSubscription(address) {
@@ -167,7 +151,7 @@
           this.addresses.push(address);
         }
       },
-      __P_530_2: function __P_530_2(address, value) {
+      __P_749_2: function __P_749_2(address, value) {
         if (/\d{1,2}\/\d{1,2}\/\d{1,2}/.test(address)) {
           if (/^[\da-fA-F]+$/.test(value)) {
             if (value.length <= 2) {
@@ -196,8 +180,8 @@
           value: value,
           ts: ts
         };
-        value = this.__P_530_2(address, value);
-        if (!this.__P_530_0 || !this.__P_530_0.onWrite(address, value)) {
+        value = this.__P_749_2(address, value);
+        if (!this.__P_749_0 || !this.__P_749_0.onWrite(address, value)) {
           // send update
           var answer = {
             i: ts,
@@ -277,4 +261,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1709410170061
+//# sourceMappingURL=Mockup.js.map?dt=1717235421459

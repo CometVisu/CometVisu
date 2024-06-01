@@ -1,6 +1,7 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
+      "qx.module.Animation": {},
       "qx.core.Init": {
         "require": true
       },
@@ -46,6 +47,7 @@
    * Abstract base class for GUI applications using qooxdoo widgets.
    *
    * @require(qx.core.Init)
+   * @use(qx.module.Animation)
    */
   qx.Class.define("qx.application.AbstractGui", {
     type: "abstract",
@@ -123,4 +125,4 @@
   qx.application.AbstractGui.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractGui.js.map?dt=1709410143234
+//# sourceMappingURL=AbstractGui.js.map?dt=1717235371402

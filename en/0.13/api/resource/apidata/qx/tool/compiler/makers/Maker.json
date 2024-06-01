@@ -1,0 +1,697 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171662,
+  "lastModifiedIso": "2024-06-01T09:46:11.662Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/makers/Maker.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 848
+    },
+    "end": {
+      "line": 184,
+      "column": 3,
+      "index": 4800
+    }
+  },
+  "className": "qx.tool.compiler.makers.Maker",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Base class for makers; does not include anything about targets, locales, etc (see AbstractAppMaker)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Base class for makers; does not include anything about targets, locales, etc (see AbstractAppMaker)</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "isSingleton": false,
+  "abstract": true,
+  "construct": {
+    "type": "function",
+    "params": [],
+    "location": {
+      "start": {
+        "line": 32,
+        "column": 2,
+        "index": 948
+      },
+      "end": {
+        "line": 35,
+        "column": 3,
+        "index": 1010
+      }
+    }
+  },
+  "properties": {
+    "dbFilename": {
+      "location": {
+        "start": {
+          "line": 39,
+          "column": 4,
+          "index": 1162
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1277
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "apply": "__applyDbFilename"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Database filename relative to the target's output directory; if null, defaults to db.json; absolute paths can be used "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Database filename relative to the target's output directory; if null, defaults to db.json; absolute paths can be used</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "environment": {
+      "location": {
+        "start": {
+          "line": 47,
+          "column": 4,
+          "index": 1323
+        },
+        "end": {
+          "line": 50,
+          "column": 5,
+          "index": 1382
+        }
+      },
+      "json": {
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Map of environment settings "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Map of environment settings</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "noErase": {
+      "location": {
+        "start": {
+          "line": 53,
+          "column": 4,
+          "index": 1450
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1508
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Blocks automatic deleting of the output directory "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Blocks automatic deleting of the output directory</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "success": {
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1582
+        },
+        "end": {
+          "line": 63,
+          "column": 5,
+          "index": 1661
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the make has succeeded, null during/before make "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the make has succeeded, null during/before make</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "hasWarnings": {
+      "location": {
+        "start": {
+          "line": 66,
+          "column": 4,
+          "index": 1738
+        },
+        "end": {
+          "line": 70,
+          "column": 5,
+          "index": 1821
+        }
+      },
+      "json": {
+        "nullable": true,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether the make has any warnings, null during/before make "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether the make has any warnings, null during/before make</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "events": {
+    "making": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 74,
+          "column": 4,
+          "index": 1844
+        },
+        "end": {
+          "line": 74,
+          "column": 33,
+          "index": 1873
+        }
+      }
+    },
+    "made": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 75,
+          "column": 4,
+          "index": 1879
+        },
+        "end": {
+          "line": 75,
+          "column": 31,
+          "index": 1906
+        }
+      }
+    },
+    "writingApplications": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 76,
+          "column": 4,
+          "index": 1912
+        },
+        "end": {
+          "line": 76,
+          "column": 46,
+          "index": 1954
+        }
+      }
+    },
+    "writingApplication": {
+      "type": "qx.event.type.Data",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 77,
+          "column": 4,
+          "index": 1960
+        },
+        "end": {
+          "line": 77,
+          "column": 44,
+          "index": 2000
+        }
+      }
+    },
+    "writtenApplication": {
+      "type": "qx.event.type.Data",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 78,
+          "column": 4,
+          "index": 2006
+        },
+        "end": {
+          "line": 78,
+          "column": 44,
+          "index": 2046
+        }
+      }
+    },
+    "writtenApplications": {
+      "type": "qx.event.type.Event",
+      "jsdoc": null,
+      "location": {
+        "start": {
+          "line": 79,
+          "column": 4,
+          "index": 2052
+        },
+        "end": {
+          "line": 79,
+          "column": 46,
+          "index": 2094
+        }
+      }
+    }
+  },
+  "members": {
+    "_analyser": {
+      "jsdoc": {
+        "raw": [
+          "* {Analyser} current analyser (created on demand) "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>{Analyser} current analyser (created on demand)</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 84,
+          "column": 4,
+          "index": 2177
+        },
+        "end": {
+          "line": 84,
+          "column": 19,
+          "index": 2192
+        }
+      },
+      "appearsIn": []
+    },
+    "_compiledClasses": {
+      "jsdoc": {
+        "raw": [
+          "* Lookup of classes which have been compiled this session; this is a map where the keys are",
+          "     * the class name and the value is `true`, it is erased periodically",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Lookup of classes which have been compiled this session; this is a map where the keys are\n the class name and the value is <code>true</code>, it is erased periodically</p>"
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2378
+        },
+        "end": {
+          "line": 89,
+          "column": 26,
+          "index": 2400
+        }
+      },
+      "appearsIn": []
+    },
+    "make": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Makes the application",
+          "     *",
+          "     * @abstract",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Makes the application</p>"
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 96,
+          "column": 4,
+          "index": 2476
+        },
+        "end": {
+          "line": 98,
+          "column": 5,
+          "index": 2572
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getOutputDir": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the output directory, with a trailing slash",
+          "     *",
+          "     * @returns {String}",
+          "     * @abstract",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns the output directory, with a trailing slash</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "@abstract": [
+          {
+            "name": "@abstract",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2703
+        },
+        "end": {
+          "line": 110,
+          "column": 5,
+          "index": 2825
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "eraseOutputDir": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Erases the output directory",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Erases the output directory</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 115,
+          "column": 4,
+          "index": 2883
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 3262
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__applyDbFilename": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Apply for databaseName property",
+          "     * @param value",
+          "     * @param oldValue",
+          "     * @private",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Apply for databaseName property</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value",
+            "paramName": "value",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "oldValue",
+            "paramName": "oldValue",
+            "type": ""
+          }
+        ],
+        "@private": [
+          {
+            "name": "@private",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 132,
+          "column": 4,
+          "index": 3383
+        },
+        "end": {
+          "line": 138,
+          "column": 5,
+          "index": 3579
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "oldValue"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getAnalyser": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the analyser, creating it if necessary",
+          "     * @returns {Analyser}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Gets the analyser, creating it if necessary</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Analyser}",
+            "type": "Analyser",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 144,
+          "column": 4,
+          "index": 3680
+        },
+        "end": {
+          "line": 154,
+          "column": 5,
+          "index": 4016
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Analyser"
+      },
+      "appearsIn": []
+    },
+    "getRecentlyCompiledClasses": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a list of classes which have been compiled in this session",
+          "     *",
+          "     * @param eraseAfter {Boolean?} if true, the list is reset after returning",
+          "     * @return {Map} list of class names that have been compiled",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Returns a list of classes which have been compiled in this session</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "eraseAfter {Boolean?} if true, the list is reset after returning",
+            "paramName": "eraseAfter",
+            "description": " if true, the list is reset after returning",
+            "optional": true,
+            "type": "Boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Map} list of class names that have been compiled",
+            "type": "Map<any, any>",
+            "description": "list of class names that have been compiled"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 162,
+          "column": 4,
+          "index": 4264
+        },
+        "end": {
+          "line": 168,
+          "column": 5,
+          "index": 4443
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "eraseAfter",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_createAnalyser": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the analyser",
+          "     * @returns {Analyser}",
+          "     * @protected",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Creates the analyser</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Analyser}",
+            "type": "Analyser",
+            "description": ""
+          }
+        ],
+        "@protected": [
+          {
+            "name": "@protected",
+            "body": ""
+          }
+        ]
+      },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 175,
+          "column": 4,
+          "index": 4539
+        },
+        "end": {
+          "line": 182,
+          "column": 5,
+          "index": 4792
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Analyser"
+      },
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

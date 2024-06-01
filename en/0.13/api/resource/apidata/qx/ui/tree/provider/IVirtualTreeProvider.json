@@ -1,55 +1,54 @@
 {
-  "className": "qx.ui.tree.provider.IVirtualTreeProvider",
-  "packageName": "qx.ui.tree.provider",
-  "name": "IVirtualTreeProvider",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 625
-      },
-      "end": {
-        "line": 94,
-        "column": 3,
-        "index": 2427
-      }
+  "version": 0.3,
+  "lastModified": 1717235171458,
+  "lastModifiedIso": "2024-06-01T09:46:11.458Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/tree/provider/IVirtualTreeProvider.js",
+  "type": "interface",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 601
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This interface needs to implemented from all {@link qx.ui.tree.VirtualTree}\n providers.</p>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 94,
+      "column": 3,
+      "index": 2334
     }
   },
-  "type": "interface",
+  "className": "qx.ui.tree.provider.IVirtualTreeProvider",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This interface needs to implemented from all {@link qx.ui.tree.VirtualTree}",
+      " * providers.",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This interface needs to implemented from all {@link qx.ui.tree.VirtualTree}\n providers.</p>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "members": {
     "createLayer": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 847
-        },
-        "end": {
-          "line": 32,
-          "column": 20,
-          "index": 863
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a layer for node and leaf rendering.",
+          "     *",
+          "     * @return {qx.ui.virtual.layer.Abstract} new layer.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -61,27 +60,39 @@
             "name": "@return",
             "body": "{qx.ui.virtual.layer.Abstract} new layer.",
             "type": "qx.ui.virtual.layer.Abstract",
-            "description": " new layer."
+            "description": "new layer."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "createRenderer": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 39,
+          "line": 32,
           "column": 4,
-          "index": 981
+          "index": 816
         },
         "end": {
-          "line": 39,
-          "column": 23,
-          "index": 1000
+          "line": 32,
+          "column": 20,
+          "index": 832
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.virtual.layer.Abstract"
+      },
+      "appearsIn": []
+    },
+    "createRenderer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a renderer for rendering.",
+          "     *",
+          "     * @return {var} new node renderer.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -93,27 +104,39 @@
             "name": "@return",
             "body": "{var} new node renderer.",
             "type": "var",
-            "description": " new node renderer."
+            "description": "new node renderer."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setChildProperty": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 46,
+          "line": 39,
           "column": 4,
-          "index": 1173
+          "index": 943
         },
         "end": {
-          "line": 49,
-          "column": 5,
-          "index": 1289
+          "line": 39,
+          "column": 23,
+          "index": 962
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "setChildProperty": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the name of the property, where the children are stored in the model.",
+          "     *",
+          "     * @param value {String} The child property name.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -126,27 +149,42 @@
             "body": "value {String} The child property name.",
             "paramName": "value",
             "description": " The child property name.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setLabelPath": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 57,
+          "line": 46,
           "column": 4,
-          "index": 1492
+          "index": 1128
         },
         "end": {
-          "line": 60,
+          "line": 49,
           "column": 5,
-          "index": 1604
+          "index": 1241
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "setLabelPath": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the name of the property, where the value for the tree folders label",
+          "     * is stored in the model classes.",
+          "     *",
+          "     * @param value {String} The label path.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -159,27 +197,41 @@
             "body": "value {String} The label path.",
             "paramName": "value",
             "description": " The label path.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "styleSelectabled": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 67,
+          "line": 57,
           "column": 4,
-          "index": 1714
+          "index": 1436
         },
         "end": {
-          "line": 70,
+          "line": 60,
           "column": 5,
-          "index": 1827
+          "index": 1545
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "styleSelectabled": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Styles a selected item.",
+          "     *",
+          "     * @param row {Integer} row to style.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -196,23 +248,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "styleUnselectabled": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 77,
+          "line": 67,
           "column": 4,
-          "index": 1941
+          "index": 1648
         },
         "end": {
-          "line": 80,
+          "line": 70,
           "column": 5,
-          "index": 2056
+          "index": 1758
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "styleUnselectabled": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Styles a not selected item.",
+          "     *",
+          "     * @param row {Integer} row to style.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -229,23 +295,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isSelectable": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 89,
+          "line": 77,
           "column": 4,
-          "index": 2308
+          "index": 1865
         },
         "end": {
-          "line": 92,
+          "line": 80,
           "column": 5,
-          "index": 2417
+          "index": 1977
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isSelectable": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns if the passed row can be selected or not.",
+          "     *",
+          "     * @param row {Integer} row to select.",
+          "     * @return {Boolean} <code>true</code> when the row can be selected,",
+          "     *    <code>false</code> otherwise.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -265,14 +347,37 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> when the row can be selected,\n    <code>false</code> otherwise.",
-            "type": "Boolean",
-            "description": " <code>true</code> when the row can be selected,\n    <code>false</code> otherwise."
+            "type": "boolean",
+            "description": "<code>true</code> when the row can be selected,\n    <code>false</code> otherwise."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 89,
+          "column": 4,
+          "index": 2220
+        },
+        "end": {
+          "line": 92,
+          "column": 5,
+          "index": 2326
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "row",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

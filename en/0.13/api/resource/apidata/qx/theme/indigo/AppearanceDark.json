@@ -1,67 +1,80 @@
 {
-  "className": "qx.theme.indigo.AppearanceDark",
-  "packageName": "qx.theme.indigo",
-  "name": "AppearanceDark",
-  "superClass": "qx.theme.indigo.Appearance",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 33,
-        "column": 0,
-        "index": 1136
-      },
-      "end": {
-        "line": 186,
-        "column": 3,
-        "index": 5186
-      }
+  "version": 0.3,
+  "lastModified": 1717235169050,
+  "lastModifiedIso": "2024-06-01T09:46:09.050Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/indigo/AppearanceDark.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 33,
+      "column": 0,
+      "index": 1104
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The Indigo qooxdoo dark appearance theme.</p>"
-        }
-      ],
-      "@asset": [
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/apps/office-calendar.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/places/folder-open.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/places/folder.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/mimetypes/text-plain.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/view-refresh.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/window-close.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/dialog-cancel.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/${qx.icontheme}/16/actions/dialog-ok.png"
-        }
-      ]
+    "end": {
+      "line": 186,
+      "column": 3,
+      "index": 5001
     }
   },
-  "type": "theme",
-  "descendants": []
+  "className": "qx.theme.indigo.AppearanceDark",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The Indigo qooxdoo dark appearance theme.",
+      " *",
+      " * @asset(qx/icon/${qx.icontheme}/16/apps/office-calendar.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/places/folder-open.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/places/folder.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/mimetypes/text-plain.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/view-refresh.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/window-close.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/dialog-cancel.png)",
+      " * @asset(qx/icon/${qx.icontheme}/16/actions/dialog-ok.png)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The Indigo qooxdoo dark appearance theme.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/apps/office-calendar.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/places/folder-open.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/places/folder.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/mimetypes/text-plain.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/view-refresh.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/window-close.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/dialog-cancel.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/${qx.icontheme}/16/actions/dialog-ok.png"
+      }
+    ]
+  },
+  "superClass": "qx.theme.indigo.Appearance",
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

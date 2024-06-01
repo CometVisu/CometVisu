@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "names": [
+    "qx",
+    "Bootstrap",
+    "executePendingDefers",
+    "$$dbClassInfo",
+    "Class",
+    "define",
+    "extend",
+    "dev",
+    "unit",
+    "TestCase",
+    "include",
+    "test",
+    "io",
+    "MAssert",
+    "members",
+    "testRequestCanBeConvertedToJson",
+    "query",
+    "variables",
+    "testKey",
+    "request",
+    "graphql",
+    "protocol",
+    "Request",
+    "setVariables",
+    "expected",
+    "assertEquals",
+    "toString",
+    "testNoVariablesInTheFinalString",
+    "testVariablesCanBeBound",
+    "model",
+    "data",
+    "marshal",
+    "Json",
+    "createModel",
+    "source",
+    "bind",
+    "setSource",
+    "assertMatch"
+  ],
+  "sources": [
+    "/home/runner/work/CometVisu/CometVisu/node_modules/@qooxdoo/framework/source/class/qx/test/io/graphql/Request.js"
+  ],
+  "sourcesContent": [
+    "/**\n * @require(qx.io.transport.Xhr)\n */\nqx.Class.define(\"qx.test.io.graphql.Request\", {\n  extend: qx.dev.unit.TestCase,\n  include: [qx.test.io.MAssert],\n\n  members: {\n    \"test: request can be converted to json\"() {\n      const query = \"query { SomeRandomStuff }\";\n      const variables = { testKey: \"testValue\" };\n\n      const request = new qx.io.graphql.protocol.Request({ query });\n      request.setVariables(variables);\n\n      const expected =\n        '{\"query\":\"query { SomeRandomStuff }\",\"variables\":{\"testKey\":\"testValue\"}}';\n      this.assertEquals(expected, request.toString());\n    },\n\n    \"test: no variables in the final string\"() {\n      const query = \"query { SomeRandomStuff }\";\n      const request = new qx.io.graphql.protocol.Request({ query });\n      const expected = '{\"query\":\"query { SomeRandomStuff }\"}';\n      this.assertEquals(expected, request.toString());\n    },\n\n    \"test: variables can be bound\"() {\n      const query = \"query { SomeRandomStuff }\";\n      const variables = { testKey: \"testValue\" };\n      const request = new qx.io.graphql.protocol.Request({ query });\n      request.setVariables(variables);\n\n      const model = qx.data.marshal.Json.createModel({ source: \"test\" });\n      model.bind(\"source\", request, \"variables.testKey\");\n      model.setSource(\"newTestValue\");\n\n      this.assertMatch(request.toString(), /newTestValue/);\n    }\n  }\n});\n"
+  ],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,4BAA4B,EAAE;IAC5CC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAC5BC,OAAO,EAAE,CAACV,EAAE,CAACW,IAAI,CAACC,EAAE,CAACC,OAAO,CAAC;IAE7BC,OAAO,EAAE;MACP,wCAAwC,WAAAC,gCAAA,EAAG;QACzC,IAAMC,KAAK,GAAG,2BAA2B;QACzC,IAAMC,SAAS,GAAG;UAAEC,OAAO,EAAE;QAAY,CAAC;QAE1C,IAAMC,OAAO,GAAG,IAAInB,EAAE,CAACY,EAAE,CAACQ,OAAO,CAACC,QAAQ,CAACC,OAAO,CAAC;UAAEN,KAAK,EAALA;QAAM,CAAC,CAAC;QAC7DG,OAAO,CAACI,YAAY,CAACN,SAAS,CAAC;QAE/B,IAAMO,QAAQ,GACZ,2EAA2E;QAC7E,IAAI,CAACC,YAAY,CAACD,QAAQ,EAAEL,OAAO,CAACO,QAAQ,CAAC,CAAC,CAAC;MACjD,CAAC;MAED,wCAAwC,WAAAC,gCAAA,EAAG;QACzC,IAAMX,KAAK,GAAG,2BAA2B;QACzC,IAAMG,OAAO,GAAG,IAAInB,EAAE,CAACY,EAAE,CAACQ,OAAO,CAACC,QAAQ,CAACC,OAAO,CAAC;UAAEN,KAAK,EAALA;QAAM,CAAC,CAAC;QAC7D,IAAMQ,QAAQ,GAAG,uCAAuC;QACxD,IAAI,CAACC,YAAY,CAACD,QAAQ,EAAEL,OAAO,CAACO,QAAQ,CAAC,CAAC,CAAC;MACjD,CAAC;MAED,8BAA8B,WAAAE,wBAAA,EAAG;QAC/B,IAAMZ,KAAK,GAAG,2BAA2B;QACzC,IAAMC,SAAS,GAAG;UAAEC,OAAO,EAAE;QAAY,CAAC;QAC1C,IAAMC,OAAO,GAAG,IAAInB,EAAE,CAACY,EAAE,CAACQ,OAAO,CAACC,QAAQ,CAACC,OAAO,CAAC;UAAEN,KAAK,EAALA;QAAM,CAAC,CAAC;QAC7DG,OAAO,CAACI,YAAY,CAACN,SAAS,CAAC;QAE/B,IAAMY,KAAK,GAAG7B,EAAE,CAAC8B,IAAI,CAACC,OAAO,CAACC,IAAI,CAACC,WAAW,CAAC;UAAEC,MAAM,EAAE;QAAO,CAAC,CAAC;QAClEL,KAAK,CAACM,IAAI,CAAC,QAAQ,EAAEhB,OAAO,EAAE,mBAAmB,CAAC;QAClDU,KAAK,CAACO,SAAS,CAAC,cAAc,CAAC;QAE/B,IAAI,CAACC,WAAW,CAAClB,OAAO,CAACO,QAAQ,CAAC,CAAC,EAAE,cAAc,CAAC;MACtD;IACF;EACF,CAAC,CAAC;EAxCF1B,EAAE,CAACW,IAAI,CAACC,EAAE,CAACQ,OAAO,CAACE,OAAO,CAACnB,aAAa,GAAGA,aAAa;AAAC",
+  "ignoreList": []
+}

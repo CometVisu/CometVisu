@@ -1,0 +1,335 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235172426,
+  "lastModifiedIso": "2024-06-01T09:46:12.426Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/json/Stringify.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 763
+    },
+    "end": {
+      "line": 474,
+      "column": 3,
+      "index": 13860
+    }
+  },
+  "className": "qx.tool.utils.json.Stringify",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Stringify",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Stringify</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "statics": {
+    "prettyPrint": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Pretty prints an AST tree",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Pretty prints an AST tree</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 906
+        },
+        "end": {
+          "line": 100,
+          "column": 5,
+          "index": 2806
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ast"
+        }
+      ],
+      "appearsIn": []
+    },
+    "reprint": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Prints an object out, using the AST to preserve formatting and whitespace",
+          "     * (and include comments) wherever possible.  Any parts of the object which",
+          "     * do not have a corresponding AST tree will be pretty printed",
+          "     *",
+          "     * This is only really suitable for amendments to the object graph because",
+          "     * preserving formatting & comments relies on a 1:1 comparison between the",
+          "     * AST and the object.  This means that if you move a subset of an object to",
+          "     * another part of the object graph, it will be seen as a deletion of one",
+          "     * subset and a brand new subset - you will loose all comments as well as",
+          "     * layout.",
+          "     *",
+          "     * @param object {Object}",
+          "     * @param ast {Tokenizer}",
+          "     * @return {String}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Prints an object out, using the AST to preserve formatting and whitespace\n (and include comments) wherever possible.  Any parts of the object which\n do not have a corresponding AST tree will be pretty printed\n This is only really suitable for amendments to the object graph because\n preserving formatting &amp; comments relies on a 1:1 comparison between the\n AST and the object.  This means that if you move a subset of an object to\n another part of the object graph, it will be seen as a deletion of one\n subset and a brand new subset - you will loose all comments as well as\n layout.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "object {Object}",
+            "paramName": "object",
+            "type": "Record<any, any>"
+          },
+          {
+            "name": "@param",
+            "body": "ast {Tokenizer}",
+            "paramName": "ast",
+            "type": "qx.tool.utils.json.Tokenizer"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 118,
+          "column": 4,
+          "index": 3565
+        },
+        "end": {
+          "line": 381,
+          "column": 5,
+          "index": 11748
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "object",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "ast",
+          "type": "qx.tool.utils.json.Tokenizer"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "astToObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts an AST into an ordinary POJO",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts an AST into an ordinary POJO</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 386,
+          "column": 4,
+          "index": 11816
+        },
+        "end": {
+          "line": 417,
+          "column": 5,
+          "index": 12576
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "ast"
+        },
+        {
+          "name": "settings"
+        }
+      ],
+      "appearsIn": []
+    },
+    "isPlainObject": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the value is a native object",
+          "     *",
+          "     * @param obj {Object}",
+          "     * @returns boolean",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the value is a native object</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object}",
+            "paramName": "obj",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 425,
+          "column": 4,
+          "index": 12709
+        },
+        "end": {
+          "line": 432,
+          "column": 5,
+          "index": 12926
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "isLiteral": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects whether the value is a literal value",
+          "     *",
+          "     * @param obj {Object}",
+          "     * @returns boolean",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Detects whether the value is a literal value</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "obj {Object}",
+            "paramName": "obj",
+            "type": "Record<any, any>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "boolean"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 440,
+          "column": 4,
+          "index": 13059
+        },
+        "end": {
+          "line": 450,
+          "column": 5,
+          "index": 13278
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "Record<any, any>"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "isSameLiteral": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compares a node to see if it is the same as a literal value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Compares a node to see if it is the same as a literal value</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 455,
+          "column": 4,
+          "index": 13368
+        },
+        "end": {
+          "line": 472,
+          "column": 5,
+          "index": 13852
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "node"
+        },
+        {
+          "name": "object"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

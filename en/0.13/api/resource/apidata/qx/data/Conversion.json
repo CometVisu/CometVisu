@@ -1,49 +1,106 @@
 {
-  "className": "qx.data.Conversion",
-  "packageName": "qx.data",
-  "name": "Conversion",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 822
-      },
-      "end": {
-        "line": 84,
-        "column": 3,
-        "index": 2587
-      }
+  "version": 0.3,
+  "lastModified": 1717235169794,
+  "lastModifiedIso": "2024-06-01T09:46:09.794Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/Conversion.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 798
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class offers a set of default conversion methods and whole options\n packs for {@link qx.data.SingleValueBinding}. The binding offers a conversion\n itself if it can determinate which types should be used. In all other cases,\n you can you this methods / options for the default conversion.</p>"
-        }
-      ]
+    "end": {
+      "line": 84,
+      "column": 3,
+      "index": 2504
     }
   },
-  "type": "class",
+  "className": "qx.data.Conversion",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class offers a set of default conversion methods and whole options",
+      " * packs for {@link qx.data.SingleValueBinding}. The binding offers a conversion",
+      " * itself if it can determinate which types should be used. In all other cases,",
+      " * you can you this methods / options for the default conversion.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class offers a set of default conversion methods and whole options\n packs for {@link qx.data.SingleValueBinding}. The binding offers a conversion\n itself if it can determinate which types should be used. In all other cases,\n you can you this methods / options for the default conversion.</p>"
+      }
+    ]
+  },
   "statics": {
-    "TOSTRINGOPTIONS": {
+    "toString": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the given value to a string via <code> + \"\"</code>.",
+          "     *",
+          "     * @param value {var} The value to convert.",
+          "     * @return {String} The converted value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts the given value to a string via <code> + \"\"</code>.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {var} The value to convert.",
+            "paramName": "value",
+            "description": " The value to convert.",
+            "type": "var"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} The converted value.",
+            "type": "string",
+            "description": "The converted value."
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
-          "line": 41,
+          "line": 33,
           "column": 4,
-          "index": 1259
+          "index": 1039
         },
         "end": {
-          "line": 41,
-          "column": 40,
-          "index": 1295
+          "line": 35,
+          "column": 5,
+          "index": 1087
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "TOSTRINGOPTIONS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Options for the {@link qx.data.SingleValueBinding}",
+          "     * containing the {@link #toString} converter.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +108,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "toNumber": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 49,
+          "line": 41,
           "column": 4,
-          "index": 1499
+          "index": 1219
         },
         "end": {
-          "line": 51,
-          "column": 5,
-          "index": 1556
+          "line": 41,
+          "column": 40,
+          "index": 1255
         }
       },
+      "appearsIn": []
+    },
+    "toNumber": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the given value to a number via <code>parseFloat</code>.",
+          "     *",
+          "     * @param value {var} The value to convert.",
+          "     * @return {Number} The converted value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,28 +152,44 @@
           {
             "name": "@return",
             "body": "{Number} The converted value.",
-            "type": "Number",
-            "description": " The converted value."
+            "type": "number",
+            "description": "The converted value."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "TONUMBEROPTIONS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 57,
+          "line": 49,
           "column": 4,
-          "index": 1694
+          "index": 1451
         },
         "end": {
-          "line": 57,
-          "column": 40,
-          "index": 1730
+          "line": 51,
+          "column": 5,
+          "index": 1506
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "TONUMBEROPTIONS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Options for the {@link qx.data.SingleValueBinding}",
+          "     * containing the {@link #toNumber} converter.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -116,23 +197,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "toBoolean": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 65,
+          "line": 57,
           "column": 4,
-          "index": 1933
+          "index": 1638
         },
         "end": {
-          "line": 67,
-          "column": 5,
-          "index": 1981
+          "line": 57,
+          "column": 40,
+          "index": 1674
         }
       },
+      "appearsIn": []
+    },
+    "toBoolean": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts the given value to a boolean via <code>!!value</code>.",
+          "     *",
+          "     * @param value {var} The value to convert.",
+          "     * @return {Boolean} The converted value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -152,28 +241,44 @@
           {
             "name": "@return",
             "body": "{Boolean} The converted value.",
-            "type": "Boolean",
-            "description": " The converted value."
+            "type": "boolean",
+            "description": "The converted value."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "TOBOOLEANOPTIONS": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 73,
+          "line": 65,
           "column": 4,
-          "index": 2120
+          "index": 1869
         },
         "end": {
-          "line": 73,
-          "column": 41,
-          "index": 2157
+          "line": 67,
+          "column": 5,
+          "index": 1915
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "TOBOOLEANOPTIONS": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Options for the {@link qx.data.SingleValueBinding}",
+          "     * containing the {@link #toBoolean} converter.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -181,23 +286,22 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 76,
-        "column": 2,
-        "index": 2169
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 2048
+        },
+        "end": {
+          "line": 73,
+          "column": 41,
+          "index": 2085
+        }
       },
-      "end": {
-        "line": 83,
-        "column": 3,
-        "index": 2582
-      }
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

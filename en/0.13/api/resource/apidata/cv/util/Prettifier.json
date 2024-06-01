@@ -1,39 +1,71 @@
 {
-  "className": "cv.util.Prettifier",
-  "packageName": "cv.util",
-  "name": "Prettifier",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 828
-      },
-      "end": {
-        "line": 105,
-        "column": 3,
-        "index": 3648
-      }
+  "version": 0.3,
+  "lastModified": 1717235105618,
+  "lastModifiedIso": "2024-06-01T09:45:05.618Z",
+  "classFilename": "../../source/class/cv/util/Prettifier.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 828
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ]
+    "end": {
+      "line": 105,
+      "column": 3,
+      "index": 3648
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.util.Prettifier",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " *",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": ""
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "xml": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Dumps an XML file with formatted content",
+          "     * @param xml {XMLDocument}",
+          "     * @returns {string}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Dumps an XML file with formatted content</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "xml {XMLDocument}",
+            "paramName": "xml",
+            "type": "XMLDocument"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 37,
@@ -46,32 +78,21 @@
           "index": 1265
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Dumps an XML file with formatted content</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "xml {XMLDocument}"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{string}",
-            "type": "string",
-            "description": ""
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "xml",
+          "type": "XMLDocument"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
     },
     "_prettifyNode": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 41,
@@ -85,8 +106,20 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "node"
+        },
+        {
+          "name": "level"
+        },
+        {
+          "name": "noFormat"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

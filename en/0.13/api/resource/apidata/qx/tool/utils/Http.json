@@ -1,0 +1,111 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171174,
+  "lastModifiedIso": "2024-06-01T09:46:11.174Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/Http.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 622
+    },
+    "end": {
+      "line": 69,
+      "column": 3,
+      "index": 1934
+    }
+  },
+  "className": "qx.tool.utils.Http",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Helper methods for HTTP",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Helper methods for HTTP</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "statics": {
+    "downloadToTempfile": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Downloads a URL into a temporary file",
+          "     *",
+          "     * @param {String} url URL to download",
+          "     * @param {RegEx?} contentTypeRegEx optional regex for the content type",
+          "     * @return {String} temporary filename",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Downloads a URL into a temporary file</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{String} url URL to download",
+            "paramName": "url",
+            "description": "URL to download",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{RegEx?} contentTypeRegEx optional regex for the content type",
+            "paramName": "contentTypeRegEx",
+            "description": "optional regex for the content type",
+            "optional": true,
+            "type": "RegEx"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{String} temporary filename",
+            "type": "string",
+            "description": "temporary filename"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 38,
+          "column": 4,
+          "index": 936
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 1926
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "contentTypeRegEx",
+          "type": "RegEx",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

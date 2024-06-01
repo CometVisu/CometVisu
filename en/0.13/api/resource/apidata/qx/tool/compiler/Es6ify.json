@@ -1,0 +1,537 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235170414,
+  "lastModifiedIso": "2024-06-01T09:46:10.414Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/Es6ify.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 103,
+      "column": 0,
+      "index": 3365
+    },
+    "end": {
+      "line": 463,
+      "column": 3,
+      "index": 13887
+    }
+  },
+  "className": "qx.tool.compiler.Es6ify",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Processes a .js source file and tries to upgrade to ES6 syntax",
+      " *",
+      " * This is a reliable but fairly unintrusive upgrade, provided that `arrowFunctions` property is",
+      " * `careful`.  The issue is that this code: `setTimeout(function() { something(); })` can be",
+      " * changed to `setTimeout(() => something())` and that is often desirable, but it also means that",
+      " * the `this` will be different because an arrow function always has the `this` from where the",
+      " * code is written.",
+      " *",
+      " * However, if you use an API which changes `this` then the switch to arrow functions will break",
+      " * your code.  Mostly, in Qooxdoo, changes to `this` are done via an explicit API (eg",
+      " * `obj.addListener(\"changeXyx\", function() {}, this)`) and so those known APIs can be translated,",
+      " * but there are places which do not work this way (eg the unit tests `qx.dev.unit.TestCase.resume()`).",
+      " * Third party integrations are of course completely unknown.",
+      " *",
+      " * If `arrowFunctions` is set to aggressive, then all functions are switched to arrow functions except",
+      " * where there is a known API that does not support it (eg any call to `.resume` in a test class); this",
+      " * could break your code.",
+      " *",
+      " * If `arrowFunctions is set to `careful` (the default), then functions are only switched to arrow",
+      " * functions where the API is known  (eg `.addListener`).",
+      " *",
+      " * The final step is that the ES6ify will use https://prettier.io/ to reformat the code, and will use",
+      " * the nearest `prettierrc.json` for configuration",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Processes a .js source file and tries to upgrade to ES6 syntax\n This is a reliable but fairly unintrusive upgrade, provided that <code>arrowFunctions</code> property is\n <code>careful</code>.  The issue is that this code: <code>setTimeout(function() { something(); })</code> can be\n changed to <code>setTimeout(() =&gt; something())</code> and that is often desirable, but it also means that\n the <code>this</code> will be different because an arrow function always has the <code>this</code> from where the\n code is written.\n However, if you use an API which changes <code>this</code> then the switch to arrow functions will break\n your code.  Mostly, in Qooxdoo, changes to <code>this</code> are done via an explicit API (eg\n <code>obj.addListener(\"changeXyx\", function() {}, this)</code>) and so those known APIs can be translated,\n but there are places which do not work this way (eg the unit tests <code>qx.dev.unit.TestCase.resume()</code>).\n Third party integrations are of course completely unknown.\n If <code>arrowFunctions</code> is set to aggressive, then all functions are switched to arrow functions except\n where there is a known API that does not support it (eg any call to <code>.resume</code> in a test class); this\n could break your code.\n If <code>arrowFunctions is set to </code>careful<code> (the default), then functions are only switched to arrow\n functions where the API is known  (eg </code>.addListener<code>).\n The final step is that the ES6ify will use https://prettier.io/ to reformat the code, and will use\n the nearest </code>prettierrc.json` for configuration</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "filename"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 106,
+        "column": 2,
+        "index": 3439
+      },
+      "end": {
+        "line": 110,
+        "column": 3,
+        "index": 3576
+      }
+    }
+  },
+  "properties": {
+    "arrowFunctions": {
+      "location": {
+        "start": {
+          "line": 114,
+          "column": 4,
+          "index": 3715
+        },
+        "end": {
+          "line": 118,
+          "column": 5,
+          "index": 3841
+        }
+      },
+      "json": {
+        "init": "careful",
+        "check": [
+          "never",
+          "always",
+          "careful",
+          "aggressive"
+        ],
+        "nullable": true
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to convert functions to arrow functions; careful means only on things like addListener callbacks "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to convert functions to arrow functions; careful means only on things like addListener callbacks</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "singleLineBlocks": {
+      "location": {
+        "start": {
+          "line": 121,
+          "column": 4,
+          "index": 3942
+        },
+        "end": {
+          "line": 124,
+          "column": 5,
+          "index": 4009
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to force braces around single line bodies for if, for, while, and do while "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to force braces around single line bodies for if, for, while, and do while</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    },
+    "overwrite": {
+      "location": {
+        "start": {
+          "line": 127,
+          "column": 4,
+          "index": 4066
+        },
+        "end": {
+          "line": 130,
+          "column": 5,
+          "index": 4126
+        }
+      },
+      "json": {
+        "init": false,
+        "check": "Boolean"
+      },
+      "jsdoc": {
+        "raw": [
+          "* Whether to overwrite the original file "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Whether to overwrite the original file</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "__filename": {
+      "jsdoc": {
+        "raw": [
+          "* @type{String} the filename to work on "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{String} the filename to work on"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 135,
+          "column": 4,
+          "index": 4199
+        },
+        "end": {
+          "line": 135,
+          "column": 20,
+          "index": 4215
+        }
+      },
+      "appearsIn": []
+    },
+    "__knownApiFunctions": {
+      "jsdoc": {
+        "raw": [
+          "* @type{} "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@type": [
+          {
+            "name": "@type",
+            "body": "{}"
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 138,
+          "column": 4,
+          "index": 4241
+        },
+        "end": {
+          "line": 138,
+          "column": 29,
+          "index": 4266
+        }
+      },
+      "appearsIn": []
+    },
+    "transform": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Transforms the named file",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Transforms the named file</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 143,
+          "column": 4,
+          "index": 4322
+        },
+        "end": {
+          "line": 218,
+          "column": 5,
+          "index": 6307
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__pluginFunctionExpressions": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Plugin that converts object properties which are functions into object methods, eg",
+          "     * ```",
+          "     * {",
+          "     *   myMethod: function() {}",
+          "     * }",
+          "     * ```",
+          "     * becomes",
+          "     * ```",
+          "     * {",
+          "     *   myMethod() {}",
+          "     * }",
+          "     * ```",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Plugin that converts object properties which are functions into object methods, eg\n <code></code><code>\n {\n   myMethod: function() {}\n }\n </code><code></code>\n becomes\n <code></code><code>\n {\n   myMethod() {}\n }\n </code><code></code></p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 235,
+          "column": 4,
+          "index": 6587
+        },
+        "end": {
+          "line": 272,
+          "column": 5,
+          "index": 7830
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "__toArrowExpression": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Converts a function expression into an arrow function expression",
+          "     *",
+          "     * @param {Babel.Node} argNode",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Converts a function expression into an arrow function expression</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{Babel.Node} argNode",
+            "paramName": "argNode",
+            "description": "",
+            "type": "Babel.Node"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 280,
+          "column": 4,
+          "index": 7983
+        },
+        "end": {
+          "line": 296,
+          "column": 5,
+          "index": 8500
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "argNode",
+          "type": "Babel.Node"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "__pluginSingleLineBlocks": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Plugin that makes sure that every single line block is wrapped in braces",
+          "     *",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Plugin that makes sure that every single line block is wrapped in braces</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 303,
+          "column": 4,
+          "index": 8626
+        },
+        "end": {
+          "line": 325,
+          "column": 5,
+          "index": 9311
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "__pluginArrowFunctions": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Tries to convert functions into arrow functions",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Tries to convert functions into arrow functions</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 331,
+          "column": 4,
+          "index": 9405
+        },
+        "end": {
+          "line": 378,
+          "column": 5,
+          "index": 11248
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "__pluginRemoveUnnecessaryThis": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Where a function has been translated into an arrow function, the this binding is not needed",
+          "     * and can be removed",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Where a function has been translated into an arrow function, the this binding is not needed\n and can be removed</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 385,
+          "column": 4,
+          "index": 11412
+        },
+        "end": {
+          "line": 404,
+          "column": 5,
+          "index": 12164
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "__pluginSwitchToSuper": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Translates `this.base(arguments...)` into `super`",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Translates <code>this.base(arguments...)</code> into <code>super</code></p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 410,
+          "column": 4,
+          "index": 12260
+        },
+        "end": {
+          "line": 461,
+          "column": 5,
+          "index": 13879
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {},
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

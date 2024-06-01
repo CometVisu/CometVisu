@@ -1,49 +1,53 @@
 {
-  "className": "qx.ui.core.MRemoteLayoutHandling",
-  "packageName": "qx.ui.core",
-  "name": "MRemoteLayoutHandling",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 29,
-        "column": 0,
-        "index": 928
-      },
-      "end": {
-        "line": 67,
-        "column": 3,
-        "index": 2109
-      }
+  "version": 0.3,
+  "lastModified": 1717235171822,
+  "lastModifiedIso": "2024-06-01T09:46:11.822Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/MRemoteLayoutHandling.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 29,
+      "column": 0,
+      "index": 900
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This mixin redirects the layout manager to a child widget of the\n including class. This is e.g. used in {@link qx.ui.window.Window} to configure\n the layout manager of the window pane instead of the window directly.\n The including class must implement the method <code>getChildrenContainer</code>,\n which has to return the widget, to which the layout should be set.</p>"
-        }
-      ]
+    "end": {
+      "line": 67,
+      "column": 3,
+      "index": 2043
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.core.MRemoteLayoutHandling",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This mixin redirects the layout manager to a child widget of the",
+      " * including class. This is e.g. used in {@link qx.ui.window.Window} to configure",
+      " * the layout manager of the window pane instead of the window directly.",
+      " *",
+      " * The including class must implement the method <code>getChildrenContainer</code>,",
+      " * which has to return the widget, to which the layout should be set.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This mixin redirects the layout manager to a child widget of the\n including class. This is e.g. used in {@link qx.ui.window.Window} to configure\n the layout manager of the window pane instead of the window directly.\n The including class must implement the method <code>getChildrenContainer</code>,\n which has to return the widget, to which the layout should be set.</p>"
+      }
+    ]
+  },
   "members": {
     "setLayout": {
-      "location": {
-        "start": {
-          "line": 45,
-          "column": 4,
-          "index": 1551
-        },
-        "end": {
-          "line": 52,
-          "column": 5,
-          "index": 1764
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set a layout manager for the widget. A a layout manager can only be connected",
+          "     * with one widget. Reset the connection with a previous widget first, if you",
+          "     * like to use it in another widget instead.",
+          "     *",
+          "     * @param layout {qx.ui.layout.Abstract} The new layout or",
+          "     *     <code>null</code> to reset the layout.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -60,23 +64,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLayout": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 59,
+          "line": 45,
           "column": 4,
-          "index": 1908
+          "index": 1507
         },
         "end": {
-          "line": 65,
+          "line": 52,
           "column": 5,
-          "index": 2099
+          "index": 1713
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "layout",
+          "type": "qx.ui.layout.Abstract"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLayout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the widget's layout manager.",
+          "     *",
+          "     * @return {qx.ui.layout.Abstract} The widget's layout manager",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -88,13 +106,31 @@
             "name": "@return",
             "body": "{qx.ui.layout.Abstract} The widget's layout manager",
             "type": "qx.ui.layout.Abstract",
-            "description": " The widget's layout manager"
+            "description": "The widget's layout manager"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 59,
+          "column": 4,
+          "index": 1850
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 2035
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.layout.Abstract"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

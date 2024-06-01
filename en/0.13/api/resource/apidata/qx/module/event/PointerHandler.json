@@ -1,61 +1,59 @@
 {
-  "className": "qx.module.event.PointerHandler",
-  "packageName": "qx.module.event",
-  "name": "PointerHandler",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 26,
-        "column": 0,
-        "index": 586
-      },
-      "end": {
-        "line": 105,
-        "column": 3,
-        "index": 2844
-      }
+  "version": 0.3,
+  "lastModified": 1717235172014,
+  "lastModifiedIso": "2024-06-01T09:46:12.014Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/module/event/PointerHandler.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 26,
+      "column": 0,
+      "index": 561
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>TODOC</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Event"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Event_Normalization"
-        }
-      ]
+    "end": {
+      "line": 105,
+      "column": 3,
+      "index": 2740
     }
   },
-  "type": "class",
+  "className": "qx.module.event.PointerHandler",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * TODOC",
+      " *",
+      " * @require(qx.module.Event)",
+      " *",
+      " * @group (Event_Normalization)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>TODOC</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Event"
+      }
+    ],
+    "@group": [
+      {
+        "name": "@group",
+        "body": "Event_Normalization"
+      }
+    ]
+  },
   "statics": {
     "TYPES": {
-      "location": {
-        "start": {
-          "line": 31,
-          "column": 4,
-          "index": 733
-        },
-        "end": {
-          "line": 43,
-          "column": 5,
-          "index": 973
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * List of events that require a pointer handler",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,23 +61,32 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "register": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 52,
+          "line": 31,
           "column": 4,
-          "index": 1205
+          "index": 703
         },
         "end": {
-          "line": 65,
+          "line": 43,
           "column": 5,
-          "index": 1601
+          "index": 931
         }
       },
+      "appearsIn": []
+    },
+    "register": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a pointer handler for the given element when a pointer event listener",
+          "     * is attached to it",
+          "     *",
+          "     * @param element {Element} DOM element",
+          "     * @param type {String} event type",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -99,27 +106,45 @@
             "body": "type {String} event type",
             "paramName": "type",
             "description": " event type",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "unregister": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 72,
+          "line": 52,
           "column": 4,
-          "index": 1800
+          "index": 1154
         },
         "end": {
-          "line": 95,
+          "line": 65,
           "column": 5,
-          "index": 2694
+          "index": 1537
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unregister": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes the pointer event handler from the element if there are no more",
+          "     * pointer event listeners attached to it",
+          "     * @param element {Element} DOM element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -136,23 +161,29 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 98,
-        "column": 2,
-        "index": 2706
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 72,
+          "column": 4,
+          "index": 1729
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2600
+        }
       },
-      "end": {
-        "line": 104,
-        "column": 3,
-        "index": 2839
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

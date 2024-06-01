@@ -1,48 +1,55 @@
 {
-  "className": "cv.ui.structure.tile.MStringTransforms",
-  "packageName": "cv.ui.structure.tile",
-  "name": "MStringTransforms",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 961
-      },
-      "end": {
-        "line": 56,
-        "column": 3,
-        "index": 1541
-      }
+  "version": 0.3,
+  "lastModified": 1717235105614,
+  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "classFilename": "../../source/class/cv/ui/structure/tile/MStringTransforms.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 961
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Provides all transform helper functions for converting a string value,\n to other scalar property types.</p><div class=\"authors\"><label>Author:</label> Tobias Bräutigam</div><div class=\"since\"><label>Since:</label> 2023</div>"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2023"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "Tobias Bräutigam"
-        }
-      ]
+    "end": {
+      "line": 56,
+      "column": 3,
+      "index": 1541
     }
   },
-  "type": "mixin",
+  "className": "cv.ui.structure.tile.MStringTransforms",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Provides all transform helper functions for converting a string value,",
+      " * to other scalar property types.",
+      " *",
+      " * @since 2023",
+      " * @author Tobias Bräutigam",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Provides all transform helper functions for converting a string value,\n to other scalar property types.</p>"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2023"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "Tobias Bräutigam"
+      }
+    ]
+  },
   "members": {
     "_parseInt": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 35,
@@ -56,9 +63,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": []
     },
     "_parseFloat": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 42,
@@ -72,9 +86,16 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": []
     },
     "_parseBoolean": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 49,
@@ -88,8 +109,14 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

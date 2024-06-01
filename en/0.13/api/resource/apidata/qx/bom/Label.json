@@ -1,49 +1,41 @@
 {
-  "className": "qx.bom.Label",
-  "packageName": "qx.bom",
-  "name": "Label",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 23,
-        "column": 0,
-        "index": 592
-      },
-      "end": {
-        "line": 349,
-        "column": 3,
-        "index": 10285
-      }
+  "version": 0.3,
+  "lastModified": 1717235171534,
+  "lastModifiedIso": "2024-06-01T09:46:11.534Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Label.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 23,
+      "column": 0,
+      "index": 570
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Cross browser abstractions to work with labels.</p>"
-        }
-      ]
+    "end": {
+      "line": 349,
+      "column": 3,
+      "index": 9937
     }
   },
-  "type": "class",
+  "className": "qx.bom.Label",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Cross browser abstractions to work with labels.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Cross browser abstractions to work with labels.</p>"
+      }
+    ]
+  },
   "statics": {
     "__styles": {
-      "location": {
-        "start": {
-          "line": 32,
-          "column": 4,
-          "index": 893
-        },
-        "end": {
-          "line": 40,
-          "column": 5,
-          "index": 1063
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Contains all supported styles "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +49,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__prepareText": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 47,
+          "line": 32,
           "column": 4,
-          "index": 1203
+          "index": 862
         },
         "end": {
-          "line": 52,
+          "line": 40,
           "column": 5,
-          "index": 1386
+          "index": 1024
         }
       },
+      "appearsIn": []
+    },
+    "__prepareText": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the helper DOM element for text measuring",
+          "     *",
+          "     * @return {Element} Helper DOM element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -85,27 +84,39 @@
             "name": "@return",
             "body": "{Element} Helper DOM element",
             "type": "qx.bom.Element",
-            "description": " Helper DOM element"
+            "description": "Helper DOM element"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__prepareHtml": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 59,
+          "line": 47,
           "column": 4,
-          "index": 1526
+          "index": 1157
         },
         "end": {
-          "line": 64,
+          "line": 52,
           "column": 5,
-          "index": 1708
+          "index": 1335
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "__prepareHtml": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the helper DOM element for HTML measuring",
+          "     *",
+          "     * @return {Element} Helper DOM element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,27 +128,40 @@
             "name": "@return",
             "body": "{Element} Helper DOM element",
             "type": "qx.bom.Element",
-            "description": " Helper DOM element"
+            "description": "Helper DOM element"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__createMeasureElement": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 72,
+          "line": 59,
           "column": 4,
-          "index": 1897
+          "index": 1468
         },
         "end": {
-          "line": 113,
+          "line": 64,
           "column": 5,
-          "index": 3087
+          "index": 1645
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "__createMeasureElement": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates the measure element",
+          "     *",
+          "     * @param html {Boolean?false} Whether HTML markup should be used.",
+          "     * @return {Element} The measure element",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -160,27 +184,48 @@
             "name": "@return",
             "body": "{Element} The measure element",
             "type": "qx.bom.Element",
-            "description": " The measure element"
+            "description": "The measure element"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getStyles": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 122,
+          "line": 72,
           "column": 4,
-          "index": 3359
+          "index": 1826
         },
         "end": {
-          "line": 139,
+          "line": 113,
           "column": 5,
-          "index": 3834
+          "index": 2975
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "html",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "__getStyles": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a map of all styles which should be applied as",
+          "     * a basic set.",
+          "     *",
+          "     * @param html {Boolean?false} Whether HTML markup should be used.",
+          "     * @return {Map} Initial styles which should be applied to a label element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -202,28 +247,60 @@
           {
             "name": "@return",
             "body": "{Map} Initial styles which should be applied to a label element.",
-            "type": "Map",
-            "description": " Initial styles which should be applied to a label element."
+            "type": "Map<any, any>",
+            "description": "Initial styles which should be applied to a label element."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "create": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 159,
+          "line": 122,
           "column": 4,
-          "index": 4673
+          "index": 3238
         },
         "end": {
-          "line": 208,
+          "line": 139,
           "column": 5,
-          "index": 6049
+          "index": 3696
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "html",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "create": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates a label.",
+          "     *",
+          "     * The default mode is 'text' which means that the overlapping text is cut off",
+          "     * using ellipsis automatically. Text wrapping is disabled in this mode",
+          "     * as well. Spaces are normalized. Umlauts and other special symbols are only",
+          "     * allowed in unicode mode as normal characters.",
+          "     *",
+          "     * In the HTML mode you can insert any HTML, but loose the capability to cut",
+          "     * of overlapping text. Automatic text wrapping is enabled by default.",
+          "     *",
+          "     * It is not possible to modify the mode afterwards.",
+          "     *",
+          "     * @param content {String} Content of the label",
+          "     * @param html {Boolean?false} Whether HTML markup should be used.",
+          "     * @param win {Window?null} Window to create the element for",
+          "     * @return {Element} The created iframe node",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -236,7 +313,7 @@
             "body": "content {String} Content of the label",
             "paramName": "content",
             "description": " Content of the label",
-            "type": "qx.bom.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -262,27 +339,52 @@
             "name": "@return",
             "body": "{Element} The created iframe node",
             "type": "qx.bom.Element",
-            "description": " The created iframe node"
+            "description": "The created iframe node"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__sanitizer": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 211,
+          "line": 159,
           "column": 4,
-          "index": 6089
+          "index": 4515
         },
         "end": {
-          "line": 211,
-          "column": 21,
-          "index": 6106
+          "line": 208,
+          "column": 5,
+          "index": 5842
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "content",
+          "type": "string"
+        },
+        {
+          "name": "html",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "false"
+        },
+        {
+          "name": "win",
+          "type": "Window",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.Element"
+      },
+      "appearsIn": []
+    },
+    "__sanitizer": {
       "jsdoc": {
+        "raw": [
+          "* Sanitizer function "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -290,23 +392,33 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "setSanitizer": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 221,
+          "line": 211,
           "column": 4,
-          "index": 6478
+          "index": 5879
         },
         "end": {
-          "line": 229,
-          "column": 5,
-          "index": 6686
+          "line": 211,
+          "column": 21,
+          "index": 5896
         }
       },
+      "appearsIn": []
+    },
+    "setSanitizer": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a function to sanitize values. It will be used by {@link #setValue}.",
+          "     * The function to sanitize will get the <code>string</code> value and",
+          "     * should return a sanitized / cleared <code>string</code>.",
+          "     *",
+          "     * @param func {Function | null} Function to sanitize / clean HTML code",
+          "     *  from given string parameter",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -326,23 +438,44 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 240,
+          "line": 221,
           "column": 4,
-          "index": 6973
+          "index": 6258
         },
         "end": {
-          "line": 259,
+          "line": 229,
           "column": 5,
-          "index": 7567
+          "index": 6458
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "func",
+          "type": [
+            "Function",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "setValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the content of the element.",
+          "     *",
+          "     * The possibilities of the value depends on the mode",
+          "     * defined using {@link #create}.",
+          "     *",
+          "     * @param element {Element} DOM element to modify.",
+          "     * @param value {String} Content to insert.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -362,27 +495,46 @@
             "body": "value {String} Content to insert.",
             "paramName": "value",
             "description": " Content to insert.",
-            "type": "qx.bom.String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getValue": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 267,
+          "line": 240,
           "column": 4,
-          "index": 7757
+          "index": 6734
         },
         "end": {
-          "line": 278,
+          "line": 259,
           "column": 5,
-          "index": 8132
+          "index": 7309
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.bom.Element"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the content of the element.",
+          "     *",
+          "     * @param element {Element} DOM element to query.",
+          "     * @return {String} Content stored in the element.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -402,28 +554,48 @@
           {
             "name": "@return",
             "body": "{String} Content stored in the element.",
-            "type": "qx.bom.String",
-            "description": " Content stored in the element."
+            "type": "string",
+            "description": "Content stored in the element."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getHtmlSize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 288,
+          "line": 267,
           "column": 4,
-          "index": 8532
+          "index": 7491
         },
         "end": {
-          "line": 297,
+          "line": 278,
           "column": 5,
-          "index": 8851
+          "index": 7855
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.bom.Element"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getHtmlSize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the preferred dimensions of the given HTML content.",
+          "     *",
+          "     * @param content {String} The HTML markup to measure",
+          "     * @param styles {Map?null} Optional styles to apply",
+          "     * @param width {Integer} To support width for height it is possible to limit the width",
+          "     * @return {Map} A map with preferred <code>width</code> and <code>height</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -436,7 +608,7 @@
             "body": "content {String} The HTML markup to measure",
             "paramName": "content",
             "description": " The HTML markup to measure",
-            "type": "qx.bom.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -459,28 +631,57 @@
           {
             "name": "@return",
             "body": "{Map} A map with preferred <code>width</code> and <code>height</code>.",
-            "type": "Map",
-            "description": " A map with preferred <code>width</code> and <code>height</code>."
+            "type": "Map<any, any>",
+            "description": "A map with preferred <code>width</code> and <code>height</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTextSize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 306,
+          "line": 288,
           "column": 4,
-          "index": 9135
+          "index": 8245
         },
         "end": {
-          "line": 319,
+          "line": 297,
           "column": 5,
-          "index": 9557
+          "index": 8555
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "content",
+          "type": "string"
+        },
+        {
+          "name": "styles",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "getTextSize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the preferred dimensions of the given text.",
+          "     *",
+          "     * @param text {String} The text to measure",
+          "     * @param styles {Map} Optional styles to apply",
+          "     * @return {Map} A map with preferred <code>width</code> and <code>height</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -493,42 +694,65 @@
             "body": "text {String} The text to measure",
             "paramName": "text",
             "description": " The text to measure",
-            "type": "qx.bom.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "styles {Map} Optional styles to apply",
             "paramName": "styles",
             "description": " Optional styles to apply",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Map} A map with preferred <code>width</code> and <code>height</code>.",
-            "type": "Map",
-            "description": " A map with preferred <code>width</code> and <code>height</code>."
+            "type": "Map<any, any>",
+            "description": "A map with preferred <code>width</code> and <code>height</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__measureSize": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 328,
+          "line": 306,
           "column": 4,
-          "index": 9839
+          "index": 8830
         },
         "end": {
-          "line": 347,
+          "line": 319,
           "column": 5,
-          "index": 10275
+          "index": 9239
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "text",
+          "type": "string"
+        },
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__measureSize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Measure the size of the given element",
+          "     *",
+          "     * @param element {Element} The element to measure",
+          "     * @param styles {Map?null} Optional styles to apply",
+          "     * @return {Map} A map with preferred <code>width</code> and <code>height</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -557,14 +781,43 @@
           {
             "name": "@return",
             "body": "{Map} A map with preferred <code>width</code> and <code>height</code>.",
-            "type": "Map",
-            "description": " A map with preferred <code>width</code> and <code>height</code>."
+            "type": "Map<any, any>",
+            "description": "A map with preferred <code>width</code> and <code>height</code>."
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 328,
+          "column": 4,
+          "index": 9512
+        },
+        "end": {
+          "line": 347,
+          "column": 5,
+          "index": 9929
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.bom.Element"
+        },
+        {
+          "name": "styles",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

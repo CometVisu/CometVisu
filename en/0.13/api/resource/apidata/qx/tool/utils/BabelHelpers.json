@@ -1,0 +1,285 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235169242,
+  "lastModifiedIso": "2024-06-01T09:46:09.242Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/utils/BabelHelpers.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 1,
+      "column": 0,
+      "index": 0
+    },
+    "end": {
+      "line": 228,
+      "column": 3,
+      "index": 6212
+    }
+  },
+  "className": "qx.tool.utils.BabelHelpers",
+  "jsdoc": null,
+  "superClass": "qx.core.Object",
+  "statics": {
+    "collapseMemberExpression": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method that collapses the MemberExpression into a string",
+          "     * @param node",
+          "     * @returns {string}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method that collapses the MemberExpression into a string</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "node",
+            "paramName": "node",
+            "type": ""
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 10,
+          "column": 4,
+          "index": 223
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1784
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "node"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "collapseParam": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Helper method that collapses the MemberExpression into a string",
+          "     * @param param",
+          "     * @param {number} idx",
+          "     * @returns {string}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Helper method that collapses the MemberExpression into a string</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "param",
+            "paramName": "param",
+            "type": ""
+          },
+          {
+            "name": "@param",
+            "body": "{number} idx",
+            "paramName": "idx",
+            "description": "",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{string}",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 73,
+          "column": 4,
+          "index": 1950
+        },
+        "end": {
+          "line": 95,
+          "column": 5,
+          "index": 2530
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "param"
+        },
+        {
+          "name": "idx",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "collectJson": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Collects JSON data as best as possible - it will not output anything which is not valid JSON, eg it",
+          "     * will not collect function expressions",
+          "     *",
+          "     * @param {*} node",
+          "     * @param {*} isProperties",
+          "     * @param {*} jsonPath",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Collects JSON data as best as possible - it will not output anything which is not valid JSON, eg it\n will not collect function expressions</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} node",
+            "paramName": "node",
+            "description": "",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{*} isProperties",
+            "paramName": "isProperties",
+            "description": "",
+            "type": "*"
+          },
+          {
+            "name": "@param",
+            "body": "{*} jsonPath",
+            "paramName": "jsonPath",
+            "description": "",
+            "type": "*"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 106,
+          "column": 4,
+          "index": 2809
+        },
+        "end": {
+          "line": 201,
+          "column": 5,
+          "index": 5689
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "node",
+          "type": "*"
+        },
+        {
+          "name": "isProperties",
+          "type": "*"
+        },
+        {
+          "name": "jsonPath",
+          "type": "*"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    },
+    "getJsDoc": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Extracts and parses JSDoc",
+          "     *",
+          "     * @param {*} comment",
+          "     * @returns",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Extracts and parses JSDoc</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{*} comment",
+            "paramName": "comment",
+            "description": "",
+            "type": "*"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 209,
+          "column": 4,
+          "index": 5794
+        },
+        "end": {
+          "line": 226,
+          "column": 5,
+          "index": 6204
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "comment",
+          "type": "*"
+        }
+      ],
+      "returnType": {},
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

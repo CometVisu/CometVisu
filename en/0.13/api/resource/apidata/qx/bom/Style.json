@@ -1,55 +1,53 @@
 {
-  "className": "qx.bom.Style",
-  "packageName": "qx.bom",
-  "name": "Style",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 782
-      },
-      "end": {
-        "line": 161,
-        "column": 3,
-        "index": 5381
-      }
+  "version": 0.3,
+  "lastModified": 1717235172438,
+  "lastModifiedIso": "2024-06-01T09:46:12.438Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Style.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 755
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Responsible class for everything concerning styles without the need of\n an element.\n If you want to query or modify styles of HTML elements,\n take a look at {@link qx.bom.element.Style}.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.lang.String"
-        }
-      ]
+    "end": {
+      "line": 161,
+      "column": 3,
+      "index": 5221
     }
   },
-  "type": "class",
+  "className": "qx.bom.Style",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Responsible class for everything concerning styles without the need of",
+      " * an element.",
+      " *",
+      " * If you want to query or modify styles of HTML elements,",
+      " * take a look at {@link qx.bom.element.Style}.",
+      " *",
+      " * @require(qx.lang.String)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Responsible class for everything concerning styles without the need of\n an element.\n If you want to query or modify styles of HTML elements,\n take a look at {@link qx.bom.element.Style}.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.lang.String"
+      }
+    ]
+  },
   "statics": {
     "VENDOR_PREFIXES": {
-      "location": {
-        "start": {
-          "line": 31,
-          "column": 4,
-          "index": 891
-        },
-        "end": {
-          "line": 31,
-          "column": 58,
-          "index": 945
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "* Vendor-specific style property prefixes "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -57,23 +55,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "__cssName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 37,
+          "line": 31,
           "column": 4,
-          "index": 1055
+          "index": 861
         },
         "end": {
-          "line": 37,
-          "column": 17,
-          "index": 1068
+          "line": 31,
+          "column": 58,
+          "index": 915
         }
       },
+      "appearsIn": []
+    },
+    "__cssName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Internal lookup table to map property names to CSS names",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,23 +91,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__supports": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 43,
+          "line": 37,
           "column": 4,
-          "index": 1192
+          "index": 1019
         },
         "end": {
-          "line": 43,
-          "column": 20,
-          "index": 1208
+          "line": 37,
+          "column": 17,
+          "index": 1032
         }
       },
+      "appearsIn": []
+    },
+    "__supports": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * A reference to the native CSS.supports function (supportsCSS in Opera)",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -117,23 +127,33 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "getPropertyName": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 53,
+          "line": 43,
           "column": 4,
-          "index": 1563
+          "index": 1150
         },
         "end": {
-          "line": 69,
-          "column": 5,
-          "index": 2040
+          "line": 43,
+          "column": 20,
+          "index": 1166
         }
       },
+      "appearsIn": []
+    },
+    "getPropertyName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the name of a style property and returns the name the browser uses",
+          "     * for its implementation, which might include a vendor prefix.",
+          "     *",
+          "     * @param propertyName {String} Style property name to check",
+          "     * @return {String|null} The supported property name or <code>null</code> if",
+          "     * not supported",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -146,7 +166,7 @@
             "body": "propertyName {String} Style property name to check",
             "paramName": "propertyName",
             "description": " Style property name to check",
-            "type": "qx.bom.String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -154,27 +174,53 @@
             "name": "@return",
             "body": "{String|null} The supported property name or <code>null</code> if\n not supported",
             "type": "String|null",
-            "description": " The supported property name or <code>null</code> if\n not supported"
+            "description": "The supported property name or <code>null</code> if\n not supported"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getCssName": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 85,
+          "line": 53,
           "column": 4,
-          "index": 2622
+          "index": 1511
         },
         "end": {
-          "line": 102,
+          "line": 69,
           "column": 5,
-          "index": 3181
+          "index": 1972
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "propertyName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "getCssName": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes the name of a JavaScript style property and returns the",
+          "     * corresponding CSS name.",
+          "     *",
+          "     * The name of the style property is taken as is, i.e. it gets not",
+          "     * extended by vendor prefixes. The conversion into the CSS name is",
+          "     * done by string manipulation, not involving the DOM.",
+          "     *",
+          "     * Example:",
+          "     * <pre class='javascript'>qx.bom.Style.getCssName(\"MozTransform\"); //returns \"-moz-transform\"</pre>",
+          "     *",
+          "     * @param propertyName {String} JavaScript style property",
+          "     * @return {String} CSS property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -187,35 +233,63 @@
             "body": "propertyName {String} JavaScript style property",
             "paramName": "propertyName",
             "description": " JavaScript style property",
-            "type": "qx.bom.String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} CSS property",
-            "type": "qx.bom.String",
-            "description": " CSS property"
+            "type": "string",
+            "description": "CSS property"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAppliedStyle": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 120,
+          "line": 85,
           "column": 4,
-          "index": 4088
+          "index": 2538
         },
         "end": {
-          "line": 151,
+          "line": 102,
           "column": 5,
-          "index": 5115
+          "index": 3080
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "propertyName",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAppliedStyle": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Detects CSS support by using the native CSS.supports function or by",
+          "     * applying a style to a DOM element of the given type and verifying",
+          "     * the result. Also checks for vendor-prefixed variants of the",
+          "     * value, e.g. \"linear-gradient\" -> \"-webkit-linear-gradient\". Returns the",
+          "     * (possibly vendor-prefixed) value if successful or <code>null</code> if",
+          "     * the property and/or value are not supported.",
+          "     *",
+          "     * @param element {Element} element to be used for the detection",
+          "     * @param propertyName {String} the style property to be tested",
+          "     * @param value {String} style property value to be tested",
+          "     * @param prefixed {Boolean?} try to determine the appropriate vendor prefix",
+          "     * for the value. Default: <code>true</code>",
+          "     * @return {String|null} prefixed style value or <code>null</code> if not supported",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -235,14 +309,14 @@
             "body": "propertyName {String} the style property to be tested",
             "paramName": "propertyName",
             "description": " the style property to be tested",
-            "type": "qx.bom.String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "value {String} style property value to be tested",
             "paramName": "value",
             "description": " style property value to be tested",
-            "type": "qx.bom.String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -258,7 +332,7 @@
             "name": "@return",
             "body": "{String|null} prefixed style value or <code>null</code> if not supported",
             "type": "String|null",
-            "description": " prefixed style value or <code>null</code> if not supported"
+            "description": "prefixed style value or <code>null</code> if not supported"
           }
         ],
         "@internal": [
@@ -268,23 +342,45 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    }
-  },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 154,
-        "column": 2,
-        "index": 5127
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 120,
+          "column": 4,
+          "index": 3969
+        },
+        "end": {
+          "line": 151,
+          "column": 5,
+          "index": 4965
+        }
       },
-      "end": {
-        "line": 160,
-        "column": 3,
-        "index": 5376
-      }
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "qx.bom.Element"
+        },
+        {
+          "name": "propertyName",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        },
+        {
+          "name": "prefixed",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

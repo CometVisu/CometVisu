@@ -123,7 +123,12 @@
             this.__P_228_0.emit("orientationchange", domEvent);
           }
         }
-      }
+      },
+      // ------------------------------------------------------------------------
+      /**
+       * no-op implementation.
+       */
+      dispose: function dispose() {}
     },
     /*
     *****************************************************************************
@@ -138,4 +143,4 @@
   qx.event.handler.OrientationCore.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=OrientationCore.js.map?dt=1709410151799
+//# sourceMappingURL=OrientationCore.js.map?dt=1717235380587

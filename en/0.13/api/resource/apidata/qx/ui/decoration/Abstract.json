@@ -1,70 +1,79 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235168694,
+  "lastModifiedIso": "2024-06-01T09:46:08.694Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/decoration/Abstract.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 808
+    },
+    "end": {
+      "line": 85,
+      "column": 3,
+      "index": 2170
+    }
+  },
   "className": "qx.ui.decoration.Abstract",
-  "packageName": "qx.ui.decoration",
-  "name": "Abstract",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class acts as abstract class for all decorators. It offers the",
+      " * properties for the insets handling. Each decorator has to define its own",
+      " * default insets by implementing the template method",
+      " * (http://en.wikipedia.org/wiki/Template_Method) <code>_getDefaultInsets</code>",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class acts as abstract class for all decorators. It offers the\n properties for the insets handling. Each decorator has to define its own\n default insets by implementing the template method\n (http://en.wikipedia.org/wiki/Template_Method) <code>_getDefaultInsets</code></p>"
+      }
+    ]
+  },
   "superClass": "qx.core.Object",
   "interfaces": [
     "qx.ui.decoration.IDecorator"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 25,
-        "column": 0,
-        "index": 832
-      },
-      "end": {
-        "line": 85,
-        "column": 3,
-        "index": 2254
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class acts as abstract class for all decorators. It offers the\n properties for the insets handling. Each decorator has to define its own\n default insets by implementing the template method\n (http://en.wikipedia.org/wiki/Template_Method) <code>_getDefaultInsets</code></p>"
-        }
-      ]
-    }
-  },
-  "type": "class",
-  "isAbstract": true,
-  "isStatic": false,
   "isSingleton": false,
+  "abstract": true,
   "members": {
     "__insets": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 31,
           "column": 4,
-          "index": 993
+          "index": 963
         },
         "end": {
           "line": 31,
           "column": 18,
-          "index": 1007
+          "index": 977
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_getDefaultInsets": {
-      "location": {
-        "start": {
-          "line": 46,
-          "column": 4,
-          "index": 1349
-        },
-        "end": {
-          "line": 48,
-          "column": 5,
-          "index": 1428
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Abstract method. Should return a map containing the default insets of",
+          "     * the decorator. This could look like this:",
+          "     * <pre>",
+          "     * return {",
+          "     *   top : 0,",
+          "     *   right : 0,",
+          "     *   bottom : 0,",
+          "     *   left : 0",
+          "     * };",
+          "     * </pre>",
+          "     * @return {Map} Map containing the insets.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -75,28 +84,40 @@
           {
             "name": "@return",
             "body": "{Map} Map containing the insets.",
-            "type": "Map",
-            "description": " Map containing the insets."
+            "type": "Map<any, any>",
+            "description": "Map containing the insets."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_isInitialized": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 55,
+          "line": 46,
           "column": 4,
-          "index": 1632
+          "index": 1304
         },
         "end": {
-          "line": 57,
+          "line": 48,
           "column": 5,
-          "index": 1708
+          "index": 1381
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_isInitialized": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Abstract method. Should return an boolean value if the decorator is",
+          "     * already initialized or not.",
+          "     * @return {Boolean} True, if the decorator is initialized.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -107,28 +128,38 @@
           {
             "name": "@return",
             "body": "{Boolean} True, if the decorator is initialized.",
-            "type": "Boolean",
-            "description": " True, if the decorator is initialized."
+            "type": "boolean",
+            "description": "True, if the decorator is initialized."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_resetInsets": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 62,
+          "line": 55,
           "column": 4,
-          "index": 1762
+          "index": 1578
         },
         "end": {
-          "line": 64,
+          "line": 57,
           "column": 5,
-          "index": 1814
+          "index": 1652
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_resetInsets": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the insets.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -136,39 +167,57 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 62,
+          "column": 4,
+          "index": 1701
+        },
+        "end": {
+          "line": 64,
+          "column": 5,
+          "index": 1751
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "getInsets": {
+      "jsdoc": {
+        "raw": [
+          " interface implementation"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 67,
           "column": 4,
-          "index": 1856
+          "index": 1790
         },
         "end": {
           "line": 73,
           "column": 5,
-          "index": 1996
+          "index": 1924
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.IDecorator",
+      "params": [],
       "appearsIn": [
         "qx.ui.decoration.IDecorator"
       ]
     },
     "getStyles": {
-      "type": "function",
-      "name": "getStyles",
-      "abstract": true,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.IDecorator",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the decorator's styles.",
+          "     *",
+          "     * @return {Map} Map of decoration styles",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -178,22 +227,39 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Map} Map of decoration styles",
-            "type": "Map",
-            "description": " Map of decoration styles"
+            "body": "{Map} Map of decoration styles"
           }
         ]
-      }
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 774
+        },
+        "end": {
+          "line": 31,
+          "column": 18,
+          "index": 788
+        }
+      },
+      "type": "function",
+      "params": [],
+      "abstract": true,
+      "fromInterface": "qx.ui.decoration.IDecorator",
+      "appearsIn": [
+        "qx.ui.decoration.IDecorator"
+      ]
     },
     "getPadding": {
-      "type": "function",
-      "name": "getPadding",
-      "abstract": true,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.ui.decoration.IDecorator",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the configured padding minus the border width.",
+          "     * @return {Map} Map of top, right, bottom and left padding values",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -203,169 +269,48 @@
         "@return": [
           {
             "name": "@return",
-            "body": "{Map} Map of top, right, bottom and left padding values",
-            "type": "Map",
-            "description": " Map of top, right, bottom and left padding values"
+            "body": "{Map} Map of top, right, bottom and left padding values"
           }
         ]
-      }
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
+      },
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 944
+        },
+        "end": {
+          "line": 37,
+          "column": 19,
+          "index": 959
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [],
+      "abstract": true,
+      "fromInterface": "qx.ui.decoration.IDecorator",
+      "appearsIn": [
+        "qx.ui.decoration.IDecorator"
+      ]
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 82,
         "column": 2,
-        "index": 2205
+        "index": 2124
       },
       "end": {
         "line": 84,
         "column": 3,
-        "index": 2249
+        "index": 2166
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "abstract": true,
-  "descendants": [
-    "qx.ui.decoration.Decorator"
-  ]
+  "statics": {},
+  "properties": {}
 }

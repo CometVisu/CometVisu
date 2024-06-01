@@ -1,0 +1,194 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235105602,
+  "lastModifiedIso": "2024-06-01T09:45:05.602Z",
+  "classFilename": "../../source/class/cv/report/utils/FakeServer.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 20,
+      "column": 0,
+      "index": 817
+    },
+    "end": {
+      "line": 127,
+      "column": 3,
+      "index": 4236
+    }
+  },
+  "className": "cv.report.utils.FakeServer",
+  "jsdoc": {
+    "raw": [
+      " FakeServer.js",
+      " *",
+      " * copyright (c) 2010-2022, Christian Mayer and the CometVisu contributers.",
+      " *",
+      " * This program is free software; you can redistribute it and/or modify it",
+      " * under the terms of the GNU General Public License as published by the Free",
+      " * Software Foundation; either version 3 of the License, or (at your option)",
+      " * any later version.",
+      " *",
+      " * This program is distributed in the hope that it will be useful, but WITHOUT",
+      " * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or",
+      " * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for",
+      " * more details.",
+      " *",
+      " * You should have received a copy of the GNU General Public License along",
+      " * with this program; if not, write to the Free Software Foundation, Inc.,",
+      " * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA",
+      " "
+    ]
+  },
+  "isSingleton": false,
+  "abstract": false,
+  "statics": {
+    "_xhr": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 29,
+          "column": 4,
+          "index": 1037
+        },
+        "end": {
+          "line": 29,
+          "column": 12,
+          "index": 1045
+        }
+      },
+      "appearsIn": []
+    },
+    "_responseDelays": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 1051
+        },
+        "end": {
+          "line": 30,
+          "column": 23,
+          "index": 1070
+        }
+      },
+      "appearsIn": []
+    },
+    "_index": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 31,
+          "column": 4,
+          "index": 1076
+        },
+        "end": {
+          "line": 31,
+          "column": 13,
+          "index": 1085
+        }
+      },
+      "appearsIn": []
+    },
+    "init": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 33,
+          "column": 4,
+          "index": 1092
+        },
+        "end": {
+          "line": 66,
+          "column": 5,
+          "index": 2233
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "log"
+        },
+        {
+          "name": "build"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__respond": {
+      "jsdoc": null,
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 2240
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 3513
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "request"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getResponse": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 101,
+          "column": 4,
+          "index": 3520
+        },
+        "end": {
+          "line": 117,
+          "column": 5,
+          "index": 4007
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url"
+        }
+      ],
+      "appearsIn": []
+    },
+    "unqueueResponse": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 119,
+          "column": 4,
+          "index": 4014
+        },
+        "end": {
+          "line": 125,
+          "column": 5,
+          "index": 4228
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "url"
+        }
+      ],
+      "appearsIn": []
+    }
+  },
+  "members": {},
+  "properties": {}
+}

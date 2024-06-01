@@ -1,83 +1,92 @@
 {
-  "className": "qx.ui.website.Carousel",
-  "packageName": "qx.ui.website",
-  "name": "Carousel",
-  "superClass": "qx.ui.website.Widget",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 28,
-        "column": 0,
-        "index": 952
-      },
-      "end": {
-        "line": 697,
-        "column": 3,
-        "index": 20127
-      }
+  "version": 0.3,
+  "lastModified": 1717235169530,
+  "lastModifiedIso": "2024-06-01T09:46:09.530Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/website/Carousel.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 28,
+      "column": 0,
+      "index": 925
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>A carousel is a widget which can switch between several sub pages {@link qx.ui.website.Widget}.\n A page switch is triggered by a swipe to left, for next page, or a swipe to right for\n previous page. Pages can also be switched by dragging.\n A carousel shows by default a pagination indicator at the bottom of the carousel.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.module.Transform"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.event.Swipe"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.event.GestureHandler"
-        },
-        {
-          "name": "@require",
-          "body": "qx.module.event.Track"
-        }
-      ]
+    "end": {
+      "line": 697,
+      "column": 3,
+      "index": 19431
     }
   },
-  "type": "class",
+  "className": "qx.ui.website.Carousel",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * A carousel is a widget which can switch between several sub pages {@link qx.ui.website.Widget}.",
+      " * A page switch is triggered by a swipe to left, for next page, or a swipe to right for",
+      " * previous page. Pages can also be switched by dragging.",
+      " *",
+      " * A carousel shows by default a pagination indicator at the bottom of the carousel.",
+      " *",
+      " * @require(qx.module.Transform)",
+      " * @require(qx.module.event.Swipe)",
+      " * @require(qx.module.event.GestureHandler)",
+      " * @require(qx.module.event.Track)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>A carousel is a widget which can switch between several sub pages {@link qx.ui.website.Widget}.\n A page switch is triggered by a swipe to left, for next page, or a swipe to right for\n previous page. Pages can also be switched by dragging.\n A carousel shows by default a pagination indicator at the bottom of the carousel.</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.module.Transform"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.event.Swipe"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.event.GestureHandler"
+      },
+      {
+        "name": "@require",
+        "body": "qx.module.event.Track"
+      }
+    ]
+  },
+  "superClass": "qx.ui.website.Widget",
   "statics": {
     "_config": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 32,
           "column": 4,
-          "index": 1054
+          "index": 1023
         },
         "end": {
           "line": 37,
           "column": 5,
-          "index": 1190
+          "index": 1154
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "carousel": {
-      "location": {
-        "start": {
-          "line": 46,
-          "column": 4,
-          "index": 1425
-        },
-        "end": {
-          "line": 51,
-          "column": 5,
-          "index": 1550
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method which converts the current collection into a collection of",
+          "     * Carousel widgets.",
+          "     *",
+          "     * @return {qx.ui.website.Carousel} A new carousel collection.",
+          "     * @attach {qxWeb}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -89,7 +98,7 @@
             "name": "@return",
             "body": "{qx.ui.website.Carousel} A new carousel collection.",
             "type": "qx.ui.website.Carousel",
-            "description": " A new carousel collection."
+            "description": "A new carousel collection."
           }
         ],
         "@attach": [
@@ -99,218 +108,245 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 46,
+          "column": 4,
+          "index": 1380
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1500
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.website.Carousel"
+      },
+      "appearsIn": []
     }
   },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "selector"
+      },
+      {
+        "name": "context"
+      }
+    ],
     "location": {
       "start": {
         "line": 54,
         "column": 2,
-        "index": 1562
+        "index": 1509
       },
       "end": {
         "line": 56,
         "column": 3,
-        "index": 1628
+        "index": 1573
       }
     }
   },
   "members": {
     "__active": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 59,
           "column": 4,
-          "index": 1651
+          "index": 1593
         },
         "end": {
           "line": 59,
           "column": 18,
-          "index": 1665
+          "index": 1607
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__pageContainer": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 60,
           "column": 4,
-          "index": 1672
+          "index": 1613
         },
         "end": {
           "line": 60,
           "column": 25,
-          "index": 1693
+          "index": 1634
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__scrollContainer": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 61,
           "column": 4,
-          "index": 1700
+          "index": 1640
         },
         "end": {
           "line": 61,
           "column": 27,
-          "index": 1723
+          "index": 1663
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__paginationLabels": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 62,
           "column": 4,
-          "index": 1730
+          "index": 1669
         },
         "end": {
           "line": 62,
           "column": 28,
-          "index": 1754
+          "index": 1693
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__startPosLeft": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 63,
           "column": 4,
-          "index": 1761
+          "index": 1699
         },
         "end": {
           "line": 63,
           "column": 24,
-          "index": 1781
+          "index": 1719
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__pagination": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 64,
           "column": 4,
-          "index": 1788
+          "index": 1725
         },
         "end": {
           "line": 64,
           "column": 22,
-          "index": 1806
+          "index": 1743
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "_ie9": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 65,
           "column": 4,
-          "index": 1813
+          "index": 1749
         },
         "end": {
           "line": 65,
           "column": 15,
-          "index": 1824
+          "index": 1760
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "__blocked": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 66,
           "column": 4,
-          "index": 1831
+          "index": 1766
         },
         "end": {
           "line": 66,
           "column": 20,
-          "index": 1847
+          "index": 1782
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "init": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 69,
           "column": 4,
-          "index": 1875
+          "index": 1807
         },
         "end": {
           "line": 118,
           "column": 5,
-          "index": 3238
+          "index": 3121
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.ui.website.Widget",
       "appearsIn": [
         "qx.ui.website.Widget"
       ]
     },
     "render": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 120,
           "column": 4,
-          "index": 3247
+          "index": 3128
         },
         "end": {
           "line": 133,
           "column": 5,
-          "index": 3552
+          "index": 3420
         }
       },
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.ui.website.Widget",
       "appearsIn": [
         "qx.ui.website.Widget"
-      ],
-      "jsdoc": {
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{qx.ui.website.Widget} The widget collection for chaining.",
-            "type": "qx.ui.website.Widget",
-            "description": " The widget collection for chaining."
-          }
-        ]
-      }
+      ]
     },
     "setActive": {
-      "location": {
-        "start": {
-          "line": 141,
-          "column": 4,
-          "index": 3728
-        },
-        "end": {
-          "line": 147,
-          "column": 5,
-          "index": 3935
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets one of the Carousel's pages as active, meaning it will be",
+          "     * visible.",
+          "     *",
+          "     * @param page {qxWeb} The page to be activated",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -327,23 +363,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getActive": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 153,
+          "line": 141,
           "column": 4,
-          "index": 4059
+          "index": 3588
         },
         "end": {
-          "line": 155,
+          "line": 147,
           "column": 5,
-          "index": 4108
+          "index": 3789
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "page",
+          "type": "qxWeb"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getActive": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the currently active (i.e. visible) page",
+          "     * @return {qxWeb} The active page",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -355,27 +404,39 @@
             "name": "@return",
             "body": "{qxWeb} The active page",
             "type": "qxWeb",
-            "description": " The active page"
+            "description": "The active page"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "nextPage": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 162,
+          "line": 153,
           "column": 4,
-          "index": 4258
+          "index": 3907
         },
         "end": {
-          "line": 181,
+          "line": 155,
           "column": 5,
-          "index": 4700
+          "index": 3954
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "nextPage": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the carousel to the next page.",
+          "     *",
+          "     * @return {qx.ui.website.Carousel} Self instance for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -387,27 +448,39 @@
             "name": "@return",
             "body": "{qx.ui.website.Carousel} Self instance for chaining",
             "type": "qx.ui.website.Carousel",
-            "description": " Self instance for chaining"
+            "description": "Self instance for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "previousPage": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 188,
+          "line": 162,
           "column": 4,
-          "index": 4854
+          "index": 4097
         },
         "end": {
-          "line": 207,
+          "line": 181,
           "column": 5,
-          "index": 5314
+          "index": 4520
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.website.Carousel"
+      },
+      "appearsIn": []
+    },
+    "previousPage": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Scrolls the carousel to the previous page.",
+          "     *",
+          "     * @return {qx.ui.website.Carousel} Self instance for chaining",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -419,27 +492,39 @@
             "name": "@return",
             "body": "{qx.ui.website.Carousel} Self instance for chaining",
             "type": "qx.ui.website.Carousel",
-            "description": " Self instance for chaining"
+            "description": "Self instance for chaining"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "addPage": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 214,
+          "line": 188,
           "column": 4,
-          "index": 5505
+          "index": 4667
         },
         "end": {
-          "line": 247,
+          "line": 207,
           "column": 5,
-          "index": 6526
+          "index": 5108
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.website.Carousel"
+      },
+      "appearsIn": []
+    },
+    "addPage": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds a page to the Carousel. Updates the pagination,",
+          "     * scroll position, active property and the sizing.",
+          "     * @param child {qxWeb} The added child.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -456,23 +541,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "removePage": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 254,
+          "line": 214,
           "column": 4,
-          "index": 6724
+          "index": 5292
         },
         "end": {
-          "line": 281,
+          "line": 247,
           "column": 5,
-          "index": 7596
+          "index": 6280
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qxWeb"
+        }
+      ],
+      "appearsIn": []
+    },
+    "removePage": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes a page from the Carousel. Updates the pagination,",
+          "     * scroll position, active property and the sizing.",
+          "     * @param child {qxWeb} The removed child.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -489,23 +588,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_update": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 286,
+          "line": 254,
           "column": 4,
-          "index": 7682
+          "index": 6471
         },
         "end": {
-          "line": 334,
+          "line": 281,
           "column": 5,
-          "index": 9202
+          "index": 7316
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "child",
+          "type": "qxWeb"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_update": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the order, scroll position and pagination.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -513,23 +624,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_updateOrder": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 345,
+          "line": 286,
           "column": 4,
-          "index": 9661
+          "index": 7397
         },
         "end": {
-          "line": 384,
+          "line": 334,
           "column": 5,
-          "index": 10861
+          "index": 8869
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_updateOrder": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the CSS order property of the flexbox layout.",
+          "     * The active page should be the second in order with a order property of '0'.",
+          "     * The page left to the active has the order property set to '-1' and is the",
+          "     * only one on the left side. All other pages get increasing order numbers and",
+          "     * are aligned on the right side.",
+          "     *",
+          "     * @return {String} The scroll direction, either 'left' or 'right'.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -540,28 +664,38 @@
           {
             "name": "@return",
             "body": "{String} The scroll direction, either 'left' or 'right'.",
-            "type": "String",
-            "description": " The scroll direction, either 'left' or 'right'."
+            "type": "string",
+            "description": "The scroll direction, either 'left' or 'right'."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_updateWidth": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 389,
+          "line": 345,
           "column": 4,
-          "index": 10946
+          "index": 9317
         },
         "end": {
-          "line": 414,
+          "line": 384,
           "column": 5,
-          "index": 11899
+          "index": 10478
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "_updateWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the width of the container and the pages.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -569,23 +703,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onTrackStart": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 420,
+          "line": 389,
           "column": 4,
-          "index": 12038
+          "index": 10558
         },
         "end": {
-          "line": 432,
+          "line": 414,
           "column": 5,
-          "index": 12441
+          "index": 11486
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onTrackStart": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for trackstart. It saves the initial scroll position and",
+          "     * cancels any running animation.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -593,23 +735,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onTrack": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 438,
+          "line": 420,
           "column": 4,
-          "index": 12567
+          "index": 11619
         },
         "end": {
-          "line": 450,
+          "line": 432,
           "column": 5,
-          "index": 12856
+          "index": 12010
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onTrack": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Track handler which updates the scroll position.",
+          "     * @param e {Event} The track event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -626,23 +776,35 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onTrackEnd": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 455,
+          "line": 438,
           "column": 4,
-          "index": 12940
+          "index": 12130
         },
         "end": {
-          "line": 500,
+          "line": 450,
           "column": 5,
-          "index": 14312
+          "index": 12407
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_onTrackEnd": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * TrackEnd handler for enabling the scroll events.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -650,23 +812,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onSwipe": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 507,
+          "line": 455,
           "column": 4,
-          "index": 14480
+          "index": 12486
         },
         "end": {
-          "line": 519,
+          "line": 500,
           "column": 5,
-          "index": 14830
+          "index": 13813
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onSwipe": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Swipe handler which triggers page changes based on the",
+          "     * velocity and the direction.",
+          "     * @param e {Event} The swipe event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -683,23 +854,36 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_createPaginationLabel": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 525,
+          "line": 507,
           "column": 4,
-          "index": 14957
+          "index": 13974
         },
         "end": {
-          "line": 536,
+          "line": 519,
           "column": 5,
-          "index": 15333
+          "index": 14312
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_createPaginationLabel": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Factory method for a paginationLabel.",
+          "     * @return {qxWeb} the created pagination label.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -711,27 +895,38 @@
             "name": "@return",
             "body": "{qxWeb} the created pagination label.",
             "type": "qxWeb",
-            "description": " the created pagination label."
+            "description": "the created pagination label."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onPaginationLabelTap": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 542,
+          "line": 525,
           "column": 4,
-          "index": 15478
+          "index": 14433
         },
         "end": {
-          "line": 587,
+          "line": 536,
           "column": 5,
-          "index": 17044
+          "index": 14798
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "_onPaginationLabelTap": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles the tap on pagination labels and changes to the desired page.",
+          "     * @param e {Event} The tap event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -748,23 +943,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_updatePagination": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 594,
+          "line": 542,
           "column": 4,
-          "index": 17225
+          "index": 14937
         },
         "end": {
-          "line": 607,
+          "line": 587,
           "column": 5,
-          "index": 17722
+          "index": 16458
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "e",
+          "type": "Event"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_updatePagination": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Updates the pagination indicator of this carousel.",
+          "     * Adds the 'active' CSS class to the currently visible page's",
+          "     * pagination button.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -772,23 +981,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onResize": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 612,
+          "line": 594,
           "column": 4,
-          "index": 17828
+          "index": 16632
         },
         "end": {
-          "line": 618,
+          "line": 607,
           "column": 5,
-          "index": 18005
+          "index": 17116
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onResize": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resize handler. It updates the sizes, snap points and scroll position.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -796,23 +1012,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_translateTo": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 624,
+          "line": 612,
           "column": 4,
-          "index": 18151
+          "index": 17217
         },
         "end": {
-          "line": 636,
+          "line": 618,
           "column": 5,
-          "index": 18458
+          "index": 17388
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_translateTo": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Animates using CSS translations to the given left position.",
+          "     * @param left {Number} The new left position",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -825,27 +1049,41 @@
             "body": "left {Number} The new left position",
             "paramName": "left",
             "description": " The new left position",
-            "type": "Number"
+            "type": "number"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_setOrder": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 643,
+          "line": 624,
           "column": 4,
-          "index": 18676
+          "index": 17528
         },
         "end": {
-          "line": 648,
+          "line": 636,
           "column": 5,
-          "index": 18791
+          "index": 17823
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "left",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_setOrder": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the given order on the given collection.",
+          "     * @param col {qxWeb} The collection to set the css property.",
+          "     * @param value {Number|String} The value for the order property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -872,23 +1110,44 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getOrder": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 655,
+          "line": 643,
           "column": 4,
-          "index": 18980
+          "index": 18034
         },
         "end": {
-          "line": 661,
+          "line": 648,
           "column": 5,
-          "index": 19168
+          "index": 18144
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "qxWeb"
+        },
+        {
+          "name": "value",
+          "type": [
+            "Number",
+            "String"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "_getOrder": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the order css property of the given collection.",
+          "     * @param col {qxWeb} The collection to check.",
+          "     * @return {Number} The order as number.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -908,28 +1167,44 @@
           {
             "name": "@return",
             "body": "{Number} The order as number.",
-            "type": "Number",
-            "description": " The order as number."
+            "type": "number",
+            "description": "The order as number."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getPages": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 667,
+          "line": 655,
           "column": 4,
-          "index": 19273
+          "index": 18326
         },
         "end": {
-          "line": 669,
+          "line": 661,
           "column": 5,
-          "index": 19371
+          "index": 18508
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "col",
+          "type": "qxWeb"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "_getPages": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a collection of all pages.",
+          "     * @return {qxWeb} All pages.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -941,27 +1216,38 @@
             "name": "@return",
             "body": "{qxWeb} All pages.",
             "type": "qxWeb",
-            "description": " All pages."
+            "description": "All pages."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getPositionLeft": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 675,
+          "line": 667,
           "column": 4,
-          "index": 19486
+          "index": 18607
         },
         "end": {
-          "line": 679,
+          "line": 669,
           "column": 5,
-          "index": 19703
+          "index": 18703
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qxWeb"
+      },
+      "appearsIn": []
+    },
+    "_getPositionLeft": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the current left position.",
+          "     * @return {Number} The position in px.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -972,30 +1258,52 @@
           {
             "name": "@return",
             "body": "{Number} The position in px.",
-            "type": "Number",
-            "description": " The position in px."
+            "type": "number",
+            "description": "The position in px."
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 675,
+          "column": 4,
+          "index": 18812
+        },
+        "end": {
+          "line": 679,
+          "column": 5,
+          "index": 19025
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
     },
     "dispose": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 682,
           "column": 4,
-          "index": 19731
+          "index": 19050
         },
         "end": {
           "line": 691,
           "column": 5,
-          "index": 20037
+          "index": 19347
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.ui.website.Widget",
       "appearsIn": [
         "qx.ui.website.Widget",
@@ -1003,19 +1311,5 @@
       ]
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 694,
-        "column": 2,
-        "index": 20049
-      },
-      "end": {
-        "line": 696,
-        "column": 3,
-        "index": 20122
-      }
-    }
-  },
-  "descendants": []
+  "properties": {}
 }

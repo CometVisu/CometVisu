@@ -1,0 +1,187 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171286,
+  "lastModifiedIso": "2024-06-01T09:46:11.286Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/resources/ImageLoader.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 849
+    },
+    "end": {
+      "line": 98,
+      "column": 3,
+      "index": 2764
+    }
+  },
+  "className": "qx.tool.compiler.resources.ImageLoader",
+  "jsdoc": null,
+  "superClass": "qx.tool.compiler.resources.ResourceLoader",
+  "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "manager"
+      }
+    ],
+    "location": {
+      "start": {
+        "line": 35,
+        "column": 2,
+        "index": 1073
+      },
+      "end": {
+        "line": 37,
+        "column": 3,
+        "index": 1160
+      }
+    }
+  },
+  "members": {
+    "needsLoad": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 43,
+          "column": 4,
+          "index": 1213
+        },
+        "end": {
+          "line": 52,
+          "column": 5,
+          "index": 1461
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        },
+        {
+          "name": "fileInfo"
+        },
+        {
+          "name": "stat"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.resources.ResourceLoader",
+      "appearsIn": [
+        "qx.tool.compiler.resources.ResourceLoader"
+      ]
+    },
+    "matches": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 57,
+          "column": 4,
+          "index": 1501
+        },
+        "end": {
+          "line": 75,
+          "column": 5,
+          "index": 2003
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "filename"
+        },
+        {
+          "name": "library"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.resources.AbstractMatcher",
+      "appearsIn": [
+        "qx.tool.compiler.resources.AbstractMatcher"
+      ]
+    },
+    "load": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * @Override",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": ""
+          }
+        ],
+        "@Override": [
+          {
+            "name": "@Override",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2043
+        },
+        "end": {
+          "line": 96,
+          "column": 5,
+          "index": 2756
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "asset"
+        }
+      ],
+      "overriddenFrom": "qx.tool.compiler.resources.ResourceLoader",
+      "appearsIn": [
+        "qx.tool.compiler.resources.ResourceLoader"
+      ]
+    }
+  },
+  "statics": {},
+  "properties": {}
+}

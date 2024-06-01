@@ -1,55 +1,58 @@
 {
-  "className": "qx.bom.element.Clip",
-  "packageName": "qx.bom.element",
-  "name": "Clip",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 621
-      },
-      "end": {
-        "line": 226,
-        "column": 3,
-        "index": 6618
-      }
+  "version": 0.3,
+  "lastModified": 1717235169674,
+  "lastModifiedIso": "2024-06-01T09:46:09.674Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/element/Clip.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 598
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Contains methods to control and query the element's clip property</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.lang.normalize.String"
-        }
-      ]
+    "end": {
+      "line": 226,
+      "column": 3,
+      "index": 6393
     }
   },
-  "type": "class",
+  "className": "qx.bom.element.Clip",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Contains methods to control and query the element's clip property",
+      " *",
+      " * @require(qx.lang.normalize.String)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Contains methods to control and query the element's clip property</p>"
+      }
+    ],
+    "@require": [
+      {
+        "name": "@require",
+        "body": "qx.lang.normalize.String"
+      }
+    ]
+  },
   "statics": {
     "compile": {
-      "location": {
-        "start": {
-          "line": 42,
-          "column": 4,
-          "index": 1337
-        },
-        "end": {
-          "line": 73,
-          "column": 5,
-          "index": 2120
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compiles the given clipping into a CSS compatible string. This",
+          "     * is a simple square which describes the visible area of an DOM element.",
+          "     * Changing the clipping does not change the dimensions of",
+          "     * an element.",
+          "     *",
+          "     * @param map {Map}  Map which contains <code>left</code>, <code>top</code>",
+          "     *   <code>width</code> and <code>height</code> of the clipped area.",
+          "     * @return {String} CSS compatible string",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -62,35 +65,58 @@
             "body": "map {Map}  Map which contains <code>left</code>, <code>top</code>\n   <code>width</code> and <code>height</code> of the clipped area.",
             "paramName": "map",
             "description": "  Map which contains <code>left</code>, <code>top</code>\n   <code>width</code> and <code>height</code> of the clipped area.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} CSS compatible string",
-            "type": "String",
-            "description": " CSS compatible string"
+            "type": "string",
+            "description": "CSS compatible string"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "get": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 86,
+          "line": 42,
           "column": 4,
-          "index": 2703
+          "index": 1296
         },
         "end": {
-          "line": 172,
+          "line": 73,
           "column": 5,
-          "index": 5083
+          "index": 2048
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "map",
+          "type": "Map<any, any>"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "get": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the clipping of the given element.",
+          "     *",
+          "     * @param element {Element} DOM element to query",
+          "     * @param mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},",
+          "     *   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.",
+          "     *   The computed mode is the default one.",
+          "     * @return {Map} Map which contains <code>left</code>, <code>top</code>",
+          "     *   <code>width</code> and <code>height</code> of the clipped area.",
+          "     *   Each one could be null or any integer value.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -110,35 +136,61 @@
             "body": "mode {Number} Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\n   The computed mode is the default one.",
             "paramName": "mode",
             "description": " Choose one of the modes {@link qx.bom.element.Style#COMPUTED_MODE},\n   {@link qx.bom.element.Style#CASCADED_MODE}, {@link qx.bom.element.Style#LOCAL_MODE}.\n   The computed mode is the default one.",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Map} Map which contains <code>left</code>, <code>top</code>\n   <code>width</code> and <code>height</code> of the clipped area.\n   Each one could be null or any integer value.",
-            "type": "Map",
-            "description": " Map which contains <code>left</code>, <code>top</code>\n   <code>width</code> and <code>height</code> of the clipped area.\n   Each one could be null or any integer value."
+            "type": "Map<any, any>",
+            "description": "Map which contains <code>left</code>, <code>top</code>\n   <code>width</code> and <code>height</code> of the clipped area.\n   Each one could be null or any integer value."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "set": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 184,
+          "line": 86,
           "column": 4,
-          "index": 5550
+          "index": 2618
         },
         "end": {
-          "line": 215,
+          "line": 172,
           "column": 5,
-          "index": 6381
+          "index": 4912
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "mode",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "set": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the clipping of the given element. This is a simple",
+          "     * square which describes the visible area of an DOM element.",
+          "     * Changing the clipping does not change the dimensions of",
+          "     * an element.",
+          "     *",
+          "     * @param element {Element} DOM element to modify",
+          "     * @param map {Map} A map with one or more of these available keys:",
+          "     *   <code>left</code>, <code>top</code>, <code>width</code>, <code>height</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -158,27 +210,45 @@
             "body": "map {Map} A map with one or more of these available keys:\n   <code>left</code>, <code>top</code>, <code>width</code>, <code>height</code>.",
             "paramName": "map",
             "description": " A map with one or more of these available keys:\n   <code>left</code>, <code>top</code>, <code>width</code>, <code>height</code>.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "reset": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 222,
+          "line": 184,
           "column": 4,
-          "index": 6525
+          "index": 5367
         },
         "end": {
-          "line": 224,
+          "line": 215,
           "column": 5,
-          "index": 6608
+          "index": 6167
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        },
+        {
+          "name": "map",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "reset": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the clipping of the given DOM element.",
+          "     *",
+          "     * @param element {Element} DOM element to modify",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -195,9 +265,29 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 222,
+          "column": 4,
+          "index": 6304
+        },
+        "end": {
+          "line": 224,
+          "column": 5,
+          "index": 6385
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

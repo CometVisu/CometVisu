@@ -1,49 +1,48 @@
 {
-  "className": "qx.dev.unit.TestResult",
-  "packageName": "qx.dev.unit",
-  "name": "TestResult",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 650
-      },
-      "end": {
-        "line": 444,
-        "column": 3,
-        "index": 13786
-      }
+  "version": 0.3,
+  "lastModified": 1717235172514,
+  "lastModifiedIso": "2024-06-01T09:46:12.514Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/dev/unit/TestResult.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 627
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The test result class runs the test functions and fires events depending on\n the result of the test run.</p>"
-        }
-      ]
+    "end": {
+      "line": 444,
+      "column": 3,
+      "index": 13343
     }
   },
-  "type": "class",
+  "className": "qx.dev.unit.TestResult",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The test result class runs the test functions and fires events depending on",
+      " * the result of the test run.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The test result class runs the test functions and fires events depending on\n the result of the test run.</p>"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "events": {
     "startTest": {
-      "location": {
-        "start": {
-          "line": 39,
-          "column": 4,
-          "index": 1059
-        },
-        "end": {
-          "line": 39,
-          "column": 35,
-          "index": 1090
-        }
-      },
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired before the test is started",
+          "     *",
+          "     * Event data: The test {@link qx.dev.unit.TestFunction}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,23 +50,28 @@
           }
         ]
       },
-      "name": "startTest",
-      "type": "qx.event.type.Data"
-    },
-    "endTest": {
       "location": {
         "start": {
-          "line": 45,
+          "line": 39,
           "column": 4,
-          "index": 1221
+          "index": 1021
         },
         "end": {
-          "line": 45,
-          "column": 33,
-          "index": 1250
+          "line": 39,
+          "column": 35,
+          "index": 1052
         }
-      },
+      }
+    },
+    "endTest": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "* Fired after the test has finished",
+          "     *",
+          "     * Event data: The test {@link qx.dev.unit.TestFunction}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -75,23 +79,29 @@
           }
         ]
       },
-      "name": "endTest",
-      "type": "qx.event.type.Data"
-    },
-    "error": {
       "location": {
         "start": {
-          "line": 52,
+          "line": 45,
           "column": 4,
-          "index": 1414
+          "index": 1177
         },
         "end": {
-          "line": 52,
-          "column": 31,
-          "index": 1441
+          "line": 45,
+          "column": 33,
+          "index": 1206
         }
-      },
+      }
+    },
+    "error": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired if the test raised an {@link qx.core.AssertionError}",
+          "     *",
+          "     * Event data: The test {@link qx.dev.unit.TestFunction}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -99,23 +109,29 @@
           }
         ]
       },
-      "name": "error",
-      "type": "qx.event.type.Data"
-    },
-    "failure": {
       "location": {
         "start": {
-          "line": 59,
+          "line": 52,
           "column": 4,
-          "index": 1598
+          "index": 1363
         },
         "end": {
-          "line": 59,
-          "column": 33,
-          "index": 1627
+          "line": 52,
+          "column": 31,
+          "index": 1390
         }
-      },
+      }
+    },
+    "failure": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired if the test failed with a different exception",
+          "     *",
+          "     * Event data: The test {@link qx.dev.unit.TestFunction}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -123,23 +139,29 @@
           }
         ]
       },
-      "name": "failure",
-      "type": "qx.event.type.Data"
-    },
-    "wait": {
       "location": {
         "start": {
-          "line": 66,
+          "line": 59,
           "column": 4,
-          "index": 1777
+          "index": 1540
         },
         "end": {
-          "line": 66,
-          "column": 30,
-          "index": 1803
+          "line": 59,
+          "column": 33,
+          "index": 1569
         }
-      },
+      }
+    },
+    "wait": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired if an asynchronous test sets a timeout",
+          "     *",
+          "     * Event data: The test {@link qx.dev.unit.TestFunction}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -147,23 +169,29 @@
           }
         ]
       },
-      "name": "wait",
-      "type": "qx.event.type.Data"
-    },
-    "skip": {
       "location": {
         "start": {
-          "line": 73,
+          "line": 66,
           "column": 4,
-          "index": 1979
+          "index": 1712
         },
         "end": {
-          "line": 73,
+          "line": 66,
           "column": 30,
-          "index": 2005
+          "index": 1738
         }
-      },
+      }
+    },
+    "skip": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired if the test was skipped, e.g. because a requirement was not met.",
+          "     *",
+          "     * Event data: The test {@link qx.dev.unit.TestFunction}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -171,23 +199,29 @@
           }
         ]
       },
-      "name": "skip",
-      "type": "qx.event.type.Data"
-    },
-    "endMeasurement": {
       "location": {
         "start": {
-          "line": 80,
+          "line": 73,
           "column": 4,
-          "index": 2156
+          "index": 1907
         },
         "end": {
-          "line": 80,
-          "column": 40,
-          "index": 2192
+          "line": 73,
+          "column": 30,
+          "index": 1933
         }
-      },
+      }
+    },
+    "endMeasurement": {
+      "type": "qx.event.type.Data",
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fired if a performance test returned results.",
+          "     *",
+          "     * Event data: The test {@link qx.dev.unit.TestFunction}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -195,25 +229,32 @@
           }
         ]
       },
-      "name": "endMeasurement",
-      "type": "qx.event.type.Data"
+      "location": {
+        "start": {
+          "line": 80,
+          "column": 4,
+          "index": 2077
+        },
+        "end": {
+          "line": 80,
+          "column": 40,
+          "index": 2113
+        }
+      }
     }
   },
   "statics": {
     "run": {
-      "location": {
-        "start": {
-          "line": 97,
-          "column": 4,
-          "index": 2710
-        },
-        "end": {
-          "line": 99,
-          "column": 5,
-          "index": 2797
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Run a test function using a given test result",
+          "     *",
+          "     * @param testResult {qx.dev.unit.TestResult} The test result to use to run the test",
+          "     * @param test {qx.dev.unit.TestSuite|qx.dev.unit.TestFunction} The test",
+          "     * @param testFunction {var} The test function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -247,41 +288,72 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 97,
+          "column": 4,
+          "index": 2614
+        },
+        "end": {
+          "line": 99,
+          "column": 5,
+          "index": 2699
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "testResult",
+          "type": "qx.dev.unit.TestResult"
+        },
+        {
+          "name": "test",
+          "type": [
+            "qx.dev.unit.TestSuite",
+            "qx.dev.unit.TestFunction"
+          ]
+        },
+        {
+          "name": "testFunction",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "members": {
     "_timeout": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 109,
           "column": 4,
-          "index": 3015
+          "index": 2907
         },
         "end": {
           "line": 109,
           "column": 18,
-          "index": 3029
+          "index": 2921
         }
       },
-      "type": "variable",
-      "access": "protected"
+      "appearsIn": []
     },
     "run": {
-      "location": {
-        "start": {
-          "line": 121,
-          "column": 4,
-          "index": 3429
-        },
-        "end": {
-          "line": 310,
-          "column": 5,
-          "index": 9676
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Run the test",
+          "     *",
+          "     * @param test {qx.dev.unit.TestSuite|qx.dev.unit.TestFunction} The test",
+          "     * @param testFunction {Function} The test function",
+          "     * @param self {Object?} The context in which to run the test function",
+          "     * @param resume {Boolean?} Resume a currently waiting test",
+          "     *",
+          "     * @return {var} The return value of the test function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -304,7 +376,7 @@
             "body": "testFunction {Function} The test function",
             "paramName": "testFunction",
             "description": " The test function",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -328,27 +400,63 @@
             "name": "@return",
             "body": "{var} The return value of the test function",
             "type": "var",
-            "description": " The return value of the test function"
+            "description": "The return value of the test function"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_createError": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 319,
+          "line": 121,
           "column": 4,
-          "index": 9953
+          "index": 3309
         },
         "end": {
-          "line": 330,
+          "line": 310,
           "column": 5,
-          "index": 10268
+          "index": 9367
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "test",
+          "type": [
+            "qx.dev.unit.TestSuite",
+            "qx.dev.unit.TestFunction"
+          ]
+        },
+        {
+          "name": "testFunction",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "self",
+          "type": "Object",
+          "optional": true
+        },
+        {
+          "name": "resume",
+          "type": "Boolean",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "_createError": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Fire an error event",
+          "     *",
+          "     * @param eventName {String} Name of the event",
+          "     * @param exceptions {Error[]} The exception(s), which caused the test to fail",
+          "     * @param test {qx.dev.unit.TestSuite|qx.dev.unit.TestFunction} The test",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -361,7 +469,7 @@
             "body": "eventName {String} Name of the event",
             "paramName": "eventName",
             "description": " Name of the event",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -382,23 +490,52 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__wrapAddListener": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 341,
+          "line": 319,
           "column": 4,
-          "index": 10705
+          "index": 9635
         },
         "end": {
-          "line": 377,
+          "line": 330,
           "column": 5,
-          "index": 11774
+          "index": 9939
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "eventName",
+          "type": "string"
+        },
+        {
+          "name": "exceptions",
+          "type": "Error[]"
+        },
+        {
+          "name": "test",
+          "type": [
+            "qx.dev.unit.TestSuite",
+            "qx.dev.unit.TestFunction"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "__wrapAddListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Wraps the AUT's qx.event.Registration.addListener function so that it",
+          "     * stores references to all added listeners in an array attached to the",
+          "     * current test function. This is done so that any listeners left over after",
+          "     * test execution can be removed to make sure they don't influence other",
+          "     * tests.",
+          "     *",
+          "     * @param testFunction {qx.dev.unit.TestFunction} The current test",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -415,23 +552,37 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__removeListeners": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 384,
+          "line": 341,
           "column": 4,
-          "index": 11941
+          "index": 10365
         },
         "end": {
-          "line": 396,
+          "line": 377,
           "column": 5,
-          "index": 12404
+          "index": 11398
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "testFunction",
+          "type": "qx.dev.unit.TestFunction"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__removeListeners": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes any listeners left over after a test's run.",
+          "     *",
+          "     * @param testFunction {qx.dev.unit.TestFunction} The current test",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -448,23 +599,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "tearDown": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 404,
+          "line": 384,
           "column": 4,
-          "index": 12646
+          "index": 11558
         },
         "end": {
-          "line": 438,
+          "line": 396,
           "column": 5,
-          "index": 13725
+          "index": 12009
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "testFunction",
+          "type": "qx.dev.unit.TestFunction"
+        }
+      ],
+      "appearsIn": []
+    },
+    "tearDown": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calls the generic tearDown method on the test class, then the specific",
+          "     * tearDown for the test, if one is defined.",
+          "     *",
+          "     * @param test {Object} The test object (first argument of {@link #run})",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -477,167 +643,48 @@
             "body": "test {Object} The test object (first argument of {@link #run})",
             "paramName": "test",
             "description": " The test object (first argument of {@link #run})",
-            "type": "Object"
+            "type": "Record<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
       "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
+      "location": {
+        "start": {
+          "line": 404,
+          "column": 4,
+          "index": 12243
+        },
+        "end": {
+          "line": 438,
+          "column": 5,
+          "index": 13288
+        }
+      },
       "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "params": [
+        {
+          "name": "test",
+          "type": "Record<any, any>"
+        }
+      ],
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 441,
         "column": 2,
-        "index": 13737
+        "index": 13297
       },
       "end": {
         "line": 443,
         "column": 3,
-        "index": 13781
+        "index": 13339
       }
     }
   },
-  "descendants": [
-    "qx.dev.unit.JsUnitTestResult"
-  ]
+  "properties": {}
 }

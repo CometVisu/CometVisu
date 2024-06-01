@@ -52,7 +52,7 @@
     type: "abstract",
     construct: function construct(label) {
       qx.ui.tree.core.AbstractItem.constructor.call(this, label);
-      this.__P_472_0 = [];
+      this.__P_691_0 = [];
     },
     properties: {
       /**
@@ -64,8 +64,8 @@
       }
     },
     members: {
-      __P_472_0: null,
-      __P_472_1: null,
+      __P_691_0: null,
+      __P_691_1: null,
       /**
        * Returns the tree the tree item is connected to. If the item is not part of
        * a tree <code>null</code> will be returned.
@@ -183,12 +183,12 @@
        * @return {qx.ui.core.Widget} The children container
        */
       getChildrenContainer: function getChildrenContainer() {
-        if (!this.__P_472_1) {
-          this.__P_472_1 = new qx.ui.container.Composite(new qx.ui.layout.VBox()).set({
+        if (!this.__P_691_1) {
+          this.__P_691_1 = new qx.ui.container.Composite(new qx.ui.layout.VBox()).set({
             visibility: this.isOpen() ? "visible" : "excluded"
           });
         }
-        return this.__P_472_1;
+        return this.__P_691_1;
       },
       /**
        * Whether the tree item has a children container
@@ -196,7 +196,7 @@
        * @return {Boolean} Whether it has a children container
        */
       hasChildrenContainer: function hasChildrenContainer() {
-        return this.__P_472_1;
+        return this.__P_691_1;
       },
       /**
        * Get the children container of the item's parent. This function will return
@@ -228,11 +228,11 @@
        * @return {qx.ui.tree.core.AbstractTreeItem[]} An array of all child items.
        */
       getChildren: function getChildren() {
-        return this.__P_472_0;
+        return this.__P_691_0;
       },
       // overridden
       hasChildren: function hasChildren() {
-        return this.__P_472_0 ? this.__P_472_0.length > 0 : false;
+        return this.__P_691_0 ? this.__P_691_0.length > 0 : false;
       },
       /**
        * Returns all children of the folder.
@@ -279,7 +279,7 @@
       /**
        * Adds the item's children container to the parent's children container.
        */
-      __P_472_2: function __P_472_2() {
+      __P_691_2: function __P_691_2() {
         if (this.getParentChildrenContainer()) {
           this.getParentChildrenContainer()._addAfter(this.getChildrenContainer(), this);
         }
@@ -304,9 +304,9 @@
           if (treeItem.hasChildren()) {
             container.add(treeItem.getChildrenContainer());
           }
-          this.__P_472_0.push(treeItem);
+          this.__P_691_0.push(treeItem);
           if (!hasChildren) {
-            this.__P_472_2();
+            this.__P_691_2();
           }
           if (tree) {
             treeItem.recursiveAddToWidgetQueue();
@@ -324,7 +324,7 @@
        * @param index {Integer} position to insert into
        */
       addAt: function addAt(treeItem, index) {
-        if (index == this.__P_472_0.length) {
+        if (index == this.__P_691_0.length) {
           this.add(treeItem);
           return;
         }
@@ -335,14 +335,14 @@
         var container = this.getChildrenContainer();
         treeItem.setParent(this);
         var hasChildren = this.hasChildren();
-        var nextItem = this.__P_472_0[index];
+        var nextItem = this.__P_691_0[index];
         container.addBefore(treeItem, nextItem);
         if (treeItem.hasChildren()) {
           container.addAfter(treeItem.getChildrenContainer(), treeItem);
         }
-        qx.lang.Array.insertAt(this.__P_472_0, treeItem, index);
+        qx.lang.Array.insertAt(this.__P_691_0, treeItem, index);
         if (!hasChildren) {
-          this.__P_472_2();
+          this.__P_691_2();
         }
         if (this.getTree()) {
           treeItem.recursiveAddToWidgetQueue();
@@ -362,7 +362,7 @@
         if (oldParent) {
           oldParent.remove(treeItem);
         }
-        this.addAt(treeItem, this.__P_472_0.indexOf(before));
+        this.addAt(treeItem, this.__P_691_0.indexOf(before));
       },
       /**
        * Add a tree item to this item after the existing child <code>before</code>.
@@ -377,7 +377,7 @@
         if (oldParent) {
           oldParent.remove(treeItem);
         }
-        this.addAt(treeItem, this.__P_472_0.indexOf(after) + 1);
+        this.addAt(treeItem, this.__P_691_0.indexOf(after) + 1);
       },
       /**
        * Add a tree item as the first child of this item.
@@ -395,7 +395,7 @@
       remove: function remove(varargs) {
         for (var i = 0, l = arguments.length; i < l; i++) {
           var treeItem = arguments[i];
-          if (this.__P_472_0.indexOf(treeItem) == -1) {
+          if (this.__P_691_0.indexOf(treeItem) == -1) {
             this.warn("Cannot remove treeitem '" + treeItem + "'. It is not a child of this tree item.");
             return;
           }
@@ -407,7 +407,7 @@
               container.remove(treeItemChildContainer);
             }
           }
-          qx.lang.Array.remove(this.__P_472_0, treeItem);
+          qx.lang.Array.remove(this.__P_691_0, treeItem);
           treeItem.setParent(null);
           container.remove(treeItem);
         }
@@ -423,7 +423,7 @@
        * @param index {Integer} Index of the child to remove
        */
       removeAt: function removeAt(index) {
-        var item = this.__P_472_0[index];
+        var item = this.__P_691_0[index];
         if (item) {
           this.remove(item);
         }
@@ -433,19 +433,19 @@
        */
       removeAll: function removeAll() {
         // create a copy for returning
-        var children = this.__P_472_0.concat();
-        for (var i = this.__P_472_0.length - 1; i >= 0; i--) {
-          this.remove(this.__P_472_0[i]);
+        var children = this.__P_691_0.concat();
+        for (var i = this.__P_691_0.length - 1; i >= 0; i--) {
+          this.remove(this.__P_691_0[i]);
         }
         return children;
       }
     },
     destruct: function destruct() {
-      this._disposeArray("__P_472_0");
-      this._disposeObjects("__P_472_1");
+      this._disposeArray("__P_691_0");
+      this._disposeObjects("__P_691_1");
     }
   });
   qx.ui.tree.core.AbstractTreeItem.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractTreeItem.js.map?dt=1709410166721
+//# sourceMappingURL=AbstractTreeItem.js.map?dt=1717235417844

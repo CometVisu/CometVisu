@@ -1,98 +1,114 @@
 {
+  "version": 0.3,
+  "lastModified": 1717235172286,
+  "lastModifiedIso": "2024-06-01T09:46:12.286Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/request/SimpleXhr.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 56,
+      "column": 0,
+      "index": 1753
+    },
+    "end": {
+      "line": 722,
+      "column": 3,
+      "index": 19255
+    }
+  },
   "className": "qx.bom.request.SimpleXhr",
-  "packageName": "qx.bom.request",
-  "name": "SimpleXhr",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * This class is internal because it's tailored to {@link qx.io.rest.Resource}",
+      " * which needs more functionality than {@link qx.bom.request.Xhr} provides.",
+      " * The usage of {@link qx.io.request.Xhr} isn't possible either due to it's qx.Class nature.",
+      " *",
+      " * For alternatives to this class have a look at:",
+      " *",
+      " * * \"qx.bom.request.Xhr\" (low level, cross-browser XHR abstraction compatible with spec)",
+      " * * \"qx.io.request.Xhr\" (high level XHR abstraction)",
+      " *",
+      " * A wrapper of {@link qx.bom.request.Xhr} which offers:",
+      " *",
+      " * * set/get HTTP method, URL, request data and headers",
+      " * * retrieve the parsed response as object (content-type recognition)",
+      " * * more fine-grained events such as success, fail, ...",
+      " * * supports hash code for request identification",
+      " *",
+      " * It does *not* comply the interface defined by {@link qx.bom.request.IRequest}.",
+      " *",
+      " * <div class=\"desktop\">",
+      " * Example:",
+      " *",
+      " * <pre class=\"javascript\">",
+      " *  var req = new qx.bom.request.SimpleXhr(\"/some/path/file.json\");",
+      " *  req.setRequestData({\"a\":\"b\"});",
+      " *  req.once(\"success\", function successHandler() {",
+      " *    var response = req.getResponse();",
+      " *  }, this);",
+      " *  req.once(\"fail\", function successHandler() {",
+      " *    var response = req.getResponse();",
+      " *  }, this);",
+      " *  req.send();",
+      " * </pre>",
+      " * </div>",
+      " *",
+      " * @internal",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>This class is internal because it's tailored to {@link qx.io.rest.Resource}\n which needs more functionality than {@link qx.bom.request.Xhr} provides.\n The usage of {@link qx.io.request.Xhr} isn't possible either due to it's qx.Class nature.\n For alternatives to this class have a look at:</p>\n<ul>\n<li>\"qx.bom.request.Xhr\" (low level, cross-browser XHR abstraction compatible with spec)</li>\n<li>\"qx.io.request.Xhr\" (high level XHR abstraction)\nA wrapper of {@link qx.bom.request.Xhr} which offers:</li>\n<li>set/get HTTP method, URL, request data and headers</li>\n<li>retrieve the parsed response as object (content-type recognition)</li>\n<li>more fine-grained events such as success, fail, …</li>\n<li><p>supports hash code for request identification\nIt does <em>not</em> comply the interface defined by {@link qx.bom.request.IRequest}.</p></li>\n</ul>\n<div class=\"desktop\">\n Example:\n <pre class=\"javascript\">\n  var req = new qx.bom.request.SimpleXhr(\"/some/path/file.json\");\n  req.setRequestData({\"a\":\"b\"});\n  req.once(\"success\", function successHandler() {\n    var response = req.getResponse();\n  }, this);\n  req.once(\"fail\", function successHandler() {\n    var response = req.getResponse();\n  }, this);\n  req.send();\n </pre>\n </div>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ]
+  },
   "superClass": "qx.event.Emitter",
   "interfaces": [
     "qx.core.IDisposable"
   ],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 56,
-        "column": 0,
-        "index": 1808
-      },
-      "end": {
-        "line": 722,
-        "column": 3,
-        "index": 19976
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is internal because it's tailored to {@link qx.io.rest.Resource}\n which needs more functionality than {@link qx.bom.request.Xhr} provides.\n The usage of {@link qx.io.request.Xhr} isn't possible either due to it's qx.Class nature.\n For alternatives to this class have a look at:</p>\n<ul>\n<li>\"qx.bom.request.Xhr\" (low level, cross-browser XHR abstraction compatible with spec)</li>\n<li>\"qx.io.request.Xhr\" (high level XHR abstraction)\nA wrapper of {@link qx.bom.request.Xhr} which offers:</li>\n<li>set/get HTTP method, URL, request data and headers</li>\n<li>retrieve the parsed response as object (content-type recognition)</li>\n<li>more fine-grained events such as success, fail, …</li>\n<li><p>supports hash code for request identification\nIt does <em>not</em> comply the interface defined by {@link qx.bom.request.IRequest}.</p></li>\n</ul>\n<div class=\"desktop\">\n Example:\n <pre class=\"javascript\">\n  var req = new qx.bom.request.SimpleXhr(\"/some/path/file.json\");\n  req.setRequestData({\"a\":\"b\"});\n  req.once(\"success\", function successHandler() {\n    var response = req.getResponse();\n  }, this);\n  req.once(\"fail\", function successHandler() {\n    var response = req.getResponse();\n  }, this);\n  req.send();\n </pre>\n </div>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ]
-    }
-  },
-  "type": "class",
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "url"
+      },
+      {
+        "name": "method"
+      }
+    ],
     "location": {
       "start": {
         "line": 64,
         "column": 2,
-        "index": 2058
+        "index": 1995
       },
       "end": {
         "line": 77,
         "column": 3,
-        "index": 2452
+        "index": 2376
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": ""
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "url {String?} The URL of the resource to request.",
-          "paramName": "url",
-          "description": " The URL of the resource to request.",
-          "optional": true,
-          "type": "String"
-        },
-        {
-          "name": "@param",
-          "body": "method {String?\"GET\"} The HTTP method.",
-          "paramName": "method",
-          "description": " The HTTP method.",
-          "optional": true,
-          "defaultValue": "\"GET\"",
-          "type": "String"
-        }
-      ]
     }
   },
   "members": {
     "setRequestHeader": {
-      "location": {
-        "start": {
-          "line": 93,
-          "column": 4,
-          "index": 2886
-        },
-        "end": {
-          "line": 96,
-          "column": 5,
-          "index": 2986
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets a request header.",
+          "     *",
+          "     * @param key {String} Key of the header.",
+          "     * @param value {String} Value of the header.",
+          "     * @return {qx.bom.request.SimpleXhr} Self for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -105,14 +121,14 @@
             "body": "key {String} Key of the header.",
             "paramName": "key",
             "description": " Key of the header.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "value {String} Value of the header.",
             "paramName": "value",
             "description": " Value of the header.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -120,27 +136,49 @@
             "name": "@return",
             "body": "{qx.bom.request.SimpleXhr} Self for chaining.",
             "type": "qx.bom.request.SimpleXhr",
-            "description": " Self for chaining."
+            "description": "Self for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRequestHeader": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 104,
+          "line": 93,
           "column": 4,
-          "index": 3149
+          "index": 2794
         },
         "end": {
-          "line": 106,
+          "line": 96,
           "column": 5,
-          "index": 3221
+          "index": 2891
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.SimpleXhr"
+      },
+      "appearsIn": []
+    },
+    "getRequestHeader": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets a request header.",
+          "     *",
+          "     * @param key {String} Key of the header.",
+          "     * @return {String} The value of the header.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -153,35 +191,53 @@
             "body": "key {String} Key of the header.",
             "paramName": "key",
             "description": " Key of the header.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} The value of the header.",
-            "type": "String",
-            "description": " The value of the header."
+            "type": "string",
+            "description": "The value of the header."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getResponseHeader": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 114,
+          "line": 104,
           "column": 4,
-          "index": 3396
+          "index": 3046
         },
         "end": {
-          "line": 116,
+          "line": 106,
           "column": 5,
-          "index": 3487
+          "index": 3116
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getResponseHeader": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns a single response header",
+          "     *",
+          "     * @param header {String} Name of the header to get.",
+          "     * @return {String} Response header",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -194,35 +250,51 @@
             "body": "header {String} Name of the header to get.",
             "paramName": "header",
             "description": " Name of the header to get.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{String} Response header",
-            "type": "String",
-            "description": " Response header"
+            "type": "string",
+            "description": "Response header"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getAllResponseHeaders": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 122,
+          "line": 114,
           "column": 4,
-          "index": 3603
+          "index": 3283
         },
         "end": {
-          "line": 124,
+          "line": 116,
           "column": 5,
-          "index": 3690
+          "index": 3372
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "header",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getAllResponseHeaders": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns all response headers",
+          "     * @return {String} String of response headers",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -233,28 +305,41 @@
           {
             "name": "@return",
             "body": "{String} String of response headers",
-            "type": "String",
-            "description": " String of response headers"
+            "type": "string",
+            "description": "String of response headers"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setUrl": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 132,
+          "line": 122,
           "column": 4,
-          "index": 3858
+          "index": 3482
         },
         "end": {
-          "line": 137,
+          "line": 124,
           "column": 5,
-          "index": 3975
+          "index": 3567
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setUrl": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the URL.",
+          "     *",
+          "     * @param url {String} URL to be requested.",
+          "     * @return {qx.bom.request.SimpleXhr} Self for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -267,7 +352,7 @@
             "body": "url {String} URL to be requested.",
             "paramName": "url",
             "description": " URL to be requested.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -275,27 +360,44 @@
             "name": "@return",
             "body": "{qx.bom.request.SimpleXhr} Self for chaining.",
             "type": "qx.bom.request.SimpleXhr",
-            "description": " Self for chaining."
+            "description": "Self for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getUrl": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 144,
+          "line": 132,
           "column": 4,
-          "index": 4078
+          "index": 3727
         },
         "end": {
-          "line": 146,
+          "line": 137,
           "column": 5,
-          "index": 4121
+          "index": 3839
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.SimpleXhr"
+      },
+      "appearsIn": []
+    },
+    "getUrl": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the URL.",
+          "     *",
+          "     * @return {String} URL to be requested.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -306,28 +408,41 @@
           {
             "name": "@return",
             "body": "{String} URL to be requested.",
-            "type": "String",
-            "description": " URL to be requested."
+            "type": "string",
+            "description": "URL to be requested."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setMethod": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 154,
+          "line": 144,
           "column": 4,
-          "index": 4291
+          "index": 3935
         },
         "end": {
-          "line": 159,
+          "line": 146,
           "column": 5,
-          "index": 4426
+          "index": 3976
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setMethod": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the HTTP-Method.",
+          "     *",
+          "     * @param method {String} The method.",
+          "     * @return {qx.bom.request.SimpleXhr} Self for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -340,7 +455,7 @@
             "body": "method {String} The method.",
             "paramName": "method",
             "description": " The method.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -348,27 +463,44 @@
             "name": "@return",
             "body": "{qx.bom.request.SimpleXhr} Self for chaining.",
             "type": "qx.bom.request.SimpleXhr",
-            "description": " Self for chaining."
+            "description": "Self for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getMethod": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 166,
+          "line": 154,
           "column": 4,
-          "index": 4528
+          "index": 4138
         },
         "end": {
-          "line": 168,
+          "line": 159,
           "column": 5,
-          "index": 4577
+          "index": 4268
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "method",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.SimpleXhr"
+      },
+      "appearsIn": []
+    },
+    "getMethod": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the HTTP-Method.",
+          "     *",
+          "     * @return {String} The method.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -379,28 +511,44 @@
           {
             "name": "@return",
             "body": "{String} The method.",
-            "type": "String",
-            "description": " The method."
+            "type": "string",
+            "description": "The method."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setRequestData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 179,
+          "line": 166,
           "column": 4,
-          "index": 4930
+          "index": 4363
         },
         "end": {
-          "line": 190,
+          "line": 168,
           "column": 5,
-          "index": 5238
+          "index": 4410
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "setRequestData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the request data to be send as part of the request.",
+          "     *",
+          "     * The request data is transparently included as URL query parameters or embedded in the",
+          "     * request body as form data.",
+          "     *",
+          "     * @param data {String|Object} The request data.",
+          "     * @return {qx.bom.request.SimpleXhr} Self for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -424,27 +572,47 @@
             "name": "@return",
             "body": "{qx.bom.request.SimpleXhr} Self for chaining.",
             "type": "qx.bom.request.SimpleXhr",
-            "description": " Self for chaining."
+            "description": "Self for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getRequestData": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 197,
+          "line": 179,
           "column": 4,
-          "index": 5347
+          "index": 4752
         },
         "end": {
-          "line": 199,
+          "line": 190,
           "column": 5,
-          "index": 5406
+          "index": 5049
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": [
+            "String",
+            "Object"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.SimpleXhr"
+      },
+      "appearsIn": []
+    },
+    "getRequestData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets the request data.",
+          "     *",
+          "     * @return {String} The request data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -455,28 +623,42 @@
           {
             "name": "@return",
             "body": "{String} The request data.",
-            "type": "String",
-            "description": " The request data."
+            "type": "string",
+            "description": "The request data."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getResponse": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 208,
+          "line": 197,
           "column": 4,
-          "index": 5644
+          "index": 5151
         },
         "end": {
-          "line": 216,
+          "line": 199,
           "column": 5,
-          "index": 5900
+          "index": 5208
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "string"
+      },
+      "appearsIn": []
+    },
+    "getResponse": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Gets parsed response.",
+          "     *",
+          "     * If problems occurred an empty string (\"\") is more likely to be returned (instead of null).",
+          "     *",
+          "     * @return {String|null} The parsed response of the request.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -488,59 +670,65 @@
             "name": "@return",
             "body": "{String|null} The parsed response of the request.",
             "type": "String|null",
-            "description": " The parsed response of the request."
+            "description": "The parsed response of the request."
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 208,
+          "column": 4,
+          "index": 5437
+        },
+        "end": {
+          "line": 216,
+          "column": 5,
+          "index": 5685
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
     },
     "getTransport": {
+      "jsdoc": {
+        "raw": [
+          ""
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 239,
           "column": 4,
-          "index": 6740
+          "index": 6502
         },
         "end": {
           "line": 241,
           "column": 5,
-          "index": 6794
+          "index": 6554
         }
-      },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Gets low-level transport.\n Note: To be used with caution!\n This method can be used to query the transport directly,\n but should be used with caution. Especially, it\n is not advisable to call any destructive methods\n such as <code>open</code> or <code>send</code>.</p>"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{Object} An instance of a class found in\n  <code>qx.bom.request.*</code>",
-            "type": "Object",
-            "description": " An instance of a class found in\n  <code>qx.bom.request.*</code>"
-          }
-        ]
       },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "appearsIn": []
     },
     "setParser": {
-      "location": {
-        "start": {
-          "line": 251,
-          "column": 4,
-          "index": 7036
-        },
-        "end": {
-          "line": 253,
-          "column": 5,
-          "index": 7109
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets (i.e. override) the parser for the response parsing.",
+          "     *",
+          "     * @see qx.util.ResponseParser#setParser",
+          "     *",
+          "     * @param parser {String|Function}",
+          "     * @return {Function} The parser function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -556,35 +744,61 @@
         "@param": [
           {
             "name": "@param",
-            "body": "parser {String|Function}"
+            "body": "parser {String|Function}",
+            "paramName": "parser",
+            "type": [
+              "String",
+              "Function"
+            ]
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Function} The parser function",
-            "type": "Function",
-            "description": " The parser function"
+            "type": "((...args: any[]) => any)",
+            "description": "The parser function"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setTimeout": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 261,
+          "line": 251,
           "column": 4,
-          "index": 7307
+          "index": 6786
         },
         "end": {
-          "line": 266,
+          "line": 253,
           "column": 5,
-          "index": 7441
+          "index": 6857
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "parser",
+          "type": [
+            "String",
+            "Function"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "setTimeout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the timout limit in milliseconds.",
+          "     *",
+          "     * @param millis {Number} limit in milliseconds.",
+          "     * @return {qx.bom.request.SimpleXhr} Self for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -597,7 +811,7 @@
             "body": "millis {Number} limit in milliseconds.",
             "paramName": "millis",
             "description": " limit in milliseconds.",
-            "type": "Number"
+            "type": "number"
           }
         ],
         "@return": [
@@ -605,27 +819,44 @@
             "name": "@return",
             "body": "{qx.bom.request.SimpleXhr} Self for chaining.",
             "type": "qx.bom.request.SimpleXhr",
-            "description": " Self for chaining."
+            "description": "Self for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getTimeout": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 273,
+          "line": 261,
           "column": 4,
-          "index": 7583
+          "index": 7047
         },
         "end": {
-          "line": 275,
+          "line": 266,
           "column": 5,
-          "index": 7634
+          "index": 7176
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "millis",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.SimpleXhr"
+      },
+      "appearsIn": []
+    },
+    "getTimeout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The current timeout in milliseconds.",
+          "     *",
+          "     * @return {Number} The current timeout in milliseconds.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -636,28 +867,69 @@
           {
             "name": "@return",
             "body": "{Number} The current timeout in milliseconds.",
-            "type": "Number",
-            "description": " The current timeout in milliseconds."
+            "type": "number",
+            "description": "The current timeout in milliseconds."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "useCaching": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 311,
+          "line": 273,
           "column": 4,
-          "index": 9342
+          "index": 7311
         },
         "end": {
-          "line": 316,
+          "line": 275,
           "column": 5,
-          "index": 9472
+          "index": 7360
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "useCaching": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether to allow request to be answered from cache.",
+          "     *",
+          "     * Allowed values:",
+          "     *",
+          "     * * <code>true</code>: Allow caching (Default)",
+          "     * * <code>false</code>: Prohibit caching. Appends 'nocache' parameter to URL.",
+          "     *",
+          "     * Consider setting a Cache-Control header instead. A request’s Cache-Control",
+          "     * header may contain a number of directives controlling the behavior of",
+          "     * any caches in between client and origin server and allows therefore a more",
+          "     * fine grained control over caching. If such a header is provided, the setting",
+          "     * of setCache() will be ignored.",
+          "     *",
+          "     * * <code>\"no-cache\"</code>: Force caches to submit request in order to",
+          "     * validate the freshness of the representation. Note that the requested",
+          "     * resource may still be served from cache if the representation is",
+          "     * considered fresh. Use this directive to ensure freshness but save",
+          "     * bandwidth when possible.",
+          "     * * <code>\"no-store\"</code>: Do not keep a copy of the representation under",
+          "     * any conditions.",
+          "     *",
+          "     * See <a href=\"http://www.mnot.net/cache_docs/#CACHE-CONTROL\">",
+          "     * Caching tutorial</a> for an excellent introduction to Caching in general.",
+          "     * Refer to the corresponding section in the",
+          "     * <a href=\"http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9\">",
+          "     * HTTP 1.1 specification</a> for more details and advanced directives.",
+          "     *",
+          "     * It is recommended to choose an appropriate Cache-Control directive rather",
+          "     * than prohibit caching using the nocache parameter.",
+          "     *",
+          "     * @param value {Boolean}",
+          "     * @return {qx.bom.request.SimpleXhr} Self for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -667,7 +939,9 @@
         "@param": [
           {
             "name": "@param",
-            "body": "value {Boolean}"
+            "body": "value {Boolean}",
+            "paramName": "value",
+            "type": "boolean"
           }
         ],
         "@return": [
@@ -675,27 +949,44 @@
             "name": "@return",
             "body": "{qx.bom.request.SimpleXhr} Self for chaining.",
             "type": "qx.bom.request.SimpleXhr",
-            "description": " Self for chaining."
+            "description": "Self for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isCaching": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 323,
+          "line": 311,
           "column": 4,
-          "index": 9599
+          "index": 9032
         },
         "end": {
-          "line": 325,
+          "line": 316,
           "column": 5,
-          "index": 9647
+          "index": 9157
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.SimpleXhr"
+      },
+      "appearsIn": []
+    },
+    "isCaching": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether requests are cached.",
+          "     *",
+          "     * @return {Boolean} Whether requests are cached.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -706,28 +997,39 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether requests are cached.",
-            "type": "Boolean",
-            "description": " Whether requests are cached."
+            "type": "boolean",
+            "description": "Whether requests are cached."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isDone": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 332,
+          "line": 323,
           "column": 4,
-          "index": 9777
+          "index": 9277
         },
         "end": {
-          "line": 334,
+          "line": 325,
           "column": 5,
-          "index": 9864
+          "index": 9323
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "isDone": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether request completed (is done).",
+          "     * @return {Boolean} Whether request is completed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -738,28 +1040,40 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether request is completed.",
-            "type": "Boolean",
-            "description": " Whether request is completed."
+            "type": "boolean",
+            "description": "Whether request is completed."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "toHashCode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 341,
+          "line": 332,
           "column": 4,
-          "index": 10000
+          "index": 9446
         },
         "end": {
-          "line": 343,
+          "line": 334,
           "column": 5,
-          "index": 10048
+          "index": 9531
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "toHashCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns unique hash code of object.",
+          "     *",
+          "     * @return {Integer} unique hash code of the object",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -771,27 +1085,39 @@
             "name": "@return",
             "body": "{Integer} unique hash code of the object",
             "type": "Integer",
-            "description": " unique hash code of the object"
+            "description": "unique hash code of the object"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isDisposed": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 350,
+          "line": 341,
           "column": 4,
-          "index": 10194
+          "index": 9660
         },
         "end": {
-          "line": 352,
+          "line": 343,
           "column": 5,
-          "index": 10248
+          "index": 9706
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "isDisposed": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns true if the object is disposed.",
+          "     *",
+          "     * @return {Boolean} Whether the object has been disposed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -802,28 +1128,44 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the object has been disposed",
-            "type": "Boolean",
-            "description": " Whether the object has been disposed"
+            "type": "boolean",
+            "description": "Whether the object has been disposed"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "send": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 363,
+          "line": 350,
           "column": 4,
-          "index": 10444
+          "index": 9845
         },
         "end": {
-          "line": 428,
+          "line": 352,
           "column": 5,
-          "index": 12550
+          "index": 9897
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "send": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sends request.",
+          "     *",
+          "     * Relies on set before:",
+          "     * * a HTTP method",
+          "     * * an URL",
+          "     * * optional request headers",
+          "     * * optional request data",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -831,23 +1173,33 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "abort": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 436,
+          "line": 363,
           "column": 4,
-          "index": 12709
+          "index": 10082
         },
         "end": {
-          "line": 439,
+          "line": 428,
           "column": 5,
-          "index": 12777
+          "index": 12123
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "abort": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Aborts request.",
+          "     *",
+          "     * Cancels any network activity.",
+          "     * @return {qx.bom.request.SimpleXhr} Self for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -859,27 +1211,38 @@
             "name": "@return",
             "body": "{qx.bom.request.SimpleXhr} Self for chaining.",
             "type": "qx.bom.request.SimpleXhr",
-            "description": " Self for chaining."
+            "description": "Self for chaining."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "dispose": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 445,
+          "line": 436,
           "column": 4,
-          "index": 12935
+          "index": 12274
         },
         "end": {
-          "line": 452,
+          "line": 439,
           "column": 5,
-          "index": 13109
+          "index": 12339
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.bom.request.SimpleXhr"
+      },
+      "appearsIn": []
+    },
+    "dispose": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Disposes object and wrapped transport.",
+          "     * @return {Boolean} <code>true</code> if the object was successfully disposed",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -890,32 +1253,40 @@
           {
             "name": "@return",
             "body": "{Boolean} <code>true</code> if the object was successfully disposed",
-            "type": "Boolean",
-            "description": " <code>true</code> if the object was successfully disposed"
+            "type": "boolean",
+            "description": "<code>true</code> if the object was successfully disposed"
           }
         ]
       },
-      "type": "function",
       "access": "public",
-      "overriddenFrom": "qx.core.IDisposable",
+      "location": {
+        "start": {
+          "line": 445,
+          "column": 4,
+          "index": 12491
+        },
+        "end": {
+          "line": 452,
+          "column": 5,
+          "index": 12658
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
       "appearsIn": [
         "qx.core.IDisposable"
       ]
     },
     "_transport": {
-      "location": {
-        "start": {
-          "line": 463,
-          "column": 4,
-          "index": 13358
-        },
-        "end": {
-          "line": 463,
-          "column": 20,
-          "index": 13374
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Holds transport.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -923,23 +1294,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "_createTransport": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 471,
+          "line": 463,
           "column": 4,
-          "index": 13547
+          "index": 12896
         },
         "end": {
-          "line": 473,
-          "column": 5,
-          "index": 13614
+          "line": 463,
+          "column": 20,
+          "index": 12912
         }
       },
+      "appearsIn": []
+    },
+    "_createTransport": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates XHR transport.",
+          "     *",
+          "     * May be overridden to change type of resource.",
+          "     * @return {qx.bom.request.IRequest} Transport.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -951,27 +1330,40 @@
             "name": "@return",
             "body": "{qx.bom.request.IRequest} Transport.",
             "type": "qx.bom.request.IRequest",
-            "description": " Transport."
+            "description": "Transport."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_registerTransportListener": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 481,
+          "line": 471,
           "column": 4,
-          "index": 13819
+          "index": 13077
         },
         "end": {
-          "line": 493,
+          "line": 473,
           "column": 5,
-          "index": 14381
+          "index": 13142
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.bom.request.IRequest"
+      },
+      "appearsIn": []
+    },
+    "_registerTransportListener": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Registers common listeners on given transport.",
+          "     *",
+          "     * @param transport {qx.bom.request.IRequest} Transport.",
+          "     * @return {qx.bom.request.IRequest} Transport.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -992,27 +1384,44 @@
             "name": "@return",
             "body": "{qx.bom.request.IRequest} Transport.",
             "type": "qx.bom.request.IRequest",
-            "description": " Transport."
+            "description": "Transport."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_createResponseParser": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 500,
+          "line": 481,
           "column": 4,
-          "index": 14498
+          "index": 13339
         },
         "end": {
-          "line": 502,
+          "line": 493,
           "column": 5,
-          "index": 14574
+          "index": 13889
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "transport",
+          "type": "qx.bom.request.IRequest"
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.IRequest"
+      },
+      "appearsIn": []
+    },
+    "_createResponseParser": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Creates response parser.",
+          "     *",
+          "     * @return {qx.util.ResponseParser} parser.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1024,27 +1433,39 @@
             "name": "@return",
             "body": "{qx.util.ResponseParser} parser.",
             "type": "qx.util.ResponseParser",
-            "description": " parser."
+            "description": "parser."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_setResponse": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 509,
+          "line": 500,
           "column": 4,
-          "index": 14705
+          "index": 13999
         },
         "end": {
-          "line": 511,
+          "line": 502,
           "column": 5,
-          "index": 14771
+          "index": 14073
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.util.ResponseParser"
+      },
+      "appearsIn": []
+    },
+    "_setResponse": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the response.",
+          "     *",
+          "     * @param response {String} The parsed response of the request.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1057,27 +1478,43 @@
             "body": "response {String} The parsed response of the request.",
             "paramName": "response",
             "description": " The parsed response of the request.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_serializeData": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 520,
+          "line": 509,
           "column": 4,
-          "index": 15016
+          "index": 14197
         },
         "end": {
-          "line": 552,
+          "line": 511,
           "column": 5,
-          "index": 15762
+          "index": 14261
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "response",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "_serializeData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Serializes data.",
+          "     *",
+          "     * @param data {String|Map} Data to serialize.",
+          "     * @param contentType {String?} Content-Type which influences the serialization.",
+          "     * @return {String|null} Serialized data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1109,27 +1546,50 @@
             "name": "@return",
             "body": "{String|null} Serialized data.",
             "type": "String|null",
-            "description": " Serialized data."
+            "description": "Serialized data."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__requestHeaders": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 563,
+          "line": 520,
           "column": 4,
-          "index": 16017
+          "index": 14497
         },
         "end": {
-          "line": 563,
-          "column": 26,
-          "index": 16039
+          "line": 552,
+          "column": 5,
+          "index": 15211
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "data",
+          "type": [
+            "String",
+            "Map"
+          ]
+        },
+        {
+          "name": "contentType",
+          "type": "String",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "String|null"
+      },
+      "appearsIn": []
+    },
+    "__requestHeaders": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * {Array} Request headers.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1137,23 +1597,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__requestData": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 567,
+          "line": 563,
           "column": 4,
-          "index": 16107
+          "index": 15455
         },
         "end": {
-          "line": 567,
-          "column": 23,
-          "index": 16126
+          "line": 563,
+          "column": 26,
+          "index": 15477
         }
       },
+      "appearsIn": []
+    },
+    "__requestData": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * {Object} Request data (i.e. body).",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1161,23 +1626,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__method": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 571,
+          "line": 567,
           "column": 4,
-          "index": 16200
+          "index": 15541
         },
         "end": {
-          "line": 571,
-          "column": 16,
-          "index": 16212
+          "line": 567,
+          "column": 23,
+          "index": 15560
         }
       },
+      "appearsIn": []
+    },
+    "__method": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * {String} HTTP method to use for request.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1185,23 +1655,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__url": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 575,
+          "line": 571,
           "column": 4,
-          "index": 16269
+          "index": 15630
         },
         "end": {
-          "line": 575,
-          "column": 13,
-          "index": 16278
+          "line": 571,
+          "column": 16,
+          "index": 15642
         }
       },
+      "appearsIn": []
+    },
+    "__url": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * {String} Requested URL.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1209,23 +1684,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__response": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 579,
+          "line": 575,
           "column": 4,
-          "index": 16335
+          "index": 15695
         },
         "end": {
-          "line": 579,
-          "column": 20,
-          "index": 16351
+          "line": 575,
+          "column": 13,
+          "index": 15704
         }
       },
+      "appearsIn": []
+    },
+    "__response": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * {Object} Response data.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1233,23 +1713,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__parser": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 583,
+          "line": 579,
           "column": 4,
-          "index": 16403
+          "index": 15757
         },
         "end": {
-          "line": 583,
-          "column": 18,
-          "index": 16417
+          "line": 579,
+          "column": 20,
+          "index": 15773
         }
       },
+      "appearsIn": []
+    },
+    "__parser": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * {Function} Parser.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1257,23 +1742,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__cache": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 587,
+          "line": 583,
           "column": 4,
-          "index": 16493
+          "index": 15821
         },
         "end": {
-          "line": 587,
-          "column": 17,
-          "index": 16506
+          "line": 583,
+          "column": 18,
+          "index": 15835
         }
       },
+      "appearsIn": []
+    },
+    "__cache": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * {Boolean} Whether caching will be enabled.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1281,23 +1771,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__timeout": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 591,
+          "line": 587,
           "column": 4,
-          "index": 16585
+          "index": 15907
         },
         "end": {
-          "line": 591,
-          "column": 19,
-          "index": 16600
+          "line": 587,
+          "column": 17,
+          "index": 15920
         }
       },
+      "appearsIn": []
+    },
+    "__timeout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * {Number} The current timeout in milliseconds.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1305,23 +1800,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__disposed": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 595,
+          "line": 591,
           "column": 4,
-          "index": 16677
+          "index": 15995
         },
         "end": {
-          "line": 595,
-          "column": 20,
-          "index": 16693
+          "line": 591,
+          "column": 19,
+          "index": 16010
         }
       },
+      "appearsIn": []
+    },
+    "__disposed": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * {Boolean} Whether object has been disposed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1329,23 +1829,33 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "addListenerOnce": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 611,
+          "line": 595,
           "column": 4,
-          "index": 17274
+          "index": 16083
         },
         "end": {
-          "line": 614,
-          "column": 5,
-          "index": 17378
+          "line": 595,
+          "column": 20,
+          "index": 16099
         }
       },
+      "appearsIn": []
+    },
+    "addListenerOnce": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an event listener for the given event name which is executed only once.",
+          "     *",
+          "     * @param name {String} The name of the event to listen to.",
+          "     * @param listener {Function} The function to execute when the event is fired",
+          "     * @param ctx {var?} The context of the listener.",
+          "     * @return {qx.bom.request.Xhr} Self for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1358,14 +1868,14 @@
             "body": "name {String} The name of the event to listen to.",
             "paramName": "name",
             "description": " The name of the event to listen to.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "listener {Function} The function to execute when the event is fired",
             "paramName": "listener",
             "description": " The function to execute when the event is fired",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1381,31 +1891,59 @@
             "name": "@return",
             "body": "{qx.bom.request.Xhr} Self for chaining.",
             "type": "qx.bom.request.Xhr",
-            "description": " Self for chaining."
+            "description": "Self for chaining."
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 611,
+          "column": 4,
+          "index": 16664
+        },
+        "end": {
+          "line": 614,
+          "column": 5,
+          "index": 16765
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "listener",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "ctx",
+          "type": "var",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.Xhr"
+      },
       "overriddenFrom": "qx.event.Emitter",
       "appearsIn": [
         "qx.event.Emitter"
       ]
     },
     "addListener": {
-      "location": {
-        "start": {
-          "line": 624,
-          "column": 4,
-          "index": 17729
-        },
-        "end": {
-          "line": 627,
-          "column": 5,
-          "index": 17847
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Adds an event listener for the given event name.",
+          "     *",
+          "     * @param name {String} The name of the event to listen to.",
+          "     * @param listener {Function} The function to execute when the event is fired",
+          "     * @param ctx {var?} The context of the listener.",
+          "     * @return {qx.bom.request.Xhr} Self for chaining.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1418,14 +1956,14 @@
             "body": "name {String} The name of the event to listen to.",
             "paramName": "name",
             "description": " The name of the event to listen to.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "listener {Function} The function to execute when the event is fired",
             "paramName": "listener",
             "description": " The function to execute when the event is fired",
-            "type": "Function"
+            "type": "((...args: any[]) => any)"
           },
           {
             "name": "@param",
@@ -1441,31 +1979,54 @@
             "name": "@return",
             "body": "{qx.bom.request.Xhr} Self for chaining.",
             "type": "qx.bom.request.Xhr",
-            "description": " Self for chaining."
+            "description": "Self for chaining."
           }
         ]
       },
-      "type": "function",
       "access": "public",
+      "location": {
+        "start": {
+          "line": 624,
+          "column": 4,
+          "index": 17106
+        },
+        "end": {
+          "line": 627,
+          "column": 5,
+          "index": 17221
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "listener",
+          "type": "((...args: any[]) => any)"
+        },
+        {
+          "name": "ctx",
+          "type": "var",
+          "optional": true
+        }
+      ],
+      "returnType": {
+        "type": "qx.bom.request.Xhr"
+      },
       "overriddenFrom": "qx.event.Emitter",
       "appearsIn": [
         "qx.event.Emitter"
       ]
     },
     "_onReadyStateChange": {
-      "location": {
-        "start": {
-          "line": 632,
-          "column": 4,
-          "index": 17916
-        },
-        "end": {
-          "line": 640,
-          "column": 5,
-          "index": 18162
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles \"readyStateChange\" event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1473,23 +2034,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "__onReadyStateDone": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 645,
+          "line": 632,
           "column": 4,
-          "index": 18240
+          "index": 17285
         },
         "end": {
-          "line": 679,
+          "line": 640,
           "column": 5,
-          "index": 19304
+          "index": 17523
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__onReadyStateDone": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called internally when readyState is DONE.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1497,23 +2065,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "_onLoadEnd": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 684,
+          "line": 645,
           "column": 4,
-          "index": 19364
+          "index": 17596
         },
         "end": {
-          "line": 686,
+          "line": 679,
           "column": 5,
-          "index": 19414
+          "index": 18626
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onLoadEnd": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles \"loadEnd\" event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1521,23 +2096,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onAbort": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 691,
+          "line": 684,
           "column": 4,
-          "index": 19472
+          "index": 18681
         },
         "end": {
-          "line": 693,
+          "line": 686,
           "column": 5,
-          "index": 19518
+          "index": 18729
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onAbort": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles \"abort\" event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1545,23 +2127,30 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onTimeout": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 698,
+          "line": 691,
           "column": 4,
-          "index": 19578
+          "index": 18782
         },
         "end": {
-          "line": 703,
+          "line": 693,
           "column": 5,
-          "index": 19690
+          "index": 18826
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onTimeout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles \"timeout\" event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1569,23 +2158,61 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 698,
+          "column": 4,
+          "index": 18881
+        },
+        "end": {
+          "line": 703,
+          "column": 5,
+          "index": 18988
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     },
     "_onError": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles \"error\" event.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Handles \"error\" event.</p>"
+          }
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 708,
           "column": 4,
-          "index": 19748
+          "index": 19041
         },
         "end": {
           "line": 713,
           "column": 5,
-          "index": 19856
+          "index": 19144
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "_onProgress": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handles \"error\" event.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1593,33 +2220,24 @@
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_onProgress": {
+      "access": "protected",
       "location": {
         "start": {
           "line": 718,
           "column": 4,
-          "index": 19914
+          "index": 19197
         },
         "end": {
           "line": 720,
           "column": 5,
-          "index": 19966
+          "index": 19247
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Handles \"error\" event.</p>"
-          }
-        ]
-      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {},
+  "properties": {}
 }

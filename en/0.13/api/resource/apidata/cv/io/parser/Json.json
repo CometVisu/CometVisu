@@ -1,45 +1,49 @@
 {
-  "className": "cv.io.parser.Json",
-  "packageName": "cv.io.parser",
-  "name": "Json",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 6,
-        "column": 0,
-        "index": 159
-      },
-      "end": {
-        "line": 52,
-        "column": 3,
-        "index": 1498
-      }
+  "version": 0.3,
+  "lastModified": 1717235105366,
+  "lastModifiedIso": "2024-06-01T09:45:05.366Z",
+  "classFilename": "../../client/source/class/cv/io/parser/Json.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 6,
+      "column": 0,
+      "index": 159
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Sometimes the openHAB1 backend returns invalid JSON (e.g. multiple JSON object in one string)\n This parser can handle those strings</p>"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "$"
-        }
-      ]
+    "end": {
+      "line": 52,
+      "column": 3,
+      "index": 1498
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.io.parser.Json",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Sometimes the openHAB1 backend returns invalid JSON (e.g. multiple JSON object in one string)",
+      " * This parser can handle those strings",
+      " * @ignore($)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Sometimes the openHAB1 backend returns invalid JSON (e.g. multiple JSON object in one string)\n This parser can handle those strings</p>"
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "$"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "parse": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 15,
@@ -52,9 +56,9 @@
           "index": 1490
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

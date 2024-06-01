@@ -1,61 +1,202 @@
 {
-  "className": "qx.core.Property",
-  "packageName": "qx.core",
-  "name": "Property",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 170,
-        "column": 0,
-        "index": 8412
-      },
-      "end": {
-        "line": 2100,
-        "column": 3,
-        "index": 72513
-      }
+  "version": 0.3,
+  "lastModified": 1717235172058,
+  "lastModifiedIso": "2024-06-01T09:46:12.058Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/core/Property.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 170,
+      "column": 0,
+      "index": 8243
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Internal class for handling of dynamic properties. Should only be used\n through the methods provided by {@link qx.Class}.\n For a complete documentation of properties take a look at\n http://qooxdoo.org/docs/#core/property_features.md.\n<em>Normal properties</em>\n The <code>properties</code> key in the class definition map of {@link qx.Class#define}\n is used to generate the properties.\n Valid keys of a property definition are:\n </p>\n<table>\n   <tr><th>Name</th><th>Type</th><th>Description</th></tr>\n   <tr><th>check</th><td>Array, String, Function</td><td>\n     The check is used to check the type the incoming value of a property. This will only\n     be executed in the source version. The build version will not contain the checks.\n     The check can be:\n     <ul>\n       <li>a custom check function. The function takes the incoming value as a parameter and must\n           return a boolean value to indicate whether the values is valid.\n       </li>\n       <li>inline check code as a string e.g. <code>\"value &gt; 0 && value &lt; 100\"</code></li>\n       <li>a class name e.g. <code>qx.ui.form.Button</code></li>\n       <li>a name of an interface the value must implement</li>\n       <li>an array of all valid values</li>\n       <li>one of the predefined checks: Boolean, String, Number, Integer, Float, Double,\n           Object, Array, Map, Class, Mixin, Interface, Theme, Error, RegExp, Function,\n           Date, Node, Element, Document, Window, Event\n       </li>\n     <ul>\n   </td></tr>\n   <tr><th>init</th><td>var</td><td>\n     Sets the default/initial value of the property. If no property value is set or the property\n     gets reset, the getter will return the <code>init</code> value.\n   </td></tr>\n   <tr><th>apply</th><td>String</td><td>\n     On change of the property value the method of the specified name will be called. The signature of\n     the method is <code>function(newValue, oldValue, propertyName)</code>. It is conventional to name\n     the callback <code>_apply</code> + <i>PropertyName</i>, with the property name camel-cased (e.g.\n     \"<i>_applyFooBar</i>\" for a property <i>fooBar</i>).\n   </td></tr>\n   <tr><th>event</th><td>String</td><td>\n     On change of the property value an event with the given name will be dispatched. The event type is\n     {@link qx.event.type.Data}.\n   </td></tr>\n   <tr><th>themeable</th><td>Boolean</td><td>\n     Whether this property can be set using themes.\n   </td></tr>\n   <tr><th>inheritable</th><td>Boolean</td><td>\n     Whether the property value should be inheritable. If the property does not have an user defined or an\n     init value, the property will try to get the value from the parent of the current object.\n   </td></tr>\n   <tr><th>nullable</th><td>Boolean</td><td>\n     Whether <code>null</code> is an allowed value of the property. This is complementary to the check\n     defined using the <code>check</code> key.\n   </td></tr>\n   <tr><th>refine</th><td>Boolean</td><td>\n     Whether the property definition is a refinement of a property in one of the super classes of the class.\n     Only the <code>init</code> value can be changed using refine.\n   </td></tr>\n   <tr><th>transform</th><td>String</td><td>\n     On setting of the property value the method of the specified name will\n     be called. The signature of the method is <code>function(value, oldValue)</code>.\n     The parameter <code>value</code> is the value passed to the setter, the\n     parameter <code>oldValue</code> is the current value, or undefined if no value\n     has been set previously.\n     The function must return the modified or unmodified value.\n     Transformation occurs before the check function, so both may be\n     specified if desired.  Alternatively, the transform function may throw\n     an error if the value passed to it is invalid.\n   </td></tr>\n   <tr><th>validate</th><td>Function, String</td><td>\n     On setting of the property value the method of the specified name will\n     be called. The signature of the method is <code>function(value)</code>.\n     The parameter <code>value</code> is the value passed to the setter.\n     If the validation fails, an <code>qx.core.ValidationError</code> should\n     be thrown by the validation function. Otherwise, just do nothing in the\n     function.<br>\n     If a string is given, the string should hold a reference to a member\n     method.<br>\n     <code>\"<i>methodname</i>\"</code> for example\n     <code>\"__validateProperty\"</code><br>\n     There are some default validators in the {@link qx.util.Validate} class.\n     See this documentation for usage examples.\n   </td></tr>\n   <tr><th>dereference</th><td>Boolean</td><td>\n     By default, the references to the values (current, init, ...) of the\n     property will be stored as references on the object. When disposing\n     this object, the references will not be deleted. Setting the\n     dereference key to true tells the property system to delete all\n     connections made by this property on dispose. This can be necessary for\n     disconnecting DOM objects to allow the garbage collector to work\n     properly.\n   </td></tr>\n   <tr><th>deferredInit</th><td>Boolean</td><td>\n     Allow for a deferred initialization for reference types. Defaults to false.\n   </td></tr>\n   <tr><th>isEqual</th><td>Function, String</td><td>\n     On setting of the property value the method of the specified name will\n     be called to test if two values are equal. These checks for equality are\n     performed by the Property-System to decide whether further actions (like\n     e.g. calling applier methods or firing of events) are needed.\n     The signature of the method is <code>function(valueA, valueB)</code>.\n     <br/>\n     The <i>isEqual</i>-value can be:\n     <ul>\n       <li>a custom check function.\n           The function takes two values as parameter and must return a\n           boolean value to indicate whether the values are considered\n           equal e.g. <code>function (a, b) { return Object.is(a, b); }</code>.</li>\n       <li>inline check code as a string\n           which will be invoked with two parameters <code>a</code> and\n           <code>b</code> and results in a boolean value to indicate whether\n           the values are equal e.g. <code>\"a.length() == b.length()\"</code>.</li>\n       <li>reference to a member method as string\n           <code>\"<i>methodname</i>\"</code> which will be invoked with two\n           parameters and returns a boolean value indicating whether the two\n           values are considered equal for example <code>\"__areTheSame\"</code>.</li>\n     </ul>\n     The default implementation (if this key is undefined) will check the\n     equality by using the <i>identity</i> operator (===) as if defined like\n     <code>\"a===b\"</code>.\n   </td></tr>\n </table>\n<p><em>Property groups</em>\n Property groups are defined in a similar way but support a different set of keys:\n </p>\n<table>\n   <tr><th>Name</th><th>Type</th><th>Description</th></tr>\n   <tr><th>group</th><td>String[]</td><td>\n     A list of property names which should be set using the property group.\n   </td></tr>\n   <tr><th>mode</th><td>String</td><td>\n     If mode is set to <code>\"shorthand\"</code>, the properties can be set using a CSS like shorthand mode.\n   </td></tr>\n   <tr><th>themeable</th><td>Boolean</td><td>\n     Whether this property can be set using themes.\n   </td></tr>\n </table>"
-        }
-      ],
-      "@internal": [
-        {
-          "name": "@internal",
-          "body": ""
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "qx.Interface"
-        }
-      ]
+    "end": {
+      "line": 2100,
+      "column": 3,
+      "index": 70414
     }
   },
-  "type": "class",
+  "className": "qx.core.Property",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Internal class for handling of dynamic properties. Should only be used",
+      " * through the methods provided by {@link qx.Class}.",
+      " *",
+      " * For a complete documentation of properties take a look at",
+      " * http://qooxdoo.org/docs/#core/property_features.md.",
+      " *",
+      " *",
+      " * *Normal properties*",
+      " *",
+      " * The <code>properties</code> key in the class definition map of {@link qx.Class#define}",
+      " * is used to generate the properties.",
+      " *",
+      " * Valid keys of a property definition are:",
+      " *",
+      " * <table>",
+      " *   <tr><th>Name</th><th>Type</th><th>Description</th></tr>",
+      " *   <tr><th>check</th><td>Array, String, Function</td><td>",
+      " *     The check is used to check the type the incoming value of a property. This will only",
+      " *     be executed in the source version. The build version will not contain the checks.",
+      " *     The check can be:",
+      " *     <ul>",
+      " *       <li>a custom check function. The function takes the incoming value as a parameter and must",
+      " *           return a boolean value to indicate whether the values is valid.",
+      " *       </li>",
+      " *       <li>inline check code as a string e.g. <code>\"value &gt; 0 && value &lt; 100\"</code></li>",
+      " *       <li>a class name e.g. <code>qx.ui.form.Button</code></li>",
+      " *       <li>a name of an interface the value must implement</li>",
+      " *       <li>an array of all valid values</li>",
+      " *       <li>one of the predefined checks: Boolean, String, Number, Integer, Float, Double,",
+      " *           Object, Array, Map, Class, Mixin, Interface, Theme, Error, RegExp, Function,",
+      " *           Date, Node, Element, Document, Window, Event",
+      " *       </li>",
+      " *     <ul>",
+      " *   </td></tr>",
+      " *   <tr><th>init</th><td>var</td><td>",
+      " *     Sets the default/initial value of the property. If no property value is set or the property",
+      " *     gets reset, the getter will return the <code>init</code> value.",
+      " *   </td></tr>",
+      " *   <tr><th>apply</th><td>String</td><td>",
+      " *     On change of the property value the method of the specified name will be called. The signature of",
+      " *     the method is <code>function(newValue, oldValue, propertyName)</code>. It is conventional to name",
+      " *     the callback <code>_apply</code> + <i>PropertyName</i>, with the property name camel-cased (e.g.",
+      " *     \"<i>_applyFooBar</i>\" for a property <i>fooBar</i>).",
+      " *   </td></tr>",
+      " *   <tr><th>event</th><td>String</td><td>",
+      " *     On change of the property value an event with the given name will be dispatched. The event type is",
+      " *     {@link qx.event.type.Data}.",
+      " *   </td></tr>",
+      " *   <tr><th>themeable</th><td>Boolean</td><td>",
+      " *     Whether this property can be set using themes.",
+      " *   </td></tr>",
+      " *   <tr><th>inheritable</th><td>Boolean</td><td>",
+      " *     Whether the property value should be inheritable. If the property does not have an user defined or an",
+      " *     init value, the property will try to get the value from the parent of the current object.",
+      " *   </td></tr>",
+      " *   <tr><th>nullable</th><td>Boolean</td><td>",
+      " *     Whether <code>null</code> is an allowed value of the property. This is complementary to the check",
+      " *     defined using the <code>check</code> key.",
+      " *   </td></tr>",
+      " *   <tr><th>refine</th><td>Boolean</td><td>",
+      " *     Whether the property definition is a refinement of a property in one of the super classes of the class.",
+      " *     Only the <code>init</code> value can be changed using refine.",
+      " *   </td></tr>",
+      " *   <tr><th>transform</th><td>String</td><td>",
+      " *     On setting of the property value the method of the specified name will",
+      " *     be called. The signature of the method is <code>function(value, oldValue)</code>.",
+      " *     The parameter <code>value</code> is the value passed to the setter, the",
+      " *     parameter <code>oldValue</code> is the current value, or undefined if no value",
+      " *     has been set previously.",
+      " *     The function must return the modified or unmodified value.",
+      " *     Transformation occurs before the check function, so both may be",
+      " *     specified if desired.  Alternatively, the transform function may throw",
+      " *     an error if the value passed to it is invalid.",
+      " *   </td></tr>",
+      " *   <tr><th>validate</th><td>Function, String</td><td>",
+      " *     On setting of the property value the method of the specified name will",
+      " *     be called. The signature of the method is <code>function(value)</code>.",
+      " *     The parameter <code>value</code> is the value passed to the setter.",
+      " *     If the validation fails, an <code>qx.core.ValidationError</code> should",
+      " *     be thrown by the validation function. Otherwise, just do nothing in the",
+      " *     function.<br>",
+      " *     If a string is given, the string should hold a reference to a member",
+      " *     method.<br>",
+      " *     <code>\"<i>methodname</i>\"</code> for example",
+      " *     <code>\"__validateProperty\"</code><br>",
+      " *     There are some default validators in the {@link qx.util.Validate} class.",
+      " *     See this documentation for usage examples.",
+      " *   </td></tr>",
+      " *   <tr><th>dereference</th><td>Boolean</td><td>",
+      " *     By default, the references to the values (current, init, ...) of the",
+      " *     property will be stored as references on the object. When disposing",
+      " *     this object, the references will not be deleted. Setting the",
+      " *     dereference key to true tells the property system to delete all",
+      " *     connections made by this property on dispose. This can be necessary for",
+      " *     disconnecting DOM objects to allow the garbage collector to work",
+      " *     properly.",
+      " *   </td></tr>",
+      " *   <tr><th>deferredInit</th><td>Boolean</td><td>",
+      " *     Allow for a deferred initialization for reference types. Defaults to false.",
+      " *   </td></tr>",
+      " *   <tr><th>isEqual</th><td>Function, String</td><td>",
+      " *     On setting of the property value the method of the specified name will",
+      " *     be called to test if two values are equal. These checks for equality are",
+      " *     performed by the Property-System to decide whether further actions (like",
+      " *     e.g. calling applier methods or firing of events) are needed.",
+      " *     The signature of the method is <code>function(valueA, valueB)</code>.",
+      " *     <br/>",
+      " *     The <i>isEqual</i>-value can be:",
+      " *     <ul>",
+      " *       <li>a custom check function.",
+      " *           The function takes two values as parameter and must return a",
+      " *           boolean value to indicate whether the values are considered",
+      " *           equal e.g. <code>function (a, b) { return Object.is(a, b); }</code>.</li>",
+      " *       <li>inline check code as a string",
+      " *           which will be invoked with two parameters <code>a</code> and",
+      " *           <code>b</code> and results in a boolean value to indicate whether",
+      " *           the values are equal e.g. <code>\"a.length() == b.length()\"</code>.</li>",
+      " *       <li>reference to a member method as string",
+      " *           <code>\"<i>methodname</i>\"</code> which will be invoked with two",
+      " *           parameters and returns a boolean value indicating whether the two",
+      " *           values are considered equal for example <code>\"__areTheSame\"</code>.</li>",
+      " *     </ul>",
+      " *     The default implementation (if this key is undefined) will check the",
+      " *     equality by using the <i>identity</i> operator (===) as if defined like",
+      " *     <code>\"a===b\"</code>.",
+      " *   </td></tr>",
+      " * </table>",
+      " *",
+      " * *Property groups*",
+      " *",
+      " * Property groups are defined in a similar way but support a different set of keys:",
+      " *",
+      " * <table>",
+      " *   <tr><th>Name</th><th>Type</th><th>Description</th></tr>",
+      " *   <tr><th>group</th><td>String[]</td><td>",
+      " *     A list of property names which should be set using the property group.",
+      " *   </td></tr>",
+      " *   <tr><th>mode</th><td>String</td><td>",
+      " *     If mode is set to <code>\"shorthand\"</code>, the properties can be set using a CSS like shorthand mode.",
+      " *   </td></tr>",
+      " *   <tr><th>themeable</th><td>Boolean</td><td>",
+      " *     Whether this property can be set using themes.",
+      " *   </td></tr>",
+      " * </table>",
+      " *",
+      " * @internal",
+      " * @ignore(qx.Interface)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Internal class for handling of dynamic properties. Should only be used\n through the methods provided by {@link qx.Class}.\n For a complete documentation of properties take a look at\n http://qooxdoo.org/docs/#core/property_features.md.\n<em>Normal properties</em>\n The <code>properties</code> key in the class definition map of {@link qx.Class#define}\n is used to generate the properties.\n Valid keys of a property definition are:\n </p>\n<table>\n   <tr><th>Name</th><th>Type</th><th>Description</th></tr>\n   <tr><th>check</th><td>Array, String, Function</td><td>\n     The check is used to check the type the incoming value of a property. This will only\n     be executed in the source version. The build version will not contain the checks.\n     The check can be:\n     <ul>\n       <li>a custom check function. The function takes the incoming value as a parameter and must\n           return a boolean value to indicate whether the values is valid.\n       </li>\n       <li>inline check code as a string e.g. <code>\"value &gt; 0 && value &lt; 100\"</code></li>\n       <li>a class name e.g. <code>qx.ui.form.Button</code></li>\n       <li>a name of an interface the value must implement</li>\n       <li>an array of all valid values</li>\n       <li>one of the predefined checks: Boolean, String, Number, Integer, Float, Double,\n           Object, Array, Map, Class, Mixin, Interface, Theme, Error, RegExp, Function,\n           Date, Node, Element, Document, Window, Event\n       </li>\n     <ul>\n   </td></tr>\n   <tr><th>init</th><td>var</td><td>\n     Sets the default/initial value of the property. If no property value is set or the property\n     gets reset, the getter will return the <code>init</code> value.\n   </td></tr>\n   <tr><th>apply</th><td>String</td><td>\n     On change of the property value the method of the specified name will be called. The signature of\n     the method is <code>function(newValue, oldValue, propertyName)</code>. It is conventional to name\n     the callback <code>_apply</code> + <i>PropertyName</i>, with the property name camel-cased (e.g.\n     \"<i>_applyFooBar</i>\" for a property <i>fooBar</i>).\n   </td></tr>\n   <tr><th>event</th><td>String</td><td>\n     On change of the property value an event with the given name will be dispatched. The event type is\n     {@link qx.event.type.Data}.\n   </td></tr>\n   <tr><th>themeable</th><td>Boolean</td><td>\n     Whether this property can be set using themes.\n   </td></tr>\n   <tr><th>inheritable</th><td>Boolean</td><td>\n     Whether the property value should be inheritable. If the property does not have an user defined or an\n     init value, the property will try to get the value from the parent of the current object.\n   </td></tr>\n   <tr><th>nullable</th><td>Boolean</td><td>\n     Whether <code>null</code> is an allowed value of the property. This is complementary to the check\n     defined using the <code>check</code> key.\n   </td></tr>\n   <tr><th>refine</th><td>Boolean</td><td>\n     Whether the property definition is a refinement of a property in one of the super classes of the class.\n     Only the <code>init</code> value can be changed using refine.\n   </td></tr>\n   <tr><th>transform</th><td>String</td><td>\n     On setting of the property value the method of the specified name will\n     be called. The signature of the method is <code>function(value, oldValue)</code>.\n     The parameter <code>value</code> is the value passed to the setter, the\n     parameter <code>oldValue</code> is the current value, or undefined if no value\n     has been set previously.\n     The function must return the modified or unmodified value.\n     Transformation occurs before the check function, so both may be\n     specified if desired.  Alternatively, the transform function may throw\n     an error if the value passed to it is invalid.\n   </td></tr>\n   <tr><th>validate</th><td>Function, String</td><td>\n     On setting of the property value the method of the specified name will\n     be called. The signature of the method is <code>function(value)</code>.\n     The parameter <code>value</code> is the value passed to the setter.\n     If the validation fails, an <code>qx.core.ValidationError</code> should\n     be thrown by the validation function. Otherwise, just do nothing in the\n     function.<br>\n     If a string is given, the string should hold a reference to a member\n     method.<br>\n     <code>\"<i>methodname</i>\"</code> for example\n     <code>\"__validateProperty\"</code><br>\n     There are some default validators in the {@link qx.util.Validate} class.\n     See this documentation for usage examples.\n   </td></tr>\n   <tr><th>dereference</th><td>Boolean</td><td>\n     By default, the references to the values (current, init, ...) of the\n     property will be stored as references on the object. When disposing\n     this object, the references will not be deleted. Setting the\n     dereference key to true tells the property system to delete all\n     connections made by this property on dispose. This can be necessary for\n     disconnecting DOM objects to allow the garbage collector to work\n     properly.\n   </td></tr>\n   <tr><th>deferredInit</th><td>Boolean</td><td>\n     Allow for a deferred initialization for reference types. Defaults to false.\n   </td></tr>\n   <tr><th>isEqual</th><td>Function, String</td><td>\n     On setting of the property value the method of the specified name will\n     be called to test if two values are equal. These checks for equality are\n     performed by the Property-System to decide whether further actions (like\n     e.g. calling applier methods or firing of events) are needed.\n     The signature of the method is <code>function(valueA, valueB)</code>.\n     <br/>\n     The <i>isEqual</i>-value can be:\n     <ul>\n       <li>a custom check function.\n           The function takes two values as parameter and must return a\n           boolean value to indicate whether the values are considered\n           equal e.g. <code>function (a, b) { return Object.is(a, b); }</code>.</li>\n       <li>inline check code as a string\n           which will be invoked with two parameters <code>a</code> and\n           <code>b</code> and results in a boolean value to indicate whether\n           the values are equal e.g. <code>\"a.length() == b.length()\"</code>.</li>\n       <li>reference to a member method as string\n           <code>\"<i>methodname</i>\"</code> which will be invoked with two\n           parameters and returns a boolean value indicating whether the two\n           values are considered equal for example <code>\"__areTheSame\"</code>.</li>\n     </ul>\n     The default implementation (if this key is undefined) will check the\n     equality by using the <i>identity</i> operator (===) as if defined like\n     <code>\"a===b\"</code>.\n   </td></tr>\n </table>\n<p><em>Property groups</em>\n Property groups are defined in a similar way but support a different set of keys:\n </p>\n<table>\n   <tr><th>Name</th><th>Type</th><th>Description</th></tr>\n   <tr><th>group</th><td>String[]</td><td>\n     A list of property names which should be set using the property group.\n   </td></tr>\n   <tr><th>mode</th><td>String</td><td>\n     If mode is set to <code>\"shorthand\"</code>, the properties can be set using a CSS like shorthand mode.\n   </td></tr>\n   <tr><th>themeable</th><td>Boolean</td><td>\n     Whether this property can be set using themes.\n   </td></tr>\n </table>"
+      }
+    ],
+    "@internal": [
+      {
+        "name": "@internal",
+        "body": ""
+      }
+    ],
+    "@ignore": [
+      {
+        "name": "@ignore",
+        "body": "qx.Interface"
+      }
+    ]
+  },
   "statics": {
     "__gatherDependency": {
-      "location": {
-        "start": {
-          "line": 176,
-          "column": 4,
-          "index": 8650
-        },
-        "end": {
-          "line": 184,
-          "column": 5,
-          "index": 8889
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * This is a method which does nothing than gathering dependencies for the",
+          "     * module system. Calling this method is useless because it does nothing.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -63,23 +204,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__checks": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 190,
+          "line": 176,
           "column": 4,
-          "index": 9002
+          "index": 8475
         },
         "end": {
-          "line": 226,
+          "line": 184,
           "column": 5,
-          "index": 10858
+          "index": 8706
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__checks": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Built-in checks",
+          "     * The keys could be used in the check of the properties",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -87,23 +236,28 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__dereference": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 231,
+          "line": 190,
           "column": 4,
-          "index": 10966
+          "index": 8813
         },
         "end": {
-          "line": 237,
+          "line": 226,
           "column": 5,
-          "index": 11093
+          "index": 10633
         }
       },
+      "appearsIn": []
+    },
+    "__dereference": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Contains types from {@link #__checks} list which need to be dereferenced",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -111,23 +265,31 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "$$inherit": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 245,
+          "line": 231,
           "column": 4,
-          "index": 11292
+          "index": 10736
         },
         "end": {
-          "line": 245,
-          "column": 24,
-          "index": 11312
+          "line": 237,
+          "column": 5,
+          "index": 10857
         }
       },
+      "appearsIn": []
+    },
+    "$$inherit": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Inherit value, used to override defaults etc. to force inheritance",
+          "     * even if property value is not undefined (through multi-values)",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -141,23 +303,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "$$store": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 252,
+          "line": 245,
           "column": 4,
-          "index": 11419
+          "index": 11048
         },
         "end": {
-          "line": 259,
-          "column": 5,
-          "index": 11547
+          "line": 245,
+          "column": 24,
+          "index": 11068
         }
       },
+      "appearsIn": []
+    },
+    "$$store": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Caching field names for each property created",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -171,23 +340,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "$$method": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 266,
+          "line": 252,
           "column": 4,
-          "index": 11657
+          "index": 11168
         },
         "end": {
-          "line": 279,
+          "line": 259,
           "column": 5,
-          "index": 11917
+          "index": 11289
         }
       },
+      "appearsIn": []
+    },
+    "$$method": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Caching function names for each property created",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -201,23 +377,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "$$allowedKeys": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 286,
+          "line": 266,
           "column": 4,
-          "index": 12018
+          "index": 11392
         },
         "end": {
-          "line": 303,
+          "line": 279,
           "column": 5,
-          "index": 12650
+          "index": 11639
         }
       },
+      "appearsIn": []
+    },
+    "$$allowedKeys": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Supported keys for property definitions",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -231,23 +414,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "$$allowedGroupKeys": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 310,
+          "line": 286,
           "column": 4,
-          "index": 12757
+          "index": 11733
         },
         "end": {
-          "line": 316,
+          "line": 303,
           "column": 5,
-          "index": 12957
+          "index": 12348
         }
       },
+      "appearsIn": []
+    },
+    "$$allowedGroupKeys": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Supported keys for property group definitions",
+          "     *",
+          "     * @internal",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -261,23 +451,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "$$inheritable": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 319,
+          "line": 310,
           "column": 4,
-          "index": 13054
+          "index": 12448
         },
         "end": {
-          "line": 319,
-          "column": 21,
-          "index": 13071
+          "line": 316,
+          "column": 5,
+          "index": 12642
         }
       },
+      "appearsIn": []
+    },
+    "$$inheritable": {
       "jsdoc": {
+        "raw": [
+          "* Contains names of inheritable properties, filled by {@link qx.Class.define} "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -285,23 +478,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "public"
-    },
-    "__executeOptimizedRefresh": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 326,
+          "line": 319,
           "column": 4,
-          "index": 13261
+          "index": 12736
         },
         "end": {
-          "line": 336,
-          "column": 5,
-          "index": 13588
+          "line": 319,
+          "column": 21,
+          "index": 12753
         }
       },
+      "appearsIn": []
+    },
+    "__executeOptimizedRefresh": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generate optimized refresh method and  attach it to the class' prototype",
+          "     *",
+          "     * @param clazz {Class} clazz to which the refresher should be added",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -318,23 +518,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getInheritablesOfClass": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 344,
+          "line": 326,
           "column": 4,
-          "index": 13816
+          "index": 12936
         },
         "end": {
-          "line": 364,
+          "line": 336,
           "column": 5,
-          "index": 14389
+          "index": 13253
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__getInheritablesOfClass": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the names of all inheritable properties of the given class",
+          "     *",
+          "     * @param clazz {Class} class to get the inheritable properties of",
+          "     * @return {String[]} List of property names",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -355,27 +570,45 @@
             "name": "@return",
             "body": "{String[]} List of property names",
             "type": "String[]",
-            "description": " List of property names"
+            "description": "List of property names"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__createRefresher": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 372,
+          "line": 344,
           "column": 4,
-          "index": 14610
+          "index": 13473
         },
         "end": {
-          "line": 398,
+          "line": 364,
           "column": 5,
-          "index": 15310
+          "index": 14026
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "__createRefresher": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Assemble the refresher code and return the generated function",
+          "     *",
+          "     * @param inheritables {String[]} list of inheritable properties",
+          "     * @return {Function} refresher function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -395,28 +628,45 @@
           {
             "name": "@return",
             "body": "{Function} refresher function",
-            "type": "Function",
-            "description": " refresher function"
+            "type": "((...args: any[]) => any)",
+            "description": "refresher function"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "attachRefreshInheritables": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 405,
+          "line": 372,
           "column": 4,
-          "index": 15487
+          "index": 14239
         },
         "end": {
-          "line": 410,
+          "line": 398,
           "column": 5,
-          "index": 15705
+          "index": 14913
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "inheritables",
+          "type": "String[]"
+        }
+      ],
+      "returnType": {
+        "type": "((...args: any[]) => any)"
+      },
+      "appearsIn": []
+    },
+    "attachRefreshInheritables": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach $$refreshInheritables method stub to the given class",
+          "     *",
+          "     * @param clazz {Class} clazz to which the refresher should be added",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -433,23 +683,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "attachMethods": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 419,
+          "line": 405,
           "column": 4,
-          "index": 15940
+          "index": 15083
         },
         "end": {
-          "line": 424,
+          "line": 410,
           "column": 5,
-          "index": 16172
+          "index": 15296
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        }
+      ],
+      "appearsIn": []
+    },
+    "attachMethods": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach one property to class",
+          "     *",
+          "     * @param clazz {Class} Class to attach properties to",
+          "     * @param name {String} Name of property",
+          "     * @param config {Map} Configuration map of property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -469,34 +735,58 @@
             "body": "name {String} Name of property",
             "paramName": "name",
             "description": " Name of property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "config {Map} Configuration map of property",
             "paramName": "config",
             "description": " Configuration map of property",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__attachGroupMethods": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 433,
+          "line": 419,
           "column": 4,
-          "index": 16396
+          "index": 15522
         },
         "end": {
-          "line": 524,
+          "line": 424,
           "column": 5,
-          "index": 19279
+          "index": 15749
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "config",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__attachGroupMethods": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach group methods",
+          "     *",
+          "     * @param clazz {Class} Class to attach properties to",
+          "     * @param config {Map} Property configuration",
+          "     * @param name {String} Name of the property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -516,34 +806,58 @@
             "body": "config {Map} Property configuration",
             "paramName": "config",
             "description": " Property configuration",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "name {String} Name of the property",
             "paramName": "name",
             "description": " Name of the property",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__attachPropertyMethods": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 533,
+          "line": 433,
           "column": 4,
-          "index": 19506
+          "index": 15964
         },
         "end": {
-          "line": 898,
+          "line": 524,
           "column": 5,
-          "index": 30857
+          "index": 18756
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "config",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__attachPropertyMethods": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Attach property methods",
+          "     *",
+          "     * @param clazz {Class} Class to attach properties to",
+          "     * @param config {Map} Property configuration",
+          "     * @param name {String} Name of the property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -563,34 +877,58 @@
             "body": "config {Map} Property configuration",
             "paramName": "config",
             "description": " Property configuration",
-            "type": "Map"
+            "type": "Map<any, any>"
           },
           {
             "name": "@param",
             "body": "name {String} Name of the property",
             "paramName": "name",
             "description": " Name of the property",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__shouldBeDereferenced": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 907,
+          "line": 533,
           "column": 4,
-          "index": 31121
+          "index": 18974
         },
         "end": {
-          "line": 909,
+          "line": 898,
           "column": 5,
-          "index": 31202
+          "index": 29960
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "config",
+          "type": "Map<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__shouldBeDereferenced": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns if the reference for the given property check should be removed",
+          "     * on dispose.",
+          "     *",
+          "     * @param check {var} The check of the property definition.",
+          "     * @return {Boolean} If the dereference key should be set.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -610,28 +948,41 @@
           {
             "name": "@return",
             "body": "{Boolean} If the dereference key should be set.",
-            "type": "Boolean",
-            "description": " If the dereference key should be set."
+            "type": "boolean",
+            "description": "If the dereference key should be set."
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__errors": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 912,
+          "line": 907,
           "column": 4,
-          "index": 31297
+          "index": 30215
         },
         "end": {
-          "line": 919,
+          "line": 909,
           "column": 5,
-          "index": 31587
+          "index": 30294
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "check",
+          "type": "var"
+        }
+      ],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "__errors": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Internal data field for error messages used by {@link #error} "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -645,23 +996,34 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "error": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 930,
+          "line": 912,
           "column": 4,
-          "index": 31977
+          "index": 30386
         },
         "end": {
-          "line": 944,
+          "line": 919,
           "column": 5,
-          "index": 32408
+          "index": 30669
         }
       },
+      "appearsIn": []
+    },
+    "error": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Error method used by the property system to report errors.",
+          "     *",
+          "     * @param obj {qx.core.Object} Any qooxdoo object",
+          "     * @param id {Integer} Numeric error identifier",
+          "     * @param property {String} Name of the property",
+          "     * @param variant {String} Name of the method variant e.g. \"set\", \"reset\", ...",
+          "     * @param value {var} Incoming value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -688,14 +1050,14 @@
             "body": "property {String} Name of the property",
             "paramName": "property",
             "description": " Name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Name of the method variant e.g. \"set\", \"reset\", ...",
             "paramName": "variant",
             "description": " Name of the method variant e.g. \"set\", \"reset\", ...",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -706,23 +1068,60 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__unwrapFunctionFromCode": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 958,
+          "line": 930,
           "column": 4,
-          "index": 33046
+          "index": 31048
         },
         "end": {
-          "line": 975,
+          "line": 944,
           "column": 5,
-          "index": 33547
+          "index": 31465
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "obj",
+          "type": "qx.core.Object"
+        },
+        {
+          "name": "id",
+          "type": "Integer"
+        },
+        {
+          "name": "property",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "var"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__unwrapFunctionFromCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compiles a string builder object to a function, executes the function and",
+          "     * returns the return value.",
+          "     *",
+          "     * @param instance {Object} Instance which have called the original method",
+          "     * @param members {Object} Prototype members map where the new function should be stored",
+          "     * @param name {String} Name of the property",
+          "     * @param variant {String} Function variant e.g. get, set, reset, ...",
+          "     * @param code {Array} Array which contains the code",
+          "     * @param args {arguments} Incoming arguments of wrapper method",
+          "     * @return {var} Return value of the generated function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -735,35 +1134,35 @@
             "body": "instance {Object} Instance which have called the original method",
             "paramName": "instance",
             "description": " Instance which have called the original method",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "members {Object} Prototype members map where the new function should be stored",
             "paramName": "members",
             "description": " Prototype members map where the new function should be stored",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "name {String} Name of the property",
             "paramName": "name",
             "description": " Name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Function variant e.g. get, set, reset, ...",
             "paramName": "variant",
             "description": " Function variant e.g. get, set, reset, ...",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "code {Array} Array which contains the code",
             "paramName": "code",
             "description": " Array which contains the code",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
@@ -778,27 +1177,70 @@
             "name": "@return",
             "body": "{var} Return value of the generated function",
             "type": "var",
-            "description": " Return value of the generated function"
+            "description": "Return value of the generated function"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__installFunctionFromCode": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 988,
+          "line": 958,
           "column": 4,
-          "index": 34072
+          "index": 32089
         },
         "end": {
-          "line": 1030,
+          "line": 975,
           "column": 5,
-          "index": 35377
+          "index": 32573
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "instance",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "members",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        },
+        {
+          "name": "code",
+          "type": "Array<any>"
+        },
+        {
+          "name": "args",
+          "type": "arguments"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "__installFunctionFromCode": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes a string builder object, converts it into a function, and installs it as",
+          "     * a property accessor",
+          "     *",
+          "     * @param clazz {Class} Class to install the method into",
+          "     * @param name {String} Name of the property",
+          "     * @param variant {String} Function variant e.g. get, set, reset, ...",
+          "     * @param code {Array} Array which contains the code",
+          "     * @param args {arguments} Incoming arguments of wrapper method",
+          "     * @return {var} Return value of the generated function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -818,21 +1260,21 @@
             "body": "name {String} Name of the property",
             "paramName": "name",
             "description": " Name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Function variant e.g. get, set, reset, ...",
             "paramName": "variant",
             "description": " Function variant e.g. get, set, reset, ...",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "code {Array} Array which contains the code",
             "paramName": "code",
             "description": " Array which contains the code",
-            "type": "Array"
+            "type": "Array<any>"
           },
           {
             "name": "@param",
@@ -847,27 +1289,65 @@
             "name": "@return",
             "body": "{var} Return value of the generated function",
             "type": "var",
-            "description": " Return value of the generated function"
+            "description": "Return value of the generated function"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "executeOptimizedGetter": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1042,
+          "line": 988,
           "column": 4,
-          "index": 35883
+          "index": 33085
         },
         "end": {
-          "line": 1052,
+          "line": 1030,
           "column": 5,
-          "index": 36185
+          "index": 34348
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        },
+        {
+          "name": "code",
+          "type": "Array<any>"
+        },
+        {
+          "name": "args",
+          "type": "arguments"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "executeOptimizedGetter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the optimized getter, installs it into the class prototype, and executes it",
+          "     * Supported variants: get",
+          "     *",
+          "     * @param instance {Object} the instance which calls the method",
+          "     * @param clazz {Class} the class which originally defined the property",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     * @return {var} Execute return value of apply generated function, generally the incoming value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -880,7 +1360,7 @@
             "body": "instance {Object} the instance which calls the method",
             "paramName": "instance",
             "description": " the instance which calls the method",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -894,14 +1374,14 @@
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -909,27 +1389,59 @@
             "name": "@return",
             "body": "{var} Execute return value of apply generated function, generally the incoming value",
             "type": "var",
-            "description": " Execute return value of apply generated function, generally the incoming value"
+            "description": "Execute return value of apply generated function, generally the incoming value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__installOptimizedGetter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1062,
+          "line": 1042,
           "column": 4,
-          "index": 36500
+          "index": 34842
         },
         "end": {
-          "line": 1065,
+          "line": 1052,
           "column": 5,
-          "index": 36684
+          "index": 35134
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "instance",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "__installOptimizedGetter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Installs a getter into the class prototype, without executing it",
+          "     * Supported variants: get",
+          "     *",
+          "     * @param clazz {Class} the class which originally defined the property",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -949,34 +1461,60 @@
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__compileGetter": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1076,
+          "line": 1062,
           "column": 4,
-          "index": 37032
+          "index": 35439
         },
         "end": {
-          "line": 1138,
+          "line": 1065,
           "column": 5,
-          "index": 38959
+          "index": 35620
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__compileGetter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compiles a getter into a string builder array",
+          "     * Supported variants: get",
+          "     *",
+          "     * @param clazz {Class} the class which originally defined the property",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     * @return {String[]} the string builder array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -996,14 +1534,14 @@
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -1011,27 +1549,58 @@
             "name": "@return",
             "body": "{String[]} the string builder array",
             "type": "String[]",
-            "description": " the string builder array"
+            "description": "the string builder array"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "executeOptimizedSetter": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1151,
+          "line": 1076,
           "column": 4,
-          "index": 39517
+          "index": 35957
         },
         "end": {
-          "line": 1162,
+          "line": 1138,
           "column": 5,
-          "index": 39840
+          "index": 37822
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "executeOptimizedSetter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Generates the optimized setter",
+          "     * Supported variants: set, reset, init, refresh, style, unstyle",
+          "     *",
+          "     * @param instance {Object} the instance which calls the method",
+          "     * @param clazz {Class} the class which originally defined the property",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     * @param args {arguments} Incoming arguments of wrapper method",
+          "     * @return {var} Execute return value of apply generated function, generally the incoming value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1044,7 +1613,7 @@
             "body": "instance {Object} the instance which calls the method",
             "paramName": "instance",
             "description": " the instance which calls the method",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -1058,14 +1627,14 @@
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
@@ -1080,27 +1649,64 @@
             "name": "@return",
             "body": "{var} Execute return value of apply generated function, generally the incoming value",
             "type": "var",
-            "description": " Execute return value of apply generated function, generally the incoming value"
+            "description": "Execute return value of apply generated function, generally the incoming value"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__installOptimizedSetter": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 1173,
+          "line": 1151,
           "column": 4,
-          "index": 40216
+          "index": 38367
         },
         "end": {
-          "line": 1176,
+          "line": 1162,
           "column": 5,
-          "index": 40407
+          "index": 38679
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "instance",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        },
+        {
+          "name": "args",
+          "type": "arguments"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "__installOptimizedSetter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Installs a setter into the class prototype, without executing it",
+          "     * Supported variants: set",
+          "     *",
+          "     * @param clazz {Class} the class which originally defined the property",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     * @return {var} Return value of the generated function",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1120,14 +1726,14 @@
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -1135,27 +1741,57 @@
             "name": "@return",
             "body": "{var} Return value of the generated function",
             "type": "var",
-            "description": " Return value of the generated function"
+            "description": "Return value of the generated function"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__compileSetter": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1188,
+          "line": 1173,
           "column": 4,
-          "index": 40853
+          "index": 39044
         },
         "end": {
-          "line": 1314,
+          "line": 1176,
           "column": 5,
-          "index": 44313
+          "index": 39232
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "var"
+      },
+      "appearsIn": []
+    },
+    "__compileSetter": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Compiles a setter into a string builder array",
+          "     * Supported variants: set, setThemed, setRuntime, init",
+          "     *",
+          "     * @param instance {Object} the instance which calls the method",
+          "     * @param clazz {Class} the class which originally defined the property",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     * @return {String[]} the string builder array",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1168,7 +1804,7 @@
             "body": "instance {Object} the instance which calls the method",
             "paramName": "instance",
             "description": " the instance which calls the method",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -1182,14 +1818,14 @@
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
@@ -1197,27 +1833,55 @@
             "name": "@return",
             "body": "{String[]} the string builder array",
             "type": "String[]",
-            "description": " the string builder array"
+            "description": "the string builder array"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__getStore": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1324,
+          "line": 1188,
           "column": 4,
-          "index": 44559
+          "index": 39666
         },
         "end": {
-          "line": 1336,
+          "line": 1314,
           "column": 5,
-          "index": 45000
+          "index": 43000
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "String[]"
+      },
+      "appearsIn": []
+    },
+    "__getStore": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the object to store the value for the given variant",
+          "     *",
+          "     * @param variant {String} Method variant.",
+          "     * @param name {String} name of the property",
+          "     *",
+          "     * @return {Object} the value store",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1230,42 +1894,66 @@
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{Object} the value store",
-            "type": "qx.core.Object",
-            "description": " the value store"
+            "type": "Record<any, any>",
+            "description": "the value store"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__emitIsEqualFunction": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1346,
+          "line": 1324,
           "column": 4,
-          "index": 45342
+          "index": 43236
         },
         "end": {
-          "line": 1379,
+          "line": 1336,
           "column": 5,
-          "index": 46391
+          "index": 43665
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "variant",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "returnType": {
+        "type": "Record<any, any>"
+      },
+      "appearsIn": []
+    },
+    "__emitIsEqualFunction": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Emit code for the equality check evaluation",
+          "     *",
+          "     * @param code {String[]} String array to append the code to",
+          "     * @param clazz {Class} the class which originally defined the property",
+          "     * @param config {Object} The property configuration map",
+          "     * @param name {String} name of the property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1292,34 +1980,64 @@
             "body": "config {Object} The property configuration map",
             "paramName": "config",
             "description": " The property configuration map",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__emitSetterPreConditions": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1390,
+          "line": 1346,
           "column": 4,
-          "index": 46787
+          "index": 43997
         },
         "end": {
-          "line": 1452,
+          "line": 1379,
           "column": 5,
-          "index": 48512
+          "index": 45013
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "code",
+          "type": "String[]"
+        },
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "config",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__emitSetterPreConditions": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Emit code to check the arguments preconditions",
+          "     *",
+          "     * @param code {String[]} String array to append the code to",
+          "     * @param config {Object} The property configuration map",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     * @param incomingValue {Boolean} Whether the setter has an incoming value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1339,48 +2057,81 @@
             "body": "config {Object} The property configuration map",
             "paramName": "config",
             "description": " The property configuration map",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "incomingValue {Boolean} Whether the setter has an incoming value",
             "paramName": "incomingValue",
             "description": " Whether the setter has an incoming value",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__emitIncomingValueTransformation": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1462,
+          "line": 1390,
           "column": 4,
-          "index": 48873
+          "index": 45398
         },
         "end": {
-          "line": 1481,
+          "line": 1452,
           "column": 5,
-          "index": 49750
+          "index": 47061
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "code",
+          "type": "String[]"
+        },
+        {
+          "name": "config",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        },
+        {
+          "name": "incomingValue",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__emitIncomingValueTransformation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Emit code to apply the \"validate\" and \"transform\" config keys.",
+          "     *",
+          "     * @param code {String[]} String array to append the code to",
+          "     * @param clazz {Class} the class which originally defined the property",
+          "     * @param config {Object} The property configuration map",
+          "     * @param name {String} name of the property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1407,34 +2158,63 @@
             "body": "config {Object} The property configuration map",
             "paramName": "config",
             "description": " The property configuration map",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__emitOldNewComparison": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1491,
+          "line": 1462,
           "column": 4,
-          "index": 50135
+          "index": 47412
         },
         "end": {
-          "line": 1502,
+          "line": 1481,
           "column": 5,
-          "index": 50546
+          "index": 48270
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "code",
+          "type": "String[]"
+        },
+        {
+          "name": "clazz",
+          "type": "Class"
+        },
+        {
+          "name": "config",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__emitOldNewComparison": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Emit code, which returns if the incoming value equals the current value.",
+          "     *",
+          "     * @param code {String[]} String array to append the code to",
+          "     * @param incomingValue {Boolean} Whether the setter has an incoming value",
+          "     * @param store {Object} The data store to use for the incoming value",
+          "     * @param variant {String} Method variant.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1454,41 +2234,73 @@
             "body": "incomingValue {Boolean} Whether the setter has an incoming value",
             "paramName": "incomingValue",
             "description": " Whether the setter has an incoming value",
-            "type": "Boolean"
+            "type": "boolean"
           },
           {
             "name": "@param",
             "body": "store {Object} The data store to use for the incoming value",
             "paramName": "store",
             "description": " The data store to use for the incoming value",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__emitIncomingValueValidation": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1515,
+          "line": 1491,
           "column": 4,
-          "index": 51091
+          "index": 48645
         },
         "end": {
-          "line": 1591,
-          "column": 6,
-          "index": 53593
+          "line": 1502,
+          "column": 5,
+          "index": 49045
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "code",
+          "type": "String[]"
+        },
+        {
+          "name": "incomingValue",
+          "type": "boolean"
+        },
+        {
+          "name": "store",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__emitIncomingValueValidation": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Emit code, which performs validation of the incoming value according to",
+          "     * the \"nullable\", \"check\" and \"inheritable\" config keys.",
+          "     *",
+          "     * @signature function(code, config, clazz, name, variant)",
+          "     * @param code {String[]} String array to append the code to",
+          "     * @param config {Object} The property configuration map",
+          "     * @param clazz {Class} the class which originally defined the property",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1514,7 +2326,7 @@
             "body": "config {Object} The property configuration map",
             "paramName": "config",
             "description": " The property configuration map",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
@@ -1528,34 +2340,44 @@
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__emitStoreValue": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1601,
+          "line": 1515,
           "column": 4,
-          "index": 53918
+          "index": 49577
         },
         "end": {
-          "line": 1620,
-          "column": 5,
-          "index": 55000
+          "line": 1591,
+          "column": 6,
+          "index": 52003
         }
       },
+      "appearsIn": []
+    },
+    "__emitStoreValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Emit code to store the incoming value",
+          "     *",
+          "     * @param code {String[]} String array to append the code to",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     * @param incomingValue {Boolean} Whether the setter has an incoming value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1575,41 +2397,72 @@
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "incomingValue {Boolean} Whether the setter has an incoming value",
             "paramName": "incomingValue",
             "description": " Whether the setter has an incoming value",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__emitStoreComputedValue": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1632,
+          "line": 1601,
           "column": 4,
-          "index": 55440
+          "index": 52318
         },
         "end": {
-          "line": 1822,
+          "line": 1620,
           "column": 5,
-          "index": 63366
+          "index": 53381
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "code",
+          "type": "String[]"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        },
+        {
+          "name": "incomingValue",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__emitStoreComputedValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Emit code to store the incoming value and compute the \"old\" and \"computed\"",
+          "     * values.",
+          "     *",
+          "     * @param code {String[]} String array to append the code to",
+          "     * @param config {Object} The property configuration map",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     * @param incomingValue {Boolean} Whether the setter has an incoming value",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1629,48 +2482,80 @@
             "body": "config {Object} The property configuration map",
             "paramName": "config",
             "description": " The property configuration map",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "incomingValue {Boolean} Whether the setter has an incoming value",
             "paramName": "incomingValue",
             "description": " Whether the setter has an incoming value",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__emitOldValue": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1831,
+          "line": 1632,
           "column": 4,
-          "index": 63625
+          "index": 53809
         },
         "end": {
-          "line": 1866,
+          "line": 1822,
           "column": 5,
-          "index": 64760
+          "index": 61545
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "code",
+          "type": "String[]"
+        },
+        {
+          "name": "config",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        },
+        {
+          "name": "incomingValue",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__emitOldValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Emit code to compute the \"old\" value.",
+          "     *",
+          "     * @param code {String[]} String array to append the code to",
+          "     * @param config {Object} The property configuration map",
+          "     * @param name {String} name of the property",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1690,34 +2575,59 @@
             "body": "config {Object} The property configuration map",
             "paramName": "config",
             "description": " The property configuration map",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__emitStoreInheritedPropertyValue": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1876,
+          "line": 1831,
           "column": 4,
-          "index": 65085
+          "index": 61795
         },
         "end": {
-          "line": 1932,
+          "line": 1866,
           "column": 5,
-          "index": 67164
+          "index": 62895
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "code",
+          "type": "String[]"
+        },
+        {
+          "name": "config",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__emitStoreInheritedPropertyValue": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Emit code to store the value of an inheritable property",
+          "     *",
+          "     * @param code {String[]} String array to append the code to",
+          "     * @param config {Object} The property configuration map",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1737,41 +2647,71 @@
             "body": "config {Object} The property configuration map",
             "paramName": "config",
             "description": " The property configuration map",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__emitNormalizeUndefinedValues": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1943,
+          "line": 1876,
           "column": 4,
-          "index": 67529
+          "index": 63210
         },
         "end": {
-          "line": 1963,
+          "line": 1932,
           "column": 5,
-          "index": 68345
+          "index": 65233
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "code",
+          "type": "String[]"
+        },
+        {
+          "name": "config",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__emitNormalizeUndefinedValues": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Emit code to normalize the old and incoming values from undefined to",
+          "     * <code>null</code>.",
+          "     *",
+          "     * @param code {String[]} String array to append the code to",
+          "     * @param config {Object} The property configuration map",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} Method variant.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1791,41 +2731,71 @@
             "body": "config {Object} The property configuration map",
             "paramName": "config",
             "description": " The property configuration map",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} Method variant.",
             "paramName": "variant",
             "description": " Method variant.",
-            "type": "String"
+            "type": "string"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__emitCallCallback": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 1974,
+          "line": 1943,
           "column": 4,
-          "index": 68796
+          "index": 65587
         },
         "end": {
-          "line": 2098,
+          "line": 1963,
           "column": 5,
-          "index": 72503
+          "index": 66383
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "code",
+          "type": "String[]"
+        },
+        {
+          "name": "config",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__emitCallCallback": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Emit code to call the apply method and fire the change event",
+          "     *",
+          "     * @param code {String[]} String array to append the code to",
+          "     * @param config {Object} The property configuration map",
+          "     * @param name {String} name of the property",
+          "     * @param variant {String} variant of the method e.g. setThemed",
+          "     * @param refresh {Boolean} if true, emit code to update the inherited values of child objects",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1845,34 +2815,70 @@
             "body": "config {Object} The property configuration map",
             "paramName": "config",
             "description": " The property configuration map",
-            "type": "qx.core.Object"
+            "type": "Record<any, any>"
           },
           {
             "name": "@param",
             "body": "name {String} name of the property",
             "paramName": "name",
             "description": " name of the property",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "variant {String} variant of the method e.g. setThemed",
             "paramName": "variant",
             "description": " variant of the method e.g. setThemed",
-            "type": "String"
+            "type": "string"
           },
           {
             "name": "@param",
             "body": "refresh {Boolean} if true, emit code to update the inherited values of child objects",
             "paramName": "refresh",
             "description": " if true, emit code to update the inherited values of child objects",
-            "type": "Boolean"
+            "type": "boolean"
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 1974,
+          "column": 4,
+          "index": 66823
+        },
+        "end": {
+          "line": 2098,
+          "column": 5,
+          "index": 70406
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "code",
+          "type": "String[]"
+        },
+        {
+          "name": "config",
+          "type": "Record<any, any>"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "type": "string"
+        },
+        {
+          "name": "refresh",
+          "type": "boolean"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

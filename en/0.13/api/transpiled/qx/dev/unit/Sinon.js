@@ -1,5 +1,5 @@
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof2(i) ? i : String(i); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof2(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof2(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof2(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof2(o); }
 (function () {
@@ -11654,20 +11654,20 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
           var obj = {a: 3, b: 5};
           extend(obj, {a: 4, c: 8}); // {a: 4, b: 5, c: 8}
           obj; // {a: 4, b: 5, c: 8}
-            var obj = {a: 3, b: 5};
+           var obj = {a: 3, b: 5};
           extend({}, obj, {a: 4, c: 8}); // {a: 4, b: 5, c: 8}
           obj; // {a: 3, b: 5}
-            var arr = [1, 2, 3];
+           var arr = [1, 2, 3];
           var obj = {a: 3, b: 5};
           extend(obj, {c: arr}); // {a: 3, b: 5, c: [1, 2, 3]}
           arr.push(4);
           obj; // {a: 3, b: 5, c: [1, 2, 3, 4]}
-            var arr = [1, 2, 3];
+           var arr = [1, 2, 3];
           var obj = {a: 3, b: 5};
           extend(true, obj, {c: arr}); // {a: 3, b: 5, c: [1, 2, 3]}
           arr.push(4);
           obj; // {a: 3, b: 5, c: [1, 2, 3]}
-            extend({a: 4, b: 5}); // {a: 4, b: 5}
+           extend({a: 4, b: 5}); // {a: 4, b: 5}
           extend({a: 4, b: 5}, 3); {a: 4, b: 5}
           extend({a: 4, b: 5}, true); {a: 4, b: 5}
           extend('hello', {a: 4, b: 5}); // throws
@@ -15785,4 +15785,4 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
   qx.dev.unit.Sinon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sinon.js.map?dt=1709410150421
+//# sourceMappingURL=Sinon.js.map?dt=1717235378782

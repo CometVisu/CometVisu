@@ -1,49 +1,93 @@
 {
-  "className": "qx.ui.decoration.MBoxShadow",
-  "packageName": "qx.ui.decoration",
-  "name": "MBoxShadow",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 57,
-        "column": 0,
-        "index": 1613
-      },
-      "end": {
-        "line": 183,
-        "column": 3,
-        "index": 5002
-      }
+  "version": 0.3,
+  "lastModified": 1717235171706,
+  "lastModifiedIso": "2024-06-01T09:46:11.706Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/decoration/MBoxShadow.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 57,
+      "column": 0,
+      "index": 1557
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Mixin for the box shadow CSS property.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n Keep in mind that this is not supported by all browsers:</p>\n<ul>\n<li>Firefox 3,5+</li>\n<li>IE9+</li>\n<li>Safari 3.0+</li>\n<li>Opera 10.5+</li>\n<li><p>Chrome 4.0+\nIt is possible to define multiple box shadows by setting an\narray containing the needed values as the property value.\nIn case multiple values are specified, the values of the properties\nare repeated until all match in length.\nAn example:</p></li>\n</ul>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       shadowBlurRadius: 2,\n       shadowVerticalLength: 1,\n       shadowColor: ['rgba(0, 0, 0, 0.2)', 'rgba(255, 255, 255, 0.4)'],\n       inset: [true, false]\n     }\n   }\n </pre>\n<p>which is the same as:\n <pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       shadowBlurRadius: [2, 2],\n       shadowVerticalLength: [1, 1],\n       shadowColor: ['rgba(0, 0, 0, 0.2)', 'rgba(255, 255, 255, 0.4)'],\n       inset: [true, false]\n     }\n   }</p>"
-        }
-      ]
+    "end": {
+      "line": 183,
+      "column": 3,
+      "index": 4820
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.decoration.MBoxShadow",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin for the box shadow CSS property.",
+      " * This mixin is usually used by {@link qx.ui.decoration.Decorator}.",
+      " *",
+      " * Keep in mind that this is not supported by all browsers:",
+      " *",
+      " * * Firefox 3,5+",
+      " * * IE9+",
+      " * * Safari 3.0+",
+      " * * Opera 10.5+",
+      " * * Chrome 4.0+",
+      " *",
+      " * It is possible to define multiple box shadows by setting an",
+      " * array containing the needed values as the property value.",
+      " * In case multiple values are specified, the values of the properties",
+      " * are repeated until all match in length.",
+      " *",
+      " * An example:",
+      " * <pre class=\"javascript\">",
+      " *   'my-decorator': {",
+      " *     style: {",
+      " *       shadowBlurRadius: 2,",
+      " *       shadowVerticalLength: 1,",
+      " *       shadowColor: ['rgba(0, 0, 0, 0.2)', 'rgba(255, 255, 255, 0.4)'],",
+      " *       inset: [true, false]",
+      " *     }",
+      " *   }",
+      " * </pre>",
+      " * which is the same as:",
+      " * <pre class=\"javascript\">",
+      " *   'my-decorator': {",
+      " *     style: {",
+      " *       shadowBlurRadius: [2, 2],",
+      " *       shadowVerticalLength: [1, 1],",
+      " *       shadowColor: ['rgba(0, 0, 0, 0.2)', 'rgba(255, 255, 255, 0.4)'],",
+      " *       inset: [true, false]",
+      " *     }",
+      " *   }",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin for the box shadow CSS property.\n This mixin is usually used by {@link qx.ui.decoration.Decorator}.\n Keep in mind that this is not supported by all browsers:</p>\n<ul>\n<li>Firefox 3,5+</li>\n<li>IE9+</li>\n<li>Safari 3.0+</li>\n<li>Opera 10.5+</li>\n<li><p>Chrome 4.0+\nIt is possible to define multiple box shadows by setting an\narray containing the needed values as the property value.\nIn case multiple values are specified, the values of the properties\nare repeated until all match in length.\nAn example:</p></li>\n</ul>\n<pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       shadowBlurRadius: 2,\n       shadowVerticalLength: 1,\n       shadowColor: ['rgba(0, 0, 0, 0.2)', 'rgba(255, 255, 255, 0.4)'],\n       inset: [true, false]\n     }\n   }\n </pre>\n<p>which is the same as:\n <pre class=\"javascript\">\n   'my-decorator': {\n     style: {\n       shadowBlurRadius: [2, 2],\n       shadowVerticalLength: [1, 1],\n       shadowColor: ['rgba(0, 0, 0, 0.2)', 'rgba(255, 255, 255, 0.4)'],\n       inset: [true, false]\n     }\n   }</p>"
+      }
+    ]
+  },
   "properties": {
     "shadowHorizontalLength": {
       "location": {
         "start": {
           "line": 60,
           "column": 4,
-          "index": 1729
+          "index": 1670
         },
         "end": {
           "line": 63,
           "column": 5,
-          "index": 1816
+          "index": 1754
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBoxShadow"
+      },
       "jsdoc": {
+        "raw": [
+          "* Horizontal length of the shadow. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -51,26 +95,29 @@
           }
         ]
       },
-      "name": "shadowHorizontalLength",
-      "propertyType": "new",
-      "apply": "_applyBoxShadow",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "shadowVerticalLength": {
       "location": {
         "start": {
           "line": 66,
           "column": 4,
-          "index": 1868
+          "index": 1803
         },
         "end": {
           "line": 69,
           "column": 5,
-          "index": 1953
+          "index": 1885
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBoxShadow"
+      },
       "jsdoc": {
+        "raw": [
+          "* Vertical length of the shadow. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -78,26 +125,29 @@
           }
         ]
       },
-      "name": "shadowVerticalLength",
-      "propertyType": "new",
-      "apply": "_applyBoxShadow",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "shadowBlurRadius": {
       "location": {
         "start": {
           "line": 72,
           "column": 4,
-          "index": 2005
+          "index": 1934
         },
         "end": {
           "line": 75,
           "column": 5,
-          "index": 2086
+          "index": 2012
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBoxShadow"
+      },
       "jsdoc": {
+        "raw": [
+          "* The blur radius of the shadow. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -105,26 +155,29 @@
           }
         ]
       },
-      "name": "shadowBlurRadius",
-      "propertyType": "new",
-      "apply": "_applyBoxShadow",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "shadowSpreadRadius": {
       "location": {
         "start": {
           "line": 78,
           "column": 4,
-          "index": 2140
+          "index": 2063
         },
         "end": {
           "line": 81,
           "column": 5,
-          "index": 2223
+          "index": 2143
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBoxShadow"
+      },
       "jsdoc": {
+        "raw": [
+          "* The spread radius of the shadow. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -132,26 +185,29 @@
           }
         ]
       },
-      "name": "shadowSpreadRadius",
-      "propertyType": "new",
-      "apply": "_applyBoxShadow",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "shadowColor": {
       "location": {
         "start": {
           "line": 84,
           "column": 4,
-          "index": 2269
+          "index": 2186
         },
         "end": {
           "line": 87,
           "column": 5,
-          "index": 2345
+          "index": 2259
         }
       },
+      "json": {
+        "nullable": true,
+        "apply": "_applyBoxShadow"
+      },
       "jsdoc": {
+        "raw": [
+          "* The color of the shadow. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -159,26 +215,29 @@
           }
         ]
       },
-      "name": "shadowColor",
-      "propertyType": "new",
-      "apply": "_applyBoxShadow",
-      "nullable": true,
-      "allowNull": true
+      "appearsIn": []
     },
     "inset": {
       "location": {
         "start": {
           "line": 90,
           "column": 4,
-          "index": 2409
+          "index": 2320
         },
         "end": {
           "line": 93,
           "column": 5,
-          "index": 2476
+          "index": 2384
         }
       },
+      "json": {
+        "init": false,
+        "apply": "_applyBoxShadow"
+      },
       "jsdoc": {
+        "raw": [
+          "* Inset shadows are drawn inside the border. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -186,26 +245,32 @@
           }
         ]
       },
-      "name": "inset",
-      "propertyType": "new",
-      "apply": "_applyBoxShadow",
-      "init": false,
-      "defaultValue": false
+      "appearsIn": []
     },
     "shadowLength": {
       "location": {
         "start": {
           "line": 96,
           "column": 4,
-          "index": 2538
+          "index": 2443
         },
         "end": {
           "line": 99,
           "column": 5,
-          "index": 2651
+          "index": 2553
         }
       },
+      "json": {
+        "group": [
+          "shadowHorizontalLength",
+          "shadowVerticalLength"
+        ],
+        "mode": "shorthand"
+      },
       "jsdoc": {
+        "raw": [
+          "* Property group to set the shadow length. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -213,29 +278,21 @@
           }
         ]
       },
-      "name": "shadowLength",
-      "propertyType": "new",
-      "group": [
-        "shadowHorizontalLength",
-        "shadowVerticalLength"
-      ]
+      "appearsIn": []
     }
   },
   "members": {
     "_styleBoxShadow": {
-      "location": {
-        "start": {
-          "line": 110,
-          "column": 4,
-          "index": 2927
-        },
-        "end": {
-          "line": 170,
-          "column": 5,
-          "index": 4697
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Takes a styles map and adds the box shadow styles in place to the",
+          "     * given map. This is the needed behavior for",
+          "     * {@link qx.ui.decoration.Decorator}.",
+          "     *",
+          "     * @param styles {Map} A map to add the styles.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -248,476 +305,55 @@
             "body": "styles {Map} A map to add the styles.",
             "paramName": "styles",
             "description": " A map to add the styles.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 110,
+          "column": 4,
+          "index": 2818
+        },
+        "end": {
+          "line": 170,
+          "column": 5,
+          "index": 4528
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "styles",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
     },
     "_applyBoxShadow": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 173,
           "column": 4,
-          "index": 4729
+          "index": 4557
         },
         "end": {
           "line": 181,
           "column": 5,
-          "index": 4992
+          "index": 4812
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "shadowHorizontalLength",
-        "shadowVerticalLength",
-        "shadowBlurRadius",
-        "shadowSpreadRadius",
-        "shadowColor",
-        "inset"
-      ]
-    },
-    "getShadowHorizontalLength": {
-      "type": "function",
-      "name": "getShadowHorizontalLength",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>shadowHorizontalLength</code>.\n\nFor further details take a look at the property definition: {@link #shadowHorizontalLength}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for shadowHorizontalLength"
-          }
-        ]
-      }
-    },
-    "setShadowHorizontalLength": {
-      "type": "function",
-      "name": "setShadowHorizontalLength",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>shadowHorizontalLength</code>.\n\nFor further details take a look at the property definition: {@link #shadowHorizontalLength}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for shadowHorizontalLength"
-          }
-        ]
-      }
-    },
-    "resetShadowHorizontalLength": {
-      "type": "function",
-      "name": "resetShadowHorizontalLength",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>shadowHorizontalLength</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowHorizontalLength}."
-          }
-        ]
-      }
-    },
-    "getShadowVerticalLength": {
-      "type": "function",
-      "name": "getShadowVerticalLength",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>shadowVerticalLength</code>.\n\nFor further details take a look at the property definition: {@link #shadowVerticalLength}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for shadowVerticalLength"
-          }
-        ]
-      }
-    },
-    "setShadowVerticalLength": {
-      "type": "function",
-      "name": "setShadowVerticalLength",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>shadowVerticalLength</code>.\n\nFor further details take a look at the property definition: {@link #shadowVerticalLength}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for shadowVerticalLength"
-          }
-        ]
-      }
-    },
-    "resetShadowVerticalLength": {
-      "type": "function",
-      "name": "resetShadowVerticalLength",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>shadowVerticalLength</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowVerticalLength}."
-          }
-        ]
-      }
-    },
-    "getShadowBlurRadius": {
-      "type": "function",
-      "name": "getShadowBlurRadius",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>shadowBlurRadius</code>.\n\nFor further details take a look at the property definition: {@link #shadowBlurRadius}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for shadowBlurRadius"
-          }
-        ]
-      }
-    },
-    "setShadowBlurRadius": {
-      "type": "function",
-      "name": "setShadowBlurRadius",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>shadowBlurRadius</code>.\n\nFor further details take a look at the property definition: {@link #shadowBlurRadius}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for shadowBlurRadius"
-          }
-        ]
-      }
-    },
-    "resetShadowBlurRadius": {
-      "type": "function",
-      "name": "resetShadowBlurRadius",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>shadowBlurRadius</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowBlurRadius}."
-          }
-        ]
-      }
-    },
-    "getShadowSpreadRadius": {
-      "type": "function",
-      "name": "getShadowSpreadRadius",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>shadowSpreadRadius</code>.\n\nFor further details take a look at the property definition: {@link #shadowSpreadRadius}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for shadowSpreadRadius"
-          }
-        ]
-      }
-    },
-    "setShadowSpreadRadius": {
-      "type": "function",
-      "name": "setShadowSpreadRadius",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>shadowSpreadRadius</code>.\n\nFor further details take a look at the property definition: {@link #shadowSpreadRadius}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for shadowSpreadRadius"
-          }
-        ]
-      }
-    },
-    "resetShadowSpreadRadius": {
-      "type": "function",
-      "name": "resetShadowSpreadRadius",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>shadowSpreadRadius</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowSpreadRadius}."
-          }
-        ]
-      }
-    },
-    "getShadowColor": {
-      "type": "function",
-      "name": "getShadowColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>shadowColor</code>.\n\nFor further details take a look at the property definition: {@link #shadowColor}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for shadowColor"
-          }
-        ]
-      }
-    },
-    "setShadowColor": {
-      "type": "function",
-      "name": "setShadowColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>shadowColor</code>.\n\nFor further details take a look at the property definition: {@link #shadowColor}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for shadowColor"
-          }
-        ]
-      }
-    },
-    "resetShadowColor": {
-      "type": "function",
-      "name": "resetShadowColor",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>shadowColor</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowColor}."
-          }
-        ]
-      }
-    },
-    "getInset": {
-      "type": "function",
-      "name": "getInset",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>inset</code>.\n\nFor further details take a look at the property definition: {@link #inset}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for inset"
-          }
-        ]
-      }
-    },
-    "setInset": {
-      "type": "function",
-      "name": "setInset",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>inset</code>.\n\nFor further details take a look at the property definition: {@link #inset}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for inset"
-          }
-        ]
-      }
-    },
-    "resetInset": {
-      "type": "function",
-      "name": "resetInset",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>inset</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #inset}."
-          }
-        ]
-      }
-    },
-    "setShadowLength": {
-      "type": "function",
-      "name": "setShadowLength",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>shadowLength</code>.\n\nFor further details take a look at the property definition: {@link #shadowLength}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for shadowLength"
-          }
-        ]
-      }
-    },
-    "resetShadowLength": {
-      "type": "function",
-      "name": "resetShadowLength",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>shadowLength</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #shadowLength}."
-          }
-        ]
-      }
+      "params": [],
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "statics": {}
 }

@@ -1,45 +1,48 @@
 {
-  "className": "qx.ui.form.MForm",
-  "packageName": "qx.ui.form",
-  "name": "MForm",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 22,
-        "column": 0,
-        "index": 591
-      },
-      "end": {
-        "line": 114,
-        "column": 3,
-        "index": 2900
-      }
+  "version": 0.3,
+  "lastModified": 1717235171758,
+  "lastModifiedIso": "2024-06-01T09:46:11.758Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/MForm.js",
+  "type": "mixin",
+  "location": {
+    "start": {
+      "line": 22,
+      "column": 0,
+      "index": 570
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Mixin handling the valid and required properties for the form widgets.</p>"
-        }
-      ]
+    "end": {
+      "line": 114,
+      "column": 3,
+      "index": 2787
     }
   },
-  "type": "mixin",
+  "className": "qx.ui.form.MForm",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Mixin handling the valid and required properties for the form widgets.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Mixin handling the valid and required properties for the form widgets.</p>"
+      }
+    ]
+  },
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 23,
         "column": 2,
-        "index": 632
+        "index": 610
       },
       "end": {
         "line": 31,
         "column": 3,
-        "index": 842
+        "index": 812
       }
     }
   },
@@ -49,15 +52,27 @@
         "start": {
           "line": 38,
           "column": 4,
-          "index": 993
+          "index": 956
         },
         "end": {
           "line": 43,
           "column": 5,
-          "index": 1109
+          "index": 1067
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": true,
+        "apply": "_applyValid",
+        "event": "changeValid"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is valid. If a widget is invalid, an invalid",
+          "     * state will be set.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -65,28 +80,32 @@
           }
         ]
       },
-      "name": "valid",
-      "propertyType": "new",
-      "event": "changeValid",
-      "apply": "_applyValid",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     },
     "required": {
       "location": {
         "start": {
           "line": 48,
           "column": 4,
-          "index": 1184
+          "index": 1137
         },
         "end": {
           "line": 52,
           "column": 5,
-          "index": 1278
+          "index": 1227
         }
       },
+      "json": {
+        "check": "Boolean",
+        "init": false,
+        "event": "changeRequired"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Flag signaling if a widget is required.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -94,27 +113,32 @@
           }
         ]
       },
-      "name": "required",
-      "propertyType": "new",
-      "event": "changeRequired",
-      "init": false,
-      "check": "Boolean",
-      "defaultValue": false
+      "appearsIn": []
     },
     "invalidMessage": {
       "location": {
         "start": {
           "line": 57,
           "column": 4,
-          "index": 1381
+          "index": 1325
         },
         "end": {
           "line": 62,
           "column": 5,
-          "index": 1508
+          "index": 1447
         }
       },
+      "json": {
+        "nullable": true,
+        "check": "String",
+        "event": "changeInvalidMessage"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an tooltip if the widget is invalid.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -122,27 +146,33 @@
           }
         ]
       },
-      "name": "invalidMessage",
-      "propertyType": "new",
-      "event": "changeInvalidMessage",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     },
     "requiredInvalidMessage": {
       "location": {
         "start": {
           "line": 68,
           "column": 4,
-          "index": 1642
+          "index": 1575
         },
         "end": {
           "line": 72,
           "column": 5,
-          "index": 1766
+          "index": 1695
         }
       },
+      "json": {
+        "check": "String",
+        "nullable": true,
+        "event": "changeRequiredInvalidMessage"
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Message which will be shown in an invalid tooltip if the {@link #required} is",
+          "     * set to true.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -150,49 +180,50 @@
           }
         ]
       },
-      "name": "requiredInvalidMessage",
-      "propertyType": "new",
-      "event": "changeRequiredInvalidMessage",
-      "nullable": true,
-      "allowNull": true,
-      "check": "String"
+      "appearsIn": []
     }
   },
   "members": {
     "_applyValid": {
+      "jsdoc": {
+        "raw": [
+          " apply method"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 77,
           "column": 4,
-          "index": 1815
+          "index": 1739
         },
         "end": {
           "line": 79,
           "column": 5,
-          "index": 1918
+          "index": 1840
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "valid"
-      ]
+      "params": [
+        {
+          "name": "value"
+        },
+        {
+          "name": "old"
+        }
+      ],
+      "appearsIn": []
     },
     "__onChangeLocale": {
-      "location": {
-        "start": {
-          "line": 87,
-          "column": 4,
-          "index": 2062
-        },
-        "end": {
-          "line": 102,
-          "column": 6,
-          "index": 2671
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Locale change event handler",
+          "     *",
+          "     * @signature function(e)",
+          "     * @param e {Event} the change event",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -215,335 +246,37 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "getValid": {
-      "type": "function",
-      "name": "getValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for valid"
-          }
-        ]
-      }
-    },
-    "isValid": {
-      "type": "function",
-      "name": "isValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for valid"
-          }
-        ]
-      }
-    },
-    "setValid": {
-      "type": "function",
-      "name": "setValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>valid</code>.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for valid"
-          }
-        ]
-      }
-    },
-    "resetValid": {
-      "type": "function",
-      "name": "resetValid",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>valid</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #valid}."
-          }
-        ]
-      }
-    },
-    "getRequired": {
-      "type": "function",
-      "name": "getRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for required"
-          }
-        ]
-      }
-    },
-    "isRequired": {
-      "type": "function",
-      "name": "isRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for required"
-          }
-        ]
-      }
-    },
-    "setRequired": {
-      "type": "function",
-      "name": "setRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>required</code>.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for required"
-          }
-        ]
-      }
-    },
-    "resetRequired": {
-      "type": "function",
-      "name": "resetRequired",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>required</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #required}."
-          }
-        ]
-      }
-    },
-    "getInvalidMessage": {
-      "type": "function",
-      "name": "getInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>invalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for invalidMessage"
-          }
-        ]
-      }
-    },
-    "setInvalidMessage": {
-      "type": "function",
-      "name": "setInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>invalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for invalidMessage"
-          }
-        ]
-      }
-    },
-    "resetInvalidMessage": {
-      "type": "function",
-      "name": "resetInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>invalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #invalidMessage}."
-          }
-        ]
-      }
-    },
-    "getRequiredInvalidMessage": {
-      "type": "function",
-      "name": "getRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>requiredInvalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "String",
-            "desc": "Returns the value for requiredInvalidMessage"
-          }
-        ]
-      }
-    },
-    "setRequiredInvalidMessage": {
-      "type": "function",
-      "name": "setRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>requiredInvalidMessage</code>.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "String",
-            "paramName": "value",
-            "desc": "Value for requiredInvalidMessage"
-          }
-        ]
-      }
-    },
-    "resetRequiredInvalidMessage": {
-      "type": "function",
-      "name": "resetRequiredInvalidMessage",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>requiredInvalidMessage</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #requiredInvalidMessage}."
-          }
-        ]
-      }
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 87,
+          "column": 4,
+          "index": 1976
+        },
+        "end": {
+          "line": 102,
+          "column": 6,
+          "index": 2570
+        }
+      },
+      "appearsIn": []
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 105,
         "column": 2,
-        "index": 2683
+        "index": 2579
       },
       "end": {
         "line": 113,
         "column": 3,
-        "index": 2895
+        "index": 2783
       }
     }
   },
-  "descendants": []
+  "statics": {}
 }

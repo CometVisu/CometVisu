@@ -1,71 +1,46 @@
 {
-  "className": "qx.lang.normalize.Number",
-  "packageName": "qx.lang.normalize",
-  "name": "Number",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 789
-      },
-      "end": {
-        "line": 37,
-        "column": 3,
-        "index": 1034
-      }
+  "version": 0.3,
+  "lastModified": 1717235171882,
+  "lastModifiedIso": "2024-06-01T09:46:11.882Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/normalize/Number.js",
+  "type": "bootstrap",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 763
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>This class is responsible for the normalization of the native 'String' object.\n It checks if these methods are available and, if not, appends them to\n ensure compatibility in all browsers.\n For usage samples, check out the attached links.</p>"
-        }
-      ],
-      "@group": [
-        {
-          "name": "@group",
-          "body": "Polyfill"
-        }
-      ]
+    "end": {
+      "line": 37,
+      "column": 3,
+      "index": 998
     }
   },
-  "type": "class",
+  "className": "qx.lang.normalize.Number",
+  "jsdoc": {
+    "raw": [
+      " eslint-disable no-extend-native "
+    ]
+  },
   "statics": {
     "EPSILON": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 29,
           "column": 4,
-          "index": 858
+          "index": 830
         },
         "end": {
           "line": 29,
           "column": 18,
-          "index": 872
+          "index": 844
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 32,
-        "column": 2,
-        "index": 884
-      },
-      "end": {
-        "line": 36,
-        "column": 3,
-        "index": 1029
-      }
-    }
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

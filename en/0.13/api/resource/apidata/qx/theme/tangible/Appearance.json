@@ -1,75 +1,86 @@
 {
-  "className": "qx.theme.tangible.Appearance",
-  "packageName": "qx.theme.tangible",
-  "name": "Appearance",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 39,
-        "column": 0,
-        "index": 1246
-      },
-      "end": {
-        "line": 2501,
-        "column": 3,
-        "index": 60901
-      }
+  "version": 0.3,
+  "lastModified": 1717235168938,
+  "lastModifiedIso": "2024-06-01T09:46:08.938Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/tangible/Appearance.js",
+  "type": "theme",
+  "location": {
+    "start": {
+      "line": 39,
+      "column": 0,
+      "index": 1208
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The simple qooxdoo appearance theme.</p>"
-        }
-      ],
-      "@asset": [
-        {
-          "name": "@asset",
-          "body": "qx/icon/Tango/16/apps/office-calendar.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/Tango/16/places/folder-open.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/Tango/16/places/folder.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/Tango/16/mimetypes/text-plain.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/Tango/16/actions/view-refresh.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/Tango/16/actions/window-close.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/Tango/16/actions/dialog-cancel.png"
-        },
-        {
-          "name": "@asset",
-          "body": "qx/icon/Tango/16/actions/dialog-ok.png"
-        }
-      ],
-      "@usefont": [
-        {
-          "name": "@usefont",
-          "body": "MaterialIcons"
-        }
-      ]
+    "end": {
+      "line": 2494,
+      "column": 3,
+      "index": 58441
     }
   },
-  "type": "theme",
-  "descendants": [
-    "cv.theme.dark.Appearance"
-  ]
+  "className": "qx.theme.tangible.Appearance",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The simple qooxdoo appearance theme.",
+      " *",
+      " * @asset(qx/icon/Tango/16/apps/office-calendar.png)",
+      " * @asset(qx/icon/Tango/16/places/folder-open.png)",
+      " * @asset(qx/icon/Tango/16/places/folder.png)",
+      " * @asset(qx/icon/Tango/16/mimetypes/text-plain.png)",
+      " * @asset(qx/icon/Tango/16/actions/view-refresh.png)",
+      " * @asset(qx/icon/Tango/16/actions/window-close.png)",
+      " * @asset(qx/icon/Tango/16/actions/dialog-cancel.png)",
+      " * @asset(qx/icon/Tango/16/actions/dialog-ok.png)",
+      " * @usefont(MaterialIcons)",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The simple qooxdoo appearance theme.</p>"
+      }
+    ],
+    "@asset": [
+      {
+        "name": "@asset",
+        "body": "qx/icon/Tango/16/apps/office-calendar.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Tango/16/places/folder-open.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Tango/16/places/folder.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Tango/16/mimetypes/text-plain.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Tango/16/actions/view-refresh.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Tango/16/actions/window-close.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Tango/16/actions/dialog-cancel.png"
+      },
+      {
+        "name": "@asset",
+        "body": "qx/icon/Tango/16/actions/dialog-ok.png"
+      }
+    ],
+    "@usefont": [
+      {
+        "name": "@usefont",
+        "body": "MaterialIcons"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

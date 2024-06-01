@@ -1,0 +1,142 @@
+{
+  "version": 0.3,
+  "lastModified": 1717235171558,
+  "lastModifiedIso": "2024-06-01T09:46:11.558Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/api/LibraryApi.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 25,
+      "column": 0,
+      "index": 759
+    },
+    "end": {
+      "line": 53,
+      "column": 3,
+      "index": 1350
+    }
+  },
+  "className": "qx.tool.cli.api.LibraryApi",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Provides an API for an individual library",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Provides an API for an individual library</p>"
+      }
+    ]
+  },
+  "superClass": "qx.tool.cli.api.AbstractApi",
+  "properties": {
+    "compilerApi": {
+      "location": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 895
+        },
+        "end": {
+          "line": 33,
+          "column": 5,
+          "index": 981
+        }
+      },
+      "json": {
+        "nullable": false,
+        "check": "qx.tool.cli.api.CompilerApi"
+      },
+      "jsdoc": {
+        "raw": [
+          "* The Compiler API "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The Compiler API</p>"
+          }
+        ]
+      },
+      "appearsIn": []
+    }
+  },
+  "members": {
+    "load": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called to load any library-specific configuration and update the compilerConfig",
+          "     *",
+          "     * @overridden",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called to load any library-specific configuration and update the compilerConfig</p>"
+          }
+        ],
+        "@overridden": [
+          {
+            "name": "@overridden",
+            "body": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1134
+        },
+        "end": {
+          "line": 44,
+          "column": 5,
+          "index": 1181
+        }
+      },
+      "type": "function",
+      "params": [],
+      "overriddenFrom": "qx.tool.cli.api.AbstractApi",
+      "appearsIn": [
+        "qx.tool.cli.api.AbstractApi"
+      ]
+    },
+    "afterLibrariesLoaded": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called after all libraries have been loaded and added to the compilation data",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Called after all libraries have been loaded and added to the compilation data</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1289
+        },
+        "end": {
+          "line": 51,
+          "column": 5,
+          "index": 1342
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    }
+  },
+  "statics": {}
+}

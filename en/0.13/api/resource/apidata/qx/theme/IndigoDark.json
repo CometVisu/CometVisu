@@ -1,54 +1,36 @@
 {
-  "className": "qx.theme.IndigoDark",
-  "packageName": "qx.theme",
-  "name": "IndigoDark",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 18,
-        "column": 0,
-        "index": 442
-      },
-      "end": {
-        "line": 28,
-        "column": 3,
-        "index": 730
-      }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>IndigoDark Theme</p>"
-        }
-      ]
-    }
-  },
+  "version": 0.3,
+  "lastModified": 1717235171414,
+  "lastModifiedIso": "2024-06-01T09:46:11.414Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/theme/IndigoDark.js",
   "type": "theme",
-  "themeMeta": {
-    "location": {
-      "start": {
-        "line": 21,
-        "column": 2,
-        "index": 512
-      },
-      "end": {
-        "line": 27,
-        "column": 3,
-        "index": 725
-      }
+  "location": {
+    "start": {
+      "line": 18,
+      "column": 0,
+      "index": 425
     },
-    "themeMetaMap": {
-      "color": "qx.theme.indigo.ColorDark",
-      "decoration": "qx.theme.indigo.DecorationDark",
-      "font": "qx.theme.indigo.Font",
-      "appearance": "qx.theme.indigo.AppearanceDark",
-      "icon": "qx.theme.icon.Tango"
+    "end": {
+      "line": 28,
+      "column": 3,
+      "index": 703
     }
   },
-  "descendants": []
+  "className": "qx.theme.IndigoDark",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * IndigoDark Theme",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>IndigoDark Theme</p>"
+      }
+    ]
+  },
+  "members": {},
+  "statics": {},
+  "properties": {}
 }

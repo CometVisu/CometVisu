@@ -53,25 +53,8 @@
       this.initialAddresses = [];
       this._type = type;
       this._backendUrl = new URL(backendUrl || document.URL.replace(/.*:\/\/([^\/:]*)(:[0-9]*)?\/.*/, 'ws://$1:8083/'));
-      this.__P_532_0 = {};
-      this.__P_532_1 = {};
-    },
-    /*
-    ***********************************************
-      PROPERTIES
-    ***********************************************
-    */
-    properties: {
-      connected: {
-        check: 'Boolean',
-        init: false,
-        event: 'changeConnected'
-      },
-      server: {
-        check: 'String',
-        nullable: true,
-        event: 'changedServer'
-      }
+      this.__P_751_0 = {};
+      this.__P_751_1 = {};
     },
     /*
     ***********************************************
@@ -83,6 +66,7 @@
        * @var {Paho.MQTT.Client}
        */
       _client: null,
+      _clientOptions: null,
       _type: null,
       addresses: null,
       /**
@@ -196,8 +180,14 @@
         if (this._backendUrl.username !== '') {
           options.userName = this._backendUrl.username;
         }
+        if (credentials && credentials.username !== '') {
+          options.userName = credentials.username;
+        }
         if (this._backendUrl.password !== '') {
           options.password = this._backendUrl.password;
+        }
+        if (credentials && credentials.password !== '') {
+          options.password = credentials.password;
         }
         try {
           this._client = new Paho.MQTT.Client(this._backendUrl.toString(), 'CometVisu_' + Math.random().toString(16).substr(2, 8));
@@ -216,12 +206,19 @@
           self.record('update', update);
           self.update(update);
         };
+        this._clientOptions = options;
+        this.__P_751_2();
+      },
+      /**
+       * Connect to the MQTT server
+       */
+      __P_751_2: function __P_751_2() {
         try {
           if (!cv.report.Record.REPLAYING) {
-            this._client.connect(options);
+            this._client.connect(this._clientOptions);
           }
         } catch (e) {
-          onFailure({
+          this._clientOptions.onFailure({
             errorMessage: e.toString(),
             errorCode: 'login -> _client.connect(' + this._backendUrl + ')'
           });
@@ -280,7 +277,10 @@
        * Restart the connection
        * @param full
        */
-      restart: function restart(full) {},
+      restart: function restart(full) {
+        this.terminate();
+        this.__P_751_2();
+      },
       /**
        * Handle the incoming state updates. This method is not implemented by the client itself.
        * It is injected by the project using the client.
@@ -319,4 +319,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1709410170149
+//# sourceMappingURL=Client.js.map?dt=1717235421550

@@ -1,31 +1,29 @@
 {
-  "className": "cv.Version",
-  "packageName": "cv",
-  "name": "Version",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 2,
-        "column": 0,
-        "index": 1
-      },
-      "end": {
-        "line": 15,
-        "column": 3,
-        "index": 290
-      }
+  "version": 0.3,
+  "lastModified": 1717235186142,
+  "lastModifiedIso": "2024-06-01T09:46:26.142Z",
+  "classFilename": "../../source/class/cv/Version.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 2,
+      "column": 0,
+      "index": 1
+    },
+    "end": {
+      "line": 15,
+      "column": 3,
+      "index": 290
     }
   },
-  "type": "class",
-  "isAbstract": false,
-  "isStatic": true,
+  "className": "cv.Version",
+  "jsdoc": null,
   "isSingleton": false,
+  "abstract": false,
   "statics": {
     "REV": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 6,
@@ -38,10 +36,11 @@
           "index": 116
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "BRANCH": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 7,
@@ -54,10 +53,11 @@
           "index": 139
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "VERSION": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 8,
@@ -70,10 +70,11 @@
           "index": 166
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "LIBRARY_VERSION_PURE": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 9,
@@ -86,10 +87,11 @@
           "index": 195
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "LIBRARY_VERSION_TILE": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 10,
@@ -102,10 +104,11 @@
           "index": 224
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "DATE": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 11,
@@ -118,10 +121,11 @@
           "index": 262
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     },
     "TAGS": {
+      "jsdoc": null,
+      "access": "public",
       "location": {
         "start": {
           "line": 12,
@@ -134,9 +138,9 @@
           "index": 282
         }
       },
-      "type": "variable",
-      "access": "public"
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }

@@ -1,48 +1,52 @@
 {
-  "className": "qx.ui.core.LayoutItem",
-  "packageName": "qx.ui.core",
-  "name": "LayoutItem",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 24,
-        "column": 0,
-        "index": 656
-      },
-      "end": {
-        "line": 951,
-        "column": 3,
-        "index": 26672
-      }
+  "version": 0.3,
+  "lastModified": 1717235171554,
+  "lastModifiedIso": "2024-06-01T09:46:11.554Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/core/LayoutItem.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 24,
+      "column": 0,
+      "index": 633
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>The base class of all items, which should be laid out using a layout manager\n {@link qx.ui.layout.Abstract}.</p>"
-        }
-      ]
+    "end": {
+      "line": 951,
+      "column": 3,
+      "index": 25722
     }
   },
-  "type": "class",
-  "isAbstract": true,
-  "isStatic": false,
+  "className": "qx.ui.core.LayoutItem",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * The base class of all items, which should be laid out using a layout manager",
+      " * {@link qx.ui.layout.Abstract}.",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>The base class of all items, which should be laid out using a layout manager\n {@link qx.ui.layout.Abstract}.</p>"
+      }
+    ]
+  },
   "isSingleton": false,
+  "abstract": true,
+  "superClass": "qx.core.Object",
   "construct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 28,
         "column": 2,
-        "index": 752
+        "index": 725
       },
       "end": {
         "line": 39,
         "column": 3,
-        "index": 1007
+        "index": 969
       }
     }
   },
@@ -52,15 +56,28 @@
         "start": {
           "line": 59,
           "column": 4,
-          "index": 1579
+          "index": 1521
         },
         "end": {
           "line": 65,
           "column": 5,
-          "index": 1720
+          "index": 1656
         }
       },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The user provided minimal width.",
+          "     *",
+          "     * Also take a look at the related properties {@link #width} and {@link #maxWidth}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -68,28 +85,38 @@
           }
         ]
       },
-      "name": "minWidth",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyDimension",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Integer"
+      "appearsIn": []
     },
     "width": {
       "location": {
         "start": {
           "line": 74,
           "column": 4,
-          "index": 1988
+          "index": 1915
         },
         "end": {
           "line": 81,
           "column": 5,
-          "index": 2155
+          "index": 2075
         }
       },
+      "json": {
+        "check": "Integer",
+        "event": "changeWidth",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The <code>LayoutItem</code>'s preferred width.",
+          "     *",
+          "     * The computed width may differ from the given width due to",
+          "     * stretching. Also take a look at the related properties",
+          "     * {@link #minWidth} and {@link #maxWidth}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -97,29 +124,35 @@
           }
         ]
       },
-      "name": "width",
-      "propertyType": "new",
-      "themeable": true,
-      "event": "changeWidth",
-      "apply": "_applyDimension",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Integer"
+      "appearsIn": []
     },
     "maxWidth": {
       "location": {
         "start": {
           "line": 88,
           "column": 4,
-          "index": 2320
+          "index": 2233
         },
         "end": {
           "line": 94,
           "column": 5,
-          "index": 2461
+          "index": 2368
         }
       },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The user provided maximal width.",
+          "     *",
+          "     * Also take a look at the related properties {@link #width} and {@link #minWidth}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -127,28 +160,35 @@
           }
         ]
       },
-      "name": "maxWidth",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyDimension",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Integer"
+      "appearsIn": []
     },
     "minHeight": {
       "location": {
         "start": {
           "line": 101,
           "column": 4,
-          "index": 2629
+          "index": 2529
         },
         "end": {
           "line": 107,
           "column": 5,
-          "index": 2771
+          "index": 2665
         }
       },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The user provided minimal height.",
+          "     *",
+          "     * Also take a look at the related properties {@link #height} and {@link #maxHeight}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -156,28 +196,38 @@
           }
         ]
       },
-      "name": "minHeight",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyDimension",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Integer"
+      "appearsIn": []
     },
     "height": {
       "location": {
         "start": {
           "line": 116,
           "column": 4,
-          "index": 3025
+          "index": 2910
         },
         "end": {
           "line": 123,
           "column": 5,
-          "index": 3194
+          "index": 3072
         }
       },
+      "json": {
+        "check": "Integer",
+        "event": "changeHeight",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The item's preferred height.",
+          "     *",
+          "     * The computed height may differ from the given height due to",
+          "     * stretching. Also take a look at the related properties",
+          "     * {@link #minHeight} and {@link #maxHeight}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -185,29 +235,35 @@
           }
         ]
       },
-      "name": "height",
-      "propertyType": "new",
-      "themeable": true,
-      "event": "changeHeight",
-      "apply": "_applyDimension",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Integer"
+      "appearsIn": []
     },
     "maxHeight": {
       "location": {
         "start": {
           "line": 130,
           "column": 4,
-          "index": 3362
+          "index": 3233
         },
         "end": {
           "line": 136,
           "column": 5,
-          "index": 3504
+          "index": 3369
         }
       },
+      "json": {
+        "check": "Integer",
+        "nullable": true,
+        "apply": "_applyDimension",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The user provided maximum height.",
+          "     *",
+          "     * Also take a look at the related properties {@link #height} and {@link #minHeight}.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -215,28 +271,31 @@
           }
         ]
       },
-      "name": "maxHeight",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyDimension",
-      "nullable": true,
-      "allowNull": true,
-      "check": "Integer"
+      "appearsIn": []
     },
     "allowGrowX": {
       "location": {
         "start": {
           "line": 145,
           "column": 4,
-          "index": 3763
+          "index": 3619
         },
         "end": {
           "line": 150,
           "column": 5,
-          "index": 3884
+          "index": 3735
         }
       },
+      "json": {
+        "check": "Boolean",
+        "apply": "_applyStretching",
+        "init": true,
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Whether the item can grow horizontally. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -244,28 +303,31 @@
           }
         ]
       },
-      "name": "allowGrowX",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyStretching",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     },
     "allowShrinkX": {
       "location": {
         "start": {
           "line": 153,
           "column": 4,
-          "index": 3947
+          "index": 3795
         },
         "end": {
           "line": 158,
           "column": 5,
-          "index": 4070
+          "index": 3913
         }
       },
+      "json": {
+        "check": "Boolean",
+        "apply": "_applyStretching",
+        "init": true,
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Whether the item can shrink horizontally. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -273,28 +335,31 @@
           }
         ]
       },
-      "name": "allowShrinkX",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyStretching",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     },
     "allowGrowY": {
       "location": {
         "start": {
           "line": 161,
           "column": 4,
-          "index": 4129
+          "index": 3969
         },
         "end": {
           "line": 166,
           "column": 5,
-          "index": 4250
+          "index": 4085
         }
       },
+      "json": {
+        "check": "Boolean",
+        "apply": "_applyStretching",
+        "init": true,
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Whether the item can grow vertically. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -302,28 +367,31 @@
           }
         ]
       },
-      "name": "allowGrowY",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyStretching",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     },
     "allowShrinkY": {
       "location": {
         "start": {
           "line": 169,
           "column": 4,
-          "index": 4311
+          "index": 4143
         },
         "end": {
           "line": 174,
           "column": 5,
-          "index": 4434
+          "index": 4261
         }
       },
+      "json": {
+        "check": "Boolean",
+        "apply": "_applyStretching",
+        "init": true,
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Whether the item can shrink vertically. "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -331,28 +399,33 @@
           }
         ]
       },
-      "name": "allowShrinkY",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyStretching",
-      "init": true,
-      "check": "Boolean",
-      "defaultValue": true
+      "appearsIn": []
     },
     "allowStretchX": {
       "location": {
         "start": {
           "line": 177,
           "column": 4,
-          "index": 4505
+          "index": 4329
         },
         "end": {
           "line": 181,
           "column": 5,
-          "index": 4623
+          "index": 4443
         }
       },
+      "json": {
+        "group": [
+          "allowGrowX",
+          "allowShrinkX"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Growing and shrinking in the horizontal direction "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -360,28 +433,33 @@
           }
         ]
       },
-      "name": "allowStretchX",
-      "propertyType": "new",
-      "themeable": true,
-      "group": [
-        "allowGrowX",
-        "allowShrinkX"
-      ]
+      "appearsIn": []
     },
     "allowStretchY": {
       "location": {
         "start": {
           "line": 184,
           "column": 4,
-          "index": 4692
+          "index": 4509
         },
         "end": {
           "line": 188,
           "column": 5,
-          "index": 4810
+          "index": 4623
         }
       },
+      "json": {
+        "group": [
+          "allowGrowY",
+          "allowShrinkY"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Growing and shrinking in the vertical direction "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -389,28 +467,31 @@
           }
         ]
       },
-      "name": "allowStretchY",
-      "propertyType": "new",
-      "themeable": true,
-      "group": [
-        "allowGrowY",
-        "allowShrinkY"
-      ]
+      "appearsIn": []
     },
     "marginTop": {
       "location": {
         "start": {
           "line": 197,
           "column": 4,
-          "index": 5052
+          "index": 4856
         },
         "end": {
           "line": 202,
           "column": 5,
-          "index": 5165
+          "index": 4964
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyMargin",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Margin of the widget (top) "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -418,28 +499,31 @@
           }
         ]
       },
-      "name": "marginTop",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyMargin",
-      "init": 0,
-      "check": "Integer",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "marginRight": {
       "location": {
         "start": {
           "line": 205,
           "column": 4,
-          "index": 5215
+          "index": 5011
         },
         "end": {
           "line": 210,
           "column": 5,
-          "index": 5330
+          "index": 5121
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyMargin",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Margin of the widget (right) "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -447,28 +531,31 @@
           }
         ]
       },
-      "name": "marginRight",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyMargin",
-      "init": 0,
-      "check": "Integer",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "marginBottom": {
       "location": {
         "start": {
           "line": 213,
           "column": 4,
-          "index": 5381
+          "index": 5169
         },
         "end": {
           "line": 218,
           "column": 5,
-          "index": 5497
+          "index": 5280
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyMargin",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Margin of the widget (bottom) "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -476,28 +563,31 @@
           }
         ]
       },
-      "name": "marginBottom",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyMargin",
-      "init": 0,
-      "check": "Integer",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "marginLeft": {
       "location": {
         "start": {
           "line": 221,
           "column": 4,
-          "index": 5546
+          "index": 5326
         },
         "end": {
           "line": 226,
           "column": 5,
-          "index": 5660
+          "index": 5435
         }
       },
+      "json": {
+        "check": "Integer",
+        "init": 0,
+        "apply": "_applyMargin",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "* Margin of the widget (left) "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -505,28 +595,42 @@
           }
         ]
       },
-      "name": "marginLeft",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyMargin",
-      "init": 0,
-      "check": "Integer",
-      "defaultValue": 0
+      "appearsIn": []
     },
     "margin": {
       "location": {
         "start": {
           "line": 236,
           "column": 4,
-          "index": 6089
+          "index": 5854
         },
         "end": {
           "line": 240,
           "column": 5,
-          "index": 6228
+          "index": 5989
         }
       },
+      "json": {
+        "group": [
+          "marginTop",
+          "marginRight",
+          "marginBottom",
+          "marginLeft"
+        ],
+        "mode": "shorthand",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * The 'margin' property is a shorthand property for setting 'marginTop',",
+          "     * 'marginRight', 'marginBottom' and 'marginLeft' at the same time.",
+          "     *",
+          "     * If four values are specified they apply to top, right, bottom and left respectively.",
+          "     * If there is only one value, it applies to all sides, if there are two or three,",
+          "     * the missing values are taken from the opposite side.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -534,30 +638,41 @@
           }
         ]
       },
-      "name": "margin",
-      "propertyType": "new",
-      "themeable": true,
-      "group": [
-        "marginTop",
-        "marginRight",
-        "marginBottom",
-        "marginLeft"
-      ]
+      "appearsIn": []
     },
     "alignX": {
       "location": {
         "start": {
           "line": 255,
           "column": 4,
-          "index": 6779
+          "index": 6525
         },
         "end": {
           "line": 260,
           "column": 5,
-          "index": 6913
+          "index": 6654
         }
       },
+      "json": {
+        "check": [
+          "left",
+          "center",
+          "right"
+        ],
+        "nullable": true,
+        "apply": "_applyAlign",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Horizontal alignment of the item in the parent layout.",
+          "     *",
+          "     * Note: Item alignment is only supported by {@link LayoutItem} layouts where",
+          "     * it would have a visual effect. Except for {@link Spacer}, which provides",
+          "     * blank space for layouts, all classes that inherit {@link LayoutItem} support alignment.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -565,32 +680,42 @@
           }
         ]
       },
-      "name": "alignX",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyAlign",
-      "nullable": true,
-      "allowNull": true,
-      "possibleValues": [
-        "left",
-        "center",
-        "right"
-      ]
+      "appearsIn": []
     },
     "alignY": {
       "location": {
         "start": {
           "line": 269,
           "column": 4,
-          "index": 7269
+          "index": 7001
         },
         "end": {
           "line": 274,
           "column": 5,
-          "index": 7415
+          "index": 7142
         }
       },
+      "json": {
+        "check": [
+          "top",
+          "middle",
+          "bottom",
+          "baseline"
+        ],
+        "nullable": true,
+        "apply": "_applyAlign",
+        "themeable": true
+      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Vertical alignment of the item in the parent layout.",
+          "     *",
+          "     * Note: Item alignment is only supported by {@link LayoutItem} layouts where",
+          "     * it would have a visual effect. Except for {@link Spacer}, which provides",
+          "     * blank space for layouts, all classes that inherit {@link LayoutItem} support alignment.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -598,67 +723,18 @@
           }
         ]
       },
-      "name": "alignY",
-      "propertyType": "new",
-      "themeable": true,
-      "apply": "_applyAlign",
-      "nullable": true,
-      "allowNull": true,
-      "possibleValues": [
-        "top",
-        "middle",
-        "bottom",
-        "baseline"
-      ]
-    },
-    "qxOwner": {
-      "type": "property",
-      "name": "qxOwner",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>The owning object</p>"
-          }
-        ]
-      }
-    },
-    "qxObjectId": {
-      "type": "property",
-      "name": "qxObjectId",
-      "abstract": false,
-      "mixin": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.MObjectId",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>{String} The ID of the object.</p>"
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
   "members": {
     "_onChangeTheme": {
-      "location": {
-        "start": {
-          "line": 294,
-          "column": 4,
-          "index": 7996
-        },
-        "end": {
-          "line": 310,
-          "column": 6,
-          "index": 8610
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Handler for the dynamic theme change.",
+          "     * @signature function()",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -672,23 +748,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "protected"
-    },
-    "__computedHeightForWidth": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 319,
+          "line": 294,
           "column": 4,
-          "index": 8869
+          "index": 7703
         },
         "end": {
-          "line": 319,
-          "column": 34,
-          "index": 8899
+          "line": 310,
+          "column": 6,
+          "index": 8301
         }
       },
+      "appearsIn": []
+    },
+    "__computedHeightForWidth": {
       "jsdoc": {
+        "raw": [
+          "* @type {Integer} The computed height "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -702,23 +781,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__computedLayout": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 322,
+          "line": 319,
           "column": 4,
-          "index": 8969
+          "index": 8551
         },
         "end": {
-          "line": 322,
-          "column": 26,
-          "index": 8991
+          "line": 319,
+          "column": 34,
+          "index": 8581
         }
       },
+      "appearsIn": []
+    },
+    "__computedLayout": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} The computed size of the layout item "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -732,23 +814,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__hasInvalidLayout": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 325,
+          "line": 322,
           "column": 4,
-          "index": 9064
+          "index": 8648
         },
         "end": {
-          "line": 325,
-          "column": 28,
-          "index": 9088
+          "line": 322,
+          "column": 26,
+          "index": 8670
         }
       },
+      "appearsIn": []
+    },
+    "__hasInvalidLayout": {
       "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Whether the current layout is valid "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -762,23 +847,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__sizeHint": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 328,
+          "line": 325,
           "column": 4,
-          "index": 9138
+          "index": 8740
         },
         "end": {
-          "line": 328,
-          "column": 20,
-          "index": 9154
+          "line": 325,
+          "column": 28,
+          "index": 8764
         }
       },
+      "appearsIn": []
+    },
+    "__sizeHint": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} Cached size hint "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -792,23 +880,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__updateMargin": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 331,
+          "line": 328,
           "column": 4,
-          "index": 9244
+          "index": 8811
         },
         "end": {
-          "line": 331,
-          "column": 24,
-          "index": 9264
+          "line": 328,
+          "column": 20,
+          "index": 8827
         }
       },
+      "appearsIn": []
+    },
+    "__updateMargin": {
       "jsdoc": {
+        "raw": [
+          "* @type {Boolean} Whether the margins have changed and must be updated "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -822,23 +913,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__userBounds": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 334,
+          "line": 331,
           "column": 4,
-          "index": 9367
+          "index": 8914
         },
         "end": {
-          "line": 334,
-          "column": 22,
-          "index": 9385
+          "line": 331,
+          "column": 24,
+          "index": 8934
         }
       },
+      "appearsIn": []
+    },
+    "__userBounds": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} user provided bounds of the widget, which override the layout manager "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -852,23 +946,26 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__layoutProperties": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 337,
+          "line": 334,
           "column": 4,
-          "index": 9447
+          "index": 9034
         },
         "end": {
-          "line": 337,
-          "column": 28,
-          "index": 9471
+          "line": 334,
+          "column": 22,
+          "index": 9052
         }
       },
+      "appearsIn": []
+    },
+    "__layoutProperties": {
       "jsdoc": {
+        "raw": [
+          "* @type {Map} The item's layout properties "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -882,23 +979,34 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "getBounds": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 348,
+          "line": 337,
           "column": 4,
-          "index": 9819
+          "index": 9111
         },
         "end": {
-          "line": 350,
-          "column": 5,
-          "index": 9905
+          "line": 337,
+          "column": 28,
+          "index": 9135
         }
       },
+      "appearsIn": []
+    },
+    "getBounds": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the computed location and dimension as computed by",
+          "     * the layout manager.",
+          "     *",
+          "     * @return {Map|null} The location and dimensions in pixel",
+          "     *    (if the layout is valid). Contains the keys",
+          "     *    <code>width</code>, <code>height</code>, <code>left</code> and",
+          "     *    <code>top</code>.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -910,27 +1018,37 @@
             "name": "@return",
             "body": "{Map|null} The location and dimensions in pixel\n    (if the layout is valid). Contains the keys\n    <code>width</code>, <code>height</code>, <code>left</code> and\n    <code>top</code>.",
             "type": "Map|null",
-            "description": " The location and dimensions in pixel\n    (if the layout is valid). Contains the keys\n    <code>width</code>, <code>height</code>, <code>left</code> and\n    <code>top</code>."
+            "description": "The location and dimensions in pixel\n    (if the layout is valid). Contains the keys\n    <code>width</code>, <code>height</code>, <code>left</code> and\n    <code>top</code>."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clearSeparators": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 355,
+          "line": 348,
           "column": 4,
-          "index": 9973
+          "index": 9472
         },
         "end": {
-          "line": 357,
+          "line": 350,
           "column": 5,
-          "index": 10024
+          "index": 9556
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map|null"
+      },
+      "appearsIn": []
+    },
+    "clearSeparators": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Reconfigure number of separators",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -938,23 +1056,34 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "renderSeparator": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 366,
+          "line": 355,
           "column": 4,
-          "index": 10323
+          "index": 9619
         },
         "end": {
-          "line": 368,
+          "line": 357,
           "column": 5,
-          "index": 10391
+          "index": 9668
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "renderSeparator": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Renders a separator between two children",
+          "     *",
+          "     * @param separator {String|qx.ui.decoration.IDecorator} The separator to render",
+          "     * @param bounds {Map} Contains the left and top coordinate and the width and height",
+          "     *    of the separator to render.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -977,27 +1106,56 @@
             "body": "bounds {Map} Contains the left and top coordinate and the width and height\n    of the separator to render.",
             "paramName": "bounds",
             "description": " Contains the left and top coordinate and the width and height\n    of the separator to render.",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "renderLayout": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 383,
+          "line": 366,
           "column": 4,
-          "index": 10952
+          "index": 9958
         },
         "end": {
-          "line": 464,
+          "line": 368,
           "column": 5,
-          "index": 13740
+          "index": 10024
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "separator",
+          "type": [
+            "String",
+            "qx.ui.decoration.IDecorator"
+          ]
+        },
+        {
+          "name": "bounds",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "renderLayout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Used by the layout engine to apply coordinates and dimensions.",
+          "     *",
+          "     * @param left {Integer} Any integer value for the left position,",
+          "     *   always in pixels",
+          "     * @param top {Integer} Any integer value for the top position,",
+          "     *   always in pixels",
+          "     * @param width {Integer} Any positive integer value for the width,",
+          "     *   always in pixels",
+          "     * @param height {Integer} Any positive integer value for the height,",
+          "     *   always in pixels",
+          "     * @return {Map} A map of which layout sizes changed.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1038,28 +1196,57 @@
           {
             "name": "@return",
             "body": "{Map} A map of which layout sizes changed.",
-            "type": "Map",
-            "description": " A map of which layout sizes changed."
+            "type": "Map<any, any>",
+            "description": "A map of which layout sizes changed."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isExcluded": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 471,
+          "line": 383,
           "column": 4,
-          "index": 13903
+          "index": 10570
         },
         "end": {
-          "line": 473,
+          "line": 464,
           "column": 5,
-          "index": 13945
+          "index": 13277
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "left",
+          "type": "Integer"
+        },
+        {
+          "name": "top",
+          "type": "Integer"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        },
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "isExcluded": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the item should be excluded from the layout",
+          "     *",
+          "     * @return {Boolean} Should the item be excluded by the layout",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1070,28 +1257,41 @@
           {
             "name": "@return",
             "body": "{Boolean} Should the item be excluded by the layout",
-            "type": "Boolean",
-            "description": " Should the item be excluded by the layout"
+            "type": "boolean",
+            "description": "Should the item be excluded by the layout"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "hasValidLayout": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 481,
+          "line": 471,
           "column": 4,
-          "index": 14115
+          "index": 13433
         },
         "end": {
-          "line": 483,
+          "line": 473,
           "column": 5,
-          "index": 14180
+          "index": 13473
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "hasValidLayout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the layout of this item (to layout the children)",
+          "     * is valid.",
+          "     *",
+          "     * @return {Boolean} Returns <code>true</code>",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1102,28 +1302,40 @@
           {
             "name": "@return",
             "body": "{Boolean} Returns <code>true</code>",
-            "type": "Boolean",
-            "description": " Returns <code>true</code>"
+            "type": "boolean",
+            "description": "Returns <code>true</code>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "scheduleLayoutUpdate": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 490,
+          "line": 481,
           "column": 4,
-          "index": 14327
+          "index": 13635
         },
         "end": {
-          "line": 492,
+          "line": 483,
           "column": 5,
-          "index": 14400
+          "index": 13698
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "scheduleLayoutUpdate": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Indicate that the item has layout changes and propagate this information",
+          "     * up the item hierarchy.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1131,23 +1343,31 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "invalidateLayoutCache": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 498,
+          "line": 490,
           "column": 4,
-          "index": 14566
+          "index": 13838
         },
         "end": {
-          "line": 503,
+          "line": 492,
           "column": 5,
-          "index": 14716
+          "index": 13909
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "invalidateLayoutCache": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Called by the layout manager to mark this item's layout as invalid.",
+          "     * This function should clear all layout relevant caches.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1155,23 +1375,56 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getSizeHint": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 534,
+          "line": 498,
           "column": 4,
-          "index": 15901
+          "index": 14069
         },
         "end": {
-          "line": 588,
+          "line": 503,
           "column": 5,
-          "index": 17205
+          "index": 14214
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getSizeHint": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * A size hint computes the dimensions of a widget. It returns",
+          "     * the recommended dimensions as well as the min and max dimensions.",
+          "     * The min and max values already respect the stretching properties.",
+          "     *",
+          "     * <h3>Wording</h3>",
+          "     * <ul>",
+          "     * <li>User value: Value defined by the widget user, using the size properties</li>",
+          "     *",
+          "     * <li>Layout value: The value computed by {@link qx.ui.core.Widget#_getContentHint}</li>",
+          "     * </ul>",
+          "     *",
+          "     * <h3>Algorithm</h3>",
+          "     * <ul>",
+          "     * <li>minSize: If the user min size is not null, the user value is taken,",
+          "     *     otherwise the layout value is used.</li>",
+          "     *",
+          "     * <li>(preferred) size: If the user value is not null the user value is used,",
+          "     *     otherwise the layout value is used.</li>",
+          "     *",
+          "     * <li>max size: Same as the preferred size.</li>",
+          "     * </ul>",
+          "     *",
+          "     * @param compute {Boolean?true} Automatically compute size hint if currently not",
+          "     *   cached?",
+          "     * @return {Map} The map with the preferred width/height and the allowed",
+          "     *   minimum and maximum values in cases where shrinking or growing",
+          "     *   is required.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1193,28 +1446,48 @@
           {
             "name": "@return",
             "body": "{Map} The map with the preferred width/height and the allowed\n   minimum and maximum values in cases where shrinking or growing\n   is required.",
-            "type": "Map",
-            "description": " The map with the preferred width/height and the allowed\n   minimum and maximum values in cases where shrinking or growing\n   is required."
+            "type": "Map<any, any>",
+            "description": "The map with the preferred width/height and the allowed\n   minimum and maximum values in cases where shrinking or growing\n   is required."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_computeSizeHint": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 596,
+          "line": 534,
           "column": 4,
-          "index": 17407
+          "index": 15368
         },
         "end": {
-          "line": 614,
+          "line": 588,
           "column": 5,
-          "index": 17938
+          "index": 16618
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "compute",
+          "type": "Boolean",
+          "optional": true,
+          "defaultValue": "true"
+        }
+      ],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_computeSizeHint": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Computes the size hint of the layout item.",
+          "     *",
+          "     * @return {Map} The map with the preferred width/height and the allowed",
+          "     *   minimum and maximum values.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1225,28 +1498,40 @@
           {
             "name": "@return",
             "body": "{Map} The map with the preferred width/height and the allowed\n   minimum and maximum values.",
-            "type": "Map",
-            "description": " The map with the preferred width/height and the allowed\n   minimum and maximum values."
+            "type": "Map<any, any>",
+            "description": "The map with the preferred width/height and the allowed\n   minimum and maximum values."
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_hasHeightForWidth": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 621,
+          "line": 596,
           "column": 4,
-          "index": 18094
+          "index": 16812
         },
         "end": {
-          "line": 627,
+          "line": 614,
           "column": 5,
-          "index": 18257
+          "index": 17325
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "_hasHeightForWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the item supports height for width.",
+          "     *",
+          "     * @return {Boolean} Whether the item supports height for width",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1257,28 +1542,44 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the item supports height for width",
-            "type": "Boolean",
-            "description": " Whether the item supports height for width"
+            "type": "boolean",
+            "description": "Whether the item supports height for width"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getHeightForWidth": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 638,
+          "line": 621,
           "column": 4,
-          "index": 18660
+          "index": 17474
         },
         "end": {
-          "line": 645,
+          "line": 627,
           "column": 5,
-          "index": 18864
+          "index": 17631
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_getHeightForWidth": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * If an item wants to trade height for width it has to implement this",
+          "     * method and return the preferred height of the item if it is resized to",
+          "     * the given width. This function returns <code>null</code> if the item",
+          "     * do not support height for width.",
+          "     *",
+          "     * @param width {Integer} The computed width",
+          "     * @return {Integer} The desired height",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1299,27 +1600,44 @@
             "name": "@return",
             "body": "{Integer} The desired height",
             "type": "Integer",
-            "description": " The desired height"
+            "description": "The desired height"
           }
         ]
       },
-      "type": "function",
-      "access": "protected"
-    },
-    "_getLayout": {
+      "access": "protected",
       "location": {
         "start": {
-          "line": 652,
+          "line": 638,
           "column": 4,
-          "index": 19008
+          "index": 18023
         },
         "end": {
-          "line": 654,
+          "line": 645,
           "column": 5,
-          "index": 19049
+          "index": 18220
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "width",
+          "type": "Integer"
+        }
+      ],
+      "returnType": {
+        "type": "Integer"
+      },
+      "appearsIn": []
+    },
+    "_getLayout": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the widget's layout manager.",
+          "     *",
+          "     * @return {qx.ui.layout.Abstract} The widget's layout manager",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1331,119 +1649,131 @@
             "name": "@return",
             "body": "{qx.ui.layout.Abstract} The widget's layout manager",
             "type": "qx.ui.layout.Abstract",
-            "description": " The widget's layout manager"
+            "description": "The widget's layout manager"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 652,
+          "column": 4,
+          "index": 18357
+        },
+        "end": {
+          "line": 654,
+          "column": 5,
+          "index": 18396
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.layout.Abstract"
+      },
+      "appearsIn": []
     },
     "_applyMargin": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 657,
           "column": 4,
-          "index": 19081
+          "index": 18425
         },
         "end": {
           "line": 664,
           "column": 5,
-          "index": 19248
+          "index": 18585
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "marginTop",
-        "marginRight",
-        "marginBottom",
-        "marginLeft"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "_applyAlign": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 667,
           "column": 4,
-          "index": 19280
+          "index": 18614
         },
         "end": {
           "line": 672,
           "column": 5,
-          "index": 19409
+          "index": 18738
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "alignX",
-        "alignY"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "_applyDimension": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 675,
           "column": 4,
-          "index": 19441
+          "index": 18767
         },
         "end": {
           "line": 677,
           "column": 5,
-          "index": 19509
+          "index": 18833
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "minWidth",
-        "width",
-        "maxWidth",
-        "minHeight",
-        "height",
-        "maxHeight"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "_applyStretching": {
+      "jsdoc": {
+        "raw": [
+          " property apply"
+        ]
+      },
+      "access": "protected",
       "location": {
         "start": {
           "line": 680,
           "column": 4,
-          "index": 19541
+          "index": 18862
         },
         "end": {
           "line": 682,
           "column": 5,
-          "index": 19610
+          "index": 18929
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "protected",
-      "applyFor": [
-        "allowGrowX",
-        "allowShrinkX",
-        "allowGrowY",
-        "allowShrinkY"
-      ]
+      "params": [],
+      "appearsIn": []
     },
     "hasUserBounds": {
-      "location": {
-        "start": {
-          "line": 695,
-          "column": 4,
-          "index": 19990
-        },
-        "end": {
-          "line": 697,
-          "column": 5,
-          "index": 20049
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether user bounds are set on this layout item",
+          "     *",
+          "     * @return {Boolean} Whether user bounds are set on this layout item",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1454,28 +1784,44 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether user bounds are set on this layout item",
-            "type": "Boolean",
-            "description": " Whether user bounds are set on this layout item"
+            "type": "boolean",
+            "description": "Whether user bounds are set on this layout item"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setUserBounds": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 708,
+          "line": 695,
           "column": 4,
-          "index": 20479
+          "index": 19296
         },
         "end": {
-          "line": 724,
+          "line": 697,
           "column": 5,
-          "index": 20856
+          "index": 19353
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "setUserBounds": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set user bounds of the widget. Widgets with user bounds are sized and",
+          "     * positioned manually and are ignored by any layout manager.",
+          "     *",
+          "     * @param left {Integer} left position (relative to the parent)",
+          "     * @param top {Integer} top position (relative to the parent)",
+          "     * @param width {Integer} width of the layout item",
+          "     * @param height {Integer} height of the layout item",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1513,23 +1859,49 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "resetUserBounds": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 731,
+          "line": 708,
           "column": 4,
-          "index": 21003
+          "index": 19772
         },
         "end": {
-          "line": 742,
+          "line": 724,
           "column": 5,
-          "index": 21268
+          "index": 20133
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "left",
+          "type": "Integer"
+        },
+        {
+          "name": "top",
+          "type": "Integer"
+        },
+        {
+          "name": "width",
+          "type": "Integer"
+        },
+        {
+          "name": "height",
+          "type": "Integer"
+        }
+      ],
+      "appearsIn": []
+    },
+    "resetUserBounds": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Clear the user bounds. After this call the layout item is laid out by",
+          "     * the layout manager again.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1537,23 +1909,32 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "__emptyProperties": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 755,
+          "line": 731,
           "column": 4,
-          "index": 21601
+          "index": 20273
         },
         "end": {
-          "line": 755,
-          "column": 25,
-          "index": 21622
+          "line": 742,
+          "column": 5,
+          "index": 20527
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "__emptyProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * @type {Map} Empty storage pool",
+          "     *",
+          "     * @lint ignoreReferenceField(__emptyProperties)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1573,23 +1954,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "setLayoutProperties": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 762,
+          "line": 755,
           "column": 4,
-          "index": 21757
+          "index": 20847
         },
         "end": {
-          "line": 786,
-          "column": 5,
-          "index": 22340
+          "line": 755,
+          "column": 25,
+          "index": 20868
         }
       },
+      "appearsIn": []
+    },
+    "setLayoutProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Stores the given layout properties",
+          "     *",
+          "     * @param props {Map} Incoming layout property data",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1602,27 +1990,41 @@
             "body": "props {Map} Incoming layout property data",
             "paramName": "props",
             "description": " Incoming layout property data",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLayoutProperties": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 793,
+          "line": 762,
           "column": 4,
-          "index": 22483
+          "index": 20996
         },
         "end": {
-          "line": 795,
+          "line": 786,
           "column": 5,
-          "index": 22578
+          "index": 21555
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "props",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getLayoutProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns currently stored layout properties",
+          "     *",
+          "     * @return {Map} Returns a map of layout properties",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1633,28 +2035,39 @@
           {
             "name": "@return",
             "body": "{Map} Returns a map of layout properties",
-            "type": "Map",
-            "description": " Returns a map of layout properties"
+            "type": "Map<any, any>",
+            "description": "Returns a map of layout properties"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "clearLayoutProperties": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 801,
+          "line": 793,
           "column": 4,
-          "index": 22659
+          "index": 21691
         },
         "end": {
-          "line": 803,
+          "line": 795,
           "column": 5,
-          "index": 22730
+          "index": 21784
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Map<any, any>"
+      },
+      "appearsIn": []
+    },
+    "clearLayoutProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Removes all stored layout properties.",
+          "     *",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1662,23 +2075,38 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "updateLayoutProperties": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 816,
+          "line": 801,
           "column": 4,
-          "index": 23167
+          "index": 21859
         },
         "end": {
-          "line": 836,
+          "line": 803,
           "column": 5,
-          "index": 23801
+          "index": 21928
         }
       },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "updateLayoutProperties": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Should be executed on every change of layout properties.",
+          "     *",
+          "     * This also includes \"virtual\" layout properties like margin or align",
+          "     * when they have an effect on the parent and not on the widget itself.",
+          "     *",
+          "     * This method is always executed on the parent not on the",
+          "     * modified widget itself.",
+          "     *",
+          "     * @param props {Map?null} Optional map of known layout properties",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1697,23 +2125,39 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getApplicationRoot": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 849,
+          "line": 816,
           "column": 4,
-          "index": 24140
+          "index": 22352
         },
         "end": {
-          "line": 851,
+          "line": 836,
           "column": 5,
-          "index": 24224
+          "index": 22966
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "props",
+          "type": "Map",
+          "optional": true,
+          "defaultValue": "null"
+        }
+      ],
+      "appearsIn": []
+    },
+    "getApplicationRoot": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the application root",
+          "     *",
+          "     * @return {qx.ui.root.Abstract} The currently used root",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1725,27 +2169,41 @@
             "name": "@return",
             "body": "{qx.ui.root.Abstract} The currently used root",
             "type": "qx.ui.root.Abstract",
-            "description": " The currently used root"
+            "description": "The currently used root"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getLayoutParent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 860,
+          "line": 849,
           "column": 4,
-          "index": 24498
+          "index": 23292
         },
         "end": {
-          "line": 862,
+          "line": 851,
           "column": 5,
-          "index": 24561
+          "index": 23374
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.root.Abstract"
+      },
+      "appearsIn": []
+    },
+    "getLayoutParent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the items parent. Even if the item has been added to a",
+          "     * layout, the parent is always a child of the containing item. The parent",
+          "     * item may be <code>null</code>.",
+          "     *",
+          "     * @return {qx.ui.core.Widget|null} The parent.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1757,27 +2215,39 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget|null} The parent.",
             "type": "qx.ui.core.Widget|null",
-            "description": " The parent."
+            "description": "The parent."
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "setLayoutParent": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 869,
+          "line": 860,
           "column": 4,
-          "index": 24682
+          "index": 23639
         },
         "end": {
-          "line": 876,
+          "line": 862,
           "column": 5,
-          "index": 24866
+          "index": 23700
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget|null"
+      },
+      "appearsIn": []
+    },
+    "setLayoutParent": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the parent",
+          "     *",
+          "     * @param parent {qx.ui.core.Widget|null} The new parent.",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1797,23 +2267,41 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "isRootWidget": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 884,
+          "line": 869,
           "column": 4,
-          "index": 25039
+          "index": 23814
         },
         "end": {
-          "line": 886,
+          "line": 876,
           "column": 5,
-          "index": 25083
+          "index": 23991
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "parent",
+          "type": [
+            "qx.ui.core.Widget",
+            "null"
+          ]
+        }
+      ],
+      "appearsIn": []
+    },
+    "isRootWidget": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Whether the item is a root item and directly connected to",
+          "     * the DOM.",
+          "     *",
+          "     * @return {Boolean} Whether the item a root item",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1824,28 +2312,42 @@
           {
             "name": "@return",
             "body": "{Boolean} Whether the item a root item",
-            "type": "Boolean",
-            "description": " Whether the item a root item"
+            "type": "boolean",
+            "description": "Whether the item a root item"
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "_getRoot": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 895,
+          "line": 884,
           "column": 4,
-          "index": 25378
+          "index": 24156
         },
         "end": {
-          "line": 907,
+          "line": 886,
           "column": 5,
-          "index": 25592
+          "index": 24198
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
+    "_getRoot": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Returns the root item. The root item is the item which",
+          "     * is directly inserted into an existing DOM node at HTML level.",
+          "     * This is often the BODY element of a typical web page.",
+          "     *",
+          "     * @return {qx.ui.core.Widget} The root item (if available)",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1857,1469 +2359,72 @@
             "name": "@return",
             "body": "{qx.ui.core.Widget} The root item (if available)",
             "type": "qx.ui.core.Widget",
-            "description": " The root item (if available)"
+            "description": "The root item (if available)"
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 895,
+          "column": 4,
+          "index": 24484
+        },
+        "end": {
+          "line": 907,
+          "column": 5,
+          "index": 24686
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [],
+      "returnType": {
+        "type": "qx.ui.core.Widget"
+      },
+      "appearsIn": []
     },
     "clone": {
+      "jsdoc": {
+        "raw": [
+          " overridden"
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 916,
           "column": 4,
-          "index": 25821
+          "index": 24906
         },
         "end": {
           "line": 925,
           "column": 5,
-          "index": 26034
+          "index": 25110
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "public",
+      "params": [],
       "overriddenFrom": "qx.core.Object",
       "appearsIn": [
         "qx.core.Object"
       ]
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
-    },
-    "getMinWidth": {
-      "type": "function",
-      "name": "getMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>minWidth</code>.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for minWidth"
-          }
-        ]
-      }
-    },
-    "setMinWidth": {
-      "type": "function",
-      "name": "setMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>minWidth</code>.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for minWidth"
-          }
-        ]
-      }
-    },
-    "resetMinWidth": {
-      "type": "function",
-      "name": "resetMinWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>minWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minWidth}."
-          }
-        ]
-      }
-    },
-    "getWidth": {
-      "type": "function",
-      "name": "getWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for width"
-          }
-        ]
-      }
-    },
-    "setWidth": {
-      "type": "function",
-      "name": "setWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>width</code>.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for width"
-          }
-        ]
-      }
-    },
-    "resetWidth": {
-      "type": "function",
-      "name": "resetWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>width</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #width}."
-          }
-        ]
-      }
-    },
-    "getMaxWidth": {
-      "type": "function",
-      "name": "getMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxWidth</code>.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for maxWidth"
-          }
-        ]
-      }
-    },
-    "setMaxWidth": {
-      "type": "function",
-      "name": "setMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxWidth</code>.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for maxWidth"
-          }
-        ]
-      }
-    },
-    "resetMaxWidth": {
-      "type": "function",
-      "name": "resetMaxWidth",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxWidth</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxWidth}."
-          }
-        ]
-      }
-    },
-    "getMinHeight": {
-      "type": "function",
-      "name": "getMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>minHeight</code>.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for minHeight"
-          }
-        ]
-      }
-    },
-    "setMinHeight": {
-      "type": "function",
-      "name": "setMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>minHeight</code>.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for minHeight"
-          }
-        ]
-      }
-    },
-    "resetMinHeight": {
-      "type": "function",
-      "name": "resetMinHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>minHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #minHeight}."
-          }
-        ]
-      }
-    },
-    "getHeight": {
-      "type": "function",
-      "name": "getHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for height"
-          }
-        ]
-      }
-    },
-    "setHeight": {
-      "type": "function",
-      "name": "setHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>height</code>.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for height"
-          }
-        ]
-      }
-    },
-    "resetHeight": {
-      "type": "function",
-      "name": "resetHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>height</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #height}."
-          }
-        ]
-      }
-    },
-    "getMaxHeight": {
-      "type": "function",
-      "name": "getMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>maxHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for maxHeight"
-          }
-        ]
-      }
-    },
-    "setMaxHeight": {
-      "type": "function",
-      "name": "setMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>maxHeight</code>.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for maxHeight"
-          }
-        ]
-      }
-    },
-    "resetMaxHeight": {
-      "type": "function",
-      "name": "resetMaxHeight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>maxHeight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #maxHeight}."
-          }
-        ]
-      }
-    },
-    "getAllowGrowX": {
-      "type": "function",
-      "name": "getAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "isAllowGrowX": {
-      "type": "function",
-      "name": "isAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "setAllowGrowX": {
-      "type": "function",
-      "name": "setAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowGrowX</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowGrowX"
-          }
-        ]
-      }
-    },
-    "resetAllowGrowX": {
-      "type": "function",
-      "name": "resetAllowGrowX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowGrowX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowX}."
-          }
-        ]
-      }
-    },
-    "getAllowShrinkX": {
-      "type": "function",
-      "name": "getAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "isAllowShrinkX": {
-      "type": "function",
-      "name": "isAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "setAllowShrinkX": {
-      "type": "function",
-      "name": "setAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowShrinkX</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowShrinkX"
-          }
-        ]
-      }
-    },
-    "resetAllowShrinkX": {
-      "type": "function",
-      "name": "resetAllowShrinkX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowShrinkX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkX}."
-          }
-        ]
-      }
-    },
-    "getAllowGrowY": {
-      "type": "function",
-      "name": "getAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "isAllowGrowY": {
-      "type": "function",
-      "name": "isAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "setAllowGrowY": {
-      "type": "function",
-      "name": "setAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowGrowY</code>.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowGrowY"
-          }
-        ]
-      }
-    },
-    "resetAllowGrowY": {
-      "type": "function",
-      "name": "resetAllowGrowY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowGrowY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowGrowY}."
-          }
-        ]
-      }
-    },
-    "getAllowShrinkY": {
-      "type": "function",
-      "name": "getAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "isAllowShrinkY": {
-      "type": "function",
-      "name": "isAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "is",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Boolean",
-            "desc": "Returns the value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "setAllowShrinkY": {
-      "type": "function",
-      "name": "setAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowShrinkY</code>.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Boolean",
-            "paramName": "value",
-            "desc": "Value for allowShrinkY"
-          }
-        ]
-      }
-    },
-    "resetAllowShrinkY": {
-      "type": "function",
-      "name": "resetAllowShrinkY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowShrinkY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowShrinkY}."
-          }
-        ]
-      }
-    },
-    "setAllowStretchX": {
-      "type": "function",
-      "name": "setAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowStretchX</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for allowStretchX"
-          }
-        ]
-      }
-    },
-    "resetAllowStretchX": {
-      "type": "function",
-      "name": "resetAllowStretchX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowStretchX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchX}."
-          }
-        ]
-      }
-    },
-    "setAllowStretchY": {
-      "type": "function",
-      "name": "setAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>allowStretchY</code>.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for allowStretchY"
-          }
-        ]
-      }
-    },
-    "resetAllowStretchY": {
-      "type": "function",
-      "name": "resetAllowStretchY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>allowStretchY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #allowStretchY}."
-          }
-        ]
-      }
-    },
-    "getMarginTop": {
-      "type": "function",
-      "name": "getMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginTop</code>.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginTop"
-          }
-        ]
-      }
-    },
-    "setMarginTop": {
-      "type": "function",
-      "name": "setMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginTop</code>.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginTop"
-          }
-        ]
-      }
-    },
-    "resetMarginTop": {
-      "type": "function",
-      "name": "resetMarginTop",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginTop</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginTop}."
-          }
-        ]
-      }
-    },
-    "getMarginRight": {
-      "type": "function",
-      "name": "getMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginRight</code>.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginRight"
-          }
-        ]
-      }
-    },
-    "setMarginRight": {
-      "type": "function",
-      "name": "setMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginRight</code>.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginRight"
-          }
-        ]
-      }
-    },
-    "resetMarginRight": {
-      "type": "function",
-      "name": "resetMarginRight",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginRight</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginRight}."
-          }
-        ]
-      }
-    },
-    "getMarginBottom": {
-      "type": "function",
-      "name": "getMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginBottom</code>.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginBottom"
-          }
-        ]
-      }
-    },
-    "setMarginBottom": {
-      "type": "function",
-      "name": "setMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginBottom</code>.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginBottom"
-          }
-        ]
-      }
-    },
-    "resetMarginBottom": {
-      "type": "function",
-      "name": "resetMarginBottom",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginBottom</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginBottom}."
-          }
-        ]
-      }
-    },
-    "getMarginLeft": {
-      "type": "function",
-      "name": "getMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>marginLeft</code>.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "Integer",
-            "desc": "Returns the value for marginLeft"
-          }
-        ]
-      }
-    },
-    "setMarginLeft": {
-      "type": "function",
-      "name": "setMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>marginLeft</code>.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "Integer",
-            "paramName": "value",
-            "desc": "Value for marginLeft"
-          }
-        ]
-      }
-    },
-    "resetMarginLeft": {
-      "type": "function",
-      "name": "resetMarginLeft",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>marginLeft</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #marginLeft}."
-          }
-        ]
-      }
-    },
-    "setMargin": {
-      "type": "function",
-      "name": "setMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>margin</code>.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for margin"
-          }
-        ]
-      }
-    },
-    "resetMargin": {
-      "type": "function",
-      "name": "resetMargin",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>margin</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #margin}."
-          }
-        ]
-      }
-    },
-    "getAlignX": {
-      "type": "function",
-      "name": "getAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for alignX"
-          }
-        ]
-      }
-    },
-    "setAlignX": {
-      "type": "function",
-      "name": "setAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>alignX</code>.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for alignX"
-          }
-        ]
-      }
-    },
-    "resetAlignX": {
-      "type": "function",
-      "name": "resetAlignX",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>alignX</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignX}."
-          }
-        ]
-      }
-    },
-    "getAlignY": {
-      "type": "function",
-      "name": "getAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "any",
-            "desc": "Returns the value for alignY"
-          }
-        ]
-      }
-    },
-    "setAlignY": {
-      "type": "function",
-      "name": "setAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>alignY</code>.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "any",
-            "paramName": "value",
-            "desc": "Value for alignY"
-          }
-        ]
-      }
-    },
-    "resetAlignY": {
-      "type": "function",
-      "name": "resetAlignY",
-      "abstract": false,
-      "mixin": false,
-      "inherited": false,
-      "access": "public",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>alignY</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #alignY}."
-          }
-        ]
-      }
     }
   },
   "destruct": {
+    "type": "function",
+    "params": [],
     "location": {
       "start": {
         "line": 934,
         "column": 2,
-        "index": 26239
+        "index": 25306
       },
       "end": {
         "line": 950,
         "column": 3,
-        "index": 26667
+        "index": 25718
       }
-    },
-    "jsdoc": {}
+    }
   },
-  "descendants": [
-    "qx.ui.core.ColumnData",
-    "qx.ui.core.Spacer",
-    "qx.ui.core.Widget"
-  ]
+  "statics": {}
 }

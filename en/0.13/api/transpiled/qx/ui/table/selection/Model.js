@@ -43,11 +43,11 @@
     */
     construct: function construct() {
       qx.core.Object.constructor.call(this);
-      this.__P_463_0 = [];
-      this.__P_463_1 = -1;
-      this.__P_463_2 = -1;
+      this.__P_682_0 = [];
+      this.__P_682_1 = -1;
+      this.__P_682_2 = -1;
       this.hasBatchModeRefCount = 0;
-      this.__P_463_3 = false;
+      this.__P_682_3 = false;
     },
     /*
     *****************************************************************************
@@ -117,10 +117,10 @@
     */
 
     members: {
-      __P_463_3: null,
-      __P_463_1: null,
-      __P_463_2: null,
-      __P_463_0: null,
+      __P_682_3: null,
+      __P_682_1: null,
+      __P_682_2: null,
+      __P_682_0: null,
       // selectionMode property modifier
       _applySelectionMode: function _applySelectionMode(selectionMode) {
         this.resetSelection();
@@ -147,8 +147,8 @@
             throw new Error("Try to turn off batch mode althoug it was not turned on.");
           }
           this.hasBatchModeRefCount -= 1;
-          if (this.__P_463_3) {
-            this.__P_463_3 = false;
+          if (this.__P_682_3) {
+            this.__P_682_3 = false;
             this._fireChangeSelection();
           }
         }
@@ -170,7 +170,7 @@
        * @return {Integer} the anchor selection index.
        */
       getAnchorSelectionIndex: function getAnchorSelectionIndex() {
-        return this.__P_463_1;
+        return this.__P_682_1;
       },
       /**
        * Sets the anchor selection index. Only use this function, if you want manipulate
@@ -179,7 +179,7 @@
        * @param index {Integer} the index to set.
        */
       _setAnchorSelectionIndex: function _setAnchorSelectionIndex(index) {
-        this.__P_463_1 = index;
+        this.__P_682_1 = index;
       },
       /**
        * Returns the second argument of the last call to {@link #setSelectionInterval()},
@@ -188,7 +188,7 @@
        * @return {Integer} the lead selection index.
        */
       getLeadSelectionIndex: function getLeadSelectionIndex() {
-        return this.__P_463_2;
+        return this.__P_682_2;
       },
       /**
        * Sets the lead selection index. Only use this function, if you want manipulate
@@ -197,7 +197,7 @@
        * @param index {Integer} the index to set.
        */
       _setLeadSelectionIndex: function _setLeadSelectionIndex(index) {
-        this.__P_463_2 = index;
+        this.__P_682_2 = index;
       },
       /**
        * Returns an array that holds all the selected ranges of the table. Each
@@ -207,7 +207,7 @@
        * @return {Map[]} array with all the selected ranges.
        */
       _getSelectedRangeArr: function _getSelectedRangeArr() {
-        return this.__P_463_0;
+        return this.__P_682_0;
       },
       /**
        * Resets (clears) the selection.
@@ -224,7 +224,7 @@
        * @return {Boolean} whether the selection is empty.
        */
       isSelectionEmpty: function isSelectionEmpty() {
-        return this.__P_463_0.length == 0;
+        return this.__P_682_0.length == 0;
       },
       /**
        * Returns the number of selected items.
@@ -233,8 +233,8 @@
        */
       getSelectedCount: function getSelectedCount() {
         var selectedCount = 0;
-        for (var i = 0; i < this.__P_463_0.length; i++) {
-          var range = this.__P_463_0[i];
+        for (var i = 0; i < this.__P_682_0.length; i++) {
+          var range = this.__P_682_0[i];
           selectedCount += range.maxIndex - range.minIndex + 1;
         }
         return selectedCount;
@@ -246,8 +246,8 @@
        * @return {Boolean} whether the index is selected.
        */
       isSelectedIndex: function isSelectedIndex(index) {
-        for (var i = 0; i < this.__P_463_0.length; i++) {
-          var range = this.__P_463_0[i];
+        for (var i = 0; i < this.__P_682_0.length; i++) {
+          var range = this.__P_682_0[i];
           if (index >= range.minIndex && index <= range.maxIndex) {
             return true;
           }
@@ -264,10 +264,10 @@
         // clone the selection array and the individual elements - this prevents the
         // caller from messing with the internal model
         var retVal = [];
-        for (var i = 0; i < this.__P_463_0.length; i++) {
+        for (var i = 0; i < this.__P_682_0.length; i++) {
           retVal.push({
-            minIndex: this.__P_463_0[i].minIndex,
-            maxIndex: this.__P_463_0[i].maxIndex
+            minIndex: this.__P_682_0[i].minIndex,
+            maxIndex: this.__P_682_0[i].maxIndex
           });
         }
         return retVal;
@@ -289,8 +289,8 @@
        *          (this object will be available via "this" in the iterator)
        */
       iterateSelection: function iterateSelection(iterator, object) {
-        for (var i = 0; i < this.__P_463_0.length; i++) {
-          for (var j = this.__P_463_0[i].minIndex; j <= this.__P_463_0[i].maxIndex; j++) {
+        for (var i = 0; i < this.__P_682_0.length; i++) {
+          for (var j = this.__P_682_0[i].minIndex; j <= this.__P_682_0[i].maxIndex; j++) {
             iterator.call(object, j);
           }
         }
@@ -365,8 +365,8 @@
        *   If rows were removed, move the selections over so the same rows are selected as before.
        */
       removeSelectionInterval: function removeSelectionInterval(fromIndex, toIndex, rowsRemoved) {
-        this.__P_463_1 = fromIndex;
-        this.__P_463_2 = toIndex;
+        this.__P_682_1 = fromIndex;
+        this.__P_682_2 = toIndex;
         var minIndex = Math.min(fromIndex, toIndex);
         var maxIndex = Math.max(fromIndex, toIndex);
         var removeCount = maxIndex + 1 - minIndex;
@@ -374,8 +374,8 @@
         // Crop the affected ranges
         var newRanges = [];
         var extraRange = null;
-        for (var i = 0; i < this.__P_463_0.length; i++) {
-          var range = this.__P_463_0[i];
+        for (var i = 0; i < this.__P_682_0.length; i++) {
+          var range = this.__P_682_0[i];
           if (range.minIndex > maxIndex) {
             if (rowsRemoved) {
               // Move whole selection up.
@@ -422,16 +422,16 @@
             extraRange = null;
           }
         }
-        this.__P_463_0 = newRanges;
+        this.__P_682_0 = newRanges;
         this._fireChangeSelection();
       },
       /**
        * Resets (clears) the selection, but doesn't inform the listeners.
        */
       _resetSelection: function _resetSelection() {
-        this.__P_463_0 = [];
-        this.__P_463_1 = -1;
-        this.__P_463_2 = -1;
+        this.__P_682_0 = [];
+        this.__P_682_1 = -1;
+        this.__P_682_2 = -1;
       },
       /**
        * Adds a selection interval to the current selection, but doesn't inform
@@ -441,36 +441,36 @@
        * @param toIndex {Integer} the last index of the selection (including).
        */
       _addSelectionInterval: function _addSelectionInterval(fromIndex, toIndex) {
-        this.__P_463_1 = fromIndex;
-        this.__P_463_2 = toIndex;
+        this.__P_682_1 = fromIndex;
+        this.__P_682_2 = toIndex;
         var minIndex = Math.min(fromIndex, toIndex);
         var maxIndex = Math.max(fromIndex, toIndex);
 
         // Find the index where the new range should be inserted
         var newRangeIndex = 0;
-        for (; newRangeIndex < this.__P_463_0.length; newRangeIndex++) {
-          var range = this.__P_463_0[newRangeIndex];
+        for (; newRangeIndex < this.__P_682_0.length; newRangeIndex++) {
+          var range = this.__P_682_0[newRangeIndex];
           if (range.minIndex > minIndex) {
             break;
           }
         }
 
         // Add the new range
-        this.__P_463_0.splice(newRangeIndex, 0, {
+        this.__P_682_0.splice(newRangeIndex, 0, {
           minIndex: minIndex,
           maxIndex: maxIndex
         });
 
         // Merge overlapping ranges
-        var lastRange = this.__P_463_0[0];
-        for (var i = 1; i < this.__P_463_0.length; i++) {
-          var range = this.__P_463_0[i];
+        var lastRange = this.__P_682_0[0];
+        for (var i = 1; i < this.__P_682_0.length; i++) {
+          var range = this.__P_682_0[i];
           if (lastRange.maxIndex + 1 >= range.minIndex) {
             // The ranges are overlapping -> merge them
             lastRange.maxIndex = Math.max(lastRange.maxIndex, range.maxIndex);
 
             // Remove the current range
-            this.__P_463_0.splice(i, 1);
+            this.__P_682_0.splice(i, 1);
 
             // Check this index another time
             i--;
@@ -486,8 +486,8 @@
        */
       _dumpRanges: function _dumpRanges() {
         var text = "Ranges:";
-        for (var i = 0; i < this.__P_463_0.length; i++) {
-          var range = this.__P_463_0[i];
+        for (var i = 0; i < this.__P_682_0.length; i++) {
+          var range = this.__P_682_0[i];
           text += " [" + range.minIndex + ".." + range.maxIndex + "]";
         }
         this.debug(text);
@@ -500,7 +500,7 @@
       _fireChangeSelection: function _fireChangeSelection() {
         if (this.hasBatchMode()) {
           // In batch mode, remember event but do not throw (yet)
-          this.__P_463_3 = true;
+          this.__P_682_3 = true;
         } else {
           // If not in batch mode, throw event
           this.fireEvent("changeSelection");
@@ -513,10 +513,10 @@
     *****************************************************************************
     */
     destruct: function destruct() {
-      this.__P_463_0 = null;
+      this.__P_682_0 = null;
     }
   });
   qx.ui.table.selection.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1709410166143
+//# sourceMappingURL=Model.js.map?dt=1717235417221

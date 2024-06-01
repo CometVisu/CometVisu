@@ -1,48 +1,130 @@
 {
-  "className": "cv.util.Color",
-  "packageName": "cv.util",
-  "name": "Color",
-  "superClass": "qx.core.Object",
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 27,
-        "column": 0,
-        "index": 874
-      },
-      "end": {
-        "line": 1198,
-        "column": 3,
-        "index": 38427
-      }
+  "version": 0.3,
+  "lastModified": 1717235105618,
+  "lastModifiedIso": "2024-06-01T09:45:05.618Z",
+  "classFilename": "../../source/class/cv/util/Color.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 27,
+      "column": 0,
+      "index": 874
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Color</p><div class=\"authors\"><label>Author:</label> ChristianMayer</div><div class=\"since\"><label>Since:</label> 2021</div>"
-        }
-      ],
-      "@author": [
-        {
-          "name": "@author",
-          "body": "ChristianMayer"
-        }
-      ],
-      "@since": [
-        {
-          "name": "@since",
-          "body": "2021"
-        }
-      ]
+    "end": {
+      "line": 1198,
+      "column": 3,
+      "index": 38427
     }
   },
-  "type": "class",
+  "className": "cv.util.Color",
+  "jsdoc": {
+    "raw": [
+      "*",
+      " * Color",
+      " *",
+      " * @author ChristianMayer",
+      " * @since 2021",
+      " "
+    ],
+    "@description": [
+      {
+        "name": "@description",
+        "body": "<p>Color</p>"
+      }
+    ],
+    "@author": [
+      {
+        "name": "@author",
+        "body": "ChristianMayer"
+      }
+    ],
+    "@since": [
+      {
+        "name": "@since",
+        "body": "2021"
+      }
+    ]
+  },
+  "superClass": "qx.core.Object",
   "statics": {
     "solve2d": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Solve the 2 dimensional linear equation",
+          "     * <pre>",
+          "     *    ( A00 A01 ) (x0) = (y0)",
+          "     *    ( A10 A11 ) (x1)   (y1)",
+          "     * </pre>",
+          "     * @param {number} A00",
+          "     * @param {number} A10",
+          "     * @param {number} A01",
+          "     * @param {number} A11",
+          "     * @param {number} y0",
+          "     * @param {number} y1",
+          "     * @returns {number[]}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Solve the 2 dimensional linear equation\n </p>\n<pre>\n    ( A00 A01 ) (x0) = (y0)\n    ( A10 A11 ) (x1)   (y1)\n </pre>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{number} A00",
+            "paramName": "A00",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} A10",
+            "paramName": "A10",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} A01",
+            "paramName": "A01",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} A11",
+            "paramName": "A11",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} y0",
+            "paramName": "y0",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} y1",
+            "paramName": "y1",
+            "description": "",
+            "type": "number"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{number[]}",
+            "type": "number[]",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 50,
@@ -55,37 +137,153 @@
           "index": 1606
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "A00",
+          "type": "number"
+        },
+        {
+          "name": "A10",
+          "type": "number"
+        },
+        {
+          "name": "A01",
+          "type": "number"
+        },
+        {
+          "name": "A11",
+          "type": "number"
+        },
+        {
+          "name": "y0",
+          "type": "number"
+        },
+        {
+          "name": "y1",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "number[]"
+      },
+      "appearsIn": []
+    },
+    "solve3d": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Solve the 3 dimensional linear equation",
+          "     * <pre>",
+          "     *    ( A00 A01 A02 ) (x0)   (y0)",
+          "     *    ( A10 A11 A12 ) (x1) = (y1)",
+          "     *    ( A20 A21 A22 ) (x2)   (y2)",
+          "     * </pre>",
+          "     * @param {number} A00",
+          "     * @param {number} A10",
+          "     * @param {number} A20",
+          "     * @param {number} A01",
+          "     * @param {number} A11",
+          "     * @param {number} A21",
+          "     * @param {number} A02",
+          "     * @param {number} A12",
+          "     * @param {number} A22",
+          "     * @param {number} y0",
+          "     * @param {number} y1",
+          "     * @param {number} y2",
+          "     * @returns {number[]}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Solve the 2 dimensional linear equation\n </p>\n<pre>\n    ( A00 A01 ) (x0) = (y0)\n    ( A10 A11 ) (x1)   (y1)\n </pre>"
+            "body": "<p>Solve the 3 dimensional linear equation\n </p>\n<pre>\n    ( A00 A01 A02 ) (x0)   (y0)\n    ( A10 A11 A12 ) (x1) = (y1)\n    ( A20 A21 A22 ) (x2)   (y2)\n </pre>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "{number} A00"
+            "body": "{number} A00",
+            "paramName": "A00",
+            "description": "",
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "{number} A10"
+            "body": "{number} A10",
+            "paramName": "A10",
+            "description": "",
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "{number} A01"
+            "body": "{number} A20",
+            "paramName": "A20",
+            "description": "",
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "{number} A11"
+            "body": "{number} A01",
+            "paramName": "A01",
+            "description": "",
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "{number} y0"
+            "body": "{number} A11",
+            "paramName": "A11",
+            "description": "",
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "{number} y1"
+            "body": "{number} A21",
+            "paramName": "A21",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} A02",
+            "paramName": "A02",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} A12",
+            "paramName": "A12",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} A22",
+            "paramName": "A22",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} y0",
+            "paramName": "y0",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} y1",
+            "paramName": "y1",
+            "description": "",
+            "type": "number"
+          },
+          {
+            "name": "@param",
+            "body": "{number} y2",
+            "paramName": "y2",
+            "description": "",
+            "type": "number"
           }
         ],
         "@return": [
@@ -97,10 +295,7 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "solve3d": {
+      "access": "public",
       "location": {
         "start": {
           "line": 76,
@@ -113,89 +308,75 @@
           "index": 3045
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Solve the 3 dimensional linear equation\n </p>\n<pre>\n    ( A00 A01 A02 ) (x0)   (y0)\n    ( A10 A11 A12 ) (x1) = (y1)\n    ( A20 A21 A22 ) (x2)   (y2)\n </pre>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "{number} A00"
-          },
-          {
-            "name": "@param",
-            "body": "{number} A10"
-          },
-          {
-            "name": "@param",
-            "body": "{number} A20"
-          },
-          {
-            "name": "@param",
-            "body": "{number} A01"
-          },
-          {
-            "name": "@param",
-            "body": "{number} A11"
-          },
-          {
-            "name": "@param",
-            "body": "{number} A21"
-          },
-          {
-            "name": "@param",
-            "body": "{number} A02"
-          },
-          {
-            "name": "@param",
-            "body": "{number} A12"
-          },
-          {
-            "name": "@param",
-            "body": "{number} A22"
-          },
-          {
-            "name": "@param",
-            "body": "{number} y0"
-          },
-          {
-            "name": "@param",
-            "body": "{number} y1"
-          },
-          {
-            "name": "@param",
-            "body": "{number} y2"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{number[]}",
-            "type": "number[]",
-            "description": ""
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "A00",
+          "type": "number"
+        },
+        {
+          "name": "A10",
+          "type": "number"
+        },
+        {
+          "name": "A20",
+          "type": "number"
+        },
+        {
+          "name": "A01",
+          "type": "number"
+        },
+        {
+          "name": "A11",
+          "type": "number"
+        },
+        {
+          "name": "A21",
+          "type": "number"
+        },
+        {
+          "name": "A02",
+          "type": "number"
+        },
+        {
+          "name": "A12",
+          "type": "number"
+        },
+        {
+          "name": "A22",
+          "type": "number"
+        },
+        {
+          "name": "y0",
+          "type": "number"
+        },
+        {
+          "name": "y1",
+          "type": "number"
+        },
+        {
+          "name": "y2",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "number[]"
+      },
+      "appearsIn": []
     },
     "intersect": {
-      "location": {
-        "start": {
-          "line": 111,
-          "column": 4,
-          "index": 3434
-        },
-        "end": {
-          "line": 124,
-          "column": 5,
-          "index": 3851
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * calculate the intersection point between lines 1-2 and 3-4 as well as",
+          "     * points 3 and 4 are on different sides of the line 1-2",
+          "     * @param {{x: number, y: number}} p1",
+          "     * @param {{x: number, y: number}} p2",
+          "     * @param {{x: number, y: number}} p3",
+          "     * @param {{x: number, y: number}} p4",
+          "     * @returns {{x: number, y: number, factors: number[]}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -224,28 +405,54 @@
           {
             "name": "@return",
             "body": "{{x: number, y: number, factors: number[]}}",
-            "type": "{x: number, y: number, factors: number[]",
-            "description": "}"
+            "type": "{x: number, y: number, factors: number[]}",
+            "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "wavelength2xy": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 132,
+          "line": 111,
           "column": 4,
-          "index": 4088
+          "index": 3434
         },
         "end": {
-          "line": 147,
+          "line": 124,
           "column": 5,
-          "index": 5003
+          "index": 3851
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "p1"
+        },
+        {
+          "name": "p2"
+        },
+        {
+          "name": "p3"
+        },
+        {
+          "name": "p4"
+        }
+      ],
+      "returnType": {
+        "type": "{x: number, y: number, factors: number[]}"
+      },
+      "appearsIn": []
+    },
+    "wavelength2xy": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the CIE xy coordinates for a light wavelength.",
+          "     * Algorithm as of: http://jcgt.org/published/0002/02/01/",
+          "     * @param {number} wave wavelength in nanometers",
+          "     * @returns {{x: number, y: number}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -265,28 +472,45 @@
           {
             "name": "@return",
             "body": "{{x: number, y: number}}",
-            "type": "{x: number, y: number",
-            "description": "}"
+            "type": "{x: number, y: number}",
+            "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "temperature2xy": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 154,
+          "line": 132,
           "column": 4,
-          "index": 5206
+          "index": 4088
         },
         "end": {
-          "line": 169,
+          "line": 147,
           "column": 5,
-          "index": 5836
+          "index": 5003
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "wave",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "{x: number, y: number}"
+      },
+      "appearsIn": []
+    },
+    "temperature2xy": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the CIE xy coordinates for a white given its temperature",
+          "     * @param {number} T temperature in Kelvin, 1667 K <= T <= 25000 K",
+          "     * @returns {{x: number, y: number}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -306,28 +530,47 @@
           {
             "name": "@return",
             "body": "{{x: number, y: number}}",
-            "type": "{x: number, y: number",
-            "description": "}"
+            "type": "{x: number, y: number}",
+            "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "xy2sRGB": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 178,
+          "line": 154,
           "column": 4,
-          "index": 6179
+          "index": 5206
         },
         "end": {
-          "line": 191,
+          "line": 169,
           "column": 5,
-          "index": 6788
+          "index": 5836
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "T",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "{x: number, y: number}"
+      },
+      "appearsIn": []
+    },
+    "xy2sRGB": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convert xy coordinates to sRGB (D65) for display on the screen, including",
+          "     * gamma correction and simple gamut mapping",
+          "     * @param {{x: number, y: number}} xy The `x` and `y` values of the xyY color",
+          "     * @param {number} Y The `Y` value of the xyY color",
+          "     * @returns {{r: number, g: number, b: number}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -351,28 +594,50 @@
           {
             "name": "@return",
             "body": "{{r: number, g: number, b: number}}",
-            "type": "{r: number, g: number, b: number",
-            "description": "}"
+            "type": "{r: number, g: number, b: number}",
+            "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "curve": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 200,
+          "line": 178,
           "column": 4,
-          "index": 7249
+          "index": 6179
         },
         "end": {
-          "line": 223,
+          "line": 191,
           "column": 5,
-          "index": 8264
+          "index": 6788
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "xy"
+        },
+        {
+          "name": "Y",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "{r: number, g: number, b: number}"
+      },
+      "appearsIn": []
+    },
+    "curve": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convert a color component to a real world value by applying the dim curve",
+          "     * @param {number} component the color component (i.e. r, g or b value) to convert",
+          "     * @param {(string|number[])} curve -the curve type (`log` or `exp`), an one element array with the gamma value or an array with the lookup table",
+          "     * @param {number} scale the maximal number of the real world value, usually 1, 100 or 255",
+          "     * @returns {number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -417,23 +682,56 @@
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "invCurve": {
+      "access": "public",
       "location": {
         "start": {
-          "line": 232,
+          "line": 200,
           "column": 4,
-          "index": 8609
+          "index": 7249
         },
         "end": {
-          "line": 261,
+          "line": 223,
           "column": 5,
-          "index": 9597
+          "index": 8264
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "component",
+          "type": "number"
+        },
+        {
+          "name": "curve",
+          "type": [
+            "(string",
+            {
+              "type": "number",
+              "dimensions": 2
+            }
+          ]
+        },
+        {
+          "name": "scale",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "invCurve": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Convert a real world value to a color component by applying the inverse dim curve",
+          "     * @param {number} value",
+          "     * @param {(string|number[])} curve -the curve type (`log` or `exp`), an one element array with the gamma value or an array with the lookup table",
+          "     * @param {number} scale",
+          "     * @returns {number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -443,7 +741,10 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{number} value"
+            "body": "{number} value",
+            "paramName": "value",
+            "description": "",
+            "type": "number"
           },
           {
             "name": "@param",
@@ -460,7 +761,10 @@
           },
           {
             "name": "@param",
-            "body": "{number} scale"
+            "body": "{number} scale",
+            "paramName": "scale",
+            "description": "",
+            "type": "number"
           }
         ],
         "@return": [
@@ -472,11 +776,62 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 232,
+          "column": 4,
+          "index": 8609
+        },
+        "end": {
+          "line": 261,
+          "column": 5,
+          "index": 9597
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "value",
+          "type": "number"
+        },
+        {
+          "name": "curve",
+          "type": [
+            "(string",
+            {
+              "type": "number",
+              "dimensions": 2
+            }
+          ]
+        },
+        {
+          "name": "scale",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
     }
   },
   "construct": {
+    "type": "function",
+    "params": [
+      {
+        "name": "Rxy"
+      },
+      {
+        "name": "Gxy"
+      },
+      {
+        "name": "Bxy"
+      },
+      {
+        "name": "Wxy"
+      }
+    ],
     "location": {
       "start": {
         "line": 279,
@@ -488,36 +843,16 @@
         "column": 3,
         "index": 11975
       }
-    },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Construct a color with given primary colors and an optional white\n channel.\n When no coordinates are give they default to the sRGB coordinates.</p>"
-        }
-      ],
-      "@param": [
-        {
-          "name": "@param",
-          "body": "{{x: number, y: number, Y: number}} [Rxy]"
-        },
-        {
-          "name": "@param",
-          "body": "{{x: number, y: number, Y: number}} [Gxy]"
-        },
-        {
-          "name": "@param",
-          "body": "{{x: number, y: number, Y: number}} [Bxy]"
-        },
-        {
-          "name": "@param",
-          "body": "{{x: number, y: number, Y: number}} [Wxy]"
-        }
-      ]
     }
   },
   "members": {
     "__R": {
+      "jsdoc": {
+        "raw": [
+          " the base colors defining the color space of this color"
+        ]
+      },
+      "access": "private",
       "location": {
         "start": {
           "line": 337,
@@ -530,11 +865,11 @@
           "index": 12206
         }
       },
-      "jsdoc": {},
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__G": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 338,
@@ -547,10 +882,11 @@
           "index": 12226
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__B": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 339,
@@ -563,10 +899,11 @@
           "index": 12246
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__W": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 340,
@@ -579,23 +916,16 @@
           "index": 12266
         }
       },
-      "type": "variable",
-      "access": "private"
+      "appearsIn": []
     },
     "__x": {
-      "location": {
-        "start": {
-          "line": 347,
-          "column": 4,
-          "index": 12377
-        },
-        "end": {
-          "line": 347,
-          "column": 14,
-          "index": 12387
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * CIE 1931 XYZ color space: x of xyY",
+          "     * @type {number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -609,23 +939,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__y": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 352,
+          "line": 347,
           "column": 4,
-          "index": 12473
+          "index": 12377
         },
         "end": {
-          "line": 352,
+          "line": 347,
           "column": 14,
-          "index": 12483
+          "index": 12387
         }
       },
+      "appearsIn": []
+    },
+    "__y": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * CIE 1931 XYZ color space: y of xyY",
+          "     * @type {number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -639,23 +975,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__Y": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 357,
+          "line": 352,
           "column": 4,
-          "index": 12609
+          "index": 12473
         },
         "end": {
-          "line": 357,
-          "column": 10,
-          "index": 12615
+          "line": 352,
+          "column": 14,
+          "index": 12483
         }
       },
+      "appearsIn": []
+    },
+    "__Y": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * CIE 1931 XYZ color space: Y of xyY or XYZ - normalized to be between 0...1",
+          "     * @type {number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -669,23 +1011,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__hsv": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 364,
+          "line": 357,
           "column": 4,
-          "index": 12826
+          "index": 12609
         },
         "end": {
-          "line": 364,
-          "column": 20,
-          "index": 12842
+          "line": 357,
+          "column": 10,
+          "index": 12615
         }
       },
+      "appearsIn": []
+    },
+    "__hsv": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * HSV color space - h, s and v are normalized to the range 0...1",
+          "     * @type {{h: number, s: number, v: number}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -699,23 +1047,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__HSV_h_last": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 369,
+          "line": 364,
           "column": 4,
-          "index": 12933
+          "index": 12826
         },
         "end": {
-          "line": 369,
-          "column": 19,
-          "index": 12948
+          "line": 364,
+          "column": 20,
+          "index": 12842
         }
       },
+      "appearsIn": []
+    },
+    "__HSV_h_last": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * HSV color space - last known value of h",
+          "     * @type {number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -729,23 +1083,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__LCh_h_last": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 374,
+          "line": 369,
           "column": 4,
-          "index": 13039
+          "index": 12933
         },
         "end": {
-          "line": 374,
+          "line": 369,
           "column": 19,
-          "index": 13054
+          "index": 12948
         }
       },
+      "appearsIn": []
+    },
+    "__LCh_h_last": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * LCh color space - last known value of h",
+          "     * @type {number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -759,23 +1119,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__rbg": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 379,
+          "line": 374,
           "column": 4,
-          "index": 13195
+          "index": 13039
         },
         "end": {
-          "line": 379,
-          "column": 20,
-          "index": 13211
+          "line": 374,
+          "column": 19,
+          "index": 13054
         }
       },
+      "appearsIn": []
+    },
+    "__rbg": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * RGB color space - r, g and b are normalized to the range 0...1",
+          "     * @type {{r: number, g: number, b: number}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -789,23 +1155,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__rbgw": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 384,
+          "line": 379,
           "column": 4,
-          "index": 13367
+          "index": 13195
         },
         "end": {
-          "line": 384,
-          "column": 21,
-          "index": 13384
+          "line": 379,
+          "column": 20,
+          "index": 13211
         }
       },
+      "appearsIn": []
+    },
+    "__rbgw": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * RGBW color space - r, g, b and w are normalized to the range 0...1",
+          "     * @type {{r: number, g: number, b: number, w: number}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -819,23 +1191,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__T": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 389,
+          "line": 384,
           "column": 4,
-          "index": 13463
+          "index": 13367
         },
         "end": {
-          "line": 389,
-          "column": 18,
-          "index": 13477
+          "line": 384,
+          "column": 21,
+          "index": 13384
         }
       },
+      "appearsIn": []
+    },
+    "__T": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Color temperature in Kelvin",
+          "     * @type {number}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -849,23 +1227,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__Lab": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 394,
+          "line": 389,
           "column": 4,
-          "index": 13627
+          "index": 13463
         },
         "end": {
-          "line": 394,
-          "column": 20,
-          "index": 13643
+          "line": 389,
+          "column": 18,
+          "index": 13477
         }
       },
+      "appearsIn": []
+    },
+    "__Lab": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * L*a*b* color space - with L in 0...100, a* and b* in roughly -150...150",
+          "     * @type {{L: number, a: number, b: number}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -879,23 +1263,29 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__LCh": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 399,
+          "line": 394,
           "column": 4,
-          "index": 13808
+          "index": 13627
         },
         "end": {
-          "line": 399,
+          "line": 394,
           "column": 20,
-          "index": 13824
+          "index": 13643
         }
       },
+      "appearsIn": []
+    },
+    "__LCh": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * L*C*h° color space - with L in 0...1 instead of 0...100; C in 0...1 instead of 0...150",
+          "     * @type {{L: number, C: number, h: number}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -909,23 +1299,30 @@
           }
         ]
       },
-      "type": "variable",
-      "access": "private"
-    },
-    "__getXYZ": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 406,
+          "line": 399,
           "column": 4,
-          "index": 13950
+          "index": 13808
         },
         "end": {
-          "line": 412,
-          "column": 5,
-          "index": 14153
+          "line": 399,
+          "column": 20,
+          "index": 13824
         }
       },
+      "appearsIn": []
+    },
+    "__getXYZ": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get X, Y, Z from this color",
+          "     * @private",
+          "     * @returns {{X: number, Y: number, Z: number}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -942,28 +1339,42 @@
           {
             "name": "@return",
             "body": "{{X: number, Y: number, Z: number}}",
-            "type": "{X: number, Y: number, Z: number",
-            "description": "}"
+            "type": "{X: number, Y: number, Z: number}",
+            "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__setXYZ": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 420,
+          "line": 406,
           "column": 4,
-          "index": 14318
+          "index": 13950
         },
         "end": {
-          "line": 426,
+          "line": 412,
           "column": 5,
-          "index": 14574
+          "index": 14153
         }
       },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "{X: number, Y: number, Z: number}"
+      },
+      "appearsIn": []
+    },
+    "__setXYZ": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set internal __x, __y and __Y from XYZ color",
+          "     * @private",
+          "     * @param {number} X",
+          "     * @param {number} Y",
+          "     * @param {number} Z",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -979,35 +1390,68 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{number} X"
+            "body": "{number} X",
+            "paramName": "X",
+            "description": "",
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "{number} Y"
+            "body": "{number} Y",
+            "paramName": "Y",
+            "description": "",
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "{number} Z"
+            "body": "{number} Z",
+            "paramName": "Z",
+            "description": "",
+            "type": "number"
           }
         ]
       },
-      "type": "function",
-      "access": "private"
-    },
-    "__gamutMap": {
+      "access": "private",
       "location": {
         "start": {
-          "line": 435,
+          "line": 420,
           "column": 4,
-          "index": 14778
+          "index": 14318
         },
         "end": {
-          "line": 470,
+          "line": 426,
           "column": 5,
-          "index": 15825
+          "index": 14574
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "X",
+          "type": "number"
+        },
+        {
+          "name": "Y",
+          "type": "number"
+        },
+        {
+          "name": "Z",
+          "type": "number"
+        }
+      ],
+      "appearsIn": []
+    },
+    "__gamutMap": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * move x and y to be inside the color range that the R, G and B span",
+          "     * @private",
+          "     * @param {number} x",
+          "     * @param {number} y",
+          "     * @returns {{x: number, y: number}}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1023,26 +1467,64 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{number} x"
+            "body": "{number} x",
+            "paramName": "x",
+            "description": "",
+            "type": "number"
           },
           {
             "name": "@param",
-            "body": "{number} y"
+            "body": "{number} y",
+            "paramName": "y",
+            "description": "",
+            "type": "number"
           }
         ],
         "@return": [
           {
             "name": "@return",
             "body": "{{x: number, y: number}}",
-            "type": "{x: number, y: number",
-            "description": "}"
+            "type": "{x: number, y: number}",
+            "description": ""
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 435,
+          "column": 4,
+          "index": 14778
+        },
+        "end": {
+          "line": 470,
+          "column": 5,
+          "index": 15825
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "x",
+          "type": "number"
+        },
+        {
+          "name": "y",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "{x: number, y: number}"
+      },
+      "appearsIn": []
     },
     "__validateHSV": {
+      "jsdoc": {
+        "raw": [
+          " make derived color valid"
+        ]
+      },
+      "access": "private",
       "location": {
         "start": {
           "line": 473,
@@ -1055,11 +1537,17 @@
           "index": 20210
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "force"
+        }
+      ],
+      "appearsIn": []
     },
     "__validateRGB": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 597,
@@ -1073,9 +1561,16 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "force"
+        }
+      ],
+      "appearsIn": []
     },
     "__validateRGBW": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 627,
@@ -1089,9 +1584,16 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "force"
+        }
+      ],
+      "appearsIn": []
     },
     "__validateT": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 680,
@@ -1105,9 +1607,16 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "force"
+        }
+      ],
+      "appearsIn": []
     },
     "__validateLab": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 693,
@@ -1121,9 +1630,16 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "force"
+        }
+      ],
+      "appearsIn": []
     },
     "__validateLCh": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 713,
@@ -1137,22 +1653,23 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "force"
+        }
+      ],
+      "appearsIn": []
     },
     "__invalidateBut": {
-      "location": {
-        "start": {
-          "line": 735,
-          "column": 4,
-          "index": 24360
-        },
-        "end": {
-          "line": 741,
-          "column": 5,
-          "index": 24584
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Invalidate all cached values but the one to keep",
+          "     * @private",
+          "     * @param {string} keep",
+          "     * @param {string} [keep2]",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1168,18 +1685,52 @@
         "@param": [
           {
             "name": "@param",
-            "body": "{string} keep"
+            "body": "{string} keep",
+            "paramName": "keep",
+            "description": "",
+            "type": "string"
           },
           {
             "name": "@param",
-            "body": "{string} [keep2]"
+            "body": "{string} [keep2]",
+            "paramName": "[keep2]",
+            "description": "",
+            "type": "string"
           }
         ]
       },
+      "access": "private",
+      "location": {
+        "start": {
+          "line": 735,
+          "column": 4,
+          "index": 24360
+        },
+        "end": {
+          "line": 741,
+          "column": 5,
+          "index": 24584
+        }
+      },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "keep",
+          "type": "string"
+        },
+        {
+          "name": "keep2"
+        }
+      ],
+      "appearsIn": []
     },
     "__syncHSV2xy": {
+      "jsdoc": {
+        "raw": [
+          " synchronise xyY"
+        ]
+      },
+      "access": "private",
       "location": {
         "start": {
           "line": 744,
@@ -1192,11 +1743,13 @@
           "index": 26636
         }
       },
-      "jsdoc": {},
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "__syncRGB2xy": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 800,
@@ -1210,9 +1763,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "__syncRGBW2xy": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 811,
@@ -1226,9 +1782,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "__syncT2xy": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 835,
@@ -1242,9 +1801,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "__syncY2xy": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 842,
@@ -1258,9 +1820,12 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "__syncLab2xy": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 846,
@@ -1274,9 +1839,16 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [
+        {
+          "name": "keepLCh"
+        }
+      ],
+      "appearsIn": []
     },
     "__syncLCh2xy": {
+      "jsdoc": null,
+      "access": "private",
       "location": {
         "start": {
           "line": 866,
@@ -1290,9 +1862,47 @@
         }
       },
       "type": "function",
-      "access": "private"
+      "params": [],
+      "appearsIn": []
     },
     "changeComponent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Change the color by changing one of it's components.",
+          "     *",
+          "     * Expected values are:",
+          "     * - h, s, v: 0...1",
+          "     * - r, g, b, w: 0...1",
+          "     * - T: 1667...25000 Kelvin",
+          "     * - x, y, Y: 0...1",
+          "     * - L, C, h: 0...1",
+          "     *",
+          "     * @param {string} component",
+          "     * @param {(number|number[]|{h:number,s:number,v:number}|{r:number,g:number,b:number,w:number}|{x:number,y:number,Y:number})} value",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Change the color by changing one of it's components.\n Expected values are:</p>\n<ul>\n<li>h, s, v: 0…1</li>\n<li>r, g, b, w: 0…1</li>\n<li>T: 1667…25000 Kelvin</li>\n<li>x, y, Y: 0…1</li>\n<li>L, C, h: 0…1</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string} component",
+            "paramName": "component",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{(number|number[]|{h:number,s:number,v:number}|{r:number,g:number,b:number,w:number}|{x:number,y:number,Y:number})} value"
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 889,
@@ -1305,41 +1915,28 @@
           "index": 32970
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Change the color by changing one of it's components.\n Expected values are:</p>\n<ul>\n<li>h, s, v: 0…1</li>\n<li>r, g, b, w: 0…1</li>\n<li>T: 1667…25000 Kelvin</li>\n<li>x, y, Y: 0…1</li>\n<li>L, C, h: 0…1</li>\n</ul>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "{string} component"
-          },
-          {
-            "name": "@param",
-            "body": "{(number|number[]|{h:number,s:number,v:number}|{r:number,g:number,b:number,w:number}|{x:number,y:number,Y:number})} value"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "component",
+          "type": "string"
+        },
+        {
+          "name": "value"
+        }
+      ],
+      "appearsIn": []
     },
     "_forceHSV": {
-      "location": {
-        "start": {
-          "line": 1027,
-          "column": 4,
-          "index": 33183
-        },
-        "end": {
-          "line": 1030,
-          "column": 5,
-          "index": 33256
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Set the internal value to the given HSV value without a check.",
+          "     * THIS IS FOR INTERNAL USE ONLY! DO NOT USE!",
+          "     * @private",
+          "     * @param {{h: number, s: number, v: number}} hsv",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1359,10 +1956,30 @@
           }
         ]
       },
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 1027,
+          "column": 4,
+          "index": 33183
+        },
+        "end": {
+          "line": 1030,
+          "column": 5,
+          "index": 33256
+        }
+      },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "hsv"
+        }
+      ],
+      "appearsIn": []
     },
     "_forceLCh": {
+      "jsdoc": null,
+      "access": "protected",
       "location": {
         "start": {
           "line": 1031,
@@ -1376,9 +1993,72 @@
         }
       },
       "type": "function",
-      "access": "protected"
+      "params": [
+        {
+          "name": "LCh"
+        }
+      ],
+      "appearsIn": []
     },
     "getComponent": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Get the value(s) of the specified component",
+          "     *",
+          "     * Value ranges are:",
+          "     * - h, s, v: 0...1",
+          "     * - r, g, b, w: 0...1",
+          "     * - T: 1667...25000 Kelvin",
+          "     * - x, y, Y: 0...1",
+          "     * - L, a, b: 0...100 for `L` and roughly -150...150 for `a` and `b`",
+          "     * - L, C, h: 0...1",
+          "     *",
+          "     * @param {string} component",
+          "     * @param {boolean} gamutMap",
+          "     * @param {boolean} force",
+          "     * @returns {(number|{x:number, y:number}|{h:number,s:number,v:number}|{r:number,g:number,b:number}|{r:number,g:number,b:number,w:number}|{L:number,a:number,b:number}|{L:number,C:number,h:number})}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Get the value(s) of the specified component\n Value ranges are:</p>\n<ul>\n<li>h, s, v: 0…1</li>\n<li>r, g, b, w: 0…1</li>\n<li>T: 1667…25000 Kelvin</li>\n<li>x, y, Y: 0…1</li>\n<li>L, a, b: 0…100 for <code>L</code> and roughly -150…150 for <code>a</code> and <code>b</code></li>\n<li>L, C, h: 0…1</li>\n</ul>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{string} component",
+            "paramName": "component",
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "@param",
+            "body": "{boolean} gamutMap",
+            "paramName": "gamutMap",
+            "description": "",
+            "type": "boolean"
+          },
+          {
+            "name": "@param",
+            "body": "{boolean} force",
+            "paramName": "force",
+            "description": "",
+            "type": "boolean"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{(number|{x:number, y:number}|{h:number,s:number,v:number}|{r:number,g:number,b:number}|{r:number,g:number,b:number,w:number}|{L:number,a:number,b:number}|{L:number,C:number,h:number})}",
+            "type": "(number|{x:number, y:number}|{h:number,s:number,v:number}|{r:number,g:number,b:number}|{r:number,g:number,b:number,w:number}|{L:number,a:number,b:number}|{L:number,C:number,h:number})",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 1052,
@@ -1391,53 +2071,34 @@
           "index": 36711
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Get the value(s) of the specified component\n Value ranges are:</p>\n<ul>\n<li>h, s, v: 0…1</li>\n<li>r, g, b, w: 0…1</li>\n<li>T: 1667…25000 Kelvin</li>\n<li>x, y, Y: 0…1</li>\n<li>L, a, b: 0…100 for <code>L</code> and roughly -150…150 for <code>a</code> and <code>b</code></li>\n<li>L, C, h: 0…1</li>\n</ul>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "{string} component"
-          },
-          {
-            "name": "@param",
-            "body": "{boolean} gamutMap"
-          },
-          {
-            "name": "@param",
-            "body": "{boolean} force"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{(number|{x:number, y:number}|{h:number,s:number,v:number}|{r:number,g:number,b:number}|{r:number,g:number,b:number,w:number}|{L:number,a:number,b:number}|{L:number,C:number,h:number})}",
-            "type": "(number|{x:number, y:number",
-            "description": "|{h:number,s:number,v:number}|{r:number,g:number,b:number}|{r:number,g:number,b:number,w:number}|{L:number,a:number,b:number}|{L:number,C:number,h:number})}"
-          }
-        ]
-      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "component",
+          "type": "string"
+        },
+        {
+          "name": "gamutMap",
+          "type": "boolean"
+        },
+        {
+          "name": "force",
+          "type": "boolean"
+        }
+      ],
+      "returnType": {
+        "type": "(number|{x:number, y:number}|{h:number,s:number,v:number}|{r:number,g:number,b:number}|{r:number,g:number,b:number,w:number}|{L:number,a:number,b:number}|{L:number,C:number,h:number})"
+      },
+      "appearsIn": []
     },
     "copy": {
-      "location": {
-        "start": {
-          "line": 1149,
-          "column": 4,
-          "index": 36803
-        },
-        "end": {
-          "line": 1151,
-          "column": 5,
-          "index": 36872
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Return a copy from this color",
+          "     * @returns {cv.util.Color}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -1453,10 +2114,61 @@
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 1149,
+          "column": 4,
+          "index": 36803
+        },
+        "end": {
+          "line": 1151,
+          "column": 5,
+          "index": 36872
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [],
+      "returnType": {
+        "type": "cv.util.Color"
+      },
+      "appearsIn": []
     },
     "delta": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Calculate the distance (difference) between this color and the otherColor",
+          "     * in Lab color space, i.e. calculate the Delta E.",
+          "     * @param {cv.util.Color} otherColor",
+          "     * @returns {number}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Calculate the distance (difference) between this color and the otherColor\n in Lab color space, i.e. calculate the Delta E.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "{cv.util.Color} otherColor",
+            "paramName": "otherColor",
+            "description": "",
+            "type": "cv.util.Color"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{number}",
+            "type": "number",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
       "location": {
         "start": {
           "line": 1159,
@@ -1469,32 +2181,64 @@
           "index": 37390
         }
       },
+      "type": "function",
+      "params": [
+        {
+          "name": "otherColor",
+          "type": "cv.util.Color"
+        }
+      ],
+      "returnType": {
+        "type": "number"
+      },
+      "appearsIn": []
+    },
+    "blend": {
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Create a new color by calculating (1-ratio)*thisColor + ratio*otherColor.",
+          "     * The blending is done by mixing the LCh coordinates.",
+          "     * otherColor must have the same base colors xy coordinates, as this",
+          "     * is not checked or even enforced doing a blend between such different",
+          "     * colors will create an undesired result.",
+          "     * @param {cv.util.Color} otherColor",
+          "     * @param {number} ratio",
+          "     * @returns {cv.util.Color}",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
-            "body": "<p>Calculate the distance (difference) between this color and the otherColor\n in Lab color space, i.e. calculate the Delta E.</p>"
+            "body": "<p>Create a new color by calculating (1-ratio)<em>thisColor + ratio</em>otherColor.\n The blending is done by mixing the LCh coordinates.\n otherColor must have the same base colors xy coordinates, as this\n is not checked or even enforced doing a blend between such different\n colors will create an undesired result.</p>"
           }
         ],
         "@param": [
           {
             "name": "@param",
-            "body": "{cv.util.Color} otherColor"
+            "body": "{cv.util.Color} otherColor",
+            "paramName": "otherColor",
+            "description": "",
+            "type": "cv.util.Color"
+          },
+          {
+            "name": "@param",
+            "body": "{number} ratio",
+            "paramName": "ratio",
+            "description": "",
+            "type": "number"
           }
         ],
         "@return": [
           {
             "name": "@return",
-            "body": "{number}",
-            "type": "number",
+            "body": "{cv.util.Color}",
+            "type": "cv.util.Color",
             "description": ""
           }
         ]
       },
-      "type": "function",
-      "access": "public"
-    },
-    "blend": {
+      "access": "public",
       "location": {
         "start": {
           "line": 1179,
@@ -1507,173 +2251,22 @@
           "index": 38419
         }
       },
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "<p>Create a new color by calculating (1-ratio)<em>thisColor + ratio</em>otherColor.\n The blending is done by mixing the LCh coordinates.\n otherColor must have the same base colors xy coordinates, as this\n is not checked or even enforced doing a blend between such different\n colors will create an undesired result.</p>"
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "body": "{cv.util.Color} otherColor"
-          },
-          {
-            "name": "@param",
-            "body": "{number} ratio"
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "body": "{cv.util.Color}",
-            "type": "cv.util.Color",
-            "description": ""
-          }
-        ]
+      "type": "function",
+      "params": [
+        {
+          "name": "otherColor",
+          "type": "cv.util.Color"
+        },
+        {
+          "name": "ratio",
+          "type": "number"
+        }
+      ],
+      "returnType": {
+        "type": "cv.util.Color"
       },
-      "type": "function",
-      "access": "public"
-    },
-    "getQxOwner": {
-      "type": "function",
-      "name": "getQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "qx.core.Object",
-            "desc": "Returns the value for qxOwner"
-          }
-        ]
-      }
-    },
-    "setQxOwner": {
-      "type": "function",
-      "name": "setQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxOwner</code>.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "qx.core.Object",
-            "paramName": "value",
-            "desc": "Value for qxOwner"
-          }
-        ]
-      }
-    },
-    "resetQxOwner": {
-      "type": "function",
-      "name": "resetQxOwner",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxOwner</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxOwner}."
-          }
-        ]
-      }
-    },
-    "getQxObjectId": {
-      "type": "function",
-      "name": "getQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "get",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Gets the (computed) value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@return": [
-          {
-            "name": "@return",
-            "type": "[[ ObjectMethod Function ]]",
-            "desc": "Returns the value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "setQxObjectId": {
-      "type": "function",
-      "name": "setQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "set",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Sets the user value of the property <code>qxObjectId</code>.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ],
-        "@param": [
-          {
-            "name": "@param",
-            "type": "[[ ObjectMethod Function ]]",
-            "paramName": "value",
-            "desc": "Value for qxObjectId"
-          }
-        ]
-      }
-    },
-    "resetQxObjectId": {
-      "type": "function",
-      "name": "resetQxObjectId",
-      "abstract": false,
-      "mixin": false,
-      "inherited": true,
-      "access": "public",
-      "overriddenFrom": "qx.core.Object",
-      "property": "reset",
-      "jsdoc": {
-        "@description": [
-          {
-            "name": "@description",
-            "body": "Resets the user value of the property <code>qxObjectId</code>.\n\nThe computed value falls back to the next available value e.g. appearance, init or inheritance value depending on the property configuration and value availability.\n\nFor further details take a look at the property definition: {@link #qxObjectId}."
-          }
-        ]
-      }
+      "appearsIn": []
     }
   },
-  "descendants": []
+  "properties": {}
 }

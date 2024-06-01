@@ -1,61 +1,36 @@
 {
-  "className": "qx.log.appender.PhoneGap",
-  "packageName": "qx.log.appender",
-  "name": "PhoneGap",
-  "superClass": null,
-  "interfaces": [],
-  "mixins": [],
-  "functionName": null,
-  "clazz": {
-    "location": {
-      "start": {
-        "line": 42,
-        "column": 0,
-        "index": 1072
-      },
-      "end": {
-        "line": 87,
-        "column": 3,
-        "index": 2240
-      }
+  "version": 0.3,
+  "lastModified": 1717235171990,
+  "lastModifiedIso": "2024-06-01T09:46:11.990Z",
+  "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/log/appender/PhoneGap.js",
+  "type": "class",
+  "location": {
+    "start": {
+      "line": 42,
+      "column": 0,
+      "index": 1031
     },
-    "jsdoc": {
-      "@description": [
-        {
-          "name": "@description",
-          "body": "<p>Processes the incoming log entry and displays it using the PhoneGap\n logging capabilities.</p>"
-        }
-      ],
-      "@require": [
-        {
-          "name": "@require",
-          "body": "qx.log.appender.Formatter"
-        }
-      ],
-      "@ignore": [
-        {
-          "name": "@ignore",
-          "body": "debug.*"
-        }
-      ]
+    "end": {
+      "line": 87,
+      "column": 3,
+      "index": 2154
     }
   },
-  "type": "class",
+  "className": "qx.log.appender.PhoneGap",
+  "jsdoc": {
+    "raw": [
+      " global debug "
+    ]
+  },
   "statics": {
     "process": {
-      "location": {
-        "start": {
-          "line": 54,
-          "column": 4,
-          "index": 1430
-        },
-        "end": {
-          "line": 65,
-          "column": 5,
-          "index": 1767
-        }
-      },
       "jsdoc": {
+        "raw": [
+          "*",
+          "     * Processes a single log entry",
+          "     * @param entry {Map} The entry to process",
+          "     "
+        ],
         "@description": [
           {
             "name": "@description",
@@ -68,28 +43,33 @@
             "body": "entry {Map} The entry to process",
             "paramName": "entry",
             "description": " The entry to process",
-            "type": "Map"
+            "type": "Map<any, any>"
           }
         ]
       },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1377
+        },
+        "end": {
+          "line": 65,
+          "column": 5,
+          "index": 1703
+        }
+      },
       "type": "function",
-      "access": "public"
+      "params": [
+        {
+          "name": "entry",
+          "type": "Map<any, any>"
+        }
+      ],
+      "appearsIn": []
     }
   },
-  "defer": {
-    "location": {
-      "start": {
-        "line": 74,
-        "column": 2,
-        "index": 1967
-      },
-      "end": {
-        "line": 86,
-        "column": 3,
-        "index": 2235
-      }
-    },
-    "jsdoc": {}
-  },
-  "descendants": []
+  "members": {},
+  "properties": {}
 }
