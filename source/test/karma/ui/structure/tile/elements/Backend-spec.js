@@ -118,6 +118,9 @@ describe('testing the <cv-backend> component of the tile structure', () => {
   });
 
   it('should throw a warning when a backend with no name is added and the default "main" already exists', function() {
+    cv.io.BackendConnections.addBackendClient.and.callThrough();
+    cv.io.BackendConnections.getClient.and.callThrough();
+
     spyOn(cv.io.BackendConnections, 'hasClient').and.callFake(() => false);
     const backend = document.createElement('cv-backend');
     backend.setAttribute('name', 'main');
@@ -126,11 +129,11 @@ describe('testing the <cv-backend> component of the tile structure', () => {
 
     expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledOnceWith('main', 'knxd', null, 'config');
 
+    spyOn(qx.log.Logger, 'warn').and.callFake(() => null);
     const second = document.createElement('cv-backend');
     second.setAttribute('type', 'knxd');
-    cv.io.BackendConnections.hasClient.and.callThrough();
 
-    spyOn(qx.log.Logger, 'warn').and.callFake(() => null);
+    cv.io.BackendConnections.hasClient.and.callThrough();
     document.body.appendChild(second);
 
     expect(cv.io.BackendConnections.addBackendClient).toHaveBeenCalledWith('main', 'knxd', null, 'config');

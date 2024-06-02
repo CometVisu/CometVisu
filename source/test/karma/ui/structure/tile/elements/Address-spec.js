@@ -25,10 +25,22 @@
  */
 describe('testing the <cv-address> component of the tile structure', () => {
   let oldController;
+  let clientMock;
 
   beforeEach(() => {
     oldController = cv.Application.structureController;
     cv.Application.structureController = cv.ui.structure.tile.Controller.getInstance();
+
+    clientMock = jasmine.createSpyObj('client', [
+      'login',
+      'subscribe',
+      'terminate',
+      'dispose',
+      'isConnected',
+      'write'
+    ], {update: null, configuredIn: 'config'});
+
+    spyOn(cv.io.BackendConnections, 'getClient').and.returnValue(clientMock);
   });
 
   afterEach(() => {
@@ -194,8 +206,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
     document.body.appendChild(address);
     const addr = address._instance;
 
-    const client = cv.io.BackendConnections.getClient('main');
-    spyOn(client, 'write');
+    const client = cv.io.BackendConnections.getClient();
 
     // make sure that nothing is sent when there is no value
     address.dispatchEvent(new CustomEvent('sendState', {
@@ -242,8 +253,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
     document.body.appendChild(address);
     const addr = address._instance;
 
-    const client = cv.io.BackendConnections.getClient('main');
-    spyOn(client, 'write');
+    const client = cv.io.BackendConnections.getClient();
 
     expect(client.write).not.toHaveBeenCalled();
 
@@ -286,8 +296,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
     document.body.appendChild(address);
     const addr = address._instance;
 
-    const client = cv.io.BackendConnections.getClient('main');
-    spyOn(client, 'write');
+    const client = cv.io.BackendConnections.getClient();
 
     expect(client.write).not.toHaveBeenCalled();
 
@@ -357,8 +366,7 @@ describe('testing the <cv-address> component of the tile structure', () => {
   });
 
   it('should not sent the same value twice', () => {
-    const client = cv.io.BackendConnections.getClient('main');
-    spyOn(client, 'write');
+    const client = cv.io.BackendConnections.getClient();
 
     const address = document.createElement('cv-address');
     address.setAttribute('transform', 'raw');
