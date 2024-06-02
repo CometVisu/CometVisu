@@ -44,7 +44,13 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     JS_LOADED: new Promise(async (resolve, reject) => {
       const check = () => typeof window.d3 === 'object';
-      await cv.util.ScriptLoader.includeScript(qx.util.ResourceManager.getInstance().toUri('libs/d3.min.js'));
+      try {
+        await cv.util.ScriptLoader.includeScript(qx.util.ResourceManager.getInstance().toUri('libs/d3.min.js'));
+      } catch (e) {
+        qx.log.Logger.error(this, 'Error loading D3:', e);
+        reject(new Error('Error loading d3 library'));
+        return;
+      }
 
       if (!check()) {
         const timer = new qx.event.Timer(50);
@@ -54,7 +60,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           if (check()) {
             resolve(true);
           } else if (counter > 5) {
-            reject(new Error('Error loaded d3 library'));
+            reject(new Error('Error loading d3 library'));
           }
         });
       } else {
