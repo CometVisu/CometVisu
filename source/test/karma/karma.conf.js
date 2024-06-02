@@ -45,7 +45,9 @@ module.exports = function(config) {
       'source/test/fixtures/karma/**',
       { pattern: 'source/resource/**/*', included: false, served: true, watched: false },
       { pattern: 'source/transpiled/**/*', included: false, served: true, watched: false },
-      { pattern: 'source/**/*.map', included: false, served: true, watched: false }
+      { pattern: 'source/**/*.map', included: false, served: true, watched: false },
+      { pattern: 'source/rest/manager/*.php', included: false, served: true, watched: false },
+      { pattern: 'source/version', included: false, served: true, watched: false }
     ],
 
     // preprocess matching files before serving them to the browser
@@ -115,14 +117,14 @@ module.exports = function(config) {
 
     proxies: {
       '/source/resource/designs/get_designs.php': '/base/source/test/fixtures/designs.json',
-      '/source/resource/designs': '/base/source/resource/designs',
       '/resource/plugins/tr064/soap.php': '/base/source/test/fixtures/tr064_soap.json',
       '/resource/plugins/tr064/proxy.php': '/base/source/test/fixtures/tr064_proxy.xml',
       '/source/cv': '/base/source/cv',
       '/external/qooxdoo': '/base/external/qooxdoo',
       '/source/resource': '/base/source/resource',
-      '../source/resource': '/base/source/resource',
-      '/cgi-bin': '/base/source/resource/test'
+      '/cgi-bin': '/base/source/resource/test',
+      '/rest/manager': '/base/source/rest/manager',
+      '/version': '/base/version'
     },
 
     // enable / disable colors in the output (reporters and logs)

@@ -171,12 +171,13 @@ qx.Class.define('cv.TemplateEngine', {
         function (states) {
           parts.forEach(function (part, idx) {
             if (states[idx] === 'complete') {
-              this.__partQueue.remove(part);
               this.debug('successfully loaded part ' + part);
-              if (part.startsWith('structure-')) {
+              this.__partQueue.remove(part);
+              if (part.startsWith('structure-') && !this.__partQueue.some(p => p.startsWith('structure-'))) {
                 if (!cv.Config.loadedStructure) {
                   cv.Config.loadedStructure = part.substring(10);
                 }
+                this.debug('successfully loaded all structures');
                 qx.core.Init.getApplication().setStructureLoaded(true);
               }
               this.__partQueue.remove(part);
@@ -208,13 +209,13 @@ qx.Class.define('cv.TemplateEngine', {
       return new Promise((resolve, reject) => {
         const timer = setTimeout(reject, 2000);
         if (waitingFor.getLength() === 0) {
-          resolve();
           clearTimeout(timer);
+          resolve();
         } else {
           waitingFor.addListener('changeLength', ev => {
             if (ev.getData() === 0) {
-              resolve();
               clearTimeout(timer);
+              resolve();
             }
           });
         }

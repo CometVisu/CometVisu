@@ -196,9 +196,6 @@
         "cv.build": "source",
         "cv.sentry": false,
         "qx.globalErrorHandling": false
-      },
-      "bundle": {
-        "include": ["qx.*"]
       }
     },
     {

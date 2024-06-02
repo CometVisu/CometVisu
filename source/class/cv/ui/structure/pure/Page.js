@@ -97,7 +97,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      */
     createFinal() {
       // special function - only for pages!
-      const target = cv.Application.structureController.getRenderTarget();
+      const target = cv.ui.structure.pure.Controller.getInstance().getRenderTarget();
       document.querySelector(target).innerHTML = this.allPages;
       qx.event.message.Bus.unsubscribe('setup.dom.append', this.createFinal, this);
     }

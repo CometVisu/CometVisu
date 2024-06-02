@@ -302,24 +302,32 @@ const customMatchers = {
 beforeAll(function (done) {
   window.cvTestMode = true;
   jasmine.addMatchers(customMatchers);
-  setTimeout(function () {
-    try {
-      cv.Config.enableCache = false;
-      // always test in 'en' locale
-      qx.locale.Manager.getInstance().setLocale('en');
-      const client = cv.io.BackendConnections.initBackendClients();
-      const templateEngine = cv.TemplateEngine.getInstance();
-      templateEngine.loadParts(['structure-tile', 'structure-pure']);
-      templateEngine.addListenerOnce('changePartsLoaded', () => {
-        done();
-      });
-      const model = cv.data.Model.getInstance();
-      client.update = model.update.bind(model); // override clients update function
-      resetApplication();
-    } catch (e) {
-      console.error(e);
+
+  // this is an ugly hack but the only known way to get rid of '//' in URIs that the karma webserver cannot handle correctly
+  for (const k in qx.util.LibraryManager) {
+    if (k.startsWith('__libs')) {
+      const libs = qx.util.LibraryManager[k];
+      if (libs && libs.cv.resourceUri.endsWith('/')) {
+        libs.cv.resourceUri = libs.cv.resourceUri.substring(0, libs.cv.resourceUri.length-1);
+      }
     }
-  }, 2000);
+  }
+
+  try {
+    cv.Config.enableCache = false;
+    // always test in 'en' locale
+    qx.locale.Manager.getInstance().setLocale('en');
+    const client = cv.io.BackendConnections.initBackendClients();
+    const templateEngine = cv.TemplateEngine.getInstance();
+    const model = cv.data.Model.getInstance();
+    client.update = model.update.bind(model); // override clients update function
+    templateEngine.loadParts(['structure-tile', 'structure-pure']).then(() => {
+      resetApplication();
+      done();
+    });
+  } catch (e) {
+    console.error(e);
+  }
 });
 
 beforeEach(function () {
@@ -345,12 +353,12 @@ beforeEach(function () {
 });
 
 afterEach(function () {
-  var templateEngine = cv.TemplateEngine.getInstance();
+  const templateEngine = cv.TemplateEngine.getInstance();
   templateEngine.widgetData = {};
   cv.data.Model.getInstance().clear();
   cv.ui.structure.WidgetFactory.clear();
 
-  var subs = qx.event.message.Bus.getInstance().getSubscriptions();
+  const subs = qx.event.message.Bus.getInstance().getSubscriptions();
   Object.getOwnPropertyNames(subs).forEach(function(topic) {
     delete subs[topic];
   });
@@ -372,5 +380,4 @@ afterEach(function () {
   document.body.innerHTML = '';
   cv.TemplateEngine.getInstance().resetDomFinished();
   qx.core.Init.getApplication().resetStructureLoaded();
-  // resetApplication();
 });
