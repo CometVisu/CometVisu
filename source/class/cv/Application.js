@@ -103,7 +103,10 @@ qx.Class.define('cv.Application', {
         this._relResourcePath =
           qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')).substring(
             baseUrl.length + 1
-          ) + '/';
+          );
+        if (!this._relResourcePath.endsWith('/')) {
+          this._relResourcePath += '/';
+        }
       }
       if (fullPath === true) {
         if (!this._fullResourcePath) {
