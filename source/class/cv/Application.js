@@ -23,8 +23,7 @@
  * @asset(demo/*)
  * @asset(designs/*)
  * @asset(icons/*)
- * @asset(sentry/bundle.tracing.min.js)
- * @asset(sentry/rewriteframes.min.js)
+ * @asset(sentry/*)
  * @asset(test/*)
  *
  * @require(qx.bom.Html,cv.ui.PopupHandler)
