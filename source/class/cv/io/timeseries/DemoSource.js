@@ -51,10 +51,6 @@ qx.Class.define('cv.io.timeseries.DemoSource', {
         offset
       });
       return config;
-    },
-
-    processResponse(response) {
-      return response;
     }
   }
 });
