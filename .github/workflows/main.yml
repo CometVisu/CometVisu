@@ -188,7 +188,8 @@ jobs:
           export SENTRY_RELEASE=$(sentry-cli releases propose-version)
           sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
           sentry-cli releases set-commits --auto $SENTRY_RELEASE
-          sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps build --no-rewrite --ignore node_modules/ --ignore test/
+          npm run sentry:sourcemaps
+          sentry-cli sourcemaps upload -r $SENTRY_RELEASE --no-rewrite --ignore node_modules/ --ignore test/ ./build
           sentry-cli releases finalize $SENTRY_RELEASE
         env:
           SENTRY_ORG: cometvisu
