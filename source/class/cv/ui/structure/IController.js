@@ -112,6 +112,11 @@ qx.Interface.define('cv.ui.structure.IController', {
      * handle browser history events that are used to navigate inside the visu
      * @param anchor {String}
      */
-    onHistoryRequest(anchor) {}
+    onHistoryRequest(anchor) {},
+
+    /**
+     * Add UI specific information to the sentry scope, if sentry is enabled
+     */
+    updateSentryScope() {}
   }
 });

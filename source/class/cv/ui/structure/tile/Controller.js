@@ -603,6 +603,12 @@ qx.Class.define('cv.ui.structure.tile.Controller', {
         );
         this._templateWidgets.push(cv.ui.structure.tile.Controller.PREFIX + template.getAttribute('id'));
       }
+    },
+    updateSentryScope() {
+      if (cv.Config.sentryEnabled && window.Sentry) {
+        Sentry.setTag('ui.structure', 'tile');
+        Sentry.setTag('ui.design', cv.Config.getDesign());
+      }
     }
   },
 

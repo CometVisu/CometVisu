@@ -45,16 +45,15 @@ for (const depName in pkg.dependencies) {
   switch (depName) {
     case '@sentry/browser':
       version = pkg.dependencies[depName].substring(1);
-      console.log('loading', depName, version);
-      load('bundle.min.js', version);
-      load('bundle.min.js.map', version);
-      break;
-
-    case '@sentry/tracing':
-      version = pkg.dependencies[depName].substring(1);
-      console.log('loading', depName, version);
-      load('bundle.tracing.min.js', version);
-      load('bundle.tracing.min.js.map', version);
       break;
   }
 }
+
+console.log('loading bundle.tracing', version);
+load('bundle.tracing.min.js', version);
+load('bundle.tracing.min.js.map', version);
+
+// load rewrite manually
+console.log('loading rewriteframes', version);
+load('rewriteframes.min.js', version);
+load('rewriteframes.min.js.map', version);

@@ -393,13 +393,11 @@ qx.Class.define('cv.Config', {
         cv.Config.sentryEnabled = true;
         // generate unique transactionId and set as Sentry tag
         cv.Config.transactionId = Math.random().toString(36).substr(2, 9);
-        Sentry.configureScope(function (scope) {
-          scope.setTag('transaction_id', cv.Config.transactionId);
-          scope.setTag('build.date', cv.Version.DATE);
-          scope.setTag('build.branch', cv.Version.BRANCH);
-          Object.keys(cv.Version.TAGS).forEach(function (tag) {
-            scope.setTag(tag, cv.Version.TAGS[tag]);
-          });
+        Sentry.setTag('transaction_id', cv.Config.transactionId);
+        Sentry.setTag('build.date', cv.Version.DATE);
+        Sentry.setTag('build.branch', cv.Version.BRANCH);
+        Object.keys(cv.Version.TAGS).forEach(function (tag) {
+          Sentry.setTag(tag, cv.Version.TAGS[tag]);
         });
       }
     }

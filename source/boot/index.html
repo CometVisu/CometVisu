@@ -19,7 +19,7 @@
   <meta name="apple-mobile-web-app-title" content="CometVisu">
   <meta name="msapplication-TileImage" content="${resourcePath}icons/comet_webapp_icon_144.png">
   <meta name="msapplication-TileColor" content="#222222">
-  <script type="application/javascript"><![CDATA[
+  <script type="application/javascript">
     const loadJS = function() {
       const args = Array.from(arguments);
       const callback = args.pop();
@@ -81,7 +81,7 @@
 
 
       // load sentry and wait for it
-      loadJS('${resourcePath}sentry/bundle.min.js', function () {
+      loadJS('${resourcePath}sentry/bundle.tracing.min.js', '${resourcePath}sentry/rewriteframes.min.js', function () {
         Sentry.init({
           dsn: 'https://4346a6d6f24346f29ee3b408f51e0400@o178808.ingest.sentry.io/1265678',
           release: 'ReleaseNotSetYet',
@@ -150,7 +150,6 @@
       })
     }
     ${preBootJs}
-  ]]>
   </script>
   <script type="text/javascript" src="${appPath}index.js"></script>
   <style type="text/css" id="pageSize"></style>
