@@ -82,6 +82,8 @@ qx.Class.define('cv.io.BackendConnections', {
         cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
       const backendMQTTUrl =
         cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
+      const backendIoBrokerUrl =
+        cv.Config.URL.backendIoBrokerUrl || cv.Config.configSettings.backendIoBrokerUrl || cv.Config.server.backendIoBrokerUrl;
       const backendOpenHABUrl =
         cv.Config.URL.backendOpenHABUrl ||
         cv.Config.configSettings.backendOpenHABUrl ||
@@ -101,6 +103,11 @@ qx.Class.define('cv.io.BackendConnections', {
         case 'mqtt':
           defaultType = 'mqtt';
           defaultClient = this.addBackendClient(defaultName, defaultType, backendMQTTUrl, 'server');
+          break;
+
+        case 'iobroker':
+          defaultType = 'iobroker';
+          defaultClient = this.addBackendClient(defaultName, defaultType, backendIoBrokerUrl, 'server');
           break;
 
         case 'openhab':
@@ -125,6 +132,12 @@ qx.Class.define('cv.io.BackendConnections', {
           case 'mqtt':
             if (defaultType !== 'mqtt') {
               this.addBackendClient('mqtt', 'mqtt', backendMQTTUrl, 'server');
+            }
+            break;
+
+          case 'iobroker':
+            if (defaultType !== 'iobroker') {
+              this.addBackendClient('iobroker', 'iobroker', backendIoBrokerUrl, 'server');
             }
             break;
 

@@ -82,6 +82,9 @@ qx.Class.define('cv.ui.structure.tile.elements.Backend', {
           case 'mqtt':
             backendUrlConfigKey = 'backendMQTTUrl';
             break;
+          case 'iobroker':
+            backendUrlConfigKey = 'backendIoBrokerUrl';
+            break;
         }
 
         if (backendUrlConfigKey) {
