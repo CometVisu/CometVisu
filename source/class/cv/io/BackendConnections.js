@@ -174,16 +174,14 @@ qx.Class.define('cv.io.BackendConnections', {
       client.showError = this._handleClientError.bind(this);
 
       if (cv.Config.sentryEnabled && window.Sentry) {
-        Sentry.configureScope(function (scope) {
-          scope.setTag('backend.' + name, type);
-          const webServer = client.getServer();
-          if (webServer) {
-            scope.setTag('server.backend.' + name, webServer);
-          }
-          if (name === 'main' && cv.Config.configServer) {
-            scope.setTag('server.web.main', cv.Config.configServer);
-          }
-        });
+        Sentry.setTag('backend.' + name, type);
+        const webServer = client.getServer();
+        if (webServer) {
+          Sentry.setTag('server.backend.' + name, webServer);
+        }
+        if (name === 'main' && cv.Config.configServer) {
+          Sentry.setTag('server.web.main', cv.Config.configServer);
+        }
         client.addListener('changedServer', () => this._updateClientScope(name));
       }
       if (!this.__activeChangeListenerId) {
@@ -395,12 +393,10 @@ qx.Class.define('cv.io.BackendConnections', {
 
     _updateClientScope(name) {
       const client = this.getClient(name);
-      Sentry.configureScope(function (scope) {
-        const webServer = client.getServer();
-        if (webServer) {
-          scope.setTag('server.backend.' + name, webServer);
-        }
-      });
+      const webServer = client.getServer();
+      if (webServer) {
+        Sentry.setTag('server.backend.' + name, webServer);
+      }
     },
 
     _handleClientError(errorCode, varargs) {

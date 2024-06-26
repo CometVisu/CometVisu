@@ -23,8 +23,8 @@
  * @asset(demo/*)
  * @asset(designs/*)
  * @asset(icons/*)
- * @asset(sentry/bundle.min.js)
  * @asset(sentry/bundle.tracing.min.js)
+ * @asset(sentry/rewriteframes.min.js)
  * @asset(test/*)
  *
  * @require(qx.bom.Html,cv.ui.PopupHandler)
@@ -888,6 +888,8 @@ qx.Class.define('cv.Application', {
         }
       }
       this.__appReady = true;
+
+      cv.Application.structureController.updateSentryScope();
     },
 
     /**
@@ -1147,17 +1149,15 @@ qx.Class.define('cv.Application', {
             this.setManagerChecked(true);
 
             if (window.Sentry) {
-              Sentry.configureScope(function (scope) {
-                if ('server_release' in env) {
-                  scope.setTag('server.release', env.server_release);
-                }
-                if ('server_branch' in env) {
-                  scope.setTag('server.branch', env.server_branch);
-                }
-                if ('server_id' in env) {
-                  scope.setTag('server.id', env.server_id);
-                }
-              });
+              if ('server_release' in env) {
+                Sentry.setTag('server.release', env.server_release);
+              }
+              if ('server_branch' in env) {
+                Sentry.setTag('server.branch', env.server_branch);
+              }
+              if ('server_id' in env) {
+                Sentry.setTag('server.id', env.server_id);
+              }
             }
           }
         });
