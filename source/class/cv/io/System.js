@@ -46,6 +46,19 @@ qx.Class.define('cv.io.System', {
 
   /*
   ***********************************************
+    PROPERTIES
+  ***********************************************
+  */
+  properties: {
+    // system backend is always connected
+    connected: {
+      refine: true,
+      init: true
+    }
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -72,7 +85,6 @@ qx.Class.define('cv.io.System', {
       if (callback) {
         callback.call(context);
       }
-      this.setConnected(true);
     },
 
     subscribe(addresses, filters) {
