@@ -178,19 +178,20 @@ jobs:
         run: CV_TAG_RUNTIME=docker grunt release-cv
       - name: Move to release folder
         run: mv release build
-      - name: Push to Docker Hub
-        run: ./utils/ci/docker_push.sh
-        env:
-          DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKER_PASS: ${{ secrets.DOCKERHUB_TOKEN }}
       - run: |
           curl -sL https://sentry.io/get-cli/ | bash
           export SENTRY_RELEASE=$(sentry-cli releases propose-version)
           sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
           sentry-cli releases set-commits --auto $SENTRY_RELEASE
-          sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps build --no-rewrite --ignore node_modules/ --ignore test/
+          sentry-cli sourcemaps inject --ignore node_modules/ --ignore test/ ./build
+          sentry-cli sourcemaps upload -r $SENTRY_RELEASE --no-rewrite --ignore node_modules/ --ignore test/ ./build
           sentry-cli releases finalize $SENTRY_RELEASE
         env:
           SENTRY_ORG: cometvisu
           SENTRY_PROJECT: cometvisu
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      - name: Push to Docker Hub
+        run: ./utils/ci/docker_push.sh
+        env:
+          DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKERHUB_TOKEN }}

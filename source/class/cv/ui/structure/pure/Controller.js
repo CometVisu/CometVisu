@@ -653,6 +653,13 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       }
       // not found
       return null;
+    },
+
+    updateSentryScope() {
+      if (cv.Config.sentryEnabled && window.Sentry) {
+        Sentry.setTag('ui.structure', 'pure');
+        Sentry.setTag('ui.design', cv.Config.getDesign());
+      }
     }
   },
 
