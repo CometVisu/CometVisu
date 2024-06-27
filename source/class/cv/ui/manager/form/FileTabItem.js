@@ -106,6 +106,12 @@ qx.Class.define('cv.ui.manager.form.FileTabItem', {
       check: 'Boolean',
       init: true,
       apply: '_applyLabel'
+    },
+
+    readOnly: {
+      check: "Boolean",
+      init: false,
+      event: "changeReadOnly"
     }
   },
 
