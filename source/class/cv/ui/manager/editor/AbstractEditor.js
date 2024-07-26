@@ -34,7 +34,23 @@ qx.Class.define('cv.ui.manager.editor.AbstractEditor', {
   construct() {
     super();
     this._initClient();
+    if (this._client) {
+      this._client.addListener('error', function(ev) {
+        if (ev.getRequest().getStatus() === 401) {
+          this.fireEvent('unauthorized');
+        }
+      }, this);
+    }
     this._nativePasteSupported = document.queryCommandSupported('paste');
+  },
+
+  /*
+  ***********************************************
+   EVENTS
+  ***********************************************
+  */
+  events: {
+   'unauthorized': 'qx.event.type.Event'
   },
 
   /*

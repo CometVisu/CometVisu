@@ -71,6 +71,20 @@ qx.Class.define('cv.ui.manager.editor.Config', {
       this._client = cv.io.rest.Client.getConfigClient();
       this._client.addListener('getSuccess', this._onModelValueChange, this);
       this._client.addListener('updateSuccess', this._onSaved, this);
+      this._client.addListener('error', function(ev) {
+        let data = ev.getData();
+        if (typeof data === 'string') {
+          if (data.startsWith('{') && data.endsWith('}')) {
+            try {
+              data = JSON.parse(data);
+            } catch (e) {}
+          }
+        }
+        if (data.error) {
+          data = data.error;
+        }
+        cv.ui.manager.snackbar.Controller.error(data.message);
+      }, this);
     },
 
     _loadFile(file) {

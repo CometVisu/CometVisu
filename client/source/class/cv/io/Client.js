@@ -689,6 +689,10 @@ qx.Class.define('cv.io.Client', {
     // this client does not implement an authorization
     authorize(req) {},
 
+    canAuthorize() {
+      return false;
+    },
+
     /**
      * Restart the connection
      * @param full

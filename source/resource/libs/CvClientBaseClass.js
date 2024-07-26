@@ -179,6 +179,10 @@
     authorize(req) {
     }
 
+    canAuthorize() {
+      return false;
+    }
+
     /**
      * return the relative path to a resource on the currently used backend
      *

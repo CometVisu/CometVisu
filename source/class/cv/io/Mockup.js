@@ -222,6 +222,10 @@ qx.Class.define('cv.io.Mockup', {
 
     authorize(req) {},
 
+    canAuthorize() {
+      return false;
+    },
+
     terminate() {},
 
     update(json) {},

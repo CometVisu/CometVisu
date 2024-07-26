@@ -26,6 +26,7 @@ const filesToCopy = [
   '../package.json',
   'version',
   '../node_modules/monaco-editor',
+  '../node_modules/oauth-pkce/dist/oauth-pkce.min.js',
   'rest/manager',
   'rest/openapi.yaml',
   'test',

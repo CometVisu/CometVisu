@@ -199,6 +199,9 @@ qx.Class.define('cv.io.System', {
     },
 
     authorize(req) {},
+    canAuthorize() {
+      return false;
+    },
 
     terminate() {},
 
