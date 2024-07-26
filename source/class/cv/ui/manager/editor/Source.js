@@ -100,7 +100,11 @@ qx.Class.define('cv.ui.manager.editor.Source', {
 
     load(callback, context) {
       const version = qx.core.Environment.get('qx.debug') ? 'dev' : 'min';
-      const sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '..');
+      let resourceUri = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri');
+      if (!resourceUri.endsWith('/')) {
+        resourceUri += '/';
+      }
+      const sourcePath = qx.util.Uri.getAbsolute(resourceUri + '..');
 
       const loader = new qx.util.DynamicScriptLoader([
         sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js',
