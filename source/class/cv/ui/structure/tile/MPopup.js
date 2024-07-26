@@ -112,7 +112,8 @@ qx.Mixin.define('cv.ui.structure.tile.MPopup', {
     },
 
     _onPointerDown(ev) {
-      if (!cv.util.Tree.isChildOf(ev.target, this._element)) {
+      const element = this._headerFooterParent || this._element;
+      if (!cv.util.Tree.isChildOf(ev.target, element)) {
         ev.preventDefault();
         ev.stopImmediatePropagation();
         // clicked outside -> close (with delay to capture composed events)

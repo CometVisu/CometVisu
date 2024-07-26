@@ -47,11 +47,11 @@
     "babel-preset-es2015": "^6.24.1",
     "chmodr": "^1.2.0",
     "easyimage": "^3.1.1",
-    "eslint": "^8.56.0",
+    "eslint": "^9.6.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-custom-elements": "^0.0.8",
     "eslint-plugin-jasmine": "^4.1.3",
-    "eslint-plugin-jsdoc": "^46.9.1",
+    "eslint-plugin-jsdoc": "^48.5.0",
     "eslint-plugin-protractor": "^2.1.1",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
@@ -86,10 +86,10 @@
     "xml-js": "^1.6.11"
   },
   "dependencies": {
-    "@qooxdoo/framework": "^7.7.1",
+    "@qooxdoo/framework": "^7.7.2",
     "@sentry/browser": "^8.12.0",
     "crc-32": "^1.2.2",
-    "monaco-editor": "^0.45.0"
+    "monaco-editor": "^0.50.0"
   },
   "eslintConfig": {
     "root": true,
@@ -227,6 +227,7 @@
       "Favico": "readonly",
       "jQuery": "readonly",
       "localStorage": "readonly",
+      "sessionStorage": "readonly",
       "monaco": "readonly",
       "Paho": "readonly",
       "replayLog": "readonly",

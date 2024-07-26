@@ -448,13 +448,15 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     },
 
     _onSeriesChange(select) {
-      this._initializing = true;
-      // reset offset when series changed
-      this.resetCurrentPeriod();
-      this._initializing = false;
-      // reset configuration, we need a new one
-      this._chartConf = null;
-      this.setCurrentSeries(select);
+      if (this.getCurrentSeries() !== select) {
+        this._initializing = true;
+        // reset offset when series changed
+        this.resetCurrentPeriod();
+        this._initializing = false;
+        // reset configuration, we need a new one
+        this._chartConf = null;
+        this.setCurrentSeries(select);
+      }
     },
 
     _onSeriesNext() {
