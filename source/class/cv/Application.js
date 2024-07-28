@@ -67,8 +67,14 @@ qx.Class.define('cv.Application', {
 
     const check = e => {
       const req = e.getTarget();
-      const header = req.getResponseHeader('Server');
-      const isOpenHAB = header ? header.startsWith('Jetty') : false;
+      let header = req.getResponseHeader('Server');
+      let isOpenHAB = false;
+      if (header) {
+        isOpenHAB = header.startsWith('Jetty');
+      } else {
+        header = req.getResponseHeader('X-CometVisu-Backend-Name');
+        isOpenHAB = header === 'openhab';
+      }
       this.setServedByOpenhab(isOpenHAB);
       this.setServerChecked(true);
     };
@@ -1110,6 +1116,9 @@ qx.Class.define('cv.Application', {
 
             this.setServerPhpVersion(env.phpversion);
             this.setServer(env.SERVER_SOFTWARE);
+            if (Object.prototype.hasOwnProperty.call(env, 'requiresAuth')) {
+              cv.io.rest.Client.AUTH_REQUIRED = env.requiresAuth === true;
+            }
 
             const serverVersionId = env.PHP_VERSION_ID;
             const orParts = env.required_php_version

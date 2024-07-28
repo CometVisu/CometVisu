@@ -620,7 +620,6 @@ button.ui-slider-handle {
 
 .popup.notification,
 .popup_background.notification {
-  position: absolute;
   padding: 30px;
   width: auto;
   height: auto;
@@ -628,6 +627,7 @@ button.ui-slider-handle {
 }
 
 .popup {
+  position: absolute;
   z-index: 100001;
   background: transparent;
   font-family: Arial, sans-serif;
@@ -642,6 +642,7 @@ button.ui-slider-handle {
   text-align: center;
   -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
   background: #000;
+  color: white;
   border: 1px solid #fff;
   cursor: pointer;
 }
@@ -660,10 +661,15 @@ button.ui-slider-handle {
 
 .popup div.head {
   border-bottom: 1px solid;
+  color: white;
 }
 
 .popup .main {
   overflow-y: auto;
+}
+
+.popup iframe {
+  border: none;
 }
 
 .popup .main > div > .icon:not(.spinner) {

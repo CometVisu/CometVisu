@@ -237,6 +237,9 @@ qx.Class.define('cv.io.mqtt.Client', {
      * @param req {qx.io.request.Xhr}
      */
     authorize(req) {},
+    canAuthorize() {
+      return false;
+    },
 
     /**
      * return the relative path to a resource on the currently used backend

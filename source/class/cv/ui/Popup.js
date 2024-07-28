@@ -196,6 +196,15 @@ qx.Class.define('cv.ui.Popup', {
         } else {
           this.destroyElement('progress');
         }
+      } else if (attributes.iframe) {
+        if (!this.__elementMap.iframe) {
+          this.__elementMap.iframe = qx.dom.Element.create('iframe', {
+            width: '100%',
+            height: '100%'
+          });
+          ret_val.appendChild(this.__elementMap.iframe);
+        }
+        this.__elementMap.iframe.setAttribute('src', attributes.iframe);
       }
 
       if (attributes.actions && Object.getOwnPropertyNames(attributes.actions).length > 0) {
@@ -348,6 +357,13 @@ qx.Class.define('cv.ui.Popup', {
         this.__elementMap[name].parentNode.removeChild(this.__elementMap[name]);
         delete this.__elementMap[name];
       }
+    },
+
+    getElement(name) {
+      if (this.__elementMap[name]) {
+        return this.__elementMap[name];
+      }
+      return null;
     },
 
     /**
