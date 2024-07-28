@@ -187,4 +187,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.ScssConverter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScssConverter.js.map?dt=1722151846849
+//# sourceMappingURL=ScssConverter.js.map?dt=1722153842382

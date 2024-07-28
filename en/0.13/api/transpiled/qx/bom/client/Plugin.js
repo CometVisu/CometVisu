@@ -391,4 +391,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.bom.client.Plugin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Plugin.js.map?dt=1722151816829
+//# sourceMappingURL=Plugin.js.map?dt=1722153811049

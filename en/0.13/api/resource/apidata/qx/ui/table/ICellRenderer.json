@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1722151625899,
-  "lastModifiedIso": "2024-07-28T07:27:05.899Z",
+  "lastModified": 1722153600487,
+  "lastModifiedIso": "2024-07-28T08:00:00.487Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/table/ICellRenderer.js",
   "type": "interface",
   "location": {

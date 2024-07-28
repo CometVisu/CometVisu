@@ -50,4 +50,4 @@
   qx.test.ui.core.AppearanceTheme.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AppearanceTheme.js.map?dt=1722151836103
+//# sourceMappingURL=AppearanceTheme.js.map?dt=1722153831117

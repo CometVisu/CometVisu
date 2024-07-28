@@ -64,4 +64,4 @@
   qx.io.jsonrpc.protocol.Notification.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Notification.js.map?dt=1722151825486
+//# sourceMappingURL=Notification.js.map?dt=1722153820014

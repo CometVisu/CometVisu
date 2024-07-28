@@ -144,4 +144,4 @@
   cv.core.notifications.SpeechHandler.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SpeechHandler.js.map?dt=1722151804726
+//# sourceMappingURL=SpeechHandler.js.map?dt=1722153798508

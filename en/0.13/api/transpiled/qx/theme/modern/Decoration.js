@@ -880,4 +880,4 @@
   qx.theme.modern.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1722151840744
+//# sourceMappingURL=Decoration.js.map?dt=1722153835942

@@ -43,4 +43,4 @@
   qx.test.MDecoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MDecoration.js.map?dt=1722151828559
+//# sourceMappingURL=MDecoration.js.map?dt=1722153823199

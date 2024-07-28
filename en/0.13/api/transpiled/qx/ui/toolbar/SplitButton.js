@@ -98,4 +98,4 @@
   qx.ui.toolbar.SplitButton.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=SplitButton.js.map?dt=1722151859385
+//# sourceMappingURL=SplitButton.js.map?dt=1722153855416

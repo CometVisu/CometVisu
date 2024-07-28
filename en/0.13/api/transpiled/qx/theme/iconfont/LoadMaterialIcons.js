@@ -37,4 +37,4 @@
   qx.theme.iconfont.LoadMaterialIcons.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=LoadMaterialIcons.js.map?dt=1722151840258
+//# sourceMappingURL=LoadMaterialIcons.js.map?dt=1722153835366

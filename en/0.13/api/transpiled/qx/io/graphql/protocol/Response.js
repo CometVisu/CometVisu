@@ -77,4 +77,4 @@
   qx.io.graphql.protocol.Response.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Response.js.map?dt=1722151825339
+//# sourceMappingURL=Response.js.map?dt=1722153819867

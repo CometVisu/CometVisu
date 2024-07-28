@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1722151626455,
-  "lastModifiedIso": "2024-07-28T07:27:06.455Z",
+  "lastModified": 1722153601047,
+  "lastModifiedIso": "2024-07-28T08:00:01.047Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/data/marshal/MEventBubbling.js",
   "type": "mixin",
   "location": {

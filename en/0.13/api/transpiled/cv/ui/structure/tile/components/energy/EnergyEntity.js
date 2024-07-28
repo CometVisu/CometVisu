@@ -218,4 +218,4 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   cv.ui.structure.tile.components.energy.EnergyEntity.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EnergyEntity.js.map?dt=1722151813035
+//# sourceMappingURL=EnergyEntity.js.map?dt=1722153807046

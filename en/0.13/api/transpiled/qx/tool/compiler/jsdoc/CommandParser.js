@@ -54,4 +54,4 @@
   qx.tool.compiler.jsdoc.CommandParser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CommandParser.js.map?dt=1722151846081
+//# sourceMappingURL=CommandParser.js.map?dt=1722153841591

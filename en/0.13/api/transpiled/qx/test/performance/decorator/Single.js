@@ -41,4 +41,4 @@
   qx.test.performance.decorator.Single.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Single.js.map?dt=1722151834899
+//# sourceMappingURL=Single.js.map?dt=1722153829874

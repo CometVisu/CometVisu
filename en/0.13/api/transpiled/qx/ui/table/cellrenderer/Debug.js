@@ -48,4 +48,4 @@
   qx.ui.table.cellrenderer.Debug.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Debug.js.map?dt=1722151858095
+//# sourceMappingURL=Debug.js.map?dt=1722153854040

@@ -75,4 +75,4 @@
   cv.parser.pure.widgets.Video.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Video.js.map?dt=1722151805919
+//# sourceMappingURL=Video.js.map?dt=1722153799743

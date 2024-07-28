@@ -71,4 +71,4 @@
   qxl.apiviewer.ui.panels.ChildControlsPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ChildControlsPanel.js.map?dt=1722151867797
+//# sourceMappingURL=ChildControlsPanel.js.map?dt=1722153864231
