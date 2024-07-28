@@ -188,16 +188,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
         client.showError = this._handleClientError.bind(this);
         if (cv.Config.sentryEnabled && window.Sentry) {
-          Sentry.configureScope(function (scope) {
-            scope.setTag('backend.' + name, type);
-            var webServer = client.getServer();
-            if (webServer) {
-              scope.setTag('server.backend.' + name, webServer);
-            }
-            if (name === 'main' && cv.Config.configServer) {
-              scope.setTag('server.web.main', cv.Config.configServer);
-            }
-          });
+          Sentry.setTag('backend.' + name, type);
+          var webServer = client.getServer();
+          if (webServer) {
+            Sentry.setTag('server.backend.' + name, webServer);
+          }
+          if (name === 'main' && cv.Config.configServer) {
+            Sentry.setTag('server.web.main', cv.Config.configServer);
+          }
           client.addListener('changedServer', function () {
             return _this._updateClientScope(name);
           });
@@ -390,12 +388,10 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       },
       _updateClientScope: function _updateClientScope(name) {
         var client = this.getClient(name);
-        Sentry.configureScope(function (scope) {
-          var webServer = client.getServer();
-          if (webServer) {
-            scope.setTag('server.backend.' + name, webServer);
-          }
-        });
+        var webServer = client.getServer();
+        if (webServer) {
+          Sentry.setTag('server.backend.' + name, webServer);
+        }
       },
       _handleClientError: function _handleClientError(errorCode, varargs) {
         varargs = Array.prototype.slice.call(arguments, 1);
@@ -436,4 +432,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.io.BackendConnections.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BackendConnections.js.map?dt=1717235422134
+//# sourceMappingURL=BackendConnections.js.map?dt=1722151863859

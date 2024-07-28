@@ -153,7 +153,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       //
       // Auth, should be moved into qx.test.io.request.Xhr
       //
-      "test: Bearer authentication": function testBearerAuthentication() {
+      "test: Bearer authentication": function test_Bearer_authentication() {
         this.setUpFakeTransport();
         var transport = this.transport,
           auth,
@@ -172,7 +172,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       //
       // JSON-RPC
       //
-      "test: throw on invalid response id": function testThrowOnInvalidResponseId() {
+      "test: throw on invalid response id": function test_throw_on_invalid_response_id() {
         this.resetId();
         var response = qx.lang.Json.stringify({
           jsonrpc: "2.0",
@@ -181,7 +181,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         });
         this.assertExceptionThrown(response, qx.io.exception.Transport.UNKNOWN_ID);
       },
-      "test: throw on duplicate response id": function testThrowOnDuplicateResponseId() {
+      "test: throw on duplicate response id": function test_throw_on_duplicate_response_id() {
         this.resetId();
         var response = qx.lang.Json.stringify([{
           jsonrpc: "2.0",
@@ -194,7 +194,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }]);
         this.assertExceptionThrown(response, qx.io.exception.Transport.DUPLICATE_ID);
       },
-      "test: call jsonrpc method and receive response with single result": function testCallJsonrpcMethodAndReceiveResponseWithSingleResult() {
+      "test: call jsonrpc method and receive response with single result": function test_call_jsonrpc_method_and_receive_response_with_single_result() {
         var _this2 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var message_out, result, message_in, client, spy;
@@ -222,7 +222,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee);
         }))();
       },
-      "test: call jsonrpc method and receive batched response": function testCallJsonrpcMethodAndReceiveBatchedResponse() {
+      "test: call jsonrpc method and receive batched response": function test_call_jsonrpc_method_and_receive_batched_response() {
         var _this3 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var message_out, result, response, client, spy;
@@ -250,13 +250,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee2);
         }))();
       },
-      "test: call jsonrpc method and expect error on invalid reponse ": function testCallJsonrpcMethodAndExpectErrorOnInvalidReponse() {
+      "test: call jsonrpc method and expect error on invalid reponse ": function test_call_jsonrpc_method_and_expect_error_on_invalid_reponse_() {
         this.assertExceptionThrown("helloworld!", qx.io.exception.Transport.INVALID_JSON);
       },
-      "test: call jsonrpc method and expect error on invalid reponse - missing result": function testCallJsonrpcMethodAndExpectErrorOnInvalidReponseMissingResult() {
+      "test: call jsonrpc method and expect error on invalid reponse - missing result": function test_call_jsonrpc_method_and_expect_error_on_invalid_reponse__missing_result() {
         this.assertExceptionThrown("null", qx.io.exception.Transport.NO_DATA);
       },
-      "test: call jsonrpc method and expect error response": function testCallJsonrpcMethodAndExpectErrorResponse() {
+      "test: call jsonrpc method and expect error response": function test_call_jsonrpc_method_and_expect_error_response() {
         this.resetId();
         var response = qx.lang.Json.stringify({
           jsonrpc: "2.0",
@@ -268,7 +268,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         });
         this.assertExceptionThrown(response, qx.io.exception.Protocol);
       },
-      "test: send batched requests": function testSendBatchedRequests() {
+      "test: send batched requests": function test_send_batched_requests() {
         var _this4 = this;
         this.resetId();
         var response = qx.lang.Json.stringify([{
@@ -322,7 +322,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           this.assertCalledWith(spies[5].result, ["hello", 5]);
         }, this);
       },
-      "test: receive jsonrpc requests from server": function testReceiveJsonrpcRequestsFromServer() {
+      "test: receive jsonrpc requests from server": function test_receive_jsonrpc_requests_from_server() {
         var _this5 = this;
         this.resetId();
         var response = [{
@@ -353,4 +353,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.io.jsonrpc.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1717235390125
+//# sourceMappingURL=Client.js.map?dt=1722151832961

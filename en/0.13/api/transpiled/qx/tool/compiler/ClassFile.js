@@ -1202,8 +1202,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             t.__P_478_29 = true;
             t.__P_478_24 = true;
           }
-          t.__P_478_26.functionName = FUNCTION_NAMES[keyName] || keyName;
-          if (FUNCTION_NAMES[keyName] !== undefined) {
+          var isSpecialFunctionName = Object.keys(FUNCTION_NAMES).includes(keyName);
+          t.__P_478_26.functionName = isSpecialFunctionName ? FUNCTION_NAMES[keyName] : keyName;
+          if (isSpecialFunctionName) {
             makeMeta(keyName, null, functionNode);
           }
           enterFunction(path, functionNode);
@@ -1243,7 +1244,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             }
             var keyName = getKeyName(prop.key);
             checkValidTopLevel(path);
-            if (FUNCTION_NAMES[keyName] !== undefined) {
+            var isSpecialFunctionName = Object.keys(FUNCTION_NAMES).includes(keyName);
+            if (isSpecialFunctionName) {
               var val = path.node.value;
               val.leadingComments = (path.node.leadingComments || []).concat(val.leadingComments || []);
               handleTopLevelMethods(path, keyName, val);
@@ -2737,4 +2739,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.tool.compiler.ClassFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassFile.js.map?dt=1717235402840
+//# sourceMappingURL=ClassFile.js.map?dt=1722151845149

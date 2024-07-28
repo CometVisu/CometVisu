@@ -46,12 +46,12 @@
         this.getRoot().add(list);
         this.flush();
       },
-      "test: find regular item": function testFindRegularItem() {
+      "test: find regular item": function test_find_regular_item() {
         var list = this.__P_402_0;
         var found = list.findItem("AAA");
         this.assertInstance(found, qx.ui.form.ListItem, "Item not found");
       },
-      "test: find rich-text item": function testFindRichTextItem() {
+      "test: find rich-text item": function test_find_richText_item() {
         var list = this.__P_402_0;
         var item = new qx.ui.form.ListItem("<b>Bold</b>").set({
           rich: true
@@ -61,7 +61,7 @@
         var found = list.findItem("Bold");
         this.assertInstance(found, qx.ui.form.ListItem, "Item not found");
       },
-      "test: get container for list items": function testGetContainerForListItems() {
+      "test: get container for list items": function test_get_container_for_list_items() {
         var container = this.__P_402_0._createListItemContainer();
         this.assertInstance(container, qx.ui.container.Composite, "Wrong return value of '_createListItemContainer'");
         container.dispose();
@@ -75,4 +75,4 @@
   qx.test.ui.form.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1717235394150
+//# sourceMappingURL=List.js.map?dt=1722151836815

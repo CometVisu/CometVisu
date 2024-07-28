@@ -114,8 +114,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
    * @asset(demo/*)
    * @asset(designs/*)
    * @asset(icons/*)
-   * @asset(sentry/bundle.min.js)
-   * @asset(sentry/bundle.tracing.min.js)
+   * @asset(sentry/*)
    * @asset(test/*)
    *
    * @require(qx.bom.Html,cv.ui.PopupHandler)
@@ -190,7 +189,10 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
       getRelativeResourcePath: function getRelativeResourcePath(fullPath) {
         if (!this._relResourcePath) {
           var baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -1).join('/');
-          this._relResourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')).substring(baseUrl.length + 1) + '/';
+          this._relResourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri')).substring(baseUrl.length + 1);
+          if (!this._relResourcePath.endsWith('/')) {
+            this._relResourcePath += '/';
+          }
         }
         if (fullPath === true) {
           if (!this._fullResourcePath) {
@@ -887,7 +889,8 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
                 }
               case 20:
                 _this5.__P_2_0 = true;
-              case 21:
+                cv.Application.structureController.updateSentryScope();
+              case 22:
               case "end":
                 return _context4.stop();
             }
@@ -1108,17 +1111,15 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
               }
               _this7.setManagerChecked(true);
               if (window.Sentry) {
-                Sentry.configureScope(function (scope) {
-                  if ('server_release' in env) {
-                    scope.setTag('server.release', env.server_release);
-                  }
-                  if ('server_branch' in env) {
-                    scope.setTag('server.branch', env.server_branch);
-                  }
-                  if ('server_id' in env) {
-                    scope.setTag('server.id', env.server_id);
-                  }
-                });
+                if ('server_release' in env) {
+                  Sentry.setTag('server.release', env.server_release);
+                }
+                if ('server_branch' in env) {
+                  Sentry.setTag('server.branch', env.server_branch);
+                }
+                if ('server_id' in env) {
+                  Sentry.setTag('server.id', env.server_id);
+                }
               }
             }
           });
@@ -1176,4 +1177,4 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1717235360402
+//# sourceMappingURL=Application.js.map?dt=1722151804356

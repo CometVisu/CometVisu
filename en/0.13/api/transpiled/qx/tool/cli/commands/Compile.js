@@ -792,12 +792,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       __P_465_7: function __P_465_7(watch) {
         var _this3 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
-          var classFiles, scanImpl, metaDb, _i, _Object$values, lib, dir, _iterator, _step, filename, tsWriter, debounce;
+          var classFiles, _scanImpl, metaDb, _i, _Object$values, lib, dir, _iterator, _step, filename, tsWriter, debounce;
           return _regeneratorRuntime().wrap(function _callee10$(_context10) {
             while (1) switch (_context10.prev = _context10.next) {
               case 0:
                 classFiles = []; // Scans a directory recursively to find all .js files
-                scanImpl = /*#__PURE__*/function () {
+                _scanImpl = /*#__PURE__*/function () {
                   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(filename) {
                     var basename, stat, files, i, subname;
                     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
@@ -832,7 +832,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           }
                           subname = path.join(filename, files[i]);
                           _context8.next = 17;
-                          return scanImpl(subname);
+                          return _scanImpl(subname);
                         case 17:
                           i++;
                           _context8.next = 13;
@@ -868,7 +868,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   sourceDir: dir
                 };
                 _context10.next = 14;
-                return scanImpl(dir);
+                return _scanImpl(dir);
               case 14:
                 _i++;
                 _context10.next = 8;
@@ -879,43 +879,40 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _iterator.s();
               case 20:
                 if ((_step = _iterator.n()).done) {
-                  _context10.next = 27;
+                  _context10.next = 26;
                   break;
                 }
                 filename = _step.value;
-                if (_this3.argv.verbose) {
-                  qx.tool.compiler.Console.info("Processing ".concat(filename, " ..."));
-                }
-                _context10.next = 25;
+                _context10.next = 24;
                 return metaDb.addFile(filename, !!_this3.argv.clean);
-              case 25:
+              case 24:
                 _context10.next = 20;
                 break;
-              case 27:
-                _context10.next = 32;
+              case 26:
+                _context10.next = 31;
                 break;
-              case 29:
-                _context10.prev = 29;
+              case 28:
+                _context10.prev = 28;
                 _context10.t0 = _context10["catch"](18);
                 _iterator.e(_context10.t0);
-              case 32:
-                _context10.prev = 32;
+              case 31:
+                _context10.prev = 31;
                 _iterator.f();
-                return _context10.finish(32);
-              case 35:
-                _context10.next = 37;
+                return _context10.finish(31);
+              case 34:
+                _context10.next = 36;
                 return metaDb.reparseAll();
-              case 37:
-                _context10.next = 39;
+              case 36:
+                _context10.next = 38;
                 return metaDb.save();
-              case 39:
-                _context10.next = 41;
+              case 38:
+                _context10.next = 40;
                 return _this3.fireDataEventAsync("writtenMetaData", metaDb);
-              case 41:
+              case 40:
                 // Do the inital write
                 tsWriter = null;
                 if (!_this3.__P_465_5) {
-                  _context10.next = 48;
+                  _context10.next = 47;
                   break;
                 }
                 qx.tool.compiler.Console.info("Generating typescript output ...");
@@ -925,15 +922,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 } else {
                   tsWriter.setOutputTo(path.join(_this3.__P_465_4, "..", "qooxdoo.d.ts"));
                 }
-                _context10.next = 48;
+                _context10.next = 47;
                 return tsWriter.process();
-              case 48:
+              case 47:
                 if (watch) {
-                  _context10.next = 50;
+                  _context10.next = 49;
                   break;
                 }
                 return _context10.abrupt("return");
-              case 50:
+              case 49:
                 // Redo the files that change, as they change
                 classFiles = {};
                 debounce = new qx.tool.utils.Debounce( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
@@ -1001,11 +998,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     debounce.run();
                   }
                 });
-              case 53:
+              case 52:
               case "end":
                 return _context10.stop();
             }
-          }, _callee10, null, [[18, 29, 32, 35]]);
+          }, _callee10, null, [[18, 28, 31, 34]]);
         }))();
       },
       /**
@@ -1858,4 +1855,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Compile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Compile.js.map?dt=1717235399921
+//# sourceMappingURL=Compile.js.map?dt=1722151842312

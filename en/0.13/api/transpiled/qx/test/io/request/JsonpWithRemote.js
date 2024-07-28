@@ -56,7 +56,7 @@
       tearDown: function tearDown() {
         this.req.dispose();
       },
-      "test: fetch json": function testFetchJson() {
+      "test: fetch json": function test_fetch_json() {
         var _this = this;
         var req = this.req = new qx.io.request.Jsonp(),
           url = this.noCache(this.getUrl("qx/test/jsonp_primitive.php"));
@@ -78,4 +78,4 @@
   qx.test.io.request.JsonpWithRemote.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=JsonpWithRemote.js.map?dt=1717235390302
+//# sourceMappingURL=JsonpWithRemote.js.map?dt=1722151833141

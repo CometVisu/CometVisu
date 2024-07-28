@@ -64,7 +64,7 @@
             version = null;
           }
           if (!version) {
-            version = "7.7.1";
+            version = "7.7.2";
           }
         }
       }
@@ -87,4 +87,4 @@
   qxl.versionlabel.VersionLabel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VersionLabel.js.map?dt=1717235425131
+//# sourceMappingURL=VersionLabel.js.map?dt=1722151866691

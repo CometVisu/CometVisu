@@ -74,23 +74,27 @@
         }/api/${projectId}/events/${eventId}/attachments/?sentry_key=${user}&sentry_version=7&sentry_client=custom-javascript`;
       }
 
+      let basePath = window.location.pathname;
+      if (basePath.endsWith('/')) {
+        basePath = basePath.substring(0, basePath.length - 1);
+      }
+
+
       // load sentry and wait for it
-      loadJS('../resource/sentry/bundle.min.js', '../resource/sentry/bundle.tracing.min.js', function () {
+      loadJS('../resource/sentry/bundle.tracing.min.js', '../resource/sentry/rewriteframes.min.js', function () {
         Sentry.init({
           dsn: 'https://4346a6d6f24346f29ee3b408f51e0400@o178808.ingest.sentry.io/1265678',
           release: 'ReleaseNotSetYet',
           attachStacktrace: true,
-          integrations: [new Sentry.Integrations.BrowserTracing()],
+          integrations: [
+            Sentry.browserTracingIntegration(),
+            Sentry.rewriteFramesIntegration({root: basePath})
+          ],
+          tracesSampleRate: 1.0,
           beforeSend(data) {
-            var stacktrace = data.exception && data.exception.values[0].stacktrace;
-            var basePath = window.location.pathname;
+            let stacktrace = data.exception && data.exception.values[0].stacktrace;
 
             if (stacktrace) {
-              if (stacktrace.frames) {
-                stacktrace.frames.forEach(function (frame) {
-                  frame.filename = frame.filename.replace(basePath, "/");
-                });
-              }
               // Show report dialog (only in "de" or "en" language)
               Sentry.showReportDialog({
                 eventId: data.event_id,

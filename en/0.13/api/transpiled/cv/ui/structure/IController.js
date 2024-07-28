@@ -135,10 +135,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * handle browser history events that are used to navigate inside the visu
        * @param anchor {String}
        */
-      onHistoryRequest: function onHistoryRequest(anchor) {}
+      onHistoryRequest: function onHistoryRequest(anchor) {},
+      /**
+       * Add UI specific information to the sentry scope, if sentry is enabled
+       */
+      updateSentryScope: function updateSentryScope() {}
     }
   });
   cv.ui.structure.IController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IController.js.map?dt=1717235423781
+//# sourceMappingURL=IController.js.map?dt=1722151865434

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1717235172478,
-  "lastModifiedIso": "2024-06-01T09:46:12.478Z",
+  "lastModified": 1722151627183,
+  "lastModifiedIso": "2024-07-28T07:27:07.183Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/targets/Target.js",
   "type": "class",
   "location": {
@@ -13,7 +13,7 @@
     "end": {
       "line": 1146,
       "column": 3,
-      "index": 34878
+      "index": 34876
     }
   },
   "className": "qx.tool.compiler.targets.Target",
@@ -1308,7 +1308,7 @@
         "end": {
           "line": 547,
           "column": 5,
-          "index": 15341
+          "index": 15339
         }
       },
       "type": "function",
@@ -1350,12 +1350,12 @@
         "start": {
           "line": 553,
           "column": 4,
-          "index": 15436
+          "index": 15434
         },
         "end": {
           "line": 625,
           "column": 5,
-          "index": 17935
+          "index": 17933
         }
       },
       "type": "function",
@@ -1391,12 +1391,12 @@
         "start": {
           "line": 630,
           "column": 4,
-          "index": 18008
+          "index": 18006
         },
         "end": {
           "line": 713,
           "column": 5,
-          "index": 20768
+          "index": 20766
         }
       },
       "type": "function",
@@ -1435,12 +1435,12 @@
         "start": {
           "line": 718,
           "column": 4,
-          "index": 20845
+          "index": 20843
         },
         "end": {
           "line": 746,
           "column": 5,
-          "index": 21664
+          "index": 21662
         }
       },
       "type": "function",
@@ -1487,12 +1487,12 @@
         "start": {
           "line": 755,
           "column": 4,
-          "index": 21965
+          "index": 21963
         },
         "end": {
           "line": 768,
           "column": 5,
-          "index": 22338
+          "index": 22336
         }
       },
       "type": "function",
@@ -1531,12 +1531,12 @@
         "start": {
           "line": 778,
           "column": 4,
-          "index": 22953
+          "index": 22951
         },
         "end": {
           "line": 820,
           "column": 5,
-          "index": 24270
+          "index": 24268
         }
       },
       "type": "function",
@@ -1562,12 +1562,12 @@
         "start": {
           "line": 825,
           "column": 4,
-          "index": 24324
+          "index": 24322
         },
         "end": {
           "line": 858,
           "column": 5,
-          "index": 25595
+          "index": 25593
         }
       },
       "type": "function",
@@ -1593,12 +1593,12 @@
         "start": {
           "line": 863,
           "column": 4,
-          "index": 25684
+          "index": 25682
         },
         "end": {
           "line": 923,
           "column": 5,
-          "index": 27862
+          "index": 27860
         }
       },
       "type": "function",
@@ -1624,12 +1624,12 @@
         "start": {
           "line": 928,
           "column": 4,
-          "index": 27915
+          "index": 27913
         },
         "end": {
           "line": 994,
           "column": 5,
-          "index": 29940
+          "index": 29938
         }
       },
       "type": "function",
@@ -1655,12 +1655,12 @@
         "start": {
           "line": 999,
           "column": 4,
-          "index": 30000
+          "index": 29998
         },
         "end": {
           "line": 1140,
           "column": 5,
-          "index": 34814
+          "index": 34812
         }
       },
       "type": "function",
@@ -1674,12 +1674,12 @@
         "start": {
           "line": 1142,
           "column": 4,
-          "index": 34821
+          "index": 34819
         },
         "end": {
           "line": 1144,
           "column": 5,
-          "index": 34870
+          "index": 34868
         }
       },
       "type": "function",

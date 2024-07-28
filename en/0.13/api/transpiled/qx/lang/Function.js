@@ -164,7 +164,7 @@
         if (!(options.self || options.args || options.delay != null || options.periodical != null || options.attempt || options.always)) {
           return func;
         }
-        return function (event) {
+        var result = function result(event) {
           // Convert (and copy) incoming arguments
           var args = qx.lang.Array.fromArguments(arguments);
 
@@ -195,6 +195,7 @@
             return func.apply(options.self || this, args);
           }
         };
+        return result;
       },
       /**
        * Returns a function whose "this" is altered.
@@ -400,4 +401,4 @@
   qx.lang.Function.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Function.js.map?dt=1717235383524
+//# sourceMappingURL=Function.js.map?dt=1722151826586

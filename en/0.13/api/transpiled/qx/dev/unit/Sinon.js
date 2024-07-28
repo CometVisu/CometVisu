@@ -3558,7 +3558,7 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
           }
 
           // Cheap way to detect if we have ES5 support.
-          var hasES5Support = ("keys" in Object);
+          var hasES5Support = "keys" in Object;
           module.exports = function wrapMethod(object, property, method) {
             if (!object) {
               throw new TypeError("Should wrap property of object");
@@ -12384,19 +12384,19 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
             if (typeof func != 'function' || resolver && typeof resolver != 'function') {
               throw new TypeError(FUNC_ERROR_TEXT);
             }
-            var memoized = function memoized() {
+            var _memoized = function memoized() {
               var args = arguments,
                 key = resolver ? resolver.apply(this, args) : args[0],
-                cache = memoized.cache;
+                cache = _memoized.cache;
               if (cache.has(key)) {
                 return cache.get(key);
               }
               var result = func.apply(this, args);
-              memoized.cache = cache.set(key, result);
+              _memoized.cache = cache.set(key, result);
               return result;
             };
-            memoized.cache = new (memoize.Cache || MapCache)();
-            return memoized;
+            _memoized.cache = new (memoize.Cache || MapCache)();
+            return _memoized;
           }
 
           // Assign cache to `_.memoize`.
@@ -15785,4 +15785,4 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
   qx.dev.unit.Sinon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sinon.js.map?dt=1717235378782
+//# sourceMappingURL=Sinon.js.map?dt=1722151822043

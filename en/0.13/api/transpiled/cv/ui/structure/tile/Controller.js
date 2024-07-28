@@ -653,16 +653,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
         };
         var onEnd = function onEnd() {
-          finish();
+          _finish();
           if (refreshSpinner.classList.contains('visible')) {
             refreshSpinner.classList.remove('visible');
             location.reload();
           }
         };
-        var finish = function finish() {
+        var _finish = function finish() {
           eventSource.removeEventListener('touchmove', onMove);
           eventSource.removeEventListener('touchend', onEnd);
-          eventSource.removeEventListener('touchcancel', finish);
+          eventSource.removeEventListener('touchcancel', _finish);
         };
         eventSource.addEventListener('touchstart', function (ev) {
           startY = ev.touches[0].clientY;
@@ -670,7 +670,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           if (scrollContainer && scrollContainer.scrollTop === 0) {
             eventSource.addEventListener('touchmove', onMove);
             eventSource.addEventListener('touchend', onEnd);
-            eventSource.addEventListener('touchcancel', finish);
+            eventSource.addEventListener('touchcancel', _finish);
           }
         });
       },
@@ -715,6 +715,12 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           _iterator9.e(err);
         } finally {
           _iterator9.f();
+        }
+      },
+      updateSentryScope: function updateSentryScope() {
+        if (cv.Config.sentryEnabled && window.Sentry) {
+          Sentry.setTag('ui.structure', 'tile');
+          Sentry.setTag('ui.design', cv.Config.getDesign());
         }
       }
     },
@@ -1032,4 +1038,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1717235367883
+//# sourceMappingURL=Controller.js.map?dt=1722151811538

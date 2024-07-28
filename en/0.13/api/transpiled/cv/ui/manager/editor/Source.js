@@ -26,8 +26,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         "usage": "dynamic",
         "require": true
       },
-      "qx.util.Uri": {},
       "qx.util.LibraryManager": {},
+      "qx.util.Uri": {},
       "qx.util.DynamicScriptLoader": {},
       "cv.ui.manager.editor.completion.Config": {},
       "cv.ui.manager.editor.completion.CometVisu": {},
@@ -142,7 +142,11 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       load: function load(callback, context) {
         var _this = this;
         var version = false ? 'dev' : 'min';
-        var sourcePath = qx.util.Uri.getAbsolute(qx.util.LibraryManager.getInstance().get('cv', 'resourceUri') + '/..');
+        var resourceUri = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri');
+        if (!resourceUri.endsWith('/')) {
+          resourceUri += '/';
+        }
+        var sourcePath = qx.util.Uri.getAbsolute(resourceUri + '..');
         var loader = new qx.util.DynamicScriptLoader([sourcePath + 'node_modules/monaco-editor/' + version + '/vs/loader.js', 'manager/xml.js']);
         loader.addListener('ready', function () {
           window.require.config({
@@ -553,4 +557,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.ui.manager.editor.Source.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Source.js.map?dt=1717235364223
+//# sourceMappingURL=Source.js.map?dt=1722151807938

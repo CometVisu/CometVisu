@@ -91,7 +91,7 @@
       //
       // Basic
       //
-      "test: GET with event attribute handler": function testGETWithEventAttributeHandler() {
+      "test: GET with event attribute handler": function test_GET_with_event_attribute_handler() {
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/sample.txt");
         req.open("GET", this.noCache(url));
@@ -106,7 +106,7 @@
         req.send();
         this.wait();
       },
-      "test: GET with event": function testGETWithEvent() {
+      "test: GET with event": function test_GET_with_event() {
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/sample.txt");
         req.open("GET", this.noCache(url));
@@ -122,7 +122,7 @@
         req.send();
         this.wait();
       },
-      "test: GET XML": function testGETXML() {
+      "test: GET XML": function test_GET_XML() {
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/sample.xml");
         req.open("GET", this.noCache(url));
@@ -137,7 +137,7 @@
         req.send();
         this.wait();
       },
-      "test: handle arbitrary XML": function testHandleArbitraryXML() {
+      "test: handle arbitrary XML": function test_handle_arbitrary_XML() {
         this.require(["php"]);
 
         // Content-Type: foo/bar+xml
@@ -155,7 +155,7 @@
         req.send();
         this.wait();
       },
-      "test: handle invalid XML": function testHandleInvalidXML() {
+      "test: handle invalid XML": function test_handle_invalid_XML() {
         var url = this.getUrl("qx/test/xmlhttp/invalid.xml"),
           req = this.req,
           that = this;
@@ -170,7 +170,7 @@
         req.send();
         this.wait();
       },
-      "test: POST": function testPOST() {
+      "test: POST": function test_POST() {
         this.require(["php"]);
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/echo_post_request.php");
@@ -187,18 +187,18 @@
         req.send("affe=true");
         this.wait();
       },
-      "test: have readyState UNSENT": function testHaveReadyStateUNSENT() {
+      "test: have readyState UNSENT": function test_have_readyState_UNSENT() {
         var req = this.req;
         this.assertIdentical(0, req.readyState);
       },
-      "test: have readyState OPENED": function testHaveReadyStateOPENED() {
+      "test: have readyState OPENED": function test_have_readyState_OPENED() {
         this.require(["php"]);
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/echo_post_request.php");
         req.open("GET", this.noCache(url));
         this.assertIdentical(1, req.readyState);
       },
-      "test: abort pending request": function testAbortPendingRequest() {
+      "test: abort pending request": function test_abort_pending_request() {
         this.require(["php"]);
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/echo_get_request.php");
@@ -206,7 +206,7 @@
         req.abort();
         this.assertNotEquals(4, req.readyState, "Request must not complete");
       },
-      "test: have status 200 when modified": function testHaveStatus200WhenModified() {
+      "test: have status 200 when modified": function test_have_status_200_when_modified() {
         this.require(["php"]);
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/echo_get_request.php");
@@ -224,7 +224,7 @@
         req.send();
         this.wait();
       },
-      "test: validate freshness": function testValidateFreshness() {
+      "test: validate freshness": function test_validate_freshness() {
         this.require(["php", "noIe"]);
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/time.php");
@@ -290,7 +290,7 @@
       //   // (i.e. 10 packs of requests) should complete after 60s
       //   this.wait(15000 + 1000);
       // },
-      "test: open throws error with insecure method": function testOpenThrowsErrorWithInsecureMethod() {
+      "test: open throws error with insecure method": function test_open_throws_error_with_insecure_method() {
         var req = this.req,
           url = this.getUrl("qx/test/xmlhttp/sample.txt");
         this.assertException(function () {
@@ -302,7 +302,7 @@
           }
         });
       },
-      "test: overrideMimeType content type unchanged": function testOverrideMimeTypeContentTypeUnchanged() {
+      "test: overrideMimeType content type unchanged": function test_overrideMimeType_content_type_unchanged() {
         this.require(["php", "noIe"]);
         var req = this.req,
           that = this;
@@ -319,7 +319,7 @@
         req.send();
         this.wait();
       },
-      "test: overrideMimeType content type override": function testOverrideMimeTypeContentTypeOverride() {
+      "test: overrideMimeType content type override": function test_overrideMimeType_content_type_override() {
         this.require(["php", "noIe"]);
         var req = this.req,
           that = this;
@@ -339,7 +339,7 @@
         this.wait();
       },
       // BUGFIXES
-      "test: progress to readyState DONE": function testProgressToReadyStateDONE() {
+      "test: progress to readyState DONE": function test_progress_to_readyState_DONE() {
         // This is a mess, see
         // http://www.quirksmode.org/blog/archives/2005/09/xmlhttp_notes_r_2.html.
 
@@ -359,7 +359,7 @@
         req.send();
         this.wait();
       },
-      "test: progress to readyState DONE when sync": function testProgressToReadyStateDONEWhenSync() {
+      "test: progress to readyState DONE when sync": function test_progress_to_readyState_DONE_when_sync() {
         var req = this.req,
           states = [];
         req.onreadystatechange = function () {
@@ -373,7 +373,7 @@
         // See http://www.w3.org/TR/XMLHttpRequest/#the-send-method
         this.assertArrayEquals([1, 4], states);
       },
-      "test: progress to readyState DONE when from cache": function testProgressToReadyStateDONEWhenFromCache() {
+      "test: progress to readyState DONE when from cache": function test_progress_to_readyState_DONE_when_from_cache() {
         var primeReq = this.req,
           url = this.noCache(this.getUrl("qx/test/xmlhttp/sample.txt")),
           states = [],
@@ -404,7 +404,7 @@
         primeReq.send();
         this.wait();
       },
-      "test: have status 304 when cache is fresh": function testHaveStatus304WhenCacheIsFresh() {
+      "test: have status 304 when cache is fresh": function test_have_status_304_when_cache_is_fresh() {
         this.require(["php"]);
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/not_modified.php");
@@ -446,7 +446,7 @@
         req.send();
         this.wait();
       },
-      "test: allow many requests with same object": function testAllowManyRequestsWithSameObject() {
+      "test: allow many requests with same object": function test_allow_many_requests_with_same_object() {
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/sample.txt");
         var count = 0;
@@ -473,7 +473,7 @@
       //
       // onreadystatechange()
       //
-      "test: call onreadystatechange for OPEN": function testCallOnreadystatechangeForOPEN() {
+      "test: call onreadystatechange for OPEN": function test_call_onreadystatechange_for_OPEN() {
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/sample.txt");
         var that = this;
@@ -497,7 +497,7 @@
         req.send();
         this.wait();
       },
-      "test: not call onreadystatechange when aborting OPENED": function testNotCallOnreadystatechangeWhenAbortingOPENED() {
+      "test: not call onreadystatechange when aborting OPENED": function test_not_call_onreadystatechange_when_aborting_OPENED() {
         var req = this.req;
 
         // OPENED, without send flag
@@ -509,7 +509,7 @@
           this.assertNotCalled(req.onreadystatechange);
         }, this);
       },
-      "test: call onreadystatechange when aborting LOADING": function testCallOnreadystatechangeWhenAbortingLOADING() {
+      "test: call onreadystatechange when aborting LOADING": function test_call_onreadystatechange_when_aborting_LOADING() {
         this.require(["php", "noIe9"]);
         var req = this.req;
         var that = this;
@@ -529,7 +529,7 @@
         }, 0);
         this.wait();
       },
-      "test: call onloadend when aborting LOADING": function testCallOnloadendWhenAbortingLOADING() {
+      "test: call onloadend when aborting LOADING": function test_call_onloadend_when_aborting_LOADING() {
         this.require(["php", "noIe9"]);
         var req = this.req;
         var that = this;
@@ -550,7 +550,7 @@
       //
       // onerror()
       //
-      "test: call onerror on network error": function testCallOnerrorOnNetworkError() {
+      "test: call onerror on network error": function test_call_onerror_on_network_error() {
         var req = this.req;
         var that = this;
         req.onerror = function () {
@@ -569,7 +569,7 @@
         // May take a while to detect network error
         this.wait(15000);
       },
-      "test: call onerror on file error": function testCallOnerrorOnFileError() {
+      "test: call onerror on file error": function test_call_onerror_on_file_error() {
         this.require(["file"]);
         var req = this.req;
         var that = this;
@@ -582,7 +582,7 @@
         req.send();
         this.wait();
       },
-      "test: throw error on network error when sync": function testThrowErrorOnNetworkErrorWhenSync() {
+      "test: throw error on network error when sync": function test_throw_error_on_network_error_when_sync() {
         var req = this.req;
 
         // Network error (sync)
@@ -598,7 +598,7 @@
       //
       // ontimeout()
       //
-      "test: not call ontimeout when DONE and sync": function testNotCallOntimeoutWhenDONEAndSync() {
+      "test: not call ontimeout when DONE and sync": function test_not_call_ontimeout_when_DONE_and_sync() {
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/sample.txt");
         this.spy(req, "ontimeout");
@@ -611,7 +611,7 @@
           this.assertNotCalled(req.ontimeout);
         }, 500, this);
       },
-      "test: timeout triggers timeout error": function testTimeoutTriggersTimeoutError() {
+      "test: timeout triggers timeout error": function test_timeout_triggers_timeout_error() {
         // "timeout error" is specified here
         // http://www.w3.org/TR/XMLHttpRequest2/#timeout-error
 
@@ -636,7 +636,7 @@
         this.spy(req, "onloadend");
         this.wait();
       },
-      "test: timeout not call onabort": function testTimeoutNotCallOnabort() {
+      "test: timeout not call onabort": function test_timeout_not_call_onabort() {
         this.require(["php"]);
         var req = this.req,
           url = this.getUrl("qx/test/xmlhttp/loading.php"),
@@ -655,7 +655,7 @@
       //
       // onloadend()
       //
-      "test: call onloadend on network error": function testCallOnloadendOnNetworkError() {
+      "test: call onloadend on network error": function test_call_onloadend_on_network_error() {
         var req = this.req;
         var that = this;
         req.onloadend = function () {
@@ -675,7 +675,7 @@
       //
       // Call order
       //
-      "test: call handler in order when request successful": function testCallHandlerInOrderWhenRequestSuccessful() {
+      "test: call handler in order when request successful": function test_call_handler_in_order_when_request_successful() {
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/sample.txt");
         var that = this;
@@ -691,7 +691,7 @@
         req.send();
         this.wait();
       },
-      "test: call handler in order when request failed": function testCallHandlerInOrderWhenRequestFailed() {
+      "test: call handler in order when request failed": function test_call_handler_in_order_when_request_failed() {
         var req = this.req;
         var that = this;
         req.onloadend = function () {
@@ -715,7 +715,7 @@
       //
       // Disposing
       //
-      "test: dispose hard-working": function testDisposeHardWorking() {
+      "test: dispose hard-working": function test_dispose_hardWorking() {
         var req = this.req;
         var url = this.getUrl("qx/test/xmlhttp/sample.txt");
         req.open("GET", this.noCache(url));
@@ -748,4 +748,4 @@
   qx.test.bom.request.XhrWithRemote.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XhrWithRemote.js.map?dt=1717235386933
+//# sourceMappingURL=XhrWithRemote.js.map?dt=1722151829923

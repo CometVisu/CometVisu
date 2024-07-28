@@ -459,10 +459,257 @@
         var o = new qx.D();
         this.assertEquals("Double MA MB", o.sayJuhu());
         o.dispose();
+      },
+      testDoubleMixinWithSuperStruct: function testDoubleMixinWithSuperStruct() {
+        qx.Class.define("qx.E1", {
+          extend: qx.core.Object,
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "E1";
+            }
+          }
+        });
+        qx.Mixin.define("qx.ME1a", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.ME1a, "sayJuhu").call(this), " ME1");
+            }
+          }
+        });
+        qx.Mixin.define("qx.ME1b", {
+          members: {
+            // does not implement `sayJuhu`
+          }
+        });
+        qx.Class.define("qx.E2", {
+          extend: qx.E1,
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.E2.superclass.prototype.sayJuhu.call(this), " E2");
+            }
+          }
+        });
+        qx.Mixin.define("qx.ME2a", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.ME2a, "sayJuhu").call(this), " ME2a");
+            }
+          }
+        });
+        qx.Mixin.define("qx.ME2b", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.ME2b, "sayJuhu").call(this), " ME2b");
+            }
+          }
+        });
+        qx.Class.patch(qx.E1, qx.ME1a);
+        qx.Class.patch(qx.E1, qx.ME1b);
+        qx.Class.patch(qx.E2, qx.ME2a);
+        qx.Class.patch(qx.E2, qx.ME2b);
+        var e = new qx.E2();
+        this.assertEquals("E1 ME1 E2 ME2a ME2b", e.sayJuhu());
+        e.dispose();
+      },
+      /**
+       * tests a large structure to ensure that combinations of patch order,
+       * presence of given method, nor patched class count have an impact on
+       * the behavior of `super` in mixin methods.
+       */
+      testLotsMixinLotsSuper: function testLotsMixinLotsSuper() {
+        qx.Class.define("qx.G1", {
+          extend: qx.core.Object,
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "G1";
+            }
+          }
+        });
+        qx.Mixin.define("qx.M1G1", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M1G1, "sayJuhu").call(this), " M1G1");
+            }
+          }
+        });
+        qx.Class.patch(qx.G1, qx.M1G1);
+        qx.Mixin.define("qx.M2G1", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M2G1, "sayJuhu").call(this), " M2G1");
+            }
+          }
+        });
+        qx.Class.patch(qx.G1, qx.M2G1);
+        qx.Mixin.define("qx.M3G1", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M3G1, "sayJuhu").call(this), " M3G1");
+            }
+          }
+        });
+        qx.Class.patch(qx.G1, qx.M3G1);
+        qx.Mixin.define("qx.M4G1", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M4G1, "sayJuhu").call(this), " M4G1");
+            }
+          }
+        });
+        qx.Class.patch(qx.G1, qx.M4G1);
+        qx.Mixin.define("qx.M5G1", {
+          members: {
+            // does not implement `sayJuhu`
+          }
+        });
+        qx.Class.patch(qx.G1, qx.M5G1);
+        qx.Mixin.define("qx.M6G1", {
+          members: {
+            // does not implement `sayJuhu`
+          }
+        });
+        qx.Class.patch(qx.G1, qx.M6G1);
+        qx.Class.define("qx.G2", {
+          extend: qx.G1,
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.G2.superclass.prototype.sayJuhu.call(this), " G2");
+            }
+          }
+        });
+        qx.Mixin.define("qx.M1G2", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M1G2, "sayJuhu").call(this), " M1G2");
+            }
+          }
+        });
+        qx.Class.patch(qx.G2, qx.M1G2);
+        qx.Mixin.define("qx.M2G2", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M2G2, "sayJuhu").call(this), " M2G2");
+            }
+          }
+        });
+        qx.Class.patch(qx.G2, qx.M2G2);
+        qx.Mixin.define("qx.M3G2", {
+          members: {
+            // does not implement `sayJuhu`
+          }
+        });
+        qx.Class.patch(qx.G2, qx.M3G2);
+        qx.Mixin.define("qx.M4G2", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M4G2, "sayJuhu").call(this), " M4G2");
+            }
+          }
+        });
+        qx.Class.patch(qx.G2, qx.M4G2);
+        qx.Mixin.define("qx.M5G2", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M5G2, "sayJuhu").call(this), " M5G2");
+            }
+          }
+        });
+        qx.Class.patch(qx.G2, qx.M5G2);
+        qx.Class.define("qx.G3", {
+          extend: qx.G2,
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.G3.superclass.prototype.sayJuhu.call(this), " G3");
+            }
+          }
+        });
+        qx.Mixin.define("qx.M1G3", {
+          members: {
+            // does not implement `sayJuhu`
+          }
+        });
+        qx.Class.patch(qx.G3, qx.M1G3);
+        qx.Mixin.define("qx.M2G3", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M2G3, "sayJuhu").call(this), " M2G3");
+            }
+          }
+        });
+        qx.Class.patch(qx.G3, qx.M2G3);
+        qx.Mixin.define("qx.M3G3", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M3G3, "sayJuhu").call(this), " M3G3");
+            }
+          }
+        });
+        qx.Class.patch(qx.G3, qx.M3G3);
+        qx.Mixin.define("qx.M4G3", {
+          members: {
+            // does not implement `sayJuhu`
+          }
+        });
+        qx.Class.patch(qx.G3, qx.M4G3);
+        qx.Class.define("qx.G4", {
+          extend: qx.G3,
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.G4.superclass.prototype.sayJuhu.call(this), " G4");
+            }
+          }
+        });
+        qx.Mixin.define("qx.M1G4", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M1G4, "sayJuhu").call(this), " M1G4");
+            }
+          }
+        });
+        qx.Class.patch(qx.G4, qx.M1G4);
+        qx.Mixin.define("qx.M2G4", {
+          members: {
+            // does not implement `sayJuhu`
+          }
+        });
+        qx.Class.patch(qx.G4, qx.M2G4);
+        qx.Mixin.define("qx.M3G4", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M3G4, "sayJuhu").call(this), " M3G4");
+            }
+          }
+        });
+        qx.Class.patch(qx.G4, qx.M3G4);
+        qx.Class.define("qx.G5", {
+          extend: qx.G4,
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.G5.superclass.prototype.sayJuhu.call(this), " G5");
+            }
+          }
+        });
+        qx.Mixin.define("qx.M1G5", {
+          members: {
+            sayJuhu: function sayJuhu() {
+              return "".concat(qx.Mixin.baseClassMethod(this.constructor, qx.M1G5, "sayJuhu").call(this), " M1G5");
+            }
+          }
+        });
+        qx.Class.patch(qx.G5, qx.M1G5);
+        qx.Mixin.define("qx.M2G5", {
+          members: {
+            // does not implement `sayJuhu`
+          }
+        });
+        qx.Class.patch(qx.G5, qx.M2G5);
+        var g5 = new qx.G5();
+        this.assertEquals("G1 M1G1 M2G1 M3G1 M4G1 G2 M1G2 M2G2 M4G2 M5G2 G3 M2G3 M3G3 G4 M1G4 M3G4 G5 M1G5", g5.sayJuhu());
+        g5.dispose();
       }
     }
   });
   qx.test.Mixin.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mixin.js.map?dt=1717235385602
+//# sourceMappingURL=Mixin.js.map?dt=1722151828645

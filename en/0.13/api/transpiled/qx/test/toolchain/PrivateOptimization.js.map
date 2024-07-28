@@ -15,7 +15,6 @@
     "testPrivatesRenaming",
     "assertEquals",
     "__test",
-    "__P_374_0",
     "test",
     "toolchain",
     "PrivateOptimization"
@@ -26,6 +25,6 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2007-20011 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Martin Wittemann (martinwittemann)\n\n************************************************************************ */\n\nqx.Class.define(\"qx.test.toolchain.PrivateOptimization\", {\n  extend: qx.dev.unit.TestCase,\n\n  members: {\n    /*\n     * The next test tests whether privates are renamed at all.\n     */\n    testPrivatesRenaming() {\n      // Can only fail in build version with all optimizations\n      this.assertEquals(\n        \"__te\" + \"st a\",\n        this.__test(),\n        \"Variable in a string renamed!\"\n      );\n\n      this.assertEquals(\n        \"__te\" + \"st a test\",\n        this.__test() + \" test\",\n        \"Variable in a string renamed!\"\n      );\n    },\n\n    // needed for testPrivatesRenaming\n    __test() {\n      return \"__test a\";\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,uCAAuC,EAAE;IACvDC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE;MACP;AACJ;AACA;MACIC,oBAAoB,WAAAA,qBAAA,EAAG;QACrB;QACA,IAAI,CAACC,YAAY,aAEf,IAAI,CAACC,SAAM,CAAC,CAAC,EACb,+BACF,CAAC;QAED,IAAI,CAACD,YAAY,kBAEf,IAAI,CAACC,SAAM,CAAC,CAAC,GAAG,OAAO,EACvB,+BACF,CAAC;MACH,CAAC;MAED;MACAA,SAAM,WAAAC,UAAA,EAAG;QACP,OAAO,UAAU;MACnB;IACF;EACF,CAAC,CAAC;EA7CFd,EAAE,CAACe,IAAI,CAACC,SAAS,CAACC,mBAAmB,CAACd,aAAa,GAAGA,aAAa;AAAC",
+  "mappings": ";;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,uCAAuC,EAAE;IACvDC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE;MACP;AACJ;AACA;MACIC,oBAAoB,WAApBA,oBAAoBA,CAAA,EAAG;QACrB;QACA,IAAI,CAACC,YAAY,aAEf,IAAI,CAACC,SAAM,CAAC,CAAC,EACb,+BACF,CAAC;QAED,IAAI,CAACD,YAAY,kBAEf,IAAI,CAACC,SAAM,CAAC,CAAC,GAAG,OAAO,EACvB,+BACF,CAAC;MACH,CAAC;MAED;MACAA,SAAM,WAANA,SAAMA,CAAA,EAAG;QACP,OAAO,UAAU;MACnB;IACF;EACF,CAAC,CAAC;EA7CFb,EAAE,CAACc,IAAI,CAACC,SAAS,CAACC,mBAAmB,CAACb,aAAa,GAAGA,aAAa;AAAC",
   "ignoreList": []
 }

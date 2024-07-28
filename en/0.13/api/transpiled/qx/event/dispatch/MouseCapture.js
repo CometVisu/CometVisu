@@ -182,11 +182,11 @@
         if (this.hasNativeCapture) {
           this.nativeSetCapture(element, containerCapture);
           var self = this;
-          var onNativeListener = function onNativeListener() {
-            qx.bom.Event.removeNativeListener(element, "losecapture", onNativeListener);
+          var _onNativeListener = function onNativeListener() {
+            qx.bom.Event.removeNativeListener(element, "losecapture", _onNativeListener);
             self.releaseCapture();
           };
-          qx.bom.Event.addNativeListener(element, "losecapture", onNativeListener);
+          qx.bom.Event.addNativeListener(element, "losecapture", _onNativeListener);
         }
         this.__P_215_3 = containerCapture;
         this.__P_215_2 = element;
@@ -257,4 +257,4 @@
   qx.event.dispatch.MouseCapture.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MouseCapture.js.map?dt=1717235379891
+//# sourceMappingURL=MouseCapture.js.map?dt=1722151823129

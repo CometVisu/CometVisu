@@ -111,7 +111,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee2);
         }))();
       },
-      "test: check endpoint": function testCheckEndpoint() {
+      "test: check endpoint": function test_check_endpoint() {
         var _this3 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var url, body, init, response, result;
@@ -155,7 +155,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee3, null, [[0, 14]]);
         }))();
       },
-      "test: execute query": function testExecuteQuery() {
+      "test: execute query": function test_execute_query() {
         var _this4 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
@@ -187,7 +187,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee4);
         }))();
       },
-      "test: execute query with variables": function testExecuteQueryWithVariables() {
+      "test: execute query with variables": function test_execute_query_with_variables() {
         var _this5 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
@@ -224,7 +224,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee5);
         }))();
       },
-      "test: expect error after invalid query": function testExpectErrorAfterInvalidQuery() {
+      "test: expect error after invalid query": function test_expect_error_after_invalid_query() {
         var _this6 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
           return _regeneratorRuntime().wrap(function _callee6$(_context6) {
@@ -257,7 +257,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee6, null, [[2, 7]]);
         }))();
       },
-      "test: expect transport error": function testExpectTransportError() {
+      "test: expect transport error": function test_expect_transport_error() {
         var _this7 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
           var client, query, request;
@@ -300,4 +300,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.io.graphql.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1717235390013
+//# sourceMappingURL=Client.js.map?dt=1722151832842

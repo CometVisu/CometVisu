@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1717235171258,
-  "lastModifiedIso": "2024-06-01T09:46:11.258Z",
+  "lastModified": 1722151625971,
+  "lastModifiedIso": "2024-07-28T07:27:05.971Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/IListItem.js",
   "type": "interface",
   "location": {
@@ -11,9 +11,9 @@
       "index": 588
     },
     "end": {
-      "line": 23,
-      "column": 48,
-      "index": 636
+      "line": 70,
+      "column": 3,
+      "index": 1779
     }
   },
   "className": "qx.ui.form.IListItem",
@@ -31,7 +31,176 @@
       }
     ]
   },
-  "members": {},
+  "events": {
+    "changeReadOnly": {
+      "type": "qx.event.type.Data",
+      "jsdoc": {
+        "raw": [
+          "* Fired when the value was modified "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Fired when the value was modified</p>"
+          }
+        ]
+      },
+      "location": {
+        "start": {
+          "line": 32,
+          "column": 4,
+          "index": 880
+        },
+        "end": {
+          "line": 32,
+          "column": 40,
+          "index": 916
+        }
+      }
+    }
+  },
+  "members": {
+    "setReadOnly": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Sets the element's value.",
+          "     *",
+          "     * @param value {Boolean|null} The new value of the element.",
+          "     * @return {Boolean|null}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Sets the element's value.</p>"
+          }
+        ],
+        "@param": [
+          {
+            "name": "@param",
+            "body": "value {Boolean|null} The new value of the element.",
+            "paramName": "value",
+            "description": " The new value of the element.",
+            "type": [
+              "Boolean",
+              "null"
+            ]
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|null}",
+            "type": "Boolean|null",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1474
+        },
+        "end": {
+          "line": 56,
+          "column": 5,
+          "index": 1550
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "value",
+          "type": [
+            "Boolean",
+            "null"
+          ]
+        }
+      ],
+      "returnType": {
+        "type": "Boolean|null"
+      },
+      "appearsIn": []
+    },
+    "resetReadOnly": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Resets the element's value to its initial value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Resets the element's value to its initial value.</p>"
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 61,
+          "column": 4,
+          "index": 1629
+        },
+        "end": {
+          "line": 61,
+          "column": 22,
+          "index": 1647
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": []
+    },
+    "getReadOnly": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * The element's user set value.",
+          "     *",
+          "     * @return {Boolean|null} The value.",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>The element's user set value.</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean|null} The value.",
+            "type": "Boolean|null",
+            "description": "The value."
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 68,
+          "column": 4,
+          "index": 1755
+        },
+        "end": {
+          "line": 68,
+          "column": 20,
+          "index": 1771
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "Boolean|null"
+      },
+      "appearsIn": []
+    }
+  },
   "statics": {},
   "properties": {}
 }

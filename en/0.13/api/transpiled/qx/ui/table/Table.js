@@ -544,6 +544,13 @@
         event: "changeDataRowRenderer"
       },
       /**
+       * The action to take when a cell is being edited and the focus moves elsewhere.
+       */
+      cellEditorBlurAction: {
+        check: ["nothing", "save", "cancel"],
+        init: "nothing"
+      },
+      /**
        * A function to call when before modal cell editor is opened.
        *
        * @signature function(cellEditor, cellInfo)
@@ -1867,4 +1874,4 @@
   qx.ui.table.Table.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Table.js.map?dt=1717235415983
+//# sourceMappingURL=Table.js.map?dt=1722151857853

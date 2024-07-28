@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1717235105614,
-  "lastModifiedIso": "2024-06-01T09:45:05.614Z",
+  "lastModified": 1722151563991,
+  "lastModifiedIso": "2024-07-28T07:26:03.991Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/MPopup.js",
   "type": "mixin",
   "location": {
@@ -11,9 +11,9 @@
       "index": 952
     },
     "end": {
-      "line": 134,
+      "line": 135,
       "column": 3,
-      "index": 4161
+      "index": 4220
     }
   },
   "className": "cv.ui.structure.tile.MPopup",
@@ -223,9 +223,9 @@
           "index": 3592
         },
         "end": {
-          "line": 121,
+          "line": 122,
           "column": 5,
-          "index": 3885
+          "index": 3944
         }
       },
       "type": "function",
@@ -242,14 +242,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 129,
+        "line": 130,
         "column": 2,
-        "index": 4019
+        "index": 4078
       },
       "end": {
-        "line": 133,
+        "line": 134,
         "column": 3,
-        "index": 4157
+        "index": 4216
       }
     }
   },

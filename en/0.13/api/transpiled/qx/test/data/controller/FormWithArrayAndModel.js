@@ -154,7 +154,7 @@
         qx.util.DisposeUtil.disposeTriggeredBy(streetName, addressForm);
         return addressForm;
       },
-      "test self update: array": function testSelfUpdateArray() {
+      "test self update: array": function test_self_update_array() {
         var arr = qx.data.marshal.Json.createModel([{
           c1: "1a1",
           c2: "1a2"
@@ -177,7 +177,7 @@
         ctrl.dispose();
         arr.dispose();
       },
-      "test self update: model": function testSelfUpdateModel() {
+      "test self update: model": function test_self_update_model() {
         var addressForm = this.__P_328_5();
         this.__P_328_1.setTarget(addressForm);
         var ctrl = new qx.data.controller.Form(this.__P_328_3, this.__P_328_2, true);
@@ -196,7 +196,7 @@
         ctrl.dispose();
         addressForm.dispose();
       },
-      "test updating view": function testUpdatingView() {
+      "test updating view": function test_updating_view() {
         var arr = qx.data.marshal.Json.createModel([{
           c1: "2a1",
           c2: "2a2"
@@ -218,7 +218,7 @@
         ctrl.dispose();
         arr.dispose();
       },
-      "test updating model: array field": function testUpdatingModelArrayField() {
+      "test updating model: array field": function test_updating_model_array_field() {
         var arr = qx.data.marshal.Json.createModel([{
           c1: "2a1",
           c2: "2a2"
@@ -235,7 +235,7 @@
         ctrl.dispose();
         arr.dispose();
       },
-      "test updating model: model field": function testUpdatingModelModelField() {
+      "test updating model: model field": function test_updating_model_model_field() {
         var addressForm = this.__P_328_5();
         this.__P_328_1.setTarget(addressForm);
         var ctrl = new qx.data.controller.Form(this.__P_328_3, this.__P_328_2);
@@ -251,4 +251,4 @@
   qx.test.data.controller.FormWithArrayAndModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FormWithArrayAndModel.js.map?dt=1717235388078
+//# sourceMappingURL=FormWithArrayAndModel.js.map?dt=1722151830909

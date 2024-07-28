@@ -119,4 +119,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Migrate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Migrate.js.map?dt=1717235400560
+//# sourceMappingURL=Migrate.js.map?dt=1722151842940

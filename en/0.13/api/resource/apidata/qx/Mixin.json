@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1717235171766,
-  "lastModifiedIso": "2024-06-01T09:46:11.766Z",
+  "lastModified": 1722151626463,
+  "lastModifiedIso": "2024-07-28T07:27:06.463Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/Mixin.js",
   "type": "bootstrap",
   "location": {
@@ -11,9 +11,9 @@
       "index": 859
     },
     "end": {
-      "line": 548,
+      "line": 550,
       "column": 3,
-      "index": 16856
+      "index": 16833
     }
   },
   "className": "qx.Mixin",
@@ -604,9 +604,9 @@
           "index": 10159
         },
         "end": {
-          "line": 412,
+          "line": 414,
           "column": 5,
-          "index": 13067
+          "index": 13044
         }
       },
       "type": "function",
@@ -664,14 +664,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 427,
+          "line": 429,
           "column": 4,
-          "index": 13457
+          "index": 13434
         },
         "end": {
-          "line": 429,
+          "line": 431,
           "column": 5,
-          "index": 13524
+          "index": 13501
         }
       },
       "type": "function",
@@ -696,14 +696,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 432,
+          "line": 434,
           "column": 4,
-          "index": 13571
+          "index": 13548
         },
         "end": {
-          "line": 432,
+          "line": 434,
           "column": 18,
-          "index": 13585
+          "index": 13562
         }
       },
       "appearsIn": []
@@ -729,14 +729,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 435,
+          "line": 437,
           "column": 4,
-          "index": 13648
+          "index": 13625
         },
         "end": {
-          "line": 448,
+          "line": 450,
           "column": 6,
-          "index": 14056
+          "index": 14033
         }
       },
       "appearsIn": []
@@ -784,14 +784,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 457,
+          "line": 459,
           "column": 4,
-          "index": 14289
+          "index": 14266
         },
         "end": {
-          "line": 546,
+          "line": 548,
           "column": 6,
-          "index": 16848
+          "index": 16825
         }
       },
       "appearsIn": []

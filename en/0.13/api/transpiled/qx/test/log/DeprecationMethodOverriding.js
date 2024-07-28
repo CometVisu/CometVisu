@@ -39,27 +39,27 @@
         this.__P_353_2 = null;
         this.__P_353_0 = null;
       },
-      "testClassA: baseclass": function testClassABaseclass() {
+      "testClassA: baseclass": function testClassA_baseclass() {
         var instance = new qx.test.log.fixture.ClassA();
         this.__P_353_3(instance, 1, 1, null);
         instance.dispose();
       },
-      "testClassB1: overrides method": function testClassB1OverridesMethod() {
+      "testClassB1: overrides method": function testClassB1_overrides_method() {
         var instance = new qx.test.log.fixture.ClassB1();
         this.__P_353_3(instance, 2, 2, /qx.test.log.fixture.ClassB1._applyOldProperty/);
         instance.dispose();
       },
-      "testClassC1: doesn't override method": function testClassC1DoesnTOverrideMethod() {
+      "testClassC1: doesn't override method": function testClassC1_doesnT_override_method() {
         var instance = new qx.test.log.fixture.ClassC1();
         this.__P_353_3(instance, 2, 3, /qx.test.log.fixture.ClassB1._applyOldProperty/);
         instance.dispose();
       },
-      "testClassB2: doesn't override method": function testClassB2DoesnTOverrideMethod() {
+      "testClassB2: doesn't override method": function testClassB2_doesnT_override_method() {
         var instance = new qx.test.log.fixture.ClassB2();
         this.__P_353_3(instance, 1, 2, null);
         instance.dispose();
       },
-      "testClassC2: overrides method": function testClassC2OverridesMethod() {
+      "testClassC2: overrides method": function testClassC2_overrides_method() {
         var instance = new qx.test.log.fixture.ClassC2();
         this.__P_353_3(instance, 2, 3, /qx.test.log.fixture.ClassC2._applyOldProperty/);
         instance.dispose();
@@ -75,4 +75,4 @@
   qx.test.log.DeprecationMethodOverriding.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DeprecationMethodOverriding.js.map?dt=1717235391118
+//# sourceMappingURL=DeprecationMethodOverriding.js.map?dt=1722151833918

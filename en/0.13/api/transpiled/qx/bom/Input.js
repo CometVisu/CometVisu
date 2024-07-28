@@ -74,19 +74,30 @@
     statics: {
       /** @type {Map} Internal data structures with all supported input types */
       __P_115_0: {
-        text: 1,
-        textarea: 1,
-        select: 1,
-        checkbox: 1,
-        radio: 1,
-        password: 1,
-        hidden: 1,
-        submit: 1,
-        image: 1,
-        file: 1,
-        search: 1,
-        reset: 1,
-        button: 1
+        textarea: true,
+        select: true,
+        button: true,
+        checkbox: true,
+        color: true,
+        date: true,
+        "datetime-local": true,
+        email: true,
+        file: true,
+        hidden: true,
+        image: true,
+        month: true,
+        number: true,
+        password: true,
+        radio: true,
+        range: true,
+        reset: true,
+        search: true,
+        submit: true,
+        tel: true,
+        text: true,
+        time: true,
+        url: true,
+        week: true
       },
       /**
        * Creates an DOM input/textarea/select element.
@@ -261,4 +272,4 @@
   qx.bom.Input.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Input.js.map?dt=1717235372032
+//# sourceMappingURL=Input.js.map?dt=1722151815532

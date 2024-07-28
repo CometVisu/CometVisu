@@ -96,10 +96,10 @@
       //
       // General
       //
-      "test: create instance": function testCreateInstance() {
+      "test: create instance": function test_create_instance() {
         this.assertObject(this.req);
       },
-      "test: detect native XHR": function testDetectNativeXHR() {
+      "test: detect native XHR": function test_detect_native_XHR() {
         var nativeXhr = this.req.getRequest();
         this.assertObject(nativeXhr);
         this.assertNotNull(nativeXhr.readyState);
@@ -107,7 +107,7 @@
       //
       // open()
       //
-      "test: open request": function testOpenRequest() {
+      "test: open request": function test_open_request() {
         var fakeReq = this.getFakeReq();
         this.spy(fakeReq, "open");
         var url = "/foo";
@@ -115,7 +115,7 @@
         this.req.open(method, url);
         this.assertCalledWith(fakeReq.open, method, url);
       },
-      "test: open request throws when missing arguments": function testOpenRequestThrowsWhenMissingArguments() {
+      "test: open request throws when missing arguments": function test_open_request_throws_when_missing_arguments() {
         var req = this.req;
         var msg = /Not enough arguments/;
         this.assertException(function () {
@@ -125,19 +125,19 @@
           req.open("GET");
         }, Error, msg);
       },
-      "test: open async request on default": function testOpenAsyncRequestOnDefault() {
+      "test: open async request on default": function test_open_async_request_on_default() {
         var fakeReq = this.getFakeReq();
         this.spy(fakeReq, "open");
         this.req.open(null, null);
         this.assertTrue(fakeReq.open.args[0][2], "async must be true");
       },
-      "test: open sync request": function testOpenSyncRequest() {
+      "test: open sync request": function test_open_sync_request() {
         var fakeReq = this.getFakeReq();
         this.spy(fakeReq, "open");
         this.req.open(null, null, false);
         this.assertFalse(fakeReq.open.args[0][2], "async must be false");
       },
-      "test: open request with username and password": function testOpenRequestWithUsernameAndPassword() {
+      "test: open request with username and password": function test_open_request_with_username_and_password() {
         var fakeReq = this.getFakeReq();
         this.spy(fakeReq, "open");
         this.req.open(null, null, null, "affe", "geheim");
@@ -147,7 +147,7 @@
       //
       // setRequestHeader()
       //
-      "test: set request header": function testSetRequestHeader() {
+      "test: set request header": function test_set_request_header() {
         var fakeReq = this.getFakeReq();
         this.spy(fakeReq, "setRequestHeader");
 
@@ -159,7 +159,7 @@
       //
       // send()
       //
-      "test: send() with data": function testSendWithData() {
+      "test: send() with data": function test_send_with_data() {
         var fakeReq = this.getFakeReq();
         this.spy(fakeReq, "send");
         var data = "AFFE";
@@ -168,7 +168,7 @@
         this.assertCalledWith(fakeReq.send, data);
       },
       // BUGFIXES
-      "test: send() without data": function testSendWithoutData() {
+      "test: send() without data": function test_send_without_data() {
         var fakeReq = this.getFakeReq();
         this.spy(fakeReq, "send");
         this.req.open("GET", "/affe");
@@ -178,14 +178,14 @@
       //
       // abort()
       //
-      "test: abort() aborts native Xhr": function testAbortAbortsNativeXhr() {
+      "test: abort() aborts native Xhr": function test_abort_aborts_native_Xhr() {
         var req = this.req;
         var fakeReq = this.getFakeReq();
         this.spy(fakeReq, "abort");
         req.abort();
         this.assertCalled(fakeReq.abort);
       },
-      "test: abort() resets readyState": function testAbortResetsReadyState() {
+      "test: abort() resets readyState": function test_abort_resets_readyState() {
         var req = this.req;
         req.open("GET", "/");
         req.abort();
@@ -194,13 +194,13 @@
       //
       // Event helper
       //
-      "test: call event handler": function testCallEventHandler() {
+      "test: call event handler": function test_call_event_handler() {
         var req = this.req;
         req.onevent = this.spy();
         req._emit("event");
         this.assertCalled(req.onevent);
       },
-      "test: fire event": function testFireEvent() {
+      "test: fire event": function test_fire_event() {
         var req = this.req;
         var event = this.spy();
         req.onevent = this.spy();
@@ -212,7 +212,7 @@
       //
       // onreadystatechange()
       //
-      "test: responseText set before onreadystatechange is called": function testResponseTextSetBeforeOnreadystatechangeIsCalled() {
+      "test: responseText set before onreadystatechange is called": function test_responseText_set_before_onreadystatechange_is_called() {
         var req = this.req;
         var fakeReq = this.getFakeReq();
         var that = this;
@@ -224,7 +224,7 @@
         fakeReq.responseHeaders = {};
         fakeReq.onreadystatechange();
       },
-      "test: emit readystatechange when reopened": function testEmitReadystatechangeWhenReopened() {
+      "test: emit readystatechange when reopened": function test_emit_readystatechange_when_reopened() {
         var req = this.req;
         var fakeReq = this.getFakeReq();
         this.stub(req, "_emit");
@@ -239,7 +239,7 @@
         this.assertCalledWith(req._emit, "readystatechange");
       },
       // BUGFIXES
-      "test: ignore onreadystatechange when readyState is unchanged": function testIgnoreOnreadystatechangeWhenReadyStateIsUnchanged() {
+      "test: ignore onreadystatechange when readyState is unchanged": function test_ignore_onreadystatechange_when_readyState_is_unchanged() {
         var req = this.req;
         var fakeReq = this.getFakeReq();
         this.spy(req, "onreadystatechange");
@@ -248,7 +248,7 @@
         fakeReq.onreadystatechange();
         this.assertCalledOnce(req.onreadystatechange);
       },
-      "test: native onreadystatechange is disposed once DONE": function testNativeOnreadystatechangeIsDisposedOnceDONE() {
+      "test: native onreadystatechange is disposed once DONE": function test_native_onreadystatechange_is_disposed_once_DONE() {
         var req = this.req;
         var fakeReq = this.getFakeReq();
         req.onreadystatechange = function () {
@@ -262,7 +262,7 @@
       //
       // onload()
       //
-      "test: emit load on successful request": function testEmitLoadOnSuccessfulRequest() {
+      "test: emit load on successful request": function test_emit_load_on_successful_request() {
         var req = this.req;
         var fakeReq = this.getFakeReq();
         this.stub(req._emitter, "emit");
@@ -282,7 +282,7 @@
       //
       // onabort()
       //
-      "test: emit abort": function testEmitAbort() {
+      "test: emit abort": function test_emit_abort() {
         var req = this.req;
         this.spy(req, "_emit");
         req.open("GET", "/");
@@ -290,7 +290,7 @@
         req.abort();
         this.assertCalledWith(req._emit, "abort");
       },
-      "test: emit abort before loadend": function testEmitAbortBeforeLoadend() {
+      "test: emit abort before loadend": function test_emit_abort_before_loadend() {
         var req = this.req;
         var emit = this.stub(req, "_emit");
         var abort = emit.withArgs("abort");
@@ -303,7 +303,7 @@
       //
       // ontimeout()
       //
-      "test: emit timeout": function testEmitTimeout() {
+      "test: emit timeout": function test_emit_timeout() {
         var req = this.req,
           that = this;
         var timeout = this.stub(req, "_emit").withArgs("timeout");
@@ -314,7 +314,7 @@
           this.assertCalledOnce(timeout);
         }, this);
       },
-      "test: not emit error when timeout": function testNotEmitErrorWhenTimeout() {
+      "test: not emit error when timeout": function test_not_emit_error_when_timeout() {
         // Since Opera does not fire "error" on network error, fire additional
         // "error" on timeout (may well be related to network error)
         if (qx.core.Environment.get("engine.name") === "opera") {
@@ -329,7 +329,7 @@
           this.assertNotCalled(error);
         }, this);
       },
-      "test: not emit error when aborted immediately": function testNotEmitErrorWhenAbortedImmediately() {
+      "test: not emit error when aborted immediately": function test_not_emit_error_when_aborted_immediately() {
         var req = this.req;
         var error = this.stub(req, "_emit").withArgs("error");
         req.open("GET", "/");
@@ -337,7 +337,7 @@
         req.abort();
         this.assertNotCalled(error);
       },
-      "test: cancel timeout when DONE": function testCancelTimeoutWhenDONE() {
+      "test: cancel timeout when DONE": function test_cancel_timeout_when_DONE() {
         var fakeReq = this.getFakeReq(),
           req = this.req;
         this.spy(req, "ontimeout");
@@ -349,7 +349,7 @@
           this.assertNotCalled(req.ontimeout);
         }, this);
       },
-      "test: cancel timeout when handler throws": function testCancelTimeoutWhenHandlerThrows() {
+      "test: cancel timeout when handler throws": function test_cancel_timeout_when_handler_throws() {
         var fakeReq = this.getFakeReq(),
           req = this.req;
         this.spy(req, "ontimeout");
@@ -376,7 +376,7 @@
       //
       // onloadend()
       //
-      "test: fire loadend when request complete": function testFireLoadendWhenRequestComplete() {
+      "test: fire loadend when request complete": function test_fire_loadend_when_request_complete() {
         var req = this.req;
         var fakeReq = this.getFakeReq();
         var loadend = this.stub(req, "_emit").withArgs("loadend");
@@ -393,7 +393,7 @@
       //
       // readyState
       //
-      "test: set readyState appropriate to native readyState": function testSetReadyStateAppropriateToNativeReadyState() {
+      "test: set readyState appropriate to native readyState": function test_set_readyState_appropriate_to_native_readyState() {
         var req = this.req;
         var fakeReq = this.getFakeReq();
 
@@ -412,11 +412,11 @@
       //
       // responseText
       //
-      "test: responseText is empty string when OPEN": function testResponseTextIsEmptyStringWhenOPEN() {
+      "test: responseText is empty string when OPEN": function test_responseText_is_empty_string_when_OPEN() {
         this.req.open("GET", "/affe");
         this.assertIdentical("", this.req.responseText);
       },
-      "test: responseText is empty string when reopened": function testResponseTextIsEmptyStringWhenReopened() {
+      "test: responseText is empty string when reopened": function test_responseText_is_empty_string_when_reopened() {
         var fakeReq = this.getFakeReq();
 
         // Send and respond
@@ -431,7 +431,7 @@
         req.open("GET", "/elefant");
         this.assertIdentical("", req.responseText);
       },
-      "test: responseText is set when DONE": function testResponseTextIsSetWhenDONE() {
+      "test: responseText is set when DONE": function test_responseText_is_set_when_DONE() {
         var req = this.req;
         var fakeReq = this.getFakeReq();
         req.open("GET", "/");
@@ -442,7 +442,7 @@
         this.assertEquals("Affe", req.responseText);
       },
       // BUGFIXES
-      "test: query responseText when available": function testQueryResponseTextWhenAvailable() {
+      "test: query responseText when available": function test_query_responseText_when_available() {
         var that = this;
         var req = this.req;
         var fakeReq = this.getFakeReq();
@@ -465,7 +465,7 @@
           success(this.constructor.LOADING);
         }
       },
-      "test: not query responseText if unavailable": function testNotQueryResponseTextIfUnavailable() {
+      "test: not query responseText if unavailable": function test_not_query_responseText_if_unavailable() {
         var that = this;
         var req = this.req;
         var fakeReq = this.getFakeReq();
@@ -488,10 +488,10 @@
       //
       // responseXML
       //
-      "test: responseXML is null when not DONE": function testResponseXMLIsNullWhenNotDONE() {
+      "test: responseXML is null when not DONE": function test_responseXML_is_null_when_not_DONE() {
         this.assertNull(this.req.responseXML);
       },
-      "test: responseXML is null when reopened": function testResponseXMLIsNullWhenReopened() {
+      "test: responseXML is null when reopened": function test_responseXML_is_null_when_reopened() {
         var fakeReq = this.getFakeReq();
 
         // Send and respond
@@ -506,7 +506,7 @@
         req.open("GET", "/");
         this.assertNull(req.responseXML);
       },
-      "test: responseXML is parsed document with XML response": function testResponseXMLIsParsedDocumentWithXMLResponse() {
+      "test: responseXML is parsed document with XML response": function test_responseXML_is_parsed_document_with_XML_response() {
         var req = this.req;
         var fakeReq = this.getFakeReq();
         req.open("GET", "/");
@@ -521,15 +521,15 @@
       //
       // status and statusText
       //
-      "test: http status is 0 when UNSENT": function testHttpStatusIs0WhenUNSENT() {
+      "test: http status is 0 when UNSENT": function test_http_status_is_0_when_UNSENT() {
         this.assertIdentical(0, this.req.status);
       },
-      "test: http status is 0 when OPENED": function testHttpStatusIs0WhenOPENED() {
+      "test: http status is 0 when OPENED": function test_http_status_is_0_when_OPENED() {
         var req = this.req;
         req.open("GET", "/");
         this.assertIdentical(0, req.status);
       },
-      "test: http status is 0 when aborted immediately": function testHttpStatusIs0WhenAbortedImmediately() {
+      "test: http status is 0 when aborted immediately": function test_http_status_is_0_when_aborted_immediately() {
         this.require(["http"]);
         var req = this.req;
         req.open("GET", "/");
@@ -537,24 +537,24 @@
         req.abort();
         this.assertIdentical(0, req.status);
       },
-      "test: http status when DONE": function testHttpStatusWhenDONE() {
+      "test: http status when DONE": function test_http_status_when_DONE() {
         var req = this.req;
         var fakeReq = this.getFakeReq();
         req.open("GET", "/");
         fakeReq.respond(200);
         this.assertIdentical(200, req.status);
       },
-      "test: statusText is empty string when UNSENT": function testStatusTextIsEmptyStringWhenUNSENT() {
+      "test: statusText is empty string when UNSENT": function test_statusText_is_empty_string_when_UNSENT() {
         this.assertIdentical("", this.req.statusText);
       },
-      "test: statusText is set when DONE": function testStatusTextIsSetWhenDONE() {
+      "test: statusText is set when DONE": function test_statusText_is_set_when_DONE() {
         var fakeReq = this.getFakeReq();
         var req = this.req;
         req.open("GET", "/");
         fakeReq.respond(200);
         this.assertIdentical("OK", req.statusText);
       },
-      "test: status is set when LOADING": function testStatusIsSetWhenLOADING() {
+      "test: status is set when LOADING": function test_status_is_set_when_LOADING() {
         var fakeReq = this.getFakeReq();
         var req = this.req;
         req.open("GET", "/");
@@ -564,7 +564,7 @@
         fakeReq.onreadystatechange();
         this.assertIdentical(200, req.status);
       },
-      "test: reset status when reopened": function testResetStatusWhenReopened() {
+      "test: reset status when reopened": function test_reset_status_when_reopened() {
         var fakeReq = this.getFakeReq();
         var req = this.req;
         req.open("GET", "/");
@@ -574,7 +574,7 @@
         this.assertIdentical("", req.statusText);
       },
       // BUGFIXES
-      "test: normalize status 1223 to 204": function testNormalizeStatus1223To204() {
+      "test: normalize status 1223 to 204": function test_normalize_status_1223_to_204() {
         var fakeReq = this.getFakeReq();
         var req = this.req;
         req.open("GET", "/");
@@ -582,7 +582,7 @@
         fakeReq.respond(1223);
         this.assertIdentical(204, req.status);
       },
-      "test: normalize status 0 to 200 when DONE and file protocol": function testNormalizeStatus0To200WhenDONEAndFileProtocol() {
+      "test: normalize status 0 to 200 when DONE and file protocol": function test_normalize_status_0_to_200_when_DONE_and_file_protocol() {
         var fakeReq = this.getFakeReq();
         var req = this.req;
         req.open("GET", "/");
@@ -591,7 +591,7 @@
         fakeReq.respond(0, {}, "Response");
         this.assertEquals(200, req.status);
       },
-      "test: keep status 0 when not yet DONE and file protocol": function testKeepStatus0WhenNotYetDONEAndFileProtocol() {
+      "test: keep status 0 when not yet DONE and file protocol": function test_keep_status_0_when_not_yet_DONE_and_file_protocol() {
         var fakeReq = this.getFakeReq();
         var req = this.req;
         this.stub(req, "_getProtocol").returns("file:");
@@ -600,7 +600,7 @@
         fakeReq.onreadystatechange();
         this.assertEquals(0, req.status);
       },
-      "test: keep status 0 when DONE with network error and file protocol": function testKeepStatus0WhenDONEWithNetworkErrorAndFileProtocol() {
+      "test: keep status 0 when DONE with network error and file protocol": function test_keep_status_0_when_DONE_with_network_error_and_file_protocol() {
         var fakeReq = this.getFakeReq();
         var req = this.req;
         req.open("GET", "/");
@@ -616,12 +616,12 @@
       //
       // _getProtocol()
       //
-      "test: read protocol from requested URL when it contains protocol": function testReadProtocolFromRequestedURLWhenItContainsProtocol() {
+      "test: read protocol from requested URL when it contains protocol": function test_read_protocol_from_requested_URL_when_it_contains_protocol() {
         var req = this.req;
         req.open("GET", "http://example.org/index.html");
         this.assertEquals("http:", req._getProtocol());
       },
-      "test: read protocol from window if requested URL is without protocol": function testReadProtocolFromWindowIfRequestedURLIsWithoutProtocol() {
+      "test: read protocol from window if requested URL is without protocol": function test_read_protocol_from_window_if_requested_URL_is_without_protocol() {
         this.require(["http"]);
         var req = this.req;
         req.open("GET", "index.html");
@@ -630,7 +630,7 @@
       //
       // getResponseHeader()
       //
-      "test: getResponseHeader()": function testGetResponseHeader() {
+      "test: getResponseHeader()": function test_getResponseHeader() {
         var fakeReq = this.getFakeReq();
         fakeReq.open();
         fakeReq.setResponseHeaders({
@@ -642,7 +642,7 @@
       //
       // getAllResponseHeaders()
       //
-      "test: getAllResponseHeaders()": function testGetAllResponseHeaders() {
+      "test: getAllResponseHeaders()": function test_getAllResponseHeaders() {
         var fakeReq = this.getFakeReq();
         fakeReq.open();
         fakeReq.setResponseHeaders({
@@ -656,22 +656,22 @@
       //
       // dispose()
       //
-      "test: dispose() deletes native Xhr": function testDisposeDeletesNativeXhr() {
+      "test: dispose() deletes native Xhr": function test_dispose_deletes_native_Xhr() {
         this.req.dispose();
         this.assertNull(this.req.getRequest());
       },
-      "test: dispose() aborts": function testDisposeAborts() {
+      "test: dispose() aborts": function test_dispose_aborts() {
         var req = this.req;
         this.spy(req, "abort");
         this.req.dispose();
         this.assertCalled(req.abort);
       },
-      "test: isDisposed()": function testIsDisposed() {
+      "test: isDisposed()": function test_isDisposed() {
         this.assertFalse(this.req.isDisposed());
         this.req.dispose();
         this.assertTrue(this.req.isDisposed());
       },
-      "test: invoking public method throws when disposed": function testInvokingPublicMethodThrowsWhenDisposed() {
+      "test: invoking public method throws when disposed": function test_invoking_public_method_throws_when_disposed() {
         var req = this.req;
         var assertDisposedException = qx.lang.Function.bind(function (callback) {
           this.assertException(qx.lang.Function.bind(callback, this), Error, /Already disposed/);
@@ -728,4 +728,4 @@
   qx.test.bom.request.Xhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xhr.js.map?dt=1717235386865
+//# sourceMappingURL=Xhr.js.map?dt=1722151829860

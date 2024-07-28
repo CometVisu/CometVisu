@@ -220,7 +220,7 @@
         });
         this.wait(1000);
       },
-      "test: Abort image loading on changing source": function testAbortImageLoadingOnChangingSource() {
+      "test: Abort image loading on changing source": function test_Abort_image_loading_on_changing_source() {
         // image will be received with a delay of 2 sec
         var sourceA = "../resource/qx/test/delayedImage.php?" + Date.now();
         var sourceB = "../resource/qx/icon/Tango/16/places/folder.png?" + Date.now();
@@ -234,7 +234,7 @@
         this.assertFalse(qx.io.ImageLoader.isLoaded(sourceA), "SourceA should not be loaded after source change!");
         this.assertCalledOnce(spyhandler);
       },
-      "test: Abort image loading through the ImageLoader": function testAbortImageLoadingThroughTheImageLoader() {
+      "test: Abort image loading through the ImageLoader": function test_Abort_image_loading_through_the_ImageLoader() {
         // image will be received with a delay of 2 sec
         var Source = "../resource/qx/test/delayedImage.php?" + Date.now();
         var image = new qx.ui.basic.Image(Source);
@@ -473,4 +473,4 @@
   qx.test.ui.basic.Image.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Image.js.map?dt=1717235393206
+//# sourceMappingURL=Image.js.map?dt=1722151835905

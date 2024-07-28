@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1717235171582,
-  "lastModifiedIso": "2024-06-01T09:46:11.582Z",
+  "lastModified": 1722151626307,
+  "lastModifiedIso": "2024-07-28T07:27:06.307Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/form/List.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 913
     },
     "end": {
-      "line": 515,
+      "line": 520,
       "column": 3,
-      "index": 13721
+      "index": 13872
     }
   },
   "className": "qx.ui.form.List",
@@ -812,9 +812,9 @@
           "index": 5088
         },
         "end": {
-          "line": 208,
+          "line": 210,
           "column": 5,
-          "index": 5309
+          "index": 5396
         }
       },
       "type": "function",
@@ -854,14 +854,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 215,
+          "line": 217,
           "column": 4,
-          "index": 5450
+          "index": 5537
         },
         "end": {
-          "line": 220,
+          "line": 225,
           "column": 5,
-          "index": 5689
+          "index": 5840
         }
       },
       "type": "function",
@@ -902,14 +902,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 234,
+          "line": 239,
           "column": 4,
-          "index": 6091
+          "index": 6242
         },
         "end": {
-          "line": 238,
+          "line": 243,
           "column": 5,
-          "index": 6204
+          "index": 6355
         }
       },
       "type": "function",
@@ -948,14 +948,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 251,
+          "line": 256,
           "column": 4,
-          "index": 6559
+          "index": 6710
         },
         "end": {
-          "line": 253,
+          "line": 258,
           "column": 5,
-          "index": 6639
+          "index": 6790
         }
       },
       "type": "function",
@@ -974,14 +974,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 262,
+          "line": 267,
           "column": 4,
-          "index": 6873
+          "index": 7024
         },
         "end": {
-          "line": 289,
+          "line": 294,
           "column": 5,
-          "index": 7601
+          "index": 7752
         }
       },
       "type": "function",
@@ -1004,14 +1004,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 292,
+          "line": 297,
           "column": 4,
-          "index": 7630
+          "index": 7781
         },
         "end": {
-          "line": 294,
+          "line": 299,
           "column": 5,
-          "index": 7715
+          "index": 7866
         }
       },
       "type": "function",
@@ -1034,14 +1034,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 297,
+          "line": 302,
           "column": 4,
-          "index": 7747
+          "index": 7898
         },
         "end": {
-          "line": 329,
+          "line": 334,
           "column": 5,
-          "index": 8542
+          "index": 8693
         }
       },
       "type": "function",
@@ -1061,14 +1061,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 332,
+          "line": 337,
           "column": 4,
-          "index": 8565
+          "index": 8716
         },
         "end": {
-          "line": 349,
+          "line": 354,
           "column": 5,
-          "index": 9042
+          "index": 9193
         }
       },
       "type": "function",
@@ -1122,14 +1122,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 363,
+          "line": 368,
           "column": 4,
-          "index": 9439
+          "index": 9590
         },
         "end": {
-          "line": 375,
+          "line": 380,
           "column": 5,
-          "index": 9759
+          "index": 9910
         }
       },
       "type": "function",
@@ -1172,14 +1172,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 388,
+          "line": 393,
           "column": 4,
-          "index": 10084
+          "index": 10235
         },
         "end": {
-          "line": 418,
+          "line": 423,
           "column": 5,
-          "index": 10940
+          "index": 11091
         }
       },
       "type": "function",
@@ -1231,14 +1231,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 429,
+          "line": 434,
           "column": 4,
-          "index": 11396
+          "index": 11547
         },
         "end": {
-          "line": 450,
+          "line": 455,
           "column": 5,
-          "index": 12068
+          "index": 12219
         }
       },
       "type": "function",
@@ -1300,14 +1300,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 459,
+          "line": 464,
           "column": 4,
-          "index": 12326
+          "index": 12477
         },
         "end": {
-          "line": 503,
+          "line": 508,
           "column": 5,
-          "index": 13466
+          "index": 13617
         }
       },
       "type": "function",
@@ -3562,14 +3562,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 512,
+        "line": 517,
         "column": 2,
-        "index": 13662
+        "index": 13813
       },
       "end": {
-        "line": 514,
+        "line": 519,
         "column": 3,
-        "index": 13717
+        "index": 13868
       }
     }
   },

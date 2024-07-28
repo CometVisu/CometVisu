@@ -776,7 +776,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           // Validate keys
           var allowed = config.type === "static" ? this.__P_98_11 : this.__P_98_10;
           for (var key in config) {
-            if (!allowed[key]) {
+            if (!(key in allowed)) {
               throw new Error('The configuration key "' + key + '" in class "' + name + '" is not allowed!');
             }
             if (config[key] == null) {
@@ -1316,8 +1316,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {Function} The wrapped constructor
        */
       __P_98_15: function __P_98_15(construct, name, type) {
-        var wrapper = function wrapper() {
-          var clazz = wrapper;
+        var _wrapper = function wrapper() {
+          var clazz = _wrapper;
           // Execute default constructor
           var retval = clazz.$$original.apply(this, arguments);
 
@@ -1334,13 +1334,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           return retval;
         };
         // Store original constructor
-        wrapper.$$original = construct;
+        _wrapper.$$original = construct;
 
         // Store wrapper into constructor (needed for base calls etc.)
-        construct.wrapper = wrapper;
+        construct.wrapper = _wrapper;
 
         // Return generated wrapper
-        return wrapper;
+        return _wrapper;
       }
     },
     defer: function defer() {}
@@ -1348,4 +1348,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1717235370484
+//# sourceMappingURL=Class.js.map?dt=1722151814065

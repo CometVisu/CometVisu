@@ -181,11 +181,11 @@
         if (newWindow && listener && listener instanceof Function) {
           var context = self || newWindow;
           var onLoadFunction = qx.lang.Function.bind(listener, context);
-          var onNativeLoad = function onNativeLoad() {
+          var _onNativeLoad = function onNativeLoad() {
             onLoadFunction();
-            qx.bom.Event.removeNativeListener(newWindow, "load", onNativeLoad);
+            qx.bom.Event.removeNativeListener(newWindow, "load", _onNativeLoad);
           };
-          qx.bom.Event.addNativeListener(newWindow, "load", onNativeLoad);
+          qx.bom.Event.addNativeListener(newWindow, "load", _onNativeLoad);
         }
         return newWindow;
       },
@@ -342,4 +342,4 @@
   qx.bom.Window.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Window.js.map?dt=1717235372763
+//# sourceMappingURL=Window.js.map?dt=1722151816247

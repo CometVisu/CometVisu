@@ -1,10 +1,6 @@
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
-      "qx.core.Environment": {
-        "defer": "load",
-        "require": true
-      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -13,12 +9,6 @@
         "require": true
       },
       "qx.event.Utils": {}
-    },
-    "environment": {
-      "provided": [],
-      "required": {
-        "qx.promise": {}
-      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -47,10 +37,8 @@
     extend: qx.dev.unit.TestCase,
     members: {
       testQxPromiseNotDefined: function testQxPromiseNotDefined() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           this.assertTrue(true);
-        } else {
-          this.assertTrue(qx.Promise === undefined);
         }
       },
       testNoPromises: function testNoPromises() {
@@ -79,7 +67,7 @@
         this.assertTrue(finished);
       },
       testSomeDelayedPromises: function testSomeDelayedPromises() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var Utils = qx.event.Utils;
           var tracker = {};
           var str = "";
@@ -104,12 +92,10 @@
             self.resume();
           });
           self.wait();
-        } else {
-          this.skip("Skipping because qx.promise==false");
         }
       },
       testSomeInstantPromises: function testSomeInstantPromises() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var Utils = qx.event.Utils;
           var tracker = {};
           var str = "";
@@ -130,12 +116,10 @@
             self.resume();
           });
           self.wait();
-        } else {
-          this.skip("Skipping because qx.promise==false");
         }
       },
       testSomeInstantPromises2: function testSomeInstantPromises2() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var Utils = qx.event.Utils;
           var tracker = {};
           var str = "";
@@ -161,8 +145,6 @@
             self.resume();
           });
           self.wait();
-        } else {
-          this.skip("Skipping because qx.promise==false");
         }
       },
       testSomeAbort: function testSomeAbort() {
@@ -190,7 +172,7 @@
         this.assertTrue(finished);
       },
       testSomeReject: function testSomeReject() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var Utils = qx.event.Utils;
           var tracker = {};
           var str = "";
@@ -216,12 +198,10 @@
             self.resume();
           });
           self.wait();
-        } else {
-          this.skip("Skipping because qx.promise==false");
         }
       },
       testResolveAndReject: function testResolveAndReject() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var Utils = qx.event.Utils;
           var tracker = {};
           var str = "";
@@ -252,12 +232,10 @@
             self.resume();
           });
           self.wait();
-        } else {
-          this.skip("Skipping because qx.promise==false");
         }
       },
       testSeries1: function testSeries1() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var Utils = qx.event.Utils;
           var tracker = {};
           var str = "";
@@ -286,12 +264,10 @@
             return null;
           });
           self.wait();
-        } else {
-          this.skip("Skipping because qx.promise==false");
         }
       },
       testSeriesAbort: function testSeriesAbort() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var Utils = qx.event.Utils;
           var tracker = {};
           var str = "";
@@ -321,8 +297,6 @@
             self.assertTrue(false);
           });
           self.wait();
-        } else {
-          this.skip("Skipping because qx.promise==false");
         }
       },
       /**
@@ -351,7 +325,7 @@
         }
       },
       testPromiseReturns: function testPromiseReturns() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var self = this;
           var p = new qx.Promise(function (resolve) {
             setTimeout(function () {
@@ -375,12 +349,10 @@
             self.resume();
           });
           this.wait();
-        } else {
-          this.skip("Skipping because native Promise is not defined");
         }
       },
       testSeriesReject: function testSeriesReject() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var Utils = qx.event.Utils;
           var tracker = {};
           var str = "";
@@ -407,12 +379,10 @@
             self.assertTrue(false);
           });
           self.wait();
-        } else {
-          this.skip("Skipping because native Promise is not defined");
         }
       },
       testSeriesRejectNested: function testSeriesRejectNested() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var Utils = qx.event.Utils;
           var tracker = {};
           var str = "";
@@ -448,12 +418,10 @@
             return null;
           });
           self.wait();
-        } else {
-          this.skip("Skipping because native Promise is not defined");
         }
       },
       testSeriesNested: function testSeriesNested() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var Utils = qx.event.Utils;
           var tracker = {};
           var str = "";
@@ -490,12 +458,10 @@
             return null;
           });
           self.wait();
-        } else {
-          this.skip("Skipping because native Promise is not defined");
         }
       },
       testTrack: function testTrack() {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           var outer = function outer() {
             var tracker = {};
             Utils.track(tracker, inner);
@@ -527,8 +493,6 @@
           var self = this;
           var finished = true;
           outer();
-        } else {
-          this.skip("Skipping because native Promise is not defined");
         }
       }
     }
@@ -536,4 +500,4 @@
   qx.test.event.Utils.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Utils.js.map?dt=1717235389438
+//# sourceMappingURL=Utils.js.map?dt=1722151832289

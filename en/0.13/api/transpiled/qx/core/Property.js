@@ -19,7 +19,6 @@
     "environment": {
       "provided": [],
       "required": {
-        "qx.promise": {},
         "qx.debug": {
           "load": true
         }
@@ -207,7 +206,7 @@
           qx.event.type.Data;
           qx.event.dispatch.Direct;
         }
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           qx.Promise;
         }
       },
@@ -491,16 +490,6 @@
         // Fill dispose value
         if (config.dereference === undefined && typeof config.check === "string") {
           config.dereference = this.__P_176_8(config.check);
-        }
-        if (!qx.core.Environment.get("qx.promise")) {
-          if (config.async) {
-            this.warn("Asynchronous property " + clazz.classname + "." + name + " is switched to synchronous because qx.promise==false");
-            config.async = false;
-          }
-          if (config.check == "qx.Promise") {
-            this.error("Cannot implement check for property " + clazz.classname + "." + name + " because qx.promise==false");
-            delete config.check;
-          }
         }
 
         // Check for method name conflicts
@@ -829,7 +818,7 @@
         if (incomingValue) {
           code.unshift("function set(value){");
           code.push("}");
-          if (qx.core.Environment.get("qx.promise") && (!config.check || config.check != "qx.Promise")) {
+          if (true && (!config.check || config.check != "qx.Promise")) {
             code.push("var promise;", "if (qx.Promise.isPromise(value)) ", "promise = value.then(set.bind(this));", "else ", "promise = set.apply(this, arguments);");
             if (variant == "setImpl") {
               code.push("return promise;");
@@ -1367,7 +1356,7 @@
           // Fire event
           if (config.event) {
             code.push("var reg=qx.event.Registration;", "if(reg.hasListener(self, '", config.event, "'))", "qx.event.Utils.track(tracker, reg.fireEvent(self, '", config.event, "', qx.event.type.Data, [computed, old]", "));");
-            if (qx.core.Environment.get("qx.promise")) {
+            {
               code.push("if(reg.hasListener(self, '", config.event, "Async'))", "qx.event.Utils.then(tracker, function() {\n  return reg.fireEventAsync(self, '", config.event, "Async', qx.event.type.Data, [qx.Promise.resolve(computed), old]", ");\n});");
             }
           }
@@ -1377,7 +1366,7 @@
           }
           code.push("if (tracker.promise)\n", "  return tracker.promise.then(function() { return computed; });", "return computed;", "}");
         }
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           code.push("if(qx.Promise.isPromise(promise)) return promise.then(fire); ");
         }
         code.push("return fire();");
@@ -1387,4 +1376,4 @@
   qx.core.Property.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Property.js.map?dt=1717235375439
+//# sourceMappingURL=Property.js.map?dt=1722151818836

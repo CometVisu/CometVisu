@@ -2,10 +2,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 (function () {
   var $$dbClassInfo = {
     "dependsOn": {
-      "qx.core.Environment": {
-        "defer": "load",
-        "require": true
-      },
       "qx.Class": {
         "usage": "dynamic",
         "require": true
@@ -22,13 +18,14 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       "qx.log.Logger": {},
       "qx.bom.Event": {},
       "qx.lang.Type": {},
-      "qx.event.GlobalError": {}
+      "qx.event.GlobalError": {},
+      "qx.core.Environment": {
+        "defer": "runtime"
+      }
     },
     "environment": {
       "provided": ["qx.promise.warnings", "qx.promise.longStackTraces"],
-      "required": {
-        "qx.promise": {}
-      }
+      "required": {}
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -879,9 +876,6 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           process.on("unhandledRejection", qx.Promise.__P_102_11.bind(this));
         } else {
           qx.bom.Event.addNativeListener(window, "unhandledrejection", qx.Promise.__P_102_11.bind(this));
-        }
-        if (!qx.core.Environment.get("qx.promise")) {
-          qx.log.Logger.error(this, "Promises are installed and initialised but disabled from properties because qx.promise==false; this may cause unexpected behaviour");
         }
       },
       /**
@@ -5683,4 +5677,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.Promise.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Promise.js.map?dt=1717235371296
+//# sourceMappingURL=Promise.js.map?dt=1722151814758

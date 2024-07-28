@@ -437,7 +437,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {String}
        */
       getCompilerVersion: function getCompilerVersion() {
-        return "7.7.1";
+        return "7.7.2";
       },
       /**
        * Returns the qooxdoo version used in the application in the current or given
@@ -645,4 +645,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.config.Utils.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Utils.js.map?dt=1717235406298
+//# sourceMappingURL=Utils.js.map?dt=1722151848571

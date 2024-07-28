@@ -7,10 +7,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     "dependsOn": {
       "qx.event.dispatch.Direct": {},
       "qx.event.handler.Object": {},
-      "qx.core.Environment": {
-        "defer": "load",
-        "require": true
-      },
       "qx.Mixin": {
         "usage": "dynamic",
         "require": true
@@ -20,12 +16,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       "qx.Promise": {},
       "qx.event.type.Data": {}
-    },
-    "environment": {
-      "provided": [],
-      "required": {
-        "qx.promise": {}
-      }
     }
   };
   qx.Bootstrap.executePendingDefers($$dbClassInfo);
@@ -184,7 +174,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_171_3: function __P_171_3(result) {
         var _this = this;
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           if (!qx.Promise.isPromise(result)) {
             return result;
           }
@@ -216,8 +206,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           });
           this.__P_171_1[hashCode] = newPromise;
           return newPromise;
-        } else {
-          return result;
         }
       },
       /**
@@ -230,23 +218,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
-                if (!qx.core.Environment.get("qx.promise")) {
-                  _context.next = 7;
-                  break;
-                }
                 if (_this2.__P_171_1) {
-                  _context.next = 3;
+                  _context.next = 2;
                   break;
                 }
                 return _context.abrupt("return");
-              case 3:
+              case 2:
                 if (!_this2.__P_171_2) {
                   _this2.__P_171_2 = new qx.Promise();
                 }
                 promise = _this2.__P_171_2;
-                _context.next = 7;
+                _context.next = 6;
                 return promise;
-              case 7:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -281,9 +265,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *  if the default was prevented, the promise is rejected
        */
       fireEventAsync: function fireEventAsync(type, clazz, args) {
-        if (!qx.core.Environment.get("qx.promise")) {
-          throw new Error(this.classname + ".fireEventAsync not supported because qx.promise==false");
-        }
         if (!this.$$disposed) {
           return this.__P_171_3(this.__P_171_0.fireEventAsync(this, type, clazz, args));
         }
@@ -322,9 +303,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *  if the default was prevented, the promise is rejected
        */
       fireNonBubblingEventAsync: function fireNonBubblingEventAsync(type, clazz, args) {
-        if (!qx.core.Environment.get("qx.promise")) {
-          throw new Error(this.classname + ".fireNonBubblingEventAsync not supported because qx.promise==false");
-        }
         if (!this.$$disposed) {
           return this.__P_171_3(this.__P_171_0.fireNonBubblingEventAsync(this, type, clazz, args));
         }
@@ -371,9 +349,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        *  if the default was prevented, the promise is rejected
        */
       fireDataEventAsync: function fireDataEventAsync(type, data, oldData, cancelable) {
-        if (!qx.core.Environment.get("qx.promise")) {
-          throw new Error(this.classname + ".fireDataEventAsync not supported because qx.promise==false");
-        }
         if (!this.$$disposed) {
           if (oldData === undefined) {
             oldData = null;
@@ -387,4 +362,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.core.MEvent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MEvent.js.map?dt=1717235375152
+//# sourceMappingURL=MEvent.js.map?dt=1722151818559

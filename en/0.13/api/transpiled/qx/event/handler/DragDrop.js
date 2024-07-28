@@ -379,10 +379,8 @@
        */
       __P_218_16: function __P_218_16() {
         if (this.__P_218_4 == null) {
-          if (qx.core.Environment.get("qx.promise")) {
+          {
             return qx.Promise.reject();
-          } else {
-            return null;
           }
         }
         var actions = this.__P_218_6;
@@ -455,7 +453,7 @@
           dragEvent.setRelatedTarget(relatedTarget);
         }
         var result = Registration.dispatchEvent(target, dragEvent);
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           if (async === undefined || async) {
             return qx.Promise.resolve(result).then(function () {
               return !dragEvent.getDefaultPrevented();
@@ -463,8 +461,6 @@
           } else {
             return result;
           }
-        } else {
-          return result;
         }
       },
       /**
@@ -880,4 +876,4 @@
   qx.event.handler.DragDrop.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DragDrop.js.map?dt=1717235380048
+//# sourceMappingURL=DragDrop.js.map?dt=1722151823280

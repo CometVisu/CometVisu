@@ -461,7 +461,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 // of the ES 5.1 spec). The parenthesized expression prevents an
                 // unsafe transformation by the Closure Compiler.
                 var original = this.__proto__,
-                  result = (property in (this.__proto__ = null, this));
+                  result = property in (this.__proto__ = null, this);
                 // Restore the original prototype chain.
                 this.__proto__ = original;
                 return result;
@@ -649,7 +649,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 
           // Internal: Recursively serializes an object. Implements the
           // `Str(key, holder)`, `JO(value)`, and `JA(value)` operations.
-          var serialize = function serialize(property, object, callback, properties, whitespace, indentation, stack) {
+          var _serialize = function serialize(property, object, callback, properties, whitespace, indentation, stack) {
             var value = object[property],
               className,
               year,
@@ -763,7 +763,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
               if (className == arrayClass) {
                 // Recursively serialize array elements.
                 for (index = 0, length = value.length; index < length; hasMembers || (hasMembers = true), index++) {
-                  element = serialize(index, value, callback, properties, whitespace, indentation, stack);
+                  element = _serialize(index, value, callback, properties, whitespace, indentation, stack);
                   results.push(element === undef ? "null" : element);
                 }
                 result = hasMembers ? whitespace ? "[\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "]" : "[" + results.join(",") + "]" : "[]";
@@ -772,7 +772,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 // either a user-specified list of property names, or the object
                 // itself.
                 forEach(properties || value, function (property) {
-                  var element = serialize(property, value, callback, properties, whitespace, indentation, stack);
+                  var element = _serialize(property, value, callback, properties, whitespace, indentation, stack);
                   if (element !== undef) {
                     // According to ES 5.1 section 15.12.3: "If `gap` {whitespace}
                     // is not the empty string, let `member` {quote(property) + ":"}
@@ -818,7 +818,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             // Opera <= 7.54u2 discards the values associated with empty string keys
             // (`""`) only if they are used directly within an object member list
             // (e.g., `!("" in { "": 1})`).
-            return serialize("", (value = {}, value[""] = source, value), callback, properties, whitespace, "", []);
+            return _serialize("", (value = {}, value[""] = source, value), callback, properties, whitespace, "", []);
           };
         }
 
@@ -1030,7 +1030,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           };
 
           // Internal: Parses a JSON `value` token.
-          var get = function get(value) {
+          var _get = function get(value) {
             var results, hasMembers;
             if (value === "$") {
               // Unexpected end of input.
@@ -1070,7 +1070,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   if (value === ",") {
                     abort();
                   }
-                  results.push(get(value));
+                  results.push(_get(value));
                 }
                 return results;
               } else if (value === "{") {
@@ -1102,7 +1102,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                   if (value === "," || typeof value !== "string" || (charIndexBuggy ? value.charAt(0) : value[0]) !== "@" || lex() !== ":") {
                     abort();
                   }
-                  results[value.slice(1)] = get(lex());
+                  results[value.slice(1)] = _get(lex());
                 }
                 return results;
               }
@@ -1150,7 +1150,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             var result, value;
             Index = 0;
             Source = "" + source;
-            result = get(lex());
+            result = _get(lex());
             // If a JSON string contains multiple tokens, it is invalid.
             if (lex() != "$") {
               abort();
@@ -1178,4 +1178,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.lang.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1717235383606
+//# sourceMappingURL=Json.js.map?dt=1722151826672

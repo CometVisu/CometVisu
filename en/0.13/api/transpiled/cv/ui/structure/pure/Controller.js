@@ -690,6 +690,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }
         // not found
         return null;
+      },
+      updateSentryScope: function updateSentryScope() {
+        if (cv.Config.sentryEnabled && window.Sentry) {
+          Sentry.setTag('ui.structure', 'pure');
+          Sentry.setTag('ui.design', cv.Config.getDesign());
+        }
       }
     },
     /*
@@ -707,4 +713,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.pure.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1717235366771
+//# sourceMappingURL=Controller.js.map?dt=1722151810469

@@ -100,7 +100,7 @@
           qx.bom.Event.addNativeListener(document, "DOMContentLoaded", wrappedCallback);
         } else {
           // Continually check to see if the document is ready
-          var timer = function timer() {
+          var _timer = function timer() {
             // onWindowLoad already executed
             if (qx.module.Event.__P_289_2) {
               return;
@@ -113,10 +113,10 @@
                 wrappedCallback();
               }
             } catch (error) {
-              window.setTimeout(timer, 100);
+              window.setTimeout(_timer, 100);
             }
           };
-          timer();
+          _timer();
         }
       },
       /**
@@ -454,11 +454,11 @@
        */
       once: function once(type, listener, context) {
         var self = this;
-        var wrappedListener = function wrappedListener(data) {
-          self.off(type, wrappedListener, context);
+        var _wrappedListener = function wrappedListener(data) {
+          self.off(type, _wrappedListener, context);
           listener.call(this, data);
         };
-        this.on(type, wrappedListener, context);
+        this.on(type, _wrappedListener, context);
         return this;
       },
       /**
@@ -664,4 +664,4 @@
   qx.module.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1717235384573
+//# sourceMappingURL=Event.js.map?dt=1722151827642

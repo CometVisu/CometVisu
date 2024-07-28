@@ -132,7 +132,7 @@
       /**
        * @ignore(Foo)
        */
-      "test addListenerOnce: same callback": function testAddListenerOnceSameCallback() {
+      "test addListenerOnce: same callback": function test_addListenerOnce_same_callback() {
         qx.Class.define("Foo", {
           extend: qx.core.Object,
           events: {
@@ -166,4 +166,4 @@
   qx.test.event.Registration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Registration.js.map?dt=1717235389367
+//# sourceMappingURL=Registration.js.map?dt=1722151832223

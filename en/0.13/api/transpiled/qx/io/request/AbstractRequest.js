@@ -40,8 +40,7 @@
       "required": {
         "qx.debug.io": {
           "className": "qx.bom.request.Script"
-        },
-        "qx.promise": {}
+        }
       }
     }
   };
@@ -422,7 +421,7 @@
        * @throws {qx.type.BaseError} If the environment setting `qx.promise` is set to false
        */
       sendWithPromise: function sendWithPromise(context) {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           context = context || this;
 
           // save this object's context
@@ -477,9 +476,6 @@
           });
           return promise;
           // eslint-disable-next-line no-else-return
-        } else {
-          // fail loudly
-          throw new qx.type.BaseError("Error", "Environment setting qx.promise is set to false.");
         }
       },
       /**
@@ -914,4 +910,4 @@
   qx.io.request.AbstractRequest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractRequest.js.map?dt=1717235382993
+//# sourceMappingURL=AbstractRequest.js.map?dt=1722151826074

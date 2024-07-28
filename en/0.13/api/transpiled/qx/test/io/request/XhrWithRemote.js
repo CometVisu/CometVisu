@@ -64,7 +64,7 @@
       tearDown: function tearDown() {
         this.req.dispose();
       },
-      "test: fetch resource": function testFetchResource() {
+      "test: fetch resource": function test_fetch_resource() {
         var _this = this;
         var req = this.req,
           url = this.noCache(this.getUrl("qx/test/xmlhttp/sample.txt"));
@@ -77,7 +77,7 @@
         req.send();
         this.wait();
       },
-      "test: recycle request": function testRecycleRequest() {
+      "test: recycle request": function test_recycle_request() {
         var _this2 = this;
         var req = new qx.io.request.Xhr(),
           url1 = this.noCache(this.getUrl("qx/test/xmlhttp/sample.txt") + "?1"),
@@ -96,7 +96,7 @@
         req.send();
         this.wait();
       },
-      "test: progress phases": function testProgressPhases() {
+      "test: progress phases": function test_progress_phases() {
         var _this3 = this;
         var req = this.req,
           phases = [],
@@ -114,7 +114,7 @@
         req.send();
         this.wait();
       },
-      "test: progress phases when abort after send": function testProgressPhasesWhenAbortAfterSend() {
+      "test: progress phases when abort after send": function test_progress_phases_when_abort_after_send() {
         var _this4 = this;
         var req = this.req,
           phases = [],
@@ -130,7 +130,7 @@
         req.send();
         req.abort();
       },
-      "test: progress phases when abort after loading": function testProgressPhasesWhenAbortAfterLoading() {
+      "test: progress phases when abort after loading": function test_progress_phases_when_abort_after_loading() {
         var _this5 = this;
         // Note:
         //   * Breaks on Windows 7 and OS X in every browser because the loading phase
@@ -158,7 +158,7 @@
         }, this, 500);
         this.wait();
       },
-      "test: timeout": function testTimeout() {
+      "test: timeout": function test_timeout() {
         var _this6 = this;
         var req = this.req,
           url = this.noCache(this.getUrl("qx/test/xmlhttp/loading.php")) + "&duration=100";
@@ -172,7 +172,7 @@
         req.send();
         this.wait();
       },
-      "test: timeout with header call": function testTimeoutWithHeaderCall() {
+      "test: timeout with header call": function test_timeout_with_header_call() {
         var _this7 = this;
         var req = this.req,
           url = this.noCache(this.getUrl("qx/test/xmlhttp/loading.php")) + "&duration=100";
@@ -234,4 +234,4 @@
   qx.test.io.request.XhrWithRemote.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=XhrWithRemote.js.map?dt=1717235390463
+//# sourceMappingURL=XhrWithRemote.js.map?dt=1722151833294

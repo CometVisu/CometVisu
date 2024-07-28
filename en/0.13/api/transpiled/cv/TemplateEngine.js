@@ -197,12 +197,15 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         qx.io.PartLoader.require(parts, function (states) {
           parts.forEach(function (part, idx) {
             if (states[idx] === 'complete') {
-              this.__P_754_0.remove(part);
               this.debug('successfully loaded part ' + part);
-              if (part.startsWith('structure-')) {
+              this.__P_754_0.remove(part);
+              if (part.startsWith('structure-') && !this.__P_754_0.some(function (p) {
+                return p.startsWith('structure-');
+              })) {
                 if (!cv.Config.loadedStructure) {
                   cv.Config.loadedStructure = part.substring(10);
                 }
+                this.debug('successfully loaded all structures');
                 qx.core.Init.getApplication().setStructureLoaded(true);
               }
               this.__P_754_0.remove(part);
@@ -227,13 +230,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         return new Promise(function (resolve, reject) {
           var timer = setTimeout(reject, 2000);
           if (waitingFor.getLength() === 0) {
-            resolve();
             clearTimeout(timer);
+            resolve();
           } else {
             waitingFor.addListener('changeLength', function (ev) {
               if (ev.getData() === 0) {
-                resolve();
                 clearTimeout(timer);
+                resolve();
               }
             });
           }
@@ -533,4 +536,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1717235421802
+//# sourceMappingURL=TemplateEngine.js.map?dt=1722151863539

@@ -109,7 +109,7 @@
         var nameParts = className.split(".");
         var name = "";
         var nameIndex = 0;
-        var next = function next() {
+        var _next = function next() {
           if (nameIndex > 0) {
             name += ".";
           }
@@ -122,12 +122,12 @@
           return treeNode.loading.then(function () {
             nameIndex++;
             if (nameIndex < nameParts.length) {
-              return next();
+              return _next();
             }
             return treeNode;
           });
         };
-        return next().then(function (treeNode) {
+        return _next().then(function (treeNode) {
           if (treeNode) {
             _this.setSelection([treeNode]);
             _this.scrollChildIntoView(treeNode);
@@ -231,4 +231,4 @@
   qxl.apiviewer.ui.PackageTree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PackageTree.js.map?dt=1717235424987
+//# sourceMappingURL=PackageTree.js.map?dt=1722151866579

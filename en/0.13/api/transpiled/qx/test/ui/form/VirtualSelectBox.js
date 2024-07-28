@@ -81,7 +81,7 @@
         }
         items.dispose();
       },
-      "test dropdown list same width as selectbox": function testDropdownListSameWidthAsSelectbox() {
+      "test dropdown list same width as selectbox": function test_dropdown_list_same_width_as_selectbox() {
         "use strict";
 
         var test = this;
@@ -98,7 +98,7 @@
         }, 10);
         this.wait();
       },
-      "test dropdown list wider than selectbox": function testDropdownListWiderThanSelectbox() {
+      "test dropdown list wider than selectbox": function test_dropdown_list_wider_than_selectbox() {
         "use strict";
 
         var test = this;
@@ -120,4 +120,4 @@
   qx.test.ui.form.VirtualSelectBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VirtualSelectBox.js.map?dt=1717235394546
+//# sourceMappingURL=VirtualSelectBox.js.map?dt=1722151837200

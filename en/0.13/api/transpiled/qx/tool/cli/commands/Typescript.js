@@ -86,7 +86,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }(function () {
         var _this = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-          var IGNORE_FILENAME, ig, exclude, classFiles, scanImpl, files, _manifest$provides, manifest, tmp, _iterator, _step, file, metaDb, _i, _classFiles, filename, tsWriter;
+          var IGNORE_FILENAME, ig, exclude, classFiles, _scanImpl, files, _manifest$provides, manifest, tmp, _iterator, _step, file, metaDb, _i, _classFiles, filename, tsWriter;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -121,7 +121,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   ig.add(exclude);
                 }
                 classFiles = [];
-                scanImpl = /*#__PURE__*/function () {
+                _scanImpl = /*#__PURE__*/function () {
                   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(filename) {
                     var basename, stat, _files, i, subname;
                     return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -156,7 +156,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           }
                           subname = path.join(filename, _files[i]);
                           _context.next = 17;
-                          return scanImpl(subname);
+                          return _scanImpl(subname);
                         case 17:
                           i++;
                           _context.next = 13;
@@ -207,7 +207,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 file = _step.value;
                 _context2.next = 37;
-                return scanImpl(file);
+                return _scanImpl(file);
               case 37:
                 _context2.next = 33;
                 break;
@@ -262,4 +262,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Typescript.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Typescript.js.map?dt=1717235400991
+//# sourceMappingURL=Typescript.js.map?dt=1722151843359

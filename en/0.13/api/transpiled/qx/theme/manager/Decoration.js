@@ -222,10 +222,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         var decorator = new qx.ui.decoration.Decorator();
 
         // handle recursive decorator includes
-        var recurseDecoratorInclude = function recurseDecoratorInclude(currentEntry, name) {
+        var _recurseDecoratorInclude = function recurseDecoratorInclude(currentEntry, name) {
           // follow the include chain to the topmost decorator entry
           if (currentEntry.include && theme.decorations[currentEntry.include]) {
-            recurseDecoratorInclude(theme.decorations[currentEntry.include], currentEntry.include);
+            _recurseDecoratorInclude(theme.decorations[currentEntry.include], currentEntry.include);
           }
 
           // apply styles from the included decorator,
@@ -236,7 +236,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         };
 
         // start with the current decorator entry
-        recurseDecoratorInclude(theme.decorations[value], value);
+        _recurseDecoratorInclude(theme.decorations[value], value);
         cache[value] = decorator;
         return cache[value];
       },
@@ -346,4 +346,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.theme.manager.Decoration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Decoration.js.map?dt=1717235398000
+//# sourceMappingURL=Decoration.js.map?dt=1722151840497

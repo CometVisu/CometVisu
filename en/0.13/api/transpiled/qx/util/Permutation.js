@@ -48,7 +48,7 @@
           var key = keys[i];
           map[key] = options[key][0];
         }
-        var _perm = function _perm(index, ignore) {
+        var _perm2 = function _perm(index, ignore) {
           if (index >= keys.length) {
             return;
           }
@@ -60,14 +60,14 @@
               map[key] = values[i];
               callback.call(context || window, map);
             }
-            _perm(index + 1, indices[index + 1]);
+            _perm2(index + 1, indices[index + 1]);
           }
         };
-        _perm(0, -1);
+        _perm2(0, -1);
       }
     }
   });
   qx.util.Permutation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Permutation.js.map?dt=1717235420363
+//# sourceMappingURL=Permutation.js.map?dt=1722151862190

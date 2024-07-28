@@ -113,7 +113,8 @@
         }
       },
       _onPointerDown: function _onPointerDown(ev) {
-        if (!cv.util.Tree.isChildOf(ev.target, this._element)) {
+        var element = this._headerFooterParent || this._element;
+        if (!cv.util.Tree.isChildOf(ev.target, element)) {
           ev.preventDefault();
           ev.stopImmediatePropagation();
           // clicked outside -> close (with delay to capture composed events)
@@ -134,4 +135,4 @@
   cv.ui.structure.tile.MPopup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MPopup.js.map?dt=1717235367934
+//# sourceMappingURL=MPopup.js.map?dt=1722151811589

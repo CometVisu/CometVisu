@@ -135,7 +135,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         var message = "";
 
         // Function to recursively display an object
-        var displayObj = function displayObj(obj, level, maxLevel) {
+        var _displayObj = function displayObj(obj, level, maxLevel) {
           // If we've exceeded the maximum recursion level...
           if (level > maxLevel) {
             // ... then tell 'em so, and get outta dodge.
@@ -169,7 +169,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
                 }
 
                 // Recurse into it to display its children.
-                displayObj(obj[prop], level + 1, maxLevel);
+                _displayObj(obj[prop], level + 1, maxLevel);
               } catch (e) {
                 message += sol(level) + prop + ": EXCEPTION expanding property" + eol;
               }
@@ -197,7 +197,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         message += sol(0) + "------------------------------------------------------------" + eol;
         try {
           // Recursively display this object
-          displayObj(obj, 0, maxLevel);
+          _displayObj(obj, 0, maxLevel);
         } catch (ex) {
           message += sol(0) + "*** EXCEPTION (" + ex + ") ***" + eol;
         }
@@ -412,4 +412,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.dev.Debug.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Debug.js.map?dt=1717235376377
+//# sourceMappingURL=Debug.js.map?dt=1722151819747

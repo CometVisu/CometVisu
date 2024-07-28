@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1717235169766,
-  "lastModifiedIso": "2024-06-01T09:46:09.766Z",
+  "lastModified": 1722151624631,
+  "lastModifiedIso": "2024-07-28T07:27:04.631Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/cli/commands/Compile.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 844
     },
     "end": {
-      "line": 1851,
+      "line": 1848,
       "column": 3,
-      "index": 60057
+      "index": 59943
     }
   },
   "className": "qx.tool.cli.commands.Compile",
@@ -747,9 +747,9 @@
           "index": 22735
         },
         "end": {
-          "line": 860,
+          "line": 857,
           "column": 5,
-          "index": 26278
+          "index": 26164
         }
       },
       "type": "function",
@@ -796,14 +796,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 868,
+          "line": 865,
           "column": 4,
-          "index": 26462
+          "index": 26348
         },
         "end": {
-          "line": 1583,
+          "line": 1580,
           "column": 5,
-          "index": 50290
+          "index": 50176
         }
       },
       "type": "function",
@@ -874,14 +874,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 1594,
+          "line": 1591,
           "column": 4,
-          "index": 50635
+          "index": 50521
         },
         "end": {
-          "line": 1729,
+          "line": 1726,
           "column": 5,
-          "index": 55854
+          "index": 55740
         }
       },
       "type": "function",
@@ -939,14 +939,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1737,
+          "line": 1734,
           "column": 4,
-          "index": 56066
+          "index": 55952
         },
         "end": {
-          "line": 1760,
+          "line": 1757,
           "column": 5,
-          "index": 56685
+          "index": 56571
         }
       },
       "type": "function",
@@ -988,14 +988,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1767,
+          "line": 1764,
           "column": 4,
-          "index": 56807
+          "index": 56693
         },
         "end": {
-          "line": 1769,
+          "line": 1766,
           "column": 5,
-          "index": 56854
+          "index": 56740
         }
       },
       "type": "function",
@@ -1042,14 +1042,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1780,
+          "line": 1777,
           "column": 4,
-          "index": 57286
+          "index": 57172
         },
         "end": {
-          "line": 1789,
+          "line": 1786,
           "column": 5,
-          "index": 57523
+          "index": 57409
         }
       },
       "type": "function",
@@ -1096,14 +1096,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1797,
+          "line": 1794,
           "column": 4,
-          "index": 57714
+          "index": 57600
         },
         "end": {
-          "line": 1802,
+          "line": 1799,
           "column": 5,
-          "index": 57902
+          "index": 57788
         }
       },
       "type": "function",
@@ -1145,14 +1145,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 1809,
+          "line": 1806,
           "column": 4,
-          "index": 58030
+          "index": 57916
         },
         "end": {
-          "line": 1811,
+          "line": 1808,
           "column": 5,
-          "index": 58083
+          "index": 57969
         }
       },
       "type": "function",

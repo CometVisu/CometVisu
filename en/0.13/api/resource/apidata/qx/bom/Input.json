@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1717235171422,
-  "lastModifiedIso": "2024-06-01T09:46:11.422Z",
+  "lastModified": 1722151626143,
+  "lastModifiedIso": "2024-07-28T07:27:06.143Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/bom/Input.js",
   "type": "bootstrap",
   "location": {
@@ -11,9 +11,9 @@
       "index": 882
     },
     "end": {
-      "line": 270,
+      "line": 281,
       "column": 3,
-      "index": 7756
+      "index": 8009
     }
   },
   "className": "qx.bom.Input",
@@ -57,9 +57,9 @@
           "index": 1200
         },
         "end": {
-          "line": 60,
+          "line": 71,
           "column": 5,
-          "index": 1435
+          "index": 1688
         }
       },
       "appearsIn": []
@@ -124,14 +124,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 77,
+          "line": 88,
           "column": 4,
-          "index": 2078
+          "index": 2331
         },
         "end": {
-          "line": 99,
+          "line": 110,
           "column": 5,
-          "index": 2661
+          "index": 2914
         }
       },
       "type": "function",
@@ -204,14 +204,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 117,
+          "line": 128,
           "column": 4,
-          "index": 3330
+          "index": 3583
         },
         "end": {
-          "line": 163,
+          "line": 174,
           "column": 5,
-          "index": 4796
+          "index": 5049
         }
       },
       "type": "function",
@@ -274,14 +274,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 177,
+          "line": 188,
           "column": 4,
-          "index": 5203
+          "index": 5456
         },
         "end": {
-          "line": 226,
+          "line": 237,
           "column": 5,
-          "index": 6430
+          "index": 6683
         }
       },
       "type": "function",
@@ -341,14 +341,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 237,
+          "line": 248,
           "column": 4,
-          "index": 6781
+          "index": 7034
         },
         "end": {
-          "line": 268,
+          "line": 279,
           "column": 6,
-          "index": 7748
+          "index": 8001
         }
       },
       "appearsIn": []

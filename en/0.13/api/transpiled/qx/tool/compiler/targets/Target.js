@@ -374,8 +374,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 appRootDir = _this.getApplicationRoot(application);
                 mapTo = _this.getPathMapping(path.join(appRootDir, _this.getOutputDir(), "transpiled/"));
                 appMeta.setSourceUri(mapTo ? mapTo : targetUri + "transpiled/");
-                mapTo = _this.getPathMapping(path.join(appRootDir, _this.getOutputDir(), "resource/"));
-                appMeta.setResourceUri(mapTo ? mapTo : targetUri + "resource/");
+                mapTo = _this.getPathMapping(path.join(appRootDir, _this.getOutputDir(), "resource"));
+                appMeta.setResourceUri(mapTo ? mapTo : targetUri + "resource");
                 requiredLibs = application.getRequiredLibraries();
                 _context2.next = 15;
                 return qx.tool.utils.Utils.makeDirs(appRootDir);
@@ -1322,4 +1322,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.Target.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Target.js.map?dt=1717235405135
+//# sourceMappingURL=Target.js.map?dt=1722151847399

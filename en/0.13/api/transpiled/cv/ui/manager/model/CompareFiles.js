@@ -65,7 +65,8 @@
       },
       permanent: {
         check: 'Boolean',
-        init: true
+        init: true,
+        event: 'changePermanent'
       },
       name: {
         check: 'String',
@@ -134,4 +135,4 @@
   cv.ui.manager.model.CompareFiles.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CompareFiles.js.map?dt=1717235365247
+//# sourceMappingURL=CompareFiles.js.map?dt=1722151808933

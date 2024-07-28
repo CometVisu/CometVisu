@@ -84,6 +84,18 @@
     },
     /*
     ***********************************************
+      PROPERTIES
+    ***********************************************
+    */
+    properties: {
+      // system backend is always connected
+      connected: {
+        refine: true,
+        init: true
+      }
+    },
+    /*
+    ***********************************************
       MEMBERS
     ***********************************************
     */
@@ -106,7 +118,6 @@
         if (callback) {
           callback.call(context);
         }
-        this.setConnected(true);
       },
       subscribe: function subscribe(addresses, filters) {
         this.addresses = addresses ? addresses : [];
@@ -255,4 +266,4 @@
   cv.io.System.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=System.js.map?dt=1717235424669
+//# sourceMappingURL=System.js.map?dt=1722151866287

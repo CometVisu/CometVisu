@@ -26,7 +26,7 @@
     extend: qx.dev.unit.TestCase,
     include: [qx.test.io.MAssert],
     members: {
-      "test: request can be converted to json": function testRequestCanBeConvertedToJson() {
+      "test: request can be converted to json": function test_request_can_be_converted_to_json() {
         var query = "query { SomeRandomStuff }";
         var variables = {
           testKey: "testValue"
@@ -38,7 +38,7 @@
         var expected = '{"query":"query { SomeRandomStuff }","variables":{"testKey":"testValue"}}';
         this.assertEquals(expected, request.toString());
       },
-      "test: no variables in the final string": function testNoVariablesInTheFinalString() {
+      "test: no variables in the final string": function test_no_variables_in_the_final_string() {
         var query = "query { SomeRandomStuff }";
         var request = new qx.io.graphql.protocol.Request({
           query: query
@@ -46,7 +46,7 @@
         var expected = '{"query":"query { SomeRandomStuff }"}';
         this.assertEquals(expected, request.toString());
       },
-      "test: variables can be bound": function testVariablesCanBeBound() {
+      "test: variables can be bound": function test_variables_can_be_bound() {
         var query = "query { SomeRandomStuff }";
         var variables = {
           testKey: "testValue"
@@ -67,4 +67,4 @@
   qx.test.io.graphql.Request.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Request.js.map?dt=1717235390041
+//# sourceMappingURL=Request.js.map?dt=1722151832872

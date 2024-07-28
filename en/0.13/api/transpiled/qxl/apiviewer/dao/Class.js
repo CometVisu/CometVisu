@@ -621,13 +621,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getAllInterfaces: function getAllInterfaces(includeSuperClasses) {
         var interfaceNodes = [];
-        var ifaceRecurser = function ifaceRecurser(ifaceNode) {
+        var _ifaceRecurser = function ifaceRecurser(ifaceNode) {
           interfaceNodes.push(ifaceNode);
-          (ifaceNode.getSuperInterfaces() || []).forEach(ifaceRecurser);
+          (ifaceNode.getSuperInterfaces() || []).forEach(_ifaceRecurser);
         };
         var classNodes = includeSuperClasses ? this.getClassHierarchy() : [this];
         classNodes.forEach(function (classNode) {
-          (classNode.getInterfaces() || []).forEach(ifaceRecurser);
+          (classNode.getInterfaces() || []).forEach(_ifaceRecurser);
         });
         return interfaceNodes;
       },
@@ -842,4 +842,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qxl.apiviewer.dao.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1717235425263
+//# sourceMappingURL=Class.js.map?dt=1722151866819

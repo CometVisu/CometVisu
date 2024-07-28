@@ -25,7 +25,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       "qx.util.DeferredCall": {
         "construct": true
       },
-      "cv.Application": {},
+      "cv.ui.structure.pure.Controller": {},
       "qx.event.message.Bus": {
         "defer": "runtime"
       },
@@ -33,6 +33,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       "cv.ui.structure.pure.layout.ResizeHandler": {},
       "qx.util.ResourceManager": {},
       "cv.Config": {},
+      "cv.Application": {},
       "cv.data.Model": {},
       "cv.io.BackendConnections": {},
       "cv.Transform": {}
@@ -125,7 +126,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       createFinal: function createFinal() {
         // special function - only for pages!
-        var target = cv.Application.structureController.getRenderTarget();
+        var target = cv.ui.structure.pure.Controller.getInstance().getRenderTarget();
         document.querySelector(target).innerHTML = this.allPages;
         qx.event.message.Bus.unsubscribe('setup.dom.append', this.createFinal, this);
       }
@@ -412,4 +413,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.pure.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1717235367070
+//# sourceMappingURL=Page.js.map?dt=1722151810746

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1717235171022,
-  "lastModifiedIso": "2024-06-01T09:46:11.022Z",
+  "lastModified": 1722151625739,
+  "lastModifiedIso": "2024-07-28T07:27:05.739Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/lang/Function.js",
   "type": "bootstrap",
   "location": {
@@ -11,9 +11,9 @@
       "index": 946
     },
     "end": {
-      "line": 459,
+      "line": 463,
       "column": 3,
-      "index": 14818
+      "index": 14936
     }
   },
   "className": "qx.lang.Function",
@@ -301,9 +301,9 @@
           "index": 4974
         },
         "end": {
-          "line": 236,
+          "line": 240,
           "column": 5,
-          "index": 7390
+          "index": 7508
         }
       },
       "type": "function",
@@ -418,14 +418,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 278,
+          "line": 282,
           "column": 4,
-          "index": 8850
+          "index": 8968
         },
         "end": {
-          "line": 286,
+          "line": 290,
           "column": 5,
-          "index": 9066
+          "index": 9184
         }
       },
       "type": "function",
@@ -512,14 +512,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 310,
+          "line": 314,
           "column": 4,
-          "index": 9770
+          "index": 9888
         },
         "end": {
-          "line": 317,
+          "line": 321,
           "column": 5,
-          "index": 9961
+          "index": 10079
         }
       },
       "type": "function",
@@ -599,14 +599,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 331,
+          "line": 335,
           "column": 4,
-          "index": 10478
+          "index": 10596
         },
         "end": {
-          "line": 350,
+          "line": 354,
           "column": 5,
-          "index": 11088
+          "index": 11206
         }
       },
       "type": "function",
@@ -711,14 +711,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 381,
+          "line": 385,
           "column": 4,
-          "index": 12035
+          "index": 12153
         },
         "end": {
-          "line": 390,
+          "line": 394,
           "column": 5,
-          "index": 12279
+          "index": 12397
         }
       },
       "type": "function",
@@ -825,14 +825,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 416,
+          "line": 420,
           "column": 4,
-          "index": 13392
+          "index": 13510
         },
         "end": {
-          "line": 425,
+          "line": 429,
           "column": 5,
-          "index": 13640
+          "index": 13758
         }
       },
       "type": "function",
@@ -940,14 +940,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 448,
+          "line": 452,
           "column": 4,
-          "index": 14546
+          "index": 14664
         },
         "end": {
-          "line": 457,
+          "line": 461,
           "column": 5,
-          "index": 14810
+          "index": 14928
         }
       },
       "type": "function",

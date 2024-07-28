@@ -319,10 +319,8 @@
        * @see #createEvent
        */
       fireEventAsync: function fireEventAsync(target, type, clazz, args) {
-        if (qx.core.Environment.get("qx.promise")) {
+        {
           return qx.Promise.resolve(this.fireEvent(target, type, clazz, args));
-        } else {
-          throw new Error(this.classname + ".fireEventAsync not supported because qx.promise==false");
         }
       },
       /**
@@ -477,4 +475,4 @@
   qx.event.Registration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Registration.js.map?dt=1717235379737
+//# sourceMappingURL=Registration.js.map?dt=1722151822971

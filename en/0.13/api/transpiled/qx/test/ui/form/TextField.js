@@ -41,16 +41,16 @@
         this.__P_416_0 = null;
         qx.test.ui.form.TextField.superclass.prototype.tearDown.call(this);
       },
-      "test: get default length": function testGetDefaultLength() {
+      "test: get default length": function test_get_default_length() {
         var l = this.__P_416_0.getMaxLength();
         this.assertEquals(Infinity, l);
       },
-      "test: set max length": function testSetMaxLength() {
+      "test: set max length": function test_set_max_length() {
         this.__P_416_0.setMaxLength(4);
         var l = this.__P_416_0.getMaxLength();
         this.assertEquals(4, l);
       },
-      "test: reset max length": function testResetMaxLength() {
+      "test: reset max length": function test_reset_max_length() {
         this.__P_416_0.setMaxLength(4);
         var l = this.__P_416_0.getMaxLength();
         this.assertEquals(4, l);
@@ -58,14 +58,14 @@
         var l = this.__P_416_0.getMaxLength();
         this.assertEquals(Infinity, l);
       },
-      "test: validate input with filter": function testValidateInputWithFilter() {
+      "test: validate input with filter": function test_validate_input_with_filter() {
         this.__P_416_0.setFilter(/[0-9]/);
         var s = this.__P_416_0._validateInput("a");
         this.assertEquals("", s);
         var s = this.__P_416_0._validateInput("111");
         this.assertEquals("111", s);
       },
-      "test: validate input with complex filter": function testValidateInputWithComplexFilter() {
+      "test: validate input with complex filter": function test_validate_input_with_complex_filter() {
         this.__P_416_0.setFilter(/^(\+|-)?\d*$/);
         var s = this.__P_416_0._validateInput("a");
         this.assertEquals("", s);
@@ -80,7 +80,7 @@
         var s = this.__P_416_0._validateInput("-11-1");
         this.assertEquals("", s);
       },
-      "test: validate input with complex filter 2": function testValidateInputWithComplexFilter2() {
+      "test: validate input with complex filter 2": function test_validate_input_with_complex_filter_2() {
         this.__P_416_0.setFilter(/^xy$/);
         var s = this.__P_416_0._validateInput("x? y?");
         this.assertEquals("", s);
@@ -91,4 +91,4 @@
   qx.test.ui.form.TextField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextField.js.map?dt=1717235394506
+//# sourceMappingURL=TextField.js.map?dt=1722151837162

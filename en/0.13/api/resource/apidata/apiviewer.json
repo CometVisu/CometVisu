@@ -8320,6 +8320,10 @@
         ],
         [
           3,
+          47
+        ],
+        [
+          3,
           306
         ]
       ],
@@ -8338,6 +8342,10 @@
         ],
         [
           3,
+          47
+        ],
+        [
+          3,
           306
         ]
       ],
@@ -8353,6 +8361,10 @@
         [
           3,
           43
+        ],
+        [
+          3,
+          47
         ],
         [
           3,
@@ -8413,6 +8425,10 @@
         [
           6,
           43
+        ],
+        [
+          6,
+          47
         ],
         [
           6,
@@ -31634,6 +31650,10 @@
         ],
         [
           3,
+          978
+        ],
+        [
+          3,
           986
         ],
         [
@@ -31672,6 +31692,10 @@
         ],
         [
           3,
+          978
+        ],
+        [
+          3,
           986
         ],
         [
@@ -31707,6 +31731,10 @@
         [
           3,
           961
+        ],
+        [
+          3,
+          978
         ],
         [
           3,
@@ -37222,6 +37250,20 @@
         ]
       ],
       "#onHistoryRequest": [
+        [
+          3,
+          228
+        ],
+        [
+          3,
+          236
+        ],
+        [
+          3,
+          272
+        ]
+      ],
+      "#updateSentryScope": [
         [
           3,
           228
@@ -91777,12 +91819,6 @@
           960
         ]
       ],
-      "#__stylesheet": [
-        [
-          7,
-          960
-        ]
-      ],
       "#__addedPlaceholderRules": [
         [
           7,
@@ -92948,6 +92984,12 @@
       "qx.ui.form.IListItem": [
         [
           1,
+          978
+        ]
+      ],
+      "#changeReadOnly": [
+        [
+          5,
           978
         ]
       ],
@@ -104949,6 +104991,24 @@
           1170
         ]
       ],
+      "#getCellEditorBlurAction": [
+        [
+          3,
+          1170
+        ]
+      ],
+      "#setCellEditorBlurAction": [
+        [
+          3,
+          1170
+        ]
+      ],
+      "#resetCellEditorBlurAction": [
+        [
+          3,
+          1170
+        ]
+      ],
       "#getModalCellEditorPreOpenFunction": [
         [
           3,
@@ -105278,6 +105338,12 @@
         ]
       ],
       "#dataRowRenderer": [
+        [
+          6,
+          1170
+        ]
+      ],
+      "#cellEditorBlurAction": [
         [
           6,
           1170
@@ -107700,6 +107766,18 @@
         ]
       ],
       "#_onCellEditorModalWindowClose": [
+        [
+          4,
+          1211
+        ]
+      ],
+      "#_onFocusinCellEditorAddBlurListener": [
+        [
+          4,
+          1211
+        ]
+      ],
+      "#_onBlurCellEditorStopEditing": [
         [
           4,
           1211

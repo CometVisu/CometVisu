@@ -62,13 +62,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       tearDown: function tearDown() {
         this.getSandbox().restore();
       },
-      "test: send request": function testSendRequest() {
+      "test: send request": function test_send_request() {
         this.setUpFakeRequest();
         var rpc = new qx.io.remote.Rpc("/foo");
         rpc.callAsync();
         this.assertCalledOnce(this.request.send);
       },
-      "test: request data for params with date contains date literal when convert dates": function testRequestDataForParamsWithDateContainsDateLiteralWhenConvertDates() {
+      "test: request data for params with date contains date literal when convert dates": function test_request_data_for_params_with_date_contains_date_literal_when_convert_dates() {
         this.setUpFakeRequest();
         var obj = {
             date: new Date(Date.UTC(2020, 0, 1, 0, 0, 0, 123))
@@ -85,7 +85,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         msg = "Must contain converted date literal";
         this.assertMatch(data, /"new Date\(Date.UTC\(2020,0,1,0,0,0,123\)\)"/, msg);
       },
-      "test: request data for params with nested date contains date literal when convert dates": function testRequestDataForParamsWithNestedDateContainsDateLiteralWhenConvertDates() {
+      "test: request data for params with nested date contains date literal when convert dates": function test_request_data_for_params_with_nested_date_contains_date_literal_when_convert_dates() {
         this.setUpFakeRequest();
         var obj = {
             nested: {
@@ -104,7 +104,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         msg = "Must contain converted date literal";
         this.assertMatch(data, /"new Date\(Date.UTC\(2020,0,1,0,0,0,123\)\)"/, msg);
       },
-      "test: response contains date from literal when convert dates": function testResponseContainsDateFromLiteralWhenConvertDates() {
+      "test: response contains date from literal when convert dates": function test_response_contains_date_from_literal_when_convert_dates() {
         this.setUpFakeRequest();
         var rpc = new qx.io.remote.Rpc(),
           req = this.request,
@@ -123,7 +123,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         req.dispatchEvent(evt);
         this.assertCalled(callback);
       },
-      "test: response contains date from literal when convert dates and json response": function testResponseContainsDateFromLiteralWhenConvertDatesAndJsonResponse() {
+      "test: response contains date from literal when convert dates and json response": function test_response_contains_date_from_literal_when_convert_dates_and_json_response() {
         this.setUpFakeRequest();
         var rpc = new qx.io.remote.Rpc(),
           req = this.request,
@@ -146,7 +146,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         req.dispatchEvent(evt);
         this.assertCalled(callback);
       },
-      "test: response is parsed as JSON": function testResponseIsParsedAsJSON() {
+      "test: response is parsed as JSON": function test_response_is_parsed_as_JSON() {
         this.setUpFakeRequest();
         var rpc = new qx.io.remote.Rpc(),
           req = this.request,
@@ -165,7 +165,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         req.dispatchEvent(evt);
         this.assertCalled(callback);
       },
-      "test: response is not parsed when already object": function testResponseIsNotParsedWhenAlreadyObject() {
+      "test: response is not parsed when already object": function test_response_is_not_parsed_when_already_object() {
         this.setUpFakeRequest();
         var rpc = new qx.io.remote.Rpc(),
           req = this.request,
@@ -191,7 +191,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       //
       // isConvertDates()
       //
-      "test: isConvertDates() returns true when Rpc true": function testIsConvertDatesReturnsTrueWhenRpcTrue() {
+      "test: isConvertDates() returns true when Rpc true": function test_isConvertDates_returns_true_when_Rpc_true() {
         var rpc = new qx.io.remote.Rpc();
         this.stub(qx.io.remote.Rpc, "CONVERT_DATES", true);
         this.assertEquals(true, rpc._isConvertDates());
@@ -204,4 +204,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.test.io.remote.Rpc.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rpc.js.map?dt=1717235390232
+//# sourceMappingURL=Rpc.js.map?dt=1722151833077

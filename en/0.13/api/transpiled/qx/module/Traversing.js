@@ -530,19 +530,19 @@
        */
       getClosest: function getClosest(selector) {
         var closest = [];
-        var findClosest = function findClosest(current) {
+        var _findClosest = function findClosest(current) {
           var found = qx.bom.Selector.matches(selector, current);
           if (found.length) {
             closest.push(found[0]);
           } else {
             current = current.getParents(); // One up
             if (current[0] && current[0].parentNode) {
-              findClosest(current);
+              _findClosest(current);
             }
           }
         };
         for (var i = 0; i < this.length; i++) {
-          findClosest(qxWeb(this[i]));
+          _findClosest(qxWeb(this[i]));
         }
         return qxWeb.$init(closest, qxWeb);
       },
@@ -840,4 +840,4 @@
   qx.module.Traversing.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Traversing.js.map?dt=1717235384906
+//# sourceMappingURL=Traversing.js.map?dt=1722151827963

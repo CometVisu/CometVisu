@@ -36,6 +36,7 @@
       "qx.ui.core.selection.ScrollArea": {
         "require": true
       },
+      "qx.ui.form.IListItem": {},
       "qx.ui.container.Composite": {},
       "qx.ui.layout.HBox": {},
       "qx.ui.layout.VBox": {},
@@ -215,7 +216,9 @@
        */
       _onAddChild: function _onAddChild(e) {
         var child = e.getData();
-        this.__P_577_2.set(child.toHashCode(), this.bind("readOnly", child, "readOnly"));
+        if (qx.Class.implementsInterface(child, qx.ui.form.IListItem)) {
+          this.__P_577_2.set(child.toHashCode(), this.bind("readOnly", child, "readOnly"));
+        }
         this.fireDataEvent("addItem", child);
       },
       /**
@@ -225,8 +228,11 @@
        */
       _onRemoveChild: function _onRemoveChild(e) {
         var child = e.getData();
-        child.removeBinding(this.__P_577_2.get(child.toHashCode()));
-        this.__P_577_2["delete"](child.toHashCode());
+        var binding = this.__P_577_2.get(child.toHashCode());
+        if (binding) {
+          child.removeBinding(binding);
+          this.__P_577_2["delete"](child.toHashCode());
+        }
         this.fireDataEvent("removeItem", child);
       },
       /*
@@ -500,4 +506,4 @@
   qx.ui.form.List.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=List.js.map?dt=1717235410929
+//# sourceMappingURL=List.js.map?dt=1722151853051
