@@ -205,7 +205,6 @@ qx.Class.define('cv.ui.Popup', {
           ret_val.appendChild(this.__elementMap.iframe);
         }
         this.__elementMap.iframe.setAttribute('src', attributes.iframe);
-
       }
 
       if (attributes.actions && Object.getOwnPropertyNames(attributes.actions).length > 0) {

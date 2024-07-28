@@ -409,7 +409,7 @@ qx.Class.define('cv.ui.manager.Main', {
         let backend = cv.io.BackendConnections.getClientByType('openhab');
         if (backend && backend.canAuthorize()) {
           // already logged in
-          return
+          return;
         }
         const storedToken = sessionStorage.getItem('openhab.cv:token');
         if (storedToken) {
@@ -428,12 +428,12 @@ qx.Class.define('cv.ui.manager.Main', {
         const storedToken = sessionStorage.getItem('openhab.cv:token');
         if (storedToken) {
           // remove old token, because it does not work anymore
-          sessionStorage.removeItem('openhab.cv:token')
+          sessionStorage.removeItem('openhab.cv:token');
         }
         let loginWidget = qxl.dialog.Dialog.prompt(qx.locale.Manager.tr('Please provide an openHAB API token. It can be generated in openHABs main UI.')).set({
           caption: qx.locale.Manager.tr('Provide API token')
         });
-        loginWidget.promise().then((token) => {
+        loginWidget.promise().then(token => {
           if (token) {
             sessionStorage.setItem('openhab.cv:token', token);
             let backend = cv.io.BackendConnections.getClientByType('openhab');

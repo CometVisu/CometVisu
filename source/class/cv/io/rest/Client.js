@@ -54,7 +54,7 @@ qx.Class.define('cv.io.rest.Client', {
     checkAuth(req) {
       if (this.AUTH_REQUIRED) {
         if (qx.core.Init.getApplication().isServedByOpenhab()) {
-          const backend = cv.io.BackendConnections.getClientByType("openhab");
+          const backend = cv.io.BackendConnections.getClientByType('openhab');
           if (backend) {
             backend.authorize(req);
           } else {
