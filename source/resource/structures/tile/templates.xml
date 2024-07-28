@@ -294,7 +294,7 @@
                 </label>
             </cv-row>
             <cv-row rowspan="3" column="3">
-                <cv-slider min="0" max="100" format="%d %%" throttle-interval="100" class="vertical">
+                <cv-slider min="0" max="100" format="%d %%" slot-throttle-interval="100" class="vertical">
                     <slot name="brightnessAddress">NEEDS ADDRESS</slot>
                 </cv-slider>
             </cv-row>

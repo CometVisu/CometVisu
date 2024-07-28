@@ -728,12 +728,7 @@
     <xsd:attribute ref="min"/>
     <xsd:attribute ref="max"/>
     <xsd:attribute ref="step-width" />
-    <xsd:attribute name="throttle-interval" type="xsd:decimal">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines the interval used for sending changes to the backend.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt das Sende-Interval in dem Wertänderungen an das Backend geschickt werden fest.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
+    <xsd:attribute ref="throttle-interval" />
     <xsd:attribute name="hide-value" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Controls if the value is shown a text above the slider.</xsd:documentation>
@@ -1032,12 +1027,7 @@
         <xsd:documentation xml:lang="de">Titel des Popups</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="throttle-interval" type="xsd:decimal">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Defines the interval used for sending changes to the backend.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt das Sende-Interval in dem Wertänderungen an das Backend geschickt werden fest.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
+    <xsd:attribute ref="throttle-interval" />
     <xsd:attribute name="controls" type="xsd:string" default="triangle">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">List of controls to show (separated by semicolons)</xsd:documentation>
@@ -1817,6 +1807,7 @@
     <xsd:attribute ref="styling" />
     <xsd:attributeGroup ref="appearance-attributes" />
     <xsd:attribute name="size" type="tile-size" />
+    <xsd:attribute ref="throttle-interval" />
   </xsd:complexType>
 
   <xsd:complexType name="cv-widget-pair">
@@ -2726,6 +2717,12 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Step with.</xsd:documentation>
       <xsd:documentation xml:lang="de">Schrittgröße.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="throttle-interval" type="xsd:decimal">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Defines the interval (in milliseconds) used for sending changes to the backend.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Legt das Sende-Interval (in Millisekunden) fest, in dem Wertänderungen an das Backend geschickt werden.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 

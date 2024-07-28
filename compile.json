@@ -16,7 +16,6 @@
       "theme": "cv.theme.Dark",
       "type": "browser",
       "environment": {
-        "qx.promise": false,
         "qx.command.bindEnabled": true
       },
       "default": true,

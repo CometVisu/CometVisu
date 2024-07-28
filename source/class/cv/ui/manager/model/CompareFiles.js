@@ -53,7 +53,8 @@ qx.Class.define('cv.ui.manager.model.CompareFiles', {
 
     permanent: {
       check: 'Boolean',
-      init: true
+      init: true,
+      event: 'changePermanent'
     },
 
     name: {

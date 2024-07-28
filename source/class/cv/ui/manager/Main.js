@@ -406,9 +406,13 @@ qx.Class.define('cv.ui.manager.Main', {
 
     _initAuth() {
       if (cv.io.rest.Client.AUTH_REQUIRED && qx.core.Init.getApplication().isServedByOpenhab()) {
+        let backend = cv.io.BackendConnections.getClientByType('openhab');
+        if (backend && backend.canAuthorize()) {
+          // already logged in
+          return
+        }
         const storedToken = sessionStorage.getItem('openhab.cv:token');
         if (storedToken) {
-          let backend = cv.io.BackendConnections.getClientByType('openhab');
           if (!backend) {
             backend = cv.io.BackendConnections.addBackendClient('openhab', 'openhab', undefined, 'manager');
           }
