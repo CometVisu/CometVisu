@@ -16,6 +16,7 @@ exports.config = {
   capabilities: {
     browserName: 'chrome',
     'chromeOptions': {
+      binary: process.env.CHROME_BIN || process.env.BROWSER_PATH,
       args: [
         // '--no-sandbox',
         '--headless',
