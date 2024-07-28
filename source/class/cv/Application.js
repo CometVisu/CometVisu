@@ -1119,9 +1119,6 @@ qx.Class.define('cv.Application', {
             if (Object.prototype.hasOwnProperty.call(env, 'requiresAuth')) {
               cv.io.rest.Client.AUTH_REQUIRED = env.requiresAuth === true;
             }
-            // DO NOT COMMIT THIS!!!!
-            cv.io.rest.Client.AUTH_REQUIRED = true;
-            this.setServedByOpenhab(true);
 
             const serverVersionId = env.PHP_VERSION_ID;
             const orParts = env.required_php_version
