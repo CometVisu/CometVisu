@@ -750,6 +750,8 @@ qx.Class.define('cv.Application', {
         // load empty HTML structure
         body.innerHTML = cv.Application.structureController.getHtmlStructure();
       }
+
+      cv.Application.structureController.updateSentryScope();
     },
 
     /**
@@ -893,8 +895,6 @@ qx.Class.define('cv.Application', {
         }
       }
       this.__appReady = true;
-
-      cv.Application.structureController.updateSentryScope();
     },
 
     /**

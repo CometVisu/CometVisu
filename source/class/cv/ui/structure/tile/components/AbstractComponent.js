@@ -86,6 +86,15 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
 
   /*
   ***********************************************
+    STATICS
+  ***********************************************
+  */
+  statics: {
+    dateFormats: {}
+  },
+
+  /*
+  ***********************************************
     MEMBERS
   ***********************************************
   */
@@ -324,10 +333,17 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
             mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), mappedValue);
           }
           if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
-            mappedValue = cv.util.String.sprintf(
-              this._element.getAttribute('format'),
-              mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue
-            );
+            const format = this._element.getAttribute('format');
+            if (mappedValue instanceof Date && !format.includes('%')) {
+              if (!cv.ui.structure.tile.components.AbstractComponent.dateFormats[format]) {
+                cv.ui.structure.tile.components.AbstractComponent[format] = new qx.util.format.DateFormat(format);
+              }
+              mappedValue = cv.ui.structure.tile.components.AbstractComponent[format].format(mappedValue);
+            } else {
+              mappedValue = cv.util.String.sprintf(
+                format,
+                mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue);
+            }
           }
         }
         this._updateValue(mappedValue, value);
