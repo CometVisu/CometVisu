@@ -78,6 +78,20 @@ angegeben wurde angegeben werden.
             |> difference()
     </dataset>
 
+Mit dieser Anfrage wird der Zeitbereich allerdings auf die letzten 2 Tage (``range(start: -2d)``) festgelegt und ist
+somit nicht mehr variabel und überschreibt bzw. deaktiviert die Möglichkeit per ``selection`` andere Zeitserien
+auswählen zu können. Um dieses Feature nutzen zu können muss man einen Platzhalter einfügen und auch das ``aggregateWindow``
+weglassen (dieses wird automatisch passend zu ausgewählten Zeitserie gewählt). Die obere Anfrage würde also so aussehen:
+
+.. code-block:: xml
+
+    <dataset src="flux://openhab@inline">
+        from(bucket:"openhab")
+            |> range($$RANGE$$)
+            |> filter(fn: (r) => r._measurement == "Counter" and r._field == "value")
+            |> difference()
+    </dataset>
+
 .. hint::
 
     Da die CometVisu selbst nicht prüfen kann, ob der Flux-Code korrekt ist, empfiehlt es sich die Query
