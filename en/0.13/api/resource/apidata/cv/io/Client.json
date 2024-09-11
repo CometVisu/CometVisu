@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1722153538383,
-  "lastModifiedIso": "2024-07-28T07:58:58.383Z",
+  "lastModified": 1726088789597,
+  "lastModifiedIso": "2024-09-11T21:06:29.597Z",
   "classFilename": "../../client/source/class/cv/io/Client.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 1227
     },
     "end": {
-      "line": 743,
+      "line": 747,
       "column": 3,
-      "index": 20991
+      "index": 21040
     }
   },
   "className": "cv.io.Client",
@@ -1585,6 +1585,27 @@
         "cv.io.IClient"
       ]
     },
+    "canAuthorize": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 692,
+          "column": 4,
+          "index": 19863
+        },
+        "end": {
+          "line": 694,
+          "column": 5,
+          "index": 19905
+        }
+      },
+      "type": "function",
+      "params": [],
+      "appearsIn": [
+        "cv.io.IClient"
+      ]
+    },
     "restart": {
       "jsdoc": {
         "raw": [
@@ -1611,14 +1632,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 696,
+          "line": 700,
           "column": 4,
-          "index": 19928
+          "index": 19977
         },
         "end": {
-          "line": 698,
+          "line": 702,
           "column": 5,
-          "index": 19997
+          "index": 20046
         }
       },
       "type": "function",
@@ -1636,14 +1657,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 700,
+          "line": 704,
           "column": 4,
-          "index": 20004
+          "index": 20053
         },
         "end": {
-          "line": 702,
+          "line": 706,
           "column": 5,
-          "index": 20065
+          "index": 20114
         }
       },
       "type": "function",
@@ -1657,14 +1678,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 704,
+          "line": 708,
           "column": 4,
-          "index": 20072
+          "index": 20121
         },
         "end": {
-          "line": 704,
+          "line": 708,
           "column": 19,
-          "index": 20087
+          "index": 20136
         }
       },
       "type": "function",
@@ -1712,14 +1733,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 711,
+          "line": 715,
           "column": 4,
-          "index": 20274
+          "index": 20323
         },
         "end": {
-          "line": 711,
+          "line": 715,
           "column": 25,
-          "index": 20295
+          "index": 20344
         }
       },
       "type": "function",
@@ -1779,14 +1800,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 719,
+          "line": 723,
           "column": 4,
-          "index": 20522
+          "index": 20571
         },
         "end": {
-          "line": 719,
+          "line": 723,
           "column": 37,
-          "index": 20555
+          "index": 20604
         }
       },
       "type": "function",
@@ -1812,14 +1833,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 721,
+          "line": 725,
           "column": 4,
-          "index": 20562
+          "index": 20611
         },
         "end": {
-          "line": 723,
+          "line": 727,
           "column": 5,
-          "index": 20607
+          "index": 20656
         }
       },
       "type": "function",
@@ -1837,14 +1858,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 724,
+          "line": 728,
           "column": 4,
-          "index": 20613
+          "index": 20662
         },
         "end": {
-          "line": 726,
+          "line": 730,
           "column": 5,
-          "index": 20660
+          "index": 20709
         }
       },
       "type": "function",
@@ -1862,14 +1883,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 727,
+          "line": 731,
           "column": 4,
-          "index": 20666
+          "index": 20715
         },
         "end": {
-          "line": 729,
+          "line": 733,
           "column": 5,
-          "index": 20733
+          "index": 20782
         }
       },
       "type": "function",
@@ -1890,14 +1911,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 730,
+          "line": 734,
           "column": 4,
-          "index": 20739
+          "index": 20788
         },
         "end": {
-          "line": 732,
+          "line": 736,
           "column": 5,
-          "index": 20806
+          "index": 20855
         }
       },
       "type": "function",
@@ -1919,14 +1940,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 740,
+        "line": 744,
         "column": 2,
-        "index": 20954
+        "index": 21003
       },
       "end": {
-        "line": 742,
+        "line": 746,
         "column": 3,
-        "index": 20987
+        "index": 21036
       }
     }
   }

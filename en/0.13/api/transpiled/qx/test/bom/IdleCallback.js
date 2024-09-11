@@ -58,7 +58,7 @@
       tearDown: function tearDown() {
         this.getSandbox().restore();
       },
-      "test: emulated requestIdleCallback": function test_emulated_requestIdleCallback() {
+      "test: emulated requestIdleCallback": function testEmulatedRequestIdleCallback() {
         var setting = this.stub(qx.core.Environment, "get").withArgs("client.idle");
         setting.returns(false);
         var clb = this.spy();
@@ -72,7 +72,7 @@
           this.assertNumber(clb.args[0][0].timeRemaining(), 0);
         }, this);
       },
-      "test: emulated cancelIdleCallback": function test_emulated_cancelIdleCallback() {
+      "test: emulated cancelIdleCallback": function testEmulatedCancelIdleCallback() {
         var setting = this.stub(qx.core.Environment, "get").withArgs("client.idle");
         setting.returns(false);
         var clb = this.spy();
@@ -83,7 +83,7 @@
           this.assertNotCalled(clb);
         }, this);
       },
-      "test: native requestIdleCallback": function test_native_requestIdleCallback() {
+      "test: native requestIdleCallback": function testNativeRequestIdleCallback() {
         if (!qx.core.Environment.get("client.idle")) {
           this.skip();
         }
@@ -96,7 +96,7 @@
           this.assertNumber(clb.args[0][0].timeRemaining());
         }, this);
       },
-      "test: native cancelIdleCallback": function test_native_cancelIdleCallback() {
+      "test: native cancelIdleCallback": function testNativeCancelIdleCallback() {
         if (!qx.core.Environment.get("client.idle")) {
           this.skip();
         }
@@ -112,4 +112,4 @@
   qx.test.bom.IdleCallback.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IdleCallback.js.map?dt=1722153823807
+//# sourceMappingURL=IdleCallback.js.map?dt=1726089050608

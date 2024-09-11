@@ -100,21 +100,21 @@
       //
       // Callback
       //
-      "test: setCallbackParam()": function test_setCallbackParam() {
+      "test: setCallbackParam()": function testSetCallbackParam() {
         var req = this.req;
         req.setCallbackParam("myMethod");
         req.open("GET", this.url);
         req.send();
         this.assertMatch(req._getUrl(), /(myMethod=)/);
       },
-      "test: setCallbackName()": function test_setCallbackName() {
+      "test: setCallbackName()": function testSetCallbackName() {
         var req = this.req;
         req.setCallbackName("myCallback");
         req.open("GET", this.url);
         req.send();
         this.assertMatch(req._getUrl(), /(=myCallback)/);
       },
-      "test: has default callback param and name": function test_has_default_callback_param_and_name() {
+      "test: has default callback param and name": function testHasDefaultCallbackParamAndName() {
         var req = this.req,
           regExp;
         req.open("GET", this.url);
@@ -127,7 +127,7 @@
       /**
        * @ignore(myExistingCallback)
        */
-      "test: not overwrite existing callback": function test_not_overwrite_existing_callback() {
+      "test: not overwrite existing callback": function testNotOverwriteExistingCallback() {
         var that = this;
 
         // User provided callback that must not be overwritten
@@ -147,7 +147,7 @@
       //
       // Properties
       //
-      "test: responseJson holds response with default callback": function test_responseJson_holds_response_with_default_callback() {
+      "test: responseJson holds response with default callback": function testResponseJsonHoldsResponseWithDefaultCallback() {
         var that = this;
         this.req.onload = function () {
           that.resume(function () {
@@ -159,7 +159,7 @@
         this.request();
         this.wait();
       },
-      "test: reset responseJson when reopened": function test_reset_responseJson_when_reopened() {
+      "test: reset responseJson when reopened": function testResetResponseJsonWhenReopened() {
         var req = this.req,
           that = this;
         req.onload = function () {
@@ -171,7 +171,7 @@
         this.request();
         this.wait();
       },
-      "test: status indicates success when default callback called": function test_status_indicates_success_when_default_callback_called() {
+      "test: status indicates success when default callback called": function testStatusIndicatesSuccessWhenDefaultCallbackCalled() {
         var that = this;
         this.req.onload = function () {
           that.resume(function () {
@@ -181,7 +181,7 @@
         this.request();
         this.wait();
       },
-      "test: status indicates success when custom callback called": function test_status_indicates_success_when_custom_callback_called() {
+      "test: status indicates success when custom callback called": function testStatusIndicatesSuccessWhenCustomCallbackCalled() {
         var that = this;
         this.req.onload = function () {
           that.resume(function () {
@@ -193,7 +193,7 @@
         this.wait();
       },
       // Error handling
-      "test: status indicates failure when default callback not called": function test_status_indicates_failure_when_default_callback_not_called() {
+      "test: status indicates failure when default callback not called": function testStatusIndicatesFailureWhenDefaultCallbackNotCalled() {
         var that = this;
         this.req.onload = function () {
           that.resume(function () {
@@ -203,7 +203,7 @@
         this.request(this.getUrl("qx/test/script.js"));
         this.wait();
       },
-      "test: status indicates failure when custom callback not called": function test_status_indicates_failure_when_custom_callback_not_called() {
+      "test: status indicates failure when custom callback not called": function testStatusIndicatesFailureWhenCustomCallbackNotCalled() {
         var that = this;
         this.req.onload = function () {
           that.resume(function () {
@@ -214,7 +214,7 @@
         this.request(this.getUrl("qx/test/script.js"));
         this.wait();
       },
-      "test: status indicates failure when callback not called on second request": function test_status_indicates_failure_when_callback_not_called_on_second_request() {
+      "test: status indicates failure when callback not called on second request": function testStatusIndicatesFailureWhenCallbackNotCalledOnSecondRequest() {
         var count = 0,
           req = this.req,
           that = this;
@@ -234,7 +234,7 @@
       //
       // Event handlers
       //
-      "test: call onload": function test_call_onload() {
+      "test: call onload": function testCallOnload() {
         var that = this;
         this.req.onload = function () {
           that.resume(function () {});
@@ -243,7 +243,7 @@
         this.wait();
       },
       // Error handling
-      "test: call onerror on network error": function test_call_onerror_on_network_error() {
+      "test: call onerror on network error": function testCallOnerrorOnNetworkError() {
         var that = this;
 
         // For legacy IEs, timeout needs to be lower than browser timeout
@@ -258,7 +258,7 @@
         this.request("http://fail.tld");
         this.wait(15100);
       },
-      "test: call onloadend on network error": function test_call_onloadend_on_network_error() {
+      "test: call onloadend on network error": function testCallOnloadendOnNetworkError() {
         var that = this;
         this.req.onloadend = function () {
           that.resume(function () {});
@@ -278,4 +278,4 @@
   qx.test.bom.request.Jsonp.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsonp.js.map?dt=1722153824392
+//# sourceMappingURL=Jsonp.js.map?dt=1726089051180

@@ -55,7 +55,7 @@
           delete qx.test.DYNAMICSCRIPTTEST;
         }
       },
-      "test 1: dynamic parallel loading": function test_1_dynamic_parallel_loading() {
+      "test 1: dynamic parallel loading": function test1DynamicParallelLoading() {
         var _this = this;
         var l1 = new qx.util.DynamicScriptLoader(["qx/test/dynamicscriptloader/first.js", "qx/test/dynamicscriptloader/second.js", "qx/test/dynamicscriptloader/third.js"]);
         var l2 = new qx.util.DynamicScriptLoader(["qx/test/dynamicscriptloader/first.js", "qx/test/dynamicscriptloader/second.js"]);
@@ -76,7 +76,7 @@
         l2.start();
         this.wait();
       },
-      "test 2: do not load again": function test_2_do_not_load_again() {
+      "test 2: do not load again": function test2DoNotLoadAgain() {
         var _this2 = this;
         var loader = new qx.util.DynamicScriptLoader(["qx/test/dynamicscriptloader/first.js", "qx/test/dynamicscriptloader/second.js", "qx/test/dynamicscriptloader/third.js"]);
         var noEvent = true;
@@ -90,7 +90,7 @@
         });
         loader.start();
       },
-      "test 3: fail to load": function test_3_fail_to_load() {
+      "test 3: fail to load": function test3FailToLoad() {
         var _this3 = this;
         var loader = new qx.util.DynamicScriptLoader(["qx/test/dynamicscriptloader/xyc.js"]);
         loader.addListenerOnce("failed", function (e) {
@@ -102,7 +102,7 @@
         loader.start();
         this.wait();
       },
-      "test 4: double start": function test_4_double_start() {
+      "test 4: double start": function test4DoubleStart() {
         var loader = new qx.util.DynamicScriptLoader("qx/test/dynamicscriptloader/first.js");
         loader.start();
         try {
@@ -116,4 +116,4 @@
   qx.test.util.DynamicScriptLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DynamicScriptLoader.js.map?dt=1722153834672
+//# sourceMappingURL=DynamicScriptLoader.js.map?dt=1726089061240

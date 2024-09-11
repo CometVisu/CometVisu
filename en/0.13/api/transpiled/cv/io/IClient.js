@@ -126,6 +126,11 @@
        */
       authorize: function authorize(req) {},
       /**
+       * Client is able to authorize a request, by knowing the credentials
+       * @return {Boolean}
+       */
+      canAuthorize: function canAuthorize() {},
+      /**
        * return the relative path to a resource on the currently used backend
        *
        * @param name {String} Name of the resource (e.g. login, read, write, chart)
@@ -197,4 +202,4 @@
   cv.io.IClient.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IClient.js.map?dt=1722153862281
+//# sourceMappingURL=IClient.js.map?dt=1726089089677

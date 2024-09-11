@@ -66,4 +66,4 @@
   cv.ui.structure.tile.widgets.TemplateWidget.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateWidget.js.map?dt=1722153807778
+//# sourceMappingURL=TemplateWidget.js.map?dt=1726089035046

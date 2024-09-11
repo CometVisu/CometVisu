@@ -2721,8 +2721,8 @@
   </xsd:attribute>
   <xsd:attribute name="throttle-interval" type="xsd:decimal">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Defines the interval used for sending changes to the backend.</xsd:documentation>
-      <xsd:documentation xml:lang="de">Legt das Sende-Interval in dem Wertänderungen an das Backend geschickt werden fest.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Defines the interval (in milliseconds) used for sending changes to the backend.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Legt das Sende-Interval (in Millisekunden) fest, in dem Wertänderungen an das Backend geschickt werden.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 

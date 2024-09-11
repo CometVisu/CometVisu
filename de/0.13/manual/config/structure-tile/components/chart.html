@@ -166,6 +166,18 @@ angegeben wurde angegeben werden.</p>
 <span class="nt">&lt;/dataset&gt;</span>
 </pre></div>
 </div>
+<p>Mit dieser Anfrage wird der Zeitbereich allerdings auf die letzten 2 Tage (<code class="docutils literal notranslate"><span class="pre">range(start:</span> <span class="pre">-2d)</span></code>) festgelegt und ist
+somit nicht mehr variabel und überschreibt bzw. deaktiviert die Möglichkeit per <code class="docutils literal notranslate"><span class="pre">selection</span></code> andere Zeitserien
+auswählen zu können. Um dieses Feature nutzen zu können muss man einen Platzhalter einfügen und auch das <code class="docutils literal notranslate"><span class="pre">aggregateWindow</span></code>
+weglassen (dieses wird automatisch passend zu ausgewählten Zeitserie gewählt). Die obere Anfrage würde also so aussehen:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;flux://openhab@inline&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span>from(bucket:&quot;openhab&quot;)
+<span class="w">        </span>|&gt;<span class="w"> </span>range($$RANGE$$)
+<span class="w">        </span>|&gt;<span class="w"> </span>filter(fn:<span class="w"> </span>(r)<span class="w"> </span>=&gt;<span class="w"> </span>r._measurement<span class="w"> </span>==<span class="w"> </span>&quot;Counter&quot;<span class="w"> </span>and<span class="w"> </span>r._field<span class="w"> </span>==<span class="w"> </span>&quot;value&quot;)
+<span class="w">        </span>|&gt;<span class="w"> </span>difference()
+<span class="nt">&lt;/dataset&gt;</span>
+</pre></div>
+</div>
 <div class="admonition hint">
 <p class="admonition-title">Hinweis</p>
 <p>Da die CometVisu selbst nicht prüfen kann, ob der Flux-Code korrekt ist, empfiehlt es sich die Query

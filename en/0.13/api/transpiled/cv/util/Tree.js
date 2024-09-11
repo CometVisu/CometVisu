@@ -192,7 +192,7 @@
         return parents;
       },
       getClosest: function getClosest(elem, selector) {
-        var _findClosest = function findClosest(current) {
+        var findClosest = function findClosest(current) {
           var found = Array.prototype.filter.call([current], function (m) {
             return m.matches(selector);
           });
@@ -201,15 +201,15 @@
           }
           current = current.parentNode; // One up
           if (current && current.parentNode) {
-            return _findClosest(current);
+            return findClosest(current);
           }
           return null;
         };
-        return _findClosest(elem);
+        return findClosest(elem);
       }
     }
   });
   cv.util.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1722153860641
+//# sourceMappingURL=Tree.js.map?dt=1726089087989

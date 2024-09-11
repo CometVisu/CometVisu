@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1722153538615,
-  "lastModifiedIso": "2024-07-28T07:58:58.615Z",
+  "lastModified": 1726088789829,
+  "lastModifiedIso": "2024-09-11T21:06:29.829Z",
   "classFilename": "../../source/class/cv/io/rest/Client.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 824
     },
     "end": {
-      "line": 288,
+      "line": 307,
       "column": 3,
-      "index": 8734
+      "index": 9415
     }
   },
   "className": "cv.io.rest.Client",
@@ -118,23 +118,63 @@
       },
       "appearsIn": []
     },
+    "AUTH_REQUIRED": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 37,
+          "column": 4,
+          "index": 1131
+        },
+        "end": {
+          "line": 37,
+          "column": 24,
+          "index": 1151
+        }
+      },
+      "appearsIn": []
+    },
     "getBaseUrl": {
       "jsdoc": null,
       "access": "public",
       "location": {
         "start": {
-          "line": 38,
+          "line": 39,
           "column": 4,
-          "index": 1132
+          "index": 1158
         },
         "end": {
-          "line": 51,
+          "line": 52,
           "column": 5,
-          "index": 1512
+          "index": 1538
         }
       },
       "type": "function",
       "params": [],
+      "appearsIn": []
+    },
+    "checkAuth": {
+      "jsdoc": null,
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 54,
+          "column": 4,
+          "index": 1545
+        },
+        "end": {
+          "line": 67,
+          "column": 5,
+          "index": 2059
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "req"
+        }
+      ],
       "appearsIn": []
     },
     "getConfigClient": {
@@ -142,14 +182,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 53,
+          "line": 69,
           "column": 4,
-          "index": 1519
+          "index": 2066
         },
         "end": {
-          "line": 97,
+          "line": 114,
           "column": 5,
-          "index": 2730
+          "index": 3321
         }
       },
       "type": "function",
@@ -161,14 +201,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 99,
+          "line": 116,
           "column": 4,
-          "index": 2737
+          "index": 3328
         },
         "end": {
-          "line": 169,
+          "line": 187,
           "column": 5,
-          "index": 4980
+          "index": 5615
         }
       },
       "type": "function",
@@ -180,14 +220,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 171,
+          "line": 189,
           "column": 4,
-          "index": 4987
+          "index": 5622
         },
         "end": {
-          "line": 216,
+          "line": 235,
           "column": 5,
-          "index": 6189
+          "index": 6870
         }
       },
       "type": "function",
@@ -199,14 +239,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 218,
+          "line": 237,
           "column": 4,
-          "index": 6196
+          "index": 6877
         },
         "end": {
-          "line": 268,
+          "line": 287,
           "column": 5,
-          "index": 8013
+          "index": 8694
         }
       },
       "type": "function",
@@ -225,14 +265,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 270,
+          "line": 289,
           "column": 4,
-          "index": 8020
+          "index": 8701
         },
         "end": {
-          "line": 277,
+          "line": 296,
           "column": 5,
-          "index": 8371
+          "index": 9052
         }
       },
       "type": "function",
@@ -248,14 +288,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 279,
+          "line": 298,
           "column": 4,
-          "index": 8378
+          "index": 9059
         },
         "end": {
-          "line": 286,
+          "line": 305,
           "column": 5,
-          "index": 8726
+          "index": 9407
         }
       },
       "type": "function",

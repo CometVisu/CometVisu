@@ -16,10 +16,10 @@
         "require": true
       },
       "cv.io.rest.Client": {},
+      "cv.ui.manager.snackbar.Controller": {},
       "qxl.dialog.Dialog": {},
       "qx.event.message.Bus": {},
       "cv.ui.manager.model.config.Section": {},
-      "cv.ui.manager.snackbar.Controller": {},
       "qx.ui.form.List": {},
       "qx.data.controller.List": {},
       "qx.data.Array": {},
@@ -98,6 +98,20 @@
         this._client = cv.io.rest.Client.getConfigClient();
         this._client.addListener('getSuccess', this._onModelValueChange, this);
         this._client.addListener('updateSuccess', this._onSaved, this);
+        this._client.addListener('error', function (ev) {
+          var data = ev.getData();
+          if (typeof data === 'string') {
+            if (data.startsWith('{') && data.endsWith('}')) {
+              try {
+                data = JSON.parse(data);
+              } catch (e) {}
+            }
+          }
+          if (data.error) {
+            data = data.error;
+          }
+          cv.ui.manager.snackbar.Controller.error(data.message);
+        }, this);
       },
       _loadFile: function _loadFile(file) {
         if (file) {
@@ -281,4 +295,4 @@
   cv.ui.manager.editor.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1722153801702
+//# sourceMappingURL=Config.js.map?dt=1726089029093

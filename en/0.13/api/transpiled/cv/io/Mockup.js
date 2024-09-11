@@ -232,6 +232,9 @@
         return {};
       },
       authorize: function authorize(req) {},
+      canAuthorize: function canAuthorize() {
+        return false;
+      },
       terminate: function terminate() {},
       update: function update(json) {},
       record: function record(type, data) {},
@@ -261,4 +264,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1722153859425
+//# sourceMappingURL=Mockup.js.map?dt=1726089086737

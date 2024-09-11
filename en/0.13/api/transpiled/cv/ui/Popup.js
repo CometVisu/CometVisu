@@ -193,6 +193,15 @@
           } else {
             this.destroyElement('progress');
           }
+        } else if (attributes.iframe) {
+          if (!this.__P_788_1.iframe) {
+            this.__P_788_1.iframe = qx.dom.Element.create('iframe', {
+              width: '100%',
+              height: '100%'
+            });
+            ret_val.appendChild(this.__P_788_1.iframe);
+          }
+          this.__P_788_1.iframe.setAttribute('src', attributes.iframe);
         }
         if (attributes.actions && Object.getOwnPropertyNames(attributes.actions).length > 0) {
           if (!this.__P_788_1.actions) {
@@ -316,6 +325,12 @@
           delete this.__P_788_1[name];
         }
       },
+      getElement: function getElement(name) {
+        if (this.__P_788_1[name]) {
+          return this.__P_788_1[name];
+        }
+        return null;
+      },
       /**
        * Closes this popup
        */
@@ -345,4 +360,4 @@
   cv.ui.Popup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Popup.js.map?dt=1722153862590
+//# sourceMappingURL=Popup.js.map?dt=1726089089957

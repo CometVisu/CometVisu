@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1722153538383,
-  "lastModifiedIso": "2024-07-28T07:58:58.383Z",
+  "lastModified": 1726088789597,
+  "lastModifiedIso": "2024-09-11T21:06:29.597Z",
   "classFilename": "../../client/source/class/cv/io/IClient.js",
   "type": "interface",
   "location": {
@@ -11,9 +11,9 @@
       "index": 58
     },
     "end": {
-      "line": 210,
+      "line": 216,
       "column": 3,
-      "index": 6006
+      "index": 6144
     }
   },
   "className": "cv.io.IClient",
@@ -762,6 +762,49 @@
       ],
       "appearsIn": []
     },
+    "canAuthorize": {
+      "jsdoc": {
+        "raw": [
+          "*",
+          "     * Client is able to authorize a request, by knowing the credentials",
+          "     * @return {Boolean}",
+          "     "
+        ],
+        "@description": [
+          {
+            "name": "@description",
+            "body": "<p>Client is able to authorize a request, by knowing the credentials</p>"
+          }
+        ],
+        "@return": [
+          {
+            "name": "@return",
+            "body": "{Boolean}",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      "access": "public",
+      "location": {
+        "start": {
+          "line": 137,
+          "column": 4,
+          "index": 3673
+        },
+        "end": {
+          "line": 137,
+          "column": 21,
+          "index": 3690
+        }
+      },
+      "type": "function",
+      "params": [],
+      "returnType": {
+        "type": "boolean"
+      },
+      "appearsIn": []
+    },
     "getResourcePath": {
       "jsdoc": {
         "raw": [
@@ -808,14 +851,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 140,
+          "line": 146,
           "column": 4,
-          "index": 3942
+          "index": 4080
         },
         "end": {
-          "line": 140,
+          "line": 146,
           "column": 36,
-          "index": 3974
+          "index": 4112
         }
       },
       "type": "function",
@@ -870,14 +913,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 147,
+          "line": 153,
           "column": 4,
-          "index": 4210
+          "index": 4348
         },
         "end": {
-          "line": 147,
+          "line": 153,
           "column": 34,
-          "index": 4240
+          "index": 4378
         }
       },
       "type": "function",
@@ -919,14 +962,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 153,
+          "line": 159,
           "column": 4,
-          "index": 4349
+          "index": 4487
         },
         "end": {
-          "line": 153,
+          "line": 159,
           "column": 37,
-          "index": 4382
+          "index": 4520
         }
       },
       "type": "function",
@@ -970,14 +1013,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 160,
+          "line": 166,
           "column": 4,
-          "index": 4606
+          "index": 4744
         },
         "end": {
-          "line": 160,
+          "line": 166,
           "column": 38,
-          "index": 4640
+          "index": 4778
         }
       },
       "type": "function",
@@ -1037,14 +1080,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 169,
+          "line": 175,
           "column": 4,
-          "index": 4878
+          "index": 5016
         },
         "end": {
-          "line": 169,
+          "line": 175,
           "column": 37,
-          "index": 4911
+          "index": 5049
         }
       },
       "type": "function",
@@ -1091,14 +1134,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 176,
+          "line": 182,
           "column": 4,
-          "index": 5091
+          "index": 5229
         },
         "end": {
-          "line": 176,
+          "line": 182,
           "column": 21,
-          "index": 5108
+          "index": 5246
         }
       },
       "type": "function",
@@ -1134,14 +1177,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 182,
+          "line": 188,
           "column": 4,
-          "index": 5180
+          "index": 5318
         },
         "end": {
-          "line": 182,
+          "line": 188,
           "column": 20,
-          "index": 5196
+          "index": 5334
         }
       },
       "type": "function",
@@ -1169,14 +1212,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 187,
+          "line": 193,
           "column": 4,
-          "index": 5310
+          "index": 5448
         },
         "end": {
-          "line": 187,
+          "line": 193,
           "column": 18,
-          "index": 5324
+          "index": 5462
         }
       },
       "type": "function",
@@ -1210,14 +1253,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 193,
+          "line": 199,
           "column": 4,
-          "index": 5515
+          "index": 5653
         },
         "end": {
-          "line": 193,
+          "line": 199,
           "column": 19,
-          "index": 5530
+          "index": 5668
         }
       },
       "type": "function",
@@ -1263,14 +1306,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 200,
+          "line": 206,
           "column": 4,
-          "index": 5717
+          "index": 5855
         },
         "end": {
-          "line": 200,
+          "line": 206,
           "column": 25,
-          "index": 5738
+          "index": 5876
         }
       },
       "type": "function",
@@ -1328,14 +1371,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 208,
+          "line": 214,
           "column": 4,
-          "index": 5965
+          "index": 6103
         },
         "end": {
-          "line": 208,
+          "line": 214,
           "column": 37,
-          "index": 5998
+          "index": 6136
         }
       },
       "type": "function",

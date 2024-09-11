@@ -50,7 +50,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       setUp: function setUp() {
         this.transport = new qx.io.transport.Websocket("wss://" + this.constructor.TEST_ENDPOINT);
       },
-      "test: check endpoint": function test_check_endpoint() {
+      "test: check endpoint": function testCheckEndpoint() {
         var _this = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -74,7 +74,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee, null, [[0, 6]]);
         }))();
       },
-      "test: send message to public websocket echo server and check response": function test_send_message_to_public_websocket_echo_server_and_check_response() {
+      "test: send message to public websocket echo server and check response": function testSendMessageToPublicWebsocketEchoServerAndCheckResponse() {
         var _this2 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var message;
@@ -107,4 +107,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.io.transport.Websocket.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Websocket.js.map?dt=1722153828428
+//# sourceMappingURL=Websocket.js.map?dt=1726089055019

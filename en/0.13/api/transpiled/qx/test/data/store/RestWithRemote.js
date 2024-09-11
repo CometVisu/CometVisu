@@ -71,7 +71,7 @@
         this.res.dispose();
         this.store.dispose();
       },
-      "test: populate store with response of resource action": function test_populate_store_with_response_of_resource_action() {
+      "test: populate store with response of resource action": function testPopulateStoreWithResponseOfResourceAction() {
         var _this = this;
         var res = this.res,
           store = this.store;
@@ -83,7 +83,7 @@
         res.index();
         this.wait();
       },
-      "test: bind model property": function test_bind_model_property() {
+      "test: bind model property": function testBindModelProperty() {
         var _this2 = this;
         var res = this.res,
           store = this.store,
@@ -105,4 +105,4 @@
   qx.test.data.store.RestWithRemote.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=RestWithRemote.js.map?dt=1722153826631
+//# sourceMappingURL=RestWithRemote.js.map?dt=1726089053287

@@ -54,4 +54,4 @@
   qx.tool.cli.commands.Add.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Add.js.map?dt=1722153837053
+//# sourceMappingURL=Add.js.map?dt=1726089063727

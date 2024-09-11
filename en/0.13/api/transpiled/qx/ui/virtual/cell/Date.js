@@ -76,4 +76,4 @@
   qx.ui.virtual.cell.Date.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Date.js.map?dt=1722153856501
+//# sourceMappingURL=Date.js.map?dt=1726089083708

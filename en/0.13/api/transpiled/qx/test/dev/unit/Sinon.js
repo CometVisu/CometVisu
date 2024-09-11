@@ -106,7 +106,7 @@
           }
         });
       },
-      "test: get sinon": function test_get_sinon() {
+      "test: get sinon": function testGetSinon() {
         var sinon = this.sinon;
         this.assertObject(sinon, "Sinon not found");
         this.assertFunction(sinon.spy, "No spy");
@@ -115,39 +115,39 @@
         this.assertFunction(sinon.useFakeTimers, "No fake timers");
         this.assertFunction(sinon.useFakeXMLHttpRequest, "No fake XHR");
       },
-      "test: fail": function test_fail() {
+      "test: fail": function testFail() {
         var sinon = this.sinon;
         this.assertException(function () {
           sinon.fail();
         });
       },
-      "test: spy": function test_spy() {
+      "test: spy": function testSpy() {
         var spy = this.sinon.spy();
         spy();
         this.assertTrue(spy.called);
       },
-      "test: spy conveniently": function test_spy_conveniently() {
+      "test: spy conveniently": function testSpyConveniently() {
         var spy = this.spy();
         spy();
         this.assertTrue(spy.called);
       },
-      "test: stub": function test_stub() {
+      "test: stub": function testStub() {
         var whoami = this.sinon.stub();
         whoami.returns("Affe");
         this.assertEquals("Affe", whoami());
       },
-      "test: stub conveniently": function test_stub_conveniently() {
+      "test: stub conveniently": function testStubConveniently() {
         var whoami = this.stub();
         whoami.returns("Affe");
         this.assertEquals("Affe", whoami());
       },
-      "test: stub property": function test_stub_property() {
+      "test: stub property": function testStubProperty() {
         qx.test.PROP = false;
         this.stub(qx.test, "PROP").value(true);
         this.assertEquals(true, qx.test.PROP);
         qx.test.PROP = undefined;
       },
-      "test: stub property in isolation": function test_stub_property_in_isolation() {
+      "test: stub property in isolation": function testStubPropertyInIsolation() {
         qx.test.PROP = false;
         this.stub(qx.test, "PROP").value(true);
         this.assertEquals(true, qx.test.PROP);
@@ -155,12 +155,12 @@
         this.assertEquals(false, qx.test.PROP);
         qx.test.PROP = undefined;
       },
-      "test: stub environment setting": function test_stub_environment_setting() {
+      "test: stub environment setting": function testStubEnvironmentSetting() {
         var setting = this.stub(qx.core.Environment, "get").withArgs("browser.name");
         setting.returns("My Browser");
         this.assertEquals("My Browser", qx.core.Environment.get("browser.name"));
       },
-      "test: stub environment setting in isolation": function test_stub_environment_setting_in_isolation() {
+      "test: stub environment setting in isolation": function testStubEnvironmentSettingInIsolation() {
         var name = qx.core.Environment.get("browser.name"),
           version = qx.core.Environment.get("browser.version"),
           setting = this.stub(qx.core.Environment, "get").withArgs("browser.name");
@@ -169,7 +169,7 @@
         this.assertEquals(name, qx.core.Environment.get("browser.name"));
         this.assertEquals(version, qx.core.Environment.get("browser.version"));
       },
-      "test: mock": function test_mock() {
+      "test: mock": function testMock() {
         var obj = {
           method: function method() {}
         };
@@ -178,7 +178,7 @@
         obj.method();
         mock.verify();
       },
-      "test: mock verify throws": function test_mock_verify_throws() {
+      "test: mock verify throws": function testMockVerifyThrows() {
         var obj = {
           method: function method() {}
         };
@@ -188,7 +188,7 @@
           mock.verify();
         });
       },
-      "test: mock unexpected use throws": function test_mock_unexpected_use_throws() {
+      "test: mock unexpected use throws": function testMockUnexpectedUseThrows() {
         var obj = {
           method: function method() {}
         };
@@ -198,12 +198,12 @@
           obj.method();
         }, Error, /Unexpected call/);
       },
-      "test: assert": function test_assert() {
+      "test: assert": function testAssert() {
         var spy = this.sinon.spy();
         spy();
         this.assertCalled(spy);
       },
-      "test: fake XHR": function test_fake_XHR() {
+      "test: fake XHR": function testFakeXHR() {
         this.require(["xhr"]);
         this.useFakeXMLHttpRequest();
         var nxhr = window.XMLHttpRequest;
@@ -213,13 +213,13 @@
         this.assertFunction(req.open, "open");
         this.assertFunction(req.send, "send");
       },
-      "test: fake server": function test_fake_server() {
+      "test: fake server": function testFakeServer() {
         this.useFakeServer();
         var server = this.getServer();
         this.assertFunction(server.respond);
         this.assertFunction(server.respondWith);
       },
-      "test: respond": function test_respond() {
+      "test: respond": function testRespond() {
         this.require(["xhr"]);
         this.useFakeServer();
         var nxhr = window.XMLHttpRequest,
@@ -232,7 +232,7 @@
         this.assertEquals(200, req.status);
         this.assertEquals("FOUND", req.responseText);
       },
-      "test: respond with invalid XML": function test_respond_with_invalid_XML() {
+      "test: respond with invalid XML": function testRespondWithInvalidXML() {
         this.require(["xhr"]);
         this.useFakeXMLHttpRequest();
         var nxhr = window.XMLHttpRequest,
@@ -244,7 +244,7 @@
           "Content-Type": "application/xml"
         }, "INVALID");
       },
-      "test: sandbox and restore": function test_sandbox_and_restore() {
+      "test: sandbox and restore": function testSandboxAndRestore() {
         var func = function func() {};
         var obj = {
           a: function a() {}
@@ -258,14 +258,14 @@
         this.assertUndefined(obj.a.called);
         this.assertUndefined(nxhr.restore);
       },
-      "test: deep stub": function test_deep_stub() {
+      "test: deep stub": function testDeepStub() {
         var obj = new qx.test.Affe();
         obj = this.deepStub(obj);
         obj.getKind();
         this.assertCalled(obj.getKind);
         obj.dispose();
       },
-      "test: shallow stub": function test_shallow_stub() {
+      "test: shallow stub": function testShallowStub() {
         var obj = new qx.test.Gibbon();
         obj = this.shallowStub(obj, qx.test.Affe);
         obj.climb();
@@ -278,21 +278,21 @@
         this.assertUndefined(obj.getKind.called, "Must not be stubbed");
         obj.dispose();
       },
-      "test: inject stub of original": function test_inject_stub_of_original() {
+      "test: inject stub of original": function testInjectStubOfOriginal() {
         this.injectStub(qx.test, "Affe");
         var affe = new qx.test.Affe();
         affe.scratch.returns(false);
         this.assertFalse(affe.scratch());
         affe.dispose();
       },
-      "test: inject stub of original and return": function test_inject_stub_of_original_and_return() {
+      "test: inject stub of original and return": function testInjectStubOfOriginalAndReturn() {
         var stub = this.injectStub(qx.test, "Affe"),
           affe = new qx.test.Affe();
         stub.scratch.returns(false);
         this.assertFalse(affe.scratch());
         affe.dispose();
       },
-      "test: inject custom stub": function test_inject_custom_stub() {
+      "test: inject custom stub": function testInjectCustomStub() {
         this.injectStub(qx.test, "Affe", this.stub({
           dance: function dance() {}
         }));
@@ -300,7 +300,7 @@
         affe.dance();
         this.assertCalled(affe.dance);
       },
-      "test: inject custom stub and return": function test_inject_custom_stub_and_return() {
+      "test: inject custom stub and return": function testInjectCustomStubAndReturn() {
         var stub = this.injectStub(qx.test, "Affe", this.stub({
             dance: function dance() {}
           })),
@@ -308,7 +308,7 @@
         affe.dance();
         this.assertCalled(stub.dance);
       },
-      "test: reveal mock of original and return": function test_reveal_mock_of_original_and_return() {
+      "test: reveal mock of original and return": function testRevealMockOfOriginalAndReturn() {
         var mock = this.revealMock(qx.test, "Affe"),
           affe = new qx.test.Affe();
         mock.expects("scratch").once();
@@ -316,7 +316,7 @@
         mock.verify();
         affe.dispose();
       },
-      "test: reveal mock of custom and return": function test_reveal_mock_of_custom_and_return() {
+      "test: reveal mock of custom and return": function testRevealMockOfCustomAndReturn() {
         var mock = this.revealMock(qx.test, "Affe", {
             dance: function dance() {}
           }),
@@ -340,4 +340,4 @@
   qx.test.dev.unit.Sinon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sinon.js.map?dt=1722153826726
+//# sourceMappingURL=Sinon.js.map?dt=1726089053379

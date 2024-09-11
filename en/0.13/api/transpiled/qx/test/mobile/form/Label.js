@@ -63,4 +63,4 @@
   qx.test.mobile.form.Label.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Label.js.map?dt=1722153829368
+//# sourceMappingURL=Label.js.map?dt=1726089055954

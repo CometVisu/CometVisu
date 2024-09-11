@@ -264,7 +264,7 @@
             var self = this;
 
             // Continually check to see if the document is ready
-            var _timer = function timer() {
+            var timer = function timer() {
               try {
                 // If IE is used, use the trick by Diego Perini
                 // http://javascript.nwbox.com/IEContentLoaded/
@@ -273,10 +273,10 @@
                   self._onNativeLoadWrapped();
                 }
               } catch (error) {
-                window.setTimeout(_timer, 100);
+                window.setTimeout(timer, 100);
               }
             };
-            _timer();
+            timer();
           }
 
           // Additional load listener as fallback
@@ -369,4 +369,4 @@
   qx.event.handler.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1722153817608
+//# sourceMappingURL=Application.js.map?dt=1726089044602

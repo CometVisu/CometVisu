@@ -653,16 +653,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
         };
         var onEnd = function onEnd() {
-          _finish();
+          finish();
           if (refreshSpinner.classList.contains('visible')) {
             refreshSpinner.classList.remove('visible');
             location.reload();
           }
         };
-        var _finish = function finish() {
+        var finish = function finish() {
           eventSource.removeEventListener('touchmove', onMove);
           eventSource.removeEventListener('touchend', onEnd);
-          eventSource.removeEventListener('touchcancel', _finish);
+          eventSource.removeEventListener('touchcancel', finish);
         };
         eventSource.addEventListener('touchstart', function (ev) {
           startY = ev.touches[0].clientY;
@@ -670,7 +670,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           if (scrollContainer && scrollContainer.scrollTop === 0) {
             eventSource.addEventListener('touchmove', onMove);
             eventSource.addEventListener('touchend', onEnd);
-            eventSource.addEventListener('touchcancel', _finish);
+            eventSource.addEventListener('touchcancel', finish);
           }
         });
       },
@@ -1038,4 +1038,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1722153805539
+//# sourceMappingURL=Controller.js.map?dt=1726089032762

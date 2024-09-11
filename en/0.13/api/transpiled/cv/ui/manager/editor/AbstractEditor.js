@@ -56,7 +56,22 @@
     construct: function construct() {
       qx.ui.core.Widget.constructor.call(this);
       this._initClient();
+      if (this._client) {
+        this._client.addListener('error', function (ev) {
+          if (ev.getRequest().getStatus() === 401) {
+            this.fireEvent('unauthorized');
+          }
+        }, this);
+      }
       this._nativePasteSupported = document.queryCommandSupported('paste');
+    },
+    /*
+    ***********************************************
+     EVENTS
+    ***********************************************
+    */
+    events: {
+      'unauthorized': 'qx.event.type.Event'
     },
     /*
     ***********************************************
@@ -231,4 +246,4 @@
   cv.ui.manager.editor.AbstractEditor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractEditor.js.map?dt=1722153801667
+//# sourceMappingURL=AbstractEditor.js.map?dt=1726089029058

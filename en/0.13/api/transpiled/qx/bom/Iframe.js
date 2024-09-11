@@ -226,15 +226,15 @@
        */
       __P_113_0: function __P_113_0(iframe) {
         // URL can only be detected after load. Retrieve and store URL once.
-        var _callback = function callback() {
-          qx.bom.Event.removeNativeListener(iframe, "load", _callback);
+        var callback = function callback() {
+          qx.bom.Event.removeNativeListener(iframe, "load", callback);
           iframe.$$url = qx.bom.Iframe.queryCurrentUrl(iframe);
         };
-        qx.bom.Event.addNativeListener(iframe, "load", _callback);
+        qx.bom.Event.addNativeListener(iframe, "load", callback);
       }
     }
   });
   qx.bom.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1722153809569
+//# sourceMappingURL=Iframe.js.map?dt=1726089036850

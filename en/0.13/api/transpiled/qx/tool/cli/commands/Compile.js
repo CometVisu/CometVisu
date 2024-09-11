@@ -792,12 +792,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       __P_465_7: function __P_465_7(watch) {
         var _this3 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
-          var classFiles, _scanImpl, metaDb, _i, _Object$values, lib, dir, _iterator, _step, filename, tsWriter, debounce;
+          var classFiles, scanImpl, metaDb, _i, _Object$values, lib, dir, _iterator, _step, filename, tsWriter, debounce;
           return _regeneratorRuntime().wrap(function _callee10$(_context10) {
             while (1) switch (_context10.prev = _context10.next) {
               case 0:
                 classFiles = []; // Scans a directory recursively to find all .js files
-                _scanImpl = /*#__PURE__*/function () {
+                scanImpl = /*#__PURE__*/function () {
                   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(filename) {
                     var basename, stat, files, i, subname;
                     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
@@ -832,7 +832,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           }
                           subname = path.join(filename, files[i]);
                           _context8.next = 17;
-                          return _scanImpl(subname);
+                          return scanImpl(subname);
                         case 17:
                           i++;
                           _context8.next = 13;
@@ -868,7 +868,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   sourceDir: dir
                 };
                 _context10.next = 14;
-                return _scanImpl(dir);
+                return scanImpl(dir);
               case 14:
                 _i++;
                 _context10.next = 8;
@@ -1855,4 +1855,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Compile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Compile.js.map?dt=1722153837634
+//# sourceMappingURL=Compile.js.map?dt=1726089064308

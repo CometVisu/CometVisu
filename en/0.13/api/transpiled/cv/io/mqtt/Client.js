@@ -229,6 +229,9 @@
        * @param req {qx.io.request.Xhr}
        */
       authorize: function authorize(req) {},
+      canAuthorize: function canAuthorize() {
+        return false;
+      },
       /**
        * return the relative path to a resource on the currently used backend
        *
@@ -319,4 +322,4 @@
   cv.io.mqtt.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1722153859518
+//# sourceMappingURL=Client.js.map?dt=1726089086831

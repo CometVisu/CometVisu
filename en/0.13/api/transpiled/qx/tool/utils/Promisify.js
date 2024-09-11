@@ -154,12 +154,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       someEach: function someEach(arr, fn) {
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-          var index, _next2;
+          var index, next;
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
               case 0:
                 index = 0;
-                _next2 = function next() {
+                next = function next() {
                   if (index >= arr.length) {
                     return qx.Promise.resolve(false);
                   }
@@ -168,11 +168,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     if (result) {
                       return true;
                     }
-                    return _next2();
+                    return next();
                   });
                 };
                 _context4.next = 4;
-                return _next2();
+                return next();
               case 4:
                 return _context4.abrupt("return", _context4.sent);
               case 5:
@@ -287,4 +287,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.utils.Promisify.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Promisify.js.map?dt=1722153844961
+//# sourceMappingURL=Promisify.js.map?dt=1726089071794

@@ -500,7 +500,7 @@
         this.__P_338_0.setUrl("not-found");
         this.wait();
       },
-      "test Internal Server Error": function test_Internal_Server_Error() {
+      "test Internal Server Error": function testInternalServerError() {
         var _this21 = this;
         this.useFakeServer();
         var server = this.getServer();
@@ -523,4 +523,4 @@
   qx.test.data.store.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1722153826520
+//# sourceMappingURL=Json.js.map?dt=1726089053179

@@ -89,7 +89,8 @@
     "@qooxdoo/framework": "^7.7.2",
     "@sentry/browser": "^8.12.0",
     "crc-32": "^1.2.2",
-    "monaco-editor": "^0.50.0"
+    "monaco-editor": "^0.50.0",
+    "oauth-pkce": "^0.0.7"
   },
   "eslintConfig": {
     "root": true,

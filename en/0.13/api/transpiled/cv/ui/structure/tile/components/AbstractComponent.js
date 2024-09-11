@@ -14,6 +14,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       },
       "qx.core.Init": {},
       "cv.Application": {},
+      "qx.util.format.DateFormat": {},
       "cv.util.String": {}
     }
   };
@@ -95,6 +96,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         check: 'Boolean',
         init: false
       }
+    },
+    /*
+    ***********************************************
+      STATICS
+    ***********************************************
+    */
+    statics: {
+      dateFormats: {}
     },
     /*
     ***********************************************
@@ -351,7 +360,15 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               mappedValue = cv.Application.structureController.mapValue(this._element.getAttribute('mapping'), mappedValue);
             }
             if (this._element.hasAttribute('format') && this._element.getAttribute('format')) {
-              mappedValue = cv.util.String.sprintf(this._element.getAttribute('format'), mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue);
+              var format = this._element.getAttribute('format');
+              if (mappedValue instanceof Date && !format.includes('%')) {
+                if (!cv.ui.structure.tile.components.AbstractComponent.dateFormats[format]) {
+                  cv.ui.structure.tile.components.AbstractComponent[format] = new qx.util.format.DateFormat(format);
+                }
+                mappedValue = cv.ui.structure.tile.components.AbstractComponent[format].format(mappedValue);
+              } else {
+                mappedValue = cv.util.String.sprintf(format, mappedValue instanceof Date ? mappedValue.toLocaleString() : mappedValue);
+              }
             }
           }
           this._updateValue(mappedValue, value);
@@ -454,4 +471,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.AbstractComponent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractComponent.js.map?dt=1722153805708
+//# sourceMappingURL=AbstractComponent.js.map?dt=1726089032934

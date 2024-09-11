@@ -65,7 +65,7 @@
           throw new qx.dev.unit.RequirementError("css.animation");
         }
       },
-      "test stop of CSS animation": function test_stop_of_CSS_animation() {
+      "test stop of CSS animation": function testStopOfCSSAnimation() {
         var el = qx.dom.Element.create("div");
         var handle = qx.bom.element.Animation.animate(el, {
           duration: 100,
@@ -91,4 +91,4 @@
   qx.test.bom.element.AnimationHandle.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationHandle.js.map?dt=1722153824124
+//# sourceMappingURL=AnimationHandle.js.map?dt=1726089050917

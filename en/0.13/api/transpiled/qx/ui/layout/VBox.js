@@ -495,4 +495,4 @@
   qx.ui.layout.VBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VBox.js.map?dt=1722153850387
+//# sourceMappingURL=VBox.js.map?dt=1726089077316

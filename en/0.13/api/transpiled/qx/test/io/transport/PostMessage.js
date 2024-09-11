@@ -59,7 +59,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         });
         this.transport = new qx.io.transport.PostMessage(worker);
       },
-      "test: send message to worker and check response": function test_send_message_to_worker_and_check_response() {
+      "test: send message to worker and check response": function testSendMessageToWorkerAndCheckResponse() {
         var _this = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var message;
@@ -86,4 +86,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.io.transport.PostMessage.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PostMessage.js.map?dt=1722153828377
+//# sourceMappingURL=PostMessage.js.map?dt=1726089054968

@@ -665,7 +665,7 @@
         fonts.dispose();
         model.dispose();
       },
-      "test model with and without bubble": function test_model_with_and_without_bubble() {
+      "test model with and without bubble": function testModelWithAndWithoutBubble() {
         var data = {
           pi: 1
         };
@@ -699,7 +699,7 @@
           }.bind(this), "Change event not fired!");
         }, this);
       },
-      "test toClass() toModel() match/mismatch": function test_toClass_toModel_match_mismatch() {
+      "test toClass() toModel() match/mismatch": function testToClassToModelMatchMismatch() {
         var data = {
           foo: "foo",
           bar: "bar"
@@ -1159,4 +1159,4 @@
   qx.test.data.marshal.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1722153826210
+//# sourceMappingURL=Json.js.map?dt=1726089052878

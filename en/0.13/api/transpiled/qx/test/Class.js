@@ -420,7 +420,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         // there should be no class qx.Bug
         this.assertEquals(subclasses, null);
       },
-      "test: instantiate class in defer and access property": function test_instantiate_class_in_defer_and_access_property() {
+      "test: instantiate class in defer and access property": function testInstantiateClassInDeferAndAccessProperty() {
         var self = this;
         qx.Class.define("qx.DeferFoo", {
           extend: qx.core.Object,
@@ -441,4 +441,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.test.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1722153823083
+//# sourceMappingURL=Class.js.map?dt=1726089049920

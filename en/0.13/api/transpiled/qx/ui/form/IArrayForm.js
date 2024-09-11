@@ -79,4 +79,4 @@
   qx.ui.form.IArrayForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IArrayForm.js.map?dt=1722153848560
+//# sourceMappingURL=IArrayForm.js.map?dt=1726089075466

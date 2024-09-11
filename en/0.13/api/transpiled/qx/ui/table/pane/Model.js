@@ -250,4 +250,4 @@
   qx.ui.table.pane.Model.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Model.js.map?dt=1722153854806
+//# sourceMappingURL=Model.js.map?dt=1726089081827

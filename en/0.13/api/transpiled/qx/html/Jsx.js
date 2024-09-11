@@ -91,14 +91,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         // ANONYMOUS FRAGMENT
         if (tagname == qx.html.Jsx.FRAGMENT) {
           var arr = new qx.data.Array();
-          var _addChildrenFragment = function addChildrenFragment(children) {
+          var addChildrenFragment = function addChildrenFragment(children) {
             var _iterator = _createForOfIteratorHelper(children),
               _step;
             try {
               for (_iterator.s(); !(_step = _iterator.n()).done;) {
                 var child = _step.value;
                 if (child instanceof qx.data.Array || qx.lang.Type.isArray(child)) {
-                  _addChildrenFragment(child);
+                  addChildrenFragment(child);
                 } else {
                   arr.push(child);
                 }
@@ -109,7 +109,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               _iterator.f();
             }
           };
-          _addChildrenFragment(children);
+          addChildrenFragment(children);
           return arr;
         }
 
@@ -123,14 +123,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
           _element.setIsCustomElement(true);
           if (children) {
-            var _injectChildren = function injectChildren(children) {
+            var injectChildren = function injectChildren(children) {
               var _iterator2 = _createForOfIteratorHelper(children),
                 _step2;
               try {
                 for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
                   var child = _step2.value;
                   if (child instanceof qx.data.Array || qx.lang.Type.isArray(child)) {
-                    _injectChildren(child);
+                    injectChildren(child);
                   } else if (typeof child == "string") {
                     _element.inject(new qx.html.Text(child));
                   } else if (typeof child == "number") {
@@ -145,7 +145,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 _iterator2.f();
               }
             };
-            _injectChildren(children);
+            injectChildren(children);
           }
           if ((_attributes2 = attributes) !== null && _attributes2 !== void 0 && _attributes2.slot) {
             _element.setAttributes({
@@ -215,14 +215,14 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         // SLOT
         if (tagname === "slot") {
           if (children) {
-            var _addDefaultChildren = function addDefaultChildren(children) {
+            var addDefaultChildren = function addDefaultChildren(children) {
               var _iterator3 = _createForOfIteratorHelper(children),
                 _step3;
               try {
                 for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
                   var child = _step3.value;
                   if (child instanceof qx.data.Array || qx.lang.Type.isArray(child)) {
-                    _addDefaultChildren(child);
+                    addDefaultChildren(child);
                   } else if (typeof child == "string") {
                     element.addDefaultChild(new qx.html.Text(child));
                   } else if (typeof child == "number") {
@@ -237,20 +237,20 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 _iterator3.f();
               }
             };
-            _addDefaultChildren(children);
+            addDefaultChildren(children);
             element.sealDefaultChildren();
           }
           return element;
         }
         if (children) {
-          var _addChildren = function addChildren(children) {
+          var addChildren = function addChildren(children) {
             var _iterator4 = _createForOfIteratorHelper(children),
               _step4;
             try {
               for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
                 var child = _step4.value;
                 if (child instanceof qx.data.Array || qx.lang.Type.isArray(child)) {
-                  _addChildren(child);
+                  addChildren(child);
                 } else if (typeof child == "string") {
                   element.add(new qx.html.Text(child));
                 } else if (typeof child == "number") {
@@ -265,7 +265,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
               _iterator4.f();
             }
           };
-          _addChildren(children);
+          addChildren(children);
         }
         if (innerHtml) {
           element.setProperty("innerHtml", innerHtml);
@@ -323,4 +323,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.html.Jsx.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsx.js.map?dt=1722153819398
+//# sourceMappingURL=Jsx.js.map?dt=1726089046374

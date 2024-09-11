@@ -14,7 +14,7 @@
     "include",
     "MRequirements",
     "members",
-    "test_is_PDFJs_available",
+    "testIsPDFJsAvailable",
     "require",
     "core",
     "Environment",
@@ -34,6 +34,6 @@
   "sourcesContent": [
     "/* ************************************************************************\n\n   qooxdoo - the new era of web development\n\n   http://qooxdoo.org\n\n   Copyright:\n     2014 1&1 Internet AG, Germany, http://www.1und1.de\n\n   License:\n     MIT: https://opensource.org/licenses/MIT\n     See the LICENSE file in the project's top-level directory for details.\n\n   Authors:\n     * Richard Sternagel (rsternagel)\n\n************************************************************************ */\n\n/**\n * Test for PDF.js detection.\n *\n * You can enable/disable it via \"about:config\"\n * and \"pdfjs.disabled\" (true/false).\n *\n * @require(qx.bom.client.Pdfjs)\n */\nqx.Class.define(\"qx.test.bom.client.Pdfjs\", {\n  extend: qx.dev.unit.TestCase,\n\n  include: [qx.dev.unit.MRequirements],\n\n  members: {\n    \"test: is PDF.js available\"() {\n      this.require([\"firefox\"]);\n\n      qx.core.Environment.getAsync(\n        \"plugin.pdfjs\",\n        function (result) {\n          this.resume(function () {\n            this.assertTrue(result);\n          }, this);\n        },\n        this\n      );\n\n      this.wait();\n    }\n  }\n});\n"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0BAA0B,EAAE;IAC1CC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE,CAACV,EAAE,CAACO,GAAG,CAACC,IAAI,CAACG,aAAa,CAAC;IAEpCC,OAAO,EAAE;MACP,2BAA2B,WAA3BC,uBAA2BA,CAAA,EAAG;QAC5B,IAAI,CAACC,OAAO,CAAC,CAAC,SAAS,CAAC,CAAC;QAEzBd,EAAE,CAACe,IAAI,CAACC,WAAW,CAACC,QAAQ,CAC1B,cAAc,EACd,UAAUC,MAAM,EAAE;UAChB,IAAI,CAACC,MAAM,CAAC,YAAY;YACtB,IAAI,CAACC,UAAU,CAACF,MAAM,CAAC;UACzB,CAAC,EAAE,IAAI,CAAC;QACV,CAAC,EACD,IACF,CAAC;QAED,IAAI,CAACG,IAAI,CAAC,CAAC;MACb;IACF;EACF,CAAC,CAAC;EAhDFrB,EAAE,CAACsB,IAAI,CAACC,GAAG,CAACC,MAAM,CAACC,KAAK,CAACtB,aAAa,GAAGA,aAAa;AAAC",
+  "mappings": ";;;;;;;;;;;;;;;;;;;EAAAA,EAAE,CAACC,SAAS,CAACC,oBAAoB,CAACC,aAAa,CAAC;EAAhD;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;EAEA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;EACAH,EAAE,CAACI,KAAK,CAACC,MAAM,CAAC,0BAA0B,EAAE;IAC1CC,MAAM,EAAEN,EAAE,CAACO,GAAG,CAACC,IAAI,CAACC,QAAQ;IAE5BC,OAAO,EAAE,CAACV,EAAE,CAACO,GAAG,CAACC,IAAI,CAACG,aAAa,CAAC;IAEpCC,OAAO,EAAE;MACP,2BAA2B,WAAAC,qBAAA,EAAG;QAC5B,IAAI,CAACC,OAAO,CAAC,CAAC,SAAS,CAAC,CAAC;QAEzBd,EAAE,CAACe,IAAI,CAACC,WAAW,CAACC,QAAQ,CAC1B,cAAc,EACd,UAAUC,MAAM,EAAE;UAChB,IAAI,CAACC,MAAM,CAAC,YAAY;YACtB,IAAI,CAACC,UAAU,CAACF,MAAM,CAAC;UACzB,CAAC,EAAE,IAAI,CAAC;QACV,CAAC,EACD,IACF,CAAC;QAED,IAAI,CAACG,IAAI,CAAC,CAAC;MACb;IACF;EACF,CAAC,CAAC;EAhDFrB,EAAE,CAACsB,IAAI,CAACC,GAAG,CAACC,MAAM,CAACC,KAAK,CAACtB,aAAa,GAAGA,aAAa;AAAC",
   "ignoreList": []
 }

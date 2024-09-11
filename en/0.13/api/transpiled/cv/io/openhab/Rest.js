@@ -40,6 +40,7 @@
   /**
    * openHAB Rest client, that uses the native openHAB REST-API directly and does not
    * need the openHAB-cometvisu binding to be installed
+   * @ignore(getPkce)
    */
   qx.Class.define('cv.io.openhab.Rest', {
     extend: cv.io.AbstractClient,
@@ -176,6 +177,9 @@
         if (this.__P_750_3) {
           req.setRequestHeader('Authorization', this.__P_750_3);
         }
+      },
+      canAuthorize: function canAuthorize() {
+        return !!this.__P_750_3;
       },
       /**
        * Creates an authorized request to the backend with a relative path
@@ -386,7 +390,7 @@
         var _this3 = this;
         if (credentials && credentials.username) {
           // just saving the credentials for later use as we are using basic authentication
-          this.__P_750_3 = 'Basic ' + btoa(credentials.username + ':' + (credentials.password || ''));
+          this.__P_750_3 = 'Bearer ' + credentials.username;
         }
         this.setDataReceived(false);
         // no login needed we just do a request to the if the backend is reachable
@@ -494,4 +498,4 @@
   cv.io.openhab.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1722153859482
+//# sourceMappingURL=Rest.js.map?dt=1726089086797

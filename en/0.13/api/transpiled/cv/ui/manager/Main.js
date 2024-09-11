@@ -48,6 +48,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       "cv.util.ConfigLoader": {},
       "qxl.dialog.Confirm": {},
       "cv.util.ConfigUpgrader": {},
+      "cv.io.BackendConnections": {},
+      "qxl.dialog.Dialog": {},
       "cv.ui.manager.model.Preferences": {},
       "cv.ui.manager.control.FileHandlerRegistry": {},
       "cv.ui.manager.editor.AbstractEditor": {},
@@ -110,6 +112,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
    * @since 0.12.0
    *
    * @asset(manager/*)
+   * @ignore(sessionStorage)
    */
   qx.Class.define('cv.ui.manager.Main', {
     extend: qx.core.Object,
@@ -132,6 +135,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
       this.__P_25_1();
       this._draw();
       qx.event.message.Bus.subscribe('cv.manager.*', this._onManagerEvent, this);
+      this._initAuth();
 
       // Initialize tooltip manager
       qx.ui.tooltip.Manager.getInstance();
@@ -439,6 +443,51 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         }
         this._tree.refresh();
       },
+      _initAuth: function _initAuth() {
+        if (cv.io.rest.Client.AUTH_REQUIRED && qx.core.Init.getApplication().isServedByOpenhab()) {
+          var backend = cv.io.BackendConnections.getClientByType('openhab');
+          if (backend && backend.canAuthorize()) {
+            // already logged in
+            return;
+          }
+          var storedToken = sessionStorage.getItem('openhab.cv:token');
+          if (storedToken) {
+            if (!backend) {
+              backend = cv.io.BackendConnections.addBackendClient('openhab', 'openhab', undefined, 'manager');
+            }
+            backend.login(true, {
+              username: storedToken
+            });
+          } else {
+            this._handleUnauthorized();
+          }
+        }
+      },
+      _handleUnauthorized: function _handleUnauthorized() {
+        if (cv.io.rest.Client.AUTH_REQUIRED && qx.core.Init.getApplication().isServedByOpenhab()) {
+          var storedToken = sessionStorage.getItem('openhab.cv:token');
+          if (storedToken) {
+            // remove old token, because it does not work anymore
+            sessionStorage.removeItem('openhab.cv:token');
+          }
+          var loginWidget = qxl.dialog.Dialog.prompt(qx.locale.Manager.tr('Please provide an openHAB API token. It can be generated in openHABs main UI.')).set({
+            caption: qx.locale.Manager.tr('Provide API token')
+          });
+          loginWidget.promise().then(function (token) {
+            if (token) {
+              sessionStorage.setItem('openhab.cv:token', token);
+              var backend = cv.io.BackendConnections.getClientByType('openhab');
+              if (!backend) {
+                backend = cv.io.BackendConnections.addBackendClient('openhab', 'openhab', undefined, 'manager');
+              }
+              backend.login(true, {
+                username: token
+              });
+            }
+          });
+          loginWidget.show();
+        }
+      },
       __P_25_5: function __P_25_5(name) {
         var file = null;
         var demoFolder = null;
@@ -560,6 +609,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           }
           if (!editorConfig.instance) {
             editorConfig.instance = new editorConfig.Clazz();
+            if (editorConfig.instance instanceof cv.ui.manager.editor.AbstractEditor) {
+              editorConfig.instance.addListener('unauthorized', this._handleUnauthorized, this);
+            }
           }
           editorConfig.instance.setFile(file);
           if (this._stack.indexOf(editorConfig.instance) < 0) {
@@ -863,7 +915,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           message = qx.locale.Manager.tr('Please enter the folder name.');
           existsMessage = qx.locale.Manager.tr('A folder with this name already exists.');
         }
-        var _handlePrompt = function handlePrompt(name) {
+        var handlePrompt = function handlePrompt(name) {
           if (!name) {
             // canceled
             return;
@@ -883,7 +935,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           }, this);
           if (exists) {
             cv.ui.manager.snackbar.Controller.error(existsMessage);
-            this.__P_25_7(message, _handlePrompt, this, name);
+            this.__P_25_7(message, handlePrompt, this, name);
           } else {
             var item = new cv.ui.manager.model.FileItem(filename, currentFolder.getFullPath(), currentFolder);
             item.set({
@@ -930,7 +982,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
             }
           }
         };
-        this.__P_25_7(message, _handlePrompt, this, suggestedName);
+        this.__P_25_7(message, handlePrompt, this, suggestedName);
       },
       /**
        * Finds next droppable parent of the given element. Maybe the element itself as well.
@@ -1132,4 +1184,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1722153800971
+//# sourceMappingURL=Main.js.map?dt=1726089028331

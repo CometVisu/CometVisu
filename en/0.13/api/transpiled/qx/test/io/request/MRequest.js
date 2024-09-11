@@ -60,24 +60,24 @@
       //
       // General
       //
-      "test: dispose transport on destruct": function test_dispose_transport_on_destruct() {
+      "test: dispose transport on destruct": function testDisposeTransportOnDestruct() {
         this.req.dispose();
         this.wait(100, function () {
           this.assertCalled(this.transport.dispose);
         }, this);
       },
-      "test: getTransport()": function test_getTransport() {
+      "test: getTransport()": function testGetTransport() {
         this.assertEquals(this.transport, this.req.getTransport());
       },
       //
       // Send
       //
-      "test: send() GET": function test_send_GET() {
+      "test: send() GET": function testSendGET() {
         this.req.send();
         this.assertCalledWith(this.transport.open, "GET", "url");
         this.assertCalled(this.transport.send);
       },
-      "test: drop fragment from URL": function test_drop_fragment_from_URL() {
+      "test: drop fragment from URL": function testDropFragmentFromURL() {
         this.req.setUrl("example.com#fragment");
         this.req.send();
         this.assertCalledWith(this.transport.open, "GET", "example.com");
@@ -85,31 +85,31 @@
       //
       // Abort
       //
-      "test: abort request": function test_abort_request() {
+      "test: abort request": function testAbortRequest() {
         this.req.abort();
         this.assertCalled(this.transport.abort);
       },
       //
       // Data
       //
-      "test: not send data with GET request": function test_not_send_data_with_GET_request() {
+      "test: not send data with GET request": function testNotSendDataWithGETRequest() {
         this.req.setRequestData("str");
         this.req.send();
         this.assertCalledWith(this.transport.send);
       },
-      "test: append string data to URL with GET request": function test_append_string_data_to_URL_with_GET_request() {
+      "test: append string data to URL with GET request": function testAppendStringDataToURLWithGETRequest() {
         this.req.setRequestData("str");
         this.req.send();
         this.assertCalledWith(this.transport.open, "GET", "url?str");
       },
-      "test: append obj data to URL with GET request": function test_append_obj_data_to_URL_with_GET_request() {
+      "test: append obj data to URL with GET request": function testAppendObjDataToURLWithGETRequest() {
         this.req.setRequestData({
           affe: true
         });
         this.req.send();
         this.assertCalledWith(this.transport.open, "GET", "url?affe=true");
       },
-      "test: append qooxdoo obj data to URL with GET request": function test_append_qooxdoo_obj_data_to_URL_with_GET_request() {
+      "test: append qooxdoo obj data to URL with GET request": function testAppendQooxdooObjDataToURLWithGETRequest() {
         this.setUpKlass();
         var obj = new Klass();
         this.req.setRequestData(obj);
@@ -117,7 +117,7 @@
         this.assertCalledWith(this.transport.open, "GET", "url?affe=true");
         obj.dispose();
       },
-      "test: append FormData to URL with POST request": function test_append_FormData_to_URL_with_POST_request() {
+      "test: append FormData to URL with POST request": function testAppendFormDataToURLWithPOSTRequest() {
         if (!window.FormData) {
           this.skip("FormData API not supported");
         }
@@ -135,23 +135,23 @@
       //
       // Header and Params
       //
-      "test: set request header": function test_set_request_header() {
+      "test: set request header": function testSetRequestHeader() {
         this.req.setRequestHeader("key", "value");
         this.req.send();
         this.assertCalledWith(this.transport.setRequestHeader, "key", "value");
       },
-      "test: set request header does not append": function test_set_request_header_does_not_append() {
+      "test: set request header does not append": function testSetRequestHeaderDoesNotAppend() {
         var stub = this.transport.setRequestHeader.withArgs("key", "value");
         this.req.setRequestHeader("key", "value");
         this.req.setRequestHeader("key", "value");
         this.req.send();
         this.assertCalledOnce(stub.withArgs("key", "value"));
       },
-      "test: get request header": function test_get_request_header() {
+      "test: get request header": function testGetRequestHeader() {
         this.req.setRequestHeader("key", "value");
         this.assertEquals("value", this.req.getRequestHeader("key"));
       },
-      "test: remove request header": function test_remove_request_header() {
+      "test: remove request header": function testRemoveRequestHeader() {
         var stub;
         this.req.setRequestHeader("key", "value");
         this.req.removeRequestHeader("key");
@@ -159,13 +159,13 @@
         this.req.send();
         this.assertNotCalled(stub);
       },
-      "test: get all request headers": function test_get_all_request_headers() {
+      "test: get all request headers": function testGetAllRequestHeaders() {
         this.req.setRequestHeader("key", "value");
         this.req.setRequestHeader("otherkey", "value");
         this.assertEquals("value", this.req._getAllRequestHeaders()["key"]);
         this.assertEquals("value", this.req._getAllRequestHeaders()["otherkey"]);
       },
-      "test: get all request headers includes configuration dependent headers": function test_get_all_request_headers_includes_configuration_dependent_headers() {
+      "test: get all request headers includes configuration dependent headers": function testGetAllRequestHeadersIncludesConfigurationDependentHeaders() {
         this.req.setRequestHeader("key", "value");
         this.req._getConfiguredRequestHeaders = function () {
           return {
@@ -175,12 +175,12 @@
         this.assertEquals("value", this.req._getAllRequestHeaders()["key"]);
         this.assertEquals("value", this.req._getAllRequestHeaders()["otherkey"]);
       },
-      "test: not append cache parameter to URL": function test_not_append_cache_parameter_to_URL() {
+      "test: not append cache parameter to URL": function testNotAppendCacheParameterToURL() {
         this.req.send();
         var msg = "nocache parameter must not be set";
         this.assertFalse(/\?nocache/.test(this.transport.open.args[0][1]), msg);
       },
-      "test: append nocache parameter to URL": function test_append_nocache_parameter_to_URL() {
+      "test: append nocache parameter to URL": function testAppendNocacheParameterToURL() {
         this.req.setCache(false);
         this.req.send();
         var msg = "nocache parameter must be set to number";
@@ -189,49 +189,49 @@
       //
       // Events
       //
-      "test: fire readyStateChange": function test_fire_readyStateChange() {
+      "test: fire readyStateChange": function testFireReadyStateChange() {
         var req = this.req,
           readystatechange = this.spy();
         req.addListener("readyStateChange", readystatechange);
         this.respond();
         this.assertCalledOnce(readystatechange);
       },
-      "test: fire success": function test_fire_success() {
+      "test: fire success": function testFireSuccess() {
         var req = this.req,
           success = this.spy();
         req.addListener("success", success);
         this.respond();
         this.assertCalledOnce(success);
       },
-      "test: not fire success on erroneous status": function test_not_fire_success_on_erroneous_status() {
+      "test: not fire success on erroneous status": function testNotFireSuccessOnErroneousStatus() {
         var req = this.req,
           success = this.spy();
         req.addListener("success", success);
         this.respond(500);
         this.assertNotCalled(success);
       },
-      "test: fire load": function test_fire_load() {
+      "test: fire load": function testFireLoad() {
         var req = this.req,
           load = this.spy();
         req.addListener("load", load);
         this.respond();
         this.assertCalledOnce(load);
       },
-      "test: fire loadEnd": function test_fire_loadEnd() {
+      "test: fire loadEnd": function testFireLoadEnd() {
         var req = this.req,
           loadEnd = this.spy();
         req.addListener("loadEnd", loadEnd);
         this.respond();
         this.assertCalledOnce(loadEnd);
       },
-      "test: fire abort": function test_fire_abort() {
+      "test: fire abort": function testFireAbort() {
         var req = this.req,
           abort = this.spy();
         req.addListener("abort", abort);
         this.transport.onabort();
         this.assertCalledOnce(abort);
       },
-      "test: fire timeout": function test_fire_timeout() {
+      "test: fire timeout": function testFireTimeout() {
         var req = this.req,
           transport = this.transport,
           timeout = this.spy();
@@ -242,42 +242,42 @@
         this.assertEquals(100, transport.timeout);
         this.assertCalledOnce(timeout);
       },
-      "test: fire error": function test_fire_error() {
+      "test: fire error": function testFireError() {
         var req = this.req,
           error = this.spy();
         req.addListener("error", error);
         this.respondError();
         this.assertCalledOnce(error);
       },
-      "test: fire statusError": function test_fire_statusError() {
+      "test: fire statusError": function testFireStatusError() {
         var req = this.req,
           statusError = this.spy();
         req.addListener("statusError", statusError);
         this.respond(500);
         this.assertCalledOnce(statusError);
       },
-      "test: fire fail on erroneous status": function test_fire_fail_on_erroneous_status() {
+      "test: fire fail on erroneous status": function testFireFailOnErroneousStatus() {
         var req = this.req,
           fail = this.spy();
         req.addListener("fail", fail);
         this.respond(500);
         this.assertCalledOnce(fail);
       },
-      "test: fire fail on network error": function test_fire_fail_on_network_error() {
+      "test: fire fail on network error": function testFireFailOnNetworkError() {
         var req = this.req,
           fail = this.spy();
         req.addListener("fail", fail);
         this.respondError();
         this.assertCalledOnce(fail);
       },
-      "test: fire fail on timeout": function test_fire_fail_on_timeout() {
+      "test: fire fail on timeout": function testFireFailOnTimeout() {
         var req = this.req,
           fail = this.spy();
         req.addListener("fail", fail);
         this.timeout();
         this.assertCalledOnce(fail);
       },
-      "test: fire changePhase": function test_fire_changePhase() {
+      "test: fire changePhase": function testFireChangePhase() {
         var req = this.req,
           that = this;
         this.assertEventFired(req, "changePhase", function () {
@@ -289,10 +289,10 @@
       //
       // Phase
       //
-      "test: phase is unsent": function test_phase_is_unsent() {
+      "test: phase is unsent": function testPhaseIsUnsent() {
         this.assertEquals("unsent", this.req.getPhase());
       },
-      "test: phase was open before send": function test_phase_was_open_before_send() {
+      "test: phase was open before send": function testPhaseWasOpenBeforeSend() {
         var req = this.req,
           phases = [];
         req.addListener("changePhase", function () {
@@ -302,20 +302,20 @@
         req.send();
         this.assertArrayEquals(["opened", "sent"], phases);
       },
-      "test: phase is sent": function test_phase_is_sent() {
+      "test: phase is sent": function testPhaseIsSent() {
         var req = this.req;
         req.setUrl("/url");
         req.send();
         this.assertEquals("sent", req.getPhase());
       },
-      "test: phase is loading": function test_phase_is_loading() {
+      "test: phase is loading": function testPhaseIsLoading() {
         var req = this.req,
           transport = this.transport;
         transport.readyState = 3;
         transport.onreadystatechange();
         this.assertEquals("loading", req.getPhase());
       },
-      "test: phase is load intermediately": function test_phase_is_load_intermediately() {
+      "test: phase is load intermediately": function testPhaseIsLoadIntermediately() {
         var req = this.req,
           transport = this.transport,
           phases = [];
@@ -328,18 +328,18 @@
         // phases = ["load", "statusError"]
         this.assertEquals("load", phases[0]);
       },
-      "test: phase is success": function test_phase_is_success() {
+      "test: phase is success": function testPhaseIsSuccess() {
         var req = this.req;
         this.respond();
         this.assertEquals("success", req.getPhase());
       },
       // Error handling
-      "test: phase is statusError": function test_phase_is_statusError() {
+      "test: phase is statusError": function testPhaseIsStatusError() {
         var req = this.req;
         this.respond(500);
         this.assertEquals("statusError", req.getPhase());
       },
-      "test: phase is abort": function test_phase_is_abort() {
+      "test: phase is abort": function testPhaseIsAbort() {
         var req = this.req,
           transport = this.transport;
         req.abort();
@@ -350,7 +350,7 @@
         transport.onreadystatechange();
         this.assertEquals("abort", req.getPhase());
       },
-      "test: phase is abort when from cache": function test_phase_is_abort_when_from_cache() {
+      "test: phase is abort when from cache": function testPhaseIsAbortWhenFromCache() {
         var req = this.req,
           transport = this.transport;
         req.abort();
@@ -364,7 +364,7 @@
         transport.onreadystatechange();
         this.assertEquals("abort", req.getPhase());
       },
-      "test: phase is abort on readyState DONE when aborted before": function test_phase_is_abort_on_readyState_DONE_when_aborted_before() {
+      "test: phase is abort on readyState DONE when aborted before": function testPhaseIsAbortOnReadyStateDONEWhenAbortedBefore() {
         var _this = this;
         var req = this.req,
           transport = this.transport;
@@ -381,7 +381,7 @@
         transport.onreadystatechange();
         transport.onabort();
       },
-      "test: phase is abort on readyState DONE when aborting loading": function test_phase_is_abort_on_readyState_DONE_when_aborting_loading() {
+      "test: phase is abort on readyState DONE when aborting loading": function testPhaseIsAbortOnReadyStateDONEWhenAbortingLoading() {
         var _this2 = this;
         var req = this.req,
           transport = this.transport;
@@ -404,7 +404,7 @@
         transport.onreadystatechange();
         transport.onabort();
       },
-      "test: phase is abort on loadEnd when aborted before": function test_phase_is_abort_on_loadEnd_when_aborted_before() {
+      "test: phase is abort on loadEnd when aborted before": function testPhaseIsAbortOnLoadEndWhenAbortedBefore() {
         var _this3 = this;
         var req = this.req,
           transport = this.transport;
@@ -419,7 +419,7 @@
         transport.onloadend();
         transport.onabort();
       },
-      "test: phase is timeout": function test_phase_is_timeout() {
+      "test: phase is timeout": function testPhaseIsTimeout() {
         var req = this.req;
         this.timeout();
         this.assertEquals("timeout", req.getPhase());
@@ -459,4 +459,4 @@
   qx.test.io.request.MRequest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MRequest.js.map?dt=1722153828097
+//# sourceMappingURL=MRequest.js.map?dt=1726089054707

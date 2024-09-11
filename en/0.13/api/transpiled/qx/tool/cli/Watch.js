@@ -384,16 +384,16 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             t.fireEvent("made");
           });
         }
-        var _runIt = function runIt() {
+        var runIt = function runIt() {
           return make().then(function () {
             if (_this5.__P_462_16) {
               delete _this5.__P_462_16;
-              return _runIt();
+              return runIt();
             }
             return null;
           });
         };
-        this.__P_462_8 = _runIt();
+        this.__P_462_8 = runIt();
         return this.__P_462_8;
       },
       __P_462_17: function __P_462_17() {
@@ -561,11 +561,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             return _ref.apply(this, arguments);
           };
         }();
-        var _runIt2 = function runIt(dbc) {
+        var runIt = function runIt(dbc) {
           return handleFileChange().then(function () {
             if (dbc.restart) {
               delete dbc.restart;
-              return _runIt2(dbc);
+              return runIt(dbc);
             }
             return null;
           });
@@ -592,7 +592,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           Console.debug("DEBUG: onFileChange: seen '".concat(filename, "', queuing"));
         }
         dbc.timerId = setTimeout(function () {
-          dbc.promise = _runIt2(dbc).then(function () {
+          dbc.promise = runIt(dbc).then(function () {
             return delete _this7.__P_462_2[filename];
           });
         }, 150);
@@ -619,4 +619,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.Watch.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Watch.js.map?dt=1722153836844
+//# sourceMappingURL=Watch.js.map?dt=1726089063517

@@ -90,10 +90,10 @@
       //
       // General
       //
-      "test: create instance": function test_create_instance() {
+      "test: create instance": function testCreateInstance() {
         this.assertObject(this.req);
       },
-      "test: dispose() removes script from DOM": function test_dispose_removes_script_from_DOM() {
+      "test: dispose() removes script from DOM": function testDisposeRemovesScriptFromDOM() {
         var script;
         this.req.open();
         this.req.send();
@@ -101,12 +101,12 @@
         this.req.dispose();
         this.assertFalse(this.isInDom(script));
       },
-      "test: isDisposed()": function test_isDisposed() {
+      "test: isDisposed()": function testIsDisposed() {
         this.assertFalse(this.req.isDisposed());
         this.req.dispose();
         this.assertTrue(this.req.isDisposed());
       },
-      "test: allow many requests with same object": function test_allow_many_requests_with_same_object() {
+      "test: allow many requests with same object": function testAllowManyRequestsWithSameObject() {
         var count = 0,
           that = this;
         this.req.onload = function () {
@@ -123,13 +123,13 @@
       //
       // Event helper
       //
-      "test: call event handler": function test_call_event_handler() {
+      "test: call event handler": function testCallEventHandler() {
         var req = this.req;
         req.onevent = this.spy();
         req._emit("event");
         this.assertCalled(req.onevent);
       },
-      "test: fire event": function test_fire_event() {
+      "test: fire event": function testFireEvent() {
         var req = this.req;
         var event = this.spy();
         req.onevent = this.spy();
@@ -140,7 +140,7 @@
       //
       // Properties
       //
-      "test: properties indicate success when request completed": function test_properties_indicate_success_when_request_completed() {
+      "test: properties indicate success when request completed": function testPropertiesIndicateSuccessWhenRequestCompleted() {
         var that = this,
           req = this.req;
         req.onload = function () {
@@ -156,7 +156,7 @@
       /**
        * @ignore(SCRIPT_LOADED)
        */
-      "test: status indicates success when determineSuccess returns true": function test_status_indicates_success_when_determineSuccess_returns_true() {
+      "test: status indicates success when determineSuccess returns true": function testStatusIndicatesSuccessWhenDetermineSuccessReturnsTrue() {
         var that = this;
         this.req.onload = function () {
           that.resume(function () {
@@ -170,7 +170,7 @@
         this.wait();
       },
       // Error handling
-      "test: properties indicate failure when request failed": function test_properties_indicate_failure_when_request_failed() {
+      "test: properties indicate failure when request failed": function testPropertiesIndicateFailureWhenRequestFailed() {
         // Known to fail in legacy IEs
         if (this.isIeBelow(9)) {
           this.skip();
@@ -187,7 +187,7 @@
         this.request("http://fail.tld");
         this.wait(15000);
       },
-      "test: properties indicate failure when request timed out": function test_properties_indicate_failure_when_request_timed_out() {
+      "test: properties indicate failure when request timed out": function testPropertiesIndicateFailureWhenRequestTimedOut() {
         // Known to fail in legacy IEs
         if (this.isIeBelow(9)) {
           this.skip();
@@ -205,7 +205,7 @@
         this.requestPending();
         this.wait();
       },
-      "test: status indicates failure when determineSuccess returns false": function test_status_indicates_failure_when_determineSuccess_returns_false() {
+      "test: status indicates failure when determineSuccess returns false": function testStatusIndicatesFailureWhenDetermineSuccessReturnsFalse() {
         var that = this;
         this.req.onload = function () {
           that.resume(function () {
@@ -218,7 +218,7 @@
         this.request();
         this.wait();
       },
-      "test: reset XHR properties when reopened": function test_reset_XHR_properties_when_reopened() {
+      "test: reset XHR properties when reopened": function testResetXHRPropertiesWhenReopened() {
         var req = this.req,
           that = this;
         req.onload = function () {
@@ -235,37 +235,37 @@
       //
       // open()
       //
-      "test: open() stores URL": function test_open_stores_URL() {
+      "test: open() stores URL": function testOpenStoresURL() {
         this.req.open("GET", this.url);
         this.assertEquals(this.url, this.req._getUrl());
       },
       //
       // send()
       //
-      "test: send() adds script element to DOM": function test_send_adds_script_element_to_DOM() {
+      "test: send() adds script element to DOM": function testSendAddsScriptElementToDOM() {
         var req = this.req;
 
         // Helper triggers send()
         this.request();
         this.assert(this.isInDom(req._getScriptElement()), "Script element not in DOM");
       },
-      "test: send() sets script src to URL": function test_send_sets_script_src_to_URL() {
+      "test: send() sets script src to URL": function testSendSetsScriptSrcToURL() {
         this.request();
         this.assertMatch(this.req._getScriptElement().src, /qx\/test\/script.js$/);
       },
-      "test: send() with data": function test_send_with_data() {
+      "test: send() with data": function testSendWithData() {
         this.skip();
       },
       //
       // abort()
       //
-      "test: abort() removes script element": function test_abort_removes_script_element() {
+      "test: abort() removes script element": function testAbortRemovesScriptElement() {
         var req = this.req;
         this.requestPending();
         req.abort();
         this.assertFalse(this.isInDom(req._getScriptElement()), "Script element in DOM");
       },
-      "test: abort() makes request not fire load": function test_abort_makes_request_not_fire_load() {
+      "test: abort() makes request not fire load": function testAbortMakesRequestNotFireLoad() {
         var req = this.req;
         this.spy(req, "onload");
         if (this.isIe()) {
@@ -281,13 +281,13 @@
       //
       // setRequestHeader()
       //
-      "test: setRequestHeader() throws error when other than OPENED": function test_setRequestHeader_throws_error_when_other_than_OPENED() {
+      "test: setRequestHeader() throws error when other than OPENED": function testSetRequestHeaderThrowsErrorWhenOtherThanOPENED() {
         var req = this.req;
         this.assertException(function () {
           req.setRequestHeader();
         }, null, "Invalid state");
       },
-      "test: setRequestHeader() appends to URL": function test_setRequestHeader_appends_to_URL() {
+      "test: setRequestHeader() appends to URL": function testSetRequestHeaderAppendsToURL() {
         var req = this.req;
         req.open("GET", "/affe");
         req.setRequestHeader("key1", "value1");
@@ -298,7 +298,7 @@
       //
       // Event handlers
       //
-      "test: call onload": function test_call_onload() {
+      "test: call onload": function testCallOnload() {
         // More precisely, the request completes when the browser
         // has loaded and parsed the script
 
@@ -309,7 +309,7 @@
         this.request();
         this.wait();
       },
-      "test: call onreadystatechange and have appropriate readyState": function test_call_onreadystatechange_and_have_appropriate_readyState() {
+      "test: call onreadystatechange and have appropriate readyState": function testCallOnreadystatechangeAndHaveAppropriateReadyState() {
         var req = this.req,
           readyStates = [],
           that = this;
@@ -329,7 +329,7 @@
         this.wait();
       },
       // Error handling
-      "test: call onloadend on network error": function test_call_onloadend_on_network_error() {
+      "test: call onloadend on network error": function testCallOnloadendOnNetworkError() {
         var that = this;
         this.req.onloadend = function () {
           that.resume(function () {});
@@ -337,7 +337,7 @@
         this.request("http://fail.tld");
         this.wait(15000);
       },
-      "test: call onloadend when request completes": function test_call_onloadend_when_request_completes() {
+      "test: call onloadend when request completes": function testCallOnloadendWhenRequestCompletes() {
         var that = this;
         this.req.onloadend = function () {
           that.resume(function () {});
@@ -345,7 +345,7 @@
         this.request();
         this.wait();
       },
-      "test: not call onload when loading failed because of network error": function test_not_call_onload_when_loading_failed_because_of_network_error() {
+      "test: not call onload when loading failed because of network error": function testNotCallOnloadWhenLoadingFailedBecauseOfNetworkError() {
         // Known to fail in IE < 9,
         // i.e. all browsers using onreadystatechange event handlerattribute
         //
@@ -366,7 +366,7 @@
         this.request("http://fail.tld");
         this.wait(15000);
       },
-      "test: call onerror on network error": function test_call_onerror_on_network_error() {
+      "test: call onerror on network error": function testCallOnerrorOnNetworkError() {
         // Known to fail in legacy IEs
         if (this.isIeBelow(9)) {
           this.skip();
@@ -378,7 +378,7 @@
         this.request("http://fail.tld");
         this.wait(15000);
       },
-      "test: call onerror on invalid script": function test_call_onerror_on_invalid_script() {
+      "test: call onerror on invalid script": function testCallOnerrorOnInvalidScript() {
         // Known to fail in all browsers tested
         // Native "error" event not fired for script element.
         //
@@ -394,7 +394,7 @@
         this.request(this.getUrl("qx/test/xmlhttp/sample.txt"));
         this.wait();
       },
-      "test: not call onerror when request exceeds timeout limit": function test_not_call_onerror_when_request_exceeds_timeout_limit() {
+      "test: not call onerror when request exceeds timeout limit": function testNotCallOnerrorWhenRequestExceedsTimeoutLimit() {
         var req = this.req;
 
         // Known to fail in browsers not supporting the error event
@@ -409,7 +409,7 @@
           this.assertNotCalled(req.onerror);
         }, this);
       },
-      "test: call ontimeout when request exceeds timeout limit": function test_call_ontimeout_when_request_exceeds_timeout_limit() {
+      "test: call ontimeout when request exceeds timeout limit": function testCallOntimeoutWhenRequestExceedsTimeoutLimit() {
         // Known to fail in legacy IEs
         if (this.isIeBelow(9)) {
           this.skip();
@@ -422,7 +422,7 @@
         this.requestPending();
         this.wait();
       },
-      "test: not call ontimeout when request is within timeout limit": function test_not_call_ontimeout_when_request_is_within_timeout_limit() {
+      "test: not call ontimeout when request is within timeout limit": function testNotCallOntimeoutWhenRequestIsWithinTimeoutLimit() {
         var req = this.req,
           that = this;
         this.spy(req, "ontimeout");
@@ -438,7 +438,7 @@
         this.request();
         this.wait();
       },
-      "test: call onabort when request was aborted": function test_call_onabort_when_request_was_aborted() {
+      "test: call onabort when request was aborted": function testCallOnabortWhenRequestWasAborted() {
         var req = this.req;
         this.spy(req, "onabort");
         this.request();
@@ -448,7 +448,7 @@
       //
       // Clean-Up
       //
-      "test: remove script from DOM when request completed": function test_remove_script_from_DOM_when_request_completed() {
+      "test: remove script from DOM when request completed": function testRemoveScriptFromDOMWhenRequestCompleted() {
         var script,
           that = this;
         this.req.onload = function () {
@@ -460,7 +460,7 @@
         this.request();
         this.wait();
       },
-      "test: remove script from DOM when request failed": function test_remove_script_from_DOM_when_request_failed() {
+      "test: remove script from DOM when request failed": function testRemoveScriptFromDOMWhenRequestFailed() {
         var script,
           that = this;
 
@@ -474,7 +474,7 @@
         this.request("http://fail.tld");
         this.wait(15000);
       },
-      "test: remove script from DOM when request timed out": function test_remove_script_from_DOM_when_request_timed_out() {
+      "test: remove script from DOM when request timed out": function testRemoveScriptFromDOMWhenRequestTimedOut() {
         // Known to fail in legacy IEs
         if (this.isIeBelow(9)) {
           this.skip();
@@ -531,4 +531,4 @@
   qx.test.bom.request.Script.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Script.js.map?dt=1722153824441
+//# sourceMappingURL=Script.js.map?dt=1726089051226

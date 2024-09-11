@@ -33,7 +33,7 @@
   qx.Class.define("qx.test.event.type.Event", {
     extend: qx.dev.unit.TestCase,
     members: {
-      "test: stop() should prevent default and stop propagation": function test_stop_should_prevent_default_and_stop_propagation() {
+      "test: stop() should prevent default and stop propagation": function testStopShouldPreventDefaultAndStopPropagation() {
         var e = new qx.event.type.Event().init(true, true);
         this.assertFalse(e.getPropagationStopped());
         this.assertFalse(e.getDefaultPrevented());
@@ -42,14 +42,14 @@
         this.assertTrue(e.getDefaultPrevented());
         e.dispose();
       },
-      "test: stop() cannot prevent default on non cancelable events": function test_stop_cannot_prevent_default_on_non_cancelable_events() {
+      "test: stop() cannot prevent default on non cancelable events": function testStopCannotPreventDefaultOnNonCancelableEvents() {
         var e = new qx.event.type.Event().init(true, false);
         this.assertFalse(e.getDefaultPrevented());
         e.stop();
         this.assertFalse(e.getDefaultPrevented());
         e.dispose();
       },
-      "test: stop() cannot stop propagation on a non bubbling event": function test_stop_cannot_stop_propagation_on_a_non_bubbling_event() {
+      "test: stop() cannot stop propagation on a non bubbling event": function testStopCannotStopPropagationOnANonBubblingEvent() {
         var e = new qx.event.type.Event().init(false, true);
         this.assertFalse(e.getPropagationStopped());
         e.stop();
@@ -61,4 +61,4 @@
   qx.test.event.type.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1722153827213
+//# sourceMappingURL=Event.js.map?dt=1726089053926

@@ -36,7 +36,7 @@
       setUp: function setUp() {
         this.Uri = qx.util.Uri;
       },
-      "test: appendParamsToUrl() with string": function test_appendParamsToUrl_with_string() {
+      "test: appendParamsToUrl() with string": function testAppendParamsToUrlWithString() {
         var url = "http://example.com/path",
           params = "affe=true&maus=false",
           expected = "http://example.com/path?affe=true&maus=false",
@@ -80,14 +80,14 @@
         var str = qx.util.Uri.toParameter(obj);
         this.assertEquals("id=1&id=2&id=3", str);
       },
-      "test: appendParamsToUrl() with string when existing query": function test_appendParamsToUrl_with_string_when_existing_query() {
+      "test: appendParamsToUrl() with string when existing query": function testAppendParamsToUrlWithStringWhenExistingQuery() {
         var url = "http://example.com/path?giraffe=true",
           params = "affe=true&maus=false",
           expected = "http://example.com/path?giraffe=true&affe=true&maus=false",
           result = this.Uri.appendParamsToUrl(url, params);
         this.assertEquals(expected, result);
       },
-      "test: appendParamsToUrl() with map": function test_appendParamsToUrl_with_map() {
+      "test: appendParamsToUrl() with map": function testAppendParamsToUrlWithMap() {
         var url = "http://example.com/path",
           params = {
             affe: true,
@@ -98,19 +98,19 @@
         this.assertTrue(/affe=true/.test(result));
         this.assertTrue(/maus=false/.test(result));
       },
-      "test: appendParamsToUrl() with undefined": function test_appendParamsToUrl_with_undefined() {
+      "test: appendParamsToUrl() with undefined": function testAppendParamsToUrlWithUndefined() {
         var url = "http://example.com/path";
         var params;
         var result = this.Uri.appendParamsToUrl(url, params);
         this.assertEquals(url, result);
       },
-      "test: appendParamsToUrl() with empty map": function test_appendParamsToUrl_with_empty_map() {
+      "test: appendParamsToUrl() with empty map": function testAppendParamsToUrlWithEmptyMap() {
         var url = "http://example.com/path",
           params = {},
           result = this.Uri.appendParamsToUrl(url, params);
         this.assertEquals(url, result);
       },
-      "test: parseUri()": function test_parseUri() {
+      "test: parseUri()": function testParseUri() {
         var url = "http://www.example.com:80/foo/bar?affe=true#here",
           result = this.Uri.parseUri(url);
 
@@ -122,7 +122,7 @@
         this.assertEquals("/foo/bar?affe=true#here", result.relative);
         this.assertEquals("here", result.anchor);
       },
-      "test: parseUri() with ipv6 loopback address": function test_parseUri_with_ipv6_loopback_address() {
+      "test: parseUri() with ipv6 loopback address": function testParseUriWithIpv6LoopbackAddress() {
         var url = "http://[::1]:80/foo/bar?affe=true#here",
           result = this.Uri.parseUri(url);
 
@@ -134,7 +134,7 @@
         this.assertEquals("/foo/bar?affe=true#here", result.relative);
         this.assertEquals("here", result.anchor);
       },
-      "test: parseUri() with ipv6 address": function test_parseUri_with_ipv6_address() {
+      "test: parseUri() with ipv6 address": function testParseUriWithIpv6Address() {
         var url = "http://[FE80:0000:0000:0000:0202:B3FF:FE1E:8329]:80/foo/bar?affe=true#here",
           result = this.Uri.parseUri(url);
 
@@ -146,7 +146,7 @@
         this.assertEquals("/foo/bar?affe=true#here", result.relative);
         this.assertEquals("here", result.anchor);
       },
-      "test: parseUri() with at-sign in query": function test_parseUri_with_atSign_in_query() {
+      "test: parseUri() with at-sign in query": function testParseUriWithAtSignInQuery() {
         var url = "http://www.example.com/foo/bar?separator=@",
           result = this.Uri.parseUri(url);
         this.assertEquals("http", result.protocol);
@@ -154,7 +154,7 @@
         this.assertEquals("/foo/bar?separator=@", result.relative);
         this.assertEquals("separator=@", result.query);
       },
-      "test: parseUri() with user name in domain": function test_parseUri_with_user_name_in_domain() {
+      "test: parseUri() with user name in domain": function testParseUriWithUserNameInDomain() {
         var url = "http://userid@www.example.com/foo/bar",
           result = this.Uri.parseUri(url);
         this.assertEquals("http", result.protocol);
@@ -167,4 +167,4 @@
   qx.test.util.Uri.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Uri.js.map?dt=1722153834970
+//# sourceMappingURL=Uri.js.map?dt=1726089061552

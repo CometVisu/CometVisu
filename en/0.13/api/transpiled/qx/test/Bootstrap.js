@@ -90,7 +90,7 @@
         qx.Bootstrap.setRoot(undefined);
         qx.Class.undefine("vanillebaer.test.ROOT");
       },
-      "test: merge methods of same class (statics optimization)": function test_merge_methods_of_same_class_Statics_optimization() {
+      "test: merge methods of same class (statics optimization)": function testMergeMethodsOfSameClassStaticsOptimization() {
         qx.Bootstrap.define("qx.test.MyClass", {
           statics: {
             methodA: function methodA() {
@@ -109,7 +109,7 @@
         this.assertNotUndefined(qx.test.MyClass.methodB);
         qx.Class.undefine("qx.test.MyClass");
       },
-      "test: merge methods of same class (statics optimization) respect defer": function test_merge_methods_of_same_class_Statics_optimization_respect_defer() {
+      "test: merge methods of same class (statics optimization) respect defer": function testMergeMethodsOfSameClassStaticsOptimizationRespectDefer() {
         qx.Bootstrap.define("qx.test.MyClass", {
           statics: {
             methodA: function methodA() {
@@ -134,7 +134,7 @@
         this.assertNotUndefined(qx.test.MyClass.methodB);
         qx.Class.undefine("qx.test.MyClass");
       },
-      "test: define class with constructor": function test_define_class_with_constructor() {
+      "test: define class with constructor": function testDefineClassWithConstructor() {
         var c = qx.Bootstrap.define("qx.test.Construct", {
           extend: Object,
           construct: function construct() {
@@ -147,7 +147,7 @@
         this.assertEquals(qx.test.Construct, qx.Bootstrap.getByName("qx.test.Construct"));
         qx.Class.undefine("qx.test.Construct");
       },
-      "test: define bootstrap class, which extends 'Error'": function test_define_bootstrap_class_which_extends_Error() {
+      "test: define bootstrap class, which extends 'Error'": function testDefineBootstrapClassWhichExtendsError() {
         qx.Bootstrap.define("qx.test.ExtendError", {
           extend: Error
         });
@@ -155,7 +155,7 @@
         this.assertInstance(obj, Error);
         qx.Class.undefine("qx.test.ExtendError");
       },
-      "test: extend from qx.core.Object": function test_extend_from_qxCoreObject() {
+      "test: extend from qx.core.Object": function testExtendFromQxCoreObject() {
         qx.Bootstrap.define("qx.test.ExtendQxObject", {
           extend: qx.core.Object
         });
@@ -164,7 +164,7 @@
         obj.dispose();
         qx.Class.undefine("qx.test.ExtendQxObject");
       },
-      "test: extend from null should extend Object": function test_extend_from_null_should_extend_Object() {
+      "test: extend from null should extend Object": function testExtendFromNullShouldExtendObject() {
         qx.Bootstrap.define("qx.test.ExtendNull", {
           extend: null,
           members: {}
@@ -173,7 +173,7 @@
         this.assertInstance(obj, Object);
         qx.Class.undefine("qx.test.ExtendNull");
       },
-      "test: extend from Bootstrap class": function test_extend_from_Bootstrap_class() {
+      "test: extend from Bootstrap class": function testExtendFromBootstrapClass() {
         qx.Bootstrap.define("qx.test.Super", {
           members: {}
         });
@@ -188,7 +188,7 @@
         qx.Class.undefine("qx.test.Super");
         qx.Class.undefine("qx.test.ExtendSuper");
       },
-      "test: extended Bootstap class should append members to the prototype": function test_extended_Bootstap_class_should_append_members_to_the_prototype() {
+      "test: extended Bootstap class should append members to the prototype": function testExtendedBootstapClassShouldAppendMembersToThePrototype() {
         qx.Bootstrap.define("qx.test.Super", {
           members: {
             foo: 10,
@@ -211,7 +211,7 @@
         qx.Class.undefine("qx.test.Super");
         qx.Class.undefine("qx.test.ExtendSuper");
       },
-      "test: superclass calls aka basecalls (constructor and methods)": function test_superclass_calls_aka_basecalls_Constructor_and_methods() {
+      "test: superclass calls aka basecalls (constructor and methods)": function testSuperclassCallsAkaBasecallsConstructorAndMethods() {
         qx.Bootstrap.define("qx.test.Car", {
           construct: function construct(name) {
             this._name = name;
@@ -341,4 +341,4 @@
   qx.test.Bootstrap.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Bootstrap.js.map?dt=1722153823017
+//# sourceMappingURL=Bootstrap.js.map?dt=1726089049857

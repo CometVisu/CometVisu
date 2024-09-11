@@ -7,12 +7,13 @@
       },
       "qx.core.Init": {},
       "qx.util.Uri": {},
+      "cv.io.BackendConnections": {},
+      "qx.log.Logger": {},
       "qx.io.rest.Resource": {},
       "cv.Config": {},
       "cv.ui.manager.tree.FileSystem": {},
       "qx.lang.Array": {},
       "qx.lang.Type": {},
-      "qx.log.Logger": {},
       "qxl.dialog.Dialog": {},
       "qx.locale.Manager": {},
       "cv.ui.manager.snackbar.Controller": {}
@@ -54,6 +55,7 @@
       __P_762_1: null,
       __P_762_2: null,
       __P_762_3: {},
+      AUTH_REQUIRED: false,
       getBaseUrl: function getBaseUrl() {
         if (!this.BASE_URL) {
           var path = '';
@@ -65,6 +67,20 @@
           this.BASE_URL = path;
         }
         return this.BASE_URL;
+      },
+      checkAuth: function checkAuth(req) {
+        if (this.AUTH_REQUIRED) {
+          if (qx.core.Init.getApplication().isServedByOpenhab()) {
+            var backend = cv.io.BackendConnections.getClientByType('openhab');
+            if (backend) {
+              backend.authorize(req);
+            } else {
+              qx.log.Logger.warn('no openHAB backend configured, cannot authorize');
+            }
+          } else {
+            qx.log.Logger.warn('authentication is currently only implemented for the openHAB API backend');
+          }
+        }
       },
       getConfigClient: function getConfigClient() {
         if (!this.__P_762_0) {
@@ -100,6 +116,7 @@
               req.setRequestHeader('Content-Type', 'application/json');
             }
             req.setAccept('application/json');
+            cv.io.rest.Client.checkAuth(req);
           });
           this._enableSync(this.__P_762_0, config);
         }
@@ -156,6 +173,7 @@
               }
               req.setAccept('application/json');
             }
+            cv.io.rest.Client.checkAuth(req);
           });
           this._enableSync(this.__P_762_1, config);
 
@@ -200,6 +218,7 @@
           if (cv.Config.transactionId) {
             this.__P_762_2.configureRequest(function (req, action, params) {
               req.setRequestHeader('X-Transaction-ID', cv.Config.transactionId);
+              cv.io.rest.Client.checkAuth(req);
             });
           }
           this._enableSync(this.__P_762_2, config);
@@ -278,4 +297,4 @@
   cv.io.rest.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1722153860155
+//# sourceMappingURL=Client.js.map?dt=1726089087478

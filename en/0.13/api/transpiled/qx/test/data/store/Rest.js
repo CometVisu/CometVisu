@@ -86,12 +86,12 @@
         this.res.dispose();
         this.store.dispose();
       },
-      "test: construct with res and action name": function test_construct_with_res_and_action_name() {
+      "test: construct with res and action name": function testConstructWithResAndActionName() {
         var store = this.store;
         this.assertIdentical(store.getResource(), this.res);
         this.assertIdentical(store.getActionName(), "index");
       },
-      "test: construct throws with missing res": function test_construct_throws_with_missing_res() {
+      "test: construct throws with missing res": function testConstructThrowsWithMissingRes() {
         this.require(["debug"]);
         var store;
 
@@ -101,7 +101,7 @@
         }, Error, /property res/);
         store && store.dispose();
       },
-      "test: construct throws with erroneous res": function test_construct_throws_with_erroneous_res() {
+      "test: construct throws with erroneous res": function testConstructThrowsWithErroneousRes() {
         this.require(["debug"]);
         var store;
         this.assertException(function () {
@@ -109,7 +109,7 @@
         }, qx.core.AssertionError);
         store && store.dispose();
       },
-      "test: construct throws with missing action": function test_construct_throws_with_missing_action() {
+      "test: construct throws with missing action": function testConstructThrowsWithMissingAction() {
         this.require(["debug"]);
         var store,
           res = this.res;
@@ -118,7 +118,7 @@
         }, Error, /property actionName/);
         store && store.dispose();
       },
-      "test: add listener for actionSuccess to res": function test_add_listener_for_actionSuccess_to_res() {
+      "test: add listener for actionSuccess to res": function testAddListenerForActionSuccessToRes() {
         var res = this.res,
           store;
         this.stub(res, "addListener");
@@ -126,7 +126,7 @@
         this.assertCalled(res.addListener);
         store.dispose();
       },
-      "test: marshal response": function test_marshal_response() {
+      "test: marshal response": function testMarshalResponse() {
         var res = this.res,
           store = this.store,
           marshal = this.marshal,
@@ -137,7 +137,7 @@
         this.respond(data);
         this.assertCalledWith(marshal.toModel, data);
       },
-      "test: populates model property with marshaled response": function test_populates_model_property_with_marshaled_response() {
+      "test: populates model property with marshaled response": function testPopulatesModelPropertyWithMarshaledResponse() {
         // Do not stub marshal.Json
         qx.data.marshal.Json.restore();
         var res = this.setUpResource(),
@@ -149,7 +149,7 @@
         // this.assertEquals("Affe", store.getModel().getName());
         store.dispose();
       },
-      "test: fires changeModel": function test_fires_changeModel() {
+      "test: fires changeModel": function testFiresChangeModel() {
         // Do not stub marshal.Json
         qx.data.marshal.Json.restore();
         var res = this.setUpResource(),
@@ -164,7 +164,7 @@
         store.dispose();
         res.dispose();
       },
-      "test: configure request with delegate": function test_configure_request_with_delegate() {
+      "test: configure request with delegate": function testConfigureRequestWithDelegate() {
         var res = this.res,
           req = this.req;
         var configureRequest = this.spy(function (req) {
@@ -183,7 +183,7 @@
         this.assertCalled(req.send);
         store.dispose();
       },
-      "test: manipulate data with delegate before marshaling": function test_manipulate_data_with_delegate_before_marshaling() {
+      "test: manipulate data with delegate before marshaling": function testManipulateDataWithDelegateBeforeMarshaling() {
         var res = this.res,
           data = {
             name: "Tiger"
@@ -225,4 +225,4 @@
   qx.test.data.store.Rest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Rest.js.map?dt=1722153826612
+//# sourceMappingURL=Rest.js.map?dt=1726089053268

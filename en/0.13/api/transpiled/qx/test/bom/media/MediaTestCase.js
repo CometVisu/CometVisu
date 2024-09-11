@@ -170,7 +170,7 @@
       // This is some weird timing or caching issue which could
       // not be solved otherwise.
       //
-      "test Play Event": function test_Play_Event() {
+      "test Play Event": function testPlayEvent() {
         var _this2 = this;
         if (navigator.plugins.length == 0) {
           this.skip("HTML5 audio/video play event test disabled on headless browsers");
@@ -197,4 +197,4 @@
   qx.test.bom.media.MediaTestCase.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MediaTestCase.js.map?dt=1722153824346
+//# sourceMappingURL=MediaTestCase.js.map?dt=1726089051134

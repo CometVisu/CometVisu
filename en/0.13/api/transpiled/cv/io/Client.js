@@ -674,6 +674,9 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
       },
       // this client does not implement an authorization
       authorize: function authorize(req) {},
+      canAuthorize: function canAuthorize() {
+        return false;
+      },
       /**
        * Restart the connection
        * @param full
@@ -723,4 +726,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   cv.io.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1722153859354
+//# sourceMappingURL=Client.js.map?dt=1726089086662

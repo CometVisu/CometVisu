@@ -64,4 +64,4 @@
   qx.ui.progressive.headfoot.Abstract.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Abstract.js.map?dt=1722153852866
+//# sourceMappingURL=Abstract.js.map?dt=1726089079892

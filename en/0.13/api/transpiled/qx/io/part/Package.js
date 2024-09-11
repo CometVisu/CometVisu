@@ -187,7 +187,7 @@
         }
         var urlsLoaded = 0;
         var self = this;
-        var _loadScripts = function loadScripts(urls) {
+        var loadScripts = function loadScripts(urls) {
           if (urlsLoaded >= urlList.length) {
             callback.call(self);
             return;
@@ -205,10 +205,10 @@
               // Safari fails with an "maximum recursion depth exceeded" error if it is
               // called sync.
               setTimeout(function () {
-                _loadScripts.call(self, urls, callback, self);
+                loadScripts.call(self, urls, callback, self);
               }, 0);
             } else {
-              _loadScripts.call(self, urls, callback, self);
+              loadScripts.call(self, urls, callback, self);
             }
           };
           loader.onerror = function () {
@@ -224,7 +224,7 @@
             loader.send();
           });
         };
-        _loadScripts(urlList.concat());
+        loadScripts(urlList.concat());
       },
       /**
        * Import the data of a package. The function is defined in the loader
@@ -239,4 +239,4 @@
   qx.io.part.Package.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Package.js.map?dt=1722153820119
+//# sourceMappingURL=Package.js.map?dt=1726089047057

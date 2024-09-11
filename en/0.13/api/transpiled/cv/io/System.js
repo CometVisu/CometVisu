@@ -217,6 +217,9 @@
         return new Map();
       },
       authorize: function authorize(req) {},
+      canAuthorize: function canAuthorize() {
+        return false;
+      },
       terminate: function terminate() {},
       update: function update(json) {},
       record: function record(type, data) {},
@@ -266,4 +269,4 @@
   cv.io.System.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=System.js.map?dt=1722153862681
+//# sourceMappingURL=System.js.map?dt=1726089090045

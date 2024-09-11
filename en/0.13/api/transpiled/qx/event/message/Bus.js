@@ -192,11 +192,11 @@
        */
       subscribeOnce: function subscribeOnce(topic, subscriber, context) {
         var that = this;
-        var _modified_subscriber = function modified_subscriber(message) {
+        var modified_subscriber = function modified_subscriber(message) {
           subscriber.call(context, message);
-          that.unsubscribe(topic, _modified_subscriber, context);
+          that.unsubscribe(topic, modified_subscriber, context);
         };
-        return this.subscribe(topic, _modified_subscriber, context);
+        return this.subscribe(topic, modified_subscriber, context);
       },
       /**
        * Checks if subscription is already present. If you supply
@@ -375,4 +375,4 @@
   qx.event.message.Bus.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Bus.js.map?dt=1722153818512
+//# sourceMappingURL=Bus.js.map?dt=1726089045461

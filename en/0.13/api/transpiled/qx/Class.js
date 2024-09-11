@@ -1316,8 +1316,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
        * @return {Function} The wrapped constructor
        */
       __P_98_15: function __P_98_15(construct, name, type) {
-        var _wrapper = function wrapper() {
-          var clazz = _wrapper;
+        var wrapper = function wrapper() {
+          var clazz = wrapper;
           // Execute default constructor
           var retval = clazz.$$original.apply(this, arguments);
 
@@ -1334,13 +1334,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           return retval;
         };
         // Store original constructor
-        _wrapper.$$original = construct;
+        wrapper.$$original = construct;
 
         // Store wrapper into constructor (needed for base calls etc.)
-        construct.wrapper = _wrapper;
+        construct.wrapper = wrapper;
 
         // Return generated wrapper
-        return _wrapper;
+        return wrapper;
       }
     },
     defer: function defer() {}
@@ -1348,4 +1348,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1722153808139
+//# sourceMappingURL=Class.js.map?dt=1726089035416

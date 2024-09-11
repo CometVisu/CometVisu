@@ -97,4 +97,4 @@
   qx.event.handler.Capture.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Capture.js.map?dt=1722153817621
+//# sourceMappingURL=Capture.js.map?dt=1726089044619

@@ -69,4 +69,4 @@
   qx.ui.form.IModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IModel.js.map?dt=1722153848672
+//# sourceMappingURL=IModel.js.map?dt=1726089075579

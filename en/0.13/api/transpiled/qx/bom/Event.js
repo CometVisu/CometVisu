@@ -309,7 +309,7 @@
         // detection of events like 'MSPointer*'. They have to detected
         // using the lower case name of the event.
         var eventName = "on" + type.toLowerCase();
-        var supportsEvent = eventName in target;
+        var supportsEvent = (eventName in target);
         if (!supportsEvent) {
           supportsEvent = typeof target[eventName] == "function";
           if (!supportsEvent && target.setAttribute) {
@@ -345,4 +345,4 @@
   qx.bom.Event.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Event.js.map?dt=1722153809305
+//# sourceMappingURL=Event.js.map?dt=1726089036608

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1722153538623,
-  "lastModifiedIso": "2024-07-28T07:58:58.623Z",
+  "lastModified": 1726088789837,
+  "lastModifiedIso": "2024-09-11T21:06:29.837Z",
   "classFilename": "../../source/class/cv/ui/manager/editor/Config.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 863
     },
     "end": {
-      "line": 290,
+      "line": 304,
       "column": 3,
-      "index": 9053
+      "index": 9491
     }
   },
   "className": "cv.ui.manager.editor.Config",
@@ -154,9 +154,9 @@
           "index": 1922
         },
         "end": {
-          "line": 74,
+          "line": 88,
           "column": 5,
-          "index": 2149
+          "index": 2587
         }
       },
       "type": "function",
@@ -171,14 +171,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 76,
+          "line": 90,
           "column": 4,
-          "index": 2156
+          "index": 2594
         },
         "end": {
-          "line": 80,
+          "line": 94,
           "column": 5,
-          "index": 2259
+          "index": 2697
         }
       },
       "type": "function",
@@ -197,14 +197,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 82,
+          "line": 96,
           "column": 4,
-          "index": 2266
+          "index": 2704
         },
         "end": {
-          "line": 112,
+          "line": 126,
           "column": 5,
-          "index": 3397
+          "index": 3835
         }
       },
       "type": "function",
@@ -224,14 +224,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 115,
+          "line": 129,
           "column": 4,
-          "index": 3422
+          "index": 3860
         },
         "end": {
-          "line": 130,
+          "line": 144,
           "column": 5,
-          "index": 3970
+          "index": 4408
         }
       },
       "type": "function",
@@ -254,14 +254,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 133,
+          "line": 147,
           "column": 4,
-          "index": 3995
+          "index": 4433
         },
         "end": {
-          "line": 135,
+          "line": 149,
           "column": 5,
-          "index": 4054
+          "index": 4492
         }
       },
       "type": "function",
@@ -277,14 +277,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 137,
+          "line": 151,
           "column": 4,
-          "index": 4061
+          "index": 4499
         },
         "end": {
-          "line": 144,
+          "line": 158,
           "column": 5,
-          "index": 4320
+          "index": 4758
         }
       },
       "type": "function",
@@ -304,14 +304,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 147,
+          "line": 161,
           "column": 4,
-          "index": 4398
+          "index": 4836
         },
         "end": {
-          "line": 159,
+          "line": 173,
           "column": 5,
-          "index": 4821
+          "index": 5259
         }
       },
       "type": "function",
@@ -323,14 +323,14 @@
       "access": "public",
       "location": {
         "start": {
-          "line": 161,
+          "line": 175,
           "column": 4,
-          "index": 4828
+          "index": 5266
         },
         "end": {
-          "line": 222,
+          "line": 236,
           "column": 5,
-          "index": 7004
+          "index": 7442
         }
       },
       "type": "function",
@@ -350,14 +350,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 225,
+          "line": 239,
           "column": 4,
-          "index": 7029
+          "index": 7467
         },
         "end": {
-          "line": 279,
+          "line": 293,
           "column": 5,
-          "index": 8844
+          "index": 9282
         }
       },
       "type": "function",
@@ -377,14 +377,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 287,
+        "line": 301,
         "column": 2,
-        "index": 8978
+        "index": 9416
       },
       "end": {
-        "line": 289,
+        "line": 303,
         "column": 3,
-        "index": 9049
+        "index": 9487
       }
     }
   }

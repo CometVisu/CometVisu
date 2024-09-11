@@ -51,7 +51,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       };
     },
     members: {
-      "test issue 10591": function test_issue_10591() {
+      "test issue 10591": function testIssue10591() {
         var _this = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var classFile, dbClassInfo;
@@ -74,7 +74,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee);
         }))();
       },
-      "test issue 633": function test_issue_633() {
+      "test issue 633": function testIssue633() {
         var _this2 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var classFile, dbClassInfo;
@@ -97,7 +97,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee2);
         }))();
       },
-      "test issue 519": function test_issue_519() {
+      "test issue 519": function testIssue519() {
         var _this3 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var classFile, dbClassInfo;
@@ -120,7 +120,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee3);
         }))();
       },
-      "test issue 524": function test_issue_524() {
+      "test issue 524": function testIssue524() {
         var _this4 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var classFile, dbClassInfo;
@@ -143,7 +143,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee4);
         }))();
       },
-      "test issue 726": function test_issue_726() {
+      "test issue 726": function testIssue726() {
         var _this5 = this;
         return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           var classFile, dbClassInfo;
@@ -173,4 +173,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.compiler.ClassFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassFile.js.map?dt=1722153824881
+//# sourceMappingURL=ClassFile.js.map?dt=1726089051638

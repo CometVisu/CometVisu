@@ -1493,7 +1493,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
               }
               var schemaElement = parentSchemaElement.getSchemaElementForElementName(type);
-              var _initChildren = function initChildren(element, schemaElement) {
+              var initChildren = function initChildren(element, schemaElement) {
                 var requiredChildren = schemaElement.getRequiredElements();
                 if (requiredChildren.length > 1) {
                   if (!schemaElement.areChildrenSortable()) {
@@ -1506,7 +1506,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   var child = _document.createElement(childName);
                   element.appendChild(child);
                   // do this recursively
-                  _initChildren(child, schemaElement.getSchemaElementForElementName(childName));
+                  initChildren(child, schemaElement.getSchemaElementForElementName(childName));
                 });
                 if (schemaElement.isTextContentRequired()) {
                   var child = _document.createTextNode('-');
@@ -1514,7 +1514,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
               };
               if (isElement) {
-                _initChildren(element, schemaElement);
+                initChildren(element, schemaElement);
               }
               var xmlElement = new cv.ui.manager.model.XmlElement(element, schemaElement, target.getEditor(), parent);
 
@@ -2317,4 +2317,4 @@ refresh after you have changed something. You can refresh is manually by clickin
   cv.ui.manager.editor.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1722153802217
+//# sourceMappingURL=Tree.js.map?dt=1726089029521

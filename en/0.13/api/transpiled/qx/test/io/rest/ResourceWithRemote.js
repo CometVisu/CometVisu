@@ -58,7 +58,7 @@
       tearDown: function tearDown() {
         this.res.dispose();
       },
-      "test: invoke action and handle response": function test_invoke_action_and_handle_response() {
+      "test: invoke action and handle response": function testInvokeActionAndHandleResponse() {
         var _this = this;
         // Handles GET
         var url = this.getUrl("qx/test/xmlhttp/sample.txt"),
@@ -72,7 +72,7 @@
         res.get();
         this.wait();
       },
-      "test: invoke action and handle failure": function test_invoke_action_and_handle_failure() {
+      "test: invoke action and handle failure": function testInvokeActionAndHandleFailure() {
         var _this2 = this;
         this.require(["http"]);
         var url = "/not-found",
@@ -87,7 +87,7 @@
         res.get();
         this.wait();
       },
-      "test: poll action": function test_poll_action() {
+      "test: poll action": function testPollAction() {
         var _this3 = this;
         // Handles GET
         this.require(["php"]);
@@ -112,7 +112,7 @@
         res.poll("get", 100);
         this.wait();
       },
-      "test: long poll": function test_long_poll() {
+      "test: long poll": function testLongPoll() {
         var _this4 = this;
         this.require(["php"]);
         var res = this.res,
@@ -137,4 +137,4 @@
   qx.test.io.rest.ResourceWithRemote.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResourceWithRemote.js.map?dt=1722153828330
+//# sourceMappingURL=ResourceWithRemote.js.map?dt=1726089054920

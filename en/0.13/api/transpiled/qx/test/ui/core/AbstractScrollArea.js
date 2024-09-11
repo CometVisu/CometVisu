@@ -101,13 +101,13 @@
         this.assertIdentical(expectedBounds.width, actualBounds.width);
         this.assertIdentical(expectedBounds.height, actualBounds.height);
       },
-      "test default behaviour": function test_default_behaviour() {
+      "test default behaviour": function testDefaultBehaviour() {
         var inner = new qx.ui.core.Widget();
         this.__P_383_0.setSingleChild(inner);
         this.flush();
         this.assertBounds(inner, this.__P_383_0);
       },
-      "test smaller widget than container": function test_smaller_widget_than_container() {
+      "test smaller widget than container": function testSmallerWidgetThanContainer() {
         var inner = new qx.ui.core.Widget();
         inner.set({
           minWidth: 80,
@@ -119,7 +119,7 @@
         this.assertFalse(this.__P_383_0.hasScrollBar("x"));
         this.assertFalse(this.__P_383_0.hasScrollBar("y"));
       },
-      "test bigger widget than container": function test_bigger_widget_than_container() {
+      "test bigger widget than container": function testBiggerWidgetThanContainer() {
         var inner = new qx.ui.core.Widget();
         inner.set({
           minWidth: 120,
@@ -142,7 +142,7 @@
         this.assertTrue(this.__P_383_0.hasScrollBar("x"));
         this.assertTrue(this.__P_383_0.hasScrollBar("y"));
       },
-      "test bigger preferred widget than container": function test_bigger_preferred_widget_than_container() {
+      "test bigger preferred widget than container": function testBiggerPreferredWidgetThanContainer() {
         var inner = new qx.ui.core.Widget();
         inner.set({
           width: 120,
@@ -165,7 +165,7 @@
         this.assertFalse(this.__P_383_0.hasScrollBar("x"));
         this.assertFalse(this.__P_383_0.hasScrollBar("y"));
       },
-      "test bigger widget than smaller preferred container": function test_bigger_widget_than_smaller_preferred_container() {
+      "test bigger widget than smaller preferred container": function testBiggerWidgetThanSmallerPreferredContainer() {
         var inner = new qx.ui.core.Widget();
         inner.set({
           minWidth: 120,
@@ -199,4 +199,4 @@
   qx.test.ui.core.AbstractScrollArea.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractScrollArea.js.map?dt=1722153831065
+//# sourceMappingURL=AbstractScrollArea.js.map?dt=1726089057641

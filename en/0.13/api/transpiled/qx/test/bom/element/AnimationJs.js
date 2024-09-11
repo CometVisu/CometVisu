@@ -89,7 +89,7 @@
         document.body.removeChild(this.__P_315_0);
         this.__P_315_0 = null;
       },
-      "test animate properties which are CSS properties and element attributes": function test_animate_properties_which_are_CSS_properties_and_element_attributes() {
+      "test animate properties which are CSS properties and element attributes": function testAnimatePropertiesWhichAreCSSPropertiesAndElementAttributes() {
         // known to fail in chrome
         if (qx.core.Environment.get("browser.name") == "chrome") {
           throw new qx.dev.unit.RequirementError();
@@ -118,4 +118,4 @@
   qx.test.bom.element.AnimationJs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationJs.js.map?dt=1722153824143
+//# sourceMappingURL=AnimationJs.js.map?dt=1726089050935

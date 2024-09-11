@@ -160,7 +160,13 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
       var check = function check(e) {
         var req = e.getTarget();
         var header = req.getResponseHeader('Server');
-        var isOpenHAB = header ? header.startsWith('Jetty') : false;
+        var isOpenHAB = false;
+        if (header) {
+          isOpenHAB = header.startsWith('Jetty');
+        } else {
+          header = req.getResponseHeader('X-CometVisu-Backend-Name');
+          isOpenHAB = header === 'openhab';
+        }
         _this.setServedByOpenhab(isOpenHAB);
         _this.setServerChecked(true);
       };
@@ -715,6 +721,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
           // load empty HTML structure
           body.innerHTML = cv.Application.structureController.getHtmlStructure();
         }
+        cv.Application.structureController.updateSentryScope();
       },
       /**
        * Internal initialization method
@@ -889,8 +896,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
                 }
               case 20:
                 _this5.__P_2_0 = true;
-                cv.Application.structureController.updateSentryScope();
-              case 22:
+              case 21:
               case "end":
                 return _context4.stop();
             }
@@ -1085,6 +1091,9 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
               _this7.setServerHasPhpSupport(!isOpenHab);
               _this7.setServerPhpVersion(env.phpversion);
               _this7.setServer(env.SERVER_SOFTWARE);
+              if (Object.prototype.hasOwnProperty.call(env, 'requiresAuth')) {
+                cv.io.rest.Client.AUTH_REQUIRED = env.requiresAuth === true;
+              }
               var serverVersionId = env.PHP_VERSION_ID;
               var orParts = env.required_php_version.split('||').map(function (e) {
                 return e.trim();
@@ -1177,4 +1186,4 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1722153798130
+//# sourceMappingURL=Application.js.map?dt=1726089025489

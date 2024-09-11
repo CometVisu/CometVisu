@@ -33,7 +33,7 @@
   qx.Class.define("qx.test.util.Request", {
     extend: qx.dev.unit.TestCase,
     members: {
-      "test: isCrossDomain() returns true with cross-domain URL": function test_isCrossDomain_returns_true_with_crossDomain_URL() {
+      "test: isCrossDomain() returns true with cross-domain URL": function testIsCrossDomainReturnsTrueWithCrossDomainURL() {
         var location = window.location,
           origin = location.protocol + "//" + location.host,
           isCrossDomain = qx.util.Request.isCrossDomain;
@@ -41,7 +41,7 @@
         this.assertTrue(isCrossDomain(location.protocol + "//" + location.hostname + ":123456"), "port");
         this.assertTrue(isCrossDomain("foobar://" + location.host), "protocol");
       },
-      "test: isCrossDomain() returns false with same-origin URL": function test_isCrossDomain_returns_false_with_sameOrigin_URL() {
+      "test: isCrossDomain() returns false with same-origin URL": function testIsCrossDomainReturnsFalseWithSameOriginURL() {
         var location = window.location,
           origin = location.protocol + "//" + location.host,
           isCrossDomain = qx.util.Request.isCrossDomain;
@@ -51,14 +51,14 @@
         this.assertFalse(isCrossDomain("../data.json"), "relative url");
         this.assertFalse(isCrossDomain("../foo-bar/meep.in/data.json"), "strange url");
       },
-      "test: isSuccessful() returns true with successful HTTP status": function test_isSuccessful_returns_true_with_successful_HTTP_status() {
+      "test: isSuccessful() returns true with successful HTTP status": function testIsSuccessfulReturnsTrueWithSuccessfulHTTPStatus() {
         var isSuccessful = qx.util.Request.isSuccessful;
         this.assertTrue(isSuccessful(200));
         this.assertTrue(isSuccessful(304));
         this.assertFalse(isSuccessful(404));
         this.assertFalse(isSuccessful(500));
       },
-      "test: isMethod() returns true if HTTP method is known": function test_isMethod_returns_true_if_HTTP_method_is_known() {
+      "test: isMethod() returns true if HTTP method is known": function testIsMethodReturnsTrueIfHTTPMethodIsKnown() {
         var isMethod = qx.util.Request.isMethod;
         this.assertTrue(isMethod("GET"));
         this.assertTrue(isMethod("POST"));
@@ -68,10 +68,10 @@
         this.assertFalse(isMethod([]));
         this.assertFalse(isMethod({}));
       },
-      "test: methodAllowsRequestBody() returns false when GET": function test_methodAllowsRequestBody_returns_false_when_GET() {
+      "test: methodAllowsRequestBody() returns false when GET": function testMethodAllowsRequestBodyReturnsFalseWhenGET() {
         this.assertFalse(qx.util.Request.methodAllowsRequestBody("GET"));
       },
-      "test: methodAllowsRequestBody() returns true when POST": function test_methodAllowsRequestBody_returns_true_when_POST() {
+      "test: methodAllowsRequestBody() returns true when POST": function testMethodAllowsRequestBodyReturnsTrueWhenPOST() {
         this.assertTrue(qx.util.Request.methodAllowsRequestBody("POST"));
       }
     }
@@ -79,4 +79,4 @@
   qx.test.util.Request.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Request.js.map?dt=1722153834791
+//# sourceMappingURL=Request.js.map?dt=1726089061368

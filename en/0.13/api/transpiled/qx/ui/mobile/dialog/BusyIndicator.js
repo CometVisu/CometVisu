@@ -131,4 +131,4 @@
   qx.ui.mobile.dialog.BusyIndicator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BusyIndicator.js.map?dt=1722153851602
+//# sourceMappingURL=BusyIndicator.js.map?dt=1726089078558
