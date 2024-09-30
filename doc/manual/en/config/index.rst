@@ -78,11 +78,8 @@ under :doc:`URL Parameters <url-params>`.
 
 .. _visu-config-details:
 
-Pages and structure of CometVisu
----------------------------------
-
 Basics
-^^^^^^
+------
 
 For visualization and triggering of actions such as Switching or
 blinds up/down uses the CometVisu so-called widgets. Widgets can be
@@ -103,8 +100,27 @@ A distinction is made between the following widgets:
 A small exception are the plugin widgets. These must be included in
 the "meta section" of the configuration file before use.
 
-Working with the configuration file
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Different kinds of configuration files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The CometVisu supports different kinds of configuration files, called structures.
+The available   structures "Pure" and "Tile" support different designs:
+
++-------------------+----------------------------------+------------------------+
+| **Struktur**      | Pure                             | Tile                   |
++-------------------+----------------------------------+------------------------+
+| **Designs**       | :doc:`Metal <examples/swiss>`    | Tile                   |
++-------------------+----------------------------------+------------------------+
+|                   | Pure                             |                        |
++-------------------+----------------------------------+------------------------+
+
+.. HINT::
+
+    These two structures are not compatible with each other, i.e. depending on which design you want to use, you must
+    create a configuration file in the structure that is supported by this design.
+
+Pure-structure
+--------------
 
 The structure of the xml-formatted configuration file is
 divided into several sections, within which all other entries are
@@ -124,7 +140,7 @@ nested and enclosed by tags:
     xml-format
 
 Navigation elements in the CometVisu
-------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For navigation inside the visualization, the Cometvisu offers numerous
 options for the user:
@@ -154,20 +170,9 @@ without user intervention:
 -  The :ref:`timeout plugin <timeout>` works similar to the screensave
    function, but will also run if the subpage is called via GA.
 
-The available designs
----------------------
-
-* :doc:`Metal <examples/swiss>`-> probably the most popular design
-* Pure -> Standard-Design
-* Diskreet
-* Diskreet Sand
-* Diskreet Slim
-* Alaska
-* Alaska Slim
-
 
 Changes of the metal design
----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In version 0.12 the metal design has been revised. In order to achieve a cleaner, modern look all
 background gradients, text shadows and the font have been replaced.
@@ -186,7 +191,7 @@ You can achieve this, by adding the following text to the meta section of your c
 
 
 Basic elements for designing the layout
----------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the CometVisu the size and arrangement of the widgets can be controlled
 with the child element ``Layout``. Thus, a responsive design can be realized,
@@ -214,7 +219,7 @@ Detailed descriptions of formatting the widget size and content:
 
 
 Elements for conversion and formatting in the CometVisu
--------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the CometVisu values can be displayed in many different ways. For
 this purpose can be used:
@@ -237,8 +242,8 @@ this purpose can be used:
 -  :doc:`Flavour <flavour>` allow additional options for some
    widgets in some designs.
 
-Widgets in the CometVisu
-------------------------
+Widgets in the pure-structure
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Widgets are the individual elements that make up a CometVisu site.
 These can either be permanently installed in the CometVisu or
@@ -258,8 +263,8 @@ elements are used. They are described in the :ref:`chapter address <address>`.
 
     address
 
-CometVisu - Examples
---------------------
+Pure-structure - Examples
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Here are several examples of visualizations that are in productive use.
 
@@ -271,7 +276,7 @@ Here are several examples of visualizations that are in productive use.
 
 
 Miscellaneous
--------------
+^^^^^^^^^^^^^
 
 .. toctree::
     :maxdepth: 1
@@ -280,3 +285,38 @@ Miscellaneous
     rrd_examples
     hydraulik
     customizing
+
+
+Tile-structure
+--------------
+
+The CometVisu always provided the possibility to add other structures beside the existing pure-structure.
+The structures are responsible to render a config-file in the browser. Usually by reading the config-file and
+generate HTML-code from it.
+The tile-structure is using a different approach by using `Web-Components <https://wiki.selfhtml.org/wiki/HTML/Web_Components>`_
+for special elements together with "normal" HTML-code. The config files for the tile-structure are not converted to HTML-code
+but directly used in the browser..
+
+.. HINT::
+
+    Existing config-files for the pure-structure can not be used in the tile-structure! Also plugins for the pure-structure
+    are not compatible! Furthermore the used features require a modern browser (e.g. Chrome, Firefox, Edge, Safari in a recent version).
+    The Internet Explorer is not supported in any version!
+
+**Some advantages of the tile-structure:**
+
+* Automatically fits into all screen sizes (responsive design). Special layout definitions in the config file are not needed.
+* Faster loading times, because the config file is not converted to HTML-code.
+* Navigation menus are generated automatically.
+* Special widgets for typical smart home use-cases (switch, dimmer, blinds, room temperature controller, media player charts).
+* Easy creation of own, re-usable widgets without programming knowledge.
+* Designed with mobile-first in mind, a good user experience on mobile devices has the highest priority
+
+.. figure:: _static/tile-demo.png
+
+   Demo of the tile-structure on a mobile screen.
+
+.. toctree::
+    :maxdepth: 1
+
+    structure-tile/index
