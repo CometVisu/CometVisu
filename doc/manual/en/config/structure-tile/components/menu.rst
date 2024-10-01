@@ -94,7 +94,8 @@ dock                    Only possible in the `<footer>`, appearance like "icons"
 .. widget-example::
 
       <settings design="tile" selector="nav">
-            <screenshot name="tile-nav-menu-dock" selector="cv-menu" waitfor="cv-menu > ul > li:first-child > a > i" margin="10 10 10 10">
+
+            <screenshot name="tile-nav-menu-dock" selector="cv-menu" waitfor="cv-menu > ul > li:first-child > .details" margin="10 10 10 10">
                 <caption>Dock in footer</caption>
             </screenshot>
         </settings>
