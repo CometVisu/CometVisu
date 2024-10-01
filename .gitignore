@@ -20,6 +20,7 @@ settings/keys/deploy_key
 /compiled/
 /client/compiled/
 /.env/
+/venv/
 /test/
 /source/script/
 /source/class/cv/Version.js
