@@ -444,7 +444,7 @@ bewegt (oder auf einem Touchscreen in diesen Bereich klickt).
     <cv-energy columns="6" view-box="0 0 3 3" house-row="2" center-x="false" allow-fullscreen="true" header="auto-hide">
     ...
 
-Erlaubte Attribute im Switch-Element
+Erlaubte Attribute im Energy-Element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: cv-energy tile

@@ -73,7 +73,7 @@ Auch dieser Modus wird über das <cv-address>-Element aktiviert. Genauer gesagt 
     <cv-address transform="DPT:1.001" mode="readwrite" value="1" on="down">1/4/2</cv-address>
     <cv-address transform="DPT:1.001" mode="readwrite" value="0" on="up">1/4/2</cv-address>
 
-Hier wird als beim Drücken (``on="down"``) der Wert ``1`` an ``1/4/2`` gesendet und beim Loslassen (``on="up"``) der Wert ``0``.
+Hier wird beim Drücken (``on="down"``) der Wert ``1`` an ``1/4/2`` gesendet und beim Loslassen (``on="up"``) der Wert ``0``.
 
 
 Weitere Eigenschaften
@@ -158,11 +158,11 @@ eines gerade spielenden Liedes, eine Lautstärke oder den Helligkeitswert eines 
 Zusätzliche Beschriftung
 ++++++++++++++++++++++++
 
-Optional kann der Button über ein ``text``-Attribut eine zusätzliche Beschriftung erhalten.
+Optional kann der Button über ein ``name``-Attribut eine zusätzliche Beschriftung erhalten.
 
 .. code-block:: xml
 
-    <cv-button class="round-button" mapping="light" styling="button" text="Licht">
+    <cv-button class="round-button" mapping="light" styling="button" name="Licht">
 
 .. widget-example::
     :hide-source: true
