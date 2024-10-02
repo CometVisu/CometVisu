@@ -40,7 +40,7 @@ Valid values for ``cachecontrol`` are:
 ``force``  Using sophisticated methods an enforcement of the refresh is
            attempted.
 ``weak``   The URL will be extended by an anchor with timestamp. This will
-           work with most servers where ``full`` mode doesn't work. But it
+           work with most servers where ``full`` mode does not work. But it
            requires the correct use of HTTP headers by the server as well
            as a correct reaction by the web browser.
 ``none``   The URL will not be modified. A working refresh can be prevented

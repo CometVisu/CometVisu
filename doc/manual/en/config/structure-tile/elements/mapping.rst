@@ -125,7 +125,7 @@ The color of the icons is controlled via the styling.
 Mapping non-binary values
 -------------------------
 
-Mapping doesn't just work with binary data types.
+Mapping does not just work with binary data types.
 A door contact delivers 0 when the door is closed, 1 when the door is open and 2
 with the door tilted. The mapping replaces the less meaningful number
 using the corresponding icons from the
@@ -281,7 +281,7 @@ Formulas (advanced)
 
 When the exact object type is known, you can also use the specific JavaScript methods in a formula.
 
-Within the openHAB backen, for example, there is the item type *DateTime*.
+Within the openHAB backend, for example, there is the item type *DateTime*.
 This data type is mapped to the JavaScript counterpart, so that its methods can be applied directly.
 
 Without mapping or formula, the output of an openHAB DateTime item looks like this:

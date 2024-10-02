@@ -35,7 +35,7 @@ the corresponding slot. A complete example would look like this:
         <cv-address slot="heatpump-power" transform="DPT:12.001" mode="read">1/4/45</cv-address>             
     </cv-energy>
 
-Here you can see two major consumers in the form of a wallbox consuming 11kW and a heat pump consuming 3kW.
+Here you can see two major consumers in the form of an ev-charger  consuming 11kW and a heat pump consuming 3kW.
 The 200W shown in the middle is the remaining house consumption and is automatically calculated as the difference
 between the sum of the consumption and supply power (13200 + 614 + 386 - 11000 - 3000 = 200).
 
@@ -44,7 +44,7 @@ The color scheme defines colors for PV generation (``--pvColor``), battery charg
 battery discharging (``--batteryConsumeColor``), grid consumption (``--gridConsumeColor``) and grid injection (``--gridInjectColor``).
 These are defined as CSS variables and can be easily changed by a :ref:`CSS style <tile-element-style>`.
 
-If you don't have a wallbox or battery storage, these values will not be displayed:
+If you don't have an ev-charger or battery storage, these values will not be displayed:
 
 .. widget-example::
 

@@ -49,7 +49,7 @@ both are displayed.
         </cv-option>
     </cv-select>
 
-To be able to display the current value, a read-only ``cv-address`` is required, to be able to change the value a writeable one is needed.
+To be able to display the current value, a read-only ``cv-address`` is required, to be able to change the value a writable one is needed.
 In the example, the address is both (default).
 The entries in the selection list are defined by ``cv-option`` elements.
 These have a ``key`` which corresponds to the value that is read from or sent to the address and

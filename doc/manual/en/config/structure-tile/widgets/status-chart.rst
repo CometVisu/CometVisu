@@ -19,7 +19,7 @@ in which the chart is displayed in full size with the axes.
             <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="charts/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
         </fixtures>
         <screenshot name="cv-status-chart">
-            <caption>Status with background dhart.</caption>
+            <caption>Status with background chart.</caption>
             <data address="1/4/0">157</data>
         </screenshot>
     </settings>

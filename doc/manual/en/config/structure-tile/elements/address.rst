@@ -36,7 +36,7 @@ So if you have defined the following 3 backends:
     <cv-backend name="si" default="true" type="simulated"/>
     <cv-backend name="mqtt-broker" type="mqtt" uri="ws://mqtt:9001/"/>
 
-you can use them in the ``<cv-address>`` elemts in the following way:
+you can use them in the ``<cv-address>`` elements in the following way:
 
 .. code:: xml
 
@@ -64,7 +64,7 @@ Control visibility
 
 There are two ways to influence visibility:
 
-* ``target="show-hide"``: Makes the widget invisible but doesn't change the layout, it creates an empty area
+* ``target="show-hide"``: Makes the widget invisible but does not change the layout, it creates an empty area
 * ``target="show-exclude"``: Removes the widget from the layout, no empty space is created
 
 In this example, the entire tile would be deleted from the layout if the backend sends the value 0 for that address

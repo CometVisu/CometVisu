@@ -236,7 +236,7 @@
     </xsd:attribute>
     <xsd:attribute name="default" type="xsd:boolean">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Use this connection as default, all cv-address elements without "name"-Attribut will use this connection.</xsd:documentation>
+        <xsd:documentation xml:lang="en">Use this connection as default, all cv-address elements without "name"-attribute will use this connection.</xsd:documentation>
         <xsd:documentation xml:lang="de">Diese Verbindung als Standard nehmen, alle cv-address Elemente ohne "name"-Attribut nutzen diese Verbindung.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -1967,13 +1967,13 @@
         </xsd:choice>
         <xsd:attribute name="house-row" type="xsd:decimal">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">Row of the position od the house (default=1).</xsd:documentation>
+            <xsd:documentation xml:lang="en">Row of the position of the house (default=1).</xsd:documentation>
             <xsd:documentation xml:lang="de">Zeile in der das Haus positioniert werden soll (default=1)</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="house-column" type="xsd:decimal">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">Column of the position od the house (default=1).</xsd:documentation>
+            <xsd:documentation xml:lang="en">Column of the position of the house (default=1).</xsd:documentation>
             <xsd:documentation xml:lang="de">Spalte in der das Haus positioniert werden soll (default=1)</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>

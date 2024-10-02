@@ -188,14 +188,13 @@ Optionally, the button can receive an additional label via a ``name`` attribute.
         <cv-icon class="value">ri-question-mark</cv-icon>
     </cv-button>
 
-
-Erlaubte Attribute
+Allowed attributes
 ^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: cv-button tile
 
 
-Erlaubte Kind-Elemente und deren Attribute
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Allowed child elements and their attributes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: cv-button tile

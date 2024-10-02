@@ -136,8 +136,8 @@ Another alternative is a button to reload the browser window.
 Alternatively, you can use ``value="forced-reload"`` to ensure that the CometVisu files have actually been reloaded
 and the browser cache is bypassed.
 
-Pagenavigation
-..............
+Page navigation
+...............
 
 This backend also offers an alternative to the page jumps known from the Pure structure, with which a
 navigation to a specific page is possible.
