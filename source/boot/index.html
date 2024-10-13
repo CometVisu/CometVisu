@@ -116,7 +116,7 @@
         });
 
         if (enableReporting) {
-          Sentry.addGlobalEventProcessor((event) => {
+          Sentry.addEventProcessor((event) => {
             try {
               const client = Sentry.getCurrentHub().getClient();
               const endpoint = attachmentUrlFromDsn(
