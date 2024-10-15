@@ -529,8 +529,12 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
 
     _center(width, height) {
       if (this.SVG && this._ready) {
-        const bbox = this.SVG.getBoundingClientRect();
-        if (this._lastBBox && (this._lastBBox.width === bbox.width && this._lastBBox.height === bbox.height)) {
+        const bbox = this.SVG.getBBox();
+        if (this._lastBBox && (this._lastBBox.width === bbox.width &&
+          this._lastBBox.height === bbox.height &&
+          this._lastBBox.x === bbox.x &&
+          this._lastBBox.y === bbox.y
+        )) {
           // no change
           return;
         }
@@ -581,9 +585,9 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
         const visibleWidth = usedColumns > visibleColumns ? visibleColumns / this.getColumns() : 1.0;
         const visibleHeight = usedRows > visibleRows ? visibleRows / this.getRows() : 1.0;
 
-        const heightDiff = height - totalOuterPadding - bbox.height * visibleHeight;
-        const widthDiff = width - totalOuterPadding - bbox.width * visibleWidth;
-        console.log(widthDiff, width, totalOuterPadding, bbox.width, visibleWidth);
+        const heightDiff = height - totalOuterPadding - bbox.y - bbox.height * visibleHeight;
+        const widthDiff = width - totalOuterPadding - bbox.x - bbox.width * visibleWidth;
+
         if (heightDiff > 0 || widthDiff > 0) {
           this.SVG.setAttribute('transform', `translate(${Math.max(0, widthDiff / 2)}, ${Math.max(0, heightDiff / 2)})`);
         } else {
