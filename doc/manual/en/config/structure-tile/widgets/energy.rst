@@ -242,7 +242,7 @@ The daily values are accessible by scrolling within the widget.
     :shots-per-row: 2
 
     <settings design="tile">
-        <screenshot name="cv-energy-complex-left">
+        <screenshot name="cv-energy-complex-left" sleep="50">
             <caption>Initial view</caption>
             <data address="1/4/26">600</data>
             <data address="1/4/27">200</data>
@@ -258,8 +258,8 @@ The daily values are accessible by scrolling within the widget.
             <data address="1/1/5">3</data>
             <data address="1/1/6">1</data>
         </screenshot>
-        <screenshot name="cv-energy-complex-right" clickpath=".pagination.right" sleep="500">
-            <caption>View after clicking in the right border</caption>
+        <screenshot name="cv-energy-complex-right" clickpath=".pagination.right" sleep="400">
+            <caption>View after clicking on the right border</caption>
         </screenshot>
     </settings>
     <cv-energy columns="6" view-box="0 0 3 3" house-row="2" center-x="false">
@@ -363,7 +363,7 @@ Another possibility to see more details is offered by the fullscreen view of the
             <caption>Fullscreen view</caption>
         </screenshot>
     </settings>
-    <cv-energy columns="6" view-box="0 0 3 3" house-row="2" center-x="false" allow-fullscreen="true">
+    <cv-energy columns="6" view-box="0 0 3 3" fullscreen-view-box="0 0 6 3" house-row="2" center-x="false" allow-fullscreen="true">
         <cv-power-entity id="battery-pv" type="pv" icon="knxuf-scene_solar_panel" connect-to="battery" row="0" column="0">
             <cv-address transform="DPT:12.001" mode="read">1/4/26</cv-address>
         </cv-power-entity>
@@ -426,7 +426,7 @@ Another possibility to see more details is offered by the fullscreen view of the
 
 .. code:: xml
 
-    <cv-energy columns="6" view-box="0 0 3 3" house-row="2" center-x="false" allow-fullscreen="true">
+    <cv-energy columns="6" view-box="0 0 3 3" fullscreen-view-box="0 0 6 3" house-row="2" center-x="false" allow-fullscreen="true">
     ...
 
 If you don't want the header area with the button to open the fullscreen view to take up valuable space,

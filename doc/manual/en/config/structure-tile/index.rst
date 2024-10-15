@@ -368,7 +368,7 @@ It should then contain the following content:
         </template>
     </templates>
 
-Within the template definition with the id “meter” you can see the slightly modified content of the tile.
+Within the template definition with the id "meter" you can see the slightly modified content of the tile.
 The only thing that needs to be modified is content that you would like to have configurable later. Usually
 this includes addresses, labels and possibly some attributes such as mappings, styling and formatting.
 
@@ -394,7 +394,7 @@ Since self-defined template widgets are not known to the official schema of the 
 you have to wrap this into a ``<custom>...</custom>`` element so that the configuration file is not marked as invalid.
 However, at this point you lose the advantage that this part of the configuration file can be checked for validity.
 If you still want rely on this, the schema can also be expanded with the schema definition for your new widget.
-To do this, the file “custom_visu_config.xsd” must be present in the “config/” folder.
+To do this, the file "custom_visu_config.xsd" must be present in the "config/" folder.
 If it does not exist, it must be created with the following basic structure.
 
 .. code-block:: xml

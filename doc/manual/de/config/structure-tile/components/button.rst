@@ -73,7 +73,7 @@ Auch dieser Modus wird über das <cv-address>-Element aktiviert. Genauer gesagt 
     <cv-address transform="DPT:1.001" mode="readwrite" value="1" on="down">1/4/2</cv-address>
     <cv-address transform="DPT:1.001" mode="readwrite" value="0" on="up">1/4/2</cv-address>
 
-Hier wird beim Drücken (``on="down"``) der Wert ``1`` an ``1/4/2`` gesendet und beim Loslassen (``on="up"``) der Wert ``0``.
+Hier wird beim Drücken (``on="down"``) der Wert ``1`` an ``1/4/2`` und beim Loslassen (``on="up"``) der Wert ``0`` gesendet.
 
 
 Weitere Eigenschaften

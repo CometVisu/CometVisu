@@ -56,7 +56,7 @@ you can specify an additional ``temperatureAddress`` with the target ``show-hide
     </cv-rtc>
 
 The widget can be customized by specifying the attributes ``min``, ``max``, ``step-width`` and ``format`` for the spinner of the target temperature.
-For example, the widget can be changed to Fahrenheit by using ``<cv-rtc min="0" max="100" format="%d ′F">``.
+For example, the widget can be changed to Fahrenheit by using ``<cv-rtc min="0" max="100" format="%d °F">``.
 
 If in your use case it is not possible to control the operating mode, the current temperature can be displayed instead.
 

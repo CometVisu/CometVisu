@@ -38,17 +38,17 @@ Navigation menu from page structure
             </nav>
         </header>
         <main>
-            <cv-page id="eg" name="Ground floor">
-                <cv-page id="ez" name="Dining room" />
-                <cv-page id="wz" name="Living room" />
-                <cv-page id="ku" name="Kitchen" />
-                <cv-page id="bad" name="Bathroom" />
+            <cv-page id="fg" name="Ground floor">
+                <cv-page id="dr" name="Dining room" />
+                <cv-page id="lr" name="Living room" />
+                <cv-page id="ki" name="Kitchen" />
+                <cv-page id="bath" name="Bathroom" />
             </cv-page>
-             <cv-page id="og" name="First floor">
-                <cv-page id="sz" name="Bedroom" />
-                <cv-page id="kz1" name="Child 1" />
-                <cv-page id="kz2" name="Child 2" />
-                <cv-page id="badOg" name="Bathroom" />
+             <cv-page id="ff" name="First floor">
+                <cv-page id="br" name="Bedroom" />
+                <cv-page id="c1" name="Child 1" />
+                <cv-page id="c2" name="Child 2" />
+                <cv-page id="bathFf" name="Bathroom" />
             </cv-page>
         </main>
 
@@ -76,17 +76,17 @@ dock                    Only possible in the `<footer>`, appearance like "icons"
             </nav>
         </header>
         <main>
-            <cv-page id="eg" name="Ground floor" icon="knxuf-control_building_modern02_okg_eg">
-                <cv-page id="ez" name="Dining room" />
-                <cv-page id="wz" name="Living room" />
-                <cv-page id="ku" name="Kitchen" />
-                <cv-page id="bad" name="Bathroom" />
+            <cv-page id="gf" name="Ground floor" icon="knxuf-control_building_modern02_okg_eg">
+                <cv-page id="dr" name="Dining room" />
+                <cv-page id="lr" name="Living room" />
+                <cv-page id="ki" name="Kitchen" />
+                <cv-page id="bath" name="Bathroom" />
             </cv-page>
-             <cv-page id="og" name="First floor" icon="knxuf-control_building_modern02_okg_og">
-                <cv-page id="sz" name="Bedroom" />
-                <cv-page id="kz1" name="Child 1" />
-                <cv-page id="kz2" name="Child 2" />
-                <cv-page id="badOg" name="Bathroom" />
+             <cv-page id="ff" name="First floor" icon="knxuf-control_building_modern02_okg_og">
+                <cv-page id="br" name="Bedroom" />
+                <cv-page id="c1" name="Child 1" />
+                <cv-page id="c2" name="Child 2" />
+                <cv-page id="bathFf" name="Bathroom" />
             </cv-page>
         </main>
 
@@ -100,17 +100,17 @@ dock                    Only possible in the `<footer>`, appearance like "icons"
             </screenshot>
         </settings>
         <main>
-            <cv-page id="eg" name="Ground floor" icon="knxuf-control_building_modern02_okg_eg">
-                <cv-page id="ez" name="Dining room" />
-                <cv-page id="wz" name="Living room" />
-                <cv-page id="ku" name="Kitchen" />
-                <cv-page id="bad" name="Bathroom" />
+            <cv-page id="gf" name="Ground floor" icon="knxuf-control_building_modern02_okg_eg">
+                <cv-page id="dr" name="Dining room" />
+                <cv-page id="lr" name="Living room" />
+                <cv-page id="ki" name="Kitchen" />
+                <cv-page id="bath" name="Bathroom" />
             </cv-page>
-             <cv-page id="og" name="First floor" icon="knxuf-control_building_modern02_okg_og">
-                <cv-page id="sz" name="Bedroom" />
-                <cv-page id="kz1" name="Child 1" />
-                <cv-page id="kz2" name="Child 2" />
-                <cv-page id="badOg" name="Bathroom" />
+             <cv-page id="ff" name="First floor" icon="knxuf-control_building_modern02_okg_og">
+                <cv-page id="br" name="Bedroom" />
+                <cv-page id="c1" name="Child 1" />
+                <cv-page id="c2" name="Child 2" />
+                <cv-page id="bathFf" name="Bathroom" />
             </cv-page>
         </main>
         <footer>

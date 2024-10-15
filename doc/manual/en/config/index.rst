@@ -104,15 +104,15 @@ Different kinds of configuration files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The CometVisu supports different kinds of configuration files, called structures.
-The available   structures "Pure" and "Tile" support different designs:
+The available structures "Pure" and "Tile" support different designs:
 
-+-------------------+----------------------------------+------------------------+
-| **Struktur**      | Pure                             | Tile                   |
-+-------------------+----------------------------------+------------------------+
-| **Designs**       | :doc:`Metal <examples/swiss>`    | Tile                   |
-+-------------------+----------------------------------+------------------------+
-|                   | Pure                             |                        |
-+-------------------+----------------------------------+------------------------+
++--------------------+----------------------------------+------------------------+
+| **Structure**      | Pure                             | Tile                   |
++--------------------+----------------------------------+------------------------+
+| **Designs**        | :doc:`Metal <examples/swiss>`    | Tile                   |
++--------------------+----------------------------------+------------------------+
+|                    | Pure                             |                        |
++--------------------+----------------------------------+------------------------+
 
 .. HINT::
 
@@ -295,7 +295,7 @@ The structures are responsible to render a config-file in the browser. Usually b
 generate HTML-code from it.
 The tile-structure is using a different approach by using `Web-Components <https://wiki.selfhtml.org/wiki/HTML/Web_Components>`_
 for special elements together with "normal" HTML-code. The config files for the tile-structure are not converted to HTML-code
-but directly used in the browser..
+but directly used in the browser.
 
 .. HINT::
 

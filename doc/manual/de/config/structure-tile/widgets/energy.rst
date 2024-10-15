@@ -248,7 +248,7 @@ Die Tageswerte sind durch scrollen innerhalb des Widgets erreichbar.
     :shots-per-row: 2
 
     <settings design="tile">
-        <screenshot name="cv-energy-complex-left">
+        <screenshot name="cv-energy-complex-left" sleep="50">
             <caption>Initiale Ansicht</caption>
             <data address="1/4/26">600</data>
             <data address="1/4/27">200</data>
@@ -264,7 +264,7 @@ Die Tageswerte sind durch scrollen innerhalb des Widgets erreichbar.
             <data address="1/1/5">3</data>
             <data address="1/1/6">1</data>
         </screenshot>
-        <screenshot name="cv-energy-complex-right" clickpath=".pagination.right" sleep="500">
+        <screenshot name="cv-energy-complex-right" clickpath=".pagination.right" sleep="400">
             <caption>Ansicht nach Klick auf rechten Rand</caption>
         </screenshot>
     </settings>
@@ -369,7 +369,7 @@ Eine weitere Möglichkeit mehr Details zu sehen bietet die Vollbildansicht des W
             <caption>Vollbildansicht (verkleinert)</caption>
         </screenshot>
     </settings>
-    <cv-energy columns="6" view-box="0 0 3 3" house-row="2" center-x="false" allow-fullscreen="true">
+    <cv-energy columns="6" view-box="0 0 3 3" fullscreen-view-box="0 0 6 3" house-row="2" center-x="false" allow-fullscreen="true">
         <cv-power-entity id="battery-pv" type="pv" icon="knxuf-scene_solar_panel" connect-to="battery" row="0" column="0">
             <cv-address transform="DPT:12.001" mode="read">1/4/26</cv-address>
         </cv-power-entity>
@@ -432,7 +432,7 @@ Eine weitere Möglichkeit mehr Details zu sehen bietet die Vollbildansicht des W
 
 .. code:: xml
 
-    <cv-energy columns="6" view-box="0 0 3 3" house-row="2" center-x="false" allow-fullscreen="true">
+    <cv-energy columns="6" view-box="0 0 3 3" fullscreen-view-box="0 0 6 3" house-row="2" center-x="false" allow-fullscreen="true">
     ...
 
 Wenn man nicht möchte das der Header-Bereich mit dem Button zum Öffnen der Vollbildansicht wertvollen Platz

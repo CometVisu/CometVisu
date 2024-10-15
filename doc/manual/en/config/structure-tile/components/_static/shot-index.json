@@ -31,9 +31,9 @@
     "cv-tr064plugin-list": "f779ece887e3d1119e1147e07af5912e",
     "cv-rsslogplugin-list": "c7609b433687d56ad950bfdf232010c4",
     "cv-rsslogplugin-list-features": "c2c6126e076dbbc79d45b149f4759ec6",
-    "tile-nav-menu-mobile-closed": "1e70cfd05e2fca68fef0846f6ae41544",
-    "tile-nav-menu-mobile-open": "b5270082010102cdec4ba8822ad41ceb",
-    "tile-nav-menu-icons": "cf6c463bc9542329faa4af9739ca53b6",
+    "tile-nav-menu-mobile-closed": "bbf8df16baf8c62111dfe4bc1b919b49",
+    "tile-nav-menu-mobile-open": "1392ad08b6efe6fffe0cec065970434b",
+    "tile-nav-menu-icons": "65c0640a7c0bafa884beb98aa672a46c",
     "tile-context-menu-closed": "cd333767e5f55f182d232f9839ba551c",
     "tile-context-menu-open": "6f951bd11ccc301d4149291dba816c2c",
     "tile-status-popup-closed": "8081d0813729f7fabb037a4df6e65966",
@@ -65,5 +65,5 @@
     "cv-value-progress-semi-round": "a30a56cd4529f9d24b10dd0112c8fe6f",
     "cv-value-progress-semi-round-color": "577401fc4bfc4eef6164ace2d32d2a54",
     "cv-chart-pv-tooltip": "6a7e61729dbc4983de1c5f8b758d12f5",
-    "tile-nav-menu-dock": "d2796a3af9df12f87ddc90f89df777bb"
+    "tile-nav-menu-dock": "41a43a17b3116ea88869115b3d3f8d7c"
 }
