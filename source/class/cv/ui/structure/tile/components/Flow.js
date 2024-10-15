@@ -529,7 +529,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
 
     _center(width, height) {
       if (this.SVG && this._ready) {
-        const bbox = this.SVG.getBBox();
+        const bbox = this.SVG.getBoundingClientRect();
         if (this._lastBBox && (this._lastBBox.width === bbox.width && this._lastBBox.height === bbox.height)) {
           // no change
           return;
@@ -583,6 +583,7 @@ qx.Class.define('cv.ui.structure.tile.components.Flow', {
 
         const heightDiff = height - totalOuterPadding - bbox.height * visibleHeight;
         const widthDiff = width - totalOuterPadding - bbox.width * visibleWidth;
+        console.log(widthDiff, width, totalOuterPadding, bbox.width, visibleWidth);
         if (heightDiff > 0 || widthDiff > 0) {
           this.SVG.setAttribute('transform', `translate(${Math.max(0, widthDiff / 2)}, ${Math.max(0, heightDiff / 2)})`);
         } else {
