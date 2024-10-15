@@ -207,6 +207,10 @@ body {
         max-width: calc(100vw - calc(var(--spacing) * 2));
         box-shadow: 5px 5px 8px 0px rgb(0 0 0 / 50%);
 
+        &:not(.compact) {
+            padding: calc(var(--spacing) * 0.5) var(--spacing);
+        }
+
         &[show-labels="false"] {
             transform: translate(-50%, -80px);
         }
