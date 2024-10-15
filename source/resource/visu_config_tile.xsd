@@ -2112,6 +2112,17 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
+    <xsd:attribute name="fullscreen-view-box">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Viewbox of the grid in fullscreen(start-column start-row columns rows).</xsd:documentation>
+        <xsd:documentation xml:lang="de">Viewbox des Grids in der Vollbildansicht(start-column start-row columns rows).</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:token">
+          <xsd:pattern value="\d+ \d+ \d+ \d+"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
     <xsd:attribute name="pan" type="xsd:boolean">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">If only a part of the energy-grid is shown, this flag activates scrolling inside the grid.</xsd:documentation>
