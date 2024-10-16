@@ -2,18 +2,17 @@
 // File for configurations that shouldn't be shared with the user
 $data = '{
   "fritzbox": {
-    "uri": "https://192.168.178.1:49443/", 
-    "user": "cometvisu",
-    "pass": "secret123",
-    "selfsigned": "true"
+    "uri": "https://192.168.0.1:49443/", 
+    "user": "CometVisuTestUser",
+    "pass": "secret"
   },
   "influx": {
-    "uri": "http://jarvis:8086",
-    "token": "0YdRi-TvRLZFBoWzYlNzHyqNB74icsY1FpS2S5lWPQ4nI5uyuUU231LqHah7wwp1jET29zFg3gPROexGE13g7w==",
-    "config": "flux"
+    "uri": "https://172.17.0.1/proxy/ts/query", 
+    "user": "docker",
+    "pass": "secret", 
+    "selfsigned": "true"
   },
   "proxy.whitelist": {
-    "local": "/.*192.168.178.*/"
   }
 }';
 
