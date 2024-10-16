@@ -106,7 +106,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var website;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -159,7 +159,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       runWebServer: function runWebServer() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var makers, apps, defaultMaker, firstMaker, config, app, website, s, appsData, server;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -295,4 +295,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Serve.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Serve.js.map?dt=1726089065249
+//# sourceMappingURL=Serve.js.map?dt=1729101251602

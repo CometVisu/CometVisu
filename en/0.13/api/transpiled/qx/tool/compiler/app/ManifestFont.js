@@ -105,7 +105,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       updateFromManifest: function updateFromManifest(data, library) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var toSet, glyphsFilename, glyphsData, name, defaultSize, key, glyph;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -186,4 +186,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.app.ManifestFont.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ManifestFont.js.map?dt=1726089068118
+//# sourceMappingURL=ManifestFont.js.map?dt=1729101254393

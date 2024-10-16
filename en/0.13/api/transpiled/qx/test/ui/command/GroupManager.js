@@ -69,7 +69,7 @@
         cmd2.execute();
         this.assertCallCount(handler, 3);
       },
-      "test: add and remove group": function testAddAndRemoveGroup() {
+      "test: add and remove group": function test_add_and_remove_group() {
         var manager = new qx.ui.command.GroupManager();
         var group = new qx.ui.command.Group();
         var cmd = new qx.ui.command.Command("Meta+T");
@@ -87,4 +87,4 @@
   qx.test.ui.command.GroupManager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GroupManager.js.map?dt=1726089057595
+//# sourceMappingURL=GroupManager.js.map?dt=1729101244149

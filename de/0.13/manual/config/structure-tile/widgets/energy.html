@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" data-content_root="../../../">
 <head>
@@ -6,21 +8,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Das Energy Widget &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/structure-tile/widgets/energy.html"/>
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=245627df"></script>
-        <script src="../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="../../../_static/translations.js?v=70a09b52"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=245627df"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/translations.js?v=70a09b52"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -40,9 +38,6 @@
             CometVisu
               <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.13.0-dev
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
@@ -362,7 +357,7 @@ Durch einen Doppelklick kommt man immer wieder zurück zur initialen Ansicht.</p
 </tr>
 </tbody>
 </table>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-energy</span><span class="w"> </span><span class="na">columns=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">view-box=</span><span class="s">&quot;0 0 3 3&quot;</span><span class="w"> </span><span class="na">house-row=</span><span class="s">&quot;2&quot;</span><span class="w"> </span><span class="na">center-x=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">allow-fullscreen=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-energy</span><span class="w"> </span><span class="na">columns=</span><span class="s">&quot;6&quot;</span><span class="w"> </span><span class="na">view-box=</span><span class="s">&quot;0 0 3 3&quot;</span><span class="w"> </span><span class="na">fullscreen-view-box=</span><span class="s">&quot;0 0 6 3&quot;</span><span class="w"> </span><span class="na">house-row=</span><span class="s">&quot;2&quot;</span><span class="w"> </span><span class="na">center-x=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">allow-fullscreen=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
 ...
 </pre></div>
 </div>
@@ -375,8 +370,8 @@ bewegt (oder auf einem Touchscreen in diesen Bereich klickt).</p>
 </div>
 </section>
 </section>
-<section id="erlaubte-attribute-im-switch-element">
-<h3>Erlaubte Attribute im Switch-Element<a class="headerlink" href="#erlaubte-attribute-im-switch-element" title="Link to this heading"></a></h3>
+<section id="erlaubte-attribute-im-energy-element">
+<h3>Erlaubte Attribute im Energy-Element<a class="headerlink" href="#erlaubte-attribute-im-energy-element" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Element</p></th>
@@ -389,7 +384,7 @@ bewegt (oder auf einem Touchscreen in diesen Bereich klickt).</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-odd"><td rowspan="21"><p>cv-energy</p></td>
+<tr class="row-odd"><td rowspan="22"><p>cv-energy</p></td>
 <td><p>size</p></td>
 <td><p><em>button</em>, <em>0.5x0.5</em>, <em>1x0.5</em>, <em>1x1</em>, <em>2x1</em>, <em>2x1.5</em>, <em>1x2</em>, <em>2x2</em>, <em>2x4</em> oder <em>4x2</em></p></td>
 <td><p>Größe der Kachel in {Spalten}x{Zeilen}, 1x1 ist die Standardgröße.</p></td>
@@ -402,75 +397,79 @@ bewegt (oder auf einem Touchscreen in diesen Bereich klickt).</p>
 <td><p>Text</p></td>
 <td><p>Viewbox des Grids (start-column start-row columns rows).</p></td>
 </tr>
-<tr class="row-even"><td><p>pan</p></td>
+<tr class="row-even"><td><p>fullscreen-view-box</p></td>
+<td><p>Text</p></td>
+<td><p>Viewbox des Grids in der Vollbildansicht(start-column start-row columns rows).</p></td>
+</tr>
+<tr class="row-odd"><td><p>pan</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Wenn über die ViewBox nur ein Teil des Energiemanagements angezeigt wird, kann man mit pan das Scrollen innerhalb aktivieren.</p></td>
 </tr>
-<tr class="row-odd"><td><p>rows</p></td>
+<tr class="row-even"><td><p>rows</p></td>
 <td><p>integer</p></td>
 <td><p>Anzahl der Zeilen, in der die Inhalte angeordnet werden können.</p></td>
 </tr>
-<tr class="row-even"><td><p>columns</p></td>
+<tr class="row-odd"><td><p>columns</p></td>
 <td><p>integer</p></td>
 <td><p>Anzahl der Spalten, in der die Inhalte angeordnet werden können.</p></td>
 </tr>
-<tr class="row-odd"><td><p>cell-width</p></td>
+<tr class="row-even"><td><p>cell-width</p></td>
 <td><p>integer</p></td>
 <td><p>Breite einer einzelnen Zelle im Layout.</p></td>
 </tr>
-<tr class="row-even"><td><p>cell-height</p></td>
+<tr class="row-odd"><td><p>cell-height</p></td>
 <td><p>integer</p></td>
 <td><p>Höhe einer einzelnen Zelle im Layout.</p></td>
 </tr>
-<tr class="row-odd"><td><p>outer-padding</p></td>
+<tr class="row-even"><td><p>outer-padding</p></td>
 <td><p>integer</p></td>
 <td><p>Abstand des Inhalts zum äußeren Rand.</p></td>
 </tr>
-<tr class="row-even"><td><p>spacing</p></td>
+<tr class="row-odd"><td><p>spacing</p></td>
 <td><p>integer</p></td>
 <td><p>Abstand zwischen den Zellen im Layout.</p></td>
 </tr>
-<tr class="row-odd"><td><p>pagination</p></td>
+<tr class="row-even"><td><p>pagination</p></td>
 <td><p><em>none</em>, <em>horizontal</em>, <em>vertical</em> oder <em>both</em></p></td>
 <td><p>Aktiviert Seitennavigation per Klick an den Rand des Elements.</p></td>
 </tr>
-<tr class="row-even"><td><p>visible-on</p></td>
+<tr class="row-odd"><td><p>visible-on</p></td>
 <td><p><em>mobile</em> oder <em>desktop</em></p></td>
 <td><p>Steuert die Sichtbarkeit dieses Elements anhand der Bildschirmgröße.</p></td>
 </tr>
-<tr class="row-odd"><td><p>class</p></td>
+<tr class="row-even"><td><p>class</p></td>
 <td><p>Text</p></td>
 <td><p>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</p></td>
 </tr>
-<tr class="row-even"><td><p>style</p></td>
+<tr class="row-odd"><td><p>style</p></td>
 <td><p>Text</p></td>
 <td><p>Individuelle CSS style Regeln für dieses Widget.</p></td>
 </tr>
-<tr class="row-odd"><td><p><abbr title="Pflichtangabe">slot</abbr></p></td>
+<tr class="row-even"><td><p><abbr title="Pflichtangabe">slot</abbr></p></td>
 <td><p><em>pv-power</em>, <em>grid-power</em>, <em>battery-power</em>, <em>battery-other</em>, <em>charger-power</em>, <em>heatpump-power</em>, <em>consumer-power</em>, <em>house-power</em> oder <em>tileAddress</em></p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>house-row</p></td>
+<tr class="row-odd"><td><p>house-row</p></td>
 <td><p>Zahl</p></td>
 <td><p>Zeile in der das Haus positioniert werden soll (default=1)</p></td>
 </tr>
-<tr class="row-odd"><td><p>house-column</p></td>
+<tr class="row-even"><td><p>house-column</p></td>
 <td><p>Zahl</p></td>
 <td><p>Spalte in der das Haus positioniert werden soll (default=1)</p></td>
 </tr>
-<tr class="row-even"><td><p>title</p></td>
+<tr class="row-odd"><td><p>title</p></td>
 <td><p>Text</p></td>
 <td><p>Titel des Widgets.</p></td>
 </tr>
-<tr class="row-odd"><td><p>allow-fullscreen</p></td>
+<tr class="row-even"><td><p>allow-fullscreen</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td><p>Erlaubt die Vergrößerung des Widgets auf volle Bildschirmgröße.</p></td>
 </tr>
-<tr class="row-even"><td><p>center-x</p></td>
+<tr class="row-odd"><td><p>center-x</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>center-y</p></td>
+<tr class="row-even"><td><p>center-y</p></td>
 <td><p><em>true</em> oder <em>false</em></p></td>
 <td></td>
 </tr>

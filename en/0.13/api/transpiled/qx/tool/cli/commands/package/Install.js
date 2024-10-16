@@ -128,7 +128,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       install: function install(library_uri, release_tag) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var installee;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -156,7 +156,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       installFromLocaPath: function installFromLocaPath(local_path, library_uri) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -185,7 +185,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       isInstalled: function isInstalled(library_uri, release_tag) {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
@@ -207,7 +207,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var _yield$_this4$_getCon, _yield$_this4$_getCon2, manifestModel, lockfileModel, uri, id, _uri$split, _uri$split2, saveToManifest;
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
@@ -319,7 +319,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_472_1: function __P_472_1() {
         var _this5 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           var repos_cache;
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
             while (1) switch (_context5.prev = _context5.next) {
@@ -384,7 +384,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_472_5: function __P_472_5(uri, tag_name, writeToManifest) {
         var _this6 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
           var qxVersion, _this6$__P_472_, repo_name, package_path, cache, options, _yield$_this6$__P_, download_path, found, repo_data, release_data, _iterator, _step, manifest_path, library_uri;
           return _regeneratorRuntime().wrap(function _callee6$(_context6) {
             while (1) switch (_context6.prev = _context6.next) {
@@ -511,7 +511,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_472_6: function __P_472_6(uri, hash, writeToManifest) {
         var _this7 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
           var qxVersion, _this7$__P_472_, repo_name, _yield$_this7$__P_, download_path;
           return _regeneratorRuntime().wrap(function _callee7$(_context7) {
             while (1) switch (_context7.prev = _context7.next) {
@@ -553,7 +553,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       __P_472_4: function __P_472_4(uri, dir) {
         var _arguments = arguments,
           _this8 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
           var writeToManifest, qxVersion;
           return _regeneratorRuntime().wrap(function _callee8$(_context8) {
             while (1) switch (_context8.prev = _context8.next) {
@@ -590,7 +590,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_472_9: function __P_472_9(uri, id, download_path, writeToManifest) {
         var _this9 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
           var _ref, repo_name, package_path, _yield$_this9$_getCon, _yield$_this9$_getCon2, manifestModel, lockfileModel, library_path, manifest_path, _qx$tool$utils$Json$p, info, local_path, lib, index, appsInstalled, depsInstalled;
           return _regeneratorRuntime().wrap(function _callee9$(_context9) {
             while (1) switch (_context9.prev = _context9.next) {
@@ -683,7 +683,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_472_11: function __P_472_11(downloadPath) {
         var _this10 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
           var manifest_file, manifest;
           return _regeneratorRuntime().wrap(function _callee10$(_context10) {
             while (1) switch (_context10.prev = _context10.next) {
@@ -720,7 +720,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_472_3: function __P_472_3(manifest) {
         var _this11 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
           var _iterator2, _step2, lib_uri, lib_range, qxVersion, _this11$__P_472_, tag;
           return _regeneratorRuntime().wrap(function _callee11$(_context11) {
             while (1) switch (_context11.prev = _context11.next) {
@@ -880,7 +880,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_472_10: function __P_472_10(downloadPath) {
         var _this13 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
           var manifest, manifestApp, compileConfigModel, app;
           return _regeneratorRuntime().wrap(function _callee12$(_context12) {
             while (1) switch (_context12.prev = _context12.next) {
@@ -953,7 +953,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_472_2: function __P_472_2() {
         var _this14 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
           var libraries;
           return _regeneratorRuntime().wrap(function _callee13$(_context13) {
             while (1) switch (_context13.prev = _context13.next) {
@@ -990,7 +990,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       __P_472_8: function __P_472_8(repo_name) {
         var _arguments2 = arguments,
           _this15 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
           var treeish, force, url, dir_name, parts, dir_exists, download_path;
           return _regeneratorRuntime().wrap(function _callee14$(_context14) {
             while (1) switch (_context14.prev = _context14.next) {
@@ -1060,4 +1060,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands["package"].Install.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Install.js.map?dt=1726089066047
+//# sourceMappingURL=Install.js.map?dt=1729101252358

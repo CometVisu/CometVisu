@@ -89,7 +89,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       send: function send(request) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var transport;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -151,4 +151,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.io.graphql.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1726089046767
+//# sourceMappingURL=Client.js.map?dt=1729101232948

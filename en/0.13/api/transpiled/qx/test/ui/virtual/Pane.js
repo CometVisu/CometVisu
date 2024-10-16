@@ -729,7 +729,7 @@
         pane.destroy();
         this.flush();
       },
-      "test mouse click bug #6695": function testMouseClickBug6695() {
+      "test mouse click bug #6695": function test_mouse_click_bug_6695() {
         var rowCount = 2;
         var colCount = 2;
         var defaultHeight = 10;
@@ -792,4 +792,4 @@
   qx.test.ui.virtual.Pane.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pane.js.map?dt=1726089060394
+//# sourceMappingURL=Pane.js.map?dt=1729101246928

@@ -504,4 +504,4 @@
   qx.ui.table.columnmodel.resizebehavior.Default.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Default.js.map?dt=1726089081443
+//# sourceMappingURL=Default.js.map?dt=1729101267762

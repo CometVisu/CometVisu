@@ -171,7 +171,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -189,7 +189,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     _process.exit(1);
                   }
                 });
-                _this2.addListener("afterStart", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+                _this2.addListener("afterStart", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
                   var _iterator, _step, test;
                   return _regeneratorRuntime().wrap(function _callee$(_context) {
                     while (1) switch (_context.prev = _context.next) {
@@ -273,4 +273,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Test.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Test.js.map?dt=1726089065333
+//# sourceMappingURL=Test.js.map?dt=1729101251690

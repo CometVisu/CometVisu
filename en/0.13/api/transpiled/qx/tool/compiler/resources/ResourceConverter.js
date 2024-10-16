@@ -64,7 +64,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Boolean}
        */
       needsConvert: function needsConvert(target, asset, srcFilename, destFilename, isThemeFile) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -99,7 +99,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       compile: function compile(target, asset, srcFilename, destFilename, isThemeFile) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -116,4 +116,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.ResourceConverter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ResourceConverter.js.map?dt=1726089069059
+//# sourceMappingURL=ResourceConverter.js.map?dt=1729101255324

@@ -70,7 +70,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       send: function send(message) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var ws;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -135,4 +135,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.io.transport.Websocket.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Websocket.js.map?dt=1726089047930
+//# sourceMappingURL=Websocket.js.map?dt=1729101234161

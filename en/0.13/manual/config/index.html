@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
@@ -6,20 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Configuration of the CometVisu &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/theme_override.css?v=d0aeeef9" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/index.html"/>
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -39,9 +37,6 @@
             CometVisu
               <img src="../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.13.0-dev
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -58,48 +53,53 @@
 <li class="toctree-l2"><a class="reference internal" href="editor.html">Graphical editor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hidden-config.html">Hidden configurations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pages-and-structure-of-cometvisu">Pages and structure of CometVisu</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#basics">Basics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#working-with-the-configuration-file">Working with the configuration file</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="xml-format.html">XML-Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#different-kinds-of-configuration-files">Different kinds of configuration files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pure-structure">Pure-structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xml-format.html">XML-Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#navigation-elements-in-the-cometvisu">Navigation elements in the CometVisu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changes-of-the-metal-design">Changes of the metal design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-elements-for-designing-the-layout">Basic elements for designing the layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="layout.html">Functions for controlling the layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="size-attributes.html">Resize widget content</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#elements-for-conversion-and-formatting-in-the-cometvisu">Elements for conversion and formatting in the CometVisu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="flavour.html">Flavour</a></li>
+<li class="toctree-l4"><a class="reference internal" href="format.html">Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mapping.html">Mapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="styling.html">Styling</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#widgets-in-the-pure-structure">Widgets in the pure-structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="widgets/index.html">Operable widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/index.html#informative-widgets">Informative widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/index.html#other-widgets">Other widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="address.html">Addresses - the communication with the backend</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pure-structure-examples">Pure-structure - Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/haegar80.html">CometVisu von haegar80 (Metal)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/merlin123.html">CometVisu von merlin123 (Metal)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/swiss.html">CometVisu von swiss (Metal)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#miscellaneous">Miscellaneous</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notifications.html">Notifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rrd_examples.html">RRD introduction &amp; examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hydraulik.html">Instructions for creating an animated hydraulic plan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="customizing.html">Customize CometVisu</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#navigation-elements-in-the-cometvisu">Navigation elements in the CometVisu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-available-designs">The available designs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#changes-of-the-metal-design">Changes of the metal design</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#basic-elements-for-designing-the-layout">Basic elements for designing the layout</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="layout.html">Functions for controlling the layout</a></li>
-<li class="toctree-l3"><a class="reference internal" href="size-attributes.html">Resize widget content</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#elements-for-conversion-and-formatting-in-the-cometvisu">Elements for conversion and formatting in the CometVisu</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="flavour.html">Flavour</a></li>
-<li class="toctree-l3"><a class="reference internal" href="format.html">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapping.html">Mapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="styling.html">Styling</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#widgets-in-the-cometvisu">Widgets in the CometVisu</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html">Operable widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#informative-widgets">Informative widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#other-widgets">Other widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="address.html">Addresses - the communication with the backend</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#cometvisu-examples">CometVisu - Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="examples/haegar80.html">CometVisu von haegar80 (Metal)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="examples/merlin123.html">CometVisu von merlin123 (Metal)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="examples/swiss.html">CometVisu von swiss (Metal)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#miscellaneous">Miscellaneous</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="notifications.html">Notifications</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rrd_examples.html">RRD introduction &amp; examples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hydraulik.html">Instructions for creating an animated hydraulic plan</a></li>
-<li class="toctree-l3"><a class="reference internal" href="customizing.html">Customize CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tile-structure">Tile-structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structure-tile/index.html">Basic structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structure-tile/index.html#widgets">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structure-tile/index.html#define-own-widgets">Define own widgets</a></li>
 </ul>
 </li>
 </ul>
@@ -196,10 +196,8 @@ in the footer or by appending check_config.php to the URL.</p>
 </div>
 <p>Exact descriptions of the available URL parameters can be found
 under <a class="reference internal" href="url-params.html"><span class="doc">URL Parameters</span></a>.</p>
-<section id="pages-and-structure-of-cometvisu">
-<span id="visu-config-details"></span><h2>Pages and structure of CometVisu<a class="headerlink" href="#pages-and-structure-of-cometvisu" title="Link to this heading"></a></h2>
 <section id="basics">
-<h3>Basics<a class="headerlink" href="#basics" title="Link to this heading"></a></h3>
+<span id="visu-config-details"></span><h2>Basics<a class="headerlink" href="#basics" title="Link to this heading"></a></h2>
 <p>For visualization and triggering of actions such as Switching or
 blinds up/down uses the CometVisu so-called widgets. Widgets can be
 understood as graphical building blocks arranged on a page to be
@@ -215,9 +213,35 @@ the different pages of the visualization (other widgets)</p></li>
 </ul>
 <p>A small exception are the plugin widgets. These must be included in
 the “meta section” of the configuration file before use.</p>
+<section id="different-kinds-of-configuration-files">
+<h3>Different kinds of configuration files<a class="headerlink" href="#different-kinds-of-configuration-files" title="Link to this heading"></a></h3>
+<p>The CometVisu supports different kinds of configuration files, called structures.
+The available structures “Pure” and “Tile” support different designs:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><strong>Structure</strong></p></td>
+<td><p>Pure</p></td>
+<td><p>Tile</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Designs</strong></p></td>
+<td><p><a class="reference internal" href="examples/swiss.html"><span class="doc">Metal</span></a></p></td>
+<td><p>Tile</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Pure</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>These two structures are not compatible with each other, i.e. depending on which design you want to use, you must
+create a configuration file in the structure that is supported by this design.</p>
+</div>
 </section>
-<section id="working-with-the-configuration-file">
-<h3>Working with the configuration file<a class="headerlink" href="#working-with-the-configuration-file" title="Link to this heading"></a></h3>
+</section>
+<section id="pure-structure">
+<h2>Pure-structure<a class="headerlink" href="#pure-structure" title="Link to this heading"></a></h2>
 <p>The structure of the xml-formatted configuration file is
 divided into several sections, within which all other entries are
 nested and enclosed by tags:</p>
@@ -232,10 +256,8 @@ nested and enclosed by tags:</p>
 </ul>
 <div class="toctree-wrapper compound">
 </div>
-</section>
-</section>
 <section id="navigation-elements-in-the-cometvisu">
-<h2>Navigation elements in the CometVisu<a class="headerlink" href="#navigation-elements-in-the-cometvisu" title="Link to this heading"></a></h2>
+<h3>Navigation elements in the CometVisu<a class="headerlink" href="#navigation-elements-in-the-cometvisu" title="Link to this heading"></a></h3>
 <p>For navigation inside the visualization, the Cometvisu offers numerous
 options for the user:</p>
 <ul class="simple">
@@ -267,20 +289,8 @@ specified page after a defined time has elapsed.</p></li>
 function, but will also run if the subpage is called via GA.</p></li>
 </ul>
 </section>
-<section id="the-available-designs">
-<h2>The available designs<a class="headerlink" href="#the-available-designs" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="examples/swiss.html"><span class="doc">Metal</span></a>-&gt; probably the most popular design</p></li>
-<li><p>Pure -&gt; Standard-Design</p></li>
-<li><p>Diskreet</p></li>
-<li><p>Diskreet Sand</p></li>
-<li><p>Diskreet Slim</p></li>
-<li><p>Alaska</p></li>
-<li><p>Alaska Slim</p></li>
-</ul>
-</section>
 <section id="changes-of-the-metal-design">
-<h2>Changes of the metal design<a class="headerlink" href="#changes-of-the-metal-design" title="Link to this heading"></a></h2>
+<h3>Changes of the metal design<a class="headerlink" href="#changes-of-the-metal-design" title="Link to this heading"></a></h3>
 <p>In version 0.12 the metal design has been revised. In order to achieve a cleaner, modern look all
 background gradients, text shadows and the font have been replaced.</p>
 <p>Those changes can be easily reverted by loading an additional css file.
@@ -295,7 +305,7 @@ You can achieve this, by adding the following text to the meta section of your c
 </div>
 </section>
 <section id="basic-elements-for-designing-the-layout">
-<h2>Basic elements for designing the layout<a class="headerlink" href="#basic-elements-for-designing-the-layout" title="Link to this heading"></a></h2>
+<h3>Basic elements for designing the layout<a class="headerlink" href="#basic-elements-for-designing-the-layout" title="Link to this heading"></a></h3>
 <p>In the CometVisu the size and arrangement of the widgets can be controlled
 with the child element <code class="docutils literal notranslate"><span class="pre">Layout</span></code>. Thus, a responsive design can be realized,
 that adapts to the display size of the terminal from which the CometVisu
@@ -315,7 +325,7 @@ the widget content</p></li>
 </ul>
 </section>
 <section id="elements-for-conversion-and-formatting-in-the-cometvisu">
-<h2>Elements for conversion and formatting in the CometVisu<a class="headerlink" href="#elements-for-conversion-and-formatting-in-the-cometvisu" title="Link to this heading"></a></h2>
+<h3>Elements for conversion and formatting in the CometVisu<a class="headerlink" href="#elements-for-conversion-and-formatting-in-the-cometvisu" title="Link to this heading"></a></h3>
 <p>In the CometVisu values can be displayed in many different ways. For
 this purpose can be used:</p>
 <div class="toctree-wrapper compound">
@@ -332,8 +342,8 @@ values (for example, on in red and off in green)</p></li>
 widgets in some designs.</p></li>
 </ul>
 </section>
-<section id="widgets-in-the-cometvisu">
-<h2>Widgets in the CometVisu<a class="headerlink" href="#widgets-in-the-cometvisu" title="Link to this heading"></a></h2>
+<section id="widgets-in-the-pure-structure">
+<h3>Widgets in the pure-structure<a class="headerlink" href="#widgets-in-the-pure-structure" title="Link to this heading"></a></h3>
 <p>Widgets are the individual elements that make up a CometVisu site.
 These can either be permanently installed in the CometVisu or
 integrated via plug-in interface.</p>
@@ -351,8 +361,8 @@ elements are used. They are described in the <a class="reference internal" href=
 <div class="toctree-wrapper compound">
 </div>
 </section>
-<section id="cometvisu-examples">
-<h2>CometVisu - Examples<a class="headerlink" href="#cometvisu-examples" title="Link to this heading"></a></h2>
+<section id="pure-structure-examples">
+<h3>Pure-structure - Examples<a class="headerlink" href="#pure-structure-examples" title="Link to this heading"></a></h3>
 <p>Here are several examples of visualizations that are in productive use.</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -363,13 +373,51 @@ elements are used. They are described in the <a class="reference internal" href=
 </div>
 </section>
 <section id="miscellaneous">
-<h2>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Link to this heading"></a></h2>
+<h3>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Link to this heading"></a></h3>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="notifications.html">Notifications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rrd_examples.html">RRD introduction &amp; examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hydraulik.html">Instructions for creating an animated hydraulic plan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="customizing.html">Customize CometVisu</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="tile-structure">
+<h2>Tile-structure<a class="headerlink" href="#tile-structure" title="Link to this heading"></a></h2>
+<p>The CometVisu always provided the possibility to add other structures beside the existing pure-structure.
+The structures are responsible to render a config-file in the browser. Usually by reading the config-file and
+generate HTML-code from it.
+The tile-structure is using a different approach by using <a class="reference external" href="https://wiki.selfhtml.org/wiki/HTML/Web_Components">Web-Components</a>
+for special elements together with “normal” HTML-code. The config files for the tile-structure are not converted to HTML-code
+but directly used in the browser.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Existing config-files for the pure-structure can not be used in the tile-structure! Also plugins for the pure-structure
+are not compatible! Furthermore the used features require a modern browser (e.g. Chrome, Firefox, Edge, Safari in a recent version).
+The Internet Explorer is not supported in any version!</p>
+</div>
+<p><strong>Some advantages of the tile-structure:</strong></p>
+<ul class="simple">
+<li><p>Automatically fits into all screen sizes (responsive design). Special layout definitions in the config file are not needed.</p></li>
+<li><p>Faster loading times, because the config file is not converted to HTML-code.</p></li>
+<li><p>Navigation menus are generated automatically.</p></li>
+<li><p>Special widgets for typical smart home use-cases (switch, dimmer, blinds, room temperature controller, media player charts).</p></li>
+<li><p>Easy creation of own, re-usable widgets without programming knowledge.</p></li>
+<li><p>Designed with mobile-first in mind, a good user experience on mobile devices has the highest priority</p></li>
+</ul>
+<figure class="align-default" id="id2">
+<img alt="../_images/tile-demo.png" src="../_images/tile-demo.png" />
+<figcaption>
+<p><span class="caption-text">Demo of the tile-structure on a mobile screen.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structure-tile/index.html">Basic structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure-tile/index.html#widgets">Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure-tile/index.html#define-own-widgets">Define own widgets</a></li>
 </ul>
 </div>
 </section>

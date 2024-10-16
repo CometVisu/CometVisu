@@ -102,7 +102,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       setStructure: function setStructure(name) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var loaded;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -357,7 +357,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       detectSchema: function detectSchema(completeText) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var match;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -385,8 +385,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       getProvider: function getProvider() {
         return {
           triggerCharacters: ['<', '"'],
-          provideCompletionItems: ( /*#__PURE__*/function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(model, position) {
+          provideCompletionItems: (/*#__PURE__*/function () {
+            var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(model, position) {
               var completeText;
               return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                 while (1) switch (_context3.prev = _context3.next) {
@@ -931,4 +931,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.manager.editor.completion.Config.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Config.js.map?dt=1726089029732
+//# sourceMappingURL=Config.js.map?dt=1729101215206

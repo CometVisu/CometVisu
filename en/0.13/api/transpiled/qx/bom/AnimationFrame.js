@@ -109,7 +109,7 @@
       startSequence: function startSequence(duration) {
         this.__P_107_0 = false;
         var start = window.performance && performance.now ? performance.now() + qx.bom.AnimationFrame.__P_107_1 : Date.now();
-        var cb = function cb(time) {
+        var _cb = function cb(time) {
           if (this.__P_107_0) {
             this.id = null;
             return;
@@ -122,10 +122,10 @@
           } else {
             var timePassed = Math.max(time - start, 0);
             this.emit("frame", timePassed);
-            this.id = qx.bom.AnimationFrame.request(cb, this);
+            this.id = qx.bom.AnimationFrame.request(_cb, this);
           }
         };
-        this.id = qx.bom.AnimationFrame.request(cb, this);
+        this.id = qx.bom.AnimationFrame.request(_cb, this);
       },
       /**
        * Cancels a started sequence of frames. It will do nothing if no
@@ -223,4 +223,4 @@
   qx.bom.AnimationFrame.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AnimationFrame.js.map?dt=1726089036457
+//# sourceMappingURL=AnimationFrame.js.map?dt=1729101222257

@@ -260,7 +260,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
             parentElement._children = null;
           }
         };
-        var scanDomNode = function scanDomNode(parentElement, domNode, idx) {
+        var _scanDomNode = function scanDomNode(parentElement, domNode, idx) {
           if (domNode.nodeType == window.Node.TEXT_NODE) {
             var _parentElement$_child;
             var newChild = qx.html.Factory.getInstance().createElement("#text");
@@ -292,7 +292,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
           element._connectDomNode(domNode);
           element._copyData(true, true);
           qx.lang.Array.fromCollection(domNode.childNodes).forEach(function (childDomNode, idx) {
-            return scanDomNode(element, childDomNode, idx);
+            return _scanDomNode(element, childDomNode, idx);
           });
           parentElement._scheduleChildrenUpdate();
         };
@@ -300,7 +300,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
         this._connectDomNode(domNode);
         this._copyData(true, true);
         qx.lang.Array.fromCollection(domNode.childNodes).forEach(function (childDomNode, idx) {
-          return scanDomNode(_this, childDomNode, idx);
+          return _scanDomNode(_this, childDomNode, idx);
         });
         this.flush();
         this._insertChildren();
@@ -1443,4 +1443,4 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
   qx.html.Node.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Node.js.map?dt=1726089046523
+//# sourceMappingURL=Node.js.map?dt=1729101232685

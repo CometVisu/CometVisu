@@ -51,7 +51,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     members: {
       process: function process() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var cfg, keyInfo, parent;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -83,4 +83,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.config.Delete.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Delete.js.map?dt=1726089065626
+//# sourceMappingURL=Delete.js.map?dt=1729101251971

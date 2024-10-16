@@ -58,7 +58,7 @@
        * The next tests whether the generator optimized an 'if' statement, so that
        * only the 'then' branch made it into the optimized code.
        */
-      "test If 'if' statement is pruned by the generator": function testIfIfStatementIsPrunedByTheGenerator() {
+      "test If 'if' statement is pruned by the generator": function test_If_If_statement_is_pruned_by_the_generator() {
         var a = 0;
         /*
          * "qx.test.bool_true" and "qx.test.bool_false" are custom environment
@@ -87,7 +87,7 @@
         // or wrong optimization.
         this.assertEquals(1, a);
       },
-      "tearDown If 'if' statement is pruned by the generator": function tearDownIfIfStatementIsPrunedByTheGenerator() {
+      "tearDown If 'if' statement is pruned by the generator": function tearDown_If_If_statement_is_pruned_by_the_generator() {
         qx.core.Environment.getChecks()["qx.test.bool_true"] = function () {
           return true;
         };
@@ -98,7 +98,7 @@
        * In the next test, we apply the same trick as above, to check that a .select
        * expression has been optimized.
        */
-      "test If 'select' call is pruned by the generator": function testIfSelectCallIsPrunedByTheGenerator() {
+      "test If 'select' call is pruned by the generator": function test_If_Select_call_is_pruned_by_the_generator() {
         // Fake "qx.test.bool_true" to be false at run time.
         qx.core.Environment.getChecks()["qx.test.bool_true"] = function () {
           return false;
@@ -110,7 +110,7 @@
         });
         this.assertEquals(1, a);
       },
-      "tearDown If 'select' call is pruned by the generator": function tearDownIfSelectCallIsPrunedByTheGenerator() {
+      "tearDown If 'select' call is pruned by the generator": function tearDown_If_Select_call_is_pruned_by_the_generator() {
         qx.core.Environment.getChecks()["qx.test.bool_true"] = function () {
           return true;
         };
@@ -120,7 +120,7 @@
        *
        * Check if a simple .get call is optimized.
        */
-      "test If simple 'get' call is pruned by the generator": function testIfSimpleGetCallIsPrunedByTheGenerator() {
+      "test If simple 'get' call is pruned by the generator": function test_If_simple_Get_call_is_pruned_by_the_generator() {
         // Fake "qx.test.bool_true" to be false at run time.
         qx.core.Environment.getChecks()["qx.test.bool_true"] = function () {
           return false;
@@ -129,7 +129,7 @@
         var a = qx.core.Environment.get("qx.test.bool_true");
         this.assertEquals(true, a);
       },
-      "tearDown If simple 'get' call is pruned by the generator": function tearDownIfSimpleGetCallIsPrunedByTheGenerator() {
+      "tearDown If simple 'get' call is pruned by the generator": function tearDown_If_simple_Get_call_is_pruned_by_the_generator() {
         qx.core.Environment.getChecks()["qx.test.bool_true"] = function () {
           return true;
         };
@@ -139,4 +139,4 @@
   qx.test.toolchain.VariantOptimization.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=VariantOptimization.js.map?dt=1726089057053
+//# sourceMappingURL=VariantOptimization.js.map?dt=1729101243612

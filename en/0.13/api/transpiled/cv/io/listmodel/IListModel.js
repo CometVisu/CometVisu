@@ -44,7 +44,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     */
     members: {
       refresh: function refresh() {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -67,4 +67,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.io.listmodel.IListModel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IListModel.js.map?dt=1726089026168
+//# sourceMappingURL=IListModel.js.map?dt=1729101211514

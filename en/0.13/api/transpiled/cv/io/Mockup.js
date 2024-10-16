@@ -97,6 +97,17 @@
       }
     },
     /*
+    ***********************************************
+      PROPERTIES
+    ***********************************************
+    */
+    properties: {
+      connected: {
+        init: true,
+        refine: true
+      }
+    },
+    /*
     ******************************************************
       MEMBERS
     ******************************************************
@@ -264,4 +275,4 @@
   cv.io.Mockup.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Mockup.js.map?dt=1726089086737
+//# sourceMappingURL=Mockup.js.map?dt=1729101272759

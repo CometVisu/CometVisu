@@ -157,7 +157,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       transform: function transform() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var src, babelConfig, options, plugins, config, result, cycleCount, prettierConfig, prettyCode, outname;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -438,4 +438,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.Es6ify.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Es6ify.js.map?dt=1726089067523
+//# sourceMappingURL=Es6ify.js.map?dt=1729101253797

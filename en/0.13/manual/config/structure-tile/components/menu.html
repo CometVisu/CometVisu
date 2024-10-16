@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu &mdash; CometVisu</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
+
+  
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/structure-tile/components/menu.html"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Page" href="page.html" />
+    <link rel="prev" title="State notifications" href="../elements/state-notification.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Usage of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Configuration of the CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">The CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Graphical editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Hidden configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#pure-structure">Pure-structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#tile-structure">Tile-structure</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Basic structure</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../index.html#meta-section">Meta section</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#navigation-page-structure">Navigation / Page structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#define-own-widgets">Define own widgets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Configuration of the CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Basic structure</a></li>
+      <li class="breadcrumb-item active">Menu</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<section id="menu">
+<span id="tile-component-menu"></span><h1>Menu<a class="headerlink" href="#menu" title="Link to this heading"></a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Author</strong>: Tobias Bräutigam</div>
+<div class="line"><strong>Available since</strong>: 2022</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<p>This component creates a navigation menu from a model. Currently the following models are available:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pages</span></code></p></td>
+<td><p><a class="reference internal" href="#tile-nav-menu"><span class="std std-ref">Navigation menu from page structure</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">menuItems</span></code></p></td>
+<td><p><a class="reference internal" href="#tile-item-menu"><span class="std std-ref">Menu from single menu items</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="navigation-menu-from-page-structure">
+<span id="tile-nav-menu"></span><h2>Navigation menu from page structure<a class="headerlink" href="#navigation-menu-from-page-structure" title="Link to this heading"></a></h2>
+<figure class="align-default" id="id1">
+<img alt="../../../_images/tile-nav-menu.png" src="../../../_images/tile-nav-menu.png" />
+<figcaption>
+<p><span class="caption-text">Navigation menu from page structure</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2">
+<img alt="Menu on small screens, closed" src="../../../_images/tile-nav-menu-mobile-closed.png" />
+<figcaption>
+<p><span class="caption-text">Menu on small screens, closed</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3">
+<img alt="Menu on small screens, opened" src="../../../_images/tile-nav-menu-mobile-open.png" />
+<figcaption>
+<p><span class="caption-text">Menu on small screens, opened</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
+<span class="w">    </span><span class="nt">&lt;nav&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-menu</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;pages&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/nav&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+<span class="nt">&lt;main&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;fg&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Ground floor&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;dr&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Dining room&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;lr&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Living room&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;ki&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Kitchen&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;bath&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bathroom&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-page&gt;</span>
+<span class="w">     </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;ff&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;First floor&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;br&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bedroom&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;c1&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Child 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;c2&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Child 2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;bathFf&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bathroom&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-page&gt;</span>
+<span class="nt">&lt;/main&gt;</span>
+</pre></div>
+</div>
+<p>There are different ways to display the menu, controlled by the <code class="docutils literal notranslate"><span class="pre">appearance</span></code> attribute.
+The possible values are</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type of representation</p></th>
+<th class="head"><p>Explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>text</p></td>
+<td><p>Default, focus is on the page name, the icon is displayed next to the name in the same size.</p></td>
+</tr>
+<tr class="row-odd"><td><p>icons</p></td>
+<td><p>Focus is on the icon, large icon and smaller page name below. Requires an icon for each page on the top navigation level.</p></td>
+</tr>
+<tr class="row-even"><td><p>dock</p></td>
+<td><p>Only possible in the <cite>&lt;footer&gt;</cite>, appearance like “icons” but the menu is displayed in the center above the page content.</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-default" id="id4">
+<img alt="Icons" src="../../../_images/tile-nav-menu-icons.png" />
+<figcaption>
+<p><span class="caption-text">Icons</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
+<span class="w">      </span><span class="nt">&lt;nav&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-menu</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;pages&quot;</span><span class="w"> </span><span class="na">appearance=</span><span class="s">&quot;icons&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/nav&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/header&gt;</span>
+<span class="w">  </span><span class="nt">&lt;main&gt;</span>
+<span class="w">      </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;gf&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Ground floor&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-control_building_modern02_okg_eg&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;dr&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Dining room&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;lr&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Living room&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;ki&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Kitchen&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;bath&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bathroom&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/cv-page&gt;</span>
+<span class="w">       </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;ff&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;First floor&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-control_building_modern02_okg_og&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;br&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bedroom&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;c1&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Child 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;c2&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Child 2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;bathFf&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bathroom&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/cv-page&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/main&gt;</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id5">
+<img alt="Dock in footer" src="../../../_images/tile-nav-menu-dock.png" />
+<figcaption>
+<p><span class="caption-text">Dock in footer</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;main&gt;</span>
+<span class="w">      </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;gf&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Ground floor&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-control_building_modern02_okg_eg&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;dr&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Dining room&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;lr&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Living room&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;ki&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Kitchen&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;bath&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bathroom&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/cv-page&gt;</span>
+<span class="w">       </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;ff&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;First floor&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;knxuf-control_building_modern02_okg_og&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;br&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bedroom&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;c1&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Child 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;c2&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Child 2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;bathFf&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bathroom&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/cv-page&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/main&gt;</span>
+<span class="w">  </span><span class="nt">&lt;footer&gt;</span>
+<span class="w">      </span><span class="nt">&lt;nav&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-menu</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;pages&quot;</span><span class="w"> </span><span class="na">appearance=</span><span class="s">&quot;dock&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/nav&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/footer&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="menu-from-single-menu-items">
+<span id="tile-item-menu"></span><h2>Menu from single menu items<a class="headerlink" href="#menu-from-single-menu-items" title="Link to this heading"></a></h2>
+<p>The following example adds a menu with two items to a tile. This provides the possibility to add additional settings to a tile.
+The first menu entry opens a popup (which is not further defined in this example), the second acts as a switch.</p>
+<figure class="align-default" id="id6">
+<img alt="Tile with menu button" src="../../../_images/tile-context-menu-closed.png" />
+<figcaption>
+<p><span class="caption-text">Tile with menu button</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id7">
+<img alt="Menu opened" src="../../../_images/tile-context-menu-open.png" />
+<figcaption>
+<p><span class="caption-text">Menu opened</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-menu</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;menuItems&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-menu-item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Favorites&quot;</span><span class="w"> </span><span class="na">action=</span><span class="s">&quot;popup&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;ri-star-line&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;cv-popup</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Favorites&quot;</span><span class="w"> </span><span class="na">modal=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/cv-menu-item&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-menu-item</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Mute&quot;</span><span class="w"> </span><span class="na">action=</span><span class="s">&quot;toggleState&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;ri-volume-mute-line&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/cv-menu-item&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-menu&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="allowed-attributes">
+<h2>Allowed attributes<a class="headerlink" href="#allowed-attributes" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="4"><p>cv-menu</p></td>
+<td><p>model</p></td>
+<td><p><em>pages</em> or <em>menuItems</em></p></td>
+<td><p>Data-model this menu is generated from.</p></td>
+</tr>
+<tr class="row-even"><td><p>appearance</p></td>
+<td><p><em>text</em>, <em>icons</em> or <em>dock</em></p></td>
+<td><p>Appearance of the menu.</p></td>
+</tr>
+<tr class="row-odd"><td><p>depth</p></td>
+<td><p>integer</p></td>
+<td><p>Depth of the menu. Value ‘-1’ (default) includes all pages, ‘0’ only for pages on the first level, and so on.</p></td>
+</tr>
+<tr class="row-even"><td><p>show-labels</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Controls the label visibility.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
+<h2>Allowed child elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Link to this heading"></a></h2>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="3"><dl class="simple">
+<dt>cv-menu</dt><dd><ul class="simple">
+<li><p>cv-menu-item</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>name</p></td>
+<td><p>string</p></td>
+<td><p>Name of the menu entry.</p></td>
+</tr>
+<tr class="row-even"><td><p>icon</p></td>
+<td><p>string</p></td>
+<td><p>Icon of the menu entry.</p></td>
+</tr>
+<tr class="row-odd"><td><p>action</p></td>
+<td><p><em>popup</em> or <em>toggleState</em></p></td>
+<td><p>The action that is executed when this menu item has been clicked.</p></td>
+</tr>
+<tr class="row-even"><td rowspan="8"><dl class="simple">
+<dt>cv-menu</dt><dd><ul class="simple">
+<li><p>cv-menu-item</p></li>
+<li><p>cv-address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p><abbr title="mandatory">transform</abbr></p></td>
+<td><p>string</p></td>
+<td><p>Transformation of the bus system value to be shown.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
+<td><p>“disable” deactivates the communication, “read” will only fetch data from the backend, “write” will only write to it and an address with “readwrite” will be both, read from and written to.</p></td>
+</tr>
+<tr class="row-even"><td><p>variant</p></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>format-pos</p></td>
+<td><p>decimal</p></td>
+<td><p>Position for format string when multiple addresses are used.</p></td>
+</tr>
+<tr class="row-even"><td><p>selector</p></td>
+<td><p>string</p></td>
+<td><p>Only MQTT: JSON selector</p></td>
+</tr>
+<tr class="row-odd"><td><p>qos</p></td>
+<td><p>decimal</p></td>
+<td><p>Only MQTT: QoS</p></td>
+</tr>
+<tr class="row-even"><td><p>retain</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: retain flag</p></td>
+</tr>
+<tr class="row-odd"><td><p>ignore-error</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: ignore decode errors.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-menu</dt><dd><ul class="simple">
+<li><p>cv-menu-item</p></li>
+<li><p>cv-address</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>string</p></td>
+<td><p>The GA (like: 12/0/7) for KNX-backends, the item name for openHAB-backend or the MQTT topic</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../elements/state-notification.html" class="btn btn-neutral float-left" title="State notifications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="page.html" class="btn btn-neutral float-right" title="Page" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <!--
+  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~
+  ~ This program is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU General Public License as published by the Free
+  ~ Software Foundation; either version 3 of the License, or (at your option)
+  ~ any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT
+  ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  ~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  ~ more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License along
+  ~ with this program; if not, write to the Free Software Foundation, Inc.,
+  ~ 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+  ~
+  -->
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+        <dd><a href="../../../../../0.10.2|0.10/manual">0.10.2|0.10</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.11.2|0.11/manual">0.11.2|0.11</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.12.6|0.12/manual">0.12.6|0.12</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a>
+        </dd>
+        
+      </dl>
+    </div>
+  </div>
+
+
+</body>
+</html>

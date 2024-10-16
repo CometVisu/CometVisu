@@ -98,4 +98,4 @@
   qx.ui.virtual.cell.Boolean.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Boolean.js.map?dt=1726089083620
+//# sourceMappingURL=Boolean.js.map?dt=1729101269755

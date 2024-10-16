@@ -70,7 +70,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       writeSourceCodeToStream: function writeSourceCodeToStream(ws) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var rs;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -96,7 +96,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getSourceMap: function getSourceMap() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -122,4 +122,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.meta.Javascript.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Javascript.js.map?dt=1726089070275
+//# sourceMappingURL=Javascript.js.map?dt=1729101256645

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1726088789845,
-  "lastModifiedIso": "2024-09-11T21:06:29.845Z",
+  "lastModified": 1729100955413,
+  "lastModifiedIso": "2024-10-16T17:49:15.413Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/Menu.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 944
     },
     "end": {
-      "line": 432,
+      "line": 446,
       "column": 3,
-      "index": 14740
+      "index": 15119
     }
   },
   "className": "cv.ui.structure.tile.components.Menu",
@@ -46,18 +46,21 @@
     ]
   },
   "superClass": "cv.ui.structure.tile.components.AbstractComponent",
+  "mixins": [
+    "cv.ui.structure.tile.MStringTransforms"
+  ],
   "properties": {
     "model": {
       "location": {
         "start": {
-          "line": 35,
+          "line": 36,
           "column": 4,
-          "index": 1209
+          "index": 1262
         },
         "end": {
-          "line": 38,
+          "line": 39,
           "column": 5,
-          "index": 1287
+          "index": 1340
         }
       },
       "json": {
@@ -73,14 +76,14 @@
     "appearance": {
       "location": {
         "start": {
-          "line": 39,
+          "line": 40,
           "column": 4,
-          "index": 1293
+          "index": 1346
         },
         "end": {
-          "line": 43,
+          "line": 44,
           "column": 5,
-          "index": 1404
+          "index": 1457
         }
       },
       "json": {
@@ -98,14 +101,14 @@
     "depth": {
       "location": {
         "start": {
-          "line": 45,
+          "line": 46,
           "column": 4,
-          "index": 1411
+          "index": 1464
         },
         "end": {
-          "line": 49,
+          "line": 50,
           "column": 5,
-          "index": 1529
+          "index": 1582
         }
       },
       "json": {
@@ -119,14 +122,14 @@
     "domReady": {
       "location": {
         "start": {
-          "line": 51,
+          "line": 52,
           "column": 4,
-          "index": 1536
+          "index": 1589
         },
         "end": {
-          "line": 55,
+          "line": 56,
           "column": 5,
-          "index": 1625
+          "index": 1678
         }
       },
       "json": {
@@ -140,19 +143,21 @@
     "showLabels": {
       "location": {
         "start": {
-          "line": 57,
+          "line": 58,
           "column": 4,
-          "index": 1632
+          "index": 1685
         },
         "end": {
-          "line": 60,
+          "line": 63,
           "column": 5,
-          "index": 1692
+          "index": 1812
         }
       },
       "json": {
         "check": "Boolean",
-        "init": true
+        "init": true,
+        "apply": "_applyShowLabels",
+        "transform": "_parseBoolean"
       },
       "jsdoc": null,
       "appearsIn": []
@@ -164,14 +169,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 69,
+          "line": 72,
           "column": 4,
-          "index": 1838
+          "index": 1958
         },
         "end": {
-          "line": 77,
+          "line": 80,
           "column": 5,
-          "index": 2092
+          "index": 2212
         }
       },
       "type": "function",
@@ -190,18 +195,41 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 79,
+          "line": 82,
           "column": 4,
-          "index": 2099
+          "index": 2219
         },
         "end": {
-          "line": 83,
+          "line": 86,
           "column": 5,
-          "index": 2189
+          "index": 2309
         }
       },
       "type": "function",
       "params": [],
+      "appearsIn": []
+    },
+    "_applyShowLabels": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 88,
+          "column": 4,
+          "index": 2316
+        },
+        "end": {
+          "line": 97,
+          "column": 5,
+          "index": 2553
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
       "appearsIn": []
     },
     "_onDomAppended": {
@@ -209,14 +237,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 85,
+          "line": 99,
           "column": 4,
-          "index": 2196
+          "index": 2560
         },
         "end": {
-          "line": 88,
+          "line": 102,
           "column": 5,
-          "index": 2337
+          "index": 2701
         }
       },
       "type": "function",
@@ -228,14 +256,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 90,
+          "line": 104,
           "column": 4,
-          "index": 2344
+          "index": 2708
         },
         "end": {
-          "line": 123,
+          "line": 137,
           "column": 5,
-          "index": 3707
+          "index": 4071
         }
       },
       "type": "function",
@@ -251,14 +279,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 125,
+          "line": 139,
           "column": 4,
-          "index": 3714
+          "index": 4078
         },
         "end": {
-          "line": 137,
+          "line": 151,
           "column": 5,
-          "index": 4179
+          "index": 4543
         }
       },
       "type": "function",
@@ -274,14 +302,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 139,
+          "line": 153,
           "column": 4,
-          "index": 4186
+          "index": 4550
         },
         "end": {
-          "line": 184,
+          "line": 198,
           "column": 5,
-          "index": 5889
+          "index": 6253
         }
       },
       "type": "function",
@@ -293,14 +321,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 186,
+          "line": 200,
           "column": 4,
-          "index": 5896
+          "index": 6260
         },
         "end": {
-          "line": 201,
+          "line": 215,
           "column": 5,
-          "index": 6582
+          "index": 6946
         }
       },
       "type": "function",
@@ -343,14 +371,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 207,
+          "line": 221,
           "column": 4,
-          "index": 6660
+          "index": 7024
         },
         "end": {
-          "line": 223,
+          "line": 237,
           "column": 5,
-          "index": 7416
+          "index": 7780
         }
       },
       "type": "function",
@@ -367,14 +395,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 225,
+          "line": 239,
           "column": 4,
-          "index": 7423
+          "index": 7787
         },
         "end": {
-          "line": 245,
+          "line": 259,
           "column": 5,
-          "index": 8052
+          "index": 8416
         }
       },
       "type": "function",
@@ -420,14 +448,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 252,
+          "line": 266,
           "column": 4,
-          "index": 8177
+          "index": 8541
         },
         "end": {
-          "line": 268,
+          "line": 282,
           "column": 5,
-          "index": 8944
+          "index": 9308
         }
       },
       "type": "function",
@@ -445,14 +473,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 270,
+          "line": 284,
           "column": 4,
-          "index": 8951
+          "index": 9315
         },
         "end": {
-          "line": 277,
+          "line": 291,
           "column": 5,
-          "index": 9339
+          "index": 9703
         }
       },
       "type": "function",
@@ -468,14 +496,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 279,
+          "line": 293,
           "column": 4,
-          "index": 9346
+          "index": 9710
         },
         "end": {
-          "line": 286,
+          "line": 300,
           "column": 5,
-          "index": 9741
+          "index": 10105
         }
       },
       "type": "function",
@@ -491,14 +519,14 @@
       "access": "private",
       "location": {
         "start": {
-          "line": 288,
+          "line": 302,
           "column": 4,
-          "index": 9748
+          "index": 10112
         },
         "end": {
-          "line": 382,
+          "line": 396,
           "column": 5,
-          "index": 13217
+          "index": 13581
         }
       },
       "type": "function",
@@ -523,14 +551,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 384,
+          "line": 398,
           "column": 4,
-          "index": 13224
+          "index": 13588
         },
         "end": {
-          "line": 405,
+          "line": 419,
           "column": 5,
-          "index": 14081
+          "index": 14445
         }
       },
       "type": "function",
@@ -540,6 +568,84 @@
         }
       ],
       "appearsIn": []
+    },
+    "_parseInt": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 35,
+          "column": 4,
+          "index": 1161
+        },
+        "end": {
+          "line": 40,
+          "column": 5,
+          "index": 1280
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MStringTransforms"
+      ],
+      "mixin": "cv.ui.structure.tile.MStringTransforms"
+    },
+    "_parseFloat": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 42,
+          "column": 4,
+          "index": 1287
+        },
+        "end": {
+          "line": 47,
+          "column": 5,
+          "index": 1406
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MStringTransforms"
+      ],
+      "mixin": "cv.ui.structure.tile.MStringTransforms"
+    },
+    "_parseBoolean": {
+      "jsdoc": null,
+      "access": "protected",
+      "location": {
+        "start": {
+          "line": 49,
+          "column": 4,
+          "index": 1413
+        },
+        "end": {
+          "line": 54,
+          "column": 5,
+          "index": 1533
+        }
+      },
+      "type": "function",
+      "params": [
+        {
+          "name": "val"
+        }
+      ],
+      "appearsIn": [
+        "cv.ui.structure.tile.MStringTransforms"
+      ],
+      "mixin": "cv.ui.structure.tile.MStringTransforms"
     }
   },
   "destruct": {
@@ -547,14 +653,14 @@
     "params": [],
     "location": {
       "start": {
-        "line": 413,
+        "line": 427,
         "column": 2,
-        "index": 14215
+        "index": 14579
       },
       "end": {
-        "line": 417,
+        "line": 431,
         "column": 3,
-        "index": 14426
+        "index": 14790
       }
     }
   },

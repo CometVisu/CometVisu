@@ -420,7 +420,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       preParse: function preParse(xml) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var theme, data;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -653,16 +653,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           }
         };
         var onEnd = function onEnd() {
-          finish();
+          _finish();
           if (refreshSpinner.classList.contains('visible')) {
             refreshSpinner.classList.remove('visible');
             location.reload();
           }
         };
-        var finish = function finish() {
+        var _finish = function finish() {
           eventSource.removeEventListener('touchmove', onMove);
           eventSource.removeEventListener('touchend', onEnd);
-          eventSource.removeEventListener('touchcancel', finish);
+          eventSource.removeEventListener('touchcancel', _finish);
         };
         eventSource.addEventListener('touchstart', function (ev) {
           startY = ev.touches[0].clientY;
@@ -670,7 +670,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           if (scrollContainer && scrollContainer.scrollTop === 0) {
             eventSource.addEventListener('touchmove', onMove);
             eventSource.addEventListener('touchend', onEnd);
-            eventSource.addEventListener('touchcancel', finish);
+            eventSource.addEventListener('touchcancel', _finish);
           }
         });
       },
@@ -792,7 +792,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
       }
     }]);
-  }( /*#__PURE__*/_wrapNativeSuper(HTMLElement));
+  }(/*#__PURE__*/_wrapNativeSuper(HTMLElement));
   window.QxConnector = QxConnector;
   var TemplatedElement = /*#__PURE__*/function (_QxConnector) {
     "use strict";
@@ -1038,4 +1038,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.Controller.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Controller.js.map?dt=1726089032762
+//# sourceMappingURL=Controller.js.map?dt=1729101218575

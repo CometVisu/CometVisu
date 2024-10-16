@@ -90,7 +90,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @Override
        */
       load: function load(asset) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var filename, fileInfo, dimensions;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -128,4 +128,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.ImageLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ImageLoader.js.map?dt=1726089068807
+//# sourceMappingURL=ImageLoader.js.map?dt=1729101255058

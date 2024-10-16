@@ -42,14 +42,14 @@
         this.__P_396_0.destroy();
         qx.test.ui.form.DateField.superclass.prototype.tearDown.call(this);
       },
-      "test: setting value sets date of chooser": function testSettingValueSetsDateOfChooser() {
+      "test: setting value sets date of chooser": function test_setting_value_sets_date_of_chooser() {
         var datefield = this.__P_396_0,
           chooser = datefield.getChildControl("list"),
           date = new Date();
         datefield.setValue(date);
         this.assertEquals(date, chooser.getValue());
       },
-      "test: choosing date fills in formatted date": function testChoosingDateFillsInFormattedDate() {
+      "test: choosing date fills in formatted date": function test_choosing_date_fills_in_formatted_date() {
         var datefield = this.__P_396_0,
           textfield = datefield.getChildControl("textfield"),
           chooser = datefield.getChildControl("list"),
@@ -72,4 +72,4 @@
   qx.test.ui.form.DateField.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DateField.js.map?dt=1726089058096
+//# sourceMappingURL=DateField.js.map?dt=1729101244631

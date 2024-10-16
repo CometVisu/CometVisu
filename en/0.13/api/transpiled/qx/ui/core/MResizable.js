@@ -503,4 +503,4 @@
   qx.ui.core.MResizable.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MResizable.js.map?dt=1726089073696
+//# sourceMappingURL=MResizable.js.map?dt=1729101259941

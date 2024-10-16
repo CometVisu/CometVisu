@@ -213,7 +213,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       waitForPendingEvents: function waitForPendingEvents() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var promise;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -362,4 +362,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.core.MEvent.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MEvent.js.map?dt=1726089040011
+//# sourceMappingURL=MEvent.js.map?dt=1729101225918

@@ -76,7 +76,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var runner, _yield$runner$runMigr, applied, pending;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -104,7 +104,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @override
        */
       checkMigrations: function checkMigrations() {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -119,4 +119,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Migrate.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Migrate.js.map?dt=1726089064969
+//# sourceMappingURL=Migrate.js.map?dt=1729101251332

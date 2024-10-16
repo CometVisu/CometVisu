@@ -106,7 +106,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       loadDatabase: function loadDatabase() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -133,7 +133,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       saveDatabase: function saveDatabase() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -272,7 +272,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       findAllResources: function findAllResources() {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
           var t, db;
           return _regeneratorRuntime().wrap(function _callee8$(_context8) {
             while (1) switch (_context8.prev = _context8.next) {
@@ -286,8 +286,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 _this4.__P_495_6 = null;
                 _this4.__P_495_7 = {};
                 _context8.next = 8;
-                return qx.Promise.all(t.__P_495_0.getLibraries().map( /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(library) {
+                return qx.Promise.all(t.__P_495_0.getLibraries().map(/*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(library) {
                     var resources, unconfirmed, relFile, scanResources;
                     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
                       while (1) switch (_context6.prev = _context6.next) {
@@ -301,7 +301,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                             unconfirmed[relFile] = true;
                           }
                           scanResources = /*#__PURE__*/function () {
-                            var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(resourcePath) {
+                            var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(resourcePath) {
                               var rootDir;
                               return _regeneratorRuntime().wrap(function _callee4$(_context4) {
                                 while (1) switch (_context4.prev = _context4.next) {
@@ -310,7 +310,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                                     rootDir = path.join(library.getRootDir(), library.get(resourcePath));
                                     _context4.next = 3;
                                     return qx.tool.utils.files.Utils.findAllFiles(rootDir, /*#__PURE__*/function () {
-                                      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(filename) {
+                                      var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(filename) {
                                         var relFile, fileInfo, asset;
                                         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                                           while (1) switch (_context3.prev = _context3.next) {
@@ -355,8 +355,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           return scanResources("themePath");
                         case 9:
                           _context6.next = 11;
-                          return qx.Promise.all(Object.keys(unconfirmed).map( /*#__PURE__*/function () {
-                            var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(filename) {
+                          return qx.Promise.all(Object.keys(unconfirmed).map(/*#__PURE__*/function () {
+                            var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(filename) {
                               var fileInfo, stat;
                               return _regeneratorRuntime().wrap(function _callee5$(_context5) {
                                 while (1) switch (_context5.prev = _context5.next) {
@@ -400,7 +400,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 8:
                 _context8.next = 10;
                 return qx.tool.utils.Promisify.poolEachOf(Object.values(_this4.__P_495_7), 10, /*#__PURE__*/function () {
-                  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(asset) {
+                  var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7(asset) {
                     var fileInfo, altPath, lib, otherAsset, dependsOn;
                     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
                       while (1) switch (_context7.prev = _context7.next) {
@@ -599,4 +599,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1726089068962
+//# sourceMappingURL=Manager.js.map?dt=1729101255220

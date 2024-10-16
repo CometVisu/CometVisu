@@ -42,18 +42,18 @@
     extend: qx.dev.unit.TestCase,
     include: [qx.dev.unit.MMock],
     members: {
-      "test trim()": function testTrim() {
+      "test trim()": function test_trim() {
         this.assertEquals("y", "   y".trim());
         this.assertEquals("y", "y   ".trim());
         this.assertEquals("y", " y  ".trim());
       },
-      "test startsWith()": function testStartsWith() {
+      "test startsWith()": function test_startsWith() {
         var str = "To be, or not to be, that is the question.";
         this.assertTrue(str.startsWith("To be")); // true
         this.assertFalse(str.startsWith("not to be")); // false
         this.assertTrue(str.startsWith("not to be", 10)); // true
       },
-      "test endsWith()": function testEndsWith() {
+      "test endsWith()": function test_endsWith() {
         var str = "To be, or not to be, that is the question.";
         this.assertTrue(str.endsWith("question.")); // true
         this.assertFalse(str.endsWith("to be")); // false
@@ -78,4 +78,4 @@
   qx.test.lang.normalize.String.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=String.js.map?dt=1726089055374
+//# sourceMappingURL=String.js.map?dt=1729101241892

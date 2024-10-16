@@ -152,10 +152,10 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
         }
         _inherits(_class2, _HTMLElement);
         return _createClass(_class2);
-      }( /*#__PURE__*/_wrapNativeSuper(HTMLElement)));
+      }(/*#__PURE__*/_wrapNativeSuper(HTMLElement)));
     }
   });
   cv.ui.structure.tile.widgets.Page.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Page.js.map?dt=1726089034991
+//# sourceMappingURL=Page.js.map?dt=1729101220754

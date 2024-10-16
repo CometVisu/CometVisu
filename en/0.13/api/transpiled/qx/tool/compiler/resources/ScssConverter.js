@@ -73,7 +73,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       convert: function convert(target, asset, srcFilename, destFilename, isThemeFile) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var copyFilename, scssFile;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -107,7 +107,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * does not support relative `url()` paths and automatically has Qooxdoo SASS built in.
        */
       legacyMobileSassConvert: function legacyMobileSassConvert(target, asset, srcFilename, destFilename) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var copyFilename, qooxdooPath, data, sassOptions, result;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -187,4 +187,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.ScssConverter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScssConverter.js.map?dt=1726089069174
+//# sourceMappingURL=ScssConverter.js.map?dt=1729101255448

@@ -104,8 +104,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     statics: {
       ChartCounter: 0,
       DEFAULT_ASPECT_RATIO: 2.0416666666666665,
-      JS_LOADED: new Promise( /*#__PURE__*/function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(resolve, reject) {
+      JS_LOADED: new Promise(/*#__PURE__*/function () {
+        var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(resolve, reject) {
           var check, timer, counter;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -250,7 +250,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _chartConf: null,
       _init: function _init() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var element, inBackground, title, span, seriesSelection, s, currentSeries, button, _span, i, popup, option, _iterator, _step, _s, svg, noToolTips, format, timeFormat, formatString, datasetSources, readAddresses;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -1717,4 +1717,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.tile.components.Chart.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Chart.js.map?dt=1726089033417
+//# sourceMappingURL=Chart.js.map?dt=1729101219204

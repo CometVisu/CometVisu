@@ -72,13 +72,13 @@
       //
       // "Plain" textarea
       //
-      "test: textarea set value": function testTextareaSetValue() {
+      "test: textarea set value": function test_textarea_set_value() {
         var textArea = this.__P_415_0;
         textArea.setValue("Affe");
         this.flush();
         this.assertEquals("Affe", textArea.getValue());
       },
-      "test: textarea set minimal line-height": function testTextareaSetMinimalLineHeight() {
+      "test: textarea set minimal line-height": function test_textarea_set_minimal_lineHeight() {
         var textArea = this.__P_415_0;
         this.flush();
         var heightInitial = textArea.getSizeHint().height;
@@ -91,7 +91,7 @@
       //
       // Auto-Size
       //
-      "test: textarea with autoSize grows when input would trigger scrollbar": function testTextareaWithAutoSizeGrowsWhenInputWouldTriggerScrollbar() {
+      "test: textarea with autoSize grows when input would trigger scrollbar": function test_textarea_with_autoSize_grows_when_input_would_trigger_scrollbar() {
         this.require(["noBuggyIe"]);
         var textArea = this.__P_415_0;
         textArea.setAutoSize(true);
@@ -107,7 +107,7 @@
         var msg = "Widget height must increase (was: " + heightSmall + " is: " + heightTall + ")";
         this.assert(heightTall > heightSmall, msg);
       },
-      "test: textarea with autoSize shrinks when removal would hide scrollbar": function testTextareaWithAutoSizeShrinksWhenRemovalWouldHideScrollbar() {
+      "test: textarea with autoSize shrinks when removal would hide scrollbar": function test_textarea_with_autoSize_shrinks_when_removal_would_hide_scrollbar() {
         this.require(["noBuggyIe"]);
         var textArea = this.__P_415_0;
         textArea.setAutoSize(true);
@@ -127,7 +127,7 @@
         var msg = "Widget height must decrease (was: " + heightTall + " is: " + heightShrink + ")";
         this.assert(heightShrink < heightTall, msg);
       },
-      "test: textarea with autoSize does not shrink below original height": function testTextareaWithAutoSizeDoesNotShrinkBelowOriginalHeight() {
+      "test: textarea with autoSize does not shrink below original height": function test_textarea_with_autoSize_does_not_shrink_below_original_height() {
         this.require(["noBuggyIe"]);
         var textArea = this.__P_415_0;
         textArea.setAutoSize(true);
@@ -143,7 +143,7 @@
         var msg = "Widget height must not shrink below original height (is: " + heightShrink + " original: " + originalHeight + ")";
         this.assert(!(heightShrink < originalHeight), msg);
       },
-      "test: textarea with autoSize shows scroll-bar when above maxHeight": function testTextareaWithAutoSizeShowsScrollBarWhenAboveMaxHeight() {
+      "test: textarea with autoSize shows scroll-bar when above maxHeight": function test_textarea_with_autoSize_shows_scrollBar_when_above_maxHeight() {
         this.require(["noBuggyIe"]);
         var textArea = this.__P_415_0;
         textArea.set({
@@ -159,7 +159,7 @@
         var overflow = textArea.getContentElement().getStyle("overflowY");
         this.assertEquals("auto", overflow);
       },
-      "test: textarea with autoSize shows scroll-bar when finally above maxHeight": function testTextareaWithAutoSizeShowsScrollBarWhenFinallyAboveMaxHeight() {
+      "test: textarea with autoSize shows scroll-bar when finally above maxHeight": function test_textarea_with_autoSize_shows_scrollBar_when_finally_above_maxHeight() {
         this.require(["noBuggyIe"]);
         var textArea = this.__P_415_0;
         textArea.set({
@@ -178,7 +178,7 @@
         var overflow = textArea.getContentElement().getStyle("overflowY");
         this.assertEquals("auto", overflow);
       },
-      "test: textarea with autoSize hides scroll-bar when finally below maxHeight": function testTextareaWithAutoSizeHidesScrollBarWhenFinallyBelowMaxHeight() {
+      "test: textarea with autoSize hides scroll-bar when finally below maxHeight": function test_textarea_with_autoSize_hides_scrollBar_when_finally_below_maxHeight() {
         this.require(["noBuggyIe"]);
         var textArea = this.__P_415_0;
         textArea.set({
@@ -197,7 +197,7 @@
         var overflow = textArea.getContentElement().getStyle("overflowY");
         this.assertEquals("hidden", overflow);
       },
-      "test: textarea with autoSize respects initial value": function testTextareaWithAutoSizeRespectsInitialValue() {
+      "test: textarea with autoSize respects initial value": function test_textarea_with_autoSize_respects_initial_value() {
         this.require(["noBuggyIe"]);
         var textArea = this.__P_415_0;
         textArea.set({
@@ -219,7 +219,7 @@
         this.assert(heightValue > heightNoValue, msg);
         textAreaNoValue.destroy();
       },
-      "test: textarea with autoSize respects initial wrap": function testTextareaWithAutoSizeRespectsInitialWrap() {
+      "test: textarea with autoSize respects initial wrap": function test_textarea_with_autoSize_respects_initial_wrap() {
         this.require(["noBuggyIe"]);
         var textArea = this.__P_415_0;
         textArea.set({
@@ -243,7 +243,7 @@
         var heightFinal = textArea.getBounds().height;
         this.assertEquals(heightInitial, heightFinal);
       },
-      "test: textarea with autoSize shrinks when long line is unwrapped": function testTextareaWithAutoSizeShrinksWhenLongLineIsUnwrapped() {
+      "test: textarea with autoSize shrinks when long line is unwrapped": function test_textarea_with_autoSize_shrinks_when_long_line_is_unwrapped() {
         this.require(["noBuggyIe"]);
         if (!this.__P_415_2()) {
           this.skip();
@@ -266,7 +266,7 @@
         this.assertNotEquals(wrapHeight, noWrapHeight, msg);
         this.assert(noWrapHeight < wrapHeight, msg);
       },
-      "test: textarea with autoSize grows when long line is wrapped": function testTextareaWithAutoSizeGrowsWhenLongLineIsWrapped() {
+      "test: textarea with autoSize grows when long line is wrapped": function test_textarea_with_autoSize_grows_when_long_line_is_wrapped() {
         this.require(["noBuggyIe"]);
         if (!this.__P_415_2()) {
           this.skip();
@@ -331,4 +331,4 @@
   qx.test.ui.form.TextArea.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TextArea.js.map?dt=1726089058785
+//# sourceMappingURL=TextArea.js.map?dt=1729101245302

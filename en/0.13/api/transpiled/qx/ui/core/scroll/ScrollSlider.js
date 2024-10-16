@@ -80,4 +80,4 @@
   qx.ui.core.scroll.ScrollSlider.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollSlider.js.map?dt=1726089074405
+//# sourceMappingURL=ScrollSlider.js.map?dt=1729101260652

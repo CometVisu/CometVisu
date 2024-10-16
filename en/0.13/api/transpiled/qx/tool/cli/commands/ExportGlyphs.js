@@ -59,7 +59,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var _font$GSUB;
           var filename, font, glyphs, ligatureName, lookupList, lookupListIndexes;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -168,4 +168,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.ExportGlyphs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ExportGlyphs.js.map?dt=1726089064811
+//# sourceMappingURL=ExportGlyphs.js.map?dt=1729101251181

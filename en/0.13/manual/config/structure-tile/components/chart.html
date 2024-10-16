@@ -1,0 +1,543 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chart &mdash; CometVisu</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
+
+  
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/structure-tile/components/chart.html"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Color" href="color.html" />
+    <link rel="prev" title="List" href="list.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Usage of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Configuration of the CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">The CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Graphical editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Hidden configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#pure-structure">Pure-structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#tile-structure">Tile-structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html">Basic structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#define-own-widgets">Define own widgets</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#components">Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Configuration of the CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Basic structure</a></li>
+      <li class="breadcrumb-item active">Chart</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<section id="chart">
+<span id="tile-component-chart"></span><h1>Chart<a class="headerlink" href="#chart" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>The chart element allows the visualization of historical values as a diagram.
+For this, the chart element must contain at least one <code class="docutils literal notranslate"><span class="pre">&lt;dataset&gt;</span></code> child element.
+For each <code class="docutils literal notranslate"><span class="pre">&lt;dataset&gt;</span></code> a line is drawn in the chart.</p>
+<figure class="align-default">
+<img alt="../../../_images/cv-chart-temp.png" src="../../../_images/cv-chart-temp.png" />
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Living room&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;day&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;line&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Temperature_FF_Living&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-chart&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
+<p>The example shows the temperature curve of the last 24 hours, the exact, formatted temperature value for a point in the
+chart is displayed as a tooltip when hovering over the chart.
+In order for the chart to reach a certain size, a tile with double width <code class="docutils literal notranslate"><span class="pre">&lt;cv-tile</span> <span class="pre">size=&quot;2x1&quot;&gt;</span></code> is used here and the
+chart itself should fill the entire tile <code class="docutils literal notranslate"><span class="pre">&lt;cv-chart</span> <span class="pre">...</span> <span class="pre">colspan=&quot;3&quot;</span> <span class="pre">rowspan=&quot;3&quot;&gt;</span></code>.</p>
+<section id="configuring-the-data-source">
+<h3>Configuring the data source<a class="headerlink" href="#configuring-the-data-source" title="Link to this heading"></a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">src</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">dataset</span></code> element, a URL is specified that defines the data source. So far
+openHAB (<a class="reference external" href="https://www.openhab.org/docs/configuration/persistence.html">Persistence</a>), InfluxDB and RRD are supported as data sources.</p>
+<p><strong>configuring an openHAB-source</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">openhab://&lt;Item-Name&gt;</span></code> where &lt;Item-Name&gt; can be any item name in openHAB for which historical data is recorded.
+It is also possible to specify a specific persistence service if you use multiple:
+<code class="docutils literal notranslate"><span class="pre">openhab://&lt;service-id&gt;&#64;&lt;Item-Name&gt;</span></code>, if you do not specify this, the default persistence service configured in openHAB is used.</p>
+<p><strong>configuring einer InfluxDB-source</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">flux://&lt;organization&gt;&#64;&lt;bucket&gt;/&lt;measurement&gt;/&lt;field&gt;</span></code> Optional parameters for the
+<a class="reference external" href="https://docs.influxdata.com/flux/v0.x/stdlib/universe/aggregatewindow/">aggregationWindow function</a> can be added as
+query parameters. These require the prefix <code class="docutils literal notranslate"><span class="pre">ag-</span></code>. Example:
+<code class="docutils literal notranslate"><span class="pre">flux://cometvisu&#64;cv-bucket/Temperature/value?ag-every=1d&amp;amp;ag-fn=mean</span></code> would send the following Flux query to the
+database:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">from</span><span class="p">(</span><span class="n">bucket</span><span class="p">:</span><span class="s2">&quot;cv-bucket&quot;</span><span class="p">)</span>
+  <span class="o">|&gt;</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">start</span><span class="o">-</span><span class="n">time</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">end</span><span class="o">-</span><span class="n">time</span><span class="o">&gt;</span><span class="p">)</span>
+  <span class="o">|&gt;</span> <span class="nb">filter</span><span class="p">(</span><span class="n">fn</span><span class="p">:</span> <span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">_measurement</span> <span class="o">==</span> <span class="s2">&quot;Temperature&quot;</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="n">_field</span> <span class="o">==</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
+  <span class="o">|&gt;</span> <span class="n">aggregateWindow</span><span class="p">(</span><span class="n">every</span><span class="p">:</span> <span class="mi">1</span><span class="n">d</span><span class="p">,</span> <span class="n">fn</span><span class="p">:</span> <span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If only <code class="docutils literal notranslate"><span class="pre">ag-every</span></code> is specified, “mean” is taken as the default value for <code class="docutils literal notranslate"><span class="pre">ag-fn</span></code>. If only <code class="docutils literal notranslate"><span class="pre">ag-every</span></code> is specified,
+the values are automatically determined based on the <code class="docutils literal notranslate"><span class="pre">series</span></code> used by the chart.</p>
+<p>For more complex database queries, the code of the Flux query can also be specified directly as text content of the <code class="docutils literal notranslate"><span class="pre">&lt;dataset&gt;</span></code> element.
+In this case, only the organization and the note that the query was specified “inline” must be specified in the <code class="docutils literal notranslate"><span class="pre">src</span></code> attribute.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;flux://openhab@inline&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span>from(bucket:&quot;openhab&quot;)
+<span class="w">        </span>|&gt;<span class="w"> </span>range(start:<span class="w"> </span>-2d)
+<span class="w">        </span>|&gt;<span class="w"> </span>filter(fn:<span class="w"> </span>(r)<span class="w"> </span>=&gt;<span class="w"> </span>r._measurement<span class="w"> </span>==<span class="w"> </span>&quot;Counter&quot;<span class="w"> </span>and<span class="w"> </span>r._field<span class="w"> </span>==<span class="w"> </span>&quot;value&quot;)
+<span class="w">        </span>|&gt;<span class="w"> </span>aggregateWindow(every:<span class="w"> </span>1d,<span class="w"> </span>fn:<span class="w"> </span>last)
+<span class="w">        </span>|&gt;<span class="w"> </span>difference()
+<span class="nt">&lt;/dataset&gt;</span>
+</pre></div>
+</div>
+<p>With this query, the time range is set to the last 2 days (<code class="docutils literal notranslate"><span class="pre">range(start:</span> <span class="pre">-2d)</span></code>) and is therefore no longer variable and
+overwrites or deactivates the possibility to select other time series via <code class="docutils literal notranslate"><span class="pre">selection</span></code>. To use this feature, a placeholder
+must be inserted and the <code class="docutils literal notranslate"><span class="pre">aggregateWindow</span></code> must be omitted (this is automatically selected according to the selected time series).
+The upper query would look like this:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;flux://openhab@inline&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span>from(bucket:&quot;openhab&quot;)
+<span class="w">        </span>|&gt;<span class="w"> </span>range($$RANGE$$)
+<span class="w">        </span>|&gt;<span class="w"> </span>filter(fn:<span class="w"> </span>(r)<span class="w"> </span>=&gt;<span class="w"> </span>r._measurement<span class="w"> </span>==<span class="w"> </span>&quot;Counter&quot;<span class="w"> </span>and<span class="w"> </span>r._field<span class="w"> </span>==<span class="w"> </span>&quot;value&quot;)
+<span class="w">        </span>|&gt;<span class="w"> </span>difference()
+<span class="nt">&lt;/dataset&gt;</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Since the CometVisu itself cannot check whether the Flux code is correct, it is recommended to compile the query
+in the UI of the InfluxDB and then copy the working code.</p>
+</div>
+<p>The URI of the InfluxDB server and a token for authenticating the requests must be specified in the <a class="reference internal" href="../../hidden-config.html#hidden-config"><span class="std std-ref">hidden configurations</span></a>
+under the section “influx”. The following key-value entries are required in this section.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Key</p></td>
+<td><p>Value</p></td>
+</tr>
+<tr class="row-even"><td><p>uri</p></td>
+<td><p><cite>http://&lt;influx-server&gt;:8062</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p>token</p></td>
+<td><p><cite>API Token (can be generated in
+the influxdb-UI)</cite></p></td>
+</tr>
+<tr class="row-even"><td><p>config</p></td>
+<td><p>flux</p></td>
+</tr>
+</tbody>
+</table>
+<p>The values for “uri” and “token” must be adjusted accordingly, the value for “config” must be “flux” so that the communication can work correctly.</p>
+<p><strong>Configuring a RRD-source</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">rrd://&lt;filename-without-rrd&gt;</span></code> For the RRD data source, the file name without the “.rrd” at the end must be specified.
+Additional query parameters can be added:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ds</span></code>: Select one of the available Consolidation Functions of the RRDTools (<a class="reference external" href="http://rrdtool.org">http://rrdtool.org</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">res</span></code>: The default resolution for the data from the RRD file can be overridden with its own second value.</p></li>
+</ul>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">rrd://&lt;dateiname-ohne-rrd&gt;?ds=AVERAGE&amp;resolution=3600</span></code></p>
+</section>
+<section id="more-examples">
+<h3>More examples<a class="headerlink" href="#more-examples" title="Link to this heading"></a></h3>
+<p>It is also possible to display multiple lines in a chart and to color them differently.</p>
+<figure class="align-default" id="id1">
+<img alt="Two lines in one chart." src="../../../_images/cv-chart-pv.png" />
+<figcaption>
+<p><span class="caption-text">Two lines in one chart.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2">
+<img alt="Tooltip with single values." src="../../../_images/cv-chart-pv-tooltip.png" />
+<figcaption>
+<p><span class="caption-text">Tooltip with single values.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Power&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Grid withdrawal&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://PV_Energy_Today&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF9900&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Production&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
+<p>The red line shows the daily withdrawal from the power grid in kWh and the orange area shows the daily PV production in kWh.</p>
+<p>The chart element also offers the possibility to display a bar chart:</p>
+<figure class="align-default" id="id3">
+<img alt="Two bars in one chart." src="../../../_images/cv-chart-pv-bar.png" />
+<figcaption>
+<p><span class="caption-text">Two bars in one chart.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Strom&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Grid withdrawal&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;bar&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://PV_Energy_Today&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF9900&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Production&quot;</span><span class="w"> </span><span class="na">chart-type=</span><span class="s">&quot;bar&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
+<p>If you want to switch to other time series and navigate within the currently selected one, you can unlock these with
+the <code class="docutils literal notranslate"><span class="pre">selection</span></code> attribute. This can be filled with a comma-separated list of allowed time series, or simply with <code class="docutils literal notranslate"><span class="pre">all</span></code>.</p>
+<figure class="align-default" id="id4">
+<img alt="Time series selection." src="../../../_images/cv-chart-pv-nav.png" />
+<figcaption>
+<p><span class="caption-text">Time series selection.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id5">
+<img alt="Opened time series selection" src="../../../_images/cv-chart-pv-nav-open.png" />
+<figcaption>
+<p><span class="caption-text">Opened time series selection</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget</span><span class="w"> </span><span class="na">size=</span><span class="s">&quot;2x1&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-chart</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Power&quot;</span><span class="w"> </span><span class="na">selection=</span><span class="s">&quot;week,month,year&quot;</span><span class="w"> </span><span class="na">y-format=</span><span class="s">&quot;%.1f kWh&quot;</span><span class="w"> </span><span class="na">series=</span><span class="s">&quot;month&quot;</span><span class="w"> </span><span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">rowspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">x-format=</span><span class="s">&quot;%d. %b&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;dataset</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;openhab://Meter_Energy_Grid_Import_Today&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Grid withdrawal&quot;</span><span class="w"> </span><span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span><span class="w"> </span><span class="na">show-area=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+<span class="w">          </span><span class="nt">&lt;/cv-chart&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
+<section id="allowed-attributes">
+<h4>Allowed attributes<a class="headerlink" href="#allowed-attributes" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="16"><p>cv-chart</p></td>
+<td><p>title</p></td>
+<td><p>string</p></td>
+<td><p>Title of the chart.</p></td>
+</tr>
+<tr class="row-even"><td><p>y-format</p></td>
+<td><p>string</p></td>
+<td><p>Format of the y-axis.</p></td>
+</tr>
+<tr class="row-odd"><td><p>x-format</p></td>
+<td><p>string</p></td>
+<td><p>Format of the x-axis.</p></td>
+</tr>
+<tr class="row-even"><td><p>series</p></td>
+<td><p><em>hour</em>, <em>day</em>, <em>week</em>, <em>month</em> or <em>year</em></p></td>
+<td><p>Time span of the data.</p></td>
+</tr>
+<tr class="row-odd"><td><p>selection</p></td>
+<td><p>string</p></td>
+<td><p>Type of the chart element.</p></td>
+</tr>
+<tr class="row-even"><td><p>allow-fullscreen</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Allows showing the chart in fullscreen size.</p></td>
+</tr>
+<tr class="row-odd"><td><p>show-x-axis</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Show x-axis scale (default = true).</p></td>
+</tr>
+<tr class="row-even"><td><p>show-y-axis</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Show y-axis scale (default = true).</p></td>
+</tr>
+<tr class="row-odd"><td><p>refresh</p></td>
+<td><p>decimal</p></td>
+<td><p>Time interval in seconds this widget is being refreshed.</p></td>
+</tr>
+<tr class="row-even"><td><p>show-grid</p></td>
+<td><p><em>xy</em>, <em>x</em>, <em>y</em> or <em>false</em></p></td>
+<td><p>Show grid lines.</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Show the chart in the background of a tile.</p></td>
+</tr>
+<tr class="row-even"><td><p>min</p></td>
+<td><p>decimal</p></td>
+<td><p>Minimum value.</p></td>
+</tr>
+<tr class="row-odd"><td><p>max</p></td>
+<td><p>decimal</p></td>
+<td><p>Maximum value.</p></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> or <em>desktop</em></p></td>
+<td><p>Controls this element’s visibility by screen size.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
+</tr>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>string</p></td>
+<td><p>Custom CSS style rules for this widget.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
+<h4>Allowed child elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Link to this heading"></a></h4>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-chart</dt><dd><ul class="simple">
+<li><p>dataset</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>src</p></td>
+<td><p>anyURI</p></td>
+<td><p>Data source for this chart element</p></td>
+</tr>
+<tr class="row-even"><td><p>title</p></td>
+<td><p>string</p></td>
+<td><p>Title of the chart element.</p></td>
+</tr>
+<tr class="row-odd"><td><p>chart-type</p></td>
+<td><p><em>line</em> or <em>bar</em></p></td>
+<td><p>Type of the chart element.</p></td>
+</tr>
+<tr class="row-even"><td><p>curve</p></td>
+<td><p><em>linear</em>, <em>step</em> or <em>natural</em></p></td>
+<td><p>Type of curve interpolation for line charts.</p></td>
+</tr>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>string</p></td>
+<td><p>Color of the chart element.</p></td>
+</tr>
+<tr class="row-even"><td><p>show-area</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Fill the area below a line diagram.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>cv-chart</dt><dd><ul class="simple">
+<li><p>dataset</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="6"><dl class="simple">
+<dt>cv-chart</dt><dd><ul class="simple">
+<li><p>h-line</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>src</p></td>
+<td><p>string</p></td>
+<td><p>Data source for this line</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td></td>
+<td><p>Type of the chart element.</p></td>
+</tr>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>string</p></td>
+<td><p>Formatting of the value (printf syntax).</p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>string</p></td>
+<td><p>Color of the line.</p></td>
+</tr>
+<tr class="row-odd"><td><p>show-value</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Show value.</p></td>
+</tr>
+<tr class="row-even"><td><p>value-color</p></td>
+<td><p>string</p></td>
+<td><p>Color of the value.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="list.html" class="btn btn-neutral float-left" title="List" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="color.html" class="btn btn-neutral float-right" title="Color" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <!--
+  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~
+  ~ This program is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU General Public License as published by the Free
+  ~ Software Foundation; either version 3 of the License, or (at your option)
+  ~ any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT
+  ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  ~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  ~ more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License along
+  ~ with this program; if not, write to the Free Software Foundation, Inc.,
+  ~ 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+  ~
+  -->
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+        <dd><a href="../../../../../0.10.2|0.10/manual">0.10.2|0.10</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.11.2|0.11/manual">0.11.2|0.11</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.12.6|0.12/manual">0.12.6|0.12</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a>
+        </dd>
+        
+      </dl>
+    </div>
+  </div>
+
+
+</body>
+</html>

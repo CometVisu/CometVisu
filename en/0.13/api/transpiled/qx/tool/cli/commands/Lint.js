@@ -119,7 +119,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         return process;
       }(function () {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var files, i, helperFilePath, config, lintOptions, linter, fileConfig, report, _iterator, _step, r, outputFormat, formatter, s, maxDefaultFormatErrorCount;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -282,7 +282,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        */
       __P_467_1: function __P_467_1(data) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var result;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
@@ -293,8 +293,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
                 }
                 _context3.next = 4;
-                return qx.Promise.all(data.libraries.map( /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(dir) {
+                return qx.Promise.all(data.libraries.map(/*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(dir) {
                     var lib, s, libs;
                     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                       while (1) switch (_context2.prev = _context2.next) {
@@ -332,7 +332,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_467_0: function __P_467_0(files) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var fixParams, regex, replaceInFiles;
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
@@ -362,4 +362,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Lint.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Lint.js.map?dt=1726089064912
+//# sourceMappingURL=Lint.js.map?dt=1729101251278

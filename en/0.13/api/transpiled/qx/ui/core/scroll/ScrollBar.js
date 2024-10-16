@@ -410,4 +410,4 @@
   qx.ui.core.scroll.ScrollBar.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScrollBar.js.map?dt=1726089074348
+//# sourceMappingURL=ScrollBar.js.map?dt=1729101260595

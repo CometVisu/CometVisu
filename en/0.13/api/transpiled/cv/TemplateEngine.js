@@ -228,7 +228,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, this);
         }, this);
         return new Promise(function (resolve, reject) {
-          var timer = setTimeout(reject, 2000);
+          var timer = setTimeout(function () {
+            return reject(new Error('timeout loading parts'));
+          }, 2000);
           if (waitingFor.getLength() === 0) {
             clearTimeout(timer);
             resolve();
@@ -288,7 +290,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       parse: function parse() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var settings, rootNode, xml, predefinedDesign, design, baseUri, loader;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -536,4 +538,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.TemplateEngine.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TemplateEngine.js.map?dt=1726089087089
+//# sourceMappingURL=TemplateEngine.js.map?dt=1729101273105

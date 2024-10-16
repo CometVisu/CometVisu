@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="de" data-content_root="../../../">
 <head>
@@ -6,21 +8,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Konfiguration der Backend Verbindung &mdash; CometVisu</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=8073742d" />
 
   
     <link rel="canonical" href="https://www.cometvisu.org/CometVisu/de/0.13/manual/config/structure-tile/elements/backend.html"/>
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=245627df"></script>
-        <script src="../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="../../../_static/translations.js?v=70a09b52"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=245627df"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/translations.js?v=70a09b52"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../../genindex.html" />
     <link rel="search" title="Suche" href="../../../search.html" />
@@ -40,9 +38,6 @@
             CometVisu
               <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
           </a>
-              <div class="version">
-                0.13.0-dev
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
@@ -172,8 +167,8 @@ entspricht der Name dem Wert des <code class="docutils literal notranslate"><spa
 <span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;mqtt&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
-<p>In diesem Fall nutzen alle <code class="docutils literal notranslate"><span class="pre">cv-address</span></code>-Elemente ohne <code class="docutils literal notranslate"><span class="pre">name</span></code>-Attribut (oder mit <code class="docutils literal notranslate"><span class="pre">name=&quot;main&quot;</span></code> das default-Backend
-und alle <code class="docutils literal notranslate"><span class="pre">cv-address</span></code>-Elemente <code class="docutils literal notranslate"><span class="pre">name=&quot;mqtt&quot;</span></code>.</p>
+<p>In diesem Fall nutzen alle <code class="docutils literal notranslate"><span class="pre">cv-address</span></code>-Elemente ohne <code class="docutils literal notranslate"><span class="pre">name</span></code>-Attribut (oder mit <code class="docutils literal notranslate"><span class="pre">name=&quot;main&quot;</span></code>) das default-Backend
+und alle <code class="docutils literal notranslate"><span class="pre">cv-address</span></code>-Elemente mit <code class="docutils literal notranslate"><span class="pre">name=&quot;mqtt&quot;</span></code> das MQTT backend.</p>
 <section id="verbindung-zum-knxd-eibd">
 <h2>Verbindung zum KNXD / EIBD<a class="headerlink" href="#verbindung-zum-knxd-eibd" title="Link to this heading"></a></h2>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;knxd&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
@@ -254,7 +249,7 @@ werden und der Browser-Cache umgangen wird.</p>
 </section>
 <section id="seitennavigation">
 <h3>Seitennavigation<a class="headerlink" href="#seitennavigation" title="Link to this heading"></a></h3>
-<p>Ebenso bietet diese Backend eine Alternative zu den aus der Pure-Struktur bekannten Pagejumps, mit denen eine
+<p>Ebenso bietet dieses Backend eine Alternative zu den aus der Pure-Struktur bekannten Pagejumps, mit denen eine
 Navigation zu einer bestimmten Seite möglich ist.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-switch</span><span class="w"> </span><span class="na">styling=</span><span class="s">&quot;tile-button&quot;</span><span class="nt">&gt;</span>
 <span class="w">  </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;system&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;floorplan&quot;</span><span class="nt">&gt;</span>nav:current-page<span class="nt">&lt;/cv-address&gt;</span>

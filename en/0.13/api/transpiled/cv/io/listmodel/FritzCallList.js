@@ -103,7 +103,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       _init: function _init() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var url, response;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -148,7 +148,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       refresh: function refresh() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var model, url, response, data, itemList, _iterator, _step, item, childrenList, entry, _iterator2, _step2, child;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -244,4 +244,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.io.listmodel.FritzCallList.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=FritzCallList.js.map?dt=1726089026097
+//# sourceMappingURL=FritzCallList.js.map?dt=1729101211440

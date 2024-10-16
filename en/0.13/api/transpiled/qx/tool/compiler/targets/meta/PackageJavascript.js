@@ -68,7 +68,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       writeSourceCodeToStream: function writeSourceCodeToStream(ws) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var pkg, data, strip;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -100,8 +100,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 strip = new qx.tool.utils.Utils.StripSourceMapTransform();
                 strip.pipe(ws);
                 _context2.next = 9;
-                return new Promise( /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(resolve) {
+                return new Promise(/*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(resolve) {
                     var i, js;
                     return _regeneratorRuntime().wrap(function _callee$(_context) {
                       while (1) switch (_context.prev = _context.next) {
@@ -150,7 +150,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       writeToDisk: function writeToDisk() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var i;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
@@ -186,7 +186,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getSourceMap: function getSourceMap() {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
               case 0:
@@ -215,4 +215,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.meta.PackageJavascript.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PackageJavascript.js.map?dt=1726089070383
+//# sourceMappingURL=PackageJavascript.js.map?dt=1729101256758

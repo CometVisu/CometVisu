@@ -105,7 +105,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       make: function make() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -131,7 +131,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       eraseOutputDir: function eraseOutputDir() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var dir, pwd;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -208,4 +208,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.makers.Maker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Maker.js.map?dt=1726089068644
+//# sourceMappingURL=Maker.js.map?dt=1729101254903

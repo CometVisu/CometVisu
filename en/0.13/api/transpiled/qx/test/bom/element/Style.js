@@ -192,4 +192,4 @@
   qx.test.bom.element.Style.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Style.js.map?dt=1726089051044
+//# sourceMappingURL=Style.js.map?dt=1729101237429

@@ -80,4 +80,4 @@
   qx.ui.form.IColorForm.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IColorForm.js.map?dt=1726089075491
+//# sourceMappingURL=IColorForm.js.map?dt=1729101261749

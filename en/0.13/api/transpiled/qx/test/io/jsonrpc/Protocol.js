@@ -47,7 +47,7 @@
       this.parser = new qx.io.jsonrpc.protocol.Parser();
     },
     members: {
-      "test: JSON-RPC request message object": function testJSONRPCRequestMessageObject() {
+      "test: JSON-RPC request message object": function test_JSONRPC_request_message_object() {
         var message = new qx.io.jsonrpc.protocol.Request("foo", ["bar", 1, false]);
         var expected = {
           id: 1,
@@ -59,7 +59,7 @@
         // test parser
         this.assertDeepEquals(expected, this.parser.parse(JSON.stringify(expected)).toObject());
       },
-      "test: JSON-RPC request notification object": function testJSONRPCRequestNotificationObject() {
+      "test: JSON-RPC request notification object": function test_JSONRPC_request_notification_object() {
         var message = new qx.io.jsonrpc.protocol.Notification("foo", ["bar", 1, false]);
         var expected = {
           jsonrpc: "2.0",
@@ -70,7 +70,7 @@
         // test parser
         this.assertDeepEquals(expected, this.parser.parse(JSON.stringify(expected)).toObject());
       },
-      "test: JSON-RPC error object": function testJSONRPCErrorObject() {
+      "test: JSON-RPC error object": function test_JSONRPC_error_object() {
         var message = new qx.io.jsonrpc.protocol.Error(1, 5, "error!");
         var expected = {
           jsonrpc: "2.0",
@@ -84,7 +84,7 @@
         // test parser
         this.assertDeepEquals(expected, this.parser.parse(JSON.stringify(expected)).toObject());
       },
-      "test: JSON-RPC result object": function testJSONRPCResultObject() {
+      "test: JSON-RPC result object": function test_JSONRPC_result_object() {
         var message = new qx.io.jsonrpc.protocol.Error(1, 5, "error!");
         var expected = {
           jsonrpc: "2.0",
@@ -103,4 +103,4 @@
   qx.test.io.jsonrpc.Protocol.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Protocol.js.map?dt=1726089054493
+//# sourceMappingURL=Protocol.js.map?dt=1729101241004

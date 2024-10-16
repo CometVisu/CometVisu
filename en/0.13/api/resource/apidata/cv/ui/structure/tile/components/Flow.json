@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1726088789845,
-  "lastModifiedIso": "2024-09-11T21:06:29.845Z",
+  "lastModified": 1729100955413,
+  "lastModifiedIso": "2024-10-16T17:49:15.413Z",
   "classFilename": "../../source/class/cv/ui/structure/tile/components/Flow.js",
   "type": "class",
   "location": {
@@ -11,9 +11,9 @@
       "index": 946
     },
     "end": {
-      "line": 645,
+      "line": 650,
       "column": 3,
-      "index": 21054
+      "index": 21174
     }
   },
   "className": "cv.ui.structure.tile.components.Flow",
@@ -1071,9 +1071,9 @@
           "index": 16729
         },
         "end": {
-          "line": 594,
+          "line": 599,
           "column": 5,
-          "index": 19329
+          "index": 19449
         }
       },
       "type": "function",
@@ -1092,14 +1092,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 596,
+          "line": 601,
           "column": 4,
-          "index": 19336
+          "index": 19456
         },
         "end": {
-          "line": 621,
+          "line": 626,
           "column": 5,
-          "index": 20402
+          "index": 20522
         }
       },
       "type": "function",
@@ -1111,14 +1111,14 @@
       "access": "protected",
       "location": {
         "start": {
-          "line": 623,
+          "line": 628,
           "column": 4,
-          "index": 20409
+          "index": 20529
         },
         "end": {
-          "line": 630,
+          "line": 635,
           "column": 5,
-          "index": 20617
+          "index": 20737
         }
       },
       "type": "function",

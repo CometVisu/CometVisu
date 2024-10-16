@@ -425,7 +425,7 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
           }
           _inherits(ParseError, _SyntaxError);
           return _createClass(ParseError);
-        }( /*#__PURE__*/_wrapNativeSuper(SyntaxError));
+        }(/*#__PURE__*/_wrapNativeSuper(SyntaxError));
         throw new ParseError(message, source, line, column);
       }
     }
@@ -433,4 +433,4 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
   qx.tool.utils.json.Parser.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Parser.js.map?dt=1726089072264
+//# sourceMappingURL=Parser.js.map?dt=1729101258486

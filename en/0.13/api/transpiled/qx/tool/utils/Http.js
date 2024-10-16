@@ -53,7 +53,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {String} temporary filename
        */
       downloadToTempfile: function downloadToTempfile(url, contentTypeRegEx) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var tmpFilename;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -104,4 +104,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.utils.Http.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Http.js.map?dt=1726089071547
+//# sourceMappingURL=Http.js.map?dt=1729101257794

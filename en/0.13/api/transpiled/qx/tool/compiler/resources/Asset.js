@@ -151,7 +151,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       load: function load() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -169,7 +169,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       sync: function sync(target) {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var destFilename, srcFilename, doNotCopy, destStat, filenames, needsIt, dependsOn, lastTempFilename, rm;
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
@@ -208,7 +208,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _context4.next = 16;
                 return qx.tool.utils.Promisify.some(filenames, /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(filename) {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(filename) {
                     var srcStat;
                     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                       while (1) switch (_context2.prev = _context2.next) {
@@ -275,7 +275,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 36:
                 lastTempFilename = null;
                 qx.tool.utils.Promisify.each(_this3.__P_494_3, /*#__PURE__*/function () {
-                  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(converter, index) {
+                  var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(converter, index) {
                     var tmpSrc, tmpDest, tmpDependsOn;
                     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                       while (1) switch (_context3.prev = _context3.next) {
@@ -338,4 +338,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.Asset.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Asset.js.map?dt=1726089068749
+//# sourceMappingURL=Asset.js.map?dt=1729101255006

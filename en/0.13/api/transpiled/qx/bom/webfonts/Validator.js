@@ -245,7 +245,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           this.__P_160_5 = new Date().getTime();
           var fontExpr = "".concat(this.getFontStyle() || "normal", " ").concat(this.getFontWeight() || "normal", " 14px ").concat(this.getFontFamily());
           var loadImpl = /*#__PURE__*/function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+            var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
               return _regeneratorRuntime().wrap(function _callee$(_context) {
                 while (1) switch (_context.prev = _context.next) {
                   case 0:
@@ -318,7 +318,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       isValid: function isValid() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -479,4 +479,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.bom.webfonts.Validator.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Validator.js.map?dt=1726089039475
+//# sourceMappingURL=Validator.js.map?dt=1729101225368

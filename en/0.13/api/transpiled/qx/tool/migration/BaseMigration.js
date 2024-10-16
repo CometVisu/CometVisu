@@ -100,7 +100,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getQxVersion: function getQxVersion() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -175,7 +175,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       renameFilesUnlessDryRun: function renameFilesUnlessDryRun(fileList) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var dryRun, filesToRename, _iterator, _step, _step$value, newPath, oldPath, _iterator2, _step2, _step2$value, _newPath, _oldPath;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -263,7 +263,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<[]>}
        */
       checkFilesToRename: function checkFilesToRename(fileList) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var filesToRename, _iterator3, _step3, _step3$value, newPath, oldPath;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
@@ -326,7 +326,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<Boolean>}
        */
       checkFilesContain: function checkFilesContain(files, text) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var _iterator4, _step4, file;
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
@@ -392,7 +392,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       replaceInFilesUnlessDryRun: function replaceInFilesUnlessDryRun() {
         var _arguments = arguments,
           _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           var replaceInFilesArr, dryRun, _iterator5, _step5, replaceInFiles;
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
             while (1) switch (_context5.prev = _context5.next) {
@@ -470,7 +470,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       updateDependencyUnlessDryRun: function updateDependencyUnlessDryRun(manifestModel, dependencyName, semverRange) {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
           var oldRange;
           return _regeneratorRuntime().wrap(function _callee6$(_context6) {
             while (1) switch (_context6.prev = _context6.next) {
@@ -500,7 +500,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       updateQxDependencyUnlessDryRun: function updateQxDependencyUnlessDryRun(manifestModel) {
         var _this5 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
           var qxVersion, qxRange;
           return _regeneratorRuntime().wrap(function _callee7$(_context7) {
             while (1) switch (_context7.prev = _context7.next) {
@@ -533,7 +533,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       updateSchemaUnlessDryRun: function updateSchemaUnlessDryRun(configModel, schemaUri) {
         var _this6 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
           return _regeneratorRuntime().wrap(function _callee8$(_context8) {
             while (1) switch (_context8.prev = _context8.next) {
               case 0:
@@ -560,7 +560,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       upgradePackagesUnlessDryRun: function upgradePackagesUnlessDryRun() {
         var _this7 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
           var runner, options;
           return _regeneratorRuntime().wrap(function _callee9$(_context9) {
             while (1) switch (_context9.prev = _context9.next) {
@@ -595,4 +595,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.migration.BaseMigration.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BaseMigration.js.map?dt=1726089070988
+//# sourceMappingURL=BaseMigration.js.map?dt=1729101257324

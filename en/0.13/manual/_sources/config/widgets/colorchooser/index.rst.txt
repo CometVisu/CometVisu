@@ -278,7 +278,7 @@ Example: combined chooser ``LCh-triangle``
 Dim curves
 """"""""""
 
-The eye doesn't measure brightness in a linear fashion but in a logarithmic
+The eye does not measure brightness in a linear fashion but in a logarithmic
 way to be able to see at a dark night as well as during high noon. Different
 lighting systems, like DALI, take that into account and thus use a non linear
 dim curve, so that the brightness of the light has a better match to the selected
@@ -378,7 +378,7 @@ color temperature instead of the ``xy`` coordinates. A deviation from the
 black body curve can't be stated, in such a case the  ``x`` and ``y``
 coordinates must be used.
 
-The configured brightness doesn't need to follow a specific physical unit (like
+The configured brightness does not need to follow a specific physical unit (like
 lumen or lumen/meter for LED stripes) as the ColorChooser is using only relative
 values.
 
@@ -524,7 +524,7 @@ Valid values for ``variant`` are:
 
 .. note::
 
-    The ``variant`` used for communication doesn't necessarily be similar to
+    The ``variant`` used for communication does not necessarily be similar to
     the used widget elements as defined by ``controls``. It is valid to use
     a ColorChooser with a HSV control and RGB bus communication.
 

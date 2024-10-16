@@ -42,7 +42,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * when there is an error or a cancellation up to that point.
        */
       send: function send(message) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -64,4 +64,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.io.transport.ITransport.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ITransport.js.map?dt=1726089047826
+//# sourceMappingURL=ITransport.js.map?dt=1729101234061

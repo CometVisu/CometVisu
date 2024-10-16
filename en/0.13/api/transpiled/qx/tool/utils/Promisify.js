@@ -83,7 +83,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         return fn;
       },
       poolEachOf: function poolEachOf(arr, size, fn) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var index, pool;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -106,7 +106,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }))();
       },
       map: function map(arr, fn) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -122,7 +122,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }))();
       },
       some: function some(arr, fn) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
@@ -153,13 +153,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }))();
       },
       someEach: function someEach(arr, fn) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-          var index, next;
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+          var index, _next2;
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
               case 0:
                 index = 0;
-                next = function next() {
+                _next2 = function next() {
                   if (index >= arr.length) {
                     return qx.Promise.resolve(false);
                   }
@@ -168,11 +168,11 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                     if (result) {
                       return true;
                     }
-                    return next();
+                    return _next2();
                   });
                 };
                 _context4.next = 4;
-                return next();
+                return _next2();
               case 4:
                 return _context4.abrupt("return", _context4.sent);
               case 5:
@@ -183,7 +183,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }))();
       },
       somePool: function somePool(arr, size, fn) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
             while (1) switch (_context5.prev = _context5.next) {
               case 0:
@@ -287,4 +287,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.utils.Promisify.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Promisify.js.map?dt=1726089071794
+//# sourceMappingURL=Promisify.js.map?dt=1729101258037

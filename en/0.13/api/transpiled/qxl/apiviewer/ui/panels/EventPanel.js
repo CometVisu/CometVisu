@@ -101,4 +101,4 @@
   qxl.apiviewer.ui.panels.EventPanel.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=EventPanel.js.map?dt=1726089091570
+//# sourceMappingURL=EventPanel.js.map?dt=1729101277575

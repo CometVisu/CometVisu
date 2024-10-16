@@ -50,9 +50,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       setUp: function setUp() {
         this.transport = new qx.io.transport.Websocket("wss://" + this.constructor.TEST_ENDPOINT);
       },
-      "test: check endpoint": function testCheckEndpoint() {
+      "test: check endpoint": function test_check_endpoint() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -74,9 +74,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee, null, [[0, 6]]);
         }))();
       },
-      "test: send message to public websocket echo server and check response": function testSendMessageToPublicWebsocketEchoServerAndCheckResponse() {
+      "test: send message to public websocket echo server and check response": function test_send_message_to_public_websocket_echo_server_and_check_response() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var message;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -107,4 +107,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.io.transport.Websocket.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Websocket.js.map?dt=1726089055019
+//# sourceMappingURL=Websocket.js.map?dt=1729101241528

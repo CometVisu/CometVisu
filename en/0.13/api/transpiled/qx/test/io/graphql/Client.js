@@ -68,7 +68,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       __P_349_1: "Skipping test as endpoint is not available.",
       runQuery: function runQuery(query, expected) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var req, result;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -90,7 +90,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       runQueryWithVariables: function runQueryWithVariables(query, variables, expected) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var req, result;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -111,9 +111,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee2);
         }))();
       },
-      "test: check endpoint": function testCheckEndpoint() {
+      "test: check endpoint": function test_check_endpoint() {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var url, body, init, response, result;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
@@ -155,9 +155,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee3, null, [[0, 14]]);
         }))();
       },
-      "test: execute query": function testExecuteQuery() {
+      "test: execute query": function test_execute_query() {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
               case 0:
@@ -187,9 +187,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee4);
         }))();
       },
-      "test: execute query with variables": function testExecuteQueryWithVariables() {
+      "test: execute query with variables": function test_execute_query_with_variables() {
         var _this5 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
             while (1) switch (_context5.prev = _context5.next) {
               case 0:
@@ -224,9 +224,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee5);
         }))();
       },
-      "test: expect error after invalid query": function testExpectErrorAfterInvalidQuery() {
+      "test: expect error after invalid query": function test_expect_error_after_invalid_query() {
         var _this6 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
           return _regeneratorRuntime().wrap(function _callee6$(_context6) {
             while (1) switch (_context6.prev = _context6.next) {
               case 0:
@@ -257,9 +257,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee6, null, [[2, 7]]);
         }))();
       },
-      "test: expect transport error": function testExpectTransportError() {
+      "test: expect transport error": function test_expect_transport_error() {
         var _this7 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
           var client, query, request;
           return _regeneratorRuntime().wrap(function _callee7$(_context7) {
             while (1) switch (_context7.prev = _context7.next) {
@@ -300,4 +300,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.io.graphql.Client.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Client.js.map?dt=1726089054358
+//# sourceMappingURL=Client.js.map?dt=1729101240863

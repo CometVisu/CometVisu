@@ -368,7 +368,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var configDb, _configDb, color, colorOn, colorReset, Console, themes, ourTheme, _colorOn, TYPES, success, hasWarnings;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -533,7 +533,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _loadConfigAndStartMaking: function _loadConfigAndStartMaking() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
           var config, makers, countMaking, collateDispatchEvent, isFirstWatcher;
           return _regeneratorRuntime().wrap(function _callee7$(_context7) {
             while (1) switch (_context7.prev = _context7.next) {
@@ -561,8 +561,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 };
                 isFirstWatcher = true;
                 _context7.next = 12;
-                return qx.Promise.all(makers.map( /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(maker) {
+                return qx.Promise.all(makers.map(/*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(maker) {
                     var analyser, cfg, target, appInfos, stat, watch, arr;
                     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
                       while (1) switch (_context6.prev = _context6.next) {
@@ -612,7 +612,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                             return _this2.dispatchEvent(e.clone());
                           });
                           appInfos = [];
-                          target.addListener("writingApplication", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+                          target.addListener("writingApplication", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
                             var appInfo;
                             return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                               while (1) switch (_context2.prev = _context2.next) {
@@ -631,7 +631,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                               }
                             }, _callee2);
                           })));
-                          target.addListener("writtenApplication", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+                          target.addListener("writtenApplication", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
                             return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                               while (1) switch (_context3.prev = _context3.next) {
                                 case 0:
@@ -648,7 +648,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                             }, _callee3);
                           })));
                           maker.addListener("writingApplications", collateDispatchEvent);
-                          maker.addListener("writtenApplications", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+                          maker.addListener("writtenApplications", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
                             return _regeneratorRuntime().wrap(function _callee4$(_context4) {
                               while (1) switch (_context4.prev = _context4.next) {
                                 case 0:
@@ -720,7 +720,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                               _this2.fireEvent("made");
                             }
                           });
-                          watch.addListener("configChanged", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+                          watch.addListener("configChanged", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
                             return _regeneratorRuntime().wrap(function _callee5$(_context5) {
                               while (1) switch (_context5.prev = _context5.next) {
                                 case 0:
@@ -791,14 +791,14 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       __P_465_7: function __P_465_7(watch) {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
-          var classFiles, scanImpl, metaDb, _i, _Object$values, lib, dir, _iterator, _step, filename, tsWriter, debounce;
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
+          var classFiles, _scanImpl, metaDb, _i, _Object$values, lib, dir, _iterator, _step, filename, tsWriter, debounce;
           return _regeneratorRuntime().wrap(function _callee10$(_context10) {
             while (1) switch (_context10.prev = _context10.next) {
               case 0:
                 classFiles = []; // Scans a directory recursively to find all .js files
-                scanImpl = /*#__PURE__*/function () {
-                  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(filename) {
+                _scanImpl = /*#__PURE__*/function () {
+                  var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8(filename) {
                     var basename, stat, files, i, subname;
                     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
                       while (1) switch (_context8.prev = _context8.next) {
@@ -832,7 +832,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           }
                           subname = path.join(filename, files[i]);
                           _context8.next = 17;
-                          return scanImpl(subname);
+                          return _scanImpl(subname);
                         case 17:
                           i++;
                           _context8.next = 13;
@@ -868,7 +868,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   sourceDir: dir
                 };
                 _context10.next = 14;
-                return scanImpl(dir);
+                return _scanImpl(dir);
               case 14:
                 _i++;
                 _context10.next = 8;
@@ -933,7 +933,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 49:
                 // Redo the files that change, as they change
                 classFiles = {};
-                debounce = new qx.tool.utils.Debounce( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+                debounce = new qx.tool.utils.Debounce(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
                   var filesParsed, addFilePromises, arr;
                   return _regeneratorRuntime().wrap(function _callee9$(_context9) {
                     while (1) switch (_context9.prev = _context9.next) {
@@ -1013,7 +1013,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       createMakersFromConfig: function createMakersFromConfig(data) {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
           var _data$meta, _data$meta2, _data$meta4;
           var Console, t, _data$babel, _data$meta3, argvAppNames, argvAppGroups, targetConfigs, defaultTargetConfig, allAppNames, libraries, librariesArray, _iterator2, _step2, libPath, _library2, qxLib, qxPath, library, errors, targetOutputPaths, makers;
           return _regeneratorRuntime().wrap(function _callee11$(_context11) {
@@ -1576,7 +1576,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_465_8: function __P_465_8(libs, packages) {
         var _this5 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
           var Console, errors, _iterator3, _step3, lib, requires, range, requires_uris, urisToInstall, pkg_libs, installer, _iterator4, _step4, _loop;
           return _regeneratorRuntime().wrap(function _callee12$(_context13) {
             while (1) switch (_context13.prev = _context13.next) {
@@ -1855,4 +1855,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Compile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Compile.js.map?dt=1726089064308
+//# sourceMappingURL=Compile.js.map?dt=1729101250687

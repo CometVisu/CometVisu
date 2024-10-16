@@ -298,4 +298,4 @@
   qx.ui.mobile.basic.Atom.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Atom.js.map?dt=1726089077835
+//# sourceMappingURL=Atom.js.map?dt=1729101264086

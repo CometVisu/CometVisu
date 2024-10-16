@@ -97,8 +97,8 @@ function AsyncFromSyncIterator(r) { function AsyncFromSyncIteratorContinuation(r
         return process;
       }(function () {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-          var ignoreFileName, ig, exclude, processFile, result, lines, _iterator2, _step2, filename, scanImpl, files, _iteratorAbruptCompletion, _didIteratorError, _iteratorError, _iterator, _step, file;
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+          var ignoreFileName, ig, exclude, processFile, result, lines, _iterator2, _step2, filename, _scanImpl, files, _iteratorAbruptCompletion, _didIteratorError, _iteratorError, _iterator, _step, file;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
@@ -133,7 +133,7 @@ function AsyncFromSyncIterator(r) { function AsyncFromSyncIteratorContinuation(r
                   ig.add(exclude);
                 }
                 processFile = /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(filename) {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(filename) {
                     var ify;
                     return _regeneratorRuntime().wrap(function _callee$(_context) {
                       while (1) switch (_context.prev = _context.next) {
@@ -222,8 +222,8 @@ function AsyncFromSyncIterator(r) { function AsyncFromSyncIteratorContinuation(r
               case 52:
                 process.exit(0);
               case 53:
-                scanImpl = /*#__PURE__*/function () {
-                  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(filename) {
+                _scanImpl = /*#__PURE__*/function () {
+                  var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(filename) {
                     var basename, stat, _files, i, subname;
                     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                       while (1) switch (_context2.prev = _context2.next) {
@@ -259,7 +259,7 @@ function AsyncFromSyncIterator(r) { function AsyncFromSyncIteratorContinuation(r
                           }
                           subname = path.join(filename, _files[i]);
                           _context2.next = 18;
-                          return scanImpl(subname);
+                          return _scanImpl(subname);
                         case 18:
                           i++;
                           _context2.next = 14;
@@ -292,7 +292,7 @@ function AsyncFromSyncIterator(r) { function AsyncFromSyncIteratorContinuation(r
                 }
                 file = _step.value;
                 _context3.next = 66;
-                return scanImpl(file);
+                return _scanImpl(file);
               case 66:
                 _iteratorAbruptCompletion = false;
                 _context3.next = 60;
@@ -337,4 +337,4 @@ function AsyncFromSyncIterator(r) { function AsyncFromSyncIteratorContinuation(r
   qx.tool.cli.commands.Es6ify.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Es6ify.js.map?dt=1726089064747
+//# sourceMappingURL=Es6ify.js.map?dt=1729101251114

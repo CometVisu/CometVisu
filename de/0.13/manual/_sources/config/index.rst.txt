@@ -136,7 +136,7 @@ Tags umschlossen aufgenommen werden:
 Navigationselemente in der Pure-Struktur
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Zur Navigation stehen in der Cometvisu zahlreiche Möglichkeiten für die Navigation durch den Benutzer zur Verfügung:  
+In der CometVisu stehen zahlreiche Möglichkeiten für die Navigation durch den Benutzer zur Verfügung:
 
 -  Das :ref:`Page-Widget <page>` ruft die zugehörige Unterseite auf.
 -  Die Top-Navigation Anzeige: zeigt den aktuellen Pfad und erlaubt auf übergeordnete Seiten

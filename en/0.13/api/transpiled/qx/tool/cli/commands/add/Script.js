@@ -77,7 +77,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     members: {
       process: function process() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var manifestModel, namespace, script_path, script_name, resource_dir_path, resource_file_path, external_res_path, question, answer, script_list;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -206,4 +206,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.add.Script.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Script.js.map?dt=1726089065576
+//# sourceMappingURL=Script.js.map?dt=1729101251923

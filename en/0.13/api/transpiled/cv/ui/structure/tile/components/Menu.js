@@ -24,6 +24,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       "cv.ui.structure.tile.components.AbstractComponent": {
         "require": true
       },
+      "cv.ui.structure.tile.MStringTransforms": {
+        "require": true
+      },
       "qx.event.message.Bus": {},
       "qx.event.Registration": {},
       "qx.event.Timer": {},
@@ -61,6 +64,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
    */
   qx.Class.define('cv.ui.structure.tile.components.Menu', {
     extend: cv.ui.structure.tile.components.AbstractComponent,
+    include: [cv.ui.structure.tile.MStringTransforms],
     /*
     ***********************************************
       PROPERTIES
@@ -88,7 +92,9 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
       },
       showLabels: {
         check: 'Boolean',
-        init: true
+        init: true,
+        apply: '_applyShowLabels',
+        transform: '_parseBoolean'
       }
     },
     /*
@@ -107,6 +113,16 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         }
       },
       _applyDepth: function _applyDepth() {
+        if (this.isDomReady()) {
+          this._generateMenu();
+        }
+      },
+      _applyShowLabels: function _applyShowLabels(val) {
+        if (val) {
+          this._element.classList.remove('compact');
+        } else {
+          this._element.classList.add('compact');
+        }
         if (this.isDomReady()) {
           this._generateMenu();
         }
@@ -492,7 +508,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
         return _createClass(_class, null, [{
           key: "observedAttributes",
           get: function get() {
-            return ['appearance', 'depth'];
+            return ['appearance', 'depth', 'show-labels'];
           }
         }]);
       }(QxConnector));
@@ -501,4 +517,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   cv.ui.structure.tile.components.Menu.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Menu.js.map?dt=1726089033905
+//# sourceMappingURL=Menu.js.map?dt=1729101219718

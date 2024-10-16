@@ -158,7 +158,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       __P_485_5: function __P_485_5(loadFromDir) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var Console, rootDir, data, key, check, pos, fixLibraryPath, sourcePath, resourcePath, m, fonts;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -201,7 +201,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   }
                 }
                 fixLibraryPath = /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(dir) {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(dir) {
                     var d, correctedDir;
                     return _regeneratorRuntime().wrap(function _callee$(_context) {
                       while (1) switch (_context.prev = _context.next) {
@@ -553,7 +553,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Library}
        */
       createLibrary: function createLibrary(rootDir) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var lib;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
@@ -575,4 +575,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.app.Library.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Library.js.map?dt=1726089068060
+//# sourceMappingURL=Library.js.map?dt=1729101254334

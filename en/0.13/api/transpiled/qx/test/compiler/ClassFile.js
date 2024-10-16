@@ -51,9 +51,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       };
     },
     members: {
-      "test issue 10591": function testIssue10591() {
+      "test issue 10591": function test_issue_10591() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var classFile, dbClassInfo;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -74,9 +74,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee);
         }))();
       },
-      "test issue 633": function testIssue633() {
+      "test issue 633": function test_issue_633() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var classFile, dbClassInfo;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -97,9 +97,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee2);
         }))();
       },
-      "test issue 519": function testIssue519() {
+      "test issue 519": function test_issue_519() {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var classFile, dbClassInfo;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
@@ -120,9 +120,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee3);
         }))();
       },
-      "test issue 524": function testIssue524() {
+      "test issue 524": function test_issue_524() {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var classFile, dbClassInfo;
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
@@ -143,9 +143,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           }, _callee4);
         }))();
       },
-      "test issue 726": function testIssue726() {
+      "test issue 726": function test_issue_726() {
         var _this5 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           var classFile, dbClassInfo;
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
             while (1) switch (_context5.prev = _context5.next) {
@@ -173,4 +173,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.test.compiler.ClassFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ClassFile.js.map?dt=1726089051638
+//# sourceMappingURL=ClassFile.js.map?dt=1729101238062

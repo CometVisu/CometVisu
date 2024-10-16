@@ -101,4 +101,4 @@
   qx.ui.core.DragDropCursor.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DragDropCursor.js.map?dt=1726089073152
+//# sourceMappingURL=DragDropCursor.js.map?dt=1729101259378

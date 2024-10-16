@@ -243,7 +243,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Initialises the target, creating directories etc
        */
       open: function open() {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -356,7 +356,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       generateApplication: function generateApplication(application, environment) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var t, analyser, rm, appMeta, targetUri, dir, appRootDir, mapTo, requiredLibs, externals, addExternal, name, bootJs, bootPackage, partsData, matchBundle, lastPackage, packages, assetUris, cldr, assets;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -532,7 +532,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_499_2: function __P_499_2(application, appMeta, assets) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var analyser, requiredLibs, appLibrary, fontsToLoad, addLibraryFonts, loadFont, _i, _Object$keys, fontName, _fontsToLoad$fontName, font, library;
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
@@ -571,7 +571,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 8:
                 addLibraryFonts(appLibrary);
                 loadFont = /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(library, font) {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(library, font) {
                     var res, resources, key, code;
                     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                       while (1) switch (_context3.prev = _context3.next) {
@@ -645,7 +645,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_499_3: function __P_499_3(application, appMeta, assets, bootPackage) {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           var analyser, rm, addResourcesToBuild, fontNames, _iterator2, _step2, _loop, key, code, _ret;
           return _regeneratorRuntime().wrap(function _callee5$(_context6) {
             while (1) switch (_context6.prev = _context6.next) {
@@ -812,7 +812,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeTranslations: function _writeTranslations() {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
           var appMeta, analyser, policy;
           return _regeneratorRuntime().wrap(function _callee6$(_context7) {
             while (1) switch (_context7.prev = _context7.next) {
@@ -889,7 +889,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeLocales: function _writeLocales() {
         var _this5 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
           var t, appMeta, analyser, bootPackage, loadLocaleData, promises;
           return _regeneratorRuntime().wrap(function _callee8$(_context9) {
             while (1) switch (_context9.prev = _context9.next) {
@@ -921,8 +921,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 appMeta = _this5.getAppMeta();
                 analyser = appMeta.getAnalyser();
                 bootPackage = appMeta.getPackages()[0];
-                promises = t.getLocales().map( /*#__PURE__*/function () {
-                  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(localeId) {
+                promises = t.getLocales().map(/*#__PURE__*/function () {
+                  var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7(localeId) {
                     var cldr, pkg;
                     return _regeneratorRuntime().wrap(function _callee7$(_context8) {
                       while (1) switch (_context8.prev = _context8.next) {
@@ -957,7 +957,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeAllTranslations: function _writeAllTranslations() {
         var _this6 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
           var t, appMeta, analyser, bootPackage, translations, promises;
           return _regeneratorRuntime().wrap(function _callee9$(_context10) {
             while (1) switch (_context10.prev = _context10.next) {
@@ -1003,7 +1003,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeRequiredTranslations: function _writeRequiredTranslations() {
         var _this7 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
           var t, appMeta, analyser, db, bootPackage, translations, promises;
           return _regeneratorRuntime().wrap(function _callee10$(_context11) {
             while (1) switch (_context11.prev = _context11.next) {
@@ -1073,7 +1073,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeApplication: function _writeApplication() {
         var _this8 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
           var t, appMeta, application, appRootDir, bootMeta, arr, i, pkg, bootPackage, appSummary;
           return _regeneratorRuntime().wrap(function _callee11$(_context12) {
             while (1) switch (_context12.prev = _context12.next) {
@@ -1169,7 +1169,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _writeIndexHtml: function _writeIndexHtml() {
         var _this9 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
           var t, appMeta, application, resDir, timeStamp, pathToTarget, indexJsTimestamp, indexJsFilename, TEMPLATE_VARS, replaceVars, defaultIndexHtml, bootDir, indexHtml, stats;
           return _regeneratorRuntime().wrap(function _callee13$(_context14) {
             while (1) switch (_context14.prev = _context14.next) {
@@ -1232,7 +1232,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _context14.next = 25;
                 return qx.tool.utils.files.Utils.sync(bootDir, resDir, /*#__PURE__*/function () {
-                  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(from, to) {
+                  var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee12(from, to) {
                     var data;
                     return _regeneratorRuntime().wrap(function _callee12$(_context13) {
                       while (1) switch (_context13.prev = _context13.next) {
@@ -1322,4 +1322,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.Target.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Target.js.map?dt=1726089069748
+//# sourceMappingURL=Target.js.map?dt=1729101256014

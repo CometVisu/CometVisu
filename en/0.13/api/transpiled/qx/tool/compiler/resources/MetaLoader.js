@@ -51,7 +51,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     members: {
       load: function load(asset) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -71,4 +71,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.MetaLoader.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaLoader.js.map?dt=1726089069010
+//# sourceMappingURL=MetaLoader.js.map?dt=1729101255268

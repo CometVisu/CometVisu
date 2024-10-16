@@ -141,4 +141,4 @@
   qx.ui.mobile.layout.CardAnimation.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CardAnimation.js.map?dt=1726089079309
+//# sourceMappingURL=CardAnimation.js.map?dt=1729101265567

@@ -101,7 +101,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return this._loadingPromise;
         }
         var loadImpl = /*#__PURE__*/function () {
-          var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+          var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
             var content, meta;
             return _regeneratorRuntime().wrap(function _callee$(_context) {
               while (1) switch (_context.prev = _context.next) {
@@ -621,13 +621,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getAllInterfaces: function getAllInterfaces(includeSuperClasses) {
         var interfaceNodes = [];
-        var ifaceRecurser = function ifaceRecurser(ifaceNode) {
+        var _ifaceRecurser = function ifaceRecurser(ifaceNode) {
           interfaceNodes.push(ifaceNode);
-          (ifaceNode.getSuperInterfaces() || []).forEach(ifaceRecurser);
+          (ifaceNode.getSuperInterfaces() || []).forEach(_ifaceRecurser);
         };
         var classNodes = includeSuperClasses ? this.getClassHierarchy() : [this];
         classNodes.forEach(function (classNode) {
-          (classNode.getInterfaces() || []).forEach(ifaceRecurser);
+          (classNode.getInterfaces() || []).forEach(_ifaceRecurser);
         });
         return interfaceNodes;
       },
@@ -842,4 +842,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qxl.apiviewer.dao.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1726089090616
+//# sourceMappingURL=Class.js.map?dt=1729101276617

@@ -39,7 +39,7 @@
   qx.Class.define("qx.test.lang.normalize.Date", {
     extend: qx.dev.unit.TestCase,
     members: {
-      "test parse()": function testParse() {
+      "test parse()": function test_parse() {
         var sixHours = 21600000;
         var sixHoursThirty = sixHours + 1800000;
         var february = new Date(new Date().getFullYear(), 1, 1);
@@ -99,4 +99,4 @@
   qx.test.lang.normalize.Date.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Date.js.map?dt=1726089055317
+//# sourceMappingURL=Date.js.map?dt=1729101241830

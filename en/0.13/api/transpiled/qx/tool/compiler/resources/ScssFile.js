@@ -92,7 +92,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       compile: function compile(outputFilename) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var inputFileData;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -129,7 +129,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                       } : null;
                     },
                     functions: {
-                      "qooxdooUrl($filename, $url)": function qooxdooUrl$filename$url($filename, $url, done) {
+                      "qooxdooUrl($filename, $url)": function qooxdooUrl$filename_$url($filename, $url, done) {
                         return _this.__P_497_6($filename, $url, done);
                       }
                     }
@@ -205,7 +205,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       loadSource: function loadSource(filename, library) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var absFilename, exists, name, tmp, contents, promises;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -318,4 +318,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.resources.ScssFile.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ScssFile.js.map?dt=1726089069261
+//# sourceMappingURL=ScssFile.js.map?dt=1729101255532

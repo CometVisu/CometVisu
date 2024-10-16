@@ -98,7 +98,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       make: function make() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var analyser, target, success, hasWarnings, compileEnv, preserve, tmp, appEnvironments, allAppEnv, _iterator, _step, library, fontsData, fontName, fontData, font, compiledClasses, db, appsThisTime, allAppInfos, i, application, appEnv, appInfo;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -269,8 +269,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 compiledClasses = _this.getRecentlyCompiledClasses(true);
                 db = analyser.getDatabase();
                 _context2.next = 74;
-                return _this.__P_491_0.filter( /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(app) {
+                return _this.__P_491_0.filter(/*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(app) {
                     var loadDeps, res, localModules, requireName, _db$modulesInfo, stat;
                     return _regeneratorRuntime().wrap(function _callee$(_context) {
                       while (1) switch (_context.prev = _context.next) {
@@ -390,4 +390,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.makers.AppMaker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AppMaker.js.map?dt=1726089068583
+//# sourceMappingURL=AppMaker.js.map?dt=1729101254845

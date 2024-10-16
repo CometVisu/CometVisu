@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color &mdash; CometVisu</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/theme_override.css?v=d0aeeef9" />
+
+  
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/structure-tile/components/color.html"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Power entity" href="power-entity.html" />
+    <link rel="prev" title="Chart" href="chart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Usage of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Configuration of the CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../manager.html">The CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../editor.html">Graphical editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hidden-config.html">Hidden configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#pure-structure">Pure-structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#tile-structure">Tile-structure</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html">Basic structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets">Widgets</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#define-own-widgets">Define own widgets</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#components">Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Configuration of the CometVisu</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Basic structure</a></li>
+      <li class="breadcrumb-item active">Color</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<section id="color">
+<span id="tile-component-color"></span><h1>Color<a class="headerlink" href="#color" title="Link to this heading"></a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Author</strong>: Tobias Bräutigam</div>
+<div class="line"><strong>Available since</strong>: 2022</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>The color element allows the visualization and manipulation of an RGB lighting.
+For color selection, the <a class="reference internal" href="../../widgets/colorchooser/index.html#colorchooser"><span class="std std-ref">ColorChooser</span></a> from the Pure structure is used in a popup.
+Therefore, all possibilities that this offers are also available.
+In the tile, the current color value is displayed via the icon color. Clicking on the button opens the popup with the ColorChooser.</p>
+<figure class="align-default" id="id3">
+<img alt="Normal view" src="../../../_images/cv-color.png" />
+<figcaption>
+<p><span class="caption-text">Normal view</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id4">
+<img alt="Color selection in popup" src="../../../_images/cv-color-popup.png" />
+<figcaption>
+<p><span class="caption-text">Color selection in popup</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">      </span><span class="nt">&lt;cv-row</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">row=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-color</span><span class="w"> </span><span class="na">controls=</span><span class="s">&quot;LCh-box;T:2500-15000;Y&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Closet light&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;RGB-r&quot;</span><span class="nt">&gt;</span>1/2/59<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;RGB-g&quot;</span><span class="nt">&gt;</span>1/2/60<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;DPT:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="w"> </span><span class="na">variant=</span><span class="s">&quot;RGB-b&quot;</span><span class="nt">&gt;</span>1/2/61<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">          </span><span class="nt">&lt;cv-icon</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">&gt;</span>ri-lightbulb-line<span class="nt">&lt;/cv-icon&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-color&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/cv-row&gt;</span>
+<span class="w">      </span><span class="nt">&lt;cv-row</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">row=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>Closet<span class="w"> </span>light<span class="nt">&lt;/label&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/cv-row&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
+<section id="allowed-attributes">
+<h3>Allowed Attributes<a class="headerlink" href="#allowed-attributes" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="30"><p>cv-color</p></td>
+<td><p>title</p></td>
+<td><p>string</p></td>
+<td><p>Title of this popup</p></td>
+</tr>
+<tr class="row-even"><td><p>throttle-interval</p></td>
+<td><p>decimal</p></td>
+<td><p>Defines the interval (in milliseconds) used for sending changes to the backend.</p></td>
+</tr>
+<tr class="row-odd"><td><p>controls</p></td>
+<td><p>string</p></td>
+<td><p>List of controls to show (separated by semicolons)</p></td>
+</tr>
+<tr class="row-even"><td><p>r_x</p></td>
+<td><p>decimal</p></td>
+<td><p>x coordinate of the red channel in the CIE xyY color space</p></td>
+</tr>
+<tr class="row-odd"><td><p>r_y</p></td>
+<td><p>decimal</p></td>
+<td><p>y coordinate of the red channel in the CIE xyY color space</p></td>
+</tr>
+<tr class="row-even"><td><p>r_wavelength</p></td>
+<td><p>decimal</p></td>
+<td><p>Wavelength in nanometers of the red channel</p></td>
+</tr>
+<tr class="row-odd"><td><p>r_strength</p></td>
+<td><p>decimal</p></td>
+<td><p>Maximal strength of the red channel</p></td>
+</tr>
+<tr class="row-even"><td><p>r_curve</p></td>
+<td><p>string</p></td>
+<td><p>Dim curve of the red channel</p></td>
+</tr>
+<tr class="row-odd"><td><p>r_scale</p></td>
+<td><p>decimal</p></td>
+<td><p>Scaling of the dim curve of the red channel</p></td>
+</tr>
+<tr class="row-even"><td><p>g_x</p></td>
+<td><p>decimal</p></td>
+<td><p>x coordinate of the green channel in the CIE xyY color space</p></td>
+</tr>
+<tr class="row-odd"><td><p>g_y</p></td>
+<td><p>decimal</p></td>
+<td><p>y coordinate of the green channel in the CIE xyY color space</p></td>
+</tr>
+<tr class="row-even"><td><p>g_wavelength</p></td>
+<td><p>decimal</p></td>
+<td><p>Wavelength in nanometers of the green channel</p></td>
+</tr>
+<tr class="row-odd"><td><p>g_strength</p></td>
+<td><p>decimal</p></td>
+<td><p>Maximal strength of the green channel</p></td>
+</tr>
+<tr class="row-even"><td><p>g_curve</p></td>
+<td><p>string</p></td>
+<td><p>Dim curve of the green channel</p></td>
+</tr>
+<tr class="row-odd"><td><p>g_scale</p></td>
+<td><p>decimal</p></td>
+<td><p>Scaling of the dim curve of the green channel</p></td>
+</tr>
+<tr class="row-even"><td><p>b_x</p></td>
+<td><p>decimal</p></td>
+<td><p>x coordinate of the blue channel in the CIE xyY color space</p></td>
+</tr>
+<tr class="row-odd"><td><p>b_y</p></td>
+<td><p>decimal</p></td>
+<td><p>y coordinate of the blue channel in the CIE xyY color space</p></td>
+</tr>
+<tr class="row-even"><td><p>b_wavelength</p></td>
+<td><p>decimal</p></td>
+<td><p>Wavelength in nanometers of the blue channel</p></td>
+</tr>
+<tr class="row-odd"><td><p>b_strength</p></td>
+<td><p>decimal</p></td>
+<td><p>Maximal strength of the blue channel</p></td>
+</tr>
+<tr class="row-even"><td><p>b_curve</p></td>
+<td><p>string</p></td>
+<td><p>Dim curve of the blue channel</p></td>
+</tr>
+<tr class="row-odd"><td><p>b_scale</p></td>
+<td><p>decimal</p></td>
+<td><p>Scaling of the dim curve of the blue channel</p></td>
+</tr>
+<tr class="row-even"><td><p>w_x</p></td>
+<td><p>decimal</p></td>
+<td><p>x coordinate of the white channel in the CIE xyY color space</p></td>
+</tr>
+<tr class="row-odd"><td><p>w_y</p></td>
+<td><p>decimal</p></td>
+<td><p>y coordinate of the white channel in the CIE xyY color space</p></td>
+</tr>
+<tr class="row-even"><td><p>w_strength</p></td>
+<td><p>decimal</p></td>
+<td><p>Maximal strength of the white channel</p></td>
+</tr>
+<tr class="row-odd"><td><p>w_curve</p></td>
+<td><p>string</p></td>
+<td><p>Dim curve of the white channel</p></td>
+</tr>
+<tr class="row-even"><td><p>w_scale</p></td>
+<td><p>decimal</p></td>
+<td><p>Scaling of the dim curve of the white channel</p></td>
+</tr>
+<tr class="row-odd"><td><p>send_on_finish</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Send only when the slider is released.</p></td>
+</tr>
+<tr class="row-even"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> or <em>desktop</em></p></td>
+<td><p>Controls this element’s visibility by screen size.</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
+</tr>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>string</p></td>
+<td><p>Custom CSS style rules for this widget.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="allowed-child-elements-and-their-attributes">
+<h3>Allowed child elements and their attributes<a class="headerlink" href="#allowed-child-elements-and-their-attributes" title="Link to this heading"></a></h3>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="15"><dl class="simple">
+<dt>cv-color</dt><dd><ul class="simple">
+<li><p>cv-address</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>variant</p></td>
+<td><p><em>rgb</em>, <em>RGB-r</em>, <em>RGB-g</em>, <em>RGB-b</em>, <em>rgbw</em>, <em>RGBW-r</em>, <em>RGBW-g</em>, <em>RGBW-b</em>, <em>RGBW-w</em>, <em>hsv</em>, <em>h</em>, <em>s</em>, <em>v</em>, <em>xy</em>, <em>xyY</em>, <em>x</em>, <em>y</em> or <em>Y</em></p></td>
+<td><p>Type of coding of the color values that the backend expects.</p></td>
+</tr>
+<tr class="row-even"><td><p>transform</p></td>
+<td><p>string</p></td>
+<td><p>Defines the datatype in the backend, e.g. DPT:1.001 for KNX datapoint type 1.001.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mode</p></td>
+<td><p><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></p></td>
+<td><p>Defines if this address is only used to <code class="docutils literal notranslate"><span class="pre">read</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code>, both <code class="docutils literal notranslate"><span class="pre">readwrite</span></code> or none of them <a href="#id1"><span class="problematic" id="id2">``</span></a>disable`.</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><p>string</p></td>
+<td><p>Fixed value sent to this address.</p></td>
+</tr>
+<tr class="row-odd"><td><p>on</p></td>
+<td><p><em>click</em>, <em>down</em> or <em>up</em></p></td>
+<td><p>Event on which a <code class="docutils literal notranslate"><span class="pre">value</span></code> should be sent to this address (only useful in mode=``write or <code class="docutils literal notranslate"><span class="pre">readwrite`),</span> <span class="pre">also</span> <span class="pre">needs</span> <span class="pre">``value</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>target</p></td>
+<td><p>string</p></td>
+<td><p>Target in the parent widget the value if this address should be use for. The possible values depend on the parent widget.</p></td>
+</tr>
+<tr class="row-odd"><td><p>format-pos</p></td>
+<td><p>decimal</p></td>
+<td><p>Position for format string when multiple addresses are used.</p></td>
+</tr>
+<tr class="row-even"><td><p>qos</p></td>
+<td><p>decimal</p></td>
+<td><p>Only MQTT: QoS</p></td>
+</tr>
+<tr class="row-odd"><td><p>retain</p></td>
+<td><p><em>true</em> or <em>false</em></p></td>
+<td><p>Only MQTT: retain flag</p></td>
+</tr>
+<tr class="row-even"><td><p>selector</p></td>
+<td><p>string</p></td>
+<td><p>Only MQTT: JSON selector</p></td>
+</tr>
+<tr class="row-odd"><td><p>backend</p></td>
+<td><p>string</p></td>
+<td><p>Optional name of the backend this address belongs to.</p></td>
+</tr>
+<tr class="row-even"><td><p>mapping</p></td>
+<td><p>string</p></td>
+<td><p>Map the bus value to a different value, text or symbol for displaying. See also <a class="reference internal" href="../elements/mapping.html#tile-element-mapping"><span class="std std-ref">mapping</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>format</p></td>
+<td><p>string</p></td>
+<td><p>Formatting of the value (printf syntax).</p></td>
+</tr>
+<tr class="row-even"><td><p>delay</p></td>
+<td><p>positiveInteger</p></td>
+<td><p>Optional delay in milliseconds that a write-request to this address is delayed.</p></td>
+</tr>
+<tr class="row-odd"><td><p>send-mode</p></td>
+<td><p><em>on-change</em> or <em>always</em></p></td>
+<td><p>Usually the elements that are using this address receive an update-event only when that value hast changed (<code class="docutils literal notranslate"><span class="pre">on-change</span></code>). This check can be disabled <code class="docutils literal notranslate"><span class="pre">always</span></code> to send the update-event every time when a new value has been received from the backend.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="schema-table docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head" colspan="4"><p>Attribute</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Structure</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Content</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td rowspan="5"><dl class="simple">
+<dt>cv-color</dt><dd><ul class="simple">
+<li><p>cv-icon</p></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><p>size</p></td>
+<td><p><em>small</em>, <em>large</em>, <em>x-large</em>, <em>xx-large</em> or <em>xxx-large</em></p></td>
+<td><p>Defines the size of the icon.</p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>string</p></td>
+<td><p>Icon color.</p></td>
+</tr>
+<tr class="row-odd"><td><p>visible-on</p></td>
+<td><p><em>mobile</em> or <em>desktop</em></p></td>
+<td><p>Controls this element’s visibility by screen size.</p></td>
+</tr>
+<tr class="row-even"><td><p>class</p></td>
+<td><p>string</p></td>
+<td><p>Add this value to the CSS class so that it can be formatted by a user provided style sheet.</p></td>
+</tr>
+<tr class="row-odd"><td><p>style</p></td>
+<td><p>string</p></td>
+<td><p>Custom CSS style rules for this widget.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>cv-color</dt><dd><ul class="simple">
+<li><p>cv-icon</p>
+<ul>
+<li><p>#text</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td></td>
+<td><p>string</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chart.html" class="btn btn-neutral float-left" title="Chart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="power-entity.html" class="btn btn-neutral float-right" title="Power entity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <!--
+  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~
+  ~ This program is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU General Public License as published by the Free
+  ~ Software Foundation; either version 3 of the License, or (at your option)
+  ~ any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT
+  ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  ~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  ~ more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License along
+  ~ with this program; if not, write to the Free Software Foundation, Inc.,
+  ~ 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+  ~
+  -->
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+        <dd><a href="../../../../../0.10.2|0.10/manual">0.10.2|0.10</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.11.2|0.11/manual">0.11.2|0.11</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.12.6|0.12/manual">0.12.6|0.12</a>
+        </dd>
+        
+        <dd><a href="../../../../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a>
+        </dd>
+        
+      </dl>
+    </div>
+  </div>
+
+
+</body>
+</html>

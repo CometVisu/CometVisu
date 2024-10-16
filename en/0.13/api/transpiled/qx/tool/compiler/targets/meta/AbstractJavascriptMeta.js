@@ -114,7 +114,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       writeToDisk: function writeToDisk() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var ws, map;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -126,8 +126,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 ws = new qx.tool.utils.Utils.LineCountingTransform();
                 ws.pipe(fs.createWriteStream(_this.__filename, "utf8"));
                 _context2.next = 5;
-                return new Promise( /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(resolve) {
+                return new Promise(/*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(resolve) {
                     return _regeneratorRuntime().wrap(function _callee$(_context) {
                       while (1) switch (_context.prev = _context.next) {
                         case 0:
@@ -172,7 +172,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       writeSourceCodeToStream: function writeSourceCodeToStream(ws) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
@@ -188,7 +188,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * Reads the source map as a string
        */
       getSourceMap: function getSourceMap() {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
               case 0:
@@ -205,7 +205,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _copySourceMap: function _copySourceMap(jsMetas, lineOffsets) {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           var generator, _loop, map, i, res, _i;
           return _regeneratorRuntime().wrap(function _callee5$(_context6) {
             while (1) switch (_context6.prev = _context6.next) {
@@ -283,4 +283,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.meta.AbstractJavascriptMeta.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractJavascriptMeta.js.map?dt=1726089069989
+//# sourceMappingURL=AbstractJavascriptMeta.js.map?dt=1729101256255

@@ -62,4 +62,4 @@
   qxl.apiviewer.DetailFrameTabView.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DetailFrameTabView.js.map?dt=1726089090466
+//# sourceMappingURL=DetailFrameTabView.js.map?dt=1729101276462

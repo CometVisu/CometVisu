@@ -84,7 +84,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param xml {XMLDocument}
        */
       preParse: function preParse(xml) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -115,7 +115,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @returns {String} widget path like 'id_'...
        */
       getInitialPageId: function getInitialPageId() {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -145,4 +145,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.structure.IController.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=IController.js.map?dt=1726089089139
+//# sourceMappingURL=IController.js.map?dt=1729101275124

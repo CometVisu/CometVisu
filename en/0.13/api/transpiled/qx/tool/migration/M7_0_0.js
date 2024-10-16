@@ -53,7 +53,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     members: {
       migrateManifest: function migrateManifest() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var dryRun, verbose, updateManifest, _iterator, _step, manifestModel;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -136,4 +136,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.migration.M7_0_0.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=M7_0_0.js.map?dt=1726089071165
+//# sourceMappingURL=M7_0_0.js.map?dt=1729101257498

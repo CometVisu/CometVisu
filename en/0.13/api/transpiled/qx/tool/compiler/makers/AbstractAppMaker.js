@@ -112,4 +112,4 @@
   qx.tool.compiler.makers.AbstractAppMaker.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractAppMaker.js.map?dt=1726089068473
+//# sourceMappingURL=AbstractAppMaker.js.map?dt=1729101254737

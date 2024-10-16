@@ -127,4 +127,4 @@
   qx.theme.indigo.ColorDark.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=ColorDark.js.map?dt=1726089062167
+//# sourceMappingURL=ColorDark.js.map?dt=1729101248646

@@ -95,7 +95,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     members: {
       process: function process() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var argv, manifestConfig, manifestData, values, class_namespaces, manifest_namepaces, template_name, template_path, potential_dirs, found, _i, _potential_dirs, dir, template, header_template, header_template_path, var_name, final_content, _var_name, relative_path, absolute_path, file_exists, local_templates_path, local_copy_path;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -252,4 +252,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.add.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1726089065511
+//# sourceMappingURL=Class.js.map?dt=1729101251858

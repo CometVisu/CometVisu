@@ -123,7 +123,7 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
         }
         _inherits(UserError, _Error);
         return _createClass(UserError);
-      }( /*#__PURE__*/_wrapNativeSuper(Error)),
+      }(/*#__PURE__*/_wrapNativeSuper(Error)),
       /**
        * Formats the time in a human readable format, eg "1h 23m 45.678s"
        *
@@ -274,7 +274,7 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
        */
       runCommand: function runCommand(cwd) {
         var _arguments = arguments;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var _len2, args, _key2, options;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -497,7 +497,7 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
        * @param {Number} parentId parent process ID to kill
        */
       killTree: function killTree(parentId) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -663,4 +663,4 @@ function _getPrototypeOf(t) { return _getPrototypeOf = Object.setPrototypeOf ? O
   qx.tool.utils.Utils.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Utils.js.map?dt=1726089071922
+//# sourceMappingURL=Utils.js.map?dt=1729101258162

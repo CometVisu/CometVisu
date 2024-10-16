@@ -64,7 +64,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       writeSourceCodeToStream: function writeSourceCodeToStream(ws) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -86,7 +86,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         }))();
       },
       __P_508_0: function __P_508_0(srcFilename, ws) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var rs;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -111,7 +111,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @Override
        */
       getSourceMap: function getSourceMap() {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
@@ -128,4 +128,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.meta.PolyfillJs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=PolyfillJs.js.map?dt=1726089070458
+//# sourceMappingURL=PolyfillJs.js.map?dt=1729101256828

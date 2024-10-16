@@ -54,7 +54,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       loadMeta: function loadMeta(filename) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var metaData;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -82,7 +82,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       saveMeta: function saveMeta(filename) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -114,7 +114,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       isOutOfDate: function isOutOfDate() {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var _this3$__P_482_;
           var classFilename, stat, lastModified;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -151,7 +151,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       parse: function parse(classFilename) {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var stat, babelCore, src, babelConfig, plugins, config, result;
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
@@ -520,4 +520,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.MetaExtraction.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=MetaExtraction.js.map?dt=1726089067776
+//# sourceMappingURL=MetaExtraction.js.map?dt=1729101254044

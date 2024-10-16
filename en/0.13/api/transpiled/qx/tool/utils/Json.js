@@ -161,7 +161,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Object|null} the parsed contents, or null if the file does not exist
        */
       loadJsonAsync: function loadJsonAsync(filename) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var data;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -199,7 +199,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param data {Object|null} the data to write. If null, remove the file
        */
       saveJsonAsync: function saveJsonAsync(filename, data) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -233,4 +233,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.utils.Json.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Json.js.map?dt=1726089071639
+//# sourceMappingURL=Json.js.map?dt=1729101257885

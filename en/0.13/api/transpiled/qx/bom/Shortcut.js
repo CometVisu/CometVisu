@@ -360,4 +360,4 @@
   qx.bom.Shortcut.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Shortcut.js.map?dt=1726089037352
+//# sourceMappingURL=Shortcut.js.map?dt=1729101223191

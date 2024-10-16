@@ -728,14 +728,14 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
        */
       __P_2_3: function __P_2_3() {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
                 qx.event.Registration.addListener(window, 'unload', function () {
                   cv.io.Client.stopAll();
                 }, _this4);
-                qx.bom.Lifecycle.onReady( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+                qx.bom.Lifecycle.onReady(/*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
                   var configLoader;
                   return _regeneratorRuntime().wrap(function _callee$(_context) {
                     while (1) switch (_context.prev = _context.next) {
@@ -795,7 +795,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
        */
       bootstrap: function bootstrap(xml) {
         var _this5 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var engine, loader, cacheValid, structure, styles, scripts, _engine;
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
@@ -834,7 +834,7 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
                   engine.loadParts([structure]).then(function () {
                     _this5.loadPlugins();
                   });
-                  engine.addListenerOnce('changeReady', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+                  engine.addListenerOnce('changeReady', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
                     var data;
                     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                       while (1) switch (_context3.prev = _context3.next) {
@@ -1186,4 +1186,4 @@ function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.
   cv.Application.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Application.js.map?dt=1726089025489
+//# sourceMappingURL=Application.js.map?dt=1729101210813

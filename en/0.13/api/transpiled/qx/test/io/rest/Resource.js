@@ -96,7 +96,7 @@
       //
       // Configuration
       //
-      "test: configure request receives pre-configured but unsent request": function testConfigureRequestReceivesPreConfiguredButUnsentRequest() {
+      "test: configure request receives pre-configured but unsent request": function test_configure_request_receives_preConfigured_but_unsent_request() {
         var res = this.res,
           req = this.req;
         res.configureRequest(qx.lang.Function.bind(function (req) {
@@ -106,7 +106,7 @@
         }, this));
         res.get();
       },
-      "test: configure request receives invocation details": function testConfigureRequestReceivesInvocationDetails() {
+      "test: configure request receives invocation details": function test_configure_request_receives_invocation_details() {
         var res = this.res,
           req = this.req,
           params = {},
@@ -124,33 +124,33 @@
       //
       // Route
       //
-      "test: map action": function testMapAction() {
+      "test: map action": function test_map_action() {
         var res = this.res,
           params;
         params = res._getRequestConfig("get");
         this.assertEquals("GET", params.method);
         this.assertEquals("/photos", params.url);
       },
-      "test: map action when base URL": function testMapActionWhenBaseURL() {
+      "test: map action when base URL": function test_map_action_when_base_URL() {
         var res = this.res,
           params;
         res.setBaseUrl("http://example.com");
         params = res._getRequestConfig("get");
         this.assertEquals("http://example.com/photos", params.url);
       },
-      "test: map existing action": function testMapExistingAction() {
+      "test: map existing action": function test_map_existing_action() {
         var res = this.res,
           params;
         res.map("post", "GET", "/articles");
         params = res._getRequestConfig("post");
         this.assertEquals("/articles", params.url);
       },
-      "test: map action creates method": function testMapActionCreatesMethod() {
+      "test: map action creates method": function test_map_action_creates_method() {
         var res = this.res,
           req = this.req;
         this.assertFunction(res.get);
       },
-      "test: map action throws when existing method": function testMapActionThrowsWhenExistingMethod() {
+      "test: map action throws when existing method": function test_map_action_throws_when_existing_method() {
         this.require(["debug"]);
         var res = this.res,
           req = this.req;
@@ -161,7 +161,7 @@
           res.map("popular", "GET", "/photos/popular");
         }, Error);
       },
-      "test: map action does not throw when existing method is empty": function testMapActionDoesNotThrowWhenExistingMethodIsEmpty() {
+      "test: map action does not throw when existing method is empty": function test_map_action_does_not_throw_when_existing_method_is_empty() {
         this.require(["debug"]);
         var res = this.res,
           req = this.req;
@@ -170,19 +170,19 @@
         res.get = function () {};
         res.map("get", "GET", "/photos/popular");
       },
-      "test: dynamically created action forwards arguments": function testDynamicallyCreatedActionForwardsArguments() {
+      "test: dynamically created action forwards arguments": function test_dynamically_created_action_forwards_arguments() {
         var res = this.res,
           req = this.req;
         this.spy(res, "invoke");
         res.get({}, 1, 2, 3);
         this.assertCalledWith(res.invoke, "get", {}, 1, 2, 3);
       },
-      "test: dynamically created action returns what invoke returns": function testDynamicallyCreatedActionReturnsWhatInvokeReturns() {
+      "test: dynamically created action returns what invoke returns": function test_dynamically_created_action_returns_what_invoke_returns() {
         var id = 1;
         this.stub(this.res, "invoke").returns(id);
         this.assertEquals(id, this.res.get());
       },
-      "test: map actions from description": function testMapActionsFromDescription() {
+      "test: map actions from description": function test_map_actions_from_description() {
         var req = this.req,
           description,
           res,
@@ -209,13 +209,13 @@
         this.assertEquals(check, params.check);
         res.dispose();
       },
-      "test: map action from description throws with non-object": function testMapActionFromDescriptionThrowsWithNonObject() {
+      "test: map action from description throws with non-object": function test_map_action_from_description_throws_with_nonObject() {
         this.require(["debug"]);
         this.assertException(function () {
           var res = new qx.io.rest.Resource([]);
         });
       },
-      "test: map action from description throws with incomplete route": function testMapActionFromDescriptionThrowsWithIncompleteRoute() {
+      "test: map action from description throws with incomplete route": function test_map_action_from_description_throws_with_incomplete_route() {
         this.require(["debug"]);
         this.res.dispose();
         this.assertException(function () {
@@ -230,25 +230,25 @@
       //
       // Invoke
       //
-      "test: invoke action generically": function testInvokeActionGenerically() {
+      "test: invoke action generically": function test_invoke_action_generically() {
         var res = this.res,
           req = this.req,
           result;
         result = res.invoke("get");
         this.assertSend();
       },
-      "test: invoke action": function testInvokeAction() {
+      "test: invoke action": function test_invoke_action() {
         var res = this.res,
           req = this.req;
         res.get();
         this.assertSend();
       },
-      "test: invoke action returns id of request": function testInvokeActionReturnsIdOfRequest() {
+      "test: invoke action returns id of request": function test_invoke_action_returns_id_of_request() {
         var res = this.res,
           req = this.req;
         this.assertNumber(res.invoke("get"));
       },
-      "test: invoke action while other is in progress": function testInvokeActionWhileOtherIsInProgress() {
+      "test: invoke action while other is in progress": function test_invoke_action_while_other_is_in_progress() {
         var res = this.res,
           req1,
           req2;
@@ -260,7 +260,7 @@
         this.assertCalledOnce(req1.send);
         this.assertCalledOnce(req2.send);
       },
-      "test: invoke same action handles multiple requests": function testInvokeSameActionHandlesMultipleRequests() {
+      "test: invoke same action handles multiple requests": function test_invoke_same_action_handles_multiple_requests() {
         var res = this.res,
           req1,
           req2,
@@ -275,7 +275,7 @@
         this.respond("", req2);
         this.assertCalledTwice(getSuccess);
       },
-      "test: invoke action with positional params": function testInvokeActionWithPositionalParams() {
+      "test: invoke action with positional params": function test_invoke_action_with_positional_params() {
         var res = this.res,
           req = this.req;
         res.map("get", "GET", "/photos/{id}");
@@ -284,7 +284,7 @@
         });
         this.assertCalledWith(req.setUrl, "/photos/1");
       },
-      "test: invoke action with positional params that evaluate to false": function testInvokeActionWithPositionalParamsThatEvaluateToFalse() {
+      "test: invoke action with positional params that evaluate to false": function test_invoke_action_with_positional_params_that_evaluate_to_false() {
         var res = this.res,
           req = this.req;
         res.map("get", "GET", "/photos/{id}");
@@ -293,7 +293,7 @@
         });
         this.assertCalledWith(req.setUrl, "/photos/0");
       },
-      "test: invoke action with non-string params": function testInvokeActionWithNonStringParams() {
+      "test: invoke action with non-string params": function test_invoke_action_with_nonString_params() {
         var res = this.res,
           req = this.req;
         res.map("get", "GET", "/photos/{id}");
@@ -302,7 +302,7 @@
         });
         this.assertCalledWith(req.setUrl, "/photos/1");
       },
-      "test: invoke action with params and data": function testInvokeActionWithParamsAndData() {
+      "test: invoke action with params and data": function test_invoke_action_with_params_and_data() {
         var res = this.res,
           req = this.req;
         res.map("put", "PUT", "/articles/{id}");
@@ -322,7 +322,7 @@
           article: '{title: "Affe"}'
         });
       },
-      "test: invoke action with multiple positional params": function testInvokeActionWithMultiplePositionalParams() {
+      "test: invoke action with multiple positional params": function test_invoke_action_with_multiple_positional_params() {
         var res = this.res,
           req = this.req;
         res.map("get", "GET", "/photos/{id}/comments/{commentId}");
@@ -332,7 +332,7 @@
         });
         this.assertCalledWith(req.setUrl, "/photos/1/comments/2");
       },
-      "test: invoke action with positional params in query": function testInvokeActionWithPositionalParamsInQuery() {
+      "test: invoke action with positional params in query": function test_invoke_action_with_positional_params_in_query() {
         var res = this.res,
           req = this.req;
         res.map("get", "GET", "/photos/{id}/comments?id={commentId}");
@@ -342,19 +342,19 @@
         });
         this.assertCalledWith(req.setUrl, "/photos/1/comments?id=2");
       },
-      "test: invoke action with undefined params": function testInvokeActionWithUndefinedParams() {
+      "test: invoke action with undefined params": function test_invoke_action_with_undefined_params() {
         var res = this.res,
           req = this.req;
         res.get();
         this.assertCalled(req.send);
       },
-      "test: invoke action with null params": function testInvokeActionWithNullParams() {
+      "test: invoke action with null params": function test_invoke_action_with_null_params() {
         var res = this.res,
           req = this.req;
         res.get(null);
         this.assertCalled(req.send);
       },
-      "test: invoke action when content type json": function testInvokeActionWhenContentTypeJson() {
+      "test: invoke action when content type json": function test_invoke_action_when_content_type_json() {
         var res = this.res,
           req = this.req;
         req.setRequestHeader.restore();
@@ -373,7 +373,7 @@
         this.assertCalledWith(req.setRequestData, '{"location":"Karlsruhe"}');
         this.assertCalledWith(qx.lang.Json.stringify, data);
       },
-      "test: invoke action when content type json and get": function testInvokeActionWhenContentTypeJsonAndGet() {
+      "test: invoke action when content type json and get": function test_invoke_action_when_content_type_json_and_get() {
         var res = this.res,
           req = this.req;
         req.setMethod.restore();
@@ -383,7 +383,7 @@
         res.get();
         this.assertNotCalled(qx.lang.Json.stringify);
       },
-      "test: invoke action for url with port": function testInvokeActionForUrlWithPort() {
+      "test: invoke action for url with port": function test_invoke_action_for_url_with_port() {
         var res = this.res,
           req = this.req;
         res.map("get", "GET", "http://example.com:8080/photos/{id}");
@@ -392,7 +392,7 @@
         });
         this.assertCalledWith(req.setUrl, "http://example.com:8080/photos/1");
       },
-      "test: invoke action for relative url": function testInvokeActionForRelativeUrl() {
+      "test: invoke action for relative url": function test_invoke_action_for_relative_url() {
         var res = this.res,
           req = this.req;
         res.map("get", "GET", "{page}");
@@ -401,7 +401,7 @@
         });
         this.assertCalledWith(req.setUrl, "index");
       },
-      "test: invoke action for relative url with dots": function testInvokeActionForRelativeUrlWithDots() {
+      "test: invoke action for relative url with dots": function test_invoke_action_for_relative_url_with_dots() {
         var res = this.res,
           req = this.req;
         res.map("get", "GET", "../{page}");
@@ -410,7 +410,7 @@
         });
         this.assertCalledWith(req.setUrl, "../index");
       },
-      "test: invoke action for route with check": function testInvokeActionForRouteWithCheck() {
+      "test: invoke action for route with check": function test_invoke_action_for_route_with_check() {
         var res = this.res;
         res.map("get", "GET", "/photos/zoom/{id}", {
           id: /\d+/
@@ -420,13 +420,13 @@
         });
         this.assertSend("GET", "/photos/zoom/123");
       },
-      "test: invoke action fills in empty string when missing param and no default": function testInvokeActionFillsInEmptyStringWhenMissingParamAndNoDefault() {
+      "test: invoke action fills in empty string when missing param and no default": function test_invoke_action_fills_in_empty_string_when_missing_param_and_no_default() {
         var res = this.res;
         res.map("get", "GET", "/photos/{tag}");
         res.get();
         this.assertSend("GET", "/photos/");
       },
-      "test: invoke action fills in default when missing param": function testInvokeActionFillsInDefaultWhenMissingParam() {
+      "test: invoke action fills in default when missing param": function test_invoke_action_fills_in_default_when_missing_param() {
         var res = this.res;
         res.map("get", "GET", "/photos/{tag=recent}/{size}");
         res.get({
@@ -434,7 +434,7 @@
         });
         this.assertSend("GET", "/photos/recent/large");
       },
-      "test: invoke action throws when missing required positional param": function testInvokeActionThrowsWhenMissingRequiredPositionalParam() {
+      "test: invoke action throws when missing required positional param": function test_invoke_action_throws_when_missing_required_positional_param() {
         var res = this.res;
 
         // Require positional param
@@ -445,7 +445,7 @@
           res.get();
         }, Error, "Missing parameter 'tag'");
       },
-      "test: invoke action throws when missing required request param": function testInvokeActionThrowsWhenMissingRequiredRequestParam() {
+      "test: invoke action throws when missing required request param": function test_invoke_action_throws_when_missing_required_request_param() {
         var res = new qx.io.rest.Resource();
 
         // Require request body param
@@ -456,7 +456,7 @@
           res.post();
         }, Error, "Missing parameter 'photo'");
       },
-      "test: invoke action throws when param not match check": function testInvokeActionThrowsWhenParamNotMatchCheck() {
+      "test: invoke action throws when param not match check": function test_invoke_action_throws_when_param_not_match_check() {
         var res = this.res;
         res.map("get", "GET", "/photos/{id}", {
           id: /\d+/
@@ -467,7 +467,7 @@
           });
         }, Error, "Parameter 'id' is invalid");
       },
-      "test: invoke action ignores invalid check in production": function testInvokeActionIgnoresInvalidCheckInProduction() {
+      "test: invoke action ignores invalid check in production": function test_invoke_action_ignores_invalid_check_in_production() {
         this.skip("needs runtime enviroment checks!");
         this.require(["debug"]);
         var res = this.res;
@@ -485,14 +485,14 @@
       //
       // Abort
       //
-      "test: abort action": function testAbortAction() {
+      "test: abort action": function test_abort_action() {
         var res = this.res,
           req = this.req;
         res.get();
         res.abort("get");
         this.assertCalledOnce(req.abort);
       },
-      "test: abort action when multiple requests": function testAbortActionWhenMultipleRequests() {
+      "test: abort action when multiple requests": function test_abort_action_when_multiple_requests() {
         var res = this.res,
           req1,
           req2;
@@ -504,7 +504,7 @@
         this.assertCalledOnce(req1.abort);
         this.assertCalledOnce(req2.abort);
       },
-      "test: abort by action id": function testAbortByActionId() {
+      "test: abort by action id": function test_abort_by_action_id() {
         var res = this.res,
           req = this.req;
         var id = res.get();
@@ -514,7 +514,7 @@
       //
       // Helper
       //
-      "test: refresh action": function testRefreshAction() {
+      "test: refresh action": function test_refresh_action() {
         var res = this.res,
           req = this.req;
         res.get();
@@ -522,7 +522,7 @@
         res.refresh("get");
         this.assertSend();
       },
-      "test: refresh action replaying previous params": function testRefreshActionReplayingPreviousParams() {
+      "test: refresh action replaying previous params": function test_refresh_action_replaying_previous_params() {
         var res = this.res,
           req = this.req;
         res.map("get", "GET", "/photos/{id}");
@@ -533,7 +533,7 @@
         res.refresh("get");
         this.assertSend("GET", "/photos/1");
       },
-      "test: poll action": function testPollAction() {
+      "test: poll action": function test_poll_action() {
         var res = this.res,
           sandbox = this.getSandbox();
         sandbox.useFakeTimers();
@@ -544,7 +544,7 @@
         this.assertCalledWith(res._resource.refresh, "get");
         this.assertCalledOnce(res._resource.refresh);
       },
-      "test: not poll action when no response received yet": function testNotPollActionWhenNoResponseReceivedYet() {
+      "test: not poll action when no response received yet": function test_not_poll_action_when_no_response_received_yet() {
         var res = this.res,
           sandbox = this.getSandbox();
         sandbox.useFakeTimers();
@@ -553,13 +553,13 @@
         sandbox.clock.tick(20);
         this.assertNotCalled(res.refresh);
       },
-      "test: poll action immediately": function testPollActionImmediately() {
+      "test: poll action immediately": function test_poll_action_immediately() {
         var res = this.res;
         this.spy(res._resource, "invoke");
         res.poll("get", 10, undefined, true);
         this.assertCalled(res._resource.invoke);
       },
-      "test: poll action sets initial params": function testPollActionSetsInitialParams() {
+      "test: poll action sets initial params": function test_poll_action_sets_initial_params() {
         var res = this.res;
         res.map("get", "GET", "/photos/{id}");
         this.stub(res._resource, "invoke");
@@ -570,7 +570,7 @@
           id: "1"
         });
       },
-      "test: poll action replaying previous params": function testPollActionReplayingPreviousParams() {
+      "test: poll action replaying previous params": function test_poll_action_replaying_previous_params() {
         var res = this.res,
           req = this.req;
         res.map("get", "GET", "/photos/{id}");
@@ -581,7 +581,7 @@
         res.poll("get");
         this.assertSend("GET", "/photos/1");
       },
-      "test: poll action repeatedly ends previous timer": function testPollActionRepeatedlyEndsPreviousTimer() {
+      "test: poll action repeatedly ends previous timer": function test_poll_action_repeatedly_ends_previous_timer() {
         var res = this.res,
           sandbox = this.getSandbox(),
           msg;
@@ -595,7 +595,7 @@
         sandbox.clock.tick(100);
         this.assertCalledTwice(res._resource.refresh);
       },
-      "test: poll many actions": function testPollManyActions() {
+      "test: poll many actions": function test_poll_many_actions() {
         var res = this.res,
           sandbox = this.getSandbox(),
           spy,
@@ -615,7 +615,7 @@
         this.req.dispose.restore();
         this.req.dispose();
       },
-      "test: end poll action": function testEndPollAction() {
+      "test: end poll action": function test_end_poll_action() {
         var res = this.res,
           sandbox = this.getSandbox(),
           timer;
@@ -630,7 +630,7 @@
         sandbox.clock.tick(100);
         this.assertCalledTwice(res._resource.refresh);
       },
-      "test: end poll action does not end polling of other action": function testEndPollActionDoesNotEndPollingOfOtherAction() {
+      "test: end poll action does not end polling of other action": function test_end_poll_action_does_not_end_polling_of_other_action() {
         var res = this.res,
           sandbox = this.getSandbox(),
           timer,
@@ -645,7 +645,7 @@
         sandbox.clock.tick(10);
         this.assertCalledTwice(spy);
       },
-      "test: restart poll action": function testRestartPollAction() {
+      "test: restart poll action": function test_restart_poll_action() {
         var res = this.res,
           sandbox = this.getSandbox(),
           timer;
@@ -659,7 +659,7 @@
         sandbox.clock.tick(10);
         this.assertCalled(res._resource.refresh);
       },
-      "test: long poll action": function testLongPollAction() {
+      "test: long poll action": function test_long_poll_action() {
         var res = this.res,
           req = this.req,
           responses = [];
@@ -675,7 +675,7 @@
         this.respond("3");
         this.assertArrayEquals(["1", "2", "3"], responses);
       },
-      "test: throttle long poll": function testThrottleLongPoll() {
+      "test: throttle long poll": function test_throttle_long_poll() {
         var res = this.res,
           req = this.req;
         this.stub(req, "dispose");
@@ -694,7 +694,7 @@
         // Throttling
         this.respond();
       },
-      "test: not throttle long poll when not received within limit": function testNotThrottleLongPollWhenNotReceivedWithinLimit() {
+      "test: not throttle long poll when not received within limit": function test_not_throttle_long_poll_when_not_received_within_limit() {
         var res = this.res,
           req = this.req,
           sandbox = this.getSandbox();
@@ -712,7 +712,7 @@
         this.respond();
         this.assertCalled(res.refresh);
       },
-      "test: not throttle long poll when not received subsequently": function testNotThrottleLongPollWhenNotReceivedSubsequently() {
+      "test: not throttle long poll when not received subsequently": function test_not_throttle_long_poll_when_not_received_subsequently() {
         var res = this.res,
           req = this.req,
           sandbox = this.getSandbox();
@@ -736,7 +736,7 @@
         }
         this.assertCallCount(res.refresh, 10);
       },
-      "test: end long poll action": function testEndLongPollAction() {
+      "test: end long poll action": function test_end_long_poll_action() {
         var res = this.res,
           req = this.req,
           handlerId,
@@ -753,7 +753,7 @@
       //
       // Events
       //
-      "test: fire actionSuccess": function testFireActionSuccess() {
+      "test: fire actionSuccess": function test_fire_actionSuccess() {
         var res = this.res,
           req = this.req,
           that = this;
@@ -767,7 +767,7 @@
           that.assertInteger(e.getId());
         });
       },
-      "test: fire success": function testFireSuccess() {
+      "test: fire success": function test_fire_success() {
         var res = this.res,
           req = this.req,
           that = this;
@@ -781,7 +781,7 @@
           that.assertInteger(e.getId());
         });
       },
-      "test: fire actionError": function testFireActionError() {
+      "test: fire actionError": function test_fire_actionError() {
         var res = this.res,
           req = this.req,
           that = this;
@@ -793,7 +793,7 @@
           that.assertIdentical(req, e.getRequest());
         });
       },
-      "test: fire error": function testFireError() {
+      "test: fire error": function test_fire_error() {
         var res = this.res,
           req = this.req,
           that = this;
@@ -808,7 +808,7 @@
       //
       // Dispose
       //
-      "test: dispose requests": function testDisposeRequests() {
+      "test: dispose requests": function test_dispose_requests() {
         var res = this.res,
           req1,
           req2;
@@ -823,7 +823,7 @@
         this.assertCalled(req1.dispose);
         this.assertCalled(req2.dispose);
       },
-      "test: dispose requests of same action": function testDisposeRequestsOfSameAction() {
+      "test: dispose requests of same action": function test_dispose_requests_of_same_action() {
         var res = this.res,
           req1,
           req2;
@@ -838,7 +838,7 @@
         this.assertCalled(req1.dispose);
         this.assertCalled(req2.dispose);
       },
-      "test: dispose request on loadEnd": function testDisposeRequestOnLoadEnd() {
+      "test: dispose request on loadEnd": function test_dispose_request_on_loadEnd() {
         var res = this.res,
           req = this.req;
         this.spy(req, "dispose");
@@ -885,4 +885,4 @@
   qx.test.io.rest.Resource.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Resource.js.map?dt=1726089054899
+//# sourceMappingURL=Resource.js.map?dt=1729101241408

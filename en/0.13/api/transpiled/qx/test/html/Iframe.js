@@ -72,7 +72,7 @@
           this.__P_347_3 = qx.util.ResourceManager.getInstance().toUri("qx/static/blank.html");
         }
       },
-      "test: set source to URL with same origin": function testSetSourceToURLWithSameOrigin() {
+      "test: set source to URL with same origin": function test_set_source_to_URL_with_same_origin() {
         var _this = this;
         var frame = this.__P_347_1;
         var source = this.__P_347_3;
@@ -99,7 +99,7 @@
         qx.html.Element.flush();
         this.wait();
       },
-      "test: update source on navigate": function testUpdateSourceOnNavigate() {
+      "test: update source on navigate": function test_update_source_on_navigate() {
         var frame = this.__P_347_1;
 
         // As soon as the original frame has loaded,
@@ -116,7 +116,7 @@
           this.assertMatch(frame.getSource(), "/blank.html$");
         }, this);
       },
-      "test: skip setting source if frame is already on URL": function testSkipSettingSourceIfFrameIsAlreadyOnURL() {
+      "test: skip setting source if frame is already on URL": function test_skip_setting_source_if_frame_is_already_on_URL() {
         var _this2 = this;
         var frame = this.__P_347_1;
 
@@ -147,7 +147,7 @@
         });
         this.wait();
       },
-      "test: set null source if frame is cross-origin": function testSetNullSourceIfFrameIsCrossOrigin() {
+      "test: set null source if frame is cross-origin": function test_set_null_source_if_frame_is_crossOrigin() {
         var _this3 = this;
         var frame = this.__P_347_1;
         if (this.__P_347_4) {
@@ -180,4 +180,4 @@
   qx.test.html.Iframe.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Iframe.js.map?dt=1726089054171
+//# sourceMappingURL=Iframe.js.map?dt=1729101240667

@@ -519,4 +519,4 @@
   qx.ui.mobile.page.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1726089079627
+//# sourceMappingURL=Manager.js.map?dt=1729101265884

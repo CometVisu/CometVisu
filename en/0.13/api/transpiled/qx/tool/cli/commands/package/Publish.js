@@ -158,7 +158,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var argv, qxVersion, status, cfg, github, response, token, octokit, libraries, version, manifestModels, mainManifestModel, cwd, registryModel, _iterator, _step, library, manifestModel, old_version, new_version, tag, url, repo_name, _repo_name$split, _repo_name$split2, owner, repo, repoExists, result, topics, semver_range, doRelease, question, answer, _i, _manifestModels, _manifestModel, package_json_path, data, message, _question, _answer, run, release_data, topic;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -621,7 +621,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @private
        */
       __P_474_0: function () {
-        var _P_474_ = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(argv) {
+        var _P_474_ = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(argv) {
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
@@ -632,7 +632,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   glob(qx.tool.config.Manifest.config.fileName, {
                     matchBase: true
                   }, /*#__PURE__*/function () {
-                    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(err, files) {
+                    var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(err, files) {
                       var mainpath, choices, answer, data, registryModel;
                       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                         while (1) switch (_context2.prev = _context2.next) {
@@ -723,4 +723,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands["package"].Publish.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Publish.js.map?dt=1726089066479
+//# sourceMappingURL=Publish.js.map?dt=1729101252770

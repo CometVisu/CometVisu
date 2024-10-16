@@ -61,7 +61,7 @@
         this.model.dispose();
         this.model = null;
       },
-      "test isNode with nodes and leafs": function testIsNodeWithNodesAndLeafs() {
+      "test isNode with nodes and leafs": function test_isNode_with_nodes_and_leafs() {
         var model = this.model;
         this.assertTrue(qx.ui.tree.core.Util.isNode(model, "kids"));
         var children = model.getKids();
@@ -75,15 +75,15 @@
           }
         }
       },
-      "test isNode with invalid child property": function testIsNodeWithInvalidChildProperty() {
+      "test isNode with invalid child property": function test_isNode_with_invalid_child_property() {
         this.assertFalse(qx.ui.tree.core.Util.isNode(this.model, "noChildProperty"));
       },
-      "test isNode with null calls": function testIsNodeWithNullCalls() {
+      "test isNode with null calls": function test_isNode_with_null_calls() {
         this.assertFalse(qx.ui.tree.core.Util.isNode(null, "kids"));
         this.assertFalse(qx.ui.tree.core.Util.isNode(this.model, null));
         this.assertFalse(qx.ui.tree.core.Util.isNode(null, null));
       },
-      "test hasChildren with leafs": function testHasChildrenWithLeafs() {
+      "test hasChildren with leafs": function test_hasChildren_with_leafs() {
         var model = this.model;
         var children = model.getKids();
         this.assertTrue(qx.ui.tree.core.Util.hasChildren(model, "kids"));
@@ -93,7 +93,7 @@
         this.assertFalse(qx.ui.tree.core.Util.hasChildren(children.getItem(3), "kids"));
         this.assertFalse(qx.ui.tree.core.Util.hasChildren(children.getItem(4), "kids"));
       },
-      "test hasChildren and ignore leafs": function testHasChildrenAndIgnoreLeafs() {
+      "test hasChildren and ignore leafs": function test_hasChildren_and_ignore_leafs() {
         var model = this.model;
         var children = model.getKids();
         this.assertTrue(qx.ui.tree.core.Util.hasChildren(model, "kids", true));
@@ -103,10 +103,10 @@
         this.assertFalse(qx.ui.tree.core.Util.hasChildren(children.getItem(3), "kids", true));
         this.assertFalse(qx.ui.tree.core.Util.hasChildren(children.getItem(4), "kids", true));
       },
-      "test hasChildren with invalid child property": function testHasChildrenWithInvalidChildProperty() {
+      "test hasChildren with invalid child property": function test_hasChildren_with_invalid_child_property() {
         this.assertFalse(qx.ui.tree.core.Util.hasChildren(this.model, "noChildProperty"));
       },
-      "test hasChildren with null calls": function testHasChildrenWithNullCalls() {
+      "test hasChildren with null calls": function test_hasChildren_with_null_calls() {
         this.assertFalse(qx.ui.tree.core.Util.hasChildren(null, "kids"));
         this.assertFalse(qx.ui.tree.core.Util.hasChildren(this.model, null));
         this.assertFalse(qx.ui.tree.core.Util.hasChildren(null, null));
@@ -116,4 +116,4 @@
   qx.test.ui.tree.virtual.UtilTest.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=UtilTest.js.map?dt=1726089060204
+//# sourceMappingURL=UtilTest.js.map?dt=1729101246741

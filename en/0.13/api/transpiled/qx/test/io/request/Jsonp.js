@@ -79,7 +79,7 @@
       //
       // General (cont.)
       //
-      "test: set url property on construct": function testSetUrlPropertyOnConstruct() {
+      "test: set url property on construct": function test_set_url_property_on_construct() {
         var req = new qx.io.request.Jsonp("url");
         this.assertEquals("url", req.getUrl());
         req.dispose();
@@ -87,13 +87,13 @@
       //
       // Callback management
       //
-      "test: setCallbackParam()": function testSetCallbackParam() {
+      "test: setCallbackParam()": function test_setCallbackParam() {
         var req = this.req,
           transport = this.transport;
         req.setCallbackParam("method");
         this.assertCalledWith(transport.setCallbackParam, "method");
       },
-      "test: setCallbackName()": function testSetCallbackName() {
+      "test: setCallbackName()": function test_setCallbackName() {
         var req = this.req,
           transport = this.transport;
         req.setCallbackName("myCallback");
@@ -104,4 +104,4 @@
   qx.test.io.request.Jsonp.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Jsonp.js.map?dt=1726089054647
+//# sourceMappingURL=Jsonp.js.map?dt=1729101241150

@@ -118,12 +118,12 @@
       //
       // General (cont.)
       //
-      "test: set url property on construct": function testSetUrlPropertyOnConstruct() {
+      "test: set url property on construct": function test_set_url_property_on_construct() {
         var req = new qx.io.request.Xhr("url");
         this.assertEquals("url", req.getUrl());
         req.dispose();
       },
-      "test: set method property on construct": function testSetMethodPropertyOnConstruct() {
+      "test: set method property on construct": function test_set_method_property_on_construct() {
         var req = new qx.io.request.Xhr("url", "POST");
         this.assertEquals("POST", req.getMethod());
         req.dispose();
@@ -131,13 +131,13 @@
       //
       // Send (cont.)
       //
-      "test: send POST request": function testSendPOSTRequest() {
+      "test: send POST request": function test_send_POST_request() {
         this.setUpFakeTransport();
         this.req.setMethod("POST");
         this.req.send();
         this.assertCalledWith(this.transport.open, "POST");
       },
-      "test: send sync request": function testSendSyncRequest() {
+      "test: send sync request": function test_send_sync_request() {
         this.require(["http"]);
         this.setUpFakeTransport();
         this.req.setAsync(false);
@@ -148,14 +148,14 @@
       //
       // Data (cont.)
       //
-      "test: set content type urlencoded for POST request with body when no type given": function testSetContentTypeUrlencodedForPOSTRequestWithBodyWhenNoTypeGiven() {
+      "test: set content type urlencoded for POST request with body when no type given": function test_set_content_type_urlencoded_for_POST_request_with_body_when_no_type_given() {
         this.setUpFakeTransport();
         this.req.setMethod("POST");
         this.req.setRequestData("Affe");
         this.req.send();
         this.assertCalledWith(this.transport.setRequestHeader, "Content-Type", "application/x-www-form-urlencoded");
       },
-      "test: not set content type urlencoded for POST request with body when type given": function testNotSetContentTypeUrlencodedForPOSTRequestWithBodyWhenTypeGiven() {
+      "test: not set content type urlencoded for POST request with body when type given": function test_not_set_content_type_urlencoded_for_POST_request_with_body_when_type_given() {
         var msg;
         this.setUpFakeTransport();
         this.req.setMethod("POST");
@@ -165,14 +165,14 @@
         msg = "Must not set content type urlencoded when other type given";
         this.assert(!this.transport.setRequestHeader.calledWith("Content-Type", "application/x-www-form-urlencoded"), msg);
       },
-      "test: send string data with POST request": function testSendStringDataWithPOSTRequest() {
+      "test: send string data with POST request": function test_send_string_data_with_POST_request() {
         this.setUpFakeTransport();
         this.req.setMethod("POST");
         this.req.setRequestData("str");
         this.req.send();
         this.assertCalledWith(this.transport.send, "str");
       },
-      "test: send obj data with POST request": function testSendObjDataWithPOSTRequest() {
+      "test: send obj data with POST request": function test_send_obj_data_with_POST_request() {
         this.setUpFakeTransport();
         this.req.setMethod("POST");
         this.req.setRequestData({
@@ -181,7 +181,7 @@
         this.req.send();
         this.assertCalledWith(this.transport.send, "af+fe=true");
       },
-      "test: send qooxdoo obj data with POST request": function testSendQooxdooObjDataWithPOSTRequest() {
+      "test: send qooxdoo obj data with POST request": function test_send_qooxdoo_obj_data_with_POST_request() {
         this.setUpFakeTransport();
         this.setUpKlass();
         var obj = new Klass();
@@ -191,7 +191,7 @@
         this.assertCalledWith(this.transport.send, "affe=true");
         obj.dispose();
       },
-      "test: send blob data with POST request": function testSendBlobDataWithPOSTRequest() {
+      "test: send blob data with POST request": function test_send_blob_data_with_POST_request() {
         if (typeof window.Blob == "undefined") {
           this.skip("Blob constructor not available");
         }
@@ -204,7 +204,7 @@
         this.req.send();
         this.assertCalledWith(this.transport.send, blob);
       },
-      "test: send array buffer data with POST request": function testSendArrayBufferDataWithPOSTRequest() {
+      "test: send array buffer data with POST request": function test_send_array_buffer_data_with_POST_request() {
         if (typeof window.ArrayBuffer == "undefined") {
           this.skip("ArrayBuffer constructor not available");
         }
@@ -215,7 +215,7 @@
         this.req.send();
         this.assertCalledWith(this.transport.send, array);
       },
-      "test: serialize data": function testSerializeData() {
+      "test: serialize data": function test_serialize_data() {
         var req = this.req,
           data = {
             abc: "def",
@@ -235,36 +235,36 @@
       //
       // Header and Params (cont.)
       //
-      "test: set requested-with header": function testSetRequestedWithHeader() {
+      "test: set requested-with header": function test_set_requestedWith_header() {
         this.setUpFakeTransport();
         this.req.send();
         this.assertCalledWith(this.transport.setRequestHeader, "X-Requested-With", "XMLHttpRequest");
       },
-      "test: not set requested-with header when cross-origin": function testNotSetRequestedWithHeaderWhenCrossOrigin() {
+      "test: not set requested-with header when cross-origin": function test_not_set_requestedWith_header_when_crossOrigin() {
         this.setUpFakeTransport();
         var spy = this.transport.setRequestHeader.withArgs("X-Requested-With", "XMLHttpRequest");
         this.req.setUrl("http://example.com");
         this.req.send();
         this.assertNotCalled(spy);
       },
-      "test: set cache control header": function testSetCacheControlHeader() {
+      "test: set cache control header": function test_set_cache_control_header() {
         this.setUpFakeTransport();
         this.req.setCache("no-cache");
         this.req.send();
         this.assertCalledWith(this.transport.setRequestHeader, "Cache-Control", "no-cache");
       },
-      "test: set accept header": function testSetAcceptHeader() {
+      "test: set accept header": function test_set_accept_header() {
         this.setUpFakeTransport();
         this.req.setAccept("application/json");
         this.req.send();
         this.assertCalledWith(this.transport.setRequestHeader, "Accept", "application/json");
       },
-      "test: override response content type": function testOverrideResponseContentType() {
+      "test: override response content type": function test_override_response_content_type() {
         this.setUpFakeTransport();
         this.req.overrideResponseContentType("text/plain;charset=Shift-JIS");
         this.assertCalledWith(this.transport.overrideMimeType, "text/plain;charset=Shift-JIS");
       },
-      "test: get response content type": function testGetResponseContentType() {
+      "test: get response content type": function test_get_response_content_type() {
         this.stub(this.req, "getResponseHeader");
         this.req.getResponseContentType();
         this.assertCalledWith(this.req.getResponseHeader, "Content-Type");
@@ -273,7 +273,7 @@
       // Handler
       //
       // Documentation only
-      "test: event handler receives request": function testEventHandlerReceivesRequest() {
+      "test: event handler receives request": function test_event_handler_receives_request() {
         this.setUpFakeTransport();
         var req = this.req,
           transport = this.transport,
@@ -288,7 +288,7 @@
         transport.onreadystatechange();
       },
       // Documentation only
-      "test: event handler's this is request": function testEventHandlerSThisIsRequest() {
+      "test: event handler's this is request": function test_event_handlerS_this_is_request() {
         this.setUpFakeTransport();
         var req = this.req,
           transport = this.transport,
@@ -305,7 +305,7 @@
       //
       // Properties
       //
-      "test: sync XHR properties for every readyState": function testSyncXHRPropertiesForEveryReadyState() {
+      "test: sync XHR properties for every readyState": function test_sync_XHR_properties_for_every_readyState() {
         this.require(["http"]);
         this.setUpFakeServer();
         var req = this.req,
@@ -330,7 +330,7 @@
       //
       // Response
       //
-      "test: get response": function testGetResponse() {
+      "test: get response": function test_get_response() {
         this.setUpFakeTransport();
         var req = this.req,
           transport = this.transport;
@@ -340,7 +340,7 @@
         transport.onreadystatechange();
         this.assertEquals("Affe", req.getResponse());
       },
-      "test: get response on 400 status": function testGetResponseOn400Status() {
+      "test: get response on 400 status": function test_get_response_on_400_status() {
         this.setUpFakeTransport();
         var req = this.req,
           transport = this.transport;
@@ -350,7 +350,7 @@
         transport.onreadystatechange();
         this.assertEquals("Affe", req.getResponse());
       },
-      "test: get response by change event": function testGetResponseByChangeEvent() {
+      "test: get response by change event": function test_get_response_by_change_event() {
         this.setUpFakeTransport();
         var req = this.req,
           transport = this.transport,
@@ -367,7 +367,7 @@
       //
       // Parsing
       //
-      "test: _getParsedResponse": function test_getParsedResponse() {
+      "test: _getParsedResponse": function test__getParsedResponse() {
         var req = this.req,
           json = '{"animals": 3}',
           contentType = "application/json",
@@ -381,7 +381,7 @@
         req._getParsedResponse();
         this.assertCalledWith(stubbedParser.parse, json, contentType);
       },
-      "test: setParser": function testSetParser() {
+      "test: setParser": function test_setParser() {
         var req = this.req,
           customParser = function customParser() {},
           stubbedParser = req._createResponseParser();
@@ -395,7 +395,7 @@
       //
       // Auth
       //
-      "test: basic auth": function testBasicAuth() {
+      "test: basic auth": function test_basic_auth() {
         this.setUpFakeTransport();
         var transport = this.transport,
           auth,
@@ -414,11 +414,11 @@
       //
       // Promise
       //
-      "test: send with promise sends the request": function testSendWithPromiseSendsTheRequest() {
+      "test: send with promise sends the request": function test_send_with_promise_sends_the_request() {
         this.req.sendWithPromise();
         this.assertCalledOnce(this.transport.send);
       },
-      "test: send with promise succeeds": function testSendWithPromiseSucceeds() {
+      "test: send with promise succeeds": function test_send_with_promise_succeeds() {
         this.setUpFakeTransport();
         var req = this.req;
         req.sendWithPromise(this).then(this.resumeHandler(function (result) {
@@ -431,7 +431,7 @@
         transport.onreadystatechange();
         this.wait(10000);
       },
-      "test: send with promise fails with statusError": function testSendWithPromiseFailsWithStatusError() {
+      "test: send with promise fails with statusError": function test_send_with_promise_fails_with_statusError() {
         this.setUpFakeTransport();
         var req = this.req;
         req.sendWithPromise(this).then(this.resumeHandler(function (_) {
@@ -447,7 +447,7 @@
         transport.onreadystatechange();
         this.wait(1000);
       },
-      "test: send with promise fails with error": function testSendWithPromiseFailsWithError() {
+      "test: send with promise fails with error": function test_send_with_promise_fails_with_error() {
         this.setUpFakeTransport();
         var req = this.req;
         req.sendWithPromise(this).then(this.resumeHandler(function (_) {
@@ -462,7 +462,7 @@
         transport.onerror();
         this.wait(1000);
       },
-      "test: send with promise fails with timeout": function testSendWithPromiseFailsWithTimeout() {
+      "test: send with promise fails with timeout": function test_send_with_promise_fails_with_timeout() {
         this.setUpFakeTransport();
         var req = this.req;
         req.sendWithPromise(this).then(this.resumeHandler(function (_) {
@@ -475,7 +475,7 @@
         this.transport.ontimeout();
         this.wait(5000);
       },
-      "test: setled promise has no extra listeners": function testSetledPromiseHasNoExtraListeners() {
+      "test: setled promise has no extra listeners": function test_setled_promise_has_no_extra_listeners() {
         this.setUpFakeTransport();
         var req = this.req;
         var promise = req.sendWithPromise(this);
@@ -489,7 +489,7 @@
         this.transport.ontimeout();
         this.wait(5000);
       },
-      "test: aborted request rejects the promise": function testAbortedRequestRejectsThePromise() {
+      "test: aborted request rejects the promise": function test_aborted_request_rejects_the_promise() {
         this.setUpFakeTransport();
         var req = this.req;
         req.sendWithPromise(this).then(this.resumeHandler(function (_) {
@@ -501,7 +501,7 @@
         this.transport.onabort();
         this.wait(5000);
       },
-      "test: parseError rejects the promise": function testParseErrorRejectsThePromise() {
+      "test: parseError rejects the promise": function test_parseError_rejects_the_promise() {
         this.setUpFakeTransport();
         var req = this.req;
         var stubbedParser = req._createResponseParser();
@@ -522,7 +522,7 @@
         transport.onreadystatechange();
         this.wait(5000);
       },
-      "test: canceled promise with abort() in finally does not reject other promises": function testCanceledPromiseWithAbortInFinallyDoesNotRejectOtherPromises() {
+      "test: canceled promise with abort() in finally does not reject other promises": function test_canceled_promise_with_abort_in_finally_does_not_reject_other_promises() {
         this.setUpFakeTransport();
         var req = this.req;
         var promise = req.sendWithPromise(this);
@@ -552,7 +552,7 @@
         transport.onreadystatechange();
         this.wait(5000);
       },
-      "test: canceled promise path does not affect other listeners": function testCanceledPromisePathDoesNotAffectOtherListeners() {
+      "test: canceled promise path does not affect other listeners": function test_canceled_promise_path_does_not_affect_other_listeners() {
         this.setUpFakeTransport();
         var req = this.req;
         var promise = req.sendWithPromise(this);
@@ -575,7 +575,7 @@
         transport.onreadystatechange();
         this.wait(5000);
       },
-      "test: canceled promise aborts pending request": function testCanceledPromiseAbortsPendingRequest() {
+      "test: canceled promise aborts pending request": function test_canceled_promise_aborts_pending_request() {
         this.setUpFakeTransport();
         var req = this.req;
         var promise = req.sendWithPromise(this).then(this.resumeHandler(function (_) {
@@ -591,7 +591,7 @@
         promise.cancel();
         this.wait(5000);
       },
-      "test: settled promise does not set phase to abort": function testSettledPromiseDoesNotSetPhaseToAbort() {
+      "test: settled promise does not set phase to abort": function test_settled_promise_does_not_set_phase_to_abort() {
         this.setUpFakeTransport();
         var req = this.req;
         req.sendWithPromise(this).then(this.resumeHandler(function (_) {
@@ -607,7 +607,7 @@
         transport.onreadystatechange();
         this.wait(5000);
       },
-      "test: returned promise is bound to request": function testReturnedPromiseIsBoundToRequest() {
+      "test: returned promise is bound to request": function test_returned_promise_is_bound_to_request() {
         this.setUpFakeTransport();
         var req = this.req;
         var self = this;
@@ -617,7 +617,7 @@
         this.transport.onerror();
         this.wait(5000);
       },
-      "test: returned promise is bound to caller": function testReturnedPromiseIsBoundToCaller() {
+      "test: returned promise is bound to caller": function test_returned_promise_is_bound_to_caller() {
         this.setUpFakeTransport(this);
         var self = this;
         this.req.sendWithPromise(this)["catch"](this.resumeHandler(function (_) {
@@ -631,4 +631,4 @@
   qx.test.io.request.Xhr.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Xhr.js.map?dt=1726089054785
+//# sourceMappingURL=Xhr.js.map?dt=1729101241291

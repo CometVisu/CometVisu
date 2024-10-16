@@ -80,7 +80,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       writeSourceCodeToStream: function writeSourceCodeToStream(ws) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var appMeta, application, target, appRootDir, urisBefore, inlines, i, uri, filename, data, MAP, lines, _i, line, match, keyword, replace, j, newLine;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -257,7 +257,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getSourceMap: function getSourceMap() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var res, target, i, s, mapTo;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -291,4 +291,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.meta.BootJs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=BootJs.js.map?dt=1726089070140
+//# sourceMappingURL=BootJs.js.map?dt=1729101256407

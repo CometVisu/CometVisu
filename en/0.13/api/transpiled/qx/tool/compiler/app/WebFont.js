@@ -110,7 +110,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _loadLocalFont: function _loadLocalFont(filename) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var fontpath;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -135,7 +135,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _loadRemoteFont: function _loadRemoteFont(url) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var tmpFilename, result;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -166,7 +166,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       __P_488_2: function __P_488_2(filename) {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var _font$GSUB;
           var font, resources, mapPath, data, map, ligatureName, lookupList, lookupListIndexes, defaultSize;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -333,7 +333,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           return this.__P_488_3;
         }
         var generate = /*#__PURE__*/function () {
-          var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+          var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
             var _iterator, _step, resource, basename;
             return _regeneratorRuntime().wrap(function _callee4$(_context4) {
               while (1) switch (_context4.prev = _context4.next) {
@@ -410,7 +410,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       generateForApplication: function generateForApplication(target, application) {
         var _this5 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
             while (1) switch (_context5.prev = _context5.next) {
               case 0:
@@ -439,4 +439,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.app.WebFont.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WebFont.js.map?dt=1726089068343
+//# sourceMappingURL=WebFont.js.map?dt=1729101254606

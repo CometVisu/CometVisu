@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic structure &mdash; CometVisu</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/theme_override.css?v=d0aeeef9" />
+
+  
+    <link rel="canonical" href="https://www.cometvisu.org/CometVisu/en/0.13/manual/config/structure-tile/index.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Configuration of the backend connection" href="elements/backend.html" />
+    <link rel="prev" title="Customize CometVisu" href="../customizing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CometVisu
+              <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation of the CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Usage of the CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Configuration of the CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../manager.html">The CometVisu Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../editor.html">Graphical editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hidden-config.html">Hidden configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../url-params.html">URL-Parameter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#pure-structure">Pure-structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#tile-structure">Tile-structure</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Basic structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#meta-section">Meta section</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#navigation-page-structure">Navigation / Page structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#widgets">Widgets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="widgets/switch.html">Switch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/dimmer.html">Dimmer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/shutter.html">Shutter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/info.html">Info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/status.html">Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/small-status.html">Small-Status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/status-chart.html">Status-Chart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/rtc.html">RTC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/media-player.html">Media Player</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/widget-pair.html">Widget-pair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/energy.html">Energy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="widgets/web.html">Web</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#define-own-widgets">Define own widgets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#components">Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../colab/index.html">Help the CometVisu project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devel/index.html">Information for developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CometVisu</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Configuration of the CometVisu</a></li>
+      <li class="breadcrumb-item active">Basic structure</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p>Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<section id="basic-structure">
+<h1>Basic structure<a class="headerlink" href="#basic-structure" title="Link to this heading"></a></h1>
+<p>On the top level a tile file contains a meta section (<code class="docutils literal notranslate"><span class="pre">&lt;cv-meta&gt;</span></code>) with invisible settings that are needed for this configuration file
+(e.g. connections to backends, loading additional files etc.).
+The visible part is divided into a <code class="docutils literal notranslate"><span class="pre">&lt;header&gt;</span></code> (top), a <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;</span></code> (the actual content) and a <code class="docutils literal notranslate"><span class="pre">&lt;footer&gt;</span></code> (bottom) section.
+The header and footer are optional and can be used for global content like navigation bars or widgets that show a global
+status like the number of open windows or the lights that are turned on.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;config&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-meta&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- not visible configuration elements --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;header&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- optional top content --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/header&gt;</span>
+<span class="w">    </span><span class="nt">&lt;main&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- main content including optional sidebars --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/main&gt;</span>
+<span class="w">    </span><span class="nt">&lt;footer&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- optional bottom content --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/footer&gt;</span>
+<span class="nt">&lt;/config&gt;</span>
+</pre></div>
+</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;</span></code> section the content is displayed in tiles that are arranged in pages (<code class="docutils literal notranslate"><span class="pre">&lt;cv-page&gt;</span></code>).
+For frequently used things the tile-structure already provides tiles with predefined content (called widgets).
+The switch-widget for example contains a button in the middle cell and centered text in the row below.</p>
+<section id="meta-section">
+<h2>Meta section<a class="headerlink" href="#meta-section" title="Link to this heading"></a></h2>
+<p>The meta section (<code class="docutils literal notranslate"><span class="pre">&lt;cv-meta&gt;</span></code>) contains all settings that are needed for this configuration file.
+This includes connections to the <a class="reference internal" href="elements/backend.html#tile-element-backend"><span class="std std-ref">backends</span></a>, <a class="reference internal" href="elements/mapping.html#tile-element-mapping"><span class="std std-ref">mappings</span></a>,
+<a class="reference internal" href="elements/styling.html#tile-element-styling"><span class="std std-ref">stylings</span></a> and <a class="reference internal" href="elements/loader.html#tile-element-loader"><span class="std std-ref">loaders</span></a>.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;openhab&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;/rest/&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;si&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;simulated&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-backend</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mqtt&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;mqtt&quot;</span><span class="w"> </span><span class="na">uri=</span><span class="s">&quot;ws://mqtt:9001/&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;light&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-lightbulb-line<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-lightbulb-fill<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-mapping&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;speaker&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>ri-speaker-line<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>ri-speaker-fill<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-mapping&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;WindowOpen&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range-min=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-styling&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-mapping</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;PlayProgress&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;formula&gt;</span>y<span class="w"> </span>=<span class="w"> </span>Math.round(100/store.get(&#39;duration&#39;)*x)<span class="nt">&lt;/formula&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-mapping&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-styling</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>inactive<span class="nt">&lt;/entry&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entry</span><span class="w"> </span><span class="na">range-min=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>active<span class="nt">&lt;/entry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-styling&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-loader</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;css&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resource/config/media/example.css&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-loader</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;js&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resource/config/media/example.js&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-loader</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;templates&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resource/config/media/my-templates.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/cv-meta&gt;</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="navigation-page-structure">
+<h2>Navigation / Page structure<a class="headerlink" href="#navigation-page-structure" title="Link to this heading"></a></h2>
+<p>In addition to the actual page content, there are fixed areas that are always visible regardless of which subpage
+you are currently on. There are header and footer areas and a left and right sidebar. The main area then contains
+the individual pages with their respective content (tiles) between which you can navigate back and forth.
+The fixed areas are all optional and can be used or omitted as required. You can use them, for example, for navigation
+bars or widgets that show global status, such as the number of open windows or the number of lights on.</p>
+<figure class="align-default" id="id1">
+<img alt="Basic structure with all optional areas available" src="../../_images/tile-ui-structure.png" />
+<figcaption>
+<p><span class="caption-text">Basic structure with all optional areas available</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
+<span class="w">    </span><span class="nt">&lt;h1&gt;</span>Header<span class="w"> </span>section<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+<span class="nt">&lt;main&gt;</span>
+<span class="w">    </span><span class="nt">&lt;aside&gt;</span>
+<span class="w">        </span><span class="nt">&lt;h1&gt;</span>Left<span class="w"> </span>sidebar<span class="nt">&lt;/h1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/aside&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;start&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;h1&gt;</span>Page<span class="w"> </span>contents<span class="nt">&lt;/h1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-page&gt;</span>
+<span class="w">    </span><span class="nt">&lt;aside&gt;</span>
+<span class="w">        </span><span class="nt">&lt;h1&gt;</span>Right<span class="w"> </span>sidebar<span class="nt">&lt;/h1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/aside&gt;</span>
+<span class="nt">&lt;/main&gt;</span>
+<span class="nt">&lt;footer&gt;</span>
+<span class="w">    </span><span class="nt">&lt;h1&gt;</span>Footer<span class="w"> </span>section<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;/footer&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;main&gt;</span></code> section is not optional and must always be present.
+Any number of <a class="reference internal" href="components/page.html#tile-component-page"><span class="std std-ref">Pages</span></a> can be specified within this area.
+A page can contain <a class="reference internal" href="#widgets">widgets</a>, <a class="reference internal" href="components/group.html#tile-component-group"><span class="std std-ref">groups</span></a> and other pages. Through this nesting
+you can define a navigation structure. For example, you can specify a page for each floor, which in turn
+contains a page for each room on this floor.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;main&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;eg&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Ground floor&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;ez&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Dining room&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;wz&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Living room&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;ku&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Kitchen&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;bad&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bathroom&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-page&gt;</span>
+<span class="w">     </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;og&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;First floor&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;sz&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bedroom&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;kz1&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;child&#39;s room 1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;kz2&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;child&#39;s room 2&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-page</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;badOg&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;Bathroom&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-page&gt;</span>
+<span class="nt">&lt;/main&gt;</span>
+</pre></div>
+</div>
+<p>A <a class="reference internal" href="components/menu.html#tile-component-menu"><span class="std std-ref">navigation menu</span></a> is automatically created from this structure. These can be integrated anywhere
+(usually in the header or footer section).</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
+<span class="w">    </span><span class="nt">&lt;nav&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-menu</span><span class="w"> </span><span class="na">model=</span><span class="s">&quot;pages&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/nav&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/tile-nav-menu.png" src="../../_images/tile-nav-menu.png" />
+</figure>
+<p>In the <code class="docutils literal notranslate"><span class="pre">&lt;header&gt;/&lt;footer&gt;</span></code> sections, a breadcrumb menu can also be added with <code class="docutils literal notranslate"><span class="pre">&lt;cv-breadcrumbs/&gt;</span></code>.
+This allows you to quickly jump back to higher-level pages.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;header&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-breadcrumbs/&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/tile-nav-breadcrumb.png" src="../../_images/tile-nav-breadcrumb.png" />
+</figure>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+<section id="widgets">
+<span id="tile-widgets"></span><h1>Widgets<a class="headerlink" href="#widgets" title="Link to this heading"></a></h1>
+<p>A widget is a tile with one or more components that provides a specific function.
+This means that common use cases within a smart home can be covered, such as light switches
+or operating a roller shutter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-switch-on.png"><img alt="../../_images/cv-switch-on.png" src="../../_images/cv-switch-on.png" style="width: 150px;" /></a>
+</td>
+<td><p><a class="reference internal" href="widgets/switch.html#tile-switch"><span class="std std-ref">The switch widget</span></a>
+simple switch, button or trigger</p></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-dimmer.png"><img alt="../../_images/cv-dimmer.png" src="../../_images/cv-dimmer.png" style="width: 150px;" /></a>
+</td>
+<td><p><a class="reference internal" href="widgets/dimmer.html#tile-dimmer"><span class="std std-ref">The dimmer widget</span></a>
+Switch with additional slider to set a percentage</p></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-shutter.png"><img alt="../../_images/cv-shutter.png" src="../../_images/cv-shutter.png" style="width: 150px;" /></a>
+</td>
+<td><p><a class="reference internal" href="widgets/shutter.html#tile-shutter"><span class="std std-ref">The shutter widget</span></a>
+Button for up/down/stop to control a shutter</p></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-info.png"><img alt="../../_images/cv-info.png" src="../../_images/cv-info.png" style="width: 150px;" /></a>
+</td>
+<td><p><a class="reference internal" href="widgets/info.html#tile-info"><span class="std std-ref">The info widget</span></a>
+Representation of a value in different ways</p></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status.png"><img alt="../../_images/cv-status.png" src="../../_images/cv-status.png" style="width: 150px;" /></a>
+</td>
+<td><p><a class="reference internal" href="widgets/status.html#tile-status"><span class="std std-ref">The status widget</span></a>
+Status display at half tile height</p></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-small-status.png"><img alt="../../_images/cv-small-status.png" src="../../_images/cv-small-status.png" style="width: 60px;" /></a>
+</td>
+<td><p><a class="reference internal" href="widgets/small-status.html#tile-small-status"><span class="std std-ref">The small status widget</span></a>
+Status display in button size</p></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-status-chart.png"><img alt="../../_images/cv-status-chart.png" src="../../_images/cv-status-chart.png" style="width: 150px;" /></a>
+</td>
+<td><p><a class="reference internal" href="widgets/status-chart.html#tile-status-chart"><span class="std std-ref">The status-chart widget</span></a>
+Status widget with chart in the background</p></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-rtc.png"><img alt="../../_images/cv-rtc.png" src="../../_images/cv-rtc.png" style="width: 150px;" /></a>
+</td>
+<td><p><a class="reference internal" href="widgets/rtc.html#tile-rtc"><span class="std std-ref">The RTC widget</span></a>
+Room temperature control with settings for HVAC and
+a set point temperature</p></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-media-player.png"><img alt="../../_images/cv-media-player.png" src="../../_images/cv-media-player.png" style="width: 150px;" /></a>
+</td>
+<td><p><a class="reference internal" href="widgets/media-player.html#tile-media-player"><span class="std std-ref">The media-player widget</span></a>
+Control a media player with start/stop,
+next &amp; previous and a volume control</p></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../_images/cv-widget-pair.png"><img alt="../../_images/cv-widget-pair.png" src="../../_images/cv-widget-pair.png" style="width: 150px;" /></a>
+</td>
+<td><p><a class="reference internal" href="widgets/widget-pair.html#tile-widget-pair"><span class="std std-ref">The widget-pair</span></a>
+Allows two tiles to be displayed at half height</p></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../_images/cv-energy-full.png"><img alt="../../_images/cv-energy-full.png" src="../../_images/cv-energy-full.png" style="width: 150px;" /></a>
+</td>
+<td><p><a class="reference internal" href="widgets/energy.html#tile-energy"><span class="std std-ref">The energy widget</span></a>
+Visualizes energy flow inside a house</p></td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="define-own-widgets">
+<h1>Define own widgets<a class="headerlink" href="#define-own-widgets" title="Link to this heading"></a></h1>
+<p>If the existing widgets are not sufficient, you can also define your own widgets. The definition
+of a new widget takes place in a <code class="docutils literal notranslate"><span class="pre">&lt;cv-widget&gt;</span></code> element. This consists of the actual content element
+<code class="docutils literal notranslate"><span class="pre">&lt;cv-tile&gt;</span></code> and an optional <code class="docutils literal notranslate"><span class="pre">&lt;header&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;footer&gt;</span></code> element.
+The content in the tiles is arranged in a maximum of 3 rows with 3 columns each, similar here
+how in tables a content element can occupy several rows and/or columns.</p>
+<figure class="align-default">
+<img alt="../../_images/tile-grid.png" src="../../_images/tile-grid.png" />
+</figure>
+<p>The <a class="reference internal" href="#tile-components"><span class="std std-ref">components</span></a> provided by the tile structure can be freely placed within the cells of a tile.
+Examples of these components include simple text, a <a class="reference internal" href="components/button.html#tile-component-button"><span class="std std-ref">Button</span></a>,
+<a class="reference internal" href="components/image.html#tile-component-image"><span class="std std-ref">Image</span></a> or more complex display elements like <a class="reference internal" href="components/list.html#tile-component-list"><span class="std std-ref">Lists</span></a>.</p>
+<p>The easiest way is to first create a tile with all the components you need in the desired locations
+in its normal configuration file. This is the best way to test appearance and functionality.
+The following example shows a tile in which a round <a class="reference internal" href="components/value.html#tile-component-value"><span class="std std-ref">progress bar</span></a>
+and a text is displayed.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-widget&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-row</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">row=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-value</span><span class="w"> </span><span class="na">format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:number&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="w"> </span><span class="na">backend=</span><span class="s">&quot;si&quot;</span><span class="nt">&gt;</span>Test_Value<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">                </span><span class="nt">&lt;cv-round-progress</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/cv-value&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-row&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-row</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">row=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;</span>Circle<span class="w"> </span>Progress<span class="nt">&lt;/label&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-row&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="nt">&lt;/cv-widget&gt;</span>
+</pre></div>
+</div>
+<p>This tile configuration must now be transferred to a template. To do this you first have to create a template file.
+The best way to do this is to use the <a class="reference internal" href="../manager.html#manager"><span class="std std-ref">Manager</span></a> by creating a file called “my-templates.xml” in the “media” folder.
+generated. To load these templates, add a <a class="reference internal" href="elements/loader.html#tile-element-loader"><span class="std std-ref">Loader</span></a> to the configuration file in the meta area
+added.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;cv-meta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-loader</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;templates&quot;</span><span class="w"> </span><span class="na">src=</span><span class="s">&quot;resource/config/media/my-templates.xml&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/cv-meta&gt;</span>
+</pre></div>
+</div>
+<p>Now copy everything that is between <code class="docutils literal notranslate"><span class="pre">&lt;cv-widget&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;/cv-widget&gt;</span></code> into this file.
+It should then contain the following content:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;templates</span><span class="w"> </span><span class="na">structure=</span><span class="s">&quot;tile&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;template</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;meter&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-tile&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-row</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">row=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;cv-value</span><span class="w"> </span><span class="na">slot-format=</span><span class="s">&quot;%d%%&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;slot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;address&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;cv-round-progress</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/cv-value&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/cv-row&gt;</span>
+<span class="w">            </span><span class="nt">&lt;cv-row</span><span class="w"> </span><span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">row=</span><span class="s">&quot;last&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;label</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;secondary&quot;</span><span class="nt">&gt;&lt;slot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;label&quot;</span><span class="nt">/&gt;&lt;/label&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/cv-row&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/cv-tile&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/templates&gt;</span>
+</pre></div>
+</div>
+<p>Within the template definition with the id “meter” you can see the slightly modified content of the tile.
+The only thing that needs to be modified is content that you would like to have configurable later. Usually
+this includes addresses, labels and possibly some attributes such as mappings, styling and formatting.</p>
+<p>If you now want to use this template in the configuration file, add a <code class="docutils literal notranslate"><span class="pre">&lt;cv-meter&gt;</span></code> element there.
+The name comes from the template ID with the prefix <code class="docutils literal notranslate"><span class="pre">cv-</span></code>.</p>
+<p>The principle of the <code class="docutils literal notranslate"><span class="pre">&lt;slot&gt;</span></code> elements is relatively simple, they serve as placeholders for elements that use this slot.
+In the example there are two slot elements: one for the address of the value element: <code class="docutils literal notranslate"><span class="pre">&lt;slot</span> <span class="pre">name=&quot;address&quot;/&gt;</span></code>
+and one for the label: <code class="docutils literal notranslate"><span class="pre">&lt;slot</span> <span class="pre">name=&quot;label&quot;/&gt;</span></code>.</p>
+<p>This results in the following code with which you can now use the newly defined template widget.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;custom&gt;</span>
+<span class="w">    </span><span class="nt">&lt;cv-meter&gt;</span>
+<span class="w">        </span><span class="nt">&lt;cv-address</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="na">transform=</span><span class="s">&quot;OH:5.001&quot;</span><span class="w"> </span><span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/cv-address&gt;</span>
+<span class="w">        </span><span class="nt">&lt;span</span><span class="w"> </span><span class="na">slot=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>Circle<span class="w"> </span>Progress<span class="nt">&lt;/span&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cv-meter&gt;</span>
+<span class="nt">&lt;/custom&gt;</span>
+</pre></div>
+</div>
+<p>Since self-defined template widgets are not known to the official schema of the CometVisu configuration files,
+you have to wrap this into a <code class="docutils literal notranslate"><span class="pre">&lt;custom&gt;...&lt;/custom&gt;</span></code> element so that the configuration file is not marked as invalid.
+However, at this point you lose the advantage that this part of the configuration file can be checked for validity.
+If you still want rely on this, the schema can also be expanded with the schema definition for your new widget.
+To do this, the file “custom_visu_config.xsd” must be present in the “config/” folder.
+If it does not exist, it must be created with the following basic structure.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;xsd:schema</span><span class="w"> </span><span class="na">xmlns:xsd=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span><span class="w"> </span><span class="na">xmlns:xml=</span><span class="s">&quot;http://www.w3.org/XML/1998/namespace&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- uncomment the next line if you want to reference types from the main pure schema --&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- &lt;xsd:include schemaLocation=&quot;../visu_config.xsd&quot;/&gt; --&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- uncomment the next line if you want to reference types from the main tile schema --&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- &lt;xsd:include schemaLocation=&quot;../visu_config_tile.xsd&quot;/&gt; --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;xsd:group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;CustomWidgets&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xsd:choice&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!-- reference new widgets here, e.g.</span>
+<span class="cm">                &lt;xsd:element name=&quot;cv-music-player&quot; type=&quot;cv-music-player&quot; /&gt;</span>
+<span class="cm">            --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/xsd:choice&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/xsd:group&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- add definition for new widgets here --&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- &lt;xsd:complexType name=&quot;cv-music-player&quot;&gt;...&lt;/xsd:complexType&gt; --&gt;</span>
+<span class="nt">&lt;/xsd:schema&gt;</span>
+</pre></div>
+</div>
+<p>The complete example for the <code class="docutils literal notranslate"><span class="pre">&lt;cv-meter&gt;</span></code> widget looks like this.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;xsd:schema</span><span class="w"> </span><span class="na">xmlns:xsd=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span><span class="w"> </span><span class="na">xmlns:xml=</span><span class="s">&quot;http://www.w3.org/XML/1998/namespace&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;xsd:include</span><span class="w"> </span><span class="na">schemaLocation=</span><span class="s">&quot;../visu_config_tile.xsd&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;xsd:group</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;CustomWidgets&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xsd:choice&gt;</span>
+<span class="w">            </span><span class="nt">&lt;xsd:element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cv-meter&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;cv-meter&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/xsd:choice&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/xsd:group&gt;</span>
+<span class="w">    </span><span class="nt">&lt;xsd:complexType</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cv-meter&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xsd:sequence&gt;</span>
+<span class="w">            </span><span class="nt">&lt;xsd:element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;span&quot;</span><span class="w"> </span><span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;xsd:complexType&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;xsd:simpleContent&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;xsd:extension</span><span class="w"> </span><span class="na">base=</span><span class="s">&quot;xsd:string&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;xsd:attribute</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;slot&quot;</span><span class="w"> </span><span class="na">use=</span><span class="s">&quot;required&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;xsd:simpleType&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;xsd:restriction</span><span class="w"> </span><span class="na">base=</span><span class="s">&quot;xsd:string&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                        </span><span class="nt">&lt;xsd:enumeration</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;label&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;/xsd:restriction&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;/xsd:simpleType&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;/xsd:attribute&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/xsd:extension&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/xsd:simpleContent&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/xsd:complexType&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/xsd:element&gt;</span>
+<span class="w">            </span><span class="nt">&lt;xsd:element</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cv-address&quot;</span><span class="w"> </span><span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;xsd:complexType&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;xsd:simpleContent&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;xsd:extension</span><span class="w"> </span><span class="na">base=</span><span class="s">&quot;address&quot;</span><span class="nt">&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;xsd:attribute</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;slot&quot;</span><span class="w"> </span><span class="na">use=</span><span class="s">&quot;required&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;xsd:simpleType&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;xsd:restriction</span><span class="w"> </span><span class="na">base=</span><span class="s">&quot;xsd:string&quot;</span><span class="nt">&gt;</span>
+<span class="w">                                        </span><span class="nt">&lt;xsd:enumeration</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;address&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">                                    </span><span class="nt">&lt;/xsd:restriction&gt;</span>
+<span class="w">                                </span><span class="nt">&lt;/xsd:simpleType&gt;</span>
+<span class="w">                            </span><span class="nt">&lt;/xsd:attribute&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;/xsd:extension&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/xsd:simpleContent&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/xsd:complexType&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/xsd:element&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/xsd:sequence&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xsd:attribute</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;format&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/xsd:complexType&gt;</span>
+<span class="nt">&lt;/xsd:schema&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;cv-meter&gt;</span></code> widget can then be used without <code class="docutils literal notranslate"><span class="pre">&lt;custom&gt;...&lt;/custom&gt;</span></code> and it will also be checked for validity.</p>
+<section id="components">
+<span id="tile-components"></span><h2>Components<a class="headerlink" href="#components" title="Link to this heading"></a></h2>
+<p>A component is a single visual element that is either operable (e.g. button) or just shows a value.
+The widgets already presented combine one or multiple components in one tile.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="components/button.html">Button</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/value.html">Value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/image.html">Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/select.html">Select</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/spinner.html">Spinner</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/slider.html">Slider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/list.html">List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/chart.html">Chart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/color.html">Color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/power-entity.html">Power entity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/energy-entity.html">Energy entity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/svg-round-value.html">SVG round value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/svg-text-value.html">SVG text value</a></li>
+</ul>
+</div>
+</section>
+<section id="miscellaneous">
+<h2>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Link to this heading"></a></h2>
+<p>Other elements that are not independent components but can be used within them.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="components/icon.html">Icon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/address.html">Address</a></li>
+<li class="toctree-l1"><a class="reference internal" href="elements/address-group.html">Address-Group</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../customizing.html" class="btn btn-neutral float-left" title="Customize CometVisu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="elements/backend.html" class="btn btn-neutral float-right" title="Configuration of the backend connection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2010-2024 Christian Mayer and the CometVisu contributers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <!--
+  ~ Copyright (c) 2023, Christian Mayer and the CometVisu contributors.
+  ~
+  ~ This program is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU General Public License as published by the Free
+  ~ Software Foundation; either version 3 of the License, or (at your option)
+  ~ any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT
+  ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  ~ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  ~ more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License along
+  ~ with this program; if not, write to the Free Software Foundation, Inc.,
+  ~ 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+  ~
+  -->
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="Versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.13.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+        <dd><a href="../../../../0.10.2|0.10/manual">0.10.2|0.10</a>
+        </dd>
+        
+        <dd><a href="../../../../0.11.2|0.11/manual">0.11.2|0.11</a>
+        </dd>
+        
+        <dd><a href="../../../../0.12.6|0.12/manual">0.12.6|0.12</a>
+        </dd>
+        
+        <dd><a href="../../../../0.13.0-dev|0.13/manual">0.13.0-dev|0.13</a>
+        </dd>
+        
+      </dl>
+    </div>
+  </div>
+
+
+</body>
+</html>

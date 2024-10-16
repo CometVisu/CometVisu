@@ -99,7 +99,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var cfg, github, response, num_libraries;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -193,7 +193,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       updateFromRepository: function updateFromRepository() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var url, fetch, res, data;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -236,7 +236,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       updateFromGitHubAPI: function updateFromGitHubAPI(token) {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var auth, search, num_libraries, query, result, result2, repos, repo_lookup, repos_data, _iterator, _step, repo, name, repository, releases_data, releases, versions, _iterator2, _step2, release, tag_name, _releases, manifests, qooxdoo_data, data, _iterator3, _step3, _step3$value, index, manifest, manifest_data, manifest_path, _data, qx_version_range, zip_url;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
@@ -573,4 +573,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands["package"].Update.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Update.js.map?dt=1726089066727
+//# sourceMappingURL=Update.js.map?dt=1729101253021

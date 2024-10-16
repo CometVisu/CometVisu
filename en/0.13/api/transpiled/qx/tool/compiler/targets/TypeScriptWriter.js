@@ -93,7 +93,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       open: function open() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var time, str, baseDeclaration;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -123,7 +123,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       close: function close() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var globalFile;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -155,7 +155,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var classnames, lastPackageName, declared, _iterator, _step, classname, metaData, pos, packageName;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
@@ -236,7 +236,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       writeClass: function writeClass(meta, declared) {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           var _meta$jsdoc;
           var extendsClause, superTypes, superType, type, name, pos;
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
@@ -842,4 +842,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.compiler.targets.TypeScriptWriter.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=TypeScriptWriter.js.map?dt=1726089069912
+//# sourceMappingURL=TypeScriptWriter.js.map?dt=1729101256173

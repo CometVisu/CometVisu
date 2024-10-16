@@ -43,7 +43,7 @@
         document.body.removeChild(this._el);
         this._el = null;
       },
-      "test: get should return the className for svg element": function testGetShouldReturnTheClassNameForSvgElement() {
+      "test: get should return the className for svg element": function test_get_should_return_the_className_for_svg_element() {
         if (document.createElementNS) {
           var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
           svg.setAttribute("id", "svgEl");
@@ -54,39 +54,39 @@
           document.body.removeChild(svg);
         }
       },
-      "test: get on new element should return empty string": function testGetOnNewElementShouldReturnEmptyString() {
+      "test: get on new element should return empty string": function test_get_on_new_element_should_return_empty_string() {
         var Class = qx.bom.element.Class;
         this.assertEquals("", Class.get(this._el));
       },
-      "test: get should return the className": function testGetShouldReturnTheClassName() {
+      "test: get should return the className": function test_get_should_return_the_className() {
         var Class = qx.bom.element.Class;
         this._el.className = "juhu kinners";
         this.assertEquals("juhu kinners", Class.get(this._el));
       },
-      "test: add() on new element should set the class name": function testAddOnNewElementShouldSetTheClassName() {
+      "test: add() on new element should set the class name": function test_add_on_new_element_should_set_the_class_name() {
         var Class = qx.bom.element.Class;
         this.assertEquals("juhu", Class.add(this._el, "juhu"));
         this.assertEquals("juhu", Class.get(this._el));
       },
-      "test: add() on element with class should not set it again": function testAddOnElementWithClassShouldNotSetItAgain() {
+      "test: add() on element with class should not set it again": function test_add_on_element_with_class_should_not_set_it_again() {
         var Class = qx.bom.element.Class;
         Class.add(this._el, "juhu");
         Class.add(this._el, "juhu");
         this.assertEquals("juhu", Class.get(this._el));
       },
-      "test: addClasses() on new element should set multiple classes": function testAddClassesOnNewElementShouldSetMultipleClasses() {
+      "test: addClasses() on new element should set multiple classes": function test_addClasses_on_new_element_should_set_multiple_classes() {
         var Class = qx.bom.element.Class;
         this.assertEquals("juhu kinners", Class.addClasses(this._el, ["juhu", "kinners"]));
         this.assertEquals("juhu kinners", Class.get(this._el));
       },
-      "test: addClasses() should ignore class names, which are already set": function testAddClassesShouldIgnoreClassNamesWhichAreAlreadySet() {
+      "test: addClasses() should ignore class names, which are already set": function test_addClasses_should_ignore_class_names_which_are_already_set() {
         var Class = qx.bom.element.Class;
         Class.addClasses(this._el, ["juhu", "kinners"]);
         Class.addClasses(this._el, ["juhu"]);
         Class.addClasses(this._el, ["kinners"]);
         this.assertEquals("juhu kinners", Class.get(this._el));
       },
-      "test: has()": function testHas() {
+      "test: has()": function test_has() {
         var Class = qx.bom.element.Class;
         this.assertFalse(Class.has(this._el, "juhu"));
         Class.addClasses(this._el, ["juhu", "kinners"]);
@@ -94,13 +94,13 @@
         this.assertTrue(Class.has(this._el, "kinners"));
         this.assertFalse(Class.has(this._el, "foo"));
       },
-      "test: remove() non existing class should be ignored": function testRemoveNonExistingClassShouldBeIgnored() {
+      "test: remove() non existing class should be ignored": function test_remove_non_existing_class_should_be_ignored() {
         var Class = qx.bom.element.Class;
         this.assertEquals("", Class.get(this._el));
         this.assertEquals("juhu", Class.remove(this._el, "juhu"));
         this.assertEquals("", Class.get(this._el));
       },
-      "test: remove() existing classes": function testRemoveExistingClasses() {
+      "test: remove() existing classes": function test_remove_existing_classes() {
         var Class = qx.bom.element.Class;
         Class.addClasses(this._el, ["juhu", "kinners"]);
         this.assertEquals("juhu", Class.remove(this._el, "juhu"));
@@ -108,13 +108,13 @@
         this.assertEquals("kinners", Class.remove(this._el, "kinners"));
         this.assertEquals("", Class.get(this._el));
       },
-      "test: removeClasses() to remove several classes at once": function testRemoveClassesToRemoveSeveralClassesAtOnce() {
+      "test: removeClasses() to remove several classes at once": function test_removeClasses_to_remove_several_classes_at_once() {
         var Class = qx.bom.element.Class;
         Class.addClasses(this._el, ["a", "juhu", "b", "kinners", "c"]);
         this.assertEquals("a b c", Class.removeClasses(this._el, ["kinners", "juhu"]));
         this.assertEquals("a b c", Class.get(this._el));
       },
-      "test: replace()": function testReplace() {
+      "test: replace()": function test_replace() {
         var Class = qx.bom.element.Class;
         Class.addClasses(this._el, ["juhu", "kinners"]);
         this.assertEquals("foo", Class.replace(this._el, "juhu", "foo"));
@@ -133,12 +133,12 @@
         this.assertTrue(Class.has(this._el, "bar"));
         this.assertFalse(Class.has(this._el, "baz"));
       },
-      "test: toggle() non existing class should add it": function testToggleNonExistingClassShouldAddIt() {
+      "test: toggle() non existing class should add it": function test_toggle_non_existing_class_should_add_it() {
         var Class = qx.bom.element.Class;
         this.assertEquals("juhu", Class.toggle(this._el, "juhu"));
         this.assertEquals("juhu", Class.get(this._el));
       },
-      "test: toggle() existing class name should remove it": function testToggleExistingClassNameShouldRemoveIt() {
+      "test: toggle() existing class name should remove it": function test_toggle_existing_class_name_should_remove_it() {
         var Class = qx.bom.element.Class;
         Class.addClasses(this._el, ["juhu", "kinners"]);
         this.assertEquals("juhu", Class.toggle(this._el, "juhu"));
@@ -149,4 +149,4 @@
   qx.test.bom.element.Class.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Class.js.map?dt=1726089050996
+//# sourceMappingURL=Class.js.map?dt=1729101237379

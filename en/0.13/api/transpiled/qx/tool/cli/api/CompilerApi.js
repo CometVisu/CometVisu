@@ -89,7 +89,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param cmd {qx.tool.cli.commands.Command} current command
        */
       beforeTests: function beforeTests(cmd) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -111,7 +111,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<void>}
        */
       afterDeploy: function afterDeploy(data) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
               case 0:
@@ -129,7 +129,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       load: function load() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var compileJsonPath, config;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
@@ -170,7 +170,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @param res {boolean} result of the just finished process
        */
       afterProcessFinished: function afterProcessFinished(cmd, res) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
               case 0:
@@ -186,7 +186,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       afterLibrariesLoaded: function afterLibrariesLoaded() {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           var arr, i;
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
             while (1) switch (_context5.prev = _context5.next) {
@@ -232,4 +232,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.api.CompilerApi.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CompilerApi.js.map?dt=1726089063646
+//# sourceMappingURL=CompilerApi.js.map?dt=1729101250059

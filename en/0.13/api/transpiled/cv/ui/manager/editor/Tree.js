@@ -244,7 +244,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       _structure: null,
       getSchema: function getSchema(file) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
@@ -1493,7 +1493,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   break;
               }
               var schemaElement = parentSchemaElement.getSchemaElementForElementName(type);
-              var initChildren = function initChildren(element, schemaElement) {
+              var _initChildren = function initChildren(element, schemaElement) {
                 var requiredChildren = schemaElement.getRequiredElements();
                 if (requiredChildren.length > 1) {
                   if (!schemaElement.areChildrenSortable()) {
@@ -1506,7 +1506,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   var child = _document.createElement(childName);
                   element.appendChild(child);
                   // do this recursively
-                  initChildren(child, schemaElement.getSchemaElementForElementName(childName));
+                  _initChildren(child, schemaElement.getSchemaElementForElementName(childName));
                 });
                 if (schemaElement.isTextContentRequired()) {
                   var child = _document.createTextNode('-');
@@ -1514,7 +1514,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
               };
               if (isElement) {
-                initChildren(element, schemaElement);
+                _initChildren(element, schemaElement);
               }
               var xmlElement = new cv.ui.manager.model.XmlElement(element, schemaElement, target.getEditor(), parent);
 
@@ -2079,7 +2079,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       __P_35_11: function __P_35_11(value, errors) {
         var _this11 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var tree, file, doc, rootElement, schema, schemaElement, rootNode, preview;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -2317,4 +2317,4 @@ refresh after you have changed something. You can refresh is manually by clickin
   cv.ui.manager.editor.Tree.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Tree.js.map?dt=1726089029521
+//# sourceMappingURL=Tree.js.map?dt=1729101214994

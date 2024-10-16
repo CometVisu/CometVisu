@@ -46,7 +46,7 @@
       tearDown: function tearDown() {
         qx.event.Manager.resetGlobalEventMonitors();
       },
-      "test: add and call global event monitors": function testAddAndCallGlobalEventMonitors() {
+      "test: add and call global event monitors": function test_add_and_call_global_event_monitors() {
         qx.event.Manager.addGlobalEventMonitor(function (target, event) {
           this.assertEquals(this, target);
           this.assertEquals("test", event.getType());
@@ -55,7 +55,7 @@
         this.fireEvent("test");
         this.assertTrue(this.called, "Monitor function was not called");
       },
-      "test: remove global event monitor": function testRemoveGlobalEventMonitor() {
+      "test: remove global event monitor": function test_remove_global_event_monitor() {
         this.value = false;
         var fn1 = function fn1() {
           this.value = true;
@@ -73,7 +73,7 @@
         this.fireEvent("test");
         this.assertTrue(this.value, "Value should be true after removing fn2");
       },
-      "test: disallow event manipulation": function testDisallowEventManipulation() {
+      "test: disallow event manipulation": function test_disallow_event_manipulation() {
         var errorWasThrown = false;
         qx.event.Manager.addGlobalEventMonitor(function (target, event) {
           event.preventDefault();
@@ -90,4 +90,4 @@
   qx.test.event.GlobalEventMonitors.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=GlobalEventMonitors.js.map?dt=1726089053562
+//# sourceMappingURL=GlobalEventMonitors.js.map?dt=1729101240127

@@ -223,7 +223,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       _syncHtml: function _syncHtml() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var oldTitleElem, element, divArr, panels, i, panel;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -405,4 +405,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qxl.apiviewer.ui.AbstractViewer.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=AbstractViewer.js.map?dt=1726089091370
+//# sourceMappingURL=AbstractViewer.js.map?dt=1729101277343

@@ -915,7 +915,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           message = qx.locale.Manager.tr('Please enter the folder name.');
           existsMessage = qx.locale.Manager.tr('A folder with this name already exists.');
         }
-        var handlePrompt = function handlePrompt(name) {
+        var _handlePrompt = function handlePrompt(name) {
           if (!name) {
             // canceled
             return;
@@ -935,7 +935,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           }, this);
           if (exists) {
             cv.ui.manager.snackbar.Controller.error(existsMessage);
-            this.__P_25_7(message, handlePrompt, this, name);
+            this.__P_25_7(message, _handlePrompt, this, name);
           } else {
             var item = new cv.ui.manager.model.FileItem(filename, currentFolder.getFullPath(), currentFolder);
             item.set({
@@ -982,7 +982,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
             }
           }
         };
-        this.__P_25_7(message, handlePrompt, this, suggestedName);
+        this.__P_25_7(message, _handlePrompt, this, suggestedName);
       },
       /**
        * Finds next droppable parent of the given element. Maybe the element itself as well.
@@ -1184,4 +1184,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.manager.Main.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Main.js.map?dt=1726089028331
+//# sourceMappingURL=Main.js.map?dt=1729101213730

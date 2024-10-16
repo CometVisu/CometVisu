@@ -535,7 +535,7 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
             onThirdCall: function onThirdCall() {
               return this.stub.onThirdCall();
             },
-            withArgs: function withArgs( /* arguments */
+            withArgs: function withArgs(/* arguments */
             ) {
               throw new Error("Defining a stub by invoking \"stub.onCall(...).withArgs(...)\" is not supported. Use \"stub.withArgs(...).onCall(...)\" to define sequential behavior for calls with certain arguments.");
             }
@@ -2028,7 +2028,7 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
              * Hook for derived implementation to return fake instances matching the
              * given arguments.
              */
-            matchingFakes: function matchingFakes( /*args, strict*/
+            matchingFakes: function matchingFakes(/*args, strict*/
             ) {
               return emptyFakes;
             },
@@ -3558,7 +3558,7 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
           }
 
           // Cheap way to detect if we have ES5 support.
-          var hasES5Support = ("keys" in Object);
+          var hasES5Support = "keys" in Object;
           module.exports = function wrapMethod(object, property, method) {
             if (!object) {
               throw new TypeError("Should wrap property of object");
@@ -11674,7 +11674,7 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
           extend(3, {a: 4, b: 5}); // throws
            */
 
-          function extend( /* [deep], obj1, obj2, [objn] */
+          function extend(/* [deep], obj1, obj2, [objn] */
           ) {
             var args = [].slice.call(arguments);
             var deep = false;
@@ -12384,19 +12384,19 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
             if (typeof func != 'function' || resolver && typeof resolver != 'function') {
               throw new TypeError(FUNC_ERROR_TEXT);
             }
-            var memoized = function memoized() {
+            var _memoized = function memoized() {
               var args = arguments,
                 key = resolver ? resolver.apply(this, args) : args[0],
-                cache = memoized.cache;
+                cache = _memoized.cache;
               if (cache.has(key)) {
                 return cache.get(key);
               }
               var result = func.apply(this, args);
-              memoized.cache = cache.set(key, result);
+              _memoized.cache = cache.set(key, result);
               return result;
             };
-            memoized.cache = new (memoize.Cache || MapCache)();
-            return memoized;
+            _memoized.cache = new (memoize.Cache || MapCache)();
+            return _memoized;
           }
 
           // Assign cache to `_.memoize`.
@@ -13635,7 +13635,7 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
                   checkUnsafeHeaders = this.unsafeHeadersEnabled();
                 }
                 if (checkUnsafeHeaders && (getHeader(unsafeHeaders, header) !== null || /^(Sec-|Proxy-)/i.test(header))) {
-                  throw new Error( // eslint-disable-next-line quotes
+                  throw new Error(// eslint-disable-next-line quotes
                   "Refused to set unsafe header \"".concat(header, "\""));
                 }
 
@@ -15363,9 +15363,9 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
               return regexpToRegexp(path, /** @type {!Array} */keys);
             }
             if (isarray(path)) {
-              return arrayToRegexp( /** @type {!Array} */path, /** @type {!Array} */keys, options);
+              return arrayToRegexp(/** @type {!Array} */path, /** @type {!Array} */keys, options);
             }
-            return stringToRegexp( /** @type {string} */path, /** @type {!Array} */keys, options);
+            return stringToRegexp(/** @type {string} */path, /** @type {!Array} */keys, options);
           }
         }, {
           "isarray": 92
@@ -15785,4 +15785,4 @@ function _typeof2(o) { "@babel/helpers - typeof"; return _typeof2 = "function" =
   qx.dev.unit.Sinon.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Sinon.js.map?dt=1726089043580
+//# sourceMappingURL=Sinon.js.map?dt=1729101229537

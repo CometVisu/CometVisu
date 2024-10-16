@@ -138,7 +138,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       process: function process() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           var argv, appNames;
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
             while (1) switch (_context5.prev = _context5.next) {
@@ -160,7 +160,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 }
                 _context5.next = 8;
                 return qx.tool.utils.Promisify.eachOfSeries(_this.getMakers(), /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(maker) {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(maker) {
                     var target;
                     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
                       while (1) switch (_context2.prev = _context2.next) {
@@ -168,7 +168,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           target = maker.getTarget();
                           _context2.next = 3;
                           return qx.tool.utils.Promisify.eachOfSeries(maker.getApplications(), /*#__PURE__*/function () {
-                            var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(app) {
+                            var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(app) {
                               var deployDir;
                               return _regeneratorRuntime().wrap(function _callee$(_context) {
                                 while (1) switch (_context.prev = _context.next) {
@@ -215,7 +215,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               case 8:
                 _context5.next = 10;
                 return qx.tool.utils.Promisify.eachOfSeries(_this.getMakers(), /*#__PURE__*/function () {
-                  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(maker, makerIndex) {
+                  var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(maker, makerIndex) {
                     var target;
                     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
                       while (1) switch (_context4.prev = _context4.next) {
@@ -223,7 +223,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                           target = maker.getTarget();
                           _context4.next = 3;
                           return qx.tool.utils.Promisify.eachOfSeries(maker.getApplications(), /*#__PURE__*/function () {
-                            var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(app) {
+                            var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(app) {
                               var deployDir, sourceMaps, appRoot, destRoot, from, to, _from, _to, data;
                               return _regeneratorRuntime().wrap(function _callee3$(_context3) {
                                 while (1) switch (_context3.prev = _context3.next) {
@@ -319,7 +319,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       },
       __P_466_0: function __P_466_0(srcDir, destDir, sourceMaps) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
           var files;
           return _regeneratorRuntime().wrap(function _callee7$(_context7) {
             while (1) switch (_context7.prev = _context7.next) {
@@ -333,7 +333,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 files = _context7.sent;
                 _context7.next = 7;
                 return qx.tool.utils.Promisify.eachOf(files, /*#__PURE__*/function () {
-                  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(file) {
+                  var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(file) {
                     var from, to, stat, ext, rs, ws, ss;
                     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
                       while (1) switch (_context6.prev = _context6.next) {
@@ -420,4 +420,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.cli.commands.Deploy.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Deploy.js.map?dt=1726089064641
+//# sourceMappingURL=Deploy.js.map?dt=1729101251006

@@ -81,12 +81,12 @@
       // Only for iframes and other secondary documents.
       if (win.qx !== qx) {
         var self = this;
-        var method = function method() {
-          qx.bom.Event.removeNativeListener(win, "unload", method);
+        var _method = function method() {
+          qx.bom.Event.removeNativeListener(win, "unload", _method);
           self.dispose();
         };
         {
-          qx.bom.Event.addNativeListener(win, "unload", qx.event.GlobalError.observeMethod(method));
+          qx.bom.Event.addNativeListener(win, "unload", qx.event.GlobalError.observeMethod(_method));
         }
       }
 
@@ -797,4 +797,4 @@
   qx.event.Manager.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Manager.js.map?dt=1726089044301
+//# sourceMappingURL=Manager.js.map?dt=1729101230347

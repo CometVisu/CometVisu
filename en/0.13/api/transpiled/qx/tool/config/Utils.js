@@ -82,7 +82,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getProjectData: function getProjectData() {
         var _arguments = arguments;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var dir, qooxdooJsonPath, data, qooxdooJson;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -161,7 +161,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       getLibraryPath: function getLibraryPath() {
         var _arguments2 = arguments,
           _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var dir, _yield$_this$getProje, libraries;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -199,7 +199,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       getApplicationPath: function getApplicationPath() {
         var _arguments3 = arguments,
           _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           var dir, _yield$_this2$getProj, applications;
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
@@ -249,7 +249,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getQxPath: function getQxPath() {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
           var scanAncestors, getQxPathImpl;
           return _regeneratorRuntime().wrap(function _callee6$(_context6) {
             while (1) switch (_context6.prev = _context6.next) {
@@ -264,7 +264,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 return _context6.abrupt("return", _context6.sent);
               case 4:
                 scanAncestors = /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(dir) {
+                  var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(dir) {
                     var root, npmdir;
                     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
                       while (1) switch (_context4.prev = _context4.next) {
@@ -312,7 +312,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                   };
                 }();
                 getQxPathImpl = /*#__PURE__*/function () {
-                  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+                  var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
                     var res, npmdir;
                     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
                       while (1) switch (_context5.prev = _context5.next) {
@@ -392,7 +392,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<Boolean>}
        */
       applicationExists: function applicationExists(dir) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
           return _regeneratorRuntime().wrap(function _callee7$(_context7) {
             while (1) switch (_context7.prev = _context7.next) {
               case 0:
@@ -414,7 +414,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getQxVersion: function getQxVersion() {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
           var qxpath;
           return _regeneratorRuntime().wrap(function _callee8$(_context8) {
             while (1) switch (_context8.prev = _context8.next) {
@@ -448,7 +448,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getAppQxVersion: function getAppQxVersion() {
         var _arguments4 = arguments;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
           var baseDir, manifestRequiresKey, manifestModel, qxVersion, qxVersionRange;
           return _regeneratorRuntime().wrap(function _callee9$(_context9) {
             while (1) switch (_context9.prev = _context9.next) {
@@ -493,7 +493,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<boolean>}
        */
       isQxLibrary: function isQxLibrary(libraryPath) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
           var manifestPath, manifest;
           return _regeneratorRuntime().wrap(function _callee10$(_context10) {
             while (1) switch (_context10.prev = _context10.next) {
@@ -542,7 +542,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        */
       getManifestModels: function getManifestModels() {
         var _arguments5 = arguments;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
           var cwd, registryModel, manifestModels, libraries, _iterator, _step, library;
           return _regeneratorRuntime().wrap(function _callee11$(_context11) {
             while (1) switch (_context11.prev = _context11.next) {
@@ -601,7 +601,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
        * @return {Promise<String>} Version
        */
       getLibraryVersion: function getLibraryVersion(libPath) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
           var manifestPath, manifest, version;
           return _regeneratorRuntime().wrap(function _callee12$(_context12) {
             while (1) switch (_context12.prev = _context12.next) {
@@ -645,4 +645,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   qx.tool.config.Utils.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Utils.js.map?dt=1726089070866
+//# sourceMappingURL=Utils.js.map?dt=1729101257201

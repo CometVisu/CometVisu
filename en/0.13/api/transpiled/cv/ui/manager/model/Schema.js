@@ -73,7 +73,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       __P_45_3: {},
       getInstance: function getInstance(schemaFile) {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var schema;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
@@ -202,7 +202,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
           accept: 'application/xml'
         });
         ajaxRequest.addListenerOnce('success', /*#__PURE__*/function () {
-          var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
+          var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(e) {
             var req, xml, includeXml, _iterator, _step, include, target, _iterator2, _step2, includedChild;
             return _regeneratorRuntime().wrap(function _callee2$(_context2) {
               while (1) switch (_context2.prev = _context2.next) {
@@ -271,7 +271,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         ajaxRequest.send();
       },
       loadXml: function loadXml(file) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
@@ -466,4 +466,4 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   cv.ui.manager.model.Schema.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Schema.js.map?dt=1726089030497
+//# sourceMappingURL=Schema.js.map?dt=1729101215975

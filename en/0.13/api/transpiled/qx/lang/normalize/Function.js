@@ -124,8 +124,8 @@
         //   15.3.4.5.2.
         // 14. Set the [[HasInstance]] internal property of F as described in
         //   15.3.4.5.3.
-        var bound = function bound() {
-          if (this instanceof bound) {
+        var _bound = function bound() {
+          if (this instanceof _bound) {
             // 15.3.4.5.2 [[Construct]]
             // When the [[Construct]] internal method of a function object,
             // F that was created using the bind function is called with a
@@ -203,7 +203,7 @@
         // XXX can't delete prototype in pure-js.
 
         // 22. Return F.
-        return bound;
+        return _bound;
       }
     },
     defer: function defer(statics) {
@@ -215,4 +215,4 @@
   qx.lang.normalize.Function.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Function.js.map?dt=1726089048398
+//# sourceMappingURL=Function.js.map?dt=1729101234660

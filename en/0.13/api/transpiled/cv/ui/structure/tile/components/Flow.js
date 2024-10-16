@@ -559,7 +559,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
         var _this4 = this;
         if (this.SVG && this._ready) {
           var bbox = this.SVG.getBBox();
-          if (this._lastBBox && this._lastBBox.width === bbox.width && this._lastBBox.height === bbox.height) {
+          if (this._lastBBox && this._lastBBox.width === bbox.width && this._lastBBox.height === bbox.height && this._lastBBox.x === bbox.x && this._lastBBox.y === bbox.y) {
             // no change
             return;
           }
@@ -629,8 +629,8 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
           }
           var visibleWidth = usedColumns > visibleColumns ? visibleColumns / this.getColumns() : 1.0;
           var visibleHeight = usedRows > visibleRows ? visibleRows / this.getRows() : 1.0;
-          var heightDiff = height - totalOuterPadding - bbox.height * visibleHeight;
-          var widthDiff = width - totalOuterPadding - bbox.width * visibleWidth;
+          var heightDiff = height - totalOuterPadding - bbox.y - bbox.height * visibleHeight;
+          var widthDiff = width - totalOuterPadding - bbox.x - bbox.width * visibleWidth;
           if (heightDiff > 0 || widthDiff > 0) {
             this.SVG.setAttribute('transform', "translate(".concat(Math.max(0, widthDiff / 2), ", ").concat(Math.max(0, heightDiff / 2), ")"));
           } else {
@@ -697,4 +697,4 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
   cv.ui.structure.tile.components.Flow.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Flow.js.map?dt=1726089033582
+//# sourceMappingURL=Flow.js.map?dt=1729101219373

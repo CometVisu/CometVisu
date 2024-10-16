@@ -101,7 +101,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       writeToDisk: function writeToDisk() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var _db$modulesInfo2;
           var localModules, db, _this$__P_504_, commonjsModules, modules, modulesInfo, doIt, requireName, _db$modulesInfo, stat;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -168,7 +168,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       writeSourceCodeToStream: function writeSourceCodeToStream(ws) {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var localModules, _this2$__P_504_, commonjsModules, references;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -278,7 +278,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        * @Override
        */
       getSourceMap: function getSourceMap() {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
@@ -295,4 +295,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.tool.compiler.targets.meta.Browserify.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Browserify.js.map?dt=1726089070222
+//# sourceMappingURL=Browserify.js.map?dt=1729101256516

@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1726088852157,
-  "lastModifiedIso": "2024-09-11T21:07:32.157Z",
+  "lastModified": 1729101022288,
+  "lastModifiedIso": "2024-10-16T17:50:22.288Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/ui/virtual/cell/IWidgetCellDelegate.js",
   "type": "interface",
   "location": {

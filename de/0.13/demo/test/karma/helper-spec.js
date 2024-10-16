@@ -321,7 +321,9 @@ beforeAll(function (done) {
     const templateEngine = cv.TemplateEngine.getInstance();
     const model = cv.data.Model.getInstance();
     client.update = model.update.bind(model); // override clients update function
-    templateEngine.loadParts(['structure-tile', 'structure-pure']).then(() => {
+    templateEngine.loadParts(['structure-tile', 'structure-pure']).catch((e) => {
+      console.error('error loading parts:', e);
+    }).then(() => {
       resetApplication();
       done();
     });

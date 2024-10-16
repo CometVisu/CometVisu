@@ -130,7 +130,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       startWatcher: function startWatcher() {
         var _this = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
           var sourceDir;
           return _regeneratorRuntime().wrap(function _callee2$(_context2) {
             while (1) switch (_context2.prev = _context2.next) {
@@ -152,7 +152,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                 _this._watcher.on("unlink", function (filename) {
                   return _this.__P_516_5("unlink", filename);
                 });
-                _this._watcher.on("ready", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+                _this._watcher.on("ready", /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
                   return _regeneratorRuntime().wrap(function _callee$(_context) {
                     while (1) switch (_context.prev = _context.next) {
                       case 0:
@@ -181,7 +181,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       stopWatcher: function stopWatcher() {
         var _this2 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
           return _regeneratorRuntime().wrap(function _callee3$(_context3) {
             while (1) switch (_context3.prev = _context3.next) {
               case 0:
@@ -214,7 +214,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       waitForRebuildComplete: function waitForRebuildComplete() {
         var _this3 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
           return _regeneratorRuntime().wrap(function _callee4$(_context4) {
             while (1) switch (_context4.prev = _context4.next) {
               case 0:
@@ -236,7 +236,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       rebuildAll: function rebuildAll() {
         var _this4 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
           return _regeneratorRuntime().wrap(function _callee5$(_context5) {
             while (1) switch (_context5.prev = _context5.next) {
               case 0:
@@ -279,8 +279,8 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           this.__P_516_4 = true;
           return;
         }
-        var rebuilderImpl = /*#__PURE__*/function () {
-          var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+        var _rebuilderImpl = /*#__PURE__*/function () {
+          var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
             return _regeneratorRuntime().wrap(function _callee6$(_context6) {
               while (1) switch (_context6.prev = _context6.next) {
                 case 0:
@@ -293,7 +293,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
                   }
                   _this5.__P_516_4 = false;
                   _context6.next = 6;
-                  return rebuilderImpl();
+                  return _rebuilderImpl();
                 case 6:
                 case "end":
                   return _context6.stop();
@@ -305,13 +305,13 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
           };
         }();
         var rebuilder = /*#__PURE__*/function () {
-          var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+          var _ref3 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
             return _regeneratorRuntime().wrap(function _callee7$(_context7) {
               while (1) switch (_context7.prev = _context7.next) {
                 case 0:
                   _this5.__P_516_3 = true;
                   _context7.prev = 1;
-                  _this5.__P_516_6 = rebuilderImpl();
+                  _this5.__P_516_6 = _rebuilderImpl();
                   _context7.next = 5;
                   return _this5.__P_516_6;
                 case 5:
@@ -346,7 +346,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        *
        */
       getPages: function getPages(files, metalsmith) {
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
           var metadata, pages, order, unorderedPages, addPage, _iterator2, _step2, filename, file;
           return _regeneratorRuntime().wrap(function _callee8$(_context8) {
             while (1) switch (_context8.prev = _context8.next) {
@@ -407,7 +407,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       loadPartials: function loadPartials(files, metalsmith) {
         var _this6 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
           var metadata, partialsDir, _iterator3, _step3, filename, m, _m, unused, name, ext, data, fn;
           return _regeneratorRuntime().wrap(function _callee9$(_context9) {
             while (1) switch (_context9.prev = _context9.next) {
@@ -485,7 +485,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       generateSite: function generateSite() {
         var _this7 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
           return _regeneratorRuntime().wrap(function _callee10$(_context10) {
             while (1) switch (_context10.prev = _context10.next) {
               case 0:
@@ -528,7 +528,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       compileScss: function compileScss() {
         var _this8 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
           var result;
           return _regeneratorRuntime().wrap(function _callee11$(_context11) {
             while (1) switch (_context11.prev = _context11.next) {
@@ -563,7 +563,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
        */
       buildDevtools: function buildDevtools() {
         var _this9 = this;
-        return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
+        return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
           var namespace, apps_path, opts, _i, _arr, name;
           return _regeneratorRuntime().wrap(function _callee12$(_context12) {
             while (1) switch (_context12.prev = _context12.next) {
@@ -615,4 +615,4 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
   qx.tool.utils.Website.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Website.js.map?dt=1726089072071
+//# sourceMappingURL=Website.js.map?dt=1729101258306

@@ -48,7 +48,7 @@
     extend: qx.dev.unit.TestCase,
     include: [qx.dev.unit.MRequirements],
     members: {
-      "test: is PDF.js available": function testIsPDFJsAvailable() {
+      "test: is PDF.js available": function test_is_PDFJs_available() {
         this.require(["firefox"]);
         qx.core.Environment.getAsync("plugin.pdfjs", function (result) {
           this.resume(function () {
@@ -62,4 +62,4 @@
   qx.test.bom.client.Pdfjs.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Pdfjs.js.map?dt=1726089050903
+//# sourceMappingURL=Pdfjs.js.map?dt=1729101237282
