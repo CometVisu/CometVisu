@@ -1,0 +1,17 @@
+{
+    "cv-value-nomapping-off": "d7cf024e99af6d0fbb79786eb4353d94",
+    "cv-value-nomapping-on": "c282dd161b521e6363384b742bf571c5",
+    "cv-value-mapping-off": "41bb567ddd0af9916006f02dc5821777",
+    "cv-value-mapping-on": "89b1c0a649efaacc25cd35a732312f15",
+    "cv-switch-mapping-off": "a0702ee72f8285370b520f78f5fcdb10",
+    "cv-switch-mapping-on": "3312ff6e3bf95244c19c1d6bbeedf6ed",
+    "mapping_door_closed": "cfcb3349f45287f4447f5841a7db9aa0",
+    "mapping_door_open": "40c94db08c73cbbd800e57d1951b7e15",
+    "mapping_door_tilt": "de612a7acd09cf9f6936cc52b5157220",
+    "mapping_formula": "47de0f10535906e6dc865d63f75bfd7f",
+    "mapping-sensor-alarm-ok": "b466ca3680f494da9e427c19ef4770c4",
+    "mapping-sensor-alarm-notok": "bba3f8570591b4ad6ed710cf0cdbc1dc",
+    "mapping-oh-datetime": "2e660fe9bf2c821a1f382e2de07d0394",
+    "mapping_oh_time": "e680526f962e87654f00f5f62f4322f3",
+    "cv-info-outdated": "2cec763bbd29de8ae0351616097bec5a"
+}

@@ -203,6 +203,6 @@ manually and add a line like::
          is "hidden" to the user. On the server it is still readable in clear
          text. This is also true for the manager.
          
-         This by itself doesn't create a secure environment, but it supports
+         This by itself does not create a secure environment, but it supports
          building one. There at least the manager must be inaccessible to the
          user.

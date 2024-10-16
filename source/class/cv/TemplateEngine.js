@@ -207,7 +207,7 @@ qx.Class.define('cv.TemplateEngine', {
       );
 
       return new Promise((resolve, reject) => {
-        const timer = setTimeout(reject, 2000);
+        const timer = setTimeout(() => reject(new Error('timeout loading parts')), 2000);
         if (waitingFor.getLength() === 0) {
           clearTimeout(timer);
           resolve();

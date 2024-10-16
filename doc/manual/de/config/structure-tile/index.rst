@@ -112,7 +112,7 @@ offenen Fenster oder der eingeschalteten Lichter, nutzen.
             <h1>Footer-Bereich</h1>
         </footer>
 
-Der ``<main>``-Bereich ist nicht optional und muss immer vorhanden sein
+Der ``<main>``-Bereich ist nicht optional und muss immer vorhanden sein.
 Innerhalb dieses Bereichs können beliebig viele :ref:`Pages <tile-component-page>` angegeben werden.
 Eine Page kann wiederum `Widgets`_, :ref:`Gruppen <tile-component-group>` und weitere Pages enthalten. Durch diese Verschachtelung
 kann man eine Navigationsstruktur festlegen. So kann man z.B. für jede Etage eine Page angeben, die wiederum

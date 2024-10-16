@@ -34,8 +34,8 @@ Beispiel für die gleichzeitige Nutzung des KNXD und MQTT Backends:
     <cv-backend type="knxd" uri="/cgi-bin/l" />
     <cv-backend type="mqtt" uri="ws://mqtt:9001/" />
 
-In diesem Fall nutzen alle ``cv-address``-Elemente ohne ``name``-Attribut (oder mit ``name="main"`` das default-Backend
-und alle ``cv-address``-Elemente ``name="mqtt"``.
+In diesem Fall nutzen alle ``cv-address``-Elemente ohne ``name``-Attribut (oder mit ``name="main"``) das default-Backend
+und alle ``cv-address``-Elemente mit ``name="mqtt"`` das MQTT backend.
 
 
 Verbindung zum KNXD / EIBD
@@ -139,7 +139,7 @@ werden und der Browser-Cache umgangen wird.
 Seitennavigation
 ................
 
-Ebenso bietet diese Backend eine Alternative zu den aus der Pure-Struktur bekannten Pagejumps, mit denen eine
+Ebenso bietet dieses Backend eine Alternative zu den aus der Pure-Struktur bekannten Pagejumps, mit denen eine
 Navigation zu einer bestimmten Seite möglich ist.
 
 .. code-block:: xml

@@ -25,6 +25,7 @@
  */
 qx.Class.define('cv.ui.structure.tile.components.Menu', {
   extend: cv.ui.structure.tile.components.AbstractComponent,
+  include: [cv.ui.structure.tile.MStringTransforms],
 
   /*
   ***********************************************
@@ -56,7 +57,9 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
 
     showLabels: {
       check: 'Boolean',
-      init: true
+      init: true,
+      apply: '_applyShowLabels',
+      transform: '_parseBoolean'
     }
   },
 
@@ -77,6 +80,17 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
     },
 
     _applyDepth() {
+      if (this.isDomReady()) {
+        this._generateMenu();
+      }
+    },
+
+    _applyShowLabels(val) {
+      if (val) {
+        this._element.classList.remove('compact');
+      } else {
+        this._element.classList.add('compact');
+      }
       if (this.isDomReady()) {
         this._generateMenu();
       }
@@ -424,7 +438,7 @@ qx.Class.define('cv.ui.structure.tile.components.Menu', {
           super(QxClass);
         }
         static get observedAttributes() {
-          return ['appearance', 'depth'];
+          return ['appearance', 'depth', 'show-labels'];
         }
       }
     );

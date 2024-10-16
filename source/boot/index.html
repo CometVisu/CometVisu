@@ -14,7 +14,7 @@
   <link rel="apple-touch-icon" sizes="167x167" href="${resourcePath}icons/comet_webapp_icon_167.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="${resourcePath}icons/comet_webapp_icon_180.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="apple-mobile-web-app-title" content="CometVisu">
   <meta name="msapplication-TileImage" content="${resourcePath}icons/comet_webapp_icon_144.png">
@@ -116,7 +116,7 @@
         });
 
         if (enableReporting) {
-          Sentry.addGlobalEventProcessor((event) => {
+          Sentry.addEventProcessor((event) => {
             try {
               const client = Sentry.getCurrentHub().getClient();
               const endpoint = attachmentUrlFromDsn(
