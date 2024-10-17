@@ -1,7 +1,7 @@
 name: Check pull request
 on: pull_request
 env:
-  NODE_VERSION: '18.14'
+  NODE_VERSION: '20.18'
 jobs:
 
   lint:

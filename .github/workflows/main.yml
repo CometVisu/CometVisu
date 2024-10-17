@@ -8,7 +8,7 @@ on:
     tags-ignore:
       - 'v*'
 env:
-  NODE_VERSION: '18.14'
+  NODE_VERSION: '20.18'
 jobs:
 
   lint:

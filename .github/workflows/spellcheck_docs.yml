@@ -14,7 +14,7 @@ on:
     tags-ignore:
       - '*'
 env:
-  NODE_VERSION: '18.14'
+  NODE_VERSION: '20.18'
 jobs:
   spellcheck-docs:
     name: "Spellcheck documentation"
