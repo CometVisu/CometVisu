@@ -13,5 +13,5 @@ outputs:
   result: # id of output
     description: 'CLient response'
 runs:
-  using: "node12"
+  using: "node20"
   main: "index.js"
