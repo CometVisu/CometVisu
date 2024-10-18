@@ -1,10 +1,10 @@
 import { Octokit } from '@octokit/action';
-import * as simpleGit from 'simple-git';
-import * as camelCase from 'camelcase';
-import * as AdmZip from 'adm-zip';
+import simpleGit from 'simple-git';
+import camelCase from 'camelcase';
+import AdmZip from 'adm-zip';
 import https from 'follow-redirects';
 import * as fs from 'fs';
-import * as cvInfo from '../../../package.json' assert { type: "json" };;
+import * as cvInfo from '../../../package.json' assert { type: "json" };
 
 //
 // For local testing run this with the following environment variables set:
