@@ -1,10 +1,10 @@
-const { Octokit } = require('@octokit/action');
-const simpleGit = require('simple-git');
-const camelCase = require('camelcase');
-const AdmZip = require('adm-zip');
-const https = require('follow-redirects').https;
-const fs = require('fs');
-const cvInfo = require('../../../package.json');
+import { Octokit } from '@octokit/action';
+import * as simpleGit from 'simple-git';
+import * as camelCase from 'camelcase';
+import * as AdmZip from 'adm-zip';
+import https from 'follow-redirects';
+import * as fs from 'fs';
+import * as cvInfo from '../../../package.json' assert { type: "json" };;
 
 //
 // For local testing run this with the following environment variables set:

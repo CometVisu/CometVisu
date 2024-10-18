@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
 #    needs: lint
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build CometVisu
         uses: ./.github/actions/build-cv
         with:
@@ -47,7 +47,7 @@ jobs:
       CV_VERSION: ${{ matrix.target }}
       CV_BROWSER: ${{ matrix.browser }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -98,7 +98,7 @@ jobs:
       CV_BROWSER: ${{ matrix.browser }}
     steps:
       - run: sudo rm /usr/bin/chromedriver
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -135,7 +135,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ 'unit-test' ]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           submodules: recursive
