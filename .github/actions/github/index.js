@@ -4,7 +4,7 @@ import camelCase from 'camelcase';
 import AdmZip from 'adm-zip';
 import https from 'follow-redirects';
 import * as fs from 'fs';
-import * as cvInfo from '../../../package.json' assert { type: "json" };
+import cvInfo from '../../../package.json' assert { type: "json" };
 
 //
 // For local testing run this with the following environment variables set:
