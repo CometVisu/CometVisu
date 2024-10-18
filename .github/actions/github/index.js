@@ -37,10 +37,10 @@ let core = {
 }
 try {
   if (process.env.GITHUB_EVENT_NAME) {
-    core = require('@actions/core');
+    core = await import('@actions/core');
   }
 } catch (e) {
-  console.log("! - not in action context")
+  console.log("! - not in action context", e)
 }
 
 class GithubClient {
