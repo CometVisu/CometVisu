@@ -124,7 +124,6 @@ Zusätzlich können als Query-Parameter hinzugefügt werden:
 
 Beispiel: ``rrd://<dateiname-ohne-rrd>?ds=AVERAGE&resolution=3600``
 
-
 Weitere Beispiele
 #################
 
@@ -202,6 +201,64 @@ füllen, oder einfach mit ``all`` for alle.
         </cv-tile>
     </cv-widget>
 
+
+Einfache Linien
+###############
+
+Um bestimmte Stellen im Chart hervorzuheben / zu markieren können horizontale und vertikale Linien eingefügt werden.
+Mit einer vertikalen Linie kann eine bestimmte Zeit markiert werden (z.B. die aktuelle Zeit oder Mitternacht).
+Mit einer horizontalen Linie kann ein bestimmter Wert markiert werden (z.B. ein Schwellwert), oder auch ein Durchschnitts-,
+Höchst- oder Tiefstwert.
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-widget">
+        <fixtures>
+            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
+        </fixtures>
+        <screenshot name="cv-chart-pv-h-lines">
+            <caption>Chart mit horizontalen Linien.</caption>
+        </screenshot>
+    </settings>
+    <cv-widget size="2x1">
+        <cv-tile>
+            <cv-chart title="Strom" selection="month" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
+                <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#FF0000" value="max" format="%.1f"/>
+                <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#CCCCCC" value="avg" format="%.1f"/>
+                <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#FFFF00" value="min" format="%.1f"/>
+                <h-line color="#FFFFFF" value="5" />
+              </cv-chart>
+        </cv-tile>
+    </cv-widget>
+
+Dazu wird eine ``<h-line>`` mit der selben Datenquelle wie die Linie erstellt und der Wert ``avg`` für den Durchschnitt
+in ``value`` angegeben. Der Durchschnittswert wird dann als horizontale Linie im Chart dargestellt.
+Mit ``show-value="true"`` wird der festgelegt, dass der Wert neben der Linie angezeigt wird.
+Weitere Werte für ``value`` sind ``min``, ``max`` oder ein fixer Wert.
+
+**Vertikale Linien**
+
+Bei den vertikalen Linien können momentan nur fixe Werte angegeben werden.
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-widget">
+        <fixtures>
+            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
+        </fixtures>
+        <screenshot name="cv-chart-pv-v-lines">
+            <caption>Chart mit vertikaler Linie.</caption>
+        </screenshot>
+    </settings>
+    <cv-widget size="2x1">
+        <cv-tile>
+            <cv-chart title="Strom" selection="day" y-format="%.1f kWh" series="day" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
+                <v-line color="#FFFFFF" value="2022-12-02T12:00:00" />
+              </cv-chart>
+        </cv-tile>
+    </cv-widget>
 
 Erlaubte Attribute
 ^^^^^^^^^^^^^^^^^^
