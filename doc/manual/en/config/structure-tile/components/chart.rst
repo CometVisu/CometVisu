@@ -182,7 +182,7 @@ The chart element also offers the possibility to display a bar chart:
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Strom" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+            <cv-chart title="Power" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Grid withdrawal" color="#FF0000" show-area="false" chart-type="bar"/>
                 <dataset src="openhab://PV_Energy_Today" color="#FF9900" title="Production" chart-type="bar"/>
               </cv-chart>

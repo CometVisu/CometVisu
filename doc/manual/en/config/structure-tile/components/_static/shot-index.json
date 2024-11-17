@@ -5,11 +5,11 @@
     "cv-button-round-on": "8b1e3d2319519551fafd8bd00c6b76b7",
     "cv-button-progress": "376af505d65605a7c2e505128618f71b",
     "cv-button-text": "ddeb184543a629e0d454c070de0343ad",
-    "cv-chart-temp": "8bbc2b9c00201bee0e66474440225739",
-    "cv-chart-pv": "955f05cbfe6e330960d411e47f85b9a1",
-    "cv-chart-pv-bar": "59cc29f011b950208d7e642c603dff0c",
-    "cv-chart-pv-nav": "65d35e37a79cf85d740ddc4d5314feb4",
-    "cv-chart-pv-nav-open": "19383d5f68746456800d9d7e47d150cf",
+    "cv-chart-temp": "66d95d5dccf4bc153bd6c56a165225f3",
+    "cv-chart-pv": "f5e5f031ffa8edd33d45922585267af3",
+    "cv-chart-pv-bar": "44863b28026851531cfaaab269314a12",
+    "cv-chart-pv-nav": "24c6cf62d8b9e09b35d6464b410da328",
+    "cv-chart-pv-nav-open": "8be8f09fe87e5c227d89386dcf00c61c",
     "cv-color": "4cc9a016f0be6f214335ca792ad5a62e",
     "cv-color-popup": "8f12e3d48acd5703b0067a29997cf99f",
     "cv-energy-entity-pv": "4ef22b3a835bf5eb2ff25722be4d713b",
@@ -64,8 +64,8 @@
     "cv-value-progress-round": "8c0942e676671b660e8056e68797dcbf",
     "cv-value-progress-semi-round": "a30a56cd4529f9d24b10dd0112c8fe6f",
     "cv-value-progress-semi-round-color": "577401fc4bfc4eef6164ace2d32d2a54",
-    "cv-chart-pv-tooltip": "54583eb23e1463f2d67ead0f04dac0f6",
+    "cv-chart-pv-tooltip": "d11dc83ca13545322529cf55735f82cd",
     "tile-nav-menu-dock": "41a43a17b3116ea88869115b3d3f8d7c",
-    "cv-chart-pv-h-lines": "1478237be40c1f67a172c0e53c0b4406",
-    "cv-chart-pv-v-lines": "4659f25b88a10a1249274df630fd12b8"
+    "cv-chart-pv-h-lines": "cda678c07e8542e268c4f94179307aae",
+    "cv-chart-pv-v-lines": "1e471c28aadb3d3b0f877077256da6ed"
 }
