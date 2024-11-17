@@ -51,7 +51,6 @@ function captureMock(verbose) {
           if (verbose) {
             console.log('\u001b[33;1mRegister ' + Object.keys(mocks).length + '. mock for "' + path + '" with parameters:\u001b[0m',  queryString);
           }
-
           res.writeHead(200);
           res.end();
         });
@@ -61,8 +60,6 @@ function captureMock(verbose) {
         if (verbose) {
           console.log('\u001b[33;1mRemove mock for "' + path + '", ' + Object.keys(mocks).length + ' mock(s) left.\u001b[0m');
         }
-        res.writeHead(200);
-        res.end();
       }
       if (req.method === 'DELETE') {
         if (mocks.hasOwnProperty(path)) {
