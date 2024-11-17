@@ -413,7 +413,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       this._initializing = false;
       this.__updateTitle();
-      qx.locale.Manager.getInstance().addListener('changeLocale', this.__updateTitle, this);
+      qx.locale.Manager.getInstance().addListener('changeLocale', this._onLocaleChanged, this);
 
       // check if we have a read address for live updates
       const datasetSources = Array.from(this._element.querySelectorAll(':scope > dataset')).map(elem => elem.getAttribute('src'));
@@ -424,6 +424,16 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           // cancel event here
           ev.stopPropagation();
         });
+      }
+    },
+
+    _onLocaleChanged() {
+      this.__updateTitle();
+      const popup = this._headerFooterParent.querySelector('div.popup.series');
+      if (popup) {
+        for (const option of popup.querySelectorAll('cv-option')) {
+          option.textContent = this._seriesToShort(option.getAttribute('key'));
+        }
       }
     },
 
@@ -1673,7 +1683,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   destruct() {
     this._chartConf = null;
     this._helpers = null;
-    qx.locale.Manager.getInstance().removeListener('changeLocale', this.__updateTitle, this);
+    qx.locale.Manager.getInstance().removeListener('changeLocale', this._onLocaleChanged, this);
   },
 
   defer(QxClass) {
