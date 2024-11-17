@@ -786,8 +786,8 @@
     <xsd:sequence>
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="dataset" type="dataset"/>
-        <xsd:element name="h-line" type="line"/>
-        <xsd:element name="v-line" type="line"/>
+        <xsd:element name="h-line" type="h-line"/>
+        <xsd:element name="v-line" type="v-line"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="title" type="xsd:string">
@@ -797,18 +797,8 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attributeGroup ref="appearance-attributes" />
-    <xsd:attribute name="y-format" type="xsd:string">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Format of the y-axis.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Formatierung der y-Achse.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="x-format" type="xsd:string">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Format of the x-axis.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Formatierung der x-Achse.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
+    <xsd:attribute name="y-format" type="y-format" />
+    <xsd:attribute name="x-format" type="d3-time-format"/>
     <xsd:attributeGroup ref="layout-attributes" />
     <xsd:attribute ref="series" />
     <xsd:attribute name="selection" type="series-selection" />
@@ -1901,7 +1891,7 @@
       <xsd:element name="h-line" minOccurs="0" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:complexContent>
-            <xsd:extension base="line">
+            <xsd:extension base="h-line">
               <xsd:attribute name="slot" use="required">
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
@@ -1916,7 +1906,7 @@
       <xsd:element name="v-line" minOccurs="0" maxOccurs="unbounded">
         <xsd:complexType>
           <xsd:complexContent>
-            <xsd:extension base="line">
+            <xsd:extension base="v-line">
               <xsd:attribute name="slot" use="required">
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
@@ -1934,18 +1924,8 @@
     <xsd:attribute ref="styling" />
     <xsd:attribute ref="format" />
     <xsd:attribute name="selection" type="series-selection" />
-    <xsd:attribute name="y-format" type="xsd:string">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Format of the y-axis.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Formatierung der y-Achse.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="x-format" type="xsd:string">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Format of the x-axis.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Formatierung der x-Achse.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
+    <xsd:attribute name="y-format" type="y-format" />
+    <xsd:attribute name="x-format" type="d3-time-format"/>
     <xsd:attribute name="size" type="tile-size" />
     <xsd:attribute ref="refresh" />
     <xsd:attribute ref="series" />
@@ -2690,27 +2670,6 @@
         <xsd:documentation xml:lang="de">Datenquelle für diese Linie</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="value">
-      <xsd:annotation>
-        <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
-      </xsd:annotation>
-      <xsd:simpleType>
-        <xsd:union>
-          <xsd:simpleType>
-            <xsd:restriction base="xsd:float"/>
-          </xsd:simpleType>
-          <xsd:simpleType>
-            <xsd:restriction base="xsd:string">
-              <xsd:enumeration value="avg" />
-              <xsd:enumeration value="min" />
-              <xsd:enumeration value="max" />
-            </xsd:restriction>
-          </xsd:simpleType>
-        </xsd:union>
-      </xsd:simpleType>
-    </xsd:attribute>
-    <xsd:attribute ref="format"/>
     <xsd:attribute name="color" type="color">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Color of the line.</xsd:documentation>
@@ -2730,6 +2689,72 @@
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
+
+  <xsd:complexType name="v-line">
+    <xsd:complexContent>
+      <xsd:extension base="line">
+        <xsd:attribute name="value">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Date where the vertical line should be shown on the x-axis.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Datumswert an dem die vertikale Linie angezeigt werden soll.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:union memberTypes="xsd:date xsd:time xsd:dateTime" />
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="format" type="d3-time-format">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Format of the date on the x-axis. (see: https://d3js.org/d3-time-format#locale_format).</xsd:documentation>
+            <xsd:documentation xml:lang="de">Formatierung des Datums auf der x-Achse. (siehe: https://d3js.org/d3-time-format#locale_format).</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="h-line">
+    <xsd:complexContent>
+      <xsd:extension base="line">
+        <xsd:attribute name="value">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Type of the chart element.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Typ des Chart-Elements.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleType>
+            <xsd:union>
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:float"/>
+              </xsd:simpleType>
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="avg" />
+                  <xsd:enumeration value="min" />
+                  <xsd:enumeration value="max" />
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:union>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="format" type="y-format"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:simpleType name="d3-time-format">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Format of the date on the x-axis. (see: https://d3js.org/d3-time-format#locale_format). If this value is not provided its automatically determined based on the currently shown 'series'. Defining an explicit formatting overrides this.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Formatierung des Datums auf der x-Achse. (siehe: https://d3js.org/d3-time-format#locale_format). Wird keine Formatierung angegeben, wird diese automatisch bestimmt auf Basis der gerade angezeigten 'series'. Eine explizite Angabe der Formatierung deaktiviert die Automatik.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="y-format">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Format the value on the y-axis. (printf syntax)</xsd:documentation>
+      <xsd:documentation xml:lang="de">Formatierung des Werts auf der y-Achse. (printf-Syntax)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
 
   <!--
   #####################################################################################################################
@@ -3094,13 +3119,6 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Fades out this content, if the page content has been scrolled.</xsd:documentation>
       <xsd:documentation xml:lang="de">Blendet dieses Element aus, wenn der Seiteninhalt gescrollt wurde.</xsd:documentation>
-    </xsd:annotation>
-  </xsd:attribute>
-
-  <xsd:attribute name="d3-time-format" type="xsd:string">
-    <xsd:annotation>
-      <xsd:documentation xml:lang="en">Format of the date on the x-axis. (see: https://d3js.org/d3-time-format#locale_format)</xsd:documentation>
-      <xsd:documentation xml:lang="de">Formatierung des Datums auf der x-Achse. (siehe: https://d3js.org/d3-time-format#locale_format)</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 

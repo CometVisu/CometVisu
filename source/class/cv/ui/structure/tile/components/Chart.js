@@ -591,7 +591,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       const dataSets = Array.from(this._element.querySelectorAll(':scope > dataset'));
       const datasetSources = dataSets.map(elem => elem.getAttribute('src'));
       for (const line of this._element.querySelectorAll(':scope > h-line, v-line')) {
-        if (!datasetSources.includes(line.getAttribute('src'))) {
+        if (line.hasAttribute('src') && !datasetSources.includes(line.getAttribute('src'))) {
           dataSets.push(line);
         }
       }
@@ -1325,81 +1325,6 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       // add fixed/calculated lines
       this.__addLines(X, Y);
 
-      /*for (const [i, line] of this._element.querySelectorAll(':scope > v-line').entries()) {
-        const src = line.getAttribute('src');
-        let targetContainer = null;
-        let data = null;
-        let xValue = NaN;
-        // when we have a value attribute, we need a dataset to calculate on
-        if (src) {
-          if (this._chartConf.lineGroups.get(src)) {
-            targetContainer = this._chartConf.lineContainer;
-            data = this._chartConf.lineGroups.get(src);
-          } else if (this._chartConf.areaGroups.get(src)) {
-            targetContainer = this._chartConf.areaContainer;
-            data = this._chartConf.areaGroups.get(src);
-          } else if (this._chartConf.barGroups.get(src)) {
-            targetContainer = this._chartConf.barContainer;
-            data = this._chartConf.barGroups.get(src);
-          }
-          if (!data) {
-            this.error('no data found for src ' + src);
-            continue;
-          }
-          xValue = X[data[0]];
-        } else {
-          targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
-          xValue = parseFloat(line.getAttribute('value'));
-          data = [0, Y.length - 1];
-        }
-        if (!targetContainer) {
-          continue;
-        }
-
-        let lineElem = targetContainer.select('.v-line-' + i);
-        if (isNaN(xValue) && !lineElem.empty()) {
-          // remove line
-          lineElem.remove();
-          if (line.getAttribute('show-value') === 'true') {
-            targetContainer.select('.v-line-value-' + i).remove();
-          }
-        } else if (!isNaN(xValue)) {
-          const color = line.getAttribute('color') || 'currentColor';
-          if (lineElem.empty()) {
-            lineElem = targetContainer.append('line')
-              .attr('class', 'v-line-' + i)
-              .attr('stroke', color);
-          }
-          const [yMin, yMax] = this._chart.y.domain();
-          const y1 = this._chartConf.y(yMin);
-          const y2 = this._chartConf.y(yMax);
-          const x = this._chartConf.x(xValue);
-          lineElem
-            .attr('x1', x)
-            .attr('x2', x)
-            .attr('y1', y1)
-            .attr('y2', y2);
-
-          if (line.getAttribute('show-value') === 'true') {
-            const format = line.hasAttribute('format') ? line.getAttribute('format')
-              : (this._element.hasAttribute('x-format') ? this._element.getAttribute('x-format') : '%s');
-            let valueElem = targetContainer.select('.v-line-value-' + i);
-            if (valueElem.empty()) {
-              valueElem = targetContainer.append('text')
-                .attr('class', 'v-line-value-' + i)
-                .attr('fill', line.getAttribute('value-color') || color)
-                .attr('font-size', '10')
-                .attr('text-anchor', 'start');
-            }
-            // show value on top of the chart
-            valueElem
-              .attr('x', x + 2)
-              .attr('y', y2)
-              .text(d3.timeFormat(format)(xValue));
-          }
-        }
-      }*/
-
       // dot must be added last
       const dot = svg.select('g.dot');
       if (dot.empty()) {
@@ -1464,7 +1389,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           }
         } else {
           targetContainer = this._chartConf.lineContainer || this._chartConf.areaContainer || this._chartConf.barContainer;
-          value = parseFloat(line.getAttribute('value'));
+          if (name === 'h-line') {
+            value = parseFloat(line.getAttribute('value'));
+          } else {
+            value = new Date(line.getAttribute('value')).getTime();
+          }
           data = [0, X.length-1];
         }
         if (!targetContainer) {
@@ -1482,7 +1411,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           const color = line.getAttribute('color') || 'currentColor';
           if (lineElem.empty()) {
             lineElem = targetContainer.append('line')
-              .attr('class', `.${name}-${i}`)
+              .attr('class', `${name}-${i}`)
               .attr('stroke', color);
           }
           let formatAttribute = 'y-format';
