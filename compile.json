@@ -28,7 +28,8 @@
         "cv.plugins.*",
         "cv.parser.*",
         "cv.core.*",
-        "cv.io.listmodel.*"
+        "cv.io.listmodel.*",
+        "cv.io.timeseries.*"
       ],
       "exclude": [
         "cv.test.*",
@@ -45,7 +46,8 @@
             "cv.ui.structure.pure.AbstractBasicWidget",
             "cv.ui.structure.pure.AbstractWidget",
             "cv.ui.structure.pure.ColorChooser",
-            "cv.io.listmodel.*"
+            "cv.io.listmodel.*",
+            "cv.io.timeseries.*"
           ]
         },
         "structure-pure": {

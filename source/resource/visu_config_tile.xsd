@@ -787,6 +787,7 @@
       <xsd:choice maxOccurs="unbounded">
         <xsd:element name="dataset" type="dataset"/>
         <xsd:element name="h-line" type="line"/>
+        <xsd:element name="v-line" type="line"/>
       </xsd:choice>
     </xsd:sequence>
     <xsd:attribute name="title" type="xsd:string">
@@ -1886,6 +1887,36 @@
         <xsd:complexType>
           <xsd:complexContent>
             <xsd:extension base="dataset">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="dataset" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="h-line" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:complexContent>
+            <xsd:extension base="line">
+              <xsd:attribute name="slot" use="required">
+                <xsd:simpleType>
+                  <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="dataset" />
+                  </xsd:restriction>
+                </xsd:simpleType>
+              </xsd:attribute>
+            </xsd:extension>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="v-line" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:complexContent>
+            <xsd:extension base="line">
               <xsd:attribute name="slot" use="required">
                 <xsd:simpleType>
                   <xsd:restriction base="xsd:string">
@@ -3063,6 +3094,13 @@
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Fades out this content, if the page content has been scrolled.</xsd:documentation>
       <xsd:documentation xml:lang="de">Blendet dieses Element aus, wenn der Seiteninhalt gescrollt wurde.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+
+  <xsd:attribute name="d3-time-format" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Format of the date on the x-axis. (see: https://d3js.org/d3-time-format#locale_format)</xsd:documentation>
+      <xsd:documentation xml:lang="de">Formatierung des Datums auf der x-Achse. (siehe: https://d3js.org/d3-time-format#locale_format)</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 
