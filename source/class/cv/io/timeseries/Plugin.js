@@ -60,7 +60,7 @@ qx.Class.define('cv.io.timeseries.Plugin', {
      * @param start {number} start time as unix timestamp
      * @param end {number} end time as unix timestamp
      * @param series {string} series name e.g. 'day', 'month', 'year'
-     * @param offset
+     * @param offset {number} series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day
      * @returns {
      *    url: string,
      *    options: object,
