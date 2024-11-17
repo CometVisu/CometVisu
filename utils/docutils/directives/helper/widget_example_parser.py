@@ -148,7 +148,8 @@ class WidgetExampleParser:
             "selector": ".widget_container",
             "screenshots": [],
             "screenshotDir": self.screenshot_dir,
-            "fixtures": []
+            "fixtures": [],
+            "locale": config.get("DEFAULT", "language")
         }
         design = "metal"
         structure = "pure"

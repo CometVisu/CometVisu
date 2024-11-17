@@ -413,6 +413,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
       this._initializing = false;
       this.__updateTitle();
+      qx.locale.Manager.getInstance().addListener('changeLocale', this.__updateTitle, this);
 
       // check if we have a read address for live updates
       const datasetSources = Array.from(this._element.querySelectorAll(':scope > dataset')).map(elem => elem.getAttribute('src'));
@@ -1672,6 +1673,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
   destruct() {
     this._chartConf = null;
     this._helpers = null;
+    qx.locale.Manager.getInstance().removeListener('changeLocale', this.__updateTitle, this);
   },
 
   defer(QxClass) {

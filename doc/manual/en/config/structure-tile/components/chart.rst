@@ -232,8 +232,8 @@ With a horizontal line, a certain value can be marked (e.g. a threshold), or an 
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Strom" selection="month" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
-                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
+            <cv-chart title="Power" selection="month" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Grid withdrawal" color="#FF0000" show-area="false"/>
                 <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#FF0000" value="max" format="%.1f"/>
                 <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#CCCCCC" value="avg" format="%.1f"/>
                 <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#FFFF00" value="min" format="%.1f"/>
@@ -258,13 +258,13 @@ The vertical lines allow only fixed value.
             <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
         </fixtures>
         <screenshot name="cv-chart-pv-v-lines">
-            <caption>Chart with vertical line.</caption>
+            <caption>Chart with vertical line</caption>
         </screenshot>
     </settings>
     <cv-widget size="2x1">
         <cv-tile>
-            <cv-chart title="Strom" selection="day" y-format="%.1f kWh" series="day" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
-                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
+            <cv-chart title="Power" selection="day" y-format="%.1f kWh" series="day" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Grid withdrawal" color="#FF0000" show-area="false"/>
                 <v-line color="#FFFFFF" value="2022-12-02T12:00:00" />
               </cv-chart>
         </cv-tile>
