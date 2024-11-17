@@ -124,6 +124,22 @@ Zusätzlich können als Query-Parameter hinzugefügt werden:
 
 Beispiel: ``rrd://<dateiname-ohne-rrd>?ds=AVERAGE&resolution=3600``
 
+
+Hinzufügen weiterer Quellen mittels Plugins
+###########################################
+
+Da die CometVisu nicht alle Datenquellen direkt unterstützt, können weitere Datenquellen über Plugins hinzugefügt werden.
+Dazu muss ein Plugin erstellt werden, welches die Datenquelle abfragt und die Daten an das Chart-Element weitergibt.
+Die Erstellung und Einbindung dieses Plugin besteht aus 3 Schritten:
+
+1. Javascript-Datei im config/media-Verzeichnis erstellen.
+2. Darin eine Klasse anlegen mit folgendem Code als Basis erweitert um die gewünschte Funktionalität:
+   https://github.com/CometVisu/CometVisu/blob/develop/source/resource/demo/templates/ChartSourcePlugin.js
+3. Laden dieser Datei in der CometVisu-Konfiguration, dazu im ``<cv-meta>``-Element folgendes hinzufügen:
+   ``<cv-loader type="js" src="resource/config/media/<Dateiname>.js"/>`` und Namen der neuen Datei eintragen.
+
+Weitere Erklärungen finden sich im Source-Code der Dateivorlage.
+
 Weitere Beispiele
 #################
 

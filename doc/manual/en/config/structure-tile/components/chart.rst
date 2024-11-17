@@ -122,6 +122,20 @@ Additional query parameters can be added:
 
 Example: ``rrd://<dateiname-ohne-rrd>?ds=AVERAGE&resolution=3600``
 
+Add more sources via plugins
+############################
+
+Since the CometVisu does not directly support all data sources, additional ones can be added via plugins.
+For this purpose, a plugin must be created that queries the data source and passes the data to the chart element.
+The creation and integration of this plugin consists of 3 steps:
+
+1. Create a Javascript file in the config/media directory.
+2. Create a class in it with the following code as a basis extended by the desired functionality:
+    https://github.com/CometVisu/CometVisu/blob/develop/source/resource/demo/templates/ChartSourcePlugin.js
+3. Load this file in the CometVisu configuration, add the following to the ``<cv-meta>`` element:
+    ``<cv-loader type="js" src="resource/config/media/<filename>.js"/>`` and enter the name of the new file.
+
+You can find more information in the source code of the template.
 
 More examples
 #############
@@ -195,6 +209,63 @@ the ``selection`` attribute. This can be filled with a comma-separated list of a
         <cv-tile>
             <cv-chart title="Power" selection="week,month,year" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
                 <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Grid withdrawal" color="#FF0000" show-area="false"/>
+              </cv-chart>
+        </cv-tile>
+    </cv-widget>
+
+Simple lines
+############
+
+To highlight / mark certain points in the chart, horizontal and vertical lines can be inserted.
+With a vertical line, a certain time can be marked (e.g. the current time or midnight).
+With a horizontal line, a certain value can be marked (e.g. a threshold), or an average, maximum or minimum value.
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-widget">
+        <fixtures>
+            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
+        </fixtures>
+        <screenshot name="cv-chart-pv-h-lines">
+            <caption>Chart with horizontal lines.</caption>
+        </screenshot>
+    </settings>
+    <cv-widget size="2x1">
+        <cv-tile>
+            <cv-chart title="Strom" selection="month" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
+                <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#FF0000" value="max" format="%.1f"/>
+                <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#CCCCCC" value="avg" format="%.1f"/>
+                <h-line src="openhab://Meter_Energy_Grid_Import_Today" show-value="true" color="#FFFF00" value="min" format="%.1f"/>
+                <h-line color="#FFFFFF" value="5" />
+              </cv-chart>
+        </cv-tile>
+    </cv-widget>
+
+For the horizontal lines, a ``<h-line>`` is created with the same data source as the line and the value ``avg`` for the average
+in ``value``. The average value is then displayed as a horizontal line in the chart.
+With ``show-value="true"`` it is specified that the value is displayed next to the line.
+Other values for ``value`` are ``min``, ``max`` or a fixed value.
+
+**Vertical lines**
+
+The vertical lines allow only fixed value.
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-widget">
+        <fixtures>
+            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
+        </fixtures>
+        <screenshot name="cv-chart-pv-v-lines">
+            <caption>Chart with vertical line.</caption>
+        </screenshot>
+    </settings>
+    <cv-widget size="2x1">
+        <cv-tile>
+            <cv-chart title="Strom" selection="day" y-format="%.1f kWh" series="day" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+                <dataset src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="false"/>
+                <v-line color="#FFFFFF" value="2022-12-02T12:00:00" />
               </cv-chart>
         </cv-tile>
     </cv-widget>
