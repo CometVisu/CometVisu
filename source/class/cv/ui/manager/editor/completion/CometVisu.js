@@ -173,8 +173,10 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
         ];
 
         // load plugin template from backend
-        return new Promise(
-          function (resolve, reject) {
+        const promises = [];
+
+        // load pure plugin template
+        promises.push([new Promise((resolve, reject)=> {
             cv.io.rest.Client.getFsClient().readSync(
               { path: 'demo/templates/Plugin.js' },
               function (err, res) {
@@ -198,7 +200,41 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
               },
               this
             );
-          }.bind(this)
+          })
+        ]);
+
+        // load tile chart source plugin template
+        promises.push([new Promise((resolve, reject)=> {
+          cv.io.rest.Client.getFsClient().readSync(
+            { path: 'demo/templates/ChartSourcePlugin.js' },
+            function (err, res) {
+              if (err) {
+                reject(err);
+              } else {
+                this.TEMPLATES.push({
+                  filterText: 'cvchartsourceplugin',
+                  label: 'Tile chart source plugin',
+                  kind: window.monaco.languages.CompletionItemKind.Class,
+                  detail: 'A CometVisu plugin for loading chart data into a tile chart component.',
+                  insertText: res.replace('###SINCE###', cv.Version.VERSION.replace('-dev', '') + ' ($CURRENT_YEAR)'),
+
+                  insertTextRules:
+                    window.monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet |
+                    window.monaco.languages.CompletionItemInsertTextRule.KeepWhitespace
+                });
+
+                resolve(this.TEMPLATES);
+              }
+            },
+            this
+          );
+        })
+        ]);
+
+        return Promise.all(promises).then(
+          () => {
+            return this.TEMPLATES;
+          }
         );
       }
       return Promise.resolve(this.TEMPLATES);
