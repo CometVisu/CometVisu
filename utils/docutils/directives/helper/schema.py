@@ -73,7 +73,6 @@ class Schema:
         # find and resolve inherited attributes
         ext = self.find("xs:complexType[@name='%s']/xs:complexContent/xs:extension" % widget_name)
         if ext is not None:
-            print(ext)
             # get attributes from extended element
             res += self.get_widget_attributes(ext.get("base"))
             # get attributes from extension
