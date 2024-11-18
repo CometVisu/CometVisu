@@ -37,7 +37,7 @@ import json
 import sys
 import re
 from lxml import etree
-from distutils.version import LooseVersion
+from packaging.version import Version
 from argparse import ArgumentParser
 from . import Command
 from utils.commands.scaffolding import Scaffolder
@@ -93,7 +93,7 @@ class DocParser:
             current_section = None
             # find sections
             for line in f.readlines():
-                match = re.match("^\.\. #{3}(START|END)-([A-Z\-]+)#{3}", line)
+                match = re.match(r"^\.\. #{3}(START|END)-([A-Z\-]+)#{3}", line)
                 if match:
                     section_name = match.group(2)
                     if match.group(1) == "START":
@@ -156,7 +156,7 @@ class DocGenerator(Command):
     def _get_doc_target_path(self):
         """ returns the target sub directory where the documentation should be stored."""
         ver = self._get_doc_version()
-        match = re.match("([0-9]+\.[0-9]+)\.[0-9]+.*", ver)
+        match = re.match(r"([0-9]+\.[0-9]+)\.[0-9]+.*", ver)
         if match:
             return match.group(1)
         else:
@@ -354,14 +354,14 @@ class DocGenerator(Command):
                         # source code starts here -> do not proceed
                         break
 
-                    if re.match("^\s*/\*\*\s*$", line):
+                    if re.match(r"^\s*/\*\*\s*$", line):
                         reading = True
 
                     elif reading:
-                        if re.match("^[\s*]*\*/\s*$", line):
+                        if re.match(r"^[\s*]*\*/\s*$", line):
                             break
 
-                        match = re.match("\s*\*?\s(.+)", line)
+                        match = re.match(r"\s*\*?\s(.+)", line)
                         if match:
                             indent = ""
                             if match.group(1)[0:1] == "@":
@@ -376,12 +376,12 @@ class DocGenerator(Command):
                                     raw_code = match.group(1)[14:]
                                     example_code = raw_code
                                     for k, example_line in enumerate(lines[i+1:]):
-                                        if re.match("^[\s*]*(\*/|@.+)\s*$", example_line) or len(re.sub("[\s*\n]", "", example_line)) == 0:
+                                        if re.match(r"^[\s*]*(\*/|@.+)\s*$", example_line) or len(re.sub(r"[\s*\n]", "", example_line)) == 0:
                                             # example finished
                                             skip_lines_before = k+i+1
                                             #print("skipping example lines from %s to %d" % (i, skip_lines_before))
                                             break
-                                        example_code += re.sub("^\s*\*\s", "", example_line)
+                                        example_code += re.sub(r"^\s*\*\s", "", example_line)
 
                                     if len(example_code) > 0:
                                         #print(example_code)
@@ -424,7 +424,7 @@ class DocGenerator(Command):
                                 elif match.group(1)[1:8] == "example":
                                     section = "WIDGET-DESCRIPTION"
                                     content[section].append(".. code-block:: xml\n")
-                                    caption = re.match("\s*<caption>([^<]+)</caption>", match.group(1)[9:])
+                                    caption = re.match(r"\s*<caption>([^<]+)</caption>", match.group(1)[9:])
                                     if caption:
                                         content[section].append("    :caption: %s\n" % caption.group(1))
                                     content[section].append("\n")
@@ -458,8 +458,8 @@ class DocGenerator(Command):
                                         unescape = False
                                 elif code_block:
                                     indent = "    "
-                                elif re.match("\s*TODO:?\s(.*)$", line_content):
-                                    todo = re.match("\s*TODO:?\s(.*)$", line_content)
+                                elif re.match(r"\s*TODO:?\s(.*)$", line_content):
+                                    todo = re.match(r"\s*TODO:?\s(.*)$", line_content)
                                     line_content = ".. TODO::\n\n    %s\n" % todo.group(1)
 
                             if unescape is True:
@@ -488,7 +488,7 @@ class DocGenerator(Command):
 
     def generate_features(self, widgets={}, plugins={}, lang='de', sanitize=False):
 
-        regex = re.compile("^\| :doc:`([^<]+)<([^>]+)>`\s+\|\s+([^\|]+).*$")
+        regex = re.compile(r"^\| :doc:`([^<]+)<([^>]+)>`\s+\|\s+([^\|]+).*$")
         section = "manual-%s" % lang
         image_prefix = self.config.get(section, "images").replace("<version>", self.config.get("DEFAULT", "develop-version-mapping"))
         link_prefix = self.config.get(section, "html").replace("<version>", self.config.get("DEFAULT", "develop-version-mapping"))
@@ -541,8 +541,8 @@ class DocGenerator(Command):
         return widgets, plugins
 
     def _find_screenshot(self, name, widget_rst):
-        example = re.compile('.*<screenshot name="([^"]+)"\s*/?>.*')
-        figure = re.compile('.. figure:: _static/(.+)')
+        example = re.compile(r'.*<screenshot name="([^"]+)"\s*/?>.*')
+        figure = re.compile(r'.. figure:: _static/(.+)')
         with open(widget_rst) as f:
             for line in f.readlines():
                 match = example.match(line)
@@ -558,7 +558,7 @@ class DocGenerator(Command):
         return None
 
     def _key_sort_versions(self, a):
-        return LooseVersion(a.split("|")[0])
+        return Version(a.split("|")[0])
 
     def process_versions(self, path):
         root, dirs, files = list(os.walk(path))[0]
@@ -572,12 +572,12 @@ class DocGenerator(Command):
                 special_versions = []
                 for version_dir in dirs:
                     version = version_dir
-                    if os.path.exists(os.path.join(path, lang_dir, version_dir, "version")) and re.match("^[0-9]+\.[0-9]+\.?[0-9]*$", version) is not None:
+                    if os.path.exists(os.path.join(path, lang_dir, version_dir, "version")) and re.match(r"^[0-9]+\.[0-9]+\.?[0-9]*$", version) is not None:
                         with open(os.path.join(path, lang_dir, version_dir, "version")) as f:
                             version = f.read().rstrip('\n')
                     if os.path.islink(os.path.join(root, version_dir)):
                         symlinks[version_dir] = os.readlink(os.path.join(root, version_dir)).rstrip("/")
-                    elif re.match("^[0-9]+\.[0-9]+.*$", version) is not None:
+                    elif re.match(r"^[0-9]+\.[0-9]+.*$", version) is not None:
                         versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
                     else:
                         special_versions.append(version if version == version_dir else "%s|%s" % (version, version_dir))
@@ -594,7 +594,7 @@ class DocGenerator(Command):
                             max_version, max_version_path = max_version.split("|")
                         else:
                             max_version_path = max_version
-                        if re.match(".+-RC[0-9]+$", max_version) is None:
+                        if re.match(r".+-RC[0-9]+$", max_version) is None:
                             found_max = True
                             break
 
