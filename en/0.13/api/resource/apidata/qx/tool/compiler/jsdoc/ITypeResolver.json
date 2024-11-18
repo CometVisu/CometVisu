@@ -1,7 +1,7 @@
 {
   "version": 0.3,
-  "lastModified": 1729101022280,
-  "lastModifiedIso": "2024-10-16T17:50:22.280Z",
+  "lastModified": 1731947916251,
+  "lastModifiedIso": "2024-11-18T16:38:36.251Z",
   "classFilename": "../../node_modules/@qooxdoo/framework/source/class/qx/tool/compiler/jsdoc/ITypeResolver.js",
   "type": "interface",
   "location": {

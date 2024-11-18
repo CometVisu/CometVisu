@@ -67,4 +67,4 @@ function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf 
   cv.ui.structure.tile.widgets.WidgetPair.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=WidgetPair.js.map?dt=1729101220912
+//# sourceMappingURL=WidgetPair.js.map?dt=1731948098290

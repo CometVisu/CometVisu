@@ -60,4 +60,4 @@
   qx.event.dispatch.DomBubbling.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=DomBubbling.js.map?dt=1729101230564
+//# sourceMappingURL=DomBubbling.js.map?dt=1731948106814

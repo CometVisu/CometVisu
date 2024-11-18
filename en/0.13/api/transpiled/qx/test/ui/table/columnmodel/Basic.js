@@ -111,4 +111,4 @@
   qx.test.ui.table.columnmodel.Basic.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Basic.js.map?dt=1729101246275
+//# sourceMappingURL=Basic.js.map?dt=1731948121264

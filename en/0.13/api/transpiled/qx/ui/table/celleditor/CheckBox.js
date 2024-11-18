@@ -82,4 +82,4 @@
   qx.ui.table.celleditor.CheckBox.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=CheckBox.js.map?dt=1729101267224
+//# sourceMappingURL=CheckBox.js.map?dt=1731948140404

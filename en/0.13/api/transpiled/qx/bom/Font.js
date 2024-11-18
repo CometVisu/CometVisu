@@ -367,4 +367,4 @@
   qx.bom.Font.$$dbClassInfo = $$dbClassInfo;
 })();
 
-//# sourceMappingURL=Font.js.map?dt=1729101222480
+//# sourceMappingURL=Font.js.map?dt=1731948099648
