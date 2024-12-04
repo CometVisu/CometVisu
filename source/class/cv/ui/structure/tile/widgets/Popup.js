@@ -55,7 +55,10 @@ qx.Class.define('cv.ui.structure.tile.widgets.Popup', {
         icon.classList.add('ri-close-line');
         this._closeButton.appendChild(icon);
         popup.insertBefore(this._closeButton, popup.firstChild);
-        this._closeButton.addEventListener('click', () => this.close());
+        this._closeButton.addEventListener('click', ev => {
+          ev.stopPropagation();
+          this.close();
+        });
       }
       popup.addEventListener('close', ev => {
         this.close();
