@@ -314,7 +314,10 @@ qx.Class.define('cv.plugins.RssLog', {
               if (!cv.data.Model.isWriteAddress(adddressSettings)) {
                 continue;
               } // skip when write flag not set
-              cv.io.BackendConnections.getClient(adddressSettings.backendType).write(addr, cv.Transform.encode(this.getAddress()[addr], 0));
+              const client = cv.io.BackendConnections.getClient(adddressSettings.backendType);
+              if (client) {
+                client.write(addr, cv.Transform.encode(this.getAddress()[addr], 0));
+              }
             }
           }
         },

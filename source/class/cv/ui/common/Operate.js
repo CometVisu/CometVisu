@@ -86,7 +86,10 @@ qx.Mixin.define('cv.ui.common.Operate', {
                 const encodedValue = cv.Transform.encodeBusAndRaw(address, value);
 
                 if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
-                  cv.io.BackendConnections.getClient(address.backendType).write(id, encodedValue.bus, address);
+                  const client = cv.io.BackendConnections.getClient(address.backendType);
+                  if (client) {
+                    client.write(id, encodedValue.bus, address);
+                  }
                 }
                 encodedValues[encoding] = encodedValue.raw;
               } catch (e) {
