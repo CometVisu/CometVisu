@@ -760,7 +760,7 @@ qx.Class.define('cv.Application', {
     async __init() {
       qx.event.Registration.addListener(
         window,
-        'unload',
+        'pagehide',
         function () {
           cv.io.Client.stopAll();
         },
