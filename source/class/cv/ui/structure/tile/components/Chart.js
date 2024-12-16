@@ -1428,8 +1428,9 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           let formatAttribute = 'y-format';
           let x1, x2, y1, y2 = 0;
           if (name === 'h-line') {
-            x1 = this._chartConf.x(X[data[0]]);
-            x2 = this._chartConf.x(X[X.length - 1]); // always draw until end of chart (not until end of src dataset)
+            const [xMin, xMax] = this._chartConf.x.domain();
+            x1 = this._chartConf.x(xMin);
+            x2 = this._chartConf.x(xMax); // always draw until end of chart (not until end of src dataset)
             y1 = this._chartConf.y(value);
             y2 = y1;
           } else {
