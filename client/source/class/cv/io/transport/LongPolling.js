@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+'use strict';
 
 qx.Class.define('cv.io.transport.LongPolling', {
   extend: qx.core.Object,
@@ -41,13 +42,15 @@ qx.Class.define('cv.io.transport.LongPolling', {
   ******************************************************
   */
   members: {
+    /** @type {cv.io.Watchdog} */
     watchdog: null,
-    doRestart: false, // are we currently in a restart, e.g. due to the watchdog
+    doRestart: false, // are we currently in a restart, e.g. due to the watchdog?
     xhr: null, // the ongoing AJAX request
     lastIndex: -1, // index returned by the last request
-    retryCounter: 0, // count number of retries (reset with each valid response)
-    retryServerErrorCounter: 0, // count number of successive temporary server errors
+    retryCounter: 0, // count the number of retries (reset with each valid response)
+    retryServerErrorCounter: 0, // count the number of successive temporary server errors
     sessionId: null,
+    /** @type {cv.io.Client} */
     client: null,
     running: null,
 
@@ -59,7 +62,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * @param connect {Boolean} whether to start the connection or not
      */
     handleSession(args, connect) {
-      var json = this.client.getResponse(args);
+      const json = this.client.getResponse(args);
       this.sessionId = json.s;
       if (!Object.prototype.hasOwnProperty.call(json, 'v')) {
         this.error('CometVisu protocol error: missing protocol version');
@@ -80,8 +83,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
       this.running = true;
       // send first request
 
-      var data = [];
-      var successCallback = null;
+      let data = [];
+      let successCallback = null;
       if (this.client.initialAddresses.length) {
         data = this.client.buildRequest(this.client.initialAddresses);
         successCallback = this.handleReadStart;
@@ -95,10 +98,10 @@ qx.Class.define('cv.io.transport.LongPolling', {
     },
 
     __startReading(data, callback) {
-      data = data || this.client.buildRequest();
-      callback = callback || this.handleRead;
+      data ??= this.client.buildRequest();
+      callback ??= this.handleRead;
       data.t = 0;
-      var options = {
+      const options = {
         beforeSend: this.beforeSend.bind(this),
         listeners: {
           error: this.handleError
@@ -113,19 +116,19 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * and this.client information is available
      */
     handleRead() {
-      var json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
+      const json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
 
       if (this.doRestart || (!json && this.lastIndex === -1)) {
         this.client.setDataReceived(false);
         if (this.running) {
           // retry initial request
-          var delay = 100 * Math.pow(this.retryCounter, 2);
+          const delay = 100 * Math.pow(this.retryCounter, 2);
           this.retryCounter++;
           if (this.doRestart) {
             // planned restart, only inform user
-            this.info('restarting XHR read requests in ' + delay + ' ms as planned');
+            this.info(`restarting XHR read requests in ${delay} ms as planned`);
           } else {
-            this.info('restarting XHR read requests in ' + delay + ' ms as forced to');
+            this.info(`restarting XHR read requests in ${delay} ms as forced to`);
           }
           if (!this.watchdog.isActive()) {
             // watchdog has been stopped in the abort function -> restart it
@@ -143,7 +146,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         return;
       }
 
-      var data;
+      let data;
       if (json && !this.doRestart) {
         if (!Object.prototype.hasOwnProperty.call(json, 'i')) {
           this.error('CometVisu protocol error: backend responded to a read request without an "i"-parameter');
@@ -167,7 +170,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.retryCounter++;
         data = this.client.buildRequest();
         data.i = this.lastIndex;
-        var url = this.xhr.getUrl().split('?').shift() + '?' + this.client.getQueryString(data);
+        const url = this.xhr.getUrl().split('?').shift() + '?' + this.client.getQueryString(data);
         this.xhr.setUrl(url);
         this.xhr.send();
         this.watchdog.ping();
@@ -175,7 +178,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     },
 
     handleReadStart() {
-      var json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
+      const json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
 
       if (!json && this.lastIndex === -1) {
         this.client.setDataReceived(false);
@@ -197,15 +200,15 @@ qx.Class.define('cv.io.transport.LongPolling', {
         // keep the requests going, but only
         // request
         // addresses-startPageAddresses
-        var diffAddresses = [];
-        for (var i = 0; i < this.client.addresses.length; i++) {
+        const diffAddresses = [];
+        for (const i = 0; i < this.client.addresses.length; i++) {
           if (!this.client.initialAddresses.includes(this.client.addresses[i])) {
             diffAddresses.push(this.client.addresses[i]);
           }
         }
-        var data = this.client.buildRequest(diffAddresses);
+        const data = this.client.buildRequest(diffAddresses);
         data.t = 0;
-        var url = this.xhr.getUrl().split('?').shift() + '?' + this.client.getQueryString(data);
+        const url = this.xhr.getUrl().split('?').shift() + '?' + this.client.getQueryString(data);
         this.xhr.setUrl(url);
         this.xhr.removeListener('success', this.handleReadStart, this);
         this.xhr.addListener('success', this.handleRead, this);
@@ -222,18 +225,14 @@ qx.Class.define('cv.io.transport.LongPolling', {
      */
     handleError: qx.core.Environment.select('cv.xhr', {
       qx(ev) {
-        var req = ev.getTarget();
+        const req = ev.getTarget();
+        const status = req.getStatus();
         // check for temporary server errors and retry a few times
         if (
-          [408, 444, 499, 502, 503, 504].indexOf(req.getStatus()) >= 0 &&
+          [408, 444, 499, 502, 503, 504].indexOf(status) >= 0 &&
           this.retryServerErrorCounter < this.client.backend.maxRetries
         ) {
-          this.info(
-            'Temporary connection problem (status: ' +
-              req.getStatus() +
-              ') - retry count: ' +
-              this.retryServerErrorCounter
-          );
+          this.info(`Temporary connection problem (status: ${status}) - retry count: ${this.retryServerErrorCounter}`);
 
           this.retryServerErrorCounter++;
           req.serverErrorHandled = true;
@@ -241,7 +240,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
           return;
         }
         // ignore error when connection is irrelevant
-        if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) {
+        if (this.running && req.getReadyState() !== 4 && !this.doRestart && status !== 0) {
           this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
           this.client.setConnected(false);
         }
@@ -249,7 +248,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
       jquery(xhr, str, excptObj) {
         // ignore error when connection is irrelevant
         if (this.running && xhr.readyState !== 4 && !this.doRestart && xhr.status !== 0) {
-          var readyState = 'UNKNOWN';
+          let readyState = 'UNKNOWN';
           switch (xhr.readyState) {
             case 0:
               readyState = 'UNINITIALIZED';
@@ -276,19 +275,19 @@ qx.Class.define('cv.io.transport.LongPolling', {
     }),
 
     /**
-     * manipulates the header of the current ajax query before it is
-     * been send to the server
+     * manipulates the header of the current ajax query before it will
+     * be sent to the server
      *
      * @param xhr {Object} the native XHR object
      *
      */
     beforeSend(xhr) {
-      for (var headerName in this.resendHeaders) {
+      for (const headerName in this.resendHeaders) {
         if (this.resendHeaders[headerName] !== undefined) {
           xhr.setRequestHeader(headerName, this.resendHeaders[headerName]);
         }
       }
-      for (headerName in this.headers) {
+      for (const headerName in this.headers) {
         if (this.headers[headerName] !== undefined) {
           xhr.setRequestHeader(headerName, this.headers[headerName]);
         }
@@ -300,7 +299,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * resendHeaders array
      */
     readResendHeaderValues() {
-      for (var headerName in this.resendHeaders) {
+      for (const headerName in this.resendHeaders) {
         this.resendHeaders[headerName] = this.xhr.getResponseHeader(headerName);
       }
     },
@@ -326,11 +325,13 @@ qx.Class.define('cv.io.transport.LongPolling', {
       this.handleRead(); // restart
       this.doRestart = false;
     },
+
     /**
      * Abort the read request properly
      *
      */
     abort() {
+      this.watchdog.stop();
       if (this.xhr && this.xhr.abort) {
         this.xhr.abort();
         this.xhr = null;
@@ -339,7 +340,6 @@ qx.Class.define('cv.io.transport.LongPolling', {
           this.client.backend.hooks.onClose.bind(this);
         }
       }
-      this.watchdog.stop();
     }
   }
 });

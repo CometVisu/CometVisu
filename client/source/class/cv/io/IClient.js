@@ -153,8 +153,8 @@ qx.Interface.define('cv.io.IClient', {
     hasCustomChartsDataProcessor() {},
 
     /**
-     * For custom backend charts data some processing might be done to convert it in a format the CometVisu can handle
-     * @param data {var}
+     * For custom backend chart data some processing might be done to convert it in a format the CometVisu can handle
+     * @param data {any}
      * @param config {{scaling: number, offset: number}}
      */
     processChartsData(data, config) {},
@@ -185,6 +185,7 @@ qx.Interface.define('cv.io.IClient', {
      * Called directly before the page gets unloaded. Can be used to disconnect correctly.
      */
     terminate() {},
+
     /**
      * Handle the incoming state updates. This method is not implemented by the client itself.
      * It is injected by the project using the client.

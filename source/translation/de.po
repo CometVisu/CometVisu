@@ -198,7 +198,7 @@ msgstr "Datei hochladen"
 msgid "Save as..."
 msgstr "Speichern unter..."
 
-#: cv/ui/manager/contextmenu/FileItem.js
+#: cv/ui/manager/contextmenu/ConfigElement.js
 msgid "Delete"
 msgstr "Löschen"
 
@@ -1252,3 +1252,11 @@ msgstr "nein"
 #: cv/io/listmodel/RssLog.js
 msgid "Do you really want to delete this entry?"
 msgstr "Möchten Sie diesen Eintrag wirklich löschen?"
+
+#: cv/TemplateEngine.js
+msgid "loadParts \"Structure\" failed"
+msgstr "loadParts \"Structure\" fehlgeschlagen"
+
+#: cv/TemplateEngine.js
+msgid "CometVisu startup error"
+msgstr "CometVisu Start-Fehler"
