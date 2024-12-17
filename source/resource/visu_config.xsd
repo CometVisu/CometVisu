@@ -407,7 +407,7 @@
         New values, should be used now:
           knxd, openhab, mqtt
          -->
-        <xsd:pattern value="^(knxd|openhab|mqtt|cgi-bin|oh|oh2|openhab2|default)(,(knxd|openhab|mqtt|cgi-bin|oh|oh2|openhab2|default))*$"/>
+        <xsd:pattern value="(knxd|openhab|mqtt|cgi-bin|oh|oh2|openhab2|default)(,(knxd|openhab|mqtt|cgi-bin|oh|oh2|openhab2|default))*"/>
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
