@@ -90,7 +90,7 @@ qx.Class.define('cv.ui.structure.pure.Controller', {
       let defaultBackendName = '';
       if (pagesElement.getAttribute('backend') !== null) {
         settings.backend = pagesElement.getAttribute('backend');
-        defaultBackendName = settings.backend;
+        defaultBackendName = settings.backend.split(',')[0];
       } else {
         defaultBackendName = (
           cv.Config.URL.backend ||
