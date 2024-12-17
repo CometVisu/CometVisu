@@ -64,50 +64,44 @@ qx.Mixin.define('cv.ui.common.Operate', {
     /**
      * Send the given value to all writeable addresses known to this widget
      *
-     * @param value {var} value to send
+     * @param value {any} value to send
      * @param filter {Function} optional filter function for addresses
      * @param currentBusValues {Object} optional: the (assumed) last encoded values
      *          that were sent on the bus. When the encoding of the new value
      *          to send is equal to the currentBusValues a transmission will
      *          be suppressed. The object is a hash with the encoding as a key
      *          for the encoded value
-     * @return the object/hash of encoded values that were sent last time
+     * @return {Object} the object/hash of encoded values that were sent last time
      */
     sendToBackend(value, filter, currentBusValues) {
       const encodedValues = {};
-      if (this.getAddress) {
-        const list = this.getAddress();
-        for (let id in list) {
-          if (Object.prototype.hasOwnProperty.call(list, id)) {
-            const address = list[id];
-            if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
-              try {
-                const encoding = address.transform;
-                const encodedValue = cv.Transform.encodeBusAndRaw(address, value);
+      for (const [id, address] of Object.entries(this.getAddress?.() ?? {})) {
+        if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
+          try {
+            const encoding = address.transform;
+            const encodedValue = cv.Transform.encodeBusAndRaw(address, value);
 
-                if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
-                  cv.io.BackendConnections.getClient(address.backendType).write(id, encodedValue.bus, address);
-                }
-                encodedValues[encoding] = encodedValue.raw;
-              } catch (e) {
-                if (!address.ignoreError) {
-                  const message = {
-                    topic: 'cv.transform.encode',
-                    title: qx.locale.Manager.tr('Transform encode error'),
-                    severity: 'urgent',
-                    unique: false,
-                    deletable: true,
-                    message: qx.locale.Manager.tr(
-                      'Encode error: %1; selector: "%2"; value: %3',
-                      e,
-                      address.selector,
-                      JSON.stringify(value)
-                    )
-                  };
+            if (!currentBusValues || encodedValue.raw !== currentBusValues[encoding]) {
+              cv.io.BackendConnections.getClient(address.backendType).write(id, encodedValue.bus, address);
+            }
+            encodedValues[encoding] = encodedValue.raw;
+          } catch (e) {
+            if (!address.ignoreError) {
+              const message = {
+                topic: 'cv.transform.encode',
+                title: qx.locale.Manager.tr('Transform encode error'),
+                severity: 'urgent',
+                unique: false,
+                deletable: true,
+                message: qx.locale.Manager.tr(
+                  'Encode error: %1; selector: "%2"; value: %3',
+                  e,
+                  address.selector,
+                  JSON.stringify(value)
+                )
+              };
 
-                  cv.core.notifications.Router.dispatchMessage(message.topic, message);
-                }
-              }
+              cv.core.notifications.Router.dispatchMessage(message.topic, message);
             }
           }
         }
