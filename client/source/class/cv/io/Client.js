@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+'use strict';
 
 /**
  * The JavaScript library that implements the CometVisu protocol.
@@ -90,6 +91,7 @@ qx.Class.define('cv.io.Client', {
     this.pass = '';
     this.device = '';
     this.headers = {};
+    this.resendHeaders = {};
 
     this.delayedRestart = qx.util.Function.debounce(this.restart.bind(this), 50);
   },
@@ -141,10 +143,10 @@ qx.Class.define('cv.io.Client', {
         },
 
         maxConnectionAge: 60 * 1000, // in milliseconds - restart if last read is older
-        maxDataAge: 3200 * 1000, // in milliseconds - reload all data when last successful
+        maxDataAge: 3200 * 1000, // in milliseconds - reload all data when the last successful
         // read is older (should be faster than the index overflow at max data rate,
         // i.e. 2^16 @ 20 tps for KNX TP)
-        maxRetries: 3, // amount of connection retries for temporary server failures
+        maxRetries: 3, // number of connection retries for temporary server failures
         hooks: {}
       },
 
@@ -231,13 +233,18 @@ qx.Class.define('cv.io.Client', {
 
     loginSettings: null,
     headers: null,
+    resendHeaders: null,
     __lastError: null,
 
     getType() {
       return this._type;
     },
 
-    // property apply
+    /**
+     * Method to call when the `connected` property is set
+     * @param value {boolean}
+     * @private
+     */
     _applyConnected(value) {
       if (value === true) {
         this.__lastError = null;
@@ -251,7 +258,7 @@ qx.Class.define('cv.io.Client', {
 
     setBackend(newBackend) {
       // override default settings
-      var backend = Object.assign({}, cv.io.Client.backends['default'], newBackend);
+      const backend = Object.assign({}, cv.io.Client.backends['default'], newBackend);
 
       this.backend = backend;
       if (backend.transport === 'sse' && backend.transportFallback) {
@@ -262,10 +269,10 @@ qx.Class.define('cv.io.Client', {
         }
       }
       // add trailing slash to baseURL if not set
-      if (backend.baseURL && backend.baseURL.substr(-1) !== '/') {
+      if (backend.baseURL && backend.baseURL.slice(-1) !== '/') {
         backend.baseURL += '/';
       }
-      var currentTransport = this.getCurrentTransport();
+      const currentTransport = this.getCurrentTransport();
       switch (backend.transport) {
         case 'long-polling':
           if (!(currentTransport instanceof cv.io.transport.LongPolling)) {
@@ -298,16 +305,16 @@ qx.Class.define('cv.io.Client', {
     },
 
     /**
-     * manipulates the header of the current ajax query before it is been send to the server
+     * manipulates the header of the current ajax query before it will be sent to the server
      * @param xhr
      */
     beforeSend(xhr) {
-      for (var headerName in this.resendHeaders) {
+      for (const headerName in this.resendHeaders) {
         if (this.resendHeaders[headerName] !== undefined) {
           xhr.setRequestHeader(headerName, this.resendHeaders[headerName]);
         }
       }
-      for (headerName in this.headers) {
+      for (const headerName in this.headers) {
         if (this.headers[headerName] !== undefined) {
           xhr.setRequestHeader(headerName, this.headers[headerName]);
         }
@@ -339,12 +346,11 @@ qx.Class.define('cv.io.Client', {
      * @param filters {Array?} Filters
      *
      */
-    subscribe(addresses, filters) {
-      var startCommunication = !this.addresses.length; // start when
-      // addresses were
-      // empty
-      this.addresses = addresses ? addresses : [];
-      this.filters = filters ? filters : [];
+    subscribe(addresses = [], filters = []) {
+      const startCommunication = !this.addresses.length; // start when
+      // addresses were empty
+      this.addresses = addresses;
+      this.filters = filters;
 
       if (!addresses.length) {
         this.stop(); // stop when new addresses are empty
@@ -374,9 +380,9 @@ qx.Class.define('cv.io.Client', {
      *
      * @param loginOnly {Boolean} if true only login and backend configuration, no subscription
      *                            to addresses (default: false)
-     * @param credentials {Map?} not used in this client
-     * @param callback {Function} call this function when login is done
-     * @param context {Object} context for the callback (this)
+     * @param credentials {Object?} not used in this client
+     * @param callback {Function?} call this function when login is done
+     * @param context {Object?} context for the callback (this)
      *
      */
     login(loginOnly, credentials, callback, context) {
@@ -384,7 +390,7 @@ qx.Class.define('cv.io.Client', {
         this.loginSettings.loginOnly = !!loginOnly;
         this.loginSettings.callbackAfterLoggedIn = callback;
         this.loginSettings.context = context;
-        var request = {};
+        const request = {};
         if (this.user !== '') {
           request.u = this.user;
         }
@@ -395,7 +401,7 @@ qx.Class.define('cv.io.Client', {
           request.d = this.device;
         }
         this.doRequest(
-          this.backendLoginUrl ? this.backendLoginUrl : this.getResourcePath('login'),
+          this.backendLoginUrl ?? this.getResourcePath('login'),
           request,
           this.handleLogin,
           this
@@ -413,20 +419,23 @@ qx.Class.define('cv.io.Client', {
      * Get the json response from the parameter received from the used XHR transport
      */
     getResponse: qx.core.Environment.select('cv.xhr', {
-      jquery(args) {
-        var data = args[0];
+      jquery(data) {
         if (data && $.type(data) === 'string') {
           data = cv.io.parser.Json.parse(data);
         }
         return data;
       },
 
-      qx(args) {
-        var ev = args[0];
-        if (!ev) {
+      /**
+       *
+       * @param ev {[qx.event.type.Event]}
+       * @return {*|null}
+       */
+      qx(ev) {
+        if (!ev[0]) {
           return null;
         }
-        var json = ev.getTarget().getResponse();
+        let json = ev[0].getTarget().getResponse();
         if (!json) {
           return null;
         }
@@ -450,8 +459,8 @@ qx.Class.define('cv.io.Client', {
     }),
 
     getQueryString(data) {
-      var prefix = '';
-      var suffix = '';
+      let prefix = '';
+      let suffix = '';
       if (data) {
         Object.getOwnPropertyNames(data).forEach(function (key) {
           if (key === 'i' || key === 't') {
@@ -472,22 +481,22 @@ qx.Class.define('cv.io.Client', {
     },
 
     /**
-     * Creates an XHR request. The request type depends von the "cv.xhr" environment setting
+     * Creates an XHR request. The request type depends on the "cv.xhr" environment setting
      * (currently "qx" and "jquery" are supported)
      * @param url {String} URI
-     * @param data {Map} request data
+     * @param data {Object} request data
      * @param callback {Function} success callback
-     * @param context {Object} context fot the callback
+     * @param context {Object} context for the callback
      * @return {qx.io.request.Xhr|jQuery}
      */
     doRequest: qx.core.Environment.select('cv.xhr', {
       jquery(url, data, callback, context, options) {
-        var qs = '';
+        let qs = '';
         if (data) {
           qs = this.getQueryString(data);
           url = qx.util.Uri.appendParamsToUrl(url, qs);
         }
-        var config = {
+        let config = {
           url: url,
           dataType: 'json',
           context: context,
@@ -500,19 +509,19 @@ qx.Class.define('cv.io.Client', {
             delete options.listeners;
           }
         }
-        config = $.extend(config, options || {});
-        var request = new cv.io.request.Jquery(config);
+        config = $.extend(config, options ?? {});
+        const request = new cv.io.request.Jquery(config);
         request.send();
         return request;
       },
       qx(url, data, callback, context, options) {
         // append data to URL
-        var qs = '';
+        let qs = '';
         if (data) {
           qs = this.getQueryString(data);
           url = qx.util.Uri.appendParamsToUrl(url, qs);
         }
-        var ajaxRequest = new qx.io.request.Xhr(url);
+        const ajaxRequest = new qx.io.request.Xhr(url);
         if (options) {
           if (options.beforeSend) {
             this.beforeSend(ajaxRequest);
@@ -520,7 +529,7 @@ qx.Class.define('cv.io.Client', {
           }
           if (options.listeners) {
             Object.getOwnPropertyNames(options.listeners).forEach(function (eventName) {
-              var qxEventName = eventName !== 'error' ? eventName : 'statusError';
+              const qxEventName = eventName !== 'error' ? eventName : 'statusError';
               ajaxRequest.addListener(qxEventName, options.listeners[eventName], context);
             });
             delete options.listeners;
@@ -532,7 +541,7 @@ qx.Class.define('cv.io.Client', {
               accept: 'application/json'
             },
 
-            options || {}
+            options ?? {}
           )
         );
 
@@ -550,7 +559,7 @@ qx.Class.define('cv.io.Client', {
      * @param ev {Event}
      */
     _onError(ev) {
-      var req = ev.getTarget();
+      const req = ev.getTarget();
       if (req.serverErrorHandled) {
         return; // ignore error when already handled
       }
@@ -577,10 +586,10 @@ qx.Class.define('cv.io.Client', {
 
     /**
      * Handles login response, applies backend configuration if send by
-     * backend and forwards to the configurated transport handleSession
+     * backend and forwards to the configured transport handleSession
      * function
      *
-     * Parameter vary dependent from the XHR type used
+     * Parameter varies depending on the XHR type used
      * qx (Qooxdoo):
      *   ev {Event} the 'success' event from the XHR request
      *
@@ -590,13 +599,13 @@ qx.Class.define('cv.io.Client', {
      *   request {Object} the jqXHR object
      */
     handleLogin() {
-      var args = Array.prototype.slice.call(arguments, 0);
-      var json = this.getResponse(args);
+      const args = Array.prototype.slice.call(arguments, 0);
+      const json = this.getResponse(args);
       // read backend configuration if send by backend
       if (json.c) {
         this.setBackend(Object.assign(this.getBackend(), json.c));
       }
-      this.session = json.s || 'SESSION';
+      this.session = json.s ?? 'SESSION';
       this.setServer(this.getResponseHeader(args, 'Server'));
 
       this.setDataReceived(false);
@@ -628,26 +637,26 @@ qx.Class.define('cv.io.Client', {
 
     /**
      * Build the URL part that contains the addresses and filters
-     * @param addresses {Array}
-     * @param asString
-     * @return {Map}
+     * @param addresses {Array?}
+     * @param asString {boolean?}
+     * @return {Object}
      */
-    buildRequest(addresses, asString) {
+    buildRequest(addresses, asString = false) {
       if (asString === true) {
         // return as query string
-        var qs = 's=' + this.session;
-        addresses = addresses ? addresses : this.addresses;
+        let qs = 's=' + this.session;
+        addresses ??= this.addresses;
         qs += '&a=' + addresses.join('&a=');
         if (this.filters.length) {
           qs += '&f=' + this.filters.join('&f=');
         }
         return qs;
       }
-      var data = {
+      const data = {
         s: this.session
       };
 
-      addresses = addresses || this.addresses;
+      addresses ??= this.addresses;
       if (addresses && addresses.length) {
         data.a = addresses;
       }
@@ -668,7 +677,7 @@ qx.Class.define('cv.io.Client', {
        * ts is a quirk to fix wrong caching on some Android-tablets/Webkit;
        * could maybe selective based on UserAgent but isn't that costly on writes
        */
-      var ts = new Date().getTime();
+      const ts = new Date().getTime();
       this.doRequest(
         this.getResourcePath('write'),
         {

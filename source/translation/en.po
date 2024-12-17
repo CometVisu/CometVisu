@@ -1020,7 +1020,7 @@ msgstr ""
 msgid "Edit text content"
 msgstr ""
 
-#: cv/ui/manager/MenuBar.js
+#: cv/ui/manager/Main.js
 msgid "About"
 msgstr ""
 
@@ -1371,4 +1371,12 @@ msgstr ""
 
 #: cv/io/listmodel/RssLog.js
 msgid "Do you really want to delete this entry?"
+msgstr ""
+
+#: cv/TemplateEngine.js
+msgid "loadParts \"Structure\" failed"
+msgstr ""
+
+#: cv/TemplateEngine.js
+msgid "CometVisu startup error"
 msgstr ""

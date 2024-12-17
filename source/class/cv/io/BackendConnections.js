@@ -63,7 +63,7 @@ qx.Class.define('cv.io.BackendConnections', {
 
     /**
      * Initialize all {@link cv.io.IClient} clients for backend communication,
-     * return the default one (for backwards compability)
+     * return the default one (for backwards compatibility)
      */
     initBackendClients() {
       if (cv.Config.testMode === true || window.cvTestMode === true) {
@@ -72,24 +72,24 @@ qx.Class.define('cv.io.BackendConnections', {
         }
         return this.addBackendClient(cv.data.Model.getInstance().getDefaultBackendName(), 'simulated');
       }
-      let backendNames = (
-        cv.Config.URL.backend ||
-        cv.Config.configSettings.backend ||
-        cv.Config.server.backend ||
+      const backendNames = (
+        cv.Config.URL.backend ??
+        cv.Config.configSettings.backend ??
+        cv.Config.server.backend ??
         'default'
       ).split(',');
       const backendKnxdUrl =
-        cv.Config.URL.backendKnxdUrl || cv.Config.configSettings.backendKnxdUrl || cv.Config.server.backendKnxdUrl;
+        cv.Config.URL.backendKnxdUrl ?? cv.Config.configSettings.backendKnxdUrl ?? cv.Config.server.backendKnxdUrl;
       const backendMQTTUrl =
-        cv.Config.URL.backendMQTTUrl || cv.Config.configSettings.backendMQTTUrl || cv.Config.server.backendMQTTUrl;
+        cv.Config.URL.backendMQTTUrl ?? cv.Config.configSettings.backendMQTTUrl ?? cv.Config.server.backendMQTTUrl;
       const backendOpenHABUrl =
-        cv.Config.URL.backendOpenHABUrl ||
-        cv.Config.configSettings.backendOpenHABUrl ||
+        cv.Config.URL.backendOpenHABUrl ??
+        cv.Config.configSettings.backendOpenHABUrl ??
         cv.Config.server.backendOpenHABUrl;
 
-      const defaultName = cv.data.Model.getInstance().getDefaultBackendName() || 'main';
-      let defaultClient;
+      const defaultName = cv.data.Model.getInstance().getDefaultBackendName() ?? 'main';
       let defaultType;
+      let defaultClient;
       switch (backendNames[0]) {
         case 'knxd':
         case 'default':
@@ -138,6 +138,14 @@ qx.Class.define('cv.io.BackendConnections', {
       return defaultClient;
     },
 
+    /**
+     *  Add a backend client.
+     * @param name {string}
+     * @param type {string}
+     * @param backendUrl {string}
+     * @param source {string?}
+     * @return {cv.io.IClient}
+     */
     addBackendClient(name, type, backendUrl, source) {
       if (name === 'system') {
         throw Error('"system" is not allowed as a backend name');
@@ -147,6 +155,7 @@ qx.Class.define('cv.io.BackendConnections', {
         delete this.__clients[name];
       }
       const Clazz = this.__clientClasses[type];
+      /** @type {cv.io.IClient} */
       const client = Clazz ? new Clazz(type, backendUrl) : cv.Application.createClient(type, backendUrl);
       if (source) {
         client.configuredIn = source;
