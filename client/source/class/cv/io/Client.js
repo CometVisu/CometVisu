@@ -419,7 +419,8 @@ qx.Class.define('cv.io.Client', {
      * Get the json response from the parameter received from the used XHR transport
      */
     getResponse: qx.core.Environment.select('cv.xhr', {
-      jquery(data) {
+      jquery(args) {
+        let data = args[0];
         if (data && $.type(data) === 'string') {
           data = cv.io.parser.Json.parse(data);
         }
