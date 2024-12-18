@@ -2327,7 +2327,7 @@
         </xsd:attribute>
         <xsd:attribute name="on">
           <xsd:annotation>
-            <xsd:documentation xml:lang="en">Event on which a ``value`` should be sent to this address (only useful in mode=``write or ``readwrite`), also needs ``value``.</xsd:documentation>
+            <xsd:documentation xml:lang="en">Event on which a ``value`` should be sent to this address (only useful in mode ``write`` or ``readwrite``), also needs ``value``.</xsd:documentation>
             <xsd:documentation xml:lang="de">Event bei dem ein Wert and diese Adresse geschickt wird (nur in Verbindung mit ``value`` und mode=``read`` oder ``readwrite``).</xsd:documentation>
           </xsd:annotation>
           <xsd:simpleType>
@@ -2896,7 +2896,7 @@
 
   <xsd:attribute name="mode">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Defines if this address is only used to ``read``, ``write``, both ``readwrite`` or none of them ``disable`.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Defines if this address is only used to ``read``, ``write``, both ``readwrite`` or none of them ``disable``.</xsd:documentation>
       <xsd:documentation xml:lang="de">Legt fest, ob auf dieser Adresse nur gelesen ``read``, geschrieben ``write``, beides ``readwrite`` oder nichts davon ``disable`` werden soll</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleType>
