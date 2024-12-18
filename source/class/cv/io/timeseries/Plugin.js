@@ -73,10 +73,10 @@ qx.Class.define('cv.io.timeseries.Plugin', {
     /**
      * Generate the request configuration for the chart component or disable it if the plugin
      * fetches the data itself.
-     * @param start {number} start time as unix timestamp
-     * @param end {number} end time as unix timestamp
-     * @param series {string} series name e.g. 'day', 'month', 'year'
-     * @param offset {number} series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day
+     * @param {number} start - start time as unix timestamp
+     * @param {number} end - end time as unix timestamp
+     * @param {string} series - series name e.g. 'day', 'month', 'year'
+     * @param {number} offset - series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day
      * @returns {FetchRequestConfig|OwnFetchRequestConfig}
      */
     getRequestConfig(start, end, series, offset) {
@@ -87,10 +87,10 @@ qx.Class.define('cv.io.timeseries.Plugin', {
      * If the plugin request the data from an external source this function is called.
      * getRequestConfig() must return {fetch: false} to disable the charts builtin data fetching and
      * call this function instead.
-     * @param start {number} start time as unix timestamp
-     * @param end {number} end time as unix timestamp
-     * @param series {string} series name e.g. 'day', 'month', 'year'
-     * @param offset {number} series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day
+     * @param {number} start - start time as unix timestamp
+     * @param {number} end - end time as unix timestamp
+     * @param {string} series - series name e.g. 'day', 'month', 'year'
+     * @param {number} offset - series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day
      * @returns {Promise<*>}
      */
     async fetchData(start, end, series, offset) {
@@ -100,8 +100,8 @@ qx.Class.define('cv.io.timeseries.Plugin', {
     /**
      * Process the response data before it is used in the chart.
      * If the plugin has a processResponse method it will be used.
-     * @param data
-     * @returns {*}
+     * @param {any} data
+     * @returns {any}
      */
     processResponse(data) {
       if (this._plugin && typeof this._plugin.processResponse === 'function') {
