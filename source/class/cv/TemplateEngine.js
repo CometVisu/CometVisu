@@ -153,6 +153,8 @@ qx.Class.define('cv.TemplateEngine', {
      * @param parts {String[]|String} parts to load
      */
     loadParts(parts) {
+      let continueWhenSuccessful = true;
+
       if (!Array.isArray(parts)) {
         parts = [parts];
       }
@@ -177,8 +179,10 @@ qx.Class.define('cv.TemplateEngine', {
                 if (!cv.Config.loadedStructure) {
                   cv.Config.loadedStructure = part.substring(10);
                 }
-                this.debug('successfully loaded all structures');
-                qx.core.Init.getApplication().setStructureLoaded(true);
+                this.debug('successfully loaded all structures. Continue:', continueWhenSuccessful);
+                if (continueWhenSuccessful) {
+                  qx.core.Init.getApplication().setStructureLoaded(true);
+                }
               }
               this.__partQueue.remove(part);
               waitingFor.remove(part);
@@ -207,7 +211,10 @@ qx.Class.define('cv.TemplateEngine', {
       );
 
       return new Promise((resolve, reject) => {
-        const timer = setTimeout(() => reject(new Error('timeout loading parts')), 2000);
+        const timer = setTimeout(() => {
+          continueWhenSuccessful = false;
+          reject('Timeout');
+        }, cv.Config.timeoutStructureLoad);
         if (waitingFor.getLength() === 0) {
           clearTimeout(timer);
           resolve();
@@ -341,7 +348,16 @@ qx.Class.define('cv.TemplateEngine', {
         loader.addListenerOnce('stylesLoaded', this.generateManifest, this);
       }
       // load structure-part
-      await this.loadParts([cv.Config.getStructure()]);
+      try {
+        await this.loadParts([cv.Config.getStructure()]);
+      } catch (e) {
+        // Note: the timeout can be changed by the not published URL parameter
+        // timeoutStructureLoad for debugging reasons. Usually, the server
+        // must be quick enough so that the client doesn't run into any issues
+        // here.
+        this.__showFatalError(`${qx.locale.Manager.tr('loadParts "Structure" failed')}: ${e}`);
+        throw new Error('loadParts "Structure" failed');
+      }
       if (cv.Application.structureController.parseBackendSettings(xml) || cv.Config.testMode) {
         cv.io.BackendConnections.initBackendClients();
       }
@@ -534,6 +550,24 @@ qx.Class.define('cv.TemplateEngine', {
           });
         });
       });
+    },
+
+    /**
+     * Display a message when the setup goes wrong and can't be recovered by
+     * the CometVisu itself.
+     * @param message {string}
+     * @private
+     */
+    __showFatalError(message) {
+      const notification = {
+        topic: 'cv.error',
+        title: qx.locale.Manager.tr('CometVisu startup error'),
+        message,
+        severity: 'urgent',
+        unique: true,
+        deletable: false
+      };
+      cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
     }
   },
 

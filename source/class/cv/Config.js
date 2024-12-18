@@ -18,7 +18,7 @@
  */
 
 /**
- * Main settings that an be accessed from anywhere inside the Application
+ * Main settings that can be accessed from anywhere inside the Application
  */
 qx.Class.define('cv.Config', {
   type: 'static',
@@ -181,6 +181,13 @@ qx.Class.define('cv.Config', {
      * @type {Boolean}
      */
     lazyLoading: false,
+
+    /**
+     * Timeout till when all structure parts should be loaded. Only very slow
+     * systems need to increase this value.
+     * @type {number}
+     */
+    timeoutStructureLoad: 2000,
 
     /**
      * Defines which structure is supported by which designs
@@ -361,6 +368,10 @@ qx.Class.define('cv.Config', {
 
   defer(statics) {
     const req = qx.util.Uri.parseUri(window.location.href);
+
+    if (req.queryKey.timeoutStructureLoad) {
+      cv.Config.timeoutStructureLoad = parseInt(req.queryKey.timeoutStructureLoad, 10);
+    }
 
     if (req.queryKey.enableQueue) {
       cv.Config.enableAddressQueue = true;
