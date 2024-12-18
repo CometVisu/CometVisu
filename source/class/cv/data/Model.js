@@ -162,7 +162,7 @@ qx.Class.define('cv.data.Model', {
           }
         }, this);
       } else {
-        this.warn('no addresses registered for backend "' + backendName + '", skipping update');
+        this.debug('no addresses registered for backend "' + backendName + '", skipping update');
       }
     },
 
