@@ -758,13 +758,11 @@ qx.Class.define('cv.Application', {
      * Internal initialization method
      */
     async __init() {
-      qx.event.Registration.addListener(
-        window,
-        'unload',
-        function () {
+      window.addEventListener(
+        'pagehide',
+        () => {
           cv.io.Client.stopAll();
-        },
-        this
+        }
       );
 
       qx.bom.Lifecycle.onReady(async () => {
