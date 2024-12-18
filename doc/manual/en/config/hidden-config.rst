@@ -55,7 +55,7 @@ widgets or plug-ins without an explicit configuration can look in the usual
 name for entries, which can reduce the configuration effort.
 
 =================  ====================================================================  =======
-Name               Verwendung                                                            Default
+Name               Usage                                                                 Default
 =================  ====================================================================  =======
 fritzbox           :ref:`tr064`
 influx             :ref:`diagram`                                                        X
