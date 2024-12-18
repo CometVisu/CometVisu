@@ -435,7 +435,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           ev.stopPropagation();
           return true;
 
-        case 'styling':
+        case 'styling': {
           let styling = '';
           if (ev.detail.targetConfig) {
             // use address styling if available
@@ -448,6 +448,7 @@ qx.Class.define('cv.ui.structure.tile.components.AbstractComponent', {
           this.setStyleClass(styleClass);
           ev.stopPropagation();
           return true;
+        }
 
         case '':
           this.setValue(ev.detail.state);

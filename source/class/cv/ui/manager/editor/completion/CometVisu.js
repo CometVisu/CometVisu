@@ -176,7 +176,7 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
         const promises = [];
 
         // load pure plugin template
-        promises.push([new Promise((resolve, reject)=> {
+        promises.push([new Promise((resolve, reject) => {
             cv.io.rest.Client.getFsClient().readSync(
               { path: 'demo/templates/Plugin.js' },
               function (err, res) {
@@ -204,7 +204,7 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
         ]);
 
         // load tile chart source plugin template
-        promises.push([new Promise((resolve, reject)=> {
+        promises.push([new Promise((resolve, reject) => {
           cv.io.rest.Client.getFsClient().readSync(
             { path: 'demo/templates/ChartSourcePlugin.js' },
             function (err, res) {
@@ -232,9 +232,7 @@ qx.Class.define('cv.ui.manager.editor.completion.CometVisu', {
         ]);
 
         return Promise.all(promises).then(
-          () => {
-            return this.TEMPLATES;
-          }
+          () => this.TEMPLATES
         );
       }
       return Promise.resolve(this.TEMPLATES);

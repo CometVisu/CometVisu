@@ -69,7 +69,7 @@ qx.Class.define('cv.ui.structure.tile.components.Spinner', {
       decrease.classList.add('left');
       const decreaseIcon = document.createElement('cv-icon');
       decreaseIcon.classList.add('ri-arrow-down-s-line');
-      decrease.addEventListener('click', (ev) => this.onDecrease(ev));
+      decrease.addEventListener('click', ev => this.onDecrease(ev));
       decrease.appendChild(decreaseIcon);
       element.insertBefore(decrease, valueElement);
 
@@ -79,7 +79,7 @@ qx.Class.define('cv.ui.structure.tile.components.Spinner', {
       const increaseIcon = document.createElement('cv-icon');
       increaseIcon.classList.add('ri-arrow-up-s-line');
       increase.appendChild(increaseIcon);
-      increase.addEventListener('click', (ev) => this.onIncrease(ev));
+      increase.addEventListener('click', ev => this.onIncrease(ev));
       element.appendChild(increase);
     },
 

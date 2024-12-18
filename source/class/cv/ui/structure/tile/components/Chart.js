@@ -1426,7 +1426,10 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               .attr('stroke', color);
           }
           let formatAttribute = 'y-format';
-          let x1, x2, y1, y2 = 0;
+          let x1;
+          let x2;
+          let y1;
+          let y2 = 0;
           if (name === 'h-line') {
             const [xMin, xMax] = this._chartConf.x.domain();
             x1 = this._chartConf.x(xMin);

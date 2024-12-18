@@ -55,17 +55,29 @@ qx.Class.define('cv.io.timeseries.Plugin', {
     },
 
     /**
+     * Options to configure the builtin fetch function.
+     *
+     * @typedef {Object} FetchRequestConfig
+     * @property {url} string - The URL to fetch the data from
+     * @property {options} object - Further options for the fetch request
+     * @property {proxy} boolean - If the request should be proxied
+     */
+
+    /**
+     * Disables the builtin fetch function and calls the plugins fetchData method instead.
+     *
+     * @typedef {Object} OwnFetchRequestConfig
+     * @property {fetch} boolean - Disables the builtin fetch function
+     */
+
+    /**
      * Generate the request configuration for the chart component or disable it if the plugin
      * fetches the data itself.
      * @param start {number} start time as unix timestamp
      * @param end {number} end time as unix timestamp
      * @param series {string} series name e.g. 'day', 'month', 'year'
      * @param offset {number} series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day
-     * @returns {
-     *    url: string,
-     *    options: object,
-     *    proxy: boolean
-     * } | { fetch: boolean }
+     * @returns {FetchRequestConfig|OwnFetchRequestConfig}
      */
     getRequestConfig(start, end, series, offset) {
       return this._plugin.getRequestConfig(start, end, series, offset);
@@ -96,6 +108,6 @@ qx.Class.define('cv.io.timeseries.Plugin', {
         return this._plugin.processResponse(data);
       }
       return data;
-    },
-  },
+    }
+  }
 });
