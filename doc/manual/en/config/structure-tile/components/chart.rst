@@ -96,6 +96,11 @@ The upper query would look like this:
     Since the CometVisu itself cannot check whether the Flux code is correct, it is recommended to compile the query
     in the UI of the InfluxDB and then copy the working code.
 
+.. hint::
+
+    If multiple inline queries are used in one chart, the value of the ``src`` attribute within this chart must be unique.
+    To do this, simply append a consecutive number, e.g. ``flux://openhab@inline#1`` and ``flux://openhab@inline#2``.
+
 The URI of the InfluxDB server and a token for authenticating the requests must be specified in the :ref:`hidden configurations <hidden-config>`
 under the section "influx". The following key-value entries are required in this section.
 
@@ -246,6 +251,26 @@ For the horizontal lines, a ``<h-line>`` is created with the same data source as
 in ``value``. The average value is then displayed as a horizontal line in the chart.
 With ``show-value="true"`` it is specified that the value is displayed next to the line.
 Other values for ``value`` are ``min``, ``max`` or a fixed value.
+
+Inline queries can also be referenced this way:
+
+.. code-block:: xml
+
+    <cv-widget size="2x1">
+        <cv-tile>
+            <cv-chart title="Strom" selection="month" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+                <dataset src="openhab://inline#1" title="Grid withdrawal" color="#FF0000" show-area="false">
+                    ...
+                <dataset>
+                <dataset src="openhab://inline#2" title="Grid injection" color="#00FF00" show-area="false">
+                    ...
+                <dataset>
+                <h-line src="openhab://inline#1" show-value="true" color="#FF0000" value="avg" format="%.1f"/>
+                <h-line src="openhab://inline#2" show-value="true" color="#CCCCCC" value="avg" format="%.1f"/>
+              </cv-chart>
+        </cv-tile>
+    </cv-widget>
+
 
 **Vertical lines**
 

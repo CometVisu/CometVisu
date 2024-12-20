@@ -145,6 +145,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
     __resizeTimeout: null,
     __startTs: null,
     __endTs: null,
+    __srcToHash: null,
 
     /**
     * @type {d3.Selection}
@@ -172,6 +173,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
       this._checkEnvironment();
 
       this._initializing = true;
+      this.__srcToHash = {};
       const element = this._element;
       await cv.ui.structure.tile.components.Chart.JS_LOADED;
       this._id = cv.ui.structure.tile.components.Chart.ChartCounter++;
@@ -659,6 +661,11 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
               if (ts.source.isInline()) {
                 const fluxQuery = dataSet.textContent.trim();
                 key = cv.ConfigCache.hashCode(fluxQuery).toString();
+                if (!this.__srcToHash[ts.src]) {
+                  this.__srcToHash[ts.src] = key;
+                } else {
+                  this.error(`duplicate flux inline source, you must append an unique anchor ID like ${ts.src}#12345`, ts.src);
+                }
                 ts.source.setQueryTemplate(fluxQuery);
               }
               break;
@@ -688,8 +695,8 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         }
       }
 
-      for (const src in this._dataSetConfigs) {
-        const ts = this._dataSetConfigs[src];
+      for (const key in this._dataSetConfigs) {
+        const ts = this._dataSetConfigs[key];
         let proxy = false;
         let options = {ttl: this.getRefresh()};
         if (ts.source) {
@@ -1351,24 +1358,27 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
 
     __addLines(X, Y) {
       for (const [i, line] of this._element.querySelectorAll(':scope > h-line, v-line').entries()) {
-        const src = line.getAttribute('src');
+        let key = line.getAttribute('src');
+        if (this.__srcToHash[key]) {
+          key = this.__srcToHash[key];
+        }
         const name = line.localName;
         let targetContainer = null;
         let data = null;
         let value = NaN;
-        if (src) {
-          if (this._chartConf.lineGroups.get(src)) {
+        if (key) {
+          if (this._chartConf.lineGroups.get(key)) {
             targetContainer = this._chartConf.lineContainer;
-            data = this._chartConf.lineGroups.get(src);
-          } else if (this._chartConf.areaGroups.get(src)) {
+            data = this._chartConf.lineGroups.get(key);
+          } else if (this._chartConf.areaGroups.get(key)) {
             targetContainer = this._chartConf.areaContainer;
-            data = this._chartConf.areaGroups.get(src);
-          } else if (this._chartConf.barGroups.get(src)) {
+            data = this._chartConf.areaGroups.get(key);
+          } else if (this._chartConf.barGroups.get(key)) {
             targetContainer = this._chartConf.barContainer;
-            data = this._chartConf.barGroups.get(src);
+            data = this._chartConf.barGroups.get(key);
           }
           if (!data) {
-            this.error('no data found for src ' + src);
+            this.error('no data found for key ' + key);
             continue;
           }
           if (name === 'h-line') {

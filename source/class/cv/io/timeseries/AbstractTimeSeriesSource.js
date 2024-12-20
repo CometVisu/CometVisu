@@ -43,7 +43,7 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
   ***********************************************
   */
   statics: {
-    urlRegex: /^(flux|openhab|rrd|demo|plugin)\+?(\w+)?:\/\/((\w+)@)?([^\/?]+)(\/[^?]*)?\??(.*)/
+    urlRegex: /^(flux|openhab|rrd|demo|plugin)\+?(\w+)?:\/\/((\w+)@)?([^\/?#]+)(\/[^?]*)?\??([^#]*)#?(.*)/
   },
 
   /*
@@ -90,7 +90,8 @@ qx.Class.define('cv.io.timeseries.AbstractTimeSeriesSource', {
             const [key, value] = entry.split('=');
             map[key] = value;
             return map;
-          }, {}) : {}
+          }, {}) : {},
+          anchor: match[8]
         };
       }
       this.error('invalid url '+ url + ' this source will not be usable!');

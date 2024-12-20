@@ -97,6 +97,11 @@ weglassen (dieses wird automatisch passend zu ausgewählten Zeitserie gewählt).
     Da die CometVisu selbst nicht prüfen kann, ob der Flux-Code korrekt ist, empfiehlt es sich die Query
     in der UI der InfluxDB zusammenzustellen und den funktionieren Code dann zu kopieren.
 
+.. hint::
+
+    Wenn mehrere Inline-Queries in einem Chart verwendet werden, muss der Wert des ``src``-Attributs innerhalb dieses Charts eindeutig sein.
+    Dazu kann man einfach eine fortlaufende Nummer anhängen, z.B. ``flux://openhab@inline#1`` und ``flux://openhab@inline#2``.
+
 Die URI des InfluxDB-Servers und ein Token für die Authentifizierung der Anfragen müssen in der :ref:`Versteckten Konfigurationen <hidden-config>`
 unter der Sektion "influx" angegeben werden. In dieser Sektion sind folgende Schlüssel-Wert Einträge erforderlich.
 
@@ -250,8 +255,28 @@ Höchst- oder Tiefstwert.
 
 Dazu wird eine ``<h-line>`` mit der selben Datenquelle wie die Linie erstellt und der Wert ``avg`` für den Durchschnitt
 in ``value`` angegeben. Der Durchschnittswert wird dann als horizontale Linie im Chart dargestellt.
-Mit ``show-value="true"`` wird der festgelegt, dass der Wert neben der Linie angezeigt wird.
+Mit ``show-value="true"`` wird festgelegt, dass der Wert neben der Linie angezeigt wird.
 Weitere Werte für ``value`` sind ``min``, ``max`` oder ein fixer Wert.
+
+Auch inline-Queries können auf diesem Weg wieder verwendet werden:
+
+.. code-block:: xml
+
+    <cv-widget size="2x1">
+        <cv-tile>
+            <cv-chart title="Strom" selection="month" y-format="%.1f kWh" series="month" refresh="300" colspan="3" rowspan="3" x-format="%d. %b">
+                <dataset src="openhab://inline#1" title="Netzbezug" color="#FF0000" show-area="false">
+                    ...
+                <dataset>
+                <dataset src="openhab://inline#2" title="Einspeisung" color="#00FF00" show-area="false">
+                    ...
+                <dataset>
+                <h-line src="openhab://inline#1" show-value="true" color="#FF0000" value="avg" format="%.1f"/>
+                <h-line src="openhab://inline#2" show-value="true" color="#CCCCCC" value="avg" format="%.1f"/>
+              </cv-chart>
+        </cv-tile>
+    </cv-widget>
+
 
 **Vertikale Linien**
 
