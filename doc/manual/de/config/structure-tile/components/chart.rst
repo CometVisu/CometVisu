@@ -258,7 +258,7 @@ in ``value`` angegeben. Der Durchschnittswert wird dann als horizontale Linie im
 Mit ``show-value="true"`` wird festgelegt, dass der Wert neben der Linie angezeigt wird.
 Weitere Werte für ``value`` sind ``min``, ``max`` oder ein fixer Wert.
 
-Auch inline-Queries können auf diesem Weg wieder verwendet werden:
+Auch Inline-Queries können auf diesem Weg wieder verwendet werden:
 
 .. code-block:: xml
 
