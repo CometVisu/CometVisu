@@ -408,6 +408,7 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
         strokeOpacity: undefined, // stroke opacity of line
         mixBlendMode: 'normal', // blend mode of lines
         showArea: d => this._dataSetConfigs[d].showArea, // show area below the line,
+        gradient: d => this._dataSetConfigs[d].gradient, // use gradient for area
         showXAxis: !this._element.hasAttribute('show-x-axis') || this._element.getAttribute('show-x-axis') === 'true',
         showYAxis: !this._element.hasAttribute('show-y-axis') || this._element.getAttribute('show-y-axis') === 'true',
         xPadding: 0.1 // amount of x-range to reserve to separate bars
@@ -1302,7 +1303,37 @@ qx.Class.define('cv.ui.structure.tile.components.Chart', {
           .join(
             enter => enter.append('path')
               .style('mix-blend-mode', config.mixBlendMode)
-              .attr('fill', typeof config.color === 'function' ? p => this.__opacifyColor(config.color(p[0]), '30') : null)
+              .attr('fill', typeof config.color === 'function' ? p => {
+                const color = config.color(p[0]);
+                const gradient = typeof config.gradient === 'function' ? config.gradient(p[0]) : false;
+                if (gradient) {
+                  const gradId = `${color.replaceAll(/\W/g, '')}Grad`;
+                  let lg = svg.select('#' + gradId);
+                  if (lg.empty()) {
+                    const lg = svg.append("defs").append("linearGradient")
+                      .attr("id", gradId)
+                      .attr("x1", "0%")
+                      .attr("x2", "0%")
+                      .attr("y1", "0%")
+                      .attr("y2", "100%");
+                    ;
+                    lg.append("stop")
+                      .attr("offset", "0%")
+                      .style("stop-color", color)
+                      .style("stop-opacity", 0.7);
+
+                    lg.append("stop")
+                      .attr("offset", "100%")
+                      .style("stop-color", color)
+                      .style("stop-opacity", 0);
+
+                  }
+                  return 'url(#' + gradId + ')';
+                } else {
+                  return this.__opacifyColor(color, '30');
+                }
+
+              }: null)
           )
           .transition(t)
           .attr('d', d => {
