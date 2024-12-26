@@ -67,16 +67,16 @@ qx.Class.define('cv.io.timeseries.Plugin', {
      * Disables the builtin fetch function and calls the plugins fetchData method instead.
      *
      * @typedef {object} OwnFetchRequestConfig
-     * @property {boolean} fetch - Disables the builtin fetch function
+     * @property {boolean} fetch Disables the builtin fetch function
      */
 
     /**
      * Generate the request configuration for the chart component or disable it if the plugin
      * fetches the data itself.
-     * @param {number} start - start time as unix timestamp
-     * @param {number} end - end time as unix timestamp
-     * @param {string} series - series name e.g. 'day', 'month', 'year'
-     * @param {number} offset - series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day
+     * @param {number} start start time as unix timestamp
+     * @param {number} end end time as unix timestamp
+     * @param {string} series series name e.g. 'day', 'month', 'year'
+     * @param {number} offset series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day
      * @returns {FetchRequestConfig|OwnFetchRequestConfig}
      */
     getRequestConfig(start, end, series, offset) {
@@ -87,10 +87,10 @@ qx.Class.define('cv.io.timeseries.Plugin', {
      * If the plugin request the data from an external source this function is called.
      * getRequestConfig() must return {fetch: false} to disable the charts builtin data fetching and
      * call this function instead.
-     * @param {number} start - start time as unix timestamp
-     * @param {number} end - end time as unix timestamp
-     * @param {string} series - series name e.g. 'day', 'month', 'year'
-     * @param {number} offset - series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day
+     * @param {number} start start time as unix timestamp
+     * @param {number} end end time as unix timestamp
+     * @param {string} series series name e.g. 'day', 'month', 'year'
+     * @param {number} offset series offset, can be used together with series to calculate the start date e.g. series: day, offset: 1 -> start = end - 1 day
      * @returns {Promise<*>}
      */
     async fetchData(start, end, series, offset) {
