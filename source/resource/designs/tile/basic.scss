@@ -2229,4 +2229,17 @@ body {
             right: 0;
         }
     }
+
+    cv-dynamic {
+        display: block;
+        width: 100%;
+
+        > cv-ref {
+            display: none;
+
+            &[active] {
+                display: inline;
+            }
+        }
+    }
 }

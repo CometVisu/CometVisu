@@ -676,8 +676,14 @@ class QxConnector extends HTMLElement {
 window.QxConnector = QxConnector;
 
 class TemplatedElement extends QxConnector {
+
   constructor(templateId, QxClass) {
     super(QxClass);
+    const renderAttributeName = 'data-cv-rendered';
+    if (this.getAttribute(renderAttributeName) === 'true') {
+      // do not render the template twice
+      return;
+    }
     const controller = cv.ui.structure.tile.Controller.getInstance();
     let template = document.getElementById(templateId);
     if (template) {
@@ -834,6 +840,7 @@ class TemplatedElement extends QxConnector {
       this.innerHTML = '';
       this.appendChild(content);
       this.classList.add('cv-widget');
+      this.setAttribute(renderAttributeName, 'true');
     } else {
       qx.log.Logger.error(controller, '[' + templateId + '] no template found for id', templateId);
     }

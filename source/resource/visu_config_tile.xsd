@@ -607,6 +607,7 @@
       <xsd:element name="cv-media-player" type="cv-media-player"/>
       <xsd:element name="cv-energy" type="cv-energy"/>
       <xsd:element name="cv-web" type="cv-web" />
+      <xsd:element name="cv-dynamic" type="cv-dynamic" />
     </xsd:choice>
   </xsd:group>
 
@@ -780,6 +781,15 @@
     </xsd:attribute>
     <xsd:attribute ref="refresh" />
     <xsd:attributeGroup ref="proxy-attributes"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="cv-dynamic">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="cv-ref" type="cv-ref"/>
+        <xsd:element name="cv-address" type="address"/>
+      </xsd:choice>
+    </xsd:sequence>
   </xsd:complexType>
 
   <xsd:complexType name="cv-chart">
@@ -1835,7 +1845,6 @@
     </xsd:attribute>
   </xsd:complexType>
 
-
   <xsd:complexType name="cv-status-chart">
     <xsd:sequence>
       <xsd:element name="cv-address" maxOccurs="3">
@@ -2452,6 +2461,32 @@
     <xsd:attribute name="src" type="xsd:anyURI" />
   </xsd:complexType>
 
+  <xsd:complexType name="cv-ref">
+    <xsd:attribute name="selector" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">CSS-Selector that references the element that should be shown here.</xsd:documentation>
+        <xsd:documentation xml:lang="de">CSS-Selector der das Element referenziert, welches hier angezeigt werden soll.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="when" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show this element, when the related address has this state.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeige dieses Element an, wenn die zugehörige Adresse diesen Wert hat.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="modify-selector" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">CSS-selector to select an element inside the copied element.</xsd:documentation>
+        <xsd:documentation xml:lang="de">CSS-Selector mit dem, innerhalb des zu kopierenden Elements, ein Kind-Element ausgewählt wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="modify-attribute" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Changes the  value of an attribute if the element selected via ``modify-selector``. Combination of "attributeName:value".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Verändert den Wert eines Attributes in dem vom ``modify-selector`` ausgewählten Elements. Setze sich zusammen aus "attributName:Wert".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
 
   <xsd:simpleType name="color">
     <xsd:restriction base="xsd:token">
