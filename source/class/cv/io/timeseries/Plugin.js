@@ -57,17 +57,17 @@ qx.Class.define('cv.io.timeseries.Plugin', {
     /**
      * Options to configure the builtin fetch function.
      *
-     * @typedef {Object} FetchRequestConfig
-     * @property {url} string - The URL to fetch the data from
-     * @property {options} object - Further options for the fetch request
-     * @property {proxy} boolean - If the request should be proxied
+     * @typedef {object} FetchRequestConfig
+     * @property {string} url The URL to fetch the data from
+     * @property {object} options Further options for the fetch request
+     * @property {boolean} proxy If the request should be proxied
      */
 
     /**
      * Disables the builtin fetch function and calls the plugins fetchData method instead.
      *
-     * @typedef {Object} OwnFetchRequestConfig
-     * @property {fetch} boolean - Disables the builtin fetch function
+     * @typedef {object} OwnFetchRequestConfig
+     * @property {boolean} fetch - Disables the builtin fetch function
      */
 
     /**
