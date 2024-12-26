@@ -510,7 +510,7 @@ qx.Class.define('cv.plugins.RssLog', {
           if (Array.isArray(item.tags)) {
             const tags = item.tags.filter(x => x !== '').map(x => x.trim());
             if (tags.length > 0) {
-              tmp.classList.add.apply(tmp.classList, item.tags);
+              tmp.classList.add.apply(tmp.classList, tags);
             }
           } else {
             tmp.classList.add(item.tags.trim());
