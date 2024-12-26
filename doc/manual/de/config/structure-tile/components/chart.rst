@@ -222,6 +222,27 @@ füllen, oder einfach mit ``all`` for alle.
         </cv-tile>
     </cv-widget>
 
+**Weitere Darstellungsmöglichkeiten**
+
+Man hat diverse Möglichkeiten die Darstellung des Charts zu beeinflussen. So kann man z.B. die Linien im Hintegrund
+ausblenden (``show-grid="false"``), den Bereich unterhalb der Linie mit einem Gradienten ausblenden lassen (``gradient="true"``)
+oder auch die Linienfarbe ändern (``line-color="#FFFF00"``).
+
+.. widget-example::
+
+    <settings design="tile" selector="cv-widget">
+        <fixtures>
+            <fixture source-file="source/test/fixtures/temp-chart.json" target-path="/rest/persistence/items/Temperature_FF_Living" mime-type="application/json"/>
+        </fixtures>
+        <screenshot name="cv-chart-temp-alt"/>
+    </settings>
+    <cv-widget size="2x1">
+        <cv-tile>
+            <cv-chart title="Wohnzimmer" y-format="%.1f °C" series="day" refresh="300" colspan="3" rowspan="3" show-grid="false">
+                <dataset chart-type="line" gradient="true" color="#FFFF00" src="openhab://Temperature_FF_Living"/>
+            </cv-chart>
+        </cv-tile>
+    </cv-widget>
 
 Einfache Linien
 ###############

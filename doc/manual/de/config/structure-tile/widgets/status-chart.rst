@@ -16,7 +16,7 @@ ein Popup in der der Chart dann mit den Achsen in voller Größe angezeigt wird.
 
     <settings design="tile" selector="cv-status-chart">
         <fixtures>
-            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="charts/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
+            <fixture source-file="source/test/fixtures/grid-import-chart.json" target-path="/rest/persistence/items/Meter_Energy_Grid_Import_Today" mime-type="application/json"/>
         </fixtures>
         <screenshot name="cv-status-chart">
             <caption>Status mit Hintergrund-Chart.</caption>
@@ -27,7 +27,7 @@ ein Popup in der der Chart dann mit den Achsen in voller Größe angezeigt wird.
         <cv-address slot="address" transform="DPT:7.001" mode="read">1/4/0</cv-address>
         <span slot="title">Aktueller Stromverbrauch</span>
         <span slot="unit">W</span>
-        <dataset slot="dataset" src="Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="true" curve="step"/>
+        <dataset slot="dataset" src="openhab://Meter_Energy_Grid_Import_Today" title="Netzbezug" color="#FF0000" show-area="true" curve="step"/>
     </cv-status-chart>
 
 

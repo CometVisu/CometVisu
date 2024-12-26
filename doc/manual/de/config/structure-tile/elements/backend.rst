@@ -75,6 +75,15 @@ Für die Verbindung zu openHAB muss dann folgender Eintrag benutzt werden.
 
     <cv-backend type="openhab" username="<access-token>" uri="/rest/" />
 
+.. HINT::
+
+    In openHAB angelegte Szenen (oder Regeln) können ebenfalls über das openHAB-Backend gestartet werden.
+    Dazu muss eine Adresse mit folgender Syntax benutzt werden: ``<cv-address mode="write" value="1">scene:123456abcd</cv-address>``.
+    Szenen / Regeln haben keinen Status, daher wird der Wert immer auf 1 gesetzt und es kann nur der Modus ``write`` benutzt werden.
+    Wichtig ist hier das Präfix ``scene:`` gefolgt von der ID der Szene / Regel.
+    Der Wert von ``value`` ist hierbei irrelevant, da er beim Aktivieren der Szene / Regel nicht gesendet, er dient lediglich dazu
+    in der UI eine kleine visuelle Rückmeldung zu geben, wenn die Szene geklickt wird.
+
 
 Verbindung zu einem MQTT-Broker
 -------------------------------
