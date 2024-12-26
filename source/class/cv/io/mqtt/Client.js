@@ -129,10 +129,9 @@ qx.Class.define('cv.io.mqtt.Client', {
      *
      * @param loginOnly {Boolean} if true only login and backend configuration, no subscription
      *                            to addresses (default: false)
-     * @param credentials {Map} map with "username" and "password" (optional)
-     * @param callback {Function} call this function when login is done
-     * @param context {Object} context for the callback (this)
-     *
+     * @param credentials {{username: string?, password: string?}?} map with "username" and "password" (optional)
+     * @param callback {Function?} call this function when login is done
+     * @param context {Object?} context for the callback (this)
      */
     login(loginOnly, credentials, callback, context) {
       let self = this;
@@ -177,20 +176,20 @@ qx.Class.define('cv.io.mqtt.Client', {
       if (this._backendUrl.username !== '') {
         options.userName = this._backendUrl.username;
       }
-      if (credentials && credentials.username !== '') {
+      if ((credentials?.username ?? '') !== '') {
         options.userName = credentials.username;
       }
       if (this._backendUrl.password !== '') {
         options.password = this._backendUrl.password;
       }
-      if (credentials && credentials.password !== '') {
+      if ((credentials?.password ?? '') !== '') {
         options.password = credentials.password;
       }
 
       try {
         this._client = new Paho.MQTT.Client(
           this._backendUrl.toString(),
-          'CometVisu_' + Math.random().toString(16).substr(2, 8)
+          'CometVisu_' + (cv.Config.clientID ?? '') + Math.random().toString(16).slice(2, 10)
         );
       } catch (e) {
         self.error('MQTT Client error:', e);
